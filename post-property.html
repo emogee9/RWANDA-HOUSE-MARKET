@@ -1,0 +1,822 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Post a Property - Rwanda House Market</title>
+
+  <!-- Leaflet Map -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fa;
+      color: #222;
+    }
+
+    header {
+      background: white;
+      padding: 15px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .logo img {
+      width: 45px;
+      height: 45px;
+      object-fit: contain;
+    }
+
+    .back-btn {
+      text-decoration: none;
+      color: #222;
+      font-weight: bold;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 900px;
+      margin: 35px auto;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .title h1 {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .title p {
+      color: #666;
+    }
+
+    .form-card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+      margin-bottom: 25px;
+    }
+
+    .form-card h2 {
+      margin-bottom: 20px;
+      font-size: 21px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d5d9df;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #2563eb;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .upload-box {
+      border: 2px dashed #b8c0cc;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      background: #fafbfc;
+    }
+
+    .upload-box p {
+      color: #666;
+      margin-bottom: 12px;
+    }
+
+    .preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .preview img {
+      width: 120px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    /* MAP */
+
+    #map {
+      width: 100%;
+      height: 350px;
+      border-radius: 12px;
+      margin-top: 15px;
+      overflow: hidden;
+    }
+
+    .map-help {
+      color: #666;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+
+    .coordinates {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .coordinates input {
+      background: #f4f6f8;
+    }
+
+    .submit-btn {
+      width: 100%;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      opacity: 0.9;
+    }
+
+    @media (max-width: 650px) {
+
+      .row,
+      .coordinates {
+        grid-template-columns: 1fr;
+      }
+
+      .form-card {
+        padding: 20px;
+      }
+
+      .title h1 {
+        font-size: 26px;
+      }
+
+      #map {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+    <div class="logo">
+      <img src="logo.png" alt="Rwanda House Market Logo">
+      <span>Rwanda House Market</span>
+    </div>
+
+    <a href="index.html" class="back-btn">
+      ← Home
+    </a>
+
+  </header>
+
+
+  <main class="container">
+
+    <div class="title">
+      <h1>Post a Property</h1>
+
+      <p>
+        List your house or plot on Rwanda House Market.
+      </p>
+    </div>
+
+
+    <form id="propertyForm">
+
+
+      <!-- PROPERTY INFORMATION -->
+
+      <section class="form-card">
+
+        <h2>🏠 Property Information</h2>
+
+        <div class="form-group">
+
+          <label for="title">
+            Property Title
+          </label>
+
+          <input
+            type="text"
+            id="title"
+            placeholder="Example: Beautiful House in Kigali"
+            required
+          >
+
+        </div>
+
+
+        <div class="row">
+
+          <div class="form-group">
+
+            <label for="type">
+              Property Type
+            </label>
+
+            <select id="type" required>
+
+              <option value="">
+                Select property type
+              </option>
+
+              <option value="House">
+                House
+              </option>
+
+              <option value="Plot">
+                Plot
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="purpose">
+              Property Status
+            </label>
+
+            <select id="purpose" required>
+
+              <option value="">
+                Select status
+              </option>
+
+              <option value="For Rent">
+                For Rent
+              </option>
+
+              <option value="For Sale">
+                For Sale
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <div class="row">
+
+          <div class="form-group">
+
+            <label for="price">
+              Price
+            </label>
+
+            <input
+              type="number"
+              id="price"
+              placeholder="Example: 500000"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="currency">
+              Currency
+            </label>
+
+            <select id="currency">
+
+              <option value="RWF">
+                RWF
+              </option>
+
+              <option value="USD">
+                USD
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="description">
+            Description
+          </label>
+
+          <textarea
+            id="description"
+            placeholder="Describe the property..."
+          ></textarea>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- PROPERTY PHOTOS -->
+
+      <section class="form-card">
+
+        <h2>📸 Property Photos</h2>
+
+
+        <div class="form-group">
+
+          <label>
+            Main Property Photo
+          </label>
+
+          <div class="upload-box">
+
+            <p>
+              Choose the main photo of your property.
+            </p>
+
+            <input
+              type="file"
+              accept="image/*"
+              id="mainPhoto"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Other Property Photos
+          </label>
+
+          <div class="upload-box">
+
+            <p>
+              You can select multiple photos.
+            </p>
+
+            <input
+              type="file"
+              accept="image/*"
+              multiple
+              id="propertyPhotos"
+            >
+
+            <div
+              class="preview"
+              id="photoPreview"
+            ></div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- 360 VIEW -->
+
+      <section class="form-card">
+
+        <h2>
+          🌐 360° Property View
+        </h2>
+
+        <p
+          class="map-help"
+        >
+          If you have 360° photos of the property,
+          you can upload them here.
+        </p>
+
+        <div class="upload-box">
+
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            id="view360"
+          >
+
+        </div>
+
+      </section>
+
+
+
+      <!-- LOCATION -->
+
+      <section class="form-card">
+
+        <h2>
+          📍 Property Location
+        </h2>
+
+        <p class="map-help">
+
+          Click on the map to place the property location.
+          You can move the marker if you need to change the location.
+
+        </p>
+
+
+        <div id="map"></div>
+
+
+        <div class="coordinates">
+
+          <div>
+
+            <label>
+              Latitude
+            </label>
+
+            <input
+              type="text"
+              id="latitude"
+              readonly
+              placeholder="Latitude"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>
+              Longitude
+            </label>
+
+            <input
+              type="text"
+              id="longitude"
+              readonly
+              placeholder="Longitude"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="form-group"
+          style="margin-top:18px;"
+        >
+
+          <label for="location">
+            Location / Address
+          </label>
+
+          <input
+            type="text"
+            id="location"
+            placeholder="Example: Kigali, Gasabo, Rwanda"
+            required
+          >
+
+        </div>
+
+      </section>
+
+
+
+      <!-- CONTACT -->
+
+      <section class="form-card">
+
+        <h2>
+          📞 Contact Information
+        </h2>
+
+
+        <div class="row">
+
+          <div class="form-group">
+
+            <label for="phone">
+              Phone Number
+            </label>
+
+            <input
+              type="tel"
+              id="phone"
+              placeholder="+250 ..."
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="whatsapp">
+              WhatsApp Number
+            </label>
+
+            <input
+              type="tel"
+              id="whatsapp"
+              placeholder="+250 ..."
+            >
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- SUBMIT -->
+
+      <button
+        type="submit"
+        class="submit-btn"
+      >
+
+        🚀 Post Property
+
+      </button>
+
+
+    </form>
+
+  </main>
+
+
+
+  <!-- Leaflet JS -->
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+  </script>
+
+
+
+  <script>
+
+    /* =========================
+       PROPERTY PHOTOS PREVIEW
+    ========================= */
+
+    const propertyPhotos =
+      document.getElementById("propertyPhotos");
+
+    const photoPreview =
+      document.getElementById("photoPreview");
+
+
+    propertyPhotos.addEventListener(
+      "change",
+      function () {
+
+        photoPreview.innerHTML = "";
+
+        Array.from(this.files).forEach(file => {
+
+          const reader =
+            new FileReader();
+
+
+          reader.onload =
+            function (event) {
+
+              const img =
+                document.createElement("img");
+
+              img.src =
+                event.target.result;
+
+              photoPreview.appendChild(img);
+
+            };
+
+
+          reader.readAsDataURL(file);
+
+        });
+
+      }
+    );
+
+
+
+    /* =========================
+       MAP
+    ========================= */
+
+    const defaultLatitude = -1.9441;
+    const defaultLongitude = 30.0619;
+
+
+    const map =
+      L.map("map").setView(
+        [
+          defaultLatitude,
+          defaultLongitude
+        ],
+        10
+      );
+
+
+    L.tileLayer(
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      {
+        maxZoom: 19,
+        attribution:
+          '&copy; OpenStreetMap contributors'
+      }
+    ).addTo(map);
+
+
+    let marker = null;
+
+
+    function placeMarker(
+      latitude,
+      longitude
+    ) {
+
+      if (marker) {
+
+        map.removeLayer(marker);
+
+      }
+
+
+      marker =
+        L.marker(
+          [
+            latitude,
+            longitude
+          ],
+          {
+            draggable: true
+          }
+        ).addTo(map);
+
+
+      document.getElementById(
+        "latitude"
+      ).value =
+        latitude.toFixed(6);
+
+
+      document.getElementById(
+        "longitude"
+      ).value =
+        longitude.toFixed(6);
+
+
+      marker.on(
+        "dragend",
+        function (event) {
+
+          const position =
+            event.target.getLatLng();
+
+
+          document.getElementById(
+            "latitude"
+          ).value =
+            position.lat.toFixed(6);
+
+
+          document.getElementById(
+            "longitude"
+          ).value =
+            position.lng.toFixed(6);
+
+        }
+      );
+
+    }
+
+
+    map.on(
+      "click",
+      function (event) {
+
+        placeMarker(
+          event.latlng.lat,
+          event.latlng.lng
+        );
+
+      }
+    );
+
+
+
+    /* =========================
+       FORM SUBMISSION
+    ========================= */
+
+    const propertyForm =
+      document.getElementById(
+        "propertyForm"
+      );
+
+
+    propertyForm.addEventListener(
+      "submit",
+      function (event) {
+
+        event.preventDefault();
+
+
+        if (!marker) {
+
+          alert(
+            "Please select the property location on the map."
+          );
+
+          return;
+
+        }
+
+
+        alert(
+          "Property information is ready. Database connection will be added next."
+        );
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
+```
+
