@@ -4,9 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Rwanda House Market</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -57,12 +62,6 @@
       text-align: center;
       border-radius: 15px;
       box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .category:hover {
-      transform: translateY(-5px);
     }
 
     .icon {
@@ -76,9 +75,11 @@
 
     .category p {
       color: #666;
+      min-height: 42px;
     }
 
-    .category button {
+    .category a {
+      display: inline-block;
       border: none;
       background: #0b5d1e;
       color: white;
@@ -87,27 +88,12 @@
       cursor: pointer;
       font-size: 16px;
       margin-top: 10px;
+      text-decoration: none;
     }
 
-    .category button:hover {
+    .category a:hover {
       background: #084716;
     }
-   .sale-link {
-  display: inline-block;
-  border: none;
-  background: #0b5d1e;
-  color: white;
-  padding: 12px 25px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px;
-  text-decoration: none;
-}
-
-.sale-link:hover {
-  background: #084716;
-} 
   </style>
 </head>
 
@@ -127,107 +113,164 @@
 
     <div class="categories">
 
+      <!-- RENT -->
+
       <div class="category">
+
         <div class="icon">🏠</div>
+
         <h2 id="rentTitle">Houses for Rent</h2>
-        <p id="rentText">Find houses available for rent.</p>
-        <button onclick="openRent()" id="rentButton">View Houses</button>
+
+        <p id="rentText">
+          Find houses available for rent.
+        </p>
+
+        <a href="./rent.html" id="rentButton">
+          View Houses
+        </a>
+
       </div>
 
+
+      <!-- HOUSES FOR SALE -->
+
       <div class="category">
+
         <div class="icon">🏡</div>
+
         <h2 id="saleTitle">Houses for Sale</h2>
-        <p id="saleText">Find houses available for sale.</p>
-        <a href="./houses-sale.html" class="sale-link" id="saleButton">View Houses</a>
+
+        <p id="saleText">
+          Find houses available for sale.
+        </p>
+
+        <a href="./houses-sale.html" id="saleButton">
+          View Houses
+        </a>
+
       </div>
 
+
+      <!-- PLOTS -->
+
       <div class="category">
+
         <div class="icon">🌍</div>
+
         <h2 id="plotTitle">Plots for Sale</h2>
-        <p id="plotText">Find plots available for sale.</p>
-        <button onclick="openPlots()" id="plotButton">View Plots</button>
+
+        <p id="plotText">
+          Find plots available for sale.
+        </p>
+
+        <a href="./plots.html" id="plotButton">
+          View Plots
+        </a>
+
       </div>
 
     </div>
 
   </div>
 
+
   <script>
 
-    const language = localStorage.getItem("selectedLanguage");
+    const language =
+      localStorage.getItem("selectedLanguage") || "English";
+
 
     const translations = {
 
-      "Kinyarwanda": {
+      Kinyarwanda: {
         subtitle: "Shaka umutungo wawe utaha mu Rwanda",
         welcome: "Murakaza neza kuri Rwanda House Market",
         choose: "Hitamo icyo urimo gushaka",
+
         rentTitle: "Amazu akodeshwa",
-        rentText: "Shaka amazu ahari yo gukodesha.",
+        rentText: "Shaka amazu ahari yo gukodesha",
         rentButton: "Reba amazu",
+
         saleTitle: "Amazu agurishwa",
-        saleText: "Shaka amazu ahari yo kugura.",
+        saleText: "Shaka amazu ahari yo kugura",
         saleButton: "Reba amazu",
+
         plotTitle: "Ibibanza bigurishwa",
-        plotText: "Shaka ibibanza bihari byo kugura.",
+        plotText: "Shaka ibibanza bihari byo kugura",
         plotButton: "Reba ibibanza"
       },
 
-      "English": {
+
+      English: {
         subtitle: "Find your next property in Rwanda",
         welcome: "Welcome to Rwanda House Market",
         choose: "Choose what you are looking for",
+
         rentTitle: "Houses for Rent",
         rentText: "Find houses available for rent.",
         rentButton: "View Houses",
+
         saleTitle: "Houses for Sale",
         saleText: "Find houses available for sale.",
         saleButton: "View Houses",
+
         plotTitle: "Plots for Sale",
         plotText: "Find plots available for sale.",
         plotButton: "View Plots"
       },
 
-      "Français": {
+
+      Français: {
         subtitle: "Trouvez votre prochain bien immobilier au Rwanda",
         welcome: "Bienvenue sur Rwanda House Market",
         choose: "Choisissez ce que vous recherchez",
+
         rentTitle: "Maisons à louer",
         rentText: "Trouvez des maisons disponibles à la location.",
         rentButton: "Voir les maisons",
+
         saleTitle: "Maisons à vendre",
         saleText: "Trouvez des maisons disponibles à la vente.",
         saleButton: "Voir les maisons",
+
         plotTitle: "Terrains à vendre",
         plotText: "Trouvez des terrains disponibles à la vente.",
         plotButton: "Voir les terrains"
       },
 
-      "Kiswahili": {
+
+      Kiswahili: {
         subtitle: "Pata mali yako inayofuata nchini Rwanda",
         welcome: "Karibu Rwanda House Market",
         choose: "Chagua unachotafuta",
+
         rentTitle: "Nyumba za Kupangisha",
         rentText: "Pata nyumba zinazopatikana kwa kupangisha.",
         rentButton: "Tazama Nyumba",
+
         saleTitle: "Nyumba za Kuuza",
         saleText: "Pata nyumba zinazopatikana kwa kuuza.",
         saleButton: "Tazama Nyumba",
+
         plotTitle: "Viwanja vya Kuuza",
         plotText: "Pata viwanja vinavyopatikana kwa kuuza.",
         plotButton: "Tazama Viwanja"
       },
 
+
       "中文": {
         subtitle: "在卢旺达寻找您的下一处房产",
         welcome: "欢迎来到 Rwanda House Market",
         choose: "请选择您要寻找的房产",
+
         rentTitle: "出租房屋",
         rentText: "寻找可出租的房屋。",
         rentButton: "查看房屋",
+
         saleTitle: "出售房屋",
         saleText: "寻找可出售的房屋。",
         saleButton: "查看房屋",
+
         plotTitle: "出售土地",
         plotText: "寻找可出售的土地。",
         plotButton: "查看土地"
@@ -235,34 +278,49 @@
 
     };
 
-    const t = translations[language] || translations["English"];
 
-    document.getElementById("subtitle").textContent = t.subtitle;
-    document.getElementById("welcome").textContent = t.welcome;
-    document.getElementById("choose").textContent = t.choose;
-
-    document.getElementById("rentTitle").textContent = t.rentTitle;
-    document.getElementById("rentText").textContent = t.rentText;
-    document.getElementById("rentButton").textContent = t.rentButton;
-
-    document.getElementById("saleTitle").textContent = t.saleTitle;
-    document.getElementById("saleText").textContent = t.saleText;
-    document.getElementById("saleButton").textContent = t.saleButton;
-
-    document.getElementById("plotTitle").textContent = t.plotTitle;
-    document.getElementById("plotText").textContent = t.plotText;
-    document.getElementById("plotButton").textContent = t.plotButton;
+    const t =
+      translations[language] || translations.English;
 
 
-    function openRent() {
-      window.location.href = "rent.html"
-      function openHouseSale() {
-  window.location.href = "./houses-sale.html";
-}
+    document.getElementById("subtitle").textContent =
+      t.subtitle;
 
-    function openPlots() {
-      window.location.href = "plots.html";
-    }
+    document.getElementById("welcome").textContent =
+      t.welcome;
+
+    document.getElementById("choose").textContent =
+      t.choose;
+
+
+    document.getElementById("rentTitle").textContent =
+      t.rentTitle;
+
+    document.getElementById("rentText").textContent =
+      t.rentText;
+
+    document.getElementById("rentButton").textContent =
+      t.rentButton;
+
+
+    document.getElementById("saleTitle").textContent =
+      t.saleTitle;
+
+    document.getElementById("saleText").textContent =
+      t.saleText;
+
+    document.getElementById("saleButton").textContent =
+      t.saleButton;
+
+
+    document.getElementById("plotTitle").textContent =
+      t.plotTitle;
+
+    document.getElementById("plotText").textContent =
+      t.plotText;
+
+    document.getElementById("plotButton").textContent =
+      t.plotButton;
 
   </script>
 
