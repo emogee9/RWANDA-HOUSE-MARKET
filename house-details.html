@@ -45,16 +45,17 @@
       padding: 25px 20px 50px;
     }
 
-    /* MAIN PHOTO */
+    /* PHOTO SLIDER */
 
-    .main-photo {
+    .photo-slider {
+      position: relative;
       background: white;
       padding: 12px;
       border-radius: 15px;
       box-shadow: 0 3px 12px rgba(0,0,0,0.12);
     }
 
-    .main-photo img {
+    .photo-slider img {
       width: 100%;
       height: 520px;
       object-fit: cover;
@@ -62,7 +63,34 @@
       display: block;
     }
 
-    /* GALLERY */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.55);
+      color: white;
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 28px;
+      cursor: pointer;
+      z-index: 5;
+    }
+
+    .arrow:hover {
+      background: rgba(0,0,0,0.8);
+    }
+
+    .left {
+      left: 25px;
+    }
+
+    .right {
+      right: 25px;
+    }
+
+    /* THUMBNAILS */
 
     .gallery {
       display: grid;
@@ -73,10 +101,45 @@
 
     .gallery img {
       width: 100%;
-      height: 140px;
+      height: 120px;
       object-fit: cover;
       border-radius: 10px;
-      display: block;
+      cursor: pointer;
+      border: 3px solid transparent;
+    }
+
+    .gallery img:hover {
+      border-color: #0b5d1e;
+    }
+
+    /* BUTTONS */
+
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .action-button {
+      display: inline-block;
+      padding: 13px 20px;
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .video-button {
+      background: #d60000;
+    }
+
+    .location-button {
+      background: #1565c0;
+    }
+
+    .whatsapp-button {
+      background: #128c7e;
     }
 
     /* INFORMATION */
@@ -149,13 +212,52 @@
       font-weight: bold;
     }
 
-    .call-button:hover {
-      background: #084716;
+    /* SOCIAL MEDIA */
+
+    .social {
+      margin-top: 30px;
+      padding-top: 25px;
+      border-top: 1px solid #ddd;
+      text-align: center;
     }
+
+    .social h3 {
+      margin-bottom: 18px;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .social-links a {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .youtube {
+      background: #ff0000;
+    }
+
+    .facebook {
+      background: #1877f2;
+    }
+
+    .instagram {
+      background: #c13584;
+    }
+
+    /* MOBILE */
 
     @media (max-width: 700px) {
 
-      .main-photo img {
+      .photo-slider img {
         height: 300px;
       }
 
@@ -164,11 +266,25 @@
       }
 
       .gallery img {
-        height: 120px;
+        height: 100px;
       }
 
       .info h2 {
         font-size: 25px;
+      }
+
+      .arrow {
+        width: 42px;
+        height: 42px;
+        font-size: 22px;
+      }
+
+      .left {
+        left: 20px;
+      }
+
+      .right {
+        right: 20px;
       }
     }
   </style>
@@ -177,49 +293,88 @@
 <body>
 
   <header>
-
     <h1>🏠 RWANDA HOUSE MARKET</h1>
 
-    <a href="./house-details.html" class="details" id="details1">
-  View Details
-</a>
-
+    <a href="./rent.html" class="back">
+      ← Back to Houses
+    </a>
   </header>
 
 
   <div class="container">
 
 
-    <!-- MAIN PHOTO -->
+    <!-- PHOTO SLIDER -->
 
-    <div class="main-photo">
+    <div class="photo-slider">
+
+      <button class="arrow left" onclick="previousPhoto()">
+        ‹
+      </button>
 
       <img
+        id="mainPhoto"
         src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=90"
         alt="Modern Family House">
+
+      <button class="arrow right" onclick="nextPhoto()">
+        ›
+      </button>
 
     </div>
 
 
-    <!-- OTHER HOUSE PHOTOS -->
+    <!-- PHOTO THUMBNAILS -->
 
     <div class="gallery">
 
       <img
+        onclick="showPhoto(0)"
+        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=85"
+        alt="House photo">
+
+      <img
+        onclick="showPhoto(1)"
         src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=85"
         alt="House photo">
 
       <img
+        onclick="showPhoto(2)"
         src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=85"
         alt="House photo">
 
       <img
+        onclick="showPhoto(3)"
         src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85"
         alt="House photo">
 
-      <img
-        src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=900&q=85"
-        alt="House photo">
+    </div>
+
+
+    <!-- VIDEO AND LOCATION -->
+
+    <div class="action-buttons">
+
+      <a
+        href="https://www.youtube.com/channel/UCGWVPGW9WXJZqWiB7oDHp3Q"
+        target="_blank"
+        class="action-button video-button">
+        🎥 View Video
+      </a>
+
+      <a
+        href="https://www.google.com/maps/search/?api=1&query=Kigali,Rwanda"
+        target="_blank"
+        class="action-button location-button">
+        📍 View Location
+      </a>
+
+      <a
+        href="https://wa.me/250799645553"
+        target="_blank"
+        class="action-button whatsapp-button">
+        💬 WhatsApp
+      </a>
 
     </div>
 
@@ -272,20 +427,11 @@
       </p>
 
 
-      <!-- LOCATION -->
-
-      <h3>📍 Location</h3>
-
-      <p>
-        Kigali, Rwanda
-      </p>
-
-
       <!-- CONTACT -->
 
       <div class="contact">
 
-        <h3>📞 Contact</h3>
+        <h3>📞 Contact Us</h3>
 
         <p class="phone">
           +250 799 645 553
@@ -299,9 +445,96 @@
 
       </div>
 
+
+      <!-- SOCIAL MEDIA -->
+
+      <div class="social">
+
+        <h3>🌐 Follow Rwanda House Market</h3>
+
+        <div class="social-links">
+
+          <a
+            href="https://www.youtube.com/channel/UCGWVPGW9WXJZqWiB7oDHp3Q"
+            target="_blank"
+            class="youtube">
+            ▶ YouTube
+          </a>
+
+          <a
+            href="https://www.facebook.com/rwandahousemarket"
+            target="_blank"
+            class="facebook">
+            f Facebook
+          </a>
+
+          <a
+            href="https://www.instagram.com/rwandahousemarket/"
+            target="_blank"
+            class="instagram">
+            ◎ Instagram
+          </a>
+
+        </div>
+
+      </div>
+
     </div>
 
   </div>
+
+
+  <!-- PHOTO SLIDER SCRIPT -->
+
+  <script>
+
+    const photos = [
+
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=90",
+
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=90",
+
+      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1600&q=90",
+
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=90"
+
+    ];
+
+    let currentPhoto = 0;
+
+    function showPhoto(index) {
+
+      currentPhoto = index;
+
+      document.getElementById("mainPhoto").src = photos[currentPhoto];
+
+    }
+
+    function nextPhoto() {
+
+      currentPhoto++;
+
+      if (currentPhoto >= photos.length) {
+        currentPhoto = 0;
+      }
+
+      showPhoto(currentPhoto);
+
+    }
+
+    function previousPhoto() {
+
+      currentPhoto--;
+
+      if (currentPhoto < 0) {
+        currentPhoto = photos.length - 1;
+      }
+
+      showPhoto(currentPhoto);
+
+    }
+
+  </script>
 
 </body>
 </html>
