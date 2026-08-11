@@ -4,24 +4,177 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rwanda PropertyHub</title>
+
+  <title>Rwanda House Market</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background: linear-gradient(135deg, #0b5d1e, #087f23);
+      padding: 25px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 650px;
+      text-align: center;
+    }
+
+    .welcome {
+      color: white;
+      font-size: 38px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      color: white;
+      font-size: 21px;
+      margin-bottom: 30px;
+    }
+
+    .languages {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+    }
+
+    .language-button {
+      width: 100%;
+      min-height: 70px;
+
+      border: none;
+      border-radius: 14px;
+
+      font-size: 23px;
+      font-weight: bold;
+
+      color: white;
+      cursor: pointer;
+
+      box-shadow: 0 5px 12px rgba(0,0,0,0.20);
+
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .language-button:hover {
+      transform: scale(1.02);
+      opacity: 0.9;
+    }
+
+    .kinyarwanda {
+      background: #007a33;
+    }
+
+    .english {
+      background: #1565c0;
+    }
+
+    .french {
+      background: #6a1b9a;
+    }
+
+    .kiswahili {
+      background: #ef6c00;
+    }
+
+    .chinese {
+      background: #c62828;
+    }
+
+    @media (max-width: 600px) {
+
+      .welcome {
+        font-size: 28px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+      }
+
+      .language-button {
+        min-height: 65px;
+        font-size: 20px;
+      }
+
+    }
+
+  </style>
 </head>
 
 <body>
-  <h1>RWANDA PROPERTYHUB 🇷🇼</h1>
-  <p>Choose your language</p>
 
-  <button onclick="goToHome('Kinyarwanda')">Kinyarwanda</button>
-  <button onclick="goToHome('English')">English</button>
-  <button onclick="goToHome('Français')">Français</button>
-  <button onclick="goToHome('Kiswahili')">Kiswahili</button>
-  <button onclick="goToHome('中文')">中文</button>
+  <div class="container">
+
+    <div class="welcome">
+      WELCOME TO RWANDA HOUSE MARKET 🇷🇼
+    </div>
+
+    <div class="subtitle">
+      Choose your language
+    </div>
+
+    <div class="languages">
+
+      <button
+        class="language-button kinyarwanda"
+        onclick="goToHome('Kinyarwanda')">
+        🇷🇼 Kinyarwanda
+      </button>
+
+      <button
+        class="language-button english"
+        onclick="goToHome('English')">
+        🇬🇧 English
+      </button>
+
+      <button
+        class="language-button french"
+        onclick="goToHome('Français')">
+        🇫🇷 Français
+      </button>
+
+      <button
+        class="language-button kiswahili"
+        onclick="goToHome('Kiswahili')">
+        🌍 Kiswahili
+      </button>
+
+      <button
+        class="language-button chinese"
+        onclick="goToHome('中文')">
+        🇨🇳 中文
+      </button>
+
+    </div>
+
+  </div>
+
 
   <script>
+
     function goToHome(language) {
+
       localStorage.setItem("selectedLanguage", language);
+
       window.location.href = "home.html";
+
     }
+
   </script>
 
 </body>
