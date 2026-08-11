@@ -1,0 +1,209 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Houses for Rent - Rwanda House Market</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: #0b5d1e;
+      color: white;
+      padding: 25px 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 15px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .properties {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card h2 {
+      margin-top: 0;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    .location {
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .details {
+      display: inline-block;
+      background: #0b5d1e;
+      color: white;
+      padding: 11px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .details:hover {
+      background: #084716;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🏠 RWANDA HOUSE MARKET</h1>
+    <a href="home.html" class="back">← Back</a>
+  </header>
+
+  <div class="container">
+
+    <div class="title">
+      <h2 id="pageTitle">Houses for Rent</h2>
+      <p id="pageDescription">Find houses available for rent in Rwanda.</p>
+    </div>
+
+    <div class="properties">
+
+      <!-- PROPERTY 1 -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80" alt="House">
+        <div class="card-content">
+          <h2>Modern Family House</h2>
+          <div class="price">500,000 RWF / month</div>
+          <div class="location">📍 Kigali, Rwanda</div>
+          <a href="#" class="details" onclick="showDetails('Modern Family House')">View Details</a>
+        </div>
+      </div>
+
+      <!-- PROPERTY 2 -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80" alt="House">
+        <div class="card-content">
+          <h2>Beautiful Rental House</h2>
+          <div class="price">650,000 RWF / month</div>
+          <div class="location">📍 Kicukiro, Rwanda</div>
+          <a href="#" class="details" onclick="showDetails('Beautiful Rental House')">View Details</a>
+        </div>
+      </div>
+
+      <!-- PROPERTY 3 -->
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80" alt="House">
+        <div class="card-content">
+          <h2>Spacious House</h2>
+          <div class="price">800,000 RWF / month</div>
+          <div class="location">📍 Gasabo, Rwanda</div>
+          <a href="#" class="details" onclick="showDetails('Spacious House')">View Details</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    const language = localStorage.getItem("selectedLanguage");
+
+    const translations = {
+
+      "Kinyarwanda": {
+        title: "Amazu akodeshwa",
+        description: "Shaka amazu ahari yo gukodesha mu Rwanda.",
+        details: "Reba ibisobanuro"
+      },
+
+      "English": {
+        title: "Houses for Rent",
+        description: "Find houses available for rent in Rwanda.",
+        details: "View Details"
+      },
+
+      "Français": {
+        title: "Maisons à louer",
+        description: "Trouvez des maisons disponibles à la location au Rwanda.",
+        details: "Voir les détails"
+      },
+
+      "Kiswahili": {
+        title: "Nyumba za Kupangisha",
+        description: "Pata nyumba zinazopatikana kwa kupangisha nchini Rwanda.",
+        details: "Tazama Maelezo"
+      },
+
+      "中文": {
+        title: "出租房屋",
+        description: "寻找卢旺达可出租的房屋。",
+        details: "查看详情"
+      }
+
+    };
+
+    const t = translations[language] || translations["English"];
+
+    document.getElementById("pageTitle").textContent = t.title;
+    document.getElementById("pageDescription").textContent = t.description;
+
+    document.querySelectorAll(".details").forEach(button => {
+      button.textContent = t.details;
+    });
+
+
+    function showDetails(houseName) {
+      alert(houseName + "\n\nProperty details page will be connected next.");
+    }
+
+  </script>
+
+</body>
+</html>
+```
+
