@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>House Details - Rwanda House Market</title>
 
   <style>
@@ -21,12 +22,13 @@
     header {
       background: #0b5d1e;
       color: white;
-      padding: 20px;
+      padding: 22px 15px;
       text-align: center;
     }
 
     header h1 {
       margin: 0;
+      font-size: 28px;
     }
 
     .back {
@@ -34,6 +36,7 @@
       margin-top: 12px;
       color: white;
       text-decoration: none;
+      font-weight: bold;
     }
 
     .container {
@@ -42,20 +45,24 @@
       padding: 25px 20px 50px;
     }
 
+    /* MAIN PHOTO */
+
     .main-photo {
       background: white;
-      padding: 15px;
+      padding: 12px;
       border-radius: 15px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
     }
 
     .main-photo img {
       width: 100%;
-      height: 500px;
+      height: 520px;
       object-fit: cover;
       border-radius: 10px;
+      display: block;
     }
+
+    /* GALLERY */
 
     .gallery {
       display: grid;
@@ -66,31 +73,30 @@
 
     .gallery img {
       width: 100%;
-      height: 130px;
+      height: 140px;
       object-fit: cover;
       border-radius: 10px;
-      cursor: pointer;
+      display: block;
     }
 
-    .gallery img:hover {
-      opacity: 0.8;
-    }
+    /* INFORMATION */
 
     .info {
       background: white;
-      padding: 25px;
+      margin-top: 25px;
+      padding: 28px;
       border-radius: 15px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
     }
 
     .info h2 {
-      margin-top: 0;
       font-size: 30px;
+      margin-top: 0;
     }
 
     .type {
       display: inline-block;
-      background: #e9f5ec;
+      background: #e7f4ea;
       color: #0b5d1e;
       padding: 8px 15px;
       border-radius: 20px;
@@ -101,18 +107,25 @@
     .price {
       font-size: 25px;
       font-weight: bold;
-      margin: 10px 0;
+      margin: 10px 0 15px;
     }
 
     .location {
       font-size: 18px;
-      margin: 15px 0;
+      margin-bottom: 20px;
+    }
+
+    .details-list {
+      line-height: 2;
+      font-size: 17px;
     }
 
     .description {
-      line-height: 1.7;
       color: #555;
+      line-height: 1.7;
     }
+
+    /* CONTACT */
 
     .contact {
       margin-top: 25px;
@@ -120,23 +133,42 @@
       border-top: 1px solid #ddd;
     }
 
-    .contact a {
+    .phone {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .call-button {
       display: inline-block;
+      margin-top: 10px;
       background: #0b5d1e;
       color: white;
-      padding: 13px 22px;
+      padding: 13px 25px;
       border-radius: 8px;
       text-decoration: none;
-      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .call-button:hover {
+      background: #084716;
     }
 
     @media (max-width: 700px) {
+
       .main-photo img {
         height: 300px;
       }
 
       .gallery {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery img {
+        height: 120px;
+      }
+
+      .info h2 {
+        font-size: 25px;
       }
     }
   </style>
@@ -145,42 +177,56 @@
 <body>
 
   <header>
+
     <h1>🏠 RWANDA HOUSE MARKET</h1>
-    <a href="rent.html" class="back">← Back to Houses</a>
+
+    <a href="rent.html" class="back">
+      ← Back to Houses
+    </a>
+
   </header>
+
 
   <div class="container">
 
-    <!-- MAIN HOUSE PHOTO -->
+
+    <!-- MAIN PHOTO -->
+
     <div class="main-photo">
+
       <img
-        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=85"
-        alt="Full house">
+        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=90"
+        alt="Modern Family House">
+
     </div>
 
-    <!-- OTHER PHOTOS -->
+
+    <!-- OTHER HOUSE PHOTOS -->
+
     <div class="gallery">
 
       <img
-        src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80"
+        src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=85"
         alt="House photo">
 
       <img
-        src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80"
+        src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=85"
         alt="House photo">
 
       <img
-        src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+        src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85"
         alt="House photo">
 
       <img
-        src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=800&q=80"
+        src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=900&q=85"
         alt="House photo">
 
     </div>
 
+
     <!-- HOUSE INFORMATION -->
-    <div class="info" style="margin-top: 25px;">
+
+    <div class="info">
 
       <h2>Modern Family House</h2>
 
@@ -196,33 +242,58 @@
         📍 Kigali, Rwanda
       </div>
 
-      <h3>House Details</h3>
 
-      <p>
-        🛏️ Bedrooms: 4
-      </p>
+      <h3>Property Details</h3>
 
-      <p>
-        🚿 Bathrooms: 3
-      </p>
+      <div class="details-list">
 
-      <p>
-        🚗 Parking: Available
-      </p>
+        🛏️ Bedrooms: 4 <br>
+
+        🚿 Bathrooms: 3 <br>
+
+        🚗 Parking: Available <br>
+
+        🏠 Property Type: Etaje
+
+      </div>
+
+
+      <h3>Description</h3>
 
       <p class="description">
-        This is a spacious family house available for rent.
-        More information about the property can be provided
-        when contacting the owner.
+
+        This spacious family house is available for rent
+        in Kigali, Rwanda. The property has comfortable
+        rooms, parking space and a convenient location.
+
+        Contact us for more information and to arrange
+        a visit.
+
       </p>
+
+
+      <!-- LOCATION -->
+
+      <h3>📍 Location</h3>
+
+      <p>
+        Kigali, Rwanda
+      </p>
+
+
+      <!-- CONTACT -->
 
       <div class="contact">
 
-        <h3>Contact</h3>
+        <h3>📞 Contact</h3>
 
-        <p>📞 +250 799 645 553</p>
+        <p class="phone">
+          +250 799 645 553
+        </p>
 
-        <a href="tel:+250799645553">
+        <a
+          href="tel:+250799645553"
+          class="call-button">
           📞 Call Now
         </a>
 
