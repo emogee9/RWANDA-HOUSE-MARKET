@@ -1,19 +1,29 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rwanda House Market</title>
+  <title>Rwanda PropertyHub</title>
 </head>
 
 <body>
-  <h1>RWANDA HOUSE MARKET 🇷🇼</h1>
+  <h1>RWANDA PROPERTYHUB 🇷🇼</h1>
   <p>Choose your language</p>
 
-  <button>Kinyarwanda</button>
-  <button>English</button>
-  <button>Français</button>
-  <button>Kiswahili</button>
-  <button>中文</button>
+  <button onclick="goToHome('Kinyarwanda')">Kinyarwanda</button>
+  <button onclick="goToHome('English')">English</button>
+  <button onclick="goToHome('Français')">Français</button>
+  <button onclick="goToHome('Kiswahili')">Kiswahili</button>
+  <button onclick="goToHome('中文')">中文</button>
+
+  <script>
+    function goToHome(language) {
+      localStorage.setItem("selectedLanguage", language);
+      window.location.href = "home.html";
+    }
+  </script>
+
 </body>
 </html>
+```
