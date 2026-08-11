@@ -636,7 +636,23 @@
 
     const photoPreview =
       document.getElementById("photoPreview");
-
+const maiif (!mainPhoto) {
+  alert("Please select a main property photo.");
+  return;
+  const fileName = Date.now() + "-" + mainPhoto.name;
+}nPhoto = document.getElementById("mainPhoto").files[0];
+    const { error: uploadError } = await supabaseClient
+  .storage
+  .from("property-images")
+  .upload(fileName, mainPhoto);
+    if (uploadError) {
+  alert("Photo upload failed: " + uploadError.message);
+  return;
+}const { data: publicUrlData } = supabaseClient
+  .storage
+  .from("property-images")
+  .getPublicUrl(fileName);
+    const imageUrl = publicUrlData.publicUrl;
 
     propertyPhotos.addEventListener(
       "change",
