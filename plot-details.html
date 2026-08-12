@@ -170,39 +170,88 @@
 
   <div class="container">
 
-    <!-- MAIN PLOT PHOTO -->
+  <!-- MAIN PLOT PHOTO -->
 
-    <div class="main-photo">
+<div class="main-photo">
 
-      <img
-        src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=90"
-        alt="Plot for Sale">
+  <button class="prev" onclick="changePhoto(-1)">‹</button>
 
-    </div>
+  <img
+    id="mainPlotPhoto"
+    src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=90"
+    alt="Plot for Sale">
+
+  <button class="next" onclick="changePhoto(1)">›</button>
+
+</div>
 
 
-    <!-- OTHER PLOT PHOTOS -->
+<!-- PHOTO GALLERY -->
 
-    <div class="gallery">
+<div class="gallery">
 
-      <img
-        src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85"
-        alt="Plot photo">
+  <img
+    src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85"
+    onclick="showPhoto(0)"
+    alt="Plot photo 1">
 
-      <img
-        src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=85"
-        alt="Plot photo">
+  <img
+    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85"
+    onclick="showPhoto(1)"
+    alt="Plot photo 2">
 
-      <img
-        src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85"
-        alt="Plot photo">
+  <img
+    src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=900&q=85"
+    onclick="showPhoto(2)"
+    alt="Plot photo 3">
 
-      <img
-        src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=900&q=85"
-        alt="Plot photo">
+  <img
+    src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=85"
+    onclick="showPhoto(3)"
+    alt="Plot photo 4">
 
-    </div>
+</div>
+.main-photo {
+  position: relative;
+}
 
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  border: none;
+  background: rgba(0,0,0,0.55);
+  color: white;
+  width: 50px;
+  height: 70px;
+  font-size: 45px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.prev {
+  left: 25px;
+}
+
+.next {
+  right: 25px;
+}
+
+.prev:hover,
+.next:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+.gallery img {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+}
 
     <!-- PLOT INFORMATION -->
 
@@ -281,3 +330,35 @@
 
 </body>
 </html>
+<script>
+
+const plotPhotos = [
+  "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=90",
+  "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1600&q=90",
+  "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=1600&q=90",
+  "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=90"
+];
+
+let currentPhoto = 0;
+
+function showPhoto(index) {
+  currentPhoto = index;
+  document.getElementById("mainPlotPhoto").src = plotPhotos[currentPhoto];
+}
+
+function changePhoto(direction) {
+  currentPhoto += direction;
+
+  if (currentPhoto < 0) {
+    currentPhoto = plotPhotos.length - 1;
+  }
+
+  if (currentPhoto >= plotPhotos.length) {
+    currentPhoto = 0;
+  }
+
+  document.getElementById("mainPlotPhoto").src =
+    plotPhotos[currentPhoto];
+}
+
+</script>
