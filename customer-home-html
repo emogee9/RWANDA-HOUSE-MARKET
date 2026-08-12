@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Rwanda House Market</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f4f1;
+      color: #2f211b;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      background: #4b2e24;
+      color: white;
+      padding: 18px 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    /* ================= NAVIGATION ================= */
+
+    .navbar {
+      background: #ffffff;
+      border-bottom: 2px solid #4b2e24;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 5px;
+      padding: 8px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .navbar a {
+      color: #4b2e24;
+      text-decoration: none;
+      padding: 11px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .navbar a:hover {
+      background: #4b2e24;
+      color: white;
+    }
+
+    .profile-link {
+      background: #4b2e24 !important;
+      color: white !important;
+    }
+
+    /* ================= CONTAINER ================= */
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px 20px 100px;
+    }
+
+    /* ================= WELCOME ================= */
+
+    .welcome {
+      background: white;
+      border-radius: 15px;
+      padding: 35px 20px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+      margin-bottom: 30px;
+    }
+
+    .welcome h2 {
+      margin-top: 0;
+      color: #4b2e24;
+      font-size: 30px;
+    }
+
+    .welcome p {
+      color: #66554d;
+      font-size: 17px;
+    }
+
+    /* ================= CATEGORIES ================= */
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .category {
+      background: white;
+      border-radius: 15px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+      transition: 0.2s;
+    }
+
+    .category:hover {
+      transform: translateY(-4px);
+    }
+
+    .icon {
+      font-size: 55px;
+      margin-bottom: 12px;
+    }
+
+    .category h3 {
+      color: #4b2e24;
+      font-size: 23px;
+      margin: 10px 0;
+    }
+
+    .category p {
+      color: #66554d;
+      line-height: 1.5;
+      min-height: 45px;
+    }
+
+    .category a {
+      display: inline-block;
+      background: #4b2e24;
+      color: white;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .category a:hover {
+      background: #321e17;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      background: #4b2e24;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 30px;
+    }
+
+    footer p {
+      margin: 8px 0;
+    }
+
+    .chat-now {
+      display: inline-block;
+      background: white;
+      color: #4b2e24;
+      text-decoration: none;
+      padding: 11px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .chat-now:hover {
+      background: #eee;
+    }
+
+    .facebook {
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .facebook:hover {
+      text-decoration: underline;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 700px) {
+
+      header h1 {
+        font-size: 23px;
+      }
+
+      .navbar {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+      }
+
+      .navbar a {
+        white-space: nowrap;
+        font-size: 13px;
+        padding: 10px 12px;
+      }
+
+      .welcome h2 {
+        font-size: 25px;
+      }
+
+      .container {
+        padding: 20px 15px 80px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+
+  <header>
+    <h1>🏠 RWANDA HOUSE MARKET 🇷🇼</h1>
+  </header>
+
+
+  <!-- ================= CUSTOMER NAVIGATION ================= -->
+
+  <nav class="navbar">
+
+    <a href="./customer-home.html" id="navHome">
+      Home
+    </a>
+
+    <a href="./rent.html" id="navRent">
+      Houses for Rent
+    </a>
+
+    <a href="./houses-sale.html" id="navSale">
+      Houses for Sale
+    </a>
+
+    <a href="./plots.html" id="navPlots">
+      Plots
+    </a>
+
+    <a href="./request-property.html" id="navRequest">
+      Request Property
+    </a>
+
+    <a href="./profile.html" class="profile-link" id="navProfile">
+      👤 Profile
+    </a>
+
+  </nav>
+
+
+  <!-- ================= MAIN ================= -->
+
+  <main class="container">
+
+    <section class="welcome">
+
+      <h2 id="welcomeTitle">
+        Welcome to Rwanda House Market
+      </h2>
+
+      <p id="welcomeText">
+        Find a house or plot that matches your needs in Rwanda.
+      </p>
+
+    </section>
+
+
+    <!-- ================= CATEGORIES ================= -->
+
+    <section class="categories">
+
+
+      <!-- RENT -->
+
+      <div class="category">
+
+        <div class="icon">
+          🏠
+        </div>
+
+        <h3 id="rentTitle">
+          Houses for Rent
+        </h3>
+
+        <p id="rentText">
+          Find houses available for rent in Rwanda.
+        </p>
+
+        <a href="./rent.html" id="rentButton">
+          View Houses
+        </a>
+
+      </div>
+
+
+      <!-- SALE -->
+
+      <div class="category">
+
+        <div class="icon">
+          🏡
+        </div>
+
+        <h3 id="saleTitle">
+          Houses for Sale
+        </h3>
+
+        <p id="saleText">
+          Find houses available for sale in Rwanda.
+        </p>
+
+        <a href="./houses-sale.html" id="saleButton">
+          View Houses
+        </a>
+
+      </div>
+
+
+      <!-- PLOTS -->
+
+      <div class="category">
+
+        <div class="icon">
+          🌍
+        </div>
+
+        <h3 id="plotTitle">
+          Plots for Sale
+        </h3>
+
+        <p id="plotText">
+          Find plots available for sale in Rwanda.
+        </p>
+
+        <a href="./plots.html" id="plotButton">
+          View Plots
+        </a>
+
+      </div>
+
+
+      <!-- REQUEST PROPERTY -->
+
+      <div class="category">
+
+        <div class="icon">
+          🔎
+        </div>
+
+        <h3 id="requestTitle">
+          Request Property
+        </h3>
+
+        <p id="requestText">
+          Tell us what type of property you are looking for.
+        </p>
+
+        <a href="./request-property.html" id="requestButton">
+          Request Property
+        </a>
+
+      </div>
+
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <p>
+      © 2026 Rwanda House Market
+    </p>
+
+    <p>
+      <span id="designed">
+        Designed by Irene IRANZI
+      </span>
+    </p>
+
+    <a
+      href="https://wa.me/250799645553"
+      target="_blank"
+      class="chat-now"
+      id="chatNow">
+      💬 Chat Now
+    </a>
+
+    <br>
+
+    <a
+      href="https://www.facebook.com/rwandahousemarket"
+      target="_blank"
+      class="facebook"
+      id="facebook">
+      📘 Facebook
+    </a>
+
+  </footer>
+
+
+  <!-- ================= LANGUAGE SYSTEM ================= -->
+
+  <script>
+
+    /*
+      LANGUAGE SELECTED ON THE FIRST PAGE
+    */
+
+    const language =
+      localStorage.getItem("selectedLanguage") || "English";
+
+
+    /*
+      TRANSLATIONS
+    */
+
+    const translations = {
+
+      Kinyarwanda: {
+
+        home: "Ahabanza",
+
+        rent: "Amazu akodeshwa",
+
+        sale: "Amazu agurishwa",
+
+        plots: "Ibibanza",
+
+        request: "Gusaba umutungo",
+
+        profile: "👤 Umwirondoro",
+
+        welcome:
+          "Murakaza neza kuri Rwanda House Market",
+
+        welcomeText:
+          "Shaka inzu cyangwa ikibanza bihuye n'ibyo ukeneye mu Rwanda.",
+
+        rentText:
+          "Shaka amazu ahari yo gukodesha mu Rwanda.",
+
+        saleText:
+          "Shaka amazu ahari yo kugura mu Rwanda.",
+
+        plotText:
+          "Shaka ibibanza bihari byo kugura mu Rwanda.",
+
+        requestText:
+          "Tubwire ubwoko bw'umutungo ushaka.",
+
+        viewHouses:
+          "Reba amazu",
+
+        viewPlots:
+          "Reba ibibanza",
+
+        requestButton:
+          "Saba umutungo",
+
+        designed:
+          "Byakozwe na Irene",
+
+        chat:
+          "💬 Chat Now",
+
+        facebook:
+          "📘 Facebook"
+
+      },
+
+
+      English: {
+
+        home: "Home",
+
+        rent: "Houses for Rent",
+
+        sale: "Houses for Sale",
+
+        plots: "Plots",
+
+        request: "Request Property",
+
+        profile: "👤 Profile",
+
+        welcome:
+          "Welcome to Rwanda House Market",
+
+        welcomeText:
+          "Find a house or plot that matches your needs in Rwanda.",
+
+        rentText:
+          "Find houses available for rent in Rwanda.",
+
+        saleText:
+          "Find houses available for sale in Rwanda.",
+
+        plotText:
+          "Find plots available for sale in Rwanda.",
+
+        requestText:
+          "Tell us what type of property you are looking for.",
+
+        viewHouses:
+          "View Houses",
+
+        viewPlots:
+          "View Plots",
+
+        requestButton:
+          "Request Property",
+
+        designed:
+          "Designed by Irene",
+
+        chat:
+          "💬 Chat Now",
+
+        facebook:
+          "📘 Facebook"
+
+      },
+
+
+      Français: {
+
+        home: "Accueil",
+
+        rent: "Maisons à louer",
+
+        sale: "Maisons à vendre",
+
+        plots: "Terrains",
+
+        request: "Demander un bien",
+
+        profile: "👤 Profil",
+
+        welcome:
+          "Bienvenue sur Rwanda House Market",
+
+        welcomeText:
+          "Trouvez une maison ou un terrain qui correspond à vos besoins au Rwanda.",
+
+        rentText:
+          "Trouvez des maisons disponibles à la location au Rwanda.",
+
+        saleText:
+          "Trouvez des maisons disponibles à la vente au Rwanda.",
+
+        plotText:
+          "Trouvez des terrains disponibles à la vente au Rwanda.",
+
+        requestText:
+          "Dites-nous quel type de bien vous recherchez.",
+
+        viewHouses:
+          "Voir les maisons",
+
+        viewPlots:
+          "Voir les terrains",
+
+        requestButton:
+          "Demander un bien",
+
+        designed:
+          "Conçu par Irene IRANZI",
+
+        chat:
+          "💬 Chat Now",
+
+        facebook:
+          "📘 Facebook"
+
+      },
+
+
+      Kiswahili: {
+
+        home: "Nyumbani",
+
+        rent: "Nyumba za Kupangisha",
+
+        sale: "Nyumba za Kuuza",
+
+        plots: "Viwanja",
+
+        request: "Omba Mali",
+
+        profile: "👤 Wasifu",
+
+        welcome:
+          "Karibu Rwanda House Market",
+
+        welcomeText:
+          "Pata nyumba au kiwanja kinachokidhi mahitaji yako nchini Rwanda.",
+
+        rentText:
+          "Pata nyumba zinazopatikana kwa kupangisha nchini Rwanda.",
+
+        saleText:
+          "Pata nyumba zinazopatikana kwa kuuza nchini Rwanda.",
+
+        plotText:
+          "Pata viwanja vinavyopatikana kwa kuuza nchini Rwanda.",
+
+        requestText:
+          "Tuambie aina ya mali unayotafuta.",
+
+        viewHouses:
+          "Tazama Nyumba",
+
+        viewPlots:
+          "Tazama Viwanja",
+
+        requestButton:
+          "Omba Mali",
+
+        designed:
+          "Imeundwa na Irene IRANZI",
+
+        chat:
+          "💬 Chat Now",
+
+        facebook:
+          "📘 Facebook"
+
+      },
+
+
+      "中文": {
+
+        home: "首页",
+
+        rent: "出租房屋",
+
+        sale: "出售房屋",
+
+        plots: "出售土地",
+
+        request: "申请房产",
+
+        profile: "👤 个人资料",
+
+        welcome:
+          "欢迎来到 Rwanda House Market",
+
+        welcomeText:
+          "在卢旺达寻找符合您需求的房屋或土地。",
+
+        rentText:
+          "寻找卢旺达可出租的房屋。",
+
+        saleText:
+          "寻找卢旺达可出售的房屋。",
+
+        plotText:
+          "寻找卢旺达可出售的土地。",
+
+        requestText:
+          "告诉我们您正在寻找的房产类型。",
+
+        viewHouses:
+          "查看房屋",
+
+        viewPlots:
+          "查看土地",
+
+        requestButton:
+          "申请房产",
+
+        designed:
+          "由 Irene IRANZI 设计",
+
+        chat:
+          "💬 Chat Now",
+
+        facebook:
+          "📘 Facebook"
+
+      }
+
+    };
+
+
+    /*
+      SELECT LANGUAGE
+    */
+
+    const t =
+      translations[language] ||
+      translations.English;
+
+
+    /*
+      NAVIGATION
+    */
+
+    document.getElementById("navHome").textContent =
+      t.home;
+
+    document.getElementById("navRent").textContent =
+      t.rent;
+
+    document.getElementById("navSale").textContent =
+      t.sale;
+
+    document.getElementById("navPlots").textContent =
+      t.plots;
+
+    document.getElementById("navRequest").textContent =
+      t.request;
+
+    document.getElementById("navProfile").textContent =
+      t.profile;
+
+
+    /*
+      WELCOME
+    */
+
+    document.getElementById("welcomeTitle").textContent =
+      t.welcome;
+
+    document.getElementById("welcomeText").textContent =
+      t.welcomeText;
+
+
+    /*
+      RENT
+    */
+
+    document.getElementById("rentTitle").textContent =
+      t.rent;
+
+    document.getElementById("rentText").textContent =
+      t.rentText;
+
+    document.getElementById("rentButton").textContent =
+      t.viewHouses;
+
+
+    /*
+      SALE
+    */
+
+    document.getElementById("saleTitle").textContent =
+      t.sale;
+
+    document.getElementById("saleText").textContent =
+      t.saleText;
+
+    document.getElementById("saleButton").textContent =
+      t.viewHouses;
+
+
+    /*
+      PLOTS
+    */
+
+    document.getElementById("plotTitle").textContent =
+      t.plots;
+
+    document.getElementById("plotText").textContent =
+      t.plotText;
+
+    document.getElementById("plotButton").textContent =
+      t.viewPlots;
+
+
+    /*
+      REQUEST
+    */
+
+    document.getElementById("requestTitle").textContent =
+      t.request;
+
+    document.getElementById("requestText").textContent =
+      t.requestText;
+
+    document.getElementById("requestButton").textContent =
+      t.requestButton;
+
+
+    /*
+      FOOTER
+    */
+
+    document.getElementById("designed").textContent =
+      t.designed;
+
+    document.getElementById("chatNow").textContent =
+      t.chat;
+
+    document.getElementById("facebook").textContent =
+      t.facebook;
+
+  </script>
+
+</body>
+</html>
