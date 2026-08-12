@@ -15,45 +15,76 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #222;
+      background: #fffdf5;
+      color: #333333;
     }
 
+    /* ================= HEADER ================= */
+
     header {
-      background: #0b5d1e;
-      color: white;
-      padding: 25px 15px;
+      background: #ffd21f;
+      color: #222222;
+      padding: 22px 15px;
       text-align: center;
+      border-bottom: 3px solid #f0b900;
     }
 
     header h1 {
       margin: 0;
       font-size: 28px;
+      font-weight: bold;
     }
 
     .back {
       display: inline-block;
       margin-top: 12px;
-      color: white;
+      background: white;
+      color: #5c4700;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: 0.2s;
     }
+
+    .back:hover {
+      background: #fff5b8;
+    }
+
+    /* ================= CONTAINER ================= */
 
     .container {
-      max-width: 1100px;
+      max-width: 1150px;
       margin: auto;
-      padding: 30px 20px 50px;
+      padding: 35px 20px 70px;
     }
 
+    /* ================= TITLE ================= */
+
     .title {
+      background: white;
       text-align: center;
+      padding: 28px 20px;
       margin-bottom: 30px;
+      border-radius: 15px;
+      border: 1px solid #f2df72;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
     }
 
     .title h2 {
+      color: #5c4700;
       font-size: 30px;
-      margin-bottom: 10px;
+      margin: 0 0 10px;
     }
+
+    .title p {
+      color: #666666;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    /* ================= PROPERTIES ================= */
 
     .properties {
       display: grid;
@@ -61,18 +92,28 @@
       gap: 25px;
     }
 
+    /* ================= CARD ================= */
+
     .card {
       background: white;
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+      border: 1px solid #f0df79;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.09);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.13);
     }
 
     .card img {
       width: 100%;
-      height: 210px;
+      height: 220px;
       object-fit: cover;
       display: block;
+      background: #fff8cf;
     }
 
     .card-content {
@@ -80,48 +121,86 @@
     }
 
     .card h3 {
-      margin-top: 0;
-      font-size: 22px;
+      margin: 0 0 10px;
+      color: #3d3200;
+      font-size: 21px;
     }
 
     .price {
-      font-size: 20px;
+      display: inline-block;
+      background: #fff3a8;
+      color: #5c4700;
+      padding: 8px 12px;
+      border-radius: 7px;
+      font-size: 19px;
       font-weight: bold;
-      margin: 12px 0;
+      margin: 10px 0 14px;
     }
 
     .location {
-      color: #666;
+      color: #666666;
       margin-bottom: 18px;
+      font-size: 15px;
     }
 
     .details {
       display: inline-block;
-      background: #0b5d1e;
-      color: white;
+      background: #ffd21f;
+      color: #332800;
       padding: 12px 20px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
+      transition: 0.2s;
     }
 
     .details:hover {
-      background: #084716;
+      background: #f0b900;
+      color: #222222;
     }
 
+    /* ================= MOBILE ================= */
+
     @media (max-width: 600px) {
+
+      header {
+        padding: 20px 12px;
+      }
+
+      header h1 {
+        font-size: 23px;
+      }
+
       .container {
-        padding: 20px 15px;
+        padding: 20px 15px 60px;
+      }
+
+      .title {
+        padding: 24px 15px;
       }
 
       .title h2 {
         font-size: 25px;
+      }
+
+      .card img {
+        height: 200px;
+      }
+
+      .card-content {
+        padding: 18px;
+      }
+
+      .price {
+        font-size: 17px;
       }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- ================= HEADER ================= -->
 
   <header>
 
@@ -130,7 +209,7 @@
     </h1>
 
     <a
-      href="home.html"
+      href="customer-home.html"
       class="back"
       id="backButton">
       ← Back
@@ -138,6 +217,8 @@
 
   </header>
 
+
+  <!-- ================= MAIN ================= -->
 
   <div class="container">
 
@@ -153,6 +234,8 @@
 
     </div>
 
+
+    <!-- ================= PROPERTIES ================= -->
 
     <div class="properties">
 
@@ -173,7 +256,8 @@
           </h3>
 
           <div class="price">
-            500,000 RWF <span id="month1">/ month</span>
+            500,000 RWF
+            <span id="month1">/ month</span>
           </div>
 
           <div class="location">
@@ -208,7 +292,8 @@
           </h3>
 
           <div class="price">
-            650,000 RWF <span id="month2">/ month</span>
+            650,000 RWF
+            <span id="month2">/ month</span>
           </div>
 
           <div class="location">
@@ -243,7 +328,8 @@
           </h3>
 
           <div class="price">
-            800,000 RWF <span id="month3">/ month</span>
+            800,000 RWF
+            <span id="month3">/ month</span>
           </div>
 
           <div class="location">
@@ -267,22 +353,19 @@
   </div>
 
 
+  <!-- ================= JAVASCRIPT ================= -->
+
   <script>
 
-    /*
-      GET SELECTED LANGUAGE
-    */
+    /* ================= LANGUAGE ================= */
 
     const language =
       localStorage.getItem("selectedLanguage") || "English";
 
 
-    /*
-      TRANSLATIONS
-    */
+    /* ================= TRANSLATIONS ================= */
 
     const translations = {
-
 
       Kinyarwanda: {
 
@@ -491,19 +574,12 @@
     };
 
 
-    /*
-      SELECT LANGUAGE
-    */
+    /* ================= SELECT LANGUAGE ================= */
 
     const t =
       translations[language] ||
       translations.English;
 
-
-    /*
-      SAVE LANGUAGE AGAIN
-      SO NEXT PAGE CAN USE IT
-    */
 
     localStorage.setItem(
       "selectedLanguage",
@@ -511,9 +587,7 @@
     );
 
 
-    /*
-      PAGE TRANSLATION
-    */
+    /* ================= PAGE ================= */
 
     document.title =
       t.browserTitle;
@@ -543,9 +617,7 @@
       t.description;
 
 
-    /*
-      HOUSE 1
-    */
+    /* ================= HOUSE 1 ================= */
 
     document.getElementById(
       "houseName1"
@@ -571,9 +643,7 @@
       t.month;
 
 
-    /*
-      HOUSE 2
-    */
+    /* ================= HOUSE 2 ================= */
 
     document.getElementById(
       "houseName2"
@@ -599,9 +669,7 @@
       t.month;
 
 
-    /*
-      HOUSE 3
-    */
+    /* ================= HOUSE 3 ================= */
 
     document.getElementById(
       "houseName3"
