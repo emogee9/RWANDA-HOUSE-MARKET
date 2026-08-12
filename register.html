@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Register - Rwanda House Market</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f1ed;
+      color: #3b2418;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #5a321f;
+      color: white;
+      padding: 22px 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    .register-box {
+      background: white;
+      padding: 35px 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    }
+
+    .register-box h2 {
+      text-align: center;
+      margin-top: 0;
+      color: #5a321f;
+      font-size: 28px;
+    }
+
+    .register-box > p {
+      text-align: center;
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #cdbfb6;
+      border-radius: 8px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #5a321f;
+    }
+
+    .profile-preview {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .profile-preview img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #5a321f;
+      display: none;
+      margin: 10px auto;
+    }
+
+    .register-button {
+      width: 100%;
+      padding: 14px;
+      background: #5a321f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .register-button:hover {
+      background: #3f2114;
+    }
+
+    .message {
+      display: none;
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .login {
+      text-align: center;
+      margin-top: 22px;
+    }
+
+    .login a {
+      color: #5a321f;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .login a:hover {
+      text-decoration: underline;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #5a321f;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #5a321f;
+      color: white;
+      text-align: center;
+      padding: 18px 10px;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 20px 15px;
+      }
+
+      .register-box {
+        padding: 30px 20px;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+
+    <h1>🏠 RWANDA HOUSE MARKET</h1>
+
+    <p id="headerSubtitle">
+      Customer Registration
+    </p>
+
+  </header>
+
+
+  <div class="container">
+
+    <div class="register-box">
+
+      <h2 id="registerTitle">
+        Create Account
+      </h2>
+
+      <p id="registerDescription">
+        Create your customer account to find your property.
+      </p>
+
+
+      <form id="registerForm">
+
+
+        <!-- PROFILE PICTURE -->
+
+        <div class="profile-preview">
+
+          <label for="profilePicture" id="pictureLabel">
+            Profile Picture
+          </label>
+
+          <input
+            type="file"
+            id="profilePicture"
+            accept="image/*">
+
+          <img
+            id="profilePreview"
+            alt="Profile Preview">
+
+        </div>
+
+
+        <!-- NAME -->
+
+        <div class="form-group">
+
+          <label for="fullName" id="nameLabel">
+            Full Name
+          </label>
+
+          <input
+            type="text"
+            id="fullName"
+            placeholder="Enter your full name"
+            required>
+
+        </div>
+
+
+        <!-- PHONE -->
+
+        <div class="form-group">
+
+          <label for="phone" id="phoneLabel">
+            Phone Number
+          </label>
+
+          <input
+            type="tel"
+            id="phone"
+            placeholder="+250 7XX XXX XXX"
+            required>
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+          <label for="email" id="emailLabel">
+            Email
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required>
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+          <label for="password" id="passwordLabel">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="password"
+            placeholder="Create a password"
+            required>
+
+        </div>
+
+
+        <!-- CONFIRM PASSWORD -->
+
+        <div class="form-group">
+
+          <label
+            for="confirmPassword"
+            id="confirmPasswordLabel">
+
+            Confirm Password
+
+          </label>
+
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm your password"
+            required>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="register-button"
+          id="registerButton">
+
+          Register
+
+        </button>
+
+
+      </form>
+
+
+      <div
+        class="message"
+        id="message">
+      </div>
+
+
+      <div class="login">
+
+        <span id="alreadyAccount">
+          Already have an account?
+        </span>
+
+        <a
+          href="./login.html"
+          id="loginLink">
+
+          Login
+
+        </a>
+
+      </div>
+
+
+      <a
+        href="./home.html"
+        class="back"
+        id="backButton">
+
+        ← Back to Home
+
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <footer>
+
+    <div>
+      © 2026 Rwanda House Market
+    </div>
+
+    <div style="margin-top:8px;">
+
+      Designed by Irene |
+
+      <a
+        href="https://www.facebook.com/"
+        target="_blank">
+
+        Chat Now
+
+      </a>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    /*
+      GET SELECTED LANGUAGE
+    */
+
+    const language =
+      localStorage.getItem("selectedLanguage") || "English";
+
+
+    /*
+      TRANSLATIONS
+    */
+
+    const translations = {
+
+      Kinyarwanda: {
+
+        headerSubtitle:
+          "Kwiyandikisha k'umukiriya",
+
+        registerTitle:
+          "Kora Konti",
+
+        registerDescription:
+          "Kora konti yawe kugira ngo ushake umutungo wawe.",
+
+        pictureLabel:
+          "Ifoto ya Profile",
+
+        nameLabel:
+          "Amazina Yuzuye",
+
+        namePlaceholder:
+          "Andika amazina yawe",
+
+        phoneLabel:
+          "Numero ya Telefoni",
+
+        emailLabel:
+          "Email",
+
+        emailPlaceholder:
+          "Andika email yawe",
+
+        passwordLabel:
+          "Ijambo ry'ibanga",
+
+        passwordPlaceholder:
+          "Kora ijambo ry'ibanga",
+
+        confirmPasswordLabel:
+          "Emeza Ijambo ry'ibanga",
+
+        confirmPasswordPlaceholder:
+          "Ongera wandike ijambo ry'ibanga",
+
+        registerButton:
+          "Iyandikishe",
+
+        alreadyAccount:
+          "Usanzwe ufite konti?",
+
+        login:
+          "Injira",
+
+        back:
+          "← Subira kuri Home",
+
+        success:
+          "Konti yawe yakozwe neza.",
+
+        passwordError:
+          "Amagambo y'ibanga ntabwo ahura.",
+
+        requiredError:
+          "Nyamuneka uzuza amakuru yose."
+      },
+
+
+      English: {
+
+        headerSubtitle:
+          "Customer Registration",
+
+        registerTitle:
+          "Create Account",
+
+        registerDescription:
+          "Create your customer account to find your property.",
+
+        pictureLabel:
+          "Profile Picture",
+
+        nameLabel:
+          "Full Name",
+
+        namePlaceholder:
+          "Enter your full name",
+
+        phoneLabel:
+          "Phone Number",
+
+        emailLabel:
+          "Email",
+
+        emailPlaceholder:
+          "Enter your email",
+
+        passwordLabel:
+          "Password",
+
+        passwordPlaceholder:
+          "Create a password",
+
+        confirmPasswordLabel:
+          "Confirm Password",
+
+        confirmPasswordPlaceholder:
+          "Confirm your password",
+
+        registerButton:
+          "Register",
+
+        alreadyAccount:
+          "Already have an account?",
+
+        login:
+          "Login",
+
+        back:
+          "← Back to Home",
+
+        success:
+          "Your account has been created successfully.",
+
+        passwordError:
+          "Passwords do not match.",
+
+        requiredError:
+          "Please complete all required information."
+      },
+
+
+      Français: {
+
+        headerSubtitle:
+          "Inscription client",
+
+        registerTitle:
+          "Créer un compte",
+
+        registerDescription:
+          "Créez votre compte client pour rechercher votre propriété.",
+
+        pictureLabel:
+          "Photo de profil",
+
+        nameLabel:
+          "Nom complet",
+
+        namePlaceholder:
+          "Entrez votre nom complet",
+
+        phoneLabel:
+          "Numéro de téléphone",
+
+        emailLabel:
+          "Email",
+
+        emailPlaceholder:
+          "Entrez votre email",
+
+        passwordLabel:
+          "Mot de passe",
+
+        passwordPlaceholder:
+          "Créez un mot de passe",
+
+        confirmPasswordLabel:
+          "Confirmer le mot de passe",
+
+        confirmPasswordPlaceholder:
+          "Confirmez votre mot de passe",
+
+        registerButton:
+          "S'inscrire",
+
+        alreadyAccount:
+          "Vous avez déjà un compte ?",
+
+        login:
+          "Connexion",
+
+        back:
+          "← Retour à l'accueil",
+
+        success:
+          "Votre compte a été créé avec succès.",
+
+        passwordError:
+          "Les mots de passe ne correspondent pas.",
+
+        requiredError:
+          "Veuillez compléter toutes les informations obligatoires."
+      },
+
+
+      Kiswahili: {
+
+        headerSubtitle:
+          "Usajili wa Mteja",
+
+        registerTitle:
+          "Fungua Akaunti",
+
+        registerDescription:
+          "Fungua akaunti yako ili kutafuta mali yako.",
+
+        pictureLabel:
+          "Picha ya Wasifu",
+
+        nameLabel:
+          "Jina Kamili",
+
+        namePlaceholder:
+          "Ingiza jina lako kamili",
+
+        phoneLabel:
+          "Nambari ya Simu",
+
+        emailLabel:
+          "Barua pepe",
+
+        emailPlaceholder:
+          "Ingiza barua pepe yako",
+
+        passwordLabel:
+          "Nenosiri",
+
+        passwordPlaceholder:
+          "Unda nenosiri",
+
+        confirmPasswordLabel:
+          "Thibitisha Nenosiri",
+
+        confirmPasswordPlaceholder:
+          "Thibitisha nenosiri lako",
+
+        registerButton:
+          "Jisajili",
+
+        alreadyAccount:
+          "Tayari una akaunti?",
+
+        login:
+          "Ingia",
+
+        back:
+          "← Rudi Mwanzo",
+
+        success:
+          "Akaunti yako imeundwa kwa mafanikio.",
+
+        passwordError:
+          "Nenosiri hazilingani.",
+
+        requiredError:
+          "Tafadhali jaza taarifa zote zinazohitajika."
+      },
+
+
+      "中文": {
+
+        headerSubtitle:
+          "客户注册",
+
+        registerTitle:
+          "创建账户",
+
+        registerDescription:
+          "创建客户账户以查找您的房产。",
+
+        pictureLabel:
+          "头像",
+
+        nameLabel:
+          "全名",
+
+        namePlaceholder:
+          "输入您的全名",
+
+        phoneLabel:
+          "电话号码",
+
+        emailLabel:
+          "电子邮件",
+
+        emailPlaceholder:
+          "输入您的电子邮件",
+
+        passwordLabel:
+          "密码",
+
+        passwordPlaceholder:
+          "创建密码",
+
+        confirmPasswordLabel:
+          "确认密码",
+
+        confirmPasswordPlaceholder:
+          "再次输入密码",
+
+        registerButton:
+          "注册",
+
+        alreadyAccount:
+          "已经有账户？",
+
+        login:
+          "登录",
+
+        back:
+          "← 返回首页",
+
+        success:
+          "您的账户已成功创建。",
+
+        passwordError:
+          "两次输入的密码不一致。",
+
+        requiredError:
+          "请填写所有必填信息。"
+      }
+
+    };
+
+
+    /*
+      SELECT LANGUAGE
+    */
+
+    const t =
+      translations[language] ||
+      translations.English;
+
+
+    /*
+      APPLY TRANSLATIONS
+    */
+
+    document.getElementById("headerSubtitle").textContent =
+      t.headerSubtitle;
+
+    document.getElementById("registerTitle").textContent =
+      t.registerTitle;
+
+    document.getElementById("registerDescription").textContent =
+      t.registerDescription;
+
+    document.getElementById("pictureLabel").textContent =
+      t.pictureLabel;
+
+    document.getElementById("nameLabel").textContent =
+      t.nameLabel;
+
+    document.getElementById("fullName").placeholder =
+      t.namePlaceholder;
+
+    document.getElementById("phoneLabel").textContent =
+      t.phoneLabel;
+
+    document.getElementById("emailLabel").textContent =
+      t.emailLabel;
+
+    document.getElementById("email").placeholder =
+      t.emailPlaceholder;
+
+    document.getElementById("passwordLabel").textContent =
+      t.passwordLabel;
+
+    document.getElementById("password").placeholder =
+      t.passwordPlaceholder;
+
+    document.getElementById("confirmPasswordLabel").textContent =
+      t.confirmPasswordLabel;
+
+    document.getElementById("confirmPassword").placeholder =
+      t.confirmPasswordPlaceholder;
+
+    document.getElementById("registerButton").textContent =
+      t.registerButton;
+
+    document.getElementById("alreadyAccount").textContent =
+      t.alreadyAccount + " ";
+
+    document.getElementById("loginLink").textContent =
+      t.login;
+
+    document.getElementById("backButton").textContent =
+      t.back;
+
+
+    /*
+      PROFILE PICTURE PREVIEW
+    */
+
+    document
+      .getElementById("profilePicture")
+      .addEventListener("change", function(event) {
+
+        const file =
+          event.target.files[0];
+
+        const preview =
+          document.getElementById("profilePreview");
+
+        if (file) {
+
+          const reader =
+            new FileReader();
+
+          reader.onload =
+            function(e) {
+
+              preview.src =
+                e.target.result;
+
+              preview.style.display =
+                "block";
+
+            };
+
+          reader.readAsDataURL(file);
+
+        }
+
+      });
+
+
+    /*
+      REGISTER FORM
+    */
+
+    document
+      .getElementById("registerForm")
+      .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        const fullName =
+          document.getElementById("fullName").value.trim();
+
+        const phone =
+          document.getElementById("phone").value.trim();
+
+        const email =
+          document.getElementById("email").value.trim();
+
+        const password =
+          document.getElementById("password").value;
+
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+
+        const message =
+          document.getElementById("message");
+
+
+        if (
+          !fullName ||
+          !phone ||
+          !email ||
+          !password ||
+          !confirmPassword
+        ) {
+
+          message.style.display =
+            "block";
+
+          message.style.background =
+            "#f8d7da";
+
+          message.style.color =
+            "#842029";
+
+          message.textContent =
+            t.requiredError;
+
+          return;
+
+        }
+
+
+        if (password !== confirmPassword) {
+
+          message.style.display =
+            "block";
+
+          message.style.background =
+            "#f8d7da";
+
+          message.style.color =
+            "#842029";
+
+          message.textContent =
+            t.passwordError;
+
+          return;
+
+        }
+
+
+        /*
+          TEMPORARY CUSTOMER DATA
+
+          Later we will connect this
+          to Supabase.
+        */
+
+        localStorage.setItem(
+          "customerName",
+          fullName
+        );
+
+        localStorage.setItem(
+          "customerPhone",
+          phone
+        );
+
+        localStorage.setItem(
+          "customerEmail",
+          email
+        );
+
+        localStorage.setItem(
+          "customerRegistered",
+          "true"
+        );
+
+
+        /*
+          SUCCESS MESSAGE
+        */
+
+        message.style.display =
+          "block";
+
+        message.style.background =
+          "#d1e7dd";
+
+        message.style.color =
+          "#0f5132";
+
+        message.textContent =
+          t.success;
+
+
+        /*
+          GO TO LOGIN
+        */
+
+        setTimeout(function() {
+
+          window.location.href =
+            "./login.html";
+
+        }, 1200);
+
+      });
+
+  </script>
+
+</body>
+</html>
