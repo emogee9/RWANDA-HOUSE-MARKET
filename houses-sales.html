@@ -1,11 +1,11 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Houses for Sale - Rwanda House Market</title>
+  <title id="browserTitle">Houses for Sale - Rwanda House Market</title>
 
   <style>
     * {
@@ -54,6 +54,10 @@
       box-shadow: 0 3px 12px rgba(0,0,0,0.1);
     }
 
+    .page-title h2 {
+      margin-top: 0;
+    }
+
     .houses {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -94,6 +98,11 @@
       margin-bottom: 15px;
     }
 
+    .description {
+      color: #555;
+      line-height: 1.6;
+    }
+
     .details {
       display: inline-block;
       background: #0b5d1e;
@@ -102,6 +111,7 @@
       padding: 12px 20px;
       border-radius: 8px;
       font-weight: bold;
+      margin-top: 8px;
     }
 
     .details:hover {
@@ -112,6 +122,10 @@
       .house img {
         height: 200px;
       }
+
+      .container {
+        padding: 20px 15px 40px;
+      }
     }
   </style>
 </head>
@@ -119,21 +133,38 @@
 <body>
 
   <header>
-    <h1>🏡 RWANDA HOUSE MARKET</h1>
 
-    <a href="./home.html" class="back">
+    <h1 id="headerTitle">
+      🏡 RWANDA HOUSE MARKET
+    </h1>
+
+    <a
+      href="./home.html"
+      class="back"
+      id="backButton">
       ← Back to Home
     </a>
+
   </header>
+
 
   <div class="container">
 
     <div class="page-title">
-      <h2>🏡 Houses for Sale</h2>
-      <p>Find houses available for sale in Rwanda.</p>
+
+      <h2 id="pageTitle">
+        🏡 Houses for Sale
+      </h2>
+
+      <p id="pageDescription">
+        Find houses available for sale in Rwanda.
+      </p>
+
     </div>
 
+
     <div class="houses">
+
 
       <!-- HOUSE 1 -->
 
@@ -141,28 +172,33 @@
 
         <img
           src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+          id="image1"
           alt="House for Sale">
 
         <div class="house-content">
 
-          <h2>Modern Family House</h2>
+          <h2 id="houseName1">
+            Modern Family House
+          </h2>
 
           <div class="price">
             85,000,000 RWF
           </div>
 
           <div class="location">
-            📍 Kigali, Rwanda
+            📍 <span id="location1">Kigali, Rwanda</span>
           </div>
 
-          <p>
-            Beautiful family house available for sale
-            in Kigali.
+          <p
+            class="description"
+            id="description1">
+            Beautiful family house available for sale in Kigali.
           </p>
 
           <a
             href="./house-sale-details.html"
-            class="details">
+            class="details"
+            id="details1">
             View Details
           </a>
 
@@ -173,30 +209,37 @@
 
       <!-- HOUSE 2 -->
 
-      <div class="house"
-        
-         <img
-  https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=85
+      <div class="house">
+
+        <img
+          src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=85"
+          id="image2"
+          alt="House for Sale">
 
         <div class="house-content">
 
-          <h2>Beautiful Modern House</h2>
+          <h2 id="houseName2">
+            Beautiful Modern House
+          </h2>
 
           <div class="price">
             95,000,000 RWF
           </div>
 
           <div class="location">
-            📍 Kigali, Rwanda
+            📍 <span id="location2">Kigali, Rwanda</span>
           </div>
 
-          <p>
+          <p
+            class="description"
+            id="description2">
             Modern house in a convenient location.
           </p>
 
           <a
             href="./house-details.html"
-            class="details">
+            class="details"
+            id="details2">
             View Details
           </a>
 
@@ -211,27 +254,33 @@
 
         <img
           src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85"
+          id="image3"
           alt="House for Sale">
 
         <div class="house-content">
 
-          <h2>Luxury Family House</h2>
+          <h2 id="houseName3">
+            Luxury Family House
+          </h2>
 
           <div class="price">
             120,000,000 RWF
           </div>
 
           <div class="location">
-            📍 Kigali, Rwanda
+            📍 <span id="location3">Kigali, Rwanda</span>
           </div>
 
-          <p>
+          <p
+            class="description"
+            id="description3">
             Spacious family house with parking space.
           </p>
 
           <a
             href="./house-details.html"
-            class="details">
+            class="details"
+            id="details3">
             View Details
           </a>
 
@@ -239,10 +288,407 @@
 
       </div>
 
+
     </div>
 
   </div>
 
+
+  <script>
+
+    /*
+      GET THE LANGUAGE SELECTED
+      ON THE FIRST PAGE
+    */
+
+    const language =
+      localStorage.getItem("selectedLanguage") || "English";
+
+
+    /*
+      TRANSLATIONS
+    */
+
+    const translations = {
+
+
+      Kinyarwanda: {
+
+        browserTitle:
+          "Amazu agurishwa - Rwanda House Market",
+
+        header:
+          "🏡 RWANDA HOUSE MARKET",
+
+        back:
+          "← Subira kuri Home",
+
+        title:
+          "🏡 Amazu agurishwa",
+
+        description:
+          "Shaka amazu ahari yo kugura mu Rwanda.",
+
+        details:
+          "Reba ibisobanuro",
+
+        houses: [
+
+          {
+            name: "Inzu nziza y'umuryango",
+            location: "Kigali, Rwanda",
+            description:
+              "Inzu nziza y'umuryango iri kugurishwa i Kigali."
+          },
+
+          {
+            name: "Inzu nziza igezweho",
+            location: "Kigali, Rwanda",
+            description:
+              "Inzu igezweho iri ahantu heza."
+          },
+
+          {
+            name: "Inzu nziza y'akataraboneka",
+            location: "Kigali, Rwanda",
+            description:
+              "Inzu yagutse y'umuryango ifite aho guhagarika imodoka."
+          }
+
+        ]
+
+      },
+
+
+      English: {
+
+        browserTitle:
+          "Houses for Sale - Rwanda House Market",
+
+        header:
+          "🏡 RWANDA HOUSE MARKET",
+
+        back:
+          "← Back to Home",
+
+        title:
+          "🏡 Houses for Sale",
+
+        description:
+          "Find houses available for sale in Rwanda.",
+
+        details:
+          "View Details",
+
+        houses: [
+
+          {
+            name: "Modern Family House",
+            location: "Kigali, Rwanda",
+            description:
+              "Beautiful family house available for sale in Kigali."
+          },
+
+          {
+            name: "Beautiful Modern House",
+            location: "Kigali, Rwanda",
+            description:
+              "Modern house in a convenient location."
+          },
+
+          {
+            name: "Luxury Family House",
+            location: "Kigali, Rwanda",
+            description:
+              "Spacious family house with parking space."
+          }
+
+        ]
+
+      },
+
+
+      Français: {
+
+        browserTitle:
+          "Maisons à vendre - Rwanda House Market",
+
+        header:
+          "🏡 RWANDA HOUSE MARKET",
+
+        back:
+          "← Retour à l'accueil",
+
+        title:
+          "🏡 Maisons à vendre",
+
+        description:
+          "Trouvez des maisons disponibles à la vente au Rwanda.",
+
+        details:
+          "Voir les détails",
+
+        houses: [
+
+          {
+            name: "Maison familiale moderne",
+            location: "Kigali, Rwanda",
+            description:
+              "Belle maison familiale disponible à la vente à Kigali."
+          },
+
+          {
+            name: "Belle maison moderne",
+            location: "Kigali, Rwanda",
+            description:
+              "Maison moderne située dans un endroit pratique."
+          },
+
+          {
+            name: "Maison familiale de luxe",
+            location: "Kigali, Rwanda",
+            description:
+              "Maison familiale spacieuse avec parking."
+          }
+
+        ]
+
+      },
+
+
+      Kiswahili: {
+
+        browserTitle:
+          "Nyumba za Kuuza - Rwanda House Market",
+
+        header:
+          "🏡 RWANDA HOUSE MARKET",
+
+        back:
+          "← Rudi Mwanzo",
+
+        title:
+          "🏡 Nyumba za Kuuza",
+
+        description:
+          "Pata nyumba zinazopatikana kwa kuuza nchini Rwanda.",
+
+        details:
+          "Tazama Maelezo",
+
+        houses: [
+
+          {
+            name: "Nyumba ya Kisasa ya Familia",
+            location: "Kigali, Rwanda",
+            description:
+              "Nyumba nzuri ya familia inayouzwa Kigali."
+          },
+
+          {
+            name: "Nyumba Nzuri ya Kisasa",
+            location: "Kigali, Rwanda",
+            description:
+              "Nyumba ya kisasa iliyo katika eneo zuri."
+          },
+
+          {
+            name: "Nyumba ya Familia ya Kifahari",
+            location: "Kigali, Rwanda",
+            description:
+              "Nyumba kubwa ya familia yenye nafasi ya maegesho."
+          }
+
+        ]
+
+      },
+
+
+      "中文": {
+
+        browserTitle:
+          "出售房屋 - Rwanda House Market",
+
+        header:
+          "🏡 RWANDA HOUSE MARKET",
+
+        back:
+          "← 返回首页",
+
+        title:
+          "🏡 出售房屋",
+
+        description:
+          "寻找卢旺达可出售的房屋。",
+
+        details:
+          "查看详情",
+
+        houses: [
+
+          {
+            name: "现代家庭住宅",
+            location: "基加利，卢旺达",
+            description:
+              "位于基加利的漂亮家庭住宅，现出售。"
+          },
+
+          {
+            name: "漂亮的现代住宅",
+            location: "基加利，卢旺达",
+            description:
+              "位于便利位置的现代住宅。"
+          },
+
+          {
+            name: "豪华家庭住宅",
+            location: "基加利，卢旺达",
+            description:
+              "宽敞的家庭住宅，设有停车位。"
+          }
+
+        ]
+
+      }
+
+    };
+
+
+    /*
+      CHOOSE TRANSLATION
+    */
+
+    const t =
+      translations[language] ||
+      translations.English;
+
+
+    /*
+      KEEP LANGUAGE SAVED
+    */
+
+    localStorage.setItem(
+      "selectedLanguage",
+      language
+    );
+
+
+    /*
+      PAGE TEXT
+    */
+
+    document.title =
+      t.browserTitle;
+
+
+    document.getElementById(
+      "headerTitle"
+    ).textContent =
+      t.header;
+
+
+    document.getElementById(
+      "backButton"
+    ).textContent =
+      t.back;
+
+
+    document.getElementById(
+      "pageTitle"
+    ).textContent =
+      t.title;
+
+
+    document.getElementById(
+      "pageDescription"
+    ).textContent =
+      t.description;
+
+
+    /*
+      HOUSE 1
+    */
+
+    document.getElementById(
+      "houseName1"
+    ).textContent =
+      t.houses[0].name;
+
+
+    document.getElementById(
+      "location1"
+    ).textContent =
+      t.houses[0].location;
+
+
+    document.getElementById(
+      "description1"
+    ).textContent =
+      t.houses[0].description;
+
+
+    document.getElementById(
+      "details1"
+    ).textContent =
+      t.details;
+
+
+    /*
+      HOUSE 2
+    */
+
+    document.getElementById(
+      "houseName2"
+    ).textContent =
+      t.houses[1].name;
+
+
+    document.getElementById(
+      "location2"
+    ).textContent =
+      t.houses[1].location;
+
+
+    document.getElementById(
+      "description2"
+    ).textContent =
+      t.houses[1].description;
+
+
+    document.getElementById(
+      "details2"
+    ).textContent =
+      t.details;
+
+
+    /*
+      HOUSE 3
+    */
+
+    document.getElementById(
+      "houseName3"
+    ).textContent =
+      t.houses[2].name;
+
+
+    document.getElementById(
+      "location3"
+    ).textContent =
+      t.houses[2].location;
+
+
+    document.getElementById(
+      "description3"
+    ).textContent =
+      t.houses[2].description;
+
+
+    document.getElementById(
+      "details3"
+    ).textContent =
+      t.details;
+
+  </script>
+
 </body>
 </html>
-```
