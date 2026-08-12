@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <title>Plot Details - Rwanda House Market</title>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -44,7 +46,11 @@
       padding: 25px 20px 50px;
     }
 
+
+    /* MAIN PHOTO */
+
     .main-photo {
+      position: relative;
       background: white;
       padding: 12px;
       border-radius: 15px;
@@ -59,6 +65,53 @@
       display: block;
     }
 
+
+    /* ARROW BUTTONS */
+
+    .prev,
+    .next {
+      position: absolute;
+
+      top: 50%;
+      transform: translateY(-50%);
+
+      z-index: 10;
+
+      width: 52px;
+      height: 72px;
+
+      border: none;
+      border-radius: 10px;
+
+      background: rgba(0,0,0,0.55);
+      color: white;
+
+      font-size: 45px;
+      line-height: 60px;
+
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .prev {
+      left: 22px;
+    }
+
+    .next {
+      right: 22px;
+    }
+
+    .prev:hover,
+    .next:hover {
+      background: rgba(0,0,0,0.8);
+    }
+
+
+    /* PHOTO THUMBNAILS */
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -71,7 +124,17 @@
       height: 140px;
       object-fit: cover;
       border-radius: 10px;
+      display: block;
+      cursor: pointer;
+      transition: 0.2s;
     }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+
+    /* INFORMATION */
 
     .info {
       background: white;
@@ -112,6 +175,9 @@
       line-height: 1.7;
     }
 
+
+    /* CONTACT */
+
     .contact {
       margin-top: 25px;
       padding-top: 20px;
@@ -134,10 +200,28 @@
       font-weight: bold;
     }
 
+
+    /* MOBILE */
+
     @media (max-width: 700px) {
 
       .main-photo img {
         height: 300px;
+      }
+
+      .prev,
+      .next {
+        width: 42px;
+        height: 58px;
+        font-size: 35px;
+      }
+
+      .prev {
+        left: 18px;
+      }
+
+      .next {
+        right: 18px;
       }
 
       .gallery {
@@ -151,11 +235,16 @@
       .info h2 {
         font-size: 25px;
       }
+
     }
+
   </style>
+
 </head>
 
+
 <body>
+
 
   <header>
 
@@ -170,140 +259,65 @@
 
   <div class="container">
 
-  <!-- MAIN PLOT PHOTO -->
 
-<div class="main-photo">
+    <!-- MAIN PHOTO -->
 
-  <button class="prev" onclick="changePhoto(-1)">‹</button>
+    <div class="main-photo">
 
-  <img
-    id="mainPlotPhoto"
-    src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=90"
-    alt="Plot for Sale">
-
-  <button class="next" onclick="changePhoto(1)">›</button>
-
-</div>
+      <button
+        class="prev"
+        onclick="changePhoto(-1)"
+        aria-label="Previous photo">
+        ‹
+      </button>
 
 
-<!-- PHOTO GALLERY -->
+      <img
+        id="mainPlotPhoto"
+        src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=90"
+        alt="Plot for Sale">
 
-<div class="gallery">
 
-<script>
+      <button
+        class="next"
+        onclick="changePhoto(1)"
+        aria-label="Next photo">
+        ›
+      </button>
 
-const plotPhotos = [
-  "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=90",
+    </div>
 
-  "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1600&q=90",
 
-  "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1600&q=90",
+    <!-- PHOTO GALLERY -->
 
-  "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1600&q=90"
-];
+    <div class="gallery">
 
-let currentPhoto = 0;
+      <img
+        src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85"
+        onclick="showPhoto(0)"
+        alt="Plot photo 1">
 
-function showPhoto(index) {
-  currentPhoto = index;
 
-  document.getElementById("mainPlotPhoto").src =
-    plotPhotos[currentPhoto];
-}
+      <img
+        src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85"
+        onclick="showPhoto(1)"
+        alt="Plot photo 2">
 
-function changePhoto(direction) {
 
-  currentPhoto += direction;
+      <img
+        src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=900&q=85"
+        onclick="showPhoto(2)"
+        alt="Plot photo 3">
 
-  if (currentPhoto < 0) {
-    currentPhoto = plotPhotos.length - 1;
-  }
 
-  if (currentPhoto >= plotPhotos.length) {
-    currentPhoto = 0;
-  }
+      <img
+        src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=900&q=85"
+        onclick="showPhoto(3)"
+        alt="Plot photo 4">
 
-  document.getElementById("mainPlotPhoto").src =
-    plotPhotos[currentPhoto];
-}
+    </div>
 
-</script>
 
-</div>
-.main-photo {
-  position: relative;
-  background: white;
-  padding: 12px;
-  border-radius: 15px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-}
-
-.main-photo img {
-  width: 100%;
-  height: 520px;
-  object-fit: cover;
-  border-radius: 10px;
-  display: block;
-}
-
-.prev,
-.next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-
-  width: 50px;
-  height: 70px;
-
-  border: none;
-  border-radius: 10px;
-
-  background: rgba(0,0,0,0.55);
-  color: white;
-
-  font-size: 45px;
-  line-height: 60px;
-  text-align: center;
-
-  cursor: pointer;
-}
-
-.prev {
-  left: 22px;
-}
-
-.next {
-  right: 22px;
-}
-
-.prev:hover,
-.next:hover {
-  background: rgba(0,0,0,0.8);
-}
-<div class="gallery">
-
-  <img
-    src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=85"
-    onclick="showPhoto(0)"
-    alt="Plot photo 1">
-
-  <img
-    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85"
-    onclick="showPhoto(1)"
-    alt="Plot photo 2">
-
-  <img
-    src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=900&q=85"
-    onclick="showPhoto(2)"
-    alt="Plot photo 3">
-
-  <img
-    src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=900&q=85"
-    onclick="showPhoto(3)"
-    alt="Plot photo 4">
-
-</div>
     <!-- PLOT INFORMATION -->
 
     <div class="info">
@@ -326,11 +340,15 @@ function changePhoto(direction) {
       <h3>Plot Details</h3>
 
       <p>
+
         📐 Land Size: 500 m²
         <br>
+
         🏗️ Suitable for: Residential construction
         <br>
+
         📄 Documents: Available
+
       </p>
 
 
@@ -379,37 +397,64 @@ function changePhoto(direction) {
 
   </div>
 
+
+  <!-- PHOTO SLIDER JAVASCRIPT -->
+
+  <script>
+
+    const plotPhotos = [
+
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=90",
+
+      "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1600&q=90",
+
+      "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1600&q=90",
+
+      "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1600&q=90"
+
+    ];
+
+
+    let currentPhoto = 0;
+
+
+    function showPhoto(index) {
+
+      currentPhoto = index;
+
+      document.getElementById("mainPlotPhoto").src =
+        plotPhotos[currentPhoto];
+
+    }
+
+
+    function changePhoto(direction) {
+
+      currentPhoto = currentPhoto + direction;
+
+
+      if (currentPhoto < 0) {
+
+        currentPhoto = plotPhotos.length - 1;
+
+      }
+
+
+      if (currentPhoto >= plotPhotos.length) {
+
+        currentPhoto = 0;
+
+      }
+
+
+      document.getElementById("mainPlotPhoto").src =
+        plotPhotos[currentPhoto];
+
+    }
+
+  </script>
+
+
 </body>
+
 </html>
-<script>
-
-const plotPhotos = [
-  "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=90",
-  "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1600&q=90",
-  "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=1600&q=90",
-  "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1600&q=90"
-];
-
-let currentPhoto = 0;
-
-function showPhoto(index) {
-  currentPhoto = index;
-  document.getElementById("mainPlotPhoto").src = plotPhotos[currentPhoto];
-}
-
-function changePhoto(direction) {
-  currentPhoto += direction;
-
-  if (currentPhoto < 0) {
-    currentPhoto = plotPhotos.length - 1;
-  }
-
-  if (currentPhoto >= plotPhotos.length) {
-    currentPhoto = 0;
-  }
-
-  document.getElementById("mainPlotPhoto").src =
-    plotPhotos[currentPhoto];
-}
-
-</script>
