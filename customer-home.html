@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,20 +12,31 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --yellow: #F4C542;
+      --light-yellow: #FFF9DD;
+      --gold: #D9A900;
+      --white: #FFFFFF;
+      --text: #292929;
+      --soft-text: #666666;
+      --border: #E9DDA8;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f7f4f1;
-      color: #2f211b;
+      background: var(--white);
+      color: var(--text);
     }
 
     /* ================= HEADER ================= */
 
     header {
-      background: #4b2e24;
-      color: white;
+      background: var(--yellow);
+      color: var(--text);
       padding: 18px 15px;
       text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
     header h1 {
@@ -35,8 +47,8 @@
     /* ================= NAVIGATION ================= */
 
     .navbar {
-      background: #ffffff;
-      border-bottom: 2px solid #4b2e24;
+      background: var(--white);
+      border-bottom: 2px solid var(--yellow);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -50,21 +62,26 @@
     }
 
     .navbar a {
-      color: #4b2e24;
+      color: var(--text);
       text-decoration: none;
       padding: 11px 14px;
-      border-radius: 6px;
+      border-radius: 7px;
       font-weight: bold;
       font-size: 14px;
     }
 
     .navbar a:hover {
-      background: #4b2e24;
-      color: white;
+      background: var(--light-yellow);
+      color: #9A7400;
     }
 
     .profile-link {
-      background: #4b2e24 !important;
+      background: var(--yellow) !important;
+      color: var(--text) !important;
+    }
+
+    .profile-link:hover {
+      background: var(--gold) !important;
       color: white !important;
     }
 
@@ -79,23 +96,25 @@
     /* ================= WELCOME ================= */
 
     .welcome {
-      background: white;
-      border-radius: 15px;
-      padding: 35px 20px;
+      background: var(--light-yellow);
+      border-radius: 16px;
+      padding: 40px 20px;
       text-align: center;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 15px rgba(217,169,0,0.10);
       margin-bottom: 30px;
     }
 
     .welcome h2 {
       margin-top: 0;
-      color: #4b2e24;
+      color: #A67C00;
       font-size: 30px;
     }
 
     .welcome p {
-      color: #66554d;
+      color: var(--soft-text);
       font-size: 17px;
+      line-height: 1.6;
     }
 
     /* ================= CATEGORIES ================= */
@@ -107,16 +126,18 @@
     }
 
     .category {
-      background: white;
-      border-radius: 15px;
+      background: var(--white);
+      border-radius: 16px;
       padding: 30px 20px;
       text-align: center;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 15px rgba(217,169,0,0.10);
       transition: 0.2s;
     }
 
     .category:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 22px rgba(217,169,0,0.18);
     }
 
     .icon {
@@ -125,40 +146,43 @@
     }
 
     .category h3 {
-      color: #4b2e24;
+      color: #A67C00;
       font-size: 23px;
       margin: 10px 0;
     }
 
     .category p {
-      color: #66554d;
+      color: var(--soft-text);
       line-height: 1.5;
       min-height: 45px;
     }
 
     .category a {
       display: inline-block;
-      background: #4b2e24;
-      color: white;
+      background: var(--yellow);
+      color: var(--text);
       text-decoration: none;
       padding: 12px 22px;
       border-radius: 8px;
       margin-top: 10px;
       font-weight: bold;
+      box-shadow: 0 3px 8px rgba(217,169,0,0.18);
     }
 
     .category a:hover {
-      background: #321e17;
+      background: var(--gold);
+      color: white;
     }
 
     /* ================= FOOTER ================= */
 
     footer {
-      background: #4b2e24;
-      color: white;
+      background: var(--light-yellow);
+      color: var(--text);
       text-align: center;
       padding: 25px 15px;
       margin-top: 30px;
+      border-top: 2px solid var(--yellow);
     }
 
     footer p {
@@ -167,8 +191,8 @@
 
     .chat-now {
       display: inline-block;
-      background: white;
-      color: #4b2e24;
+      background: var(--yellow);
+      color: var(--text);
       text-decoration: none;
       padding: 11px 20px;
       border-radius: 8px;
@@ -177,12 +201,13 @@
     }
 
     .chat-now:hover {
-      background: #eee;
+      background: var(--gold);
+      color: white;
     }
 
     .facebook {
       display: inline-block;
-      color: white;
+      color: #8A6800;
       text-decoration: none;
       margin-top: 10px;
       font-weight: bold;
@@ -210,6 +235,10 @@
         white-space: nowrap;
         font-size: 13px;
         padding: 10px 12px;
+      }
+
+      .welcome {
+        padding: 30px 16px;
       }
 
       .welcome h2 {
