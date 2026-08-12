@@ -1,11 +1,10 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>House for Sale - Rwanda House Market</title>
+  <title id="browserTitle">House for Sale - Rwanda House Market</title>
 
   <style>
     * {
@@ -216,6 +215,7 @@
     }
 
     @media (max-width: 700px) {
+
       .photo-slider img {
         height: 300px;
       }
@@ -231,6 +231,11 @@
       .info h2 {
         font-size: 25px;
       }
+
+      .action-button {
+        width: 100%;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -239,9 +244,14 @@
 
   <header>
 
-    <h1>🏡 RWANDA HOUSE MARKET</h1>
+    <h1 id="headerTitle">
+      🏡 RWANDA HOUSE MARKET
+    </h1>
 
-    <a href="./houses-sale.html" class="back">
+    <a
+      href="./houses-sale.html"
+      class="back"
+      id="backButton">
       ← Back to Houses for Sale
     </a>
 
@@ -250,11 +260,13 @@
 
   <div class="container">
 
-    <!-- MAIN PHOTO -->
+    <!-- PHOTO SLIDER -->
 
     <div class="photo-slider">
 
-      <button class="arrow left" onclick="previousPhoto()">
+      <button
+        class="arrow left"
+        onclick="previousPhoto()">
         ‹
       </button>
 
@@ -263,14 +275,16 @@
         src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=90"
         alt="House for Sale">
 
-      <button class="arrow right" onclick="nextPhoto()">
+      <button
+        class="arrow right"
+        onclick="nextPhoto()">
         ›
       </button>
 
     </div>
 
 
-    <!-- OTHER PHOTOS -->
+    <!-- GALLERY -->
 
     <div class="gallery">
 
@@ -297,28 +311,31 @@
     </div>
 
 
-    <!-- BUTTONS -->
+    <!-- ACTION BUTTONS -->
 
     <div class="action-buttons">
 
       <a
         href="https://www.youtube.com/channel/UCGWVPGW9WXJZqWiB7oDHp3Q"
         target="_blank"
-        class="action-button video">
+        class="action-button video"
+        id="videoButton">
         🎥 View Video
       </a>
 
       <a
         href="https://www.google.com/maps/search/?api=1&query=Kigali,Rwanda"
         target="_blank"
-        class="action-button location-button">
+        class="action-button location-button"
+        id="locationButton">
         📍 View Location
       </a>
 
       <a
         href="https://wa.me/250799645553"
         target="_blank"
-        class="action-button whatsapp">
+        class="action-button whatsapp"
+        id="whatsappButton">
         💬 WhatsApp
       </a>
 
@@ -329,9 +346,11 @@
 
     <div class="info">
 
-      <h2>Modern Family House</h2>
+      <h2 id="houseTitle">
+        Modern Family House
+      </h2>
 
-      <div class="type">
+      <div class="type" id="propertyType">
         House for Sale
       </div>
 
@@ -340,28 +359,48 @@
       </div>
 
       <div class="location">
-        📍 Kigali, Rwanda
+        📍 <span id="houseLocation">Kigali, Rwanda</span>
       </div>
 
 
-      <h3>Property Details</h3>
+      <h3 id="propertyDetailsTitle">
+        Property Details
+      </h3>
 
       <div class="details-list">
 
-        🛏️ Bedrooms: 4 <br>
+        🛏️ <span id="bedrooms">
+          Bedrooms: 4
+        </span>
 
-        🚿 Bathrooms: 3 <br>
+        <br>
 
-        🚗 Parking: Available <br>
+        🚿 <span id="bathrooms">
+          Bathrooms: 3
+        </span>
 
-        🏠 Property Type: Etaje
+        <br>
+
+        🚗 <span id="parking">
+          Parking: Available
+        </span>
+
+        <br>
+
+        🏠 <span id="propertyTypeDetail">
+          Property Type: Etaje
+        </span>
 
       </div>
 
 
-      <h3>Description</h3>
+      <h3 id="descriptionTitle">
+        Description
+      </h3>
 
-      <p class="description">
+      <p
+        class="description"
+        id="houseDescription">
 
         Beautiful modern family house available for sale
         in Kigali, Rwanda. The property has comfortable
@@ -375,7 +414,9 @@
 
       <!-- CONTACT -->
 
-      <h3>📞 Contact</h3>
+      <h3 id="contactTitle">
+        📞 Contact
+      </h3>
 
       <p>
         <strong>+250 799 645 553</strong>
@@ -383,7 +424,8 @@
 
       <a
         href="tel:+250799645553"
-        class="call">
+        class="call"
+        id="callButton">
         📞 Call Now
       </a>
 
@@ -392,28 +434,33 @@
 
       <div class="social">
 
-        <h3>🌐 Follow Rwanda House Market</h3>
+        <h3 id="followTitle">
+          🌐 Follow Rwanda House Market
+        </h3>
 
         <div class="social-links">
 
           <a
             href="https://www.youtube.com/channel/UCGWVPGW9WXJZqWiB7oDHp3Q"
             target="_blank"
-            class="youtube">
+            class="youtube"
+            id="youtubeButton">
             ▶ YouTube
           </a>
 
           <a
             href="https://www.facebook.com/rwandahousemarket"
             target="_blank"
-            class="facebook">
+            class="facebook"
+            id="facebookButton">
             f Facebook
           </a>
 
           <a
             href="https://www.instagram.com/rwandahousemarket/"
             target="_blank"
-            class="instagram">
+            class="instagram"
+            id="instagramButton">
             ◎ Instagram
           </a>
 
@@ -427,6 +474,10 @@
 
 
   <script>
+
+    /* =========================
+       PHOTO SLIDER
+    ========================= */
 
     const photos = [
 
@@ -475,8 +526,471 @@
 
     }
 
+
+    /* =========================
+       LANGUAGE
+    ========================= */
+
+    const language =
+      localStorage.getItem("selectedLanguage") || "English";
+
+
+    const translations = {
+
+      Kinyarwanda: {
+
+        browserTitle:
+          "Inzu igurishwa - Rwanda House Market",
+
+        header:
+          "🏡 RWANDA HOUSE MARKET",
+
+        back:
+          "← Subira ku mazu agurishwa",
+
+        video:
+          "🎥 Reba Video",
+
+        locationButton:
+          "📍 Reba Aho Iherereye",
+
+        whatsapp:
+          "💬 WhatsApp",
+
+        houseTitle:
+          "Inzu nziza y'umuryango",
+
+        propertyType:
+          "Inzu igurishwa",
+
+        location:
+          "Kigali, Rwanda",
+
+        propertyDetails:
+          "Ibisobanuro by'umutungo",
+
+        bedrooms:
+          "Ibyumba byo kuraramo: 4",
+
+        bathrooms:
+          "Ubwiherero: 3",
+
+        parking:
+          "Parking: Iraboneka",
+
+        propertyTypeDetail:
+          "Ubwoko bw'umutungo: Etaje",
+
+        descriptionTitle:
+          "Ibisobanuro",
+
+        description:
+          "Inzu nziza igezweho y'umuryango iri kugurishwa i Kigali mu Rwanda. Ifite ibyumba byiza, parking n'ibindi byorohereza abayibamo. Twandikire cyangwa uduhamagare kugira ngo ubone amakuru menshi kandi utegure igihe cyo kuyisura.",
+
+        contact:
+          "📞 Twandikire",
+
+        call:
+          "📞 Hamagara nonaha",
+
+        follow:
+          "🌐 Kurikira Rwanda House Market",
+
+        youtube:
+          "▶ YouTube",
+
+        facebook:
+          "f Facebook",
+
+        instagram:
+          "◎ Instagram"
+
+      },
+
+
+      English: {
+
+        browserTitle:
+          "House for Sale - Rwanda House Market",
+
+        header:
+          "🏡 RWANDA HOUSE MARKET",
+
+        back:
+          "← Back to Houses for Sale",
+
+        video:
+          "🎥 View Video",
+
+        locationButton:
+          "📍 View Location",
+
+        whatsapp:
+          "💬 WhatsApp",
+
+        houseTitle:
+          "Modern Family House",
+
+        propertyType:
+          "House for Sale",
+
+        location:
+          "Kigali, Rwanda",
+
+        propertyDetails:
+          "Property Details",
+
+        bedrooms:
+          "Bedrooms: 4",
+
+        bathrooms:
+          "Bathrooms: 3",
+
+        parking:
+          "Parking: Available",
+
+        propertyTypeDetail:
+          "Property Type: Etaje",
+
+        descriptionTitle:
+          "Description",
+
+        description:
+          "Beautiful modern family house available for sale in Kigali, Rwanda. The property has comfortable rooms, parking space and parking facilities. Contact Rwanda House Market for more information and to arrange a visit.",
+
+        contact:
+          "📞 Contact",
+
+        call:
+          "📞 Call Now",
+
+        follow:
+          "🌐 Follow Rwanda House Market",
+
+        youtube:
+          "▶ YouTube",
+
+        facebook:
+          "f Facebook",
+
+        instagram:
+          "◎ Instagram"
+
+      },
+
+
+      Français: {
+
+        browserTitle:
+          "Maison à vendre - Rwanda House Market",
+
+        header:
+          "🏡 RWANDA HOUSE MARKET",
+
+        back:
+          "← Retour aux maisons à vendre",
+
+        video:
+          "🎥 Voir la vidéo",
+
+        locationButton:
+          "📍 Voir l'emplacement",
+
+        whatsapp:
+          "💬 WhatsApp",
+
+        houseTitle:
+          "Maison familiale moderne",
+
+        propertyType:
+          "Maison à vendre",
+
+        location:
+          "Kigali, Rwanda",
+
+        propertyDetails:
+          "Détails de la propriété",
+
+        bedrooms:
+          "Chambres: 4",
+
+        bathrooms:
+          "Salles de bain: 3",
+
+        parking:
+          "Parking: Disponible",
+
+        propertyTypeDetail:
+          "Type de propriété: Maison à étages",
+
+        descriptionTitle:
+          "Description",
+
+        description:
+          "Belle maison familiale moderne à vendre à Kigali, au Rwanda. La propriété dispose de pièces confortables et d'un espace de stationnement. Contactez Rwanda House Market pour plus d'informations et pour organiser une visite.",
+
+        contact:
+          "📞 Contact",
+
+        call:
+          "📞 Appeler maintenant",
+
+        follow:
+          "🌐 Suivez Rwanda House Market",
+
+        youtube:
+          "▶ YouTube",
+
+        facebook:
+          "f Facebook",
+
+        instagram:
+          "◎ Instagram"
+
+      },
+
+
+      Kiswahili: {
+
+        browserTitle:
+          "Nyumba ya Kuuza - Rwanda House Market",
+
+        header:
+          "🏡 RWANDA HOUSE MARKET",
+
+        back:
+          "← Rudi kwenye Nyumba za Kuuza",
+
+        video:
+          "🎥 Tazama Video",
+
+        locationButton:
+          "📍 Tazama Mahali",
+
+        whatsapp:
+          "💬 WhatsApp",
+
+        houseTitle:
+          "Nyumba ya Kisasa ya Familia",
+
+        propertyType:
+          "Nyumba ya Kuuza",
+
+        location:
+          "Kigali, Rwanda",
+
+        propertyDetails:
+          "Maelezo ya Nyumba",
+
+        bedrooms:
+          "Vyumba vya kulala: 4",
+
+        bathrooms:
+          "Bafu: 3",
+
+        parking:
+          "Maegesho: Yanapatikana",
+
+        propertyTypeDetail:
+          "Aina ya Nyumba: Etaje",
+
+        descriptionTitle:
+          "Maelezo",
+
+        description:
+          "Nyumba nzuri ya kisasa ya familia inauzwa Kigali, Rwanda. Nyumba ina vyumba vizuri na nafasi ya maegesho. Wasiliana na Rwanda House Market kwa maelezo zaidi na kupanga muda wa kutembelea nyumba.",
+
+        contact:
+          "📞 Mawasiliano",
+
+        call:
+          "📞 Piga Simu Sasa",
+
+        follow:
+          "🌐 Fuatilia Rwanda House Market",
+
+        youtube:
+          "▶ YouTube",
+
+        facebook:
+          "f Facebook",
+
+        instagram:
+          "◎ Instagram"
+
+      },
+
+
+      "中文": {
+
+        browserTitle:
+          "出售房屋 - Rwanda House Market",
+
+        header:
+          "🏡 RWANDA HOUSE MARKET",
+
+        back:
+          "← 返回出售房屋",
+
+        video:
+          "🎥 查看视频",
+
+        locationButton:
+          "📍 查看位置",
+
+        whatsapp:
+          "💬 WhatsApp",
+
+        houseTitle:
+          "现代家庭住宅",
+
+        propertyType:
+          "出售房屋",
+
+        location:
+          "基加利，卢旺达",
+
+        propertyDetails:
+          "房产详情",
+
+        bedrooms:
+          "卧室：4",
+
+        bathrooms:
+          "浴室：3",
+
+        parking:
+          "停车位：有",
+
+        propertyTypeDetail:
+          "房产类型：多层住宅",
+
+        descriptionTitle:
+          "描述",
+
+        description:
+          "这是一套位于卢旺达基加利的漂亮现代家庭住宅，目前正在出售。房屋拥有舒适的房间和停车空间。如需更多信息或预约看房，请联系 Rwanda House Market。",
+
+        contact:
+          "📞 联系方式",
+
+        call:
+          "📞 立即致电",
+
+        follow:
+          "🌐 关注 Rwanda House Market",
+
+        youtube:
+          "▶ YouTube",
+
+        facebook:
+          "f Facebook",
+
+        instagram:
+          "◎ Instagram"
+
+      }
+
+    };
+
+
+    /* =========================
+       APPLY LANGUAGE
+    ========================= */
+
+    const t =
+      translations[language] ||
+      translations.English;
+
+
+    document.title =
+      t.browserTitle;
+
+
+    document.getElementById("headerTitle").textContent =
+      t.header;
+
+
+    document.getElementById("backButton").textContent =
+      t.back;
+
+
+    document.getElementById("videoButton").textContent =
+      t.video;
+
+
+    document.getElementById("locationButton").textContent =
+      t.locationButton;
+
+
+    document.getElementById("whatsappButton").textContent =
+      t.whatsapp;
+
+
+    document.getElementById("houseTitle").textContent =
+      t.houseTitle;
+
+
+    document.getElementById("propertyType").textContent =
+      t.propertyType;
+
+
+    document.getElementById("houseLocation").textContent =
+      t.location;
+
+
+    document.getElementById("propertyDetailsTitle").textContent =
+      t.propertyDetails;
+
+
+    document.getElementById("bedrooms").textContent =
+      t.bedrooms;
+
+
+    document.getElementById("bathrooms").textContent =
+      t.bathrooms;
+
+
+    document.getElementById("parking").textContent =
+      t.parking;
+
+
+    document.getElementById("propertyTypeDetail").textContent =
+      t.propertyTypeDetail;
+
+
+    document.getElementById("descriptionTitle").textContent =
+      t.descriptionTitle;
+
+
+    document.getElementById("houseDescription").textContent =
+      t.description;
+
+
+    document.getElementById("contactTitle").textContent =
+      t.contact;
+
+
+    document.getElementById("callButton").textContent =
+      t.call;
+
+
+    document.getElementById("followTitle").textContent =
+      t.follow;
+
+
+    document.getElementById("youtubeButton").textContent =
+      t.youtube;
+
+
+    document.getElementById("facebookButton").textContent =
+      t.facebook;
+
+
+    document.getElementById("instagramButton").textContent =
+      t.instagram;
+
   </script>
 
 </body>
 </html>
-```
