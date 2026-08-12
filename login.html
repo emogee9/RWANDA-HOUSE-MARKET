@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Login - Rwanda House Market</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f1ed;
+      color: #3b2418;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #5a321f;
+      color: white;
+      padding: 22px 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    .login-box {
+      background: white;
+      padding: 35px 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    }
+
+    .login-box h2 {
+      text-align: center;
+      margin-top: 0;
+      color: #5a321f;
+      font-size: 28px;
+    }
+
+    .login-box > p {
+      text-align: center;
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #cdbfb6;
+      border-radius: 8px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #5a321f;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 14px;
+      background: #5a321f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .login-button:hover {
+      background: #3f2114;
+    }
+
+    .message {
+      display: none;
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .register {
+      text-align: center;
+      margin-top: 22px;
+    }
+
+    .register a {
+      color: #5a321f;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .register a:hover {
+      text-decoration: underline;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #5a321f;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #5a321f;
+      color: white;
+      text-align: center;
+      padding: 18px 10px;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 20px 15px;
+      }
+
+      .login-box {
+        padding: 30px 20px;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🏠 RWANDA HOUSE MARKET</h1>
+    <p id="headerSubtitle">Customer Login</p>
+  </header>
+
+
+  <div class="container">
+
+    <div class="login-box">
+
+      <h2 id="loginTitle">Login</h2>
+
+      <p id="loginDescription">
+        Login to continue to Rwanda House Market.
+      </p>
+
+
+      <form id="loginForm">
+
+        <div class="form-group">
+
+          <label for="email" id="emailLabel">
+            Email or Phone
+          </label>
+
+          <input
+            type="text"
+            id="email"
+            placeholder="Enter your email or phone"
+            required>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="password" id="passwordLabel">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            required>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="login-button"
+          id="loginButton">
+          Login
+        </button>
+
+      </form>
+
+
+      <div
+        class="message"
+        id="message">
+      </div>
+
+
+      <div class="register">
+
+        <span id="noAccount">
+          Don't have an account?
+        </span>
+
+        <a
+          href="./register.html"
+          id="registerLink">
+          Register
+        </a>
+
+      </div>
+
+
+      <a
+        href="./home.html"
+        class="back"
+        id="backButton">
+        ← Back to Home
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <footer>
+
+    <div>
+      © 2026 Rwanda House Market
+    </div>
+
+    <div style="margin-top:8px;">
+      Designed by Irene
+      |
+      <a
+        href="https://www.facebook.com/"
+        target="_blank"
+        id="chatNow">
+        Chat Now
+      </a>
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    /*
+      GET SELECTED LANGUAGE
+    */
+
+    const language =
+      localStorage.getItem("selectedLanguage") || "English";
+
+
+    /*
+      TRANSLATIONS
+    */
+
+    const translations = {
+
+      Kinyarwanda: {
+
+        headerSubtitle: "Kwinjira kw'umukiriya",
+
+        loginTitle: "Kwinjira",
+
+        loginDescription:
+          "Injira kugira ngo ukomeze kuri Rwanda House Market.",
+
+        emailLabel:
+          "Email cyangwa Telefoni",
+
+        emailPlaceholder:
+          "Andika email cyangwa telefoni",
+
+        passwordLabel:
+          "Ijambo ry'ibanga",
+
+        passwordPlaceholder:
+          "Andika ijambo ry'ibanga",
+
+        loginButton:
+          "Injira",
+
+        noAccount:
+          "Ntabwo ufite konti?",
+
+        register:
+          "Iyandikishe",
+
+        back:
+          "← Subira kuri Home",
+
+        success:
+          "Winjiye neza. Turagutegereza kuri customer page.",
+
+        error:
+          "Nyamuneka andika email/telefoni n'ijambo ry'ibanga."
+      },
+
+
+      English: {
+
+        headerSubtitle:
+          "Customer Login",
+
+        loginTitle:
+          "Login",
+
+        loginDescription:
+          "Login to continue to Rwanda House Market.",
+
+        emailLabel:
+          "Email or Phone",
+
+        emailPlaceholder:
+          "Enter your email or phone",
+
+        passwordLabel:
+          "Password",
+
+        passwordPlaceholder:
+          "Enter your password",
+
+        loginButton:
+          "Login",
+
+        noAccount:
+          "Don't have an account?",
+
+        register:
+          "Register",
+
+        back:
+          "← Back to Home",
+
+        success:
+          "Login successful.",
+
+        error:
+          "Please enter your email/phone and password."
+      },
+
+
+      Français: {
+
+        headerSubtitle:
+          "Connexion client",
+
+        loginTitle:
+          "Connexion",
+
+        loginDescription:
+          "Connectez-vous pour continuer sur Rwanda House Market.",
+
+        emailLabel:
+          "Email ou téléphone",
+
+        emailPlaceholder:
+          "Entrez votre email ou téléphone",
+
+        passwordLabel:
+          "Mot de passe",
+
+        passwordPlaceholder:
+          "Entrez votre mot de passe",
+
+        loginButton:
+          "Se connecter",
+
+        noAccount:
+          "Vous n'avez pas de compte ?",
+
+        register:
+          "S'inscrire",
+
+        back:
+          "← Retour à l'accueil",
+
+        success:
+          "Connexion réussie.",
+
+        error:
+          "Veuillez entrer votre email/téléphone et votre mot de passe."
+      },
+
+
+      Kiswahili: {
+
+        headerSubtitle:
+          "Kuingia kwa Mteja",
+
+        loginTitle:
+          "Ingia",
+
+        loginDescription:
+          "Ingia ili kuendelea kwenye Rwanda House Market.",
+
+        emailLabel:
+          "Barua pepe au Simu",
+
+        emailPlaceholder:
+          "Ingiza barua pepe au simu",
+
+        passwordLabel:
+          "Nenosiri",
+
+        passwordPlaceholder:
+          "Ingiza nenosiri",
+
+        loginButton:
+          "Ingia",
+
+        noAccount:
+          "Huna akaunti?",
+
+        register:
+          "Jisajili",
+
+        back:
+          "← Rudi Mwanzo",
+
+        success:
+          "Umeingia kwa mafanikio.",
+
+        error:
+          "Tafadhali ingiza barua pepe/simu na nenosiri."
+      },
+
+
+      "中文": {
+
+        headerSubtitle:
+          "客户登录",
+
+        loginTitle:
+          "登录",
+
+        loginDescription:
+          "登录以继续使用 Rwanda House Market。",
+
+        emailLabel:
+          "电子邮件或电话",
+
+        emailPlaceholder:
+          "输入电子邮件或电话",
+
+        passwordLabel:
+          "密码",
+
+        passwordPlaceholder:
+          "输入密码",
+
+        loginButton:
+          "登录",
+
+        noAccount:
+          "还没有账户？",
+
+        register:
+          "注册",
+
+        back:
+          "← 返回首页",
+
+        success:
+          "登录成功。",
+
+        error:
+          "请输入电子邮件/电话和密码。"
+      }
+
+    };
+
+
+    /*
+      SELECT LANGUAGE
+    */
+
+    const t =
+      translations[language] ||
+      translations.English;
+
+
+    /*
+      APPLY TRANSLATION
+    */
+
+    document.getElementById("headerSubtitle").textContent =
+      t.headerSubtitle;
+
+    document.getElementById("loginTitle").textContent =
+      t.loginTitle;
+
+    document.getElementById("loginDescription").textContent =
+      t.loginDescription;
+
+    document.getElementById("emailLabel").textContent =
+      t.emailLabel;
+
+    document.getElementById("email").placeholder =
+      t.emailPlaceholder;
+
+    document.getElementById("passwordLabel").textContent =
+      t.passwordLabel;
+
+    document.getElementById("password").placeholder =
+      t.passwordPlaceholder;
+
+    document.getElementById("loginButton").textContent =
+      t.loginButton;
+
+    document.getElementById("noAccount").textContent =
+      t.noAccount + " ";
+
+    document.getElementById("registerLink").textContent =
+      t.register;
+
+    document.getElementById("backButton").textContent =
+      t.back;
+
+
+    /*
+      LOGIN FORM
+    */
+
+    document.getElementById("loginForm").addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+        const email =
+          document.getElementById("email").value.trim();
+
+        const password =
+          document.getElementById("password").value.trim();
+
+        const message =
+          document.getElementById("message");
+
+
+        if (!email || !password) {
+
+          message.style.display = "block";
+
+          message.style.background = "#f8d7da";
+
+          message.style.color = "#842029";
+
+          message.textContent = t.error;
+
+          return;
+        }
+
+
+        /*
+          Temporary login system.
+
+          Later we will connect this page
+          to the real customer database.
+        */
+
+        localStorage.setItem(
+          "customerLoggedIn",
+          "true"
+        );
+
+        localStorage.setItem(
+          "customerEmail",
+          email
+        );
+
+
+        message.style.display = "block";
+
+        message.style.background = "#d1e7dd";
+
+        message.style.color = "#0f5132";
+
+        message.textContent = t.success;
+
+
+        /*
+          Go to customer home
+          after login.
+        */
+
+        setTimeout(function() {
+
+          window.location.href =
+            "./customer-home.html";
+
+        }, 1000);
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
