@@ -45,8 +45,6 @@
       padding: 25px 20px 50px;
     }
 
-    /* MAIN PHOTO */
-
     .main-photo {
       position: relative;
       background: white;
@@ -62,8 +60,6 @@
       border-radius: 10px;
       display: block;
     }
-
-    /* ARROWS */
 
     .prev,
     .next {
@@ -102,8 +98,6 @@
       background: rgba(0, 0, 0, 0.8);
     }
 
-    /* GALLERY */
-
     .gallery {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -124,8 +118,6 @@
     .gallery img:hover {
       transform: scale(1.03);
     }
-
-    /* INFORMATION */
 
     .info {
       background: white;
@@ -166,7 +158,20 @@
       line-height: 1.7;
     }
 
-    /* LINKS */
+    .maps {
+      display: inline-block;
+      margin-top: 10px;
+      background: #0b5d1e;
+      color: white;
+      padding: 13px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .maps:hover {
+      background: #084716;
+    }
 
     .links {
       margin-top: 30px;
@@ -204,19 +209,6 @@
       background: #444;
     }
 
-    .maps {
-      display: inline-block;
-      margin-top: 10px;
-      background: #0b5d1e;
-      color: white;
-      padding: 13px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    /* CONTACT */
-
     .contact {
       margin-top: 25px;
       padding-top: 20px;
@@ -239,7 +231,9 @@
       font-weight: bold;
     }
 
-    /* MOBILE */
+    .call-button:hover {
+      background: #084716;
+    }
 
     @media (max-width: 700px) {
 
@@ -287,9 +281,14 @@
 
   <header>
 
-    <h1>🌍 RWANDA HOUSE MARKET</h1>
+    <h1 id="headerTitle">
+      🌍 RWANDA HOUSE MARKET
+    </h1>
 
-    <a href="./plots.html" class="back">
+    <a
+      href="./plots.html"
+      class="back"
+      id="backButton">
       ← Back to Plots
     </a>
 
@@ -355,9 +354,11 @@
 
     <div class="info">
 
-      <h2>Beautiful Plot for Sale</h2>
+      <h2 id="plotTitle">
+        Beautiful Plot for Sale
+      </h2>
 
-      <div class="type">
+      <div class="type" id="propertyType">
         Property Type: Plot
       </div>
 
@@ -366,7 +367,7 @@
       </div>
 
       <div class="location">
-        📍 Kigali, Rwanda
+        📍 <span id="locationText">Kigali, Rwanda</span>
       </div>
 
 
@@ -375,14 +376,20 @@
       <a
         href="https://www.google.com/maps/search/?api=1&query=Kigali,Rwanda"
         target="_blank"
-        class="maps">
+        class="maps"
+        id="mapsButton">
         📍 Open Location on Google Maps
       </a>
 
 
-      <h3>Plot Details</h3>
+      <!-- PLOT DETAILS -->
 
-      <p>
+      <h3 id="plotDetailsTitle">
+        Plot Details
+      </h3>
+
+      <p id="plotDetailsText">
+
         📐 Land Size: 500 m²
         <br><br>
 
@@ -390,12 +397,19 @@
         <br><br>
 
         📄 Documents: Available
+
       </p>
 
 
-      <h3>Description</h3>
+      <!-- DESCRIPTION -->
 
-      <p class="description">
+      <h3 id="descriptionTitle">
+        Description
+      </h3>
+
+      <p
+        class="description"
+        id="descriptionText">
 
         Beautiful plot available for sale in Kigali,
         Rwanda. The plot is suitable for building a
@@ -409,9 +423,11 @@
 
       <!-- LOCATION -->
 
-      <h3>📍 Location</h3>
+      <h3 id="locationTitle">
+        📍 Location
+      </h3>
 
-      <p>
+      <p id="locationBottom">
         Kigali, Rwanda
       </p>
 
@@ -420,7 +436,9 @@
 
       <div class="links">
 
-        <h3>🔗 More Information</h3>
+        <h3 id="moreInfoTitle">
+          🔗 More Information
+        </h3>
 
 
         <!-- YOUTUBE -->
@@ -428,7 +446,8 @@
         <a
           href="https://www.youtube.com/channel/UCGWVPGW9WXJZqWiB7oDHp3Q"
           target="_blank"
-          class="link-button youtube">
+          class="link-button youtube"
+          id="youtubeButton">
           ▶️ YouTube
         </a>
 
@@ -436,9 +455,10 @@
         <!-- FACEBOOK -->
 
         <a
-          href="https://www.facebook.com/"
+          href="#"
           target="_blank"
-          class="link-button facebook">
+          class="link-button facebook"
+          id="facebookButton">
           📘 Facebook
         </a>
 
@@ -448,7 +468,8 @@
         <a
           href="https://wa.me/250799645553"
           target="_blank"
-          class="link-button whatsapp">
+          class="link-button whatsapp"
+          id="whatsappButton">
           💬 WhatsApp
         </a>
 
@@ -457,8 +478,8 @@
 
         <a
           href="#"
-          target="_blank"
-          class="link-button website">
+          class="link-button website"
+          id="websiteButton">
           🌐 Website
         </a>
 
@@ -469,7 +490,9 @@
 
       <div class="contact">
 
-        <h3>📞 Contact</h3>
+        <h3 id="contactTitle">
+          📞 Contact
+        </h3>
 
         <p class="phone">
           +250 799 645 553
@@ -477,7 +500,8 @@
 
         <a
           href="tel:+250799645553"
-          class="call-button">
+          class="call-button"
+          id="callButton">
           📞 Call Now
         </a>
 
@@ -488,9 +512,442 @@
   </div>
 
 
-  <!-- PHOTO SLIDER JAVASCRIPT -->
+  <!-- JAVASCRIPT -->
 
   <script>
+
+    /*
+      GET SELECTED LANGUAGE
+    */
+
+    const language =
+      localStorage.getItem("selectedLanguage") || "English";
+
+
+    /*
+      TRANSLATIONS
+    */
+
+    const translations = {
+
+      Kinyarwanda: {
+
+        header:
+          "🌍 RWANDA HOUSE MARKET",
+
+        back:
+          "← Subira ku Bibanza",
+
+        title:
+          "Ikibanza Cyiza Kigurisangwa",
+
+        type:
+          "Ubwoko bw'umutungo: Ikibanza",
+
+        location:
+          "Kigali, Rwanda",
+
+        maps:
+          "📍 Reba Location kuri Google Maps",
+
+        detailsTitle:
+          "Ibisobanuro by'Ikibanza",
+
+        details:
+          "📐 Ubuso: 500 m²<br><br>🏗️ Gikwiriye kubakamo: Inzu yo guturamo<br><br>📄 Inyandiko: Zirahari",
+
+        descriptionTitle:
+          "Ibisobanuro",
+
+        description:
+          "Ikibanza cyiza kiri kugurishwa i Kigali, Rwanda. Iki kibanza gikwiriye kubakamo inzu y'umuryango cyangwa undi mutungo wo guturamo. Twandikire kugira ngo ubone amakuru arambuye no gutegura igihe cyo kukireba.",
+
+        locationTitle:
+          "📍 Aho Ikibanza Giherereye",
+
+        moreInfo:
+          "🔗 Andi Makuru",
+
+        youtube:
+          "▶️ YouTube",
+
+        facebook:
+          "📘 Facebook",
+
+        whatsapp:
+          "💬 WhatsApp",
+
+        website:
+          "🌐 Website",
+
+        contact:
+          "📞 Twandikire",
+
+        call:
+          "📞 Hamagara"
+
+      },
+
+
+      English: {
+
+        header:
+          "🌍 RWANDA HOUSE MARKET",
+
+        back:
+          "← Back to Plots",
+
+        title:
+          "Beautiful Plot for Sale",
+
+        type:
+          "Property Type: Plot",
+
+        location:
+          "Kigali, Rwanda",
+
+        maps:
+          "📍 Open Location on Google Maps",
+
+        detailsTitle:
+          "Plot Details",
+
+        details:
+          "📐 Land Size: 500 m²<br><br>🏗️ Suitable for: Residential construction<br><br>📄 Documents: Available",
+
+        descriptionTitle:
+          "Description",
+
+        description:
+          "Beautiful plot available for sale in Kigali, Rwanda. The plot is suitable for building a family house or other residential property. Contact us for more information and to arrange a visit.",
+
+        locationTitle:
+          "📍 Location",
+
+        moreInfo:
+          "🔗 More Information",
+
+        youtube:
+          "▶️ YouTube",
+
+        facebook:
+          "📘 Facebook",
+
+        whatsapp:
+          "💬 WhatsApp",
+
+        website:
+          "🌐 Website",
+
+        contact:
+          "📞 Contact",
+
+        call:
+          "📞 Call Now"
+
+      },
+
+
+      Français: {
+
+        header:
+          "🌍 RWANDA HOUSE MARKET",
+
+        back:
+          "← Retour aux terrains",
+
+        title:
+          "Beau terrain à vendre",
+
+        type:
+          "Type de propriété : Terrain",
+
+        location:
+          "Kigali, Rwanda",
+
+        maps:
+          "📍 Voir l'emplacement sur Google Maps",
+
+        detailsTitle:
+          "Détails du terrain",
+
+        details:
+          "📐 Superficie : 500 m²<br><br>🏗️ Convient pour : Construction résidentielle<br><br>📄 Documents : Disponibles",
+
+        descriptionTitle:
+          "Description",
+
+        description:
+          "Beau terrain disponible à la vente à Kigali, Rwanda. Le terrain convient à la construction d'une maison familiale ou d'une autre propriété résidentielle. Contactez-nous pour plus d'informations et pour organiser une visite.",
+
+        locationTitle:
+          "📍 Emplacement",
+
+        moreInfo:
+          "🔗 Plus d'informations",
+
+        youtube:
+          "▶️ YouTube",
+
+        facebook:
+          "📘 Facebook",
+
+        whatsapp:
+          "💬 WhatsApp",
+
+        website:
+          "🌐 Site Web",
+
+        contact:
+          "📞 Contact",
+
+        call:
+          "📞 Appeler"
+
+      },
+
+
+      Kiswahili: {
+
+        header:
+          "🌍 RWANDA HOUSE MARKET",
+
+        back:
+          "← Rudi kwenye Viwanja",
+
+        title:
+          "Kiwanja Kizuri cha Kuuza",
+
+        type:
+          "Aina ya Mali: Kiwanja",
+
+        location:
+          "Kigali, Rwanda",
+
+        maps:
+          "📍 Fungua Eneo kwenye Google Maps",
+
+        detailsTitle:
+          "Maelezo ya Kiwanja",
+
+        details:
+          "📐 Ukubwa wa Ardhi: 500 m²<br><br>🏗️ Kinafaa kwa: Ujenzi wa makazi<br><br>📄 Nyaraka: Zinapatikana",
+
+        descriptionTitle:
+          "Maelezo",
+
+        description:
+          "Kiwanja kizuri kinapatikana kwa ajili ya kuuzwa Kigali, Rwanda. Kiwanja kinafaa kujenga nyumba ya familia au mali nyingine ya makazi. Wasiliana nasi kwa maelezo zaidi na kupanga muda wa kukitembelea.",
+
+        locationTitle:
+          "📍 Eneo",
+
+        moreInfo:
+          "🔗 Taarifa Zaidi",
+
+        youtube:
+          "▶️ YouTube",
+
+        facebook:
+          "📘 Facebook",
+
+        whatsapp:
+          "💬 WhatsApp",
+
+        website:
+          "🌐 Tovuti",
+
+        contact:
+          "📞 Wasiliana Nasi",
+
+        call:
+          "📞 Piga Simu"
+
+      },
+
+
+      "中文": {
+
+        header:
+          "🌍 RWANDA HOUSE MARKET",
+
+        back:
+          "← 返回土地列表",
+
+        title:
+          "出售优质土地",
+
+        type:
+          "房产类型：土地",
+
+        location:
+          "基加利，卢旺达",
+
+        maps:
+          "📍 在 Google 地图上查看位置",
+
+        detailsTitle:
+          "土地详情",
+
+        details:
+          "📐 土地面积：500 平方米<br><br>🏗️ 适合：住宅建设<br><br>📄 文件：齐全",
+
+        descriptionTitle:
+          "描述",
+
+        description:
+          "这是一块位于卢旺达基加利的优质待售土地。该土地适合建造家庭住宅或其他住宅物业。如需更多信息或安排看地，请联系我们。",
+
+        locationTitle:
+          "📍 位置",
+
+        moreInfo:
+          "🔗 更多信息",
+
+        youtube:
+          "▶️ YouTube",
+
+        facebook:
+          "📘 Facebook",
+
+        whatsapp:
+          "💬 WhatsApp",
+
+        website:
+          "🌐 网站",
+
+        contact:
+          "📞 联系我们",
+
+        call:
+          "📞 立即致电"
+
+      }
+
+    };
+
+
+    /*
+      SELECT LANGUAGE
+    */
+
+    const t =
+      translations[language] ||
+      translations.English;
+
+
+    /*
+      SAVE LANGUAGE
+    */
+
+    localStorage.setItem(
+      "selectedLanguage",
+      language
+    );
+
+
+    /*
+      APPLY TRANSLATIONS
+    */
+
+    document.getElementById(
+      "headerTitle"
+    ).textContent = t.header;
+
+
+    document.getElementById(
+      "backButton"
+    ).textContent = t.back;
+
+
+    document.getElementById(
+      "plotTitle"
+    ).textContent = t.title;
+
+
+    document.getElementById(
+      "propertyType"
+    ).textContent = t.type;
+
+
+    document.getElementById(
+      "locationText"
+    ).textContent = t.location;
+
+
+    document.getElementById(
+      "mapsButton"
+    ).textContent = t.maps;
+
+
+    document.getElementById(
+      "plotDetailsTitle"
+    ).textContent = t.detailsTitle;
+
+
+    document.getElementById(
+      "plotDetailsText"
+    ).innerHTML = t.details;
+
+
+    document.getElementById(
+      "descriptionTitle"
+    ).textContent = t.descriptionTitle;
+
+
+    document.getElementById(
+      "descriptionText"
+    ).textContent = t.description;
+
+
+    document.getElementById(
+      "locationTitle"
+    ).textContent = t.locationTitle;
+
+
+    document.getElementById(
+      "locationBottom"
+    ).textContent = t.location;
+
+
+    document.getElementById(
+      "moreInfoTitle"
+    ).textContent = t.moreInfo;
+
+
+    document.getElementById(
+      "youtubeButton"
+    ).textContent = t.youtube;
+
+
+    document.getElementById(
+      "facebookButton"
+    ).textContent = t.facebook;
+
+
+    document.getElementById(
+      "whatsappButton"
+    ).textContent = t.whatsapp;
+
+
+    document.getElementById(
+      "websiteButton"
+    ).textContent = t.website;
+
+
+    document.getElementById(
+      "contactTitle"
+    ).textContent = t.contact;
+
+
+    document.getElementById(
+      "callButton"
+    ).textContent = t.call;
+
+
+    /*
+      PHOTO SLIDER
+    */
 
     const plotPhotos = [
 
@@ -512,7 +969,9 @@
 
       currentPhoto = index;
 
-      document.getElementById("mainPlotPhoto").src =
+      document.getElementById(
+        "mainPlotPhoto"
+      ).src =
         plotPhotos[currentPhoto];
 
     }
@@ -520,17 +979,31 @@
 
     function changePhoto(direction) {
 
-      currentPhoto = currentPhoto + direction;
+      currentPhoto =
+        currentPhoto + direction;
+
 
       if (currentPhoto < 0) {
-        currentPhoto = plotPhotos.length - 1;
+
+        currentPhoto =
+          plotPhotos.length - 1;
+
       }
 
-      if (currentPhoto >= plotPhotos.length) {
+
+      if (
+        currentPhoto >=
+        plotPhotos.length
+      ) {
+
         currentPhoto = 0;
+
       }
 
-      document.getElementById("mainPlotPhoto").src =
+
+      document.getElementById(
+        "mainPlotPhoto"
+      ).src =
         plotPhotos[currentPhoto];
 
     }
