@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,135 +15,75 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f7f3ef;
-      color: #3b2418;
+      background: #f5f5f5;
+      color: #222;
     }
 
-    /* HEADER */
-
     header {
-      background: #5a321f;
-      color: white;
-      padding: 18px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
+      background: #f2b705;
+      color: #222;
+      padding: 22px 15px;
+      text-align: center;
     }
 
     header h1 {
       margin: 0;
-      font-size: 24px;
-      white-space: nowrap;
+      font-size: 30px;
     }
 
-    nav {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 5px;
-    }
-
-    nav a {
-      color: white;
+    .back {
+      display: inline-block;
+      margin-top: 10px;
+      color: #222;
       text-decoration: none;
-      padding: 9px 10px;
-      border-radius: 7px;
-      font-size: 14px;
       font-weight: bold;
     }
 
-    nav a:hover {
-      background: rgba(255,255,255,0.15);
-    }
-
-    .active {
-      background: white;
-      color: #5a321f !important;
-    }
-
-    /* CONTAINER */
-
     .container {
-      max-width: 950px;
+      max-width: 900px;
       margin: auto;
-      padding: 30px 20px 80px;
+      padding: 30px 20px 50px;
     }
 
     .title-box {
       background: white;
+      padding: 30px;
       text-align: center;
-      padding: 28px;
-      border-radius: 16px;
+      border-radius: 15px;
       margin-bottom: 25px;
       box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+      border-top: 5px solid #f2b705;
     }
 
     .title-box h2 {
-      margin: 0 0 10px;
-      color: #5a321f;
+      margin-top: 0;
       font-size: 30px;
     }
 
-    .title-box p {
-      margin: 0;
-      color: #666;
-      line-height: 1.6;
-    }
-
-    /* FORM */
-
-    .form-card {
+    .form-box {
       background: white;
       padding: 30px;
-      border-radius: 16px;
+      border-radius: 15px;
       box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-    }
-
-    .section-title {
-      color: #5a321f;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 10px;
-      margin-top: 0;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .form-group {
-      margin-bottom: 18px;
-    }
-
-    .full {
-      grid-column: 1 / -1;
+      border-top: 5px solid #f2b705;
     }
 
     label {
       display: block;
-      margin-bottom: 7px;
       font-weight: bold;
+      margin-top: 18px;
+      margin-bottom: 8px;
     }
 
     input,
     select,
     textarea {
       width: 100%;
-      padding: 13px;
-      border: 1px solid #d8c8bd;
+      padding: 14px;
+      border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 16px;
-      background: white;
-      outline: none;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: #5a321f;
+      font-family: Arial, sans-serif;
     }
 
     textarea {
@@ -150,133 +91,36 @@
       resize: vertical;
     }
 
-    /* FEE */
-
-    .fee-box {
-      background: #f7f3ef;
-      border: 1px solid #d8c8bd;
-      border-radius: 12px;
-      padding: 20px;
-      margin: 10px 0 25px;
-    }
-
-    .fee-box h3 {
-      margin-top: 0;
-      color: #5a321f;
-    }
-
-    .fee-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      padding: 8px 0;
-    }
-
-    .fee-total {
-      border-top: 1px solid #d8c8bd;
-      margin-top: 8px;
-      padding-top: 12px;
-      font-size: 19px;
-      font-weight: bold;
-      color: #5a321f;
-    }
-
-    /* SUBMIT */
-
     .submit-button {
       width: 100%;
-      border: none;
-      background: #5a321f;
-      color: white;
+      margin-top: 25px;
       padding: 15px;
-      border-radius: 9px;
-      font-size: 17px;
+      border: none;
+      border-radius: 8px;
+      background: #f2b705;
+      color: #222;
+      font-size: 18px;
       font-weight: bold;
       cursor: pointer;
     }
 
     .submit-button:hover {
-      background: #402215;
+      background: #dca500;
     }
 
-    /* MESSAGE */
-
-    #message {
-      display: none;
-      margin-top: 20px;
-      padding: 18px;
-      border-radius: 10px;
-      text-align: center;
-      font-weight: bold;
-      line-height: 1.6;
-    }
-
-    /* BACK */
-
-    .back {
-      display: block;
-      text-align: center;
-      margin-top: 25px;
-      color: #5a321f;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    /* FOOTER */
-
-    footer {
-      background: #5a321f;
-      color: white;
-      text-align: center;
-      padding: 12px;
-      font-size: 13px;
-    }
-
-    footer a {
-      color: white;
-      text-decoration: none;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 850px) {
-
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      nav {
-        justify-content: center;
-      }
+    .note {
+      margin-top: 15px;
+      color: #666;
+      font-size: 14px;
     }
 
     @media (max-width: 600px) {
-
       .container {
-        padding: 20px 15px 60px;
+        padding: 20px 15px 40px;
       }
 
-      .form-card {
-        padding: 22px 18px;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-
-      .full {
-        grid-column: auto;
-      }
-
-      .title-box h2 {
-        font-size: 25px;
-      }
-
-      .fee-row {
-        flex-direction: column;
-        gap: 3px;
+      .form-box {
+        padding: 20px;
       }
     }
   </style>
@@ -284,901 +128,169 @@
 
 <body>
 
-  <!-- HEADER -->
-
   <header>
 
-    <h1>🏠 RWANDA HOUSE MARKET</h1>
+    <h1>
+      🏠 RWANDA HOUSE MARKET
+    </h1>
 
-    <nav>
-
-      <a href="./customer-home.html" id="homeLink">
-        Home
-      </a>
-
-      <a href="./rent.html" id="rentLink">
-        Houses for Rent
-      </a>
-
-      <a href="./houses-sales.html" id="saleLink">
-        Houses for Sale
-      </a>
-
-      <a href="./plots.html" id="plotLink">
-        Plots
-      </a>
-
-      <a href="./request-property.html" id="requestLink">
-        Request Property
-      </a>
-
-      <a href="./sell-your-property.html"
-         class="active"
-         id="sellLink">
-        Sell Your Property
-      </a>
-
-    </nav>
+    <a href="./home.html" class="back">
+      ← Back to Home
+    </a>
 
   </header>
 
 
-  <!-- MAIN -->
-
-  <main class="container">
+  <div class="container">
 
     <div class="title-box">
 
-      <h2 id="pageTitle">
-        🏠 Sell Your Property
-      </h2>
+      <h2>🏠 Sell Your Property</h2>
 
-      <p id="pageDescription">
-        Give us your property information and Rwanda House Market
-        can help you find a buyer.
+      <p>
+        List your property and connect with interested buyers.
       </p>
 
     </div>
 
 
-    <div class="form-card">
-
-      <h3 class="section-title" id="ownerTitle">
-        👤 Property Owner Information
-      </h3>
-
+    <div class="form-box">
 
       <form id="propertyForm">
 
-        <div class="form-grid">
+        <label for="propertyType">
+          1. Property Type
+        </label>
 
-          <!-- NAME -->
+        <select id="propertyType" required>
 
-          <div class="form-group">
+          <option value="">
+            Select Property Type
+          </option>
 
-            <label for="fullName" id="nameLabel">
-              Full Name
-            </label>
+          <option value="House">
+            House
+          </option>
 
-            <input
-              type="text"
-              id="fullName"
-              placeholder="Enter your full name"
-              required>
+          <option value="Plot">
+            Plot
+          </option>
 
-          </div>
+        </select>
 
 
-          <!-- PHONE -->
+        <label for="propertyTitle">
+          2. Property Title
+        </label>
 
-          <div class="form-group">
+        <input
+          type="text"
+          id="propertyTitle"
+          placeholder="Example: Modern Family House"
+          required
+        >
 
-            <label for="phone" id="phoneLabel">
-              Phone Number
-            </label>
 
-            <input
-              type="tel"
-              id="phone"
-              placeholder="+250..."
-              required>
+        <label for="location">
+          3. Location
+        </label>
 
-          </div>
+        <input
+          type="text"
+          id="location"
+          placeholder="Example: Kigali, Kicukiro"
+          required
+        >
 
 
-          <!-- EMAIL -->
+        <label for="price">
+          4. Price
+        </label>
 
-          <div class="form-group">
+        <input
+          type="number"
+          id="price"
+          placeholder="Enter price in RWF"
+          required
+        >
 
-            <label for="email" id="emailLabel">
-              Email Address
-            </label>
 
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter your email"
-              required>
+        <label for="phone">
+          5. Phone Number
+        </label>
 
-          </div>
+        <input
+          type="tel"
+          id="phone"
+          placeholder="+250 7XX XXX XXX"
+          required
+        >
 
 
-          <!-- PROPERTY TYPE -->
+        <label for="description">
+          6. Property Description
+        </label>
 
-          <div class="form-group">
+        <textarea
+          id="description"
+          placeholder="Describe your property..."
+          required
+        ></textarea>
 
-            <label for="propertyType" id="typeLabel">
-              Property Type
-            </label>
 
-            <select id="propertyType" required>
+        <label for="images">
+          7. Property Images
+        </label>
 
-              <option value="" id="typeDefault">
-                Select property type
-              </option>
+        <input
+          type="file"
+          id="images"
+          accept="image/*"
+          multiple
+        >
 
-              <option value="house">
-                House
-              </option>
 
-              <option value="plot">
-                Plot
-              </option>
+        <label for="video">
+          8. Property Video
+        </label>
 
-              <option value="apartment">
-                Apartment
-              </option>
+        <input
+          type="file"
+          id="video"
+          accept="video/*"
+        >
 
-              <option value="commercial">
-                Commercial Property
-              </option>
 
-              <option value="other">
-                Other
-              </option>
+        <label for="mapLocation">
+          9. Property Location / Google Maps Link
+        </label>
 
-            </select>
+        <input
+          type="url"
+          id="mapLocation"
+          placeholder="Paste Google Maps link"
+        >
 
-          </div>
-
-
-          <!-- LOCATION -->
-
-          <div class="form-group">
-
-            <label for="district" id="locationLabel">
-              Location
-            </label>
-
-            <select id="district" required>
-
-              <option value="" id="locationDefault">
-                Select district
-              </option>
-
-              <option value="Gasabo">
-                Gasabo
-              </option>
-
-              <option value="Kicukiro">
-                Kicukiro
-              </option>
-
-              <option value="Nyarugenge">
-                Nyarugenge
-              </option>
-
-              <option value="Other">
-                Other
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <!-- PROPERTY VALUE -->
-
-          <div class="form-group">
-
-            <label for="propertyValue" id="valueLabel">
-              Estimated Property Value (RWF)
-            </label>
-
-            <input
-              type="number"
-              id="propertyValue"
-              min="0"
-              placeholder="Example: 50000000"
-              required>
-
-          </div>
-
-
-          <!-- ADDRESS -->
-
-          <div class="form-group full">
-
-            <label for="address" id="addressLabel">
-              Detailed Location / Address
-            </label>
-
-            <input
-              type="text"
-              id="address"
-              placeholder="Enter detailed location">
-
-          </div>
-
-
-          <!-- DESCRIPTION -->
-
-          <div class="form-group full">
-
-            <label for="description" id="descriptionLabel">
-              Property Description
-            </label>
-
-            <textarea
-              id="description"
-              placeholder="Describe your property..."
-              required></textarea>
-
-          </div>
-
-
-          <!-- PHOTO -->
-
-          <div class="form-group full">
-
-            <label for="photo" id="photoLabel">
-              Property Photo
-            </label>
-
-            <input
-              type="file"
-              id="photo"
-              accept="image/*">
-
-          </div>
-
-        </div>
-
-
-        <!-- FEE -->
-
-        <div class="fee-box">
-
-          <h3 id="feeTitle">
-            💰 Sell Your Property Fee
-          </h3>
-
-          <div class="fee-row">
-
-            <span id="propertyValueText">
-              Property Value
-            </span>
-
-            <strong id="displayValue">
-              0 RWF
-            </strong>
-
-          </div>
-
-
-          <div class="fee-row">
-
-            <span id="feeRateText">
-              Service Fee (0.5%)
-            </span>
-
-            <strong id="displayFee">
-              0 RWF
-            </strong>
-
-          </div>
-
-
-          <div class="fee-row fee-total">
-
-            <span id="totalText">
-              Fee to be paid
-            </span>
-
-            <strong id="totalFee">
-              0 RWF
-            </strong>
-
-          </div>
-
-          <p id="paymentNote">
-            Payment is not requested on this page.
-            Your property request will first be reviewed by our team.
-          </p>
-
-        </div>
-
-
-        <!-- SUBMIT -->
 
         <button
           type="submit"
           class="submit-button"
-          id="submitButton">
-
+        >
           Submit Property
-
         </button>
+
+        <p class="note">
+          Your property information will be reviewed before being published.
+        </p>
 
       </form>
 
-
-      <!-- SUCCESS MESSAGE -->
-
-      <div id="message"></div>
-
-
-      <a
-        href="./customer-home.html"
-        class="back"
-        id="backButton">
-
-        ← Back to Customer Home
-
-      </a>
-
     </div>
 
-  </main>
-
-
-  <!-- FOOTER -->
-
-  <footer>
-
-    <span id="footerText">
-      Designed by Irene •
-    </span>
-
-    <a
-      href="https://www.facebook.com/"
-      target="_blank">
-      Facebook
-    </a>
-
-    <span> • Chat Now</span>
-
-  </footer>
+  </div>
 
 
   <script>
-
-    /* ==============================
-       LANGUAGE
-    ============================== */
-
-    const language =
-      localStorage.getItem("selectedLanguage") || "English";
-
-
-    /* ==============================
-       TRANSLATIONS
-    ============================== */
-
-    const translations = {
-
-      Kinyarwanda: {
-
-        pageTitle:
-          "🏠 Tanga Umutungo wawe ngo ugurishwe",
-
-        pageDescription:
-          "Duhe amakuru y'umutungo wawe kugira ngo Rwanda House Market igufashe kubona umuguzi.",
-
-        ownerTitle:
-          "👤 Amakuru ya Nyir'umutungo",
-
-        nameLabel:
-          "Amazina",
-
-        namePlaceholder:
-          "Andika amazina yawe",
-
-        phoneLabel:
-          "Numero ya Telefoni",
-
-        emailLabel:
-          "Email",
-
-        typeLabel:
-          "Ubwoko bw'umutungo",
-
-        typeDefault:
-          "Hitamo ubwoko bw'umutungo",
-
-        locationLabel:
-          "Akarere",
-
-        locationDefault:
-          "Hitamo akarere",
-
-        valueLabel:
-          "Agaciro k'umutungo (RWF)",
-
-        addressLabel:
-          "Aho umutungo uherereye",
-
-        descriptionLabel:
-          "Ibisobanuro by'umutungo",
-
-        photoLabel:
-          "Ifoto y'umutungo",
-
-        feeTitle:
-          "💰 Amafaranga ya Sell Your Property",
-
-        propertyValue:
-          "Agaciro k'umutungo",
-
-        feeRate:
-          "Service Fee (0.5%)",
-
-        total:
-          "Amafaranga ya service",
-
-        paymentNote:
-          "Nta payment isabwa kuri iyi page. Request yawe izabanza gusuzumwa n'ubuyobozi.",
-
-        submit:
-          "Ohereza Umutungo",
-
-        back:
-          "← Subira kuri Customer Home",
-
-        success:
-          "Request yawe yakiriwe neza. Ubuyobozi bwa Rwanda House Market burayisuzuma kandi buzaguhamagara cyangwa bukwandikire.",
-
-        footer:
-          "Designed by Irene •"
-
-      },
-
-
-      English: {
-
-        pageTitle:
-          "🏠 Sell Your Property",
-
-        pageDescription:
-          "Give us your property information and Rwanda House Market can help you find a buyer.",
-
-        ownerTitle:
-          "👤 Property Owner Information",
-
-        nameLabel:
-          "Full Name",
-
-        namePlaceholder:
-          "Enter your full name",
-
-        phoneLabel:
-          "Phone Number",
-
-        emailLabel:
-          "Email Address",
-
-        typeLabel:
-          "Property Type",
-
-        typeDefault:
-          "Select property type",
-
-        locationLabel:
-          "Location",
-
-        locationDefault:
-          "Select district",
-
-        valueLabel:
-          "Estimated Property Value (RWF)",
-
-        addressLabel:
-          "Detailed Location / Address",
-
-        descriptionLabel:
-          "Property Description",
-
-        photoLabel:
-          "Property Photo",
-
-        feeTitle:
-          "💰 Sell Your Property Fee",
-
-        propertyValue:
-          "Property Value",
-
-        feeRate:
-          "Service Fee (0.5%)",
-
-        total:
-          "Fee to be paid",
-
-        paymentNote:
-          "Payment is not requested on this page. Your property request will first be reviewed by our team.",
-
-        submit:
-          "Submit Property",
-
-        back:
-          "← Back to Customer Home",
-
-        success:
-          "Your property request has been received. Rwanda House Market will review it and contact you.",
-
-        footer:
-          "Designed by Irene •"
-
-      },
-
-
-      Français: {
-
-        pageTitle:
-          "🏠 Vendre votre propriété",
-
-        pageDescription:
-          "Donnez-nous les informations de votre propriété afin que Rwanda House Market puisse vous aider à trouver un acheteur.",
-
-        ownerTitle:
-          "👤 Informations du propriétaire",
-
-        nameLabel:
-          "Nom complet",
-
-        namePlaceholder:
-          "Entrez votre nom complet",
-
-        phoneLabel:
-          "Numéro de téléphone",
-
-        emailLabel:
-          "Adresse e-mail",
-
-        typeLabel:
-          "Type de propriété",
-
-        typeDefault:
-          "Choisissez le type",
-
-        locationLabel:
-          "Localisation",
-
-        locationDefault:
-          "Choisissez le district",
-
-        valueLabel:
-          "Valeur estimée (RWF)",
-
-        addressLabel:
-          "Adresse détaillée",
-
-        descriptionLabel:
-          "Description de la propriété",
-
-        photoLabel:
-          "Photo de la propriété",
-
-        feeTitle:
-          "💰 Frais de vente",
-
-        propertyValue:
-          "Valeur de la propriété",
-
-        feeRate:
-          "Frais de service (0,5%)",
-
-        total:
-          "Frais à payer",
-
-        paymentNote:
-          "Aucun paiement n'est demandé sur cette page. Votre demande sera d'abord examinée par notre équipe.",
-
-        submit:
-          "Envoyer la propriété",
-
-        back:
-          "← Retour à l'espace client",
-
-        success:
-          "Votre demande a été reçue. Rwanda House Market va l'examiner et vous contacter.",
-
-        footer:
-          "Designed by Irene •"
-
-      },
-
-
-      Kiswahili: {
-
-        pageTitle:
-          "🏠 Uza Mali Yako",
-
-        pageDescription:
-          "Tupatie taarifa za mali yako ili Rwanda House Market ikusaidie kupata mnunuzi.",
-
-        ownerTitle:
-          "👤 Taarifa za Mmiliki",
-
-        nameLabel:
-          "Jina Kamili",
-
-        namePlaceholder:
-          "Ingiza jina lako kamili",
-
-        phoneLabel:
-          "Nambari ya Simu",
-
-        emailLabel:
-          "Barua pepe",
-
-        typeLabel:
-          "Aina ya Mali",
-
-        typeDefault:
-          "Chagua aina ya mali",
-
-        locationLabel:
-          "Mahali",
-
-        locationDefault:
-          "Chagua wilaya",
-
-        valueLabel:
-          "Thamani ya Mali (RWF)",
-
-        addressLabel:
-          "Anwani ya Kina",
-
-        descriptionLabel:
-          "Maelezo ya Mali",
-
-        photoLabel:
-          "Picha ya Mali",
-
-        feeTitle:
-          "💰 Ada ya Kuuza Mali",
-
-        propertyValue:
-          "Thamani ya Mali",
-
-        feeRate:
-          "Ada ya Huduma (0.5%)",
-
-        total:
-          "Ada ya kulipa",
-
-        paymentNote:
-          "Hakuna malipo yanayotakiwa kwenye ukurasa huu. Ombi lako litasomwa kwanza na timu yetu.",
-
-        submit:
-          "Tuma Mali",
-
-        back:
-          "← Rudi kwenye Akaunti",
-
-        success:
-          "Ombi lako limepokelewa. Rwanda House Market italikagua na kuwasiliana nawe.",
-
-        footer:
-          "Designed by Irene •"
-
-      },
-
-
-      "中文": {
-
-        pageTitle:
-          "🏠 出售您的房产",
-
-        pageDescription:
-          "提供您的房产信息，Rwanda House Market 可以帮助您寻找买家。",
-
-        ownerTitle:
-          "👤 房主信息",
-
-        nameLabel:
-          "姓名",
-
-        namePlaceholder:
-          "输入您的姓名",
-
-        phoneLabel:
-          "电话号码",
-
-        emailLabel:
-          "电子邮箱",
-
-        typeLabel:
-          "房产类型",
-
-        typeDefault:
-          "选择房产类型",
-
-        locationLabel:
-          "位置",
-
-        locationDefault:
-          "选择地区",
-
-        valueLabel:
-          "房产估价 (RWF)",
-
-        addressLabel:
-          "详细地址",
-
-        descriptionLabel:
-          "房产描述",
-
-        photoLabel:
-          "房产照片",
-
-        feeTitle:
-          "💰 出售房产服务费",
-
-        propertyValue:
-          "房产价值",
-
-        feeRate:
-          "服务费 (0.5%)",
-
-        total:
-          "应付费用",
-
-        paymentNote:
-          "此页面暂不要求付款。您的房产申请将首先由我们的团队审核。",
-
-        submit:
-          "提交房产",
-
-        back:
-          "← 返回客户主页",
-
-        success:
-          "您的房产申请已收到。Rwanda House Market 将进行审核并与您联系。",
-
-        footer:
-          "Designed by Irene •"
-
-      }
-
-    };
-
-
-    const t =
-      translations[language] ||
-      translations.English;
-
-
-    /* ==============================
-       APPLY TRANSLATIONS
-    ============================== */
-
-    document.getElementById("pageTitle").textContent =
-      t.pageTitle;
-
-    document.getElementById("pageDescription").textContent =
-      t.pageDescription;
-
-    document.getElementById("ownerTitle").textContent =
-      t.ownerTitle;
-
-    document.getElementById("nameLabel").textContent =
-      t.nameLabel;
-
-    document.getElementById("fullName").placeholder =
-      t.namePlaceholder;
-
-    document.getElementById("phoneLabel").textContent =
-      t.phoneLabel;
-
-    document.getElementById("emailLabel").textContent =
-      t.emailLabel;
-
-    document.getElementById("typeLabel").textContent =
-      t.typeLabel;
-
-    document.getElementById("typeDefault").textContent =
-      t.typeDefault;
-
-    document.getElementById("locationLabel").textContent =
-      t.locationLabel;
-
-    document.getElementById("locationDefault").textContent =
-      t.locationDefault;
-
-    document.getElementById("valueLabel").textContent =
-      t.valueLabel;
-
-    document.getElementById("addressLabel").textContent =
-      t.addressLabel;
-
-    document.getElementById("descriptionLabel").textContent =
-      t.descriptionLabel;
-
-    document.getElementById("photoLabel").textContent =
-      t.photoLabel;
-
-    document.getElementById("feeTitle").textContent =
-      t.feeTitle;
-
-    document.getElementById("propertyValueText").textContent =
-      t.propertyValue;
-
-    document.getElementById("feeRateText").textContent =
-      t.feeRate;
-
-    document.getElementById("totalText").textContent =
-      t.total;
-
-    document.getElementById("paymentNote").textContent =
-      t.paymentNote;
-
-    document.getElementById("submitButton").textContent =
-      t.submit;
-
-    document.getElementById("backButton").textContent =
-      t.back;
-
-    document.getElementById("footerText").textContent =
-      t.footer;
-
-
-    /* ==============================
-       FEE CALCULATION
-       0.5%
-    ============================== */
-
-    const propertyValue =
-      document.getElementById("propertyValue");
-
-    const displayValue =
-      document.getElementById("displayValue");
-
-    const displayFee =
-      document.getElementById("displayFee");
-
-    const totalFee =
-      document.getElementById("totalFee");
-
-
-    function calculateFee() {
-
-      const value =
-        Number(propertyValue.value) || 0;
-
-      const fee =
-        value * 0.005;
-
-      displayValue.textContent =
-        value.toLocaleString() + " RWF";
-
-      displayFee.textContent =
-        fee.toLocaleString() + " RWF";
-
-      totalFee.textContent =
-        fee.toLocaleString() + " RWF";
-    }
-
-
-    propertyValue.addEventListener(
-      "input",
-      calculateFee
-    );
-
-
-    /* ==============================
-       FORM SUBMIT
-    ============================== */
 
     document
       .getElementById("propertyForm")
@@ -1186,35 +298,14 @@
 
         event.preventDefault();
 
-        const message =
-          document.getElementById("message");
-
-        message.style.display = "block";
-
-        message.style.background = "#e7f4ea";
-
-        message.style.color = "#5a321f";
-
-        message.textContent =
-          t.success;
-
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: "smooth"
-        });
-
-        /*
-          IMPORTANT:
-
-          NEXT STEP:
-          We will connect this form to Supabase
-          so the submitted property appears
-          automatically in the ADMIN dashboard.
-        */
+        alert(
+          "Thank you! Your property has been submitted successfully."
+        );
 
       });
 
   </script>
 
 </body>
+
 </html>
