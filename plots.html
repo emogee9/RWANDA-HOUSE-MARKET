@@ -15,29 +15,44 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      background: #fffdf5;
       color: #222;
     }
 
+    /* ================= HEADER ================= */
+
     header {
-      background: #0b5d1e;
-      color: white;
+      background: #ffd21f;
+      color: #222;
       padding: 25px 15px;
       text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
     }
 
     header h1 {
       margin: 0;
       font-size: 30px;
+      font-weight: 800;
     }
 
     .back {
       display: inline-block;
-      margin-top: 10px;
-      color: white;
+      margin-top: 12px;
+      background: #ffffff;
+      color: #222;
       text-decoration: none;
       font-weight: bold;
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: 0.2s;
     }
+
+    .back:hover {
+      background: #fff7c7;
+      transform: translateY(-2px);
+    }
+
+    /* ================= CONTAINER ================= */
 
     .container {
       max-width: 1100px;
@@ -45,18 +60,30 @@
       padding: 30px 20px 50px;
     }
 
+    /* ================= PAGE TITLE ================= */
+
     .page-title {
-      background: white;
-      padding: 25px;
+      background: #ffffff;
+      padding: 28px 20px;
       text-align: center;
       border-radius: 15px;
       margin-bottom: 25px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+      border-top: 5px solid #ffd21f;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.09);
     }
 
     .page-title h2 {
       margin-top: 0;
+      color: #222;
+      font-size: 30px;
     }
+
+    .page-title p {
+      color: #666;
+      font-size: 16px;
+    }
+
+    /* ================= PLOTS ================= */
 
     .plots {
       display: grid;
@@ -65,10 +92,17 @@
     }
 
     .plot {
-      background: white;
+      background: #ffffff;
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.10);
+      border: 1px solid #f0e5a8;
+      transition: 0.25s;
+    }
+
+    .plot:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.15);
     }
 
     .plot img {
@@ -84,10 +118,12 @@
 
     .plot h2 {
       margin-top: 0;
+      color: #222;
+      font-size: 22px;
     }
 
     .price {
-      color: #0b5d1e;
+      color: #d49b00;
       font-size: 21px;
       font-weight: bold;
       margin: 10px 0;
@@ -99,26 +135,37 @@
     }
 
     .description {
-      color: #555;
+      color: #666;
       line-height: 1.6;
+      min-height: 50px;
     }
+
+    /* ================= BUTTON ================= */
 
     .details {
       display: inline-block;
-      background: #0b5d1e;
-      color: white;
+      background: #ffd21f;
+      color: #222;
       text-decoration: none;
       padding: 12px 20px;
       border-radius: 8px;
       font-weight: bold;
       margin-top: 8px;
+      transition: 0.2s;
     }
 
     .details:hover {
-      background: #084716;
+      background: #eab900;
+      transform: translateY(-2px);
     }
 
+    /* ================= MOBILE ================= */
+
     @media (max-width: 600px) {
+
+      header h1 {
+        font-size: 23px;
+      }
 
       .plot img {
         height: 200px;
@@ -128,11 +175,18 @@
         padding: 20px 15px 40px;
       }
 
+      .page-title h2 {
+        font-size: 25px;
+      }
+
     }
   </style>
+
 </head>
 
 <body>
+
+  <!-- ================= HEADER ================= -->
 
   <header>
 
@@ -149,6 +203,8 @@
 
   </header>
 
+
+  <!-- ================= MAIN ================= -->
 
   <div class="container">
 
@@ -168,7 +224,7 @@
     <div class="plots">
 
 
-      <!-- PLOT 1 -->
+      <!-- ================= PLOT 1 ================= -->
 
       <div class="plot">
 
@@ -209,7 +265,7 @@
       </div>
 
 
-      <!-- PLOT 2 -->
+      <!-- ================= PLOT 2 ================= -->
 
       <div class="plot">
 
@@ -250,7 +306,7 @@
       </div>
 
 
-      <!-- PLOT 3 -->
+      <!-- ================= PLOT 3 ================= -->
 
       <div class="plot">
 
@@ -296,22 +352,15 @@
   </div>
 
 
-  <script>
+  <!-- ================= LANGUAGE SYSTEM ================= -->
 
-    /*
-      GET SELECTED LANGUAGE
-    */
+  <script>
 
     const language =
       localStorage.getItem("selectedLanguage") || "English";
 
 
-    /*
-      TRANSLATIONS
-    */
-
     const translations = {
-
 
       Kinyarwanda: {
 
@@ -555,18 +604,10 @@
     };
 
 
-    /*
-      SELECT TRANSLATION
-    */
-
     const t =
       translations[language] ||
       translations.English;
 
-
-    /*
-      KEEP LANGUAGE SAVED
-    */
 
     localStorage.setItem(
       "selectedLanguage",
@@ -574,9 +615,7 @@
     );
 
 
-    /*
-      PAGE TEXT
-    */
+    /* ================= PAGE TEXT ================= */
 
     document.title =
       t.browserTitle;
@@ -606,9 +645,7 @@
       t.description;
 
 
-    /*
-      PLOT 1
-    */
+    /* ================= PLOT 1 ================= */
 
     document.getElementById(
       "plotName1"
@@ -634,9 +671,7 @@
       t.details;
 
 
-    /*
-      PLOT 2
-    */
+    /* ================= PLOT 2 ================= */
 
     document.getElementById(
       "plotName2"
@@ -662,9 +697,7 @@
       t.details;
 
 
-    /*
-      PLOT 3
-    */
+    /* ================= PLOT 3 ================= */
 
     document.getElementById(
       "plotName3"
