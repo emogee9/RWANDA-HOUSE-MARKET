@@ -1,11 +1,11 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>House Details - Rwanda House Market</title>
+  <title id="browserTitle">House Details - Rwanda House Market</title>
 
   <style>
     * {
@@ -33,7 +33,7 @@
 
     .back {
       display: inline-block;
-      margin-top: 12px;
+      margin-top: 10px;
       color: white;
       text-decoration: none;
       font-weight: bold;
@@ -44,8 +44,6 @@
       margin: auto;
       padding: 25px 20px 50px;
     }
-
-    /* PHOTO SLIDER */
 
     .photo-slider {
       position: relative;
@@ -75,11 +73,6 @@
       border-radius: 50%;
       font-size: 28px;
       cursor: pointer;
-      z-index: 5;
-    }
-
-    .arrow:hover {
-      background: rgba(0,0,0,0.8);
     }
 
     .left {
@@ -89,8 +82,6 @@
     .right {
       right: 25px;
     }
-
-    /* THUMBNAILS */
 
     .gallery {
       display: grid;
@@ -105,44 +96,7 @@
       object-fit: cover;
       border-radius: 10px;
       cursor: pointer;
-      border: 3px solid transparent;
     }
-
-    .gallery img:hover {
-      border-color: #0b5d1e;
-    }
-
-    /* BUTTONS */
-
-    .action-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 25px;
-    }
-
-    .action-button {
-      display: inline-block;
-      padding: 13px 20px;
-      border-radius: 8px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .video-button {
-      background: #d60000;
-    }
-
-    .location-button {
-      background: #1565c0;
-    }
-
-    .whatsapp-button {
-      background: #128c7e;
-    }
-
-    /* INFORMATION */
 
     .info {
       background: white;
@@ -164,13 +118,13 @@
       padding: 8px 15px;
       border-radius: 20px;
       font-weight: bold;
-      margin-bottom: 15px;
     }
 
     .price {
       font-size: 25px;
       font-weight: bold;
-      margin: 10px 0 15px;
+      margin: 15px 0;
+      color: #0b5d1e;
     }
 
     .location {
@@ -188,22 +142,36 @@
       line-height: 1.7;
     }
 
-    /* CONTACT */
-
-    .contact {
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
       margin-top: 25px;
-      padding-top: 20px;
-      border-top: 1px solid #ddd;
     }
 
-    .phone {
-      font-size: 20px;
+    .action-button {
+      padding: 13px 20px;
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
       font-weight: bold;
     }
 
-    .call-button {
+    .video {
+      background: #d60000;
+    }
+
+    .location-button {
+      background: #1565c0;
+    }
+
+    .whatsapp {
+      background: #128c7e;
+    }
+
+    .call {
       display: inline-block;
-      margin-top: 10px;
+      margin-top: 15px;
       background: #0b5d1e;
       color: white;
       padding: 13px 25px;
@@ -212,8 +180,6 @@
       font-weight: bold;
     }
 
-    /* SOCIAL MEDIA */
-
     .social {
       margin-top: 30px;
       padding-top: 25px;
@@ -221,23 +187,19 @@
       text-align: center;
     }
 
-    .social h3 {
-      margin-bottom: 18px;
-    }
-
     .social-links {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 12px;
+      margin-top: 15px;
     }
 
     .social-links a {
-      display: inline-block;
       padding: 12px 18px;
-      border-radius: 8px;
       color: white;
       text-decoration: none;
+      border-radius: 8px;
       font-weight: bold;
     }
 
@@ -252,8 +214,6 @@
     .instagram {
       background: #c13584;
     }
-
-    /* MOBILE */
 
     @media (max-width: 700px) {
 
@@ -273,18 +233,9 @@
         font-size: 25px;
       }
 
-      .arrow {
-        width: 42px;
-        height: 42px;
-        font-size: 22px;
-      }
-
-      .left {
-        left: 20px;
-      }
-
-      .right {
-        right: 20px;
+      .action-button {
+        width: 100%;
+        text-align: center;
       }
     }
   </style>
@@ -293,86 +244,99 @@
 <body>
 
   <header>
-    <h1>🏠 RWANDA HOUSE MARKET</h1>
 
-    <a href="./rent.html" class="back">
-      ← Back to Houses
+    <h1 id="headerTitle">
+      🏠 RWANDA HOUSE MARKET
+    </h1>
+
+    <a
+      href="./rent.html"
+      class="back"
+      id="backButton">
+      ← Back to Houses for Rent
     </a>
+
   </header>
 
 
   <div class="container">
 
-
-    <!-- PHOTO SLIDER -->
+    <!-- MAIN PHOTO -->
 
     <div class="photo-slider">
 
-      <button class="arrow left" onclick="previousPhoto()">
+      <button
+        class="arrow left"
+        onclick="previousPhoto()">
         ‹
       </button>
 
       <img
         id="mainPhoto"
         src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=90"
-        alt="Modern Family House">
+        alt="Rental House">
 
-      <button class="arrow right" onclick="nextPhoto()">
+      <button
+        class="arrow right"
+        onclick="nextPhoto()">
         ›
       </button>
 
     </div>
 
 
-    <!-- PHOTO THUMBNAILS -->
+    <!-- GALLERY -->
 
     <div class="gallery">
 
       <img
         onclick="showPhoto(0)"
         src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=85"
-        alt="House photo">
+        alt="House">
 
       <img
         onclick="showPhoto(1)"
         src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=85"
-        alt="House photo">
+        alt="House">
 
       <img
         onclick="showPhoto(2)"
         src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=85"
-        alt="House photo">
+        alt="House">
 
       <img
         onclick="showPhoto(3)"
         src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85"
-        alt="House photo">
+        alt="House">
 
     </div>
 
 
-    <!-- VIDEO AND LOCATION -->
+    <!-- ACTION BUTTONS -->
 
     <div class="action-buttons">
 
       <a
         href="https://www.youtube.com/channel/UCGWVPGW9WXJZqWiB7oDHp3Q"
         target="_blank"
-        class="action-button video-button">
+        class="action-button video"
+        id="videoButton">
         🎥 View Video
       </a>
 
       <a
         href="https://www.google.com/maps/search/?api=1&query=Kigali,Rwanda"
         target="_blank"
-        class="action-button location-button">
+        class="action-button location-button"
+        id="locationButton">
         📍 View Location
       </a>
 
       <a
         href="https://wa.me/250799645553"
         target="_blank"
-        class="action-button whatsapp-button">
+        class="action-button whatsapp"
+        id="whatsappButton">
         💬 WhatsApp
       </a>
 
@@ -383,10 +347,12 @@
 
     <div class="info">
 
-      <h2>Modern Family House</h2>
+      <h2 id="houseTitle">
+        Modern Family House
+      </h2>
 
-      <div class="type">
-        House Type: Etaje
+      <div class="type" id="propertyType">
+        House for Rent
       </div>
 
       <div class="price">
@@ -394,84 +360,108 @@
       </div>
 
       <div class="location">
-        📍 Kigali, Rwanda
+        📍 <span id="houseLocation">Kigali, Rwanda</span>
       </div>
 
 
-      <h3>Property Details</h3>
+      <h3 id="propertyDetailsTitle">
+        Property Details
+      </h3>
 
       <div class="details-list">
 
-        🛏️ Bedrooms: 4 <br>
+        🛏️ <span id="bedrooms">
+          Bedrooms: 4
+        </span>
 
-        🚿 Bathrooms: 3 <br>
+        <br>
 
-        🚗 Parking: Available <br>
+        🚿 <span id="bathrooms">
+          Bathrooms: 3
+        </span>
 
-        🏠 Property Type: Etaje
+        <br>
+
+        🚗 <span id="parking">
+          Parking: Available
+        </span>
+
+        <br>
+
+        🏠 <span id="propertyTypeDetail">
+          Property Type: House
+        </span>
 
       </div>
 
 
-      <h3>Description</h3>
+      <h3 id="descriptionTitle">
+        Description
+      </h3>
 
-      <p class="description">
+      <p
+        class="description"
+        id="houseDescription">
 
-        This spacious family house is available for rent
-        in Kigali, Rwanda. The property has comfortable
-        rooms, parking space and a convenient location.
+        Beautiful modern family house available for rent
+        in Kigali, Rwanda. The house has comfortable rooms,
+        parking space and a convenient location.
 
-        Contact us for more information and to arrange
-        a visit.
+        Contact Rwanda House Market for more information
+        and to arrange a visit.
 
       </p>
 
 
       <!-- CONTACT -->
 
-      <div class="contact">
+      <h3 id="contactTitle">
+        📞 Contact
+      </h3>
 
-        <h3>📞 Contact Us</h3>
+      <p>
+        <strong>+250 799 645 553</strong>
+      </p>
 
-        <p class="phone">
-          +250 799 645 553
-        </p>
-
-        <a
-          href="tel:+250799645553"
-          class="call-button">
-          📞 Call Now
-        </a>
-
-      </div>
+      <a
+        href="tel:+250799645553"
+        class="call"
+        id="callButton">
+        📞 Call Now
+      </a>
 
 
       <!-- SOCIAL MEDIA -->
 
       <div class="social">
 
-        <h3>🌐 Follow Rwanda House Market</h3>
+        <h3 id="followTitle">
+          🌐 Follow Rwanda House Market
+        </h3>
 
         <div class="social-links">
 
           <a
             href="https://www.youtube.com/channel/UCGWVPGW9WXJZqWiB7oDHp3Q"
             target="_blank"
-            class="youtube">
+            class="youtube"
+            id="youtubeButton">
             ▶ YouTube
           </a>
 
           <a
             href="https://www.facebook.com/rwandahousemarket"
             target="_blank"
-            class="facebook">
+            class="facebook"
+            id="facebookButton">
             f Facebook
           </a>
 
           <a
             href="https://www.instagram.com/rwandahousemarket/"
             target="_blank"
-            class="instagram">
+            class="instagram"
+            id="instagramButton">
             ◎ Instagram
           </a>
 
@@ -484,9 +474,11 @@
   </div>
 
 
-  <!-- PHOTO SLIDER SCRIPT -->
-
   <script>
+
+    /* =========================
+       PHOTO SLIDER
+    ========================= */
 
     const photos = [
 
@@ -506,7 +498,8 @@
 
       currentPhoto = index;
 
-      document.getElementById("mainPhoto").src = photos[currentPhoto];
+      document.getElementById("mainPhoto").src =
+        photos[currentPhoto];
 
     }
 
@@ -534,8 +527,472 @@
 
     }
 
+
+    /* =========================
+       LANGUAGE SYSTEM
+    ========================= */
+
+    const language =
+      localStorage.getItem("selectedLanguage") || "English";
+
+
+    const translations = {
+
+
+      Kinyarwanda: {
+
+        browserTitle:
+          "Ibisobanuro by'inzu - Rwanda House Market",
+
+        header:
+          "🏠 RWANDA HOUSE MARKET",
+
+        back:
+          "← Subira ku mazu akodeshwa",
+
+        video:
+          "🎥 Reba Video",
+
+        locationButton:
+          "📍 Reba Aho Iherereye",
+
+        whatsapp:
+          "💬 WhatsApp",
+
+        houseTitle:
+          "Inzu nziza y'umuryango",
+
+        propertyType:
+          "Inzu ikodeshwa",
+
+        location:
+          "Kigali, Rwanda",
+
+        propertyDetails:
+          "Ibisobanuro by'inzu",
+
+        bedrooms:
+          "Ibyumba byo kuraramo: 4",
+
+        bathrooms:
+          "Ubwiherero: 3",
+
+        parking:
+          "Parking: Iraboneka",
+
+        propertyTypeDetail:
+          "Ubwoko bw'inzu: Inzu y'umuryango",
+
+        descriptionTitle:
+          "Ibisobanuro",
+
+        description:
+          "Inzu nziza igezweho y'umuryango iri gukodeshwa i Kigali mu Rwanda. Ifite ibyumba byiza, parking kandi iri ahantu heza. Twandikire cyangwa uduhamagare kugira ngo ubone amakuru menshi kandi utegure igihe cyo kuyisura.",
+
+        contact:
+          "📞 Twandikire",
+
+        call:
+          "📞 Hamagara nonaha",
+
+        follow:
+          "🌐 Kurikira Rwanda House Market",
+
+        youtube:
+          "▶ YouTube",
+
+        facebook:
+          "f Facebook",
+
+        instagram:
+          "◎ Instagram"
+
+      },
+
+
+      English: {
+
+        browserTitle:
+          "House Details - Rwanda House Market",
+
+        header:
+          "🏠 RWANDA HOUSE MARKET",
+
+        back:
+          "← Back to Houses for Rent",
+
+        video:
+          "🎥 View Video",
+
+        locationButton:
+          "📍 View Location",
+
+        whatsapp:
+          "💬 WhatsApp",
+
+        houseTitle:
+          "Modern Family House",
+
+        propertyType:
+          "House for Rent",
+
+        location:
+          "Kigali, Rwanda",
+
+        propertyDetails:
+          "Property Details",
+
+        bedrooms:
+          "Bedrooms: 4",
+
+        bathrooms:
+          "Bathrooms: 3",
+
+        parking:
+          "Parking: Available",
+
+        propertyTypeDetail:
+          "Property Type: House",
+
+        descriptionTitle:
+          "Description",
+
+        description:
+          "Beautiful modern family house available for rent in Kigali, Rwanda. The house has comfortable rooms, parking space and a convenient location. Contact Rwanda House Market for more information and to arrange a visit.",
+
+        contact:
+          "📞 Contact",
+
+        call:
+          "📞 Call Now",
+
+        follow:
+          "🌐 Follow Rwanda House Market",
+
+        youtube:
+          "▶ YouTube",
+
+        facebook:
+          "f Facebook",
+
+        instagram:
+          "◎ Instagram"
+
+      },
+
+
+      Français: {
+
+        browserTitle:
+          "Détails de la maison - Rwanda House Market",
+
+        header:
+          "🏠 RWANDA HOUSE MARKET",
+
+        back:
+          "← Retour aux maisons à louer",
+
+        video:
+          "🎥 Voir la vidéo",
+
+        locationButton:
+          "📍 Voir l'emplacement",
+
+        whatsapp:
+          "💬 WhatsApp",
+
+        houseTitle:
+          "Maison familiale moderne",
+
+        propertyType:
+          "Maison à louer",
+
+        location:
+          "Kigali, Rwanda",
+
+        propertyDetails:
+          "Détails de la propriété",
+
+        bedrooms:
+          "Chambres: 4",
+
+        bathrooms:
+          "Salles de bain: 3",
+
+        parking:
+          "Parking: Disponible",
+
+        propertyTypeDetail:
+          "Type de propriété: Maison",
+
+        descriptionTitle:
+          "Description",
+
+        description:
+          "Belle maison familiale moderne disponible à la location à Kigali, au Rwanda. La maison dispose de pièces confortables, d'un parking et d'un emplacement pratique. Contactez Rwanda House Market pour plus d'informations et pour organiser une visite.",
+
+        contact:
+          "📞 Contact",
+
+        call:
+          "📞 Appeler maintenant",
+
+        follow:
+          "🌐 Suivez Rwanda House Market",
+
+        youtube:
+          "▶ YouTube",
+
+        facebook:
+          "f Facebook",
+
+        instagram:
+          "◎ Instagram"
+
+      },
+
+
+      Kiswahili: {
+
+        browserTitle:
+          "Maelezo ya Nyumba - Rwanda House Market",
+
+        header:
+          "🏠 RWANDA HOUSE MARKET",
+
+        back:
+          "← Rudi kwenye Nyumba za Kupangisha",
+
+        video:
+          "🎥 Tazama Video",
+
+        locationButton:
+          "📍 Tazama Mahali",
+
+        whatsapp:
+          "💬 WhatsApp",
+
+        houseTitle:
+          "Nyumba ya Kisasa ya Familia",
+
+        propertyType:
+          "Nyumba ya Kupangisha",
+
+        location:
+          "Kigali, Rwanda",
+
+        propertyDetails:
+          "Maelezo ya Nyumba",
+
+        bedrooms:
+          "Vyumba vya kulala: 4",
+
+        bathrooms:
+          "Bafu: 3",
+
+        parking:
+          "Maegesho: Yanapatikana",
+
+        propertyTypeDetail:
+          "Aina ya Nyumba: Nyumba ya Familia",
+
+        descriptionTitle:
+          "Maelezo",
+
+        description:
+          "Nyumba nzuri ya kisasa ya familia inapatikana kwa kupangishwa Kigali, Rwanda. Nyumba ina vyumba vizuri, nafasi ya maegesho na iko katika eneo zuri. Wasiliana na Rwanda House Market kwa maelezo zaidi na kupanga muda wa kutembelea nyumba.",
+
+        contact:
+          "📞 Mawasiliano",
+
+        call:
+          "📞 Piga Simu Sasa",
+
+        follow:
+          "🌐 Fuatilia Rwanda House Market",
+
+        youtube:
+          "▶ YouTube",
+
+        facebook:
+          "f Facebook",
+
+        instagram:
+          "◎ Instagram"
+
+      },
+
+
+      "中文": {
+
+        browserTitle:
+          "出租房屋详情 - Rwanda House Market",
+
+        header:
+          "🏠 RWANDA HOUSE MARKET",
+
+        back:
+          "← 返回出租房屋",
+
+        video:
+          "🎥 查看视频",
+
+        locationButton:
+          "📍 查看位置",
+
+        whatsapp:
+          "💬 WhatsApp",
+
+        houseTitle:
+          "现代家庭住宅",
+
+        propertyType:
+          "出租房屋",
+
+        location:
+          "基加利，卢旺达",
+
+        propertyDetails:
+          "房产详情",
+
+        bedrooms:
+          "卧室：4",
+
+        bathrooms:
+          "浴室：3",
+
+        parking:
+          "停车位：有",
+
+        propertyTypeDetail:
+          "房产类型：家庭住宅",
+
+        descriptionTitle:
+          "描述",
+
+        description:
+          "这是一套位于卢旺达基加利的漂亮现代家庭住宅，目前出租。房屋拥有舒适的房间、停车空间，并且位置便利。如需更多信息或预约看房，请联系 Rwanda House Market。",
+
+        contact:
+          "📞 联系方式",
+
+        call:
+          "📞 立即致电",
+
+        follow:
+          "🌐 关注 Rwanda House Market",
+
+        youtube:
+          "▶ YouTube",
+
+        facebook:
+          "f Facebook",
+
+        instagram:
+          "◎ Instagram"
+
+      }
+
+    };
+
+
+    /* =========================
+       APPLY LANGUAGE
+    ========================= */
+
+    const t =
+      translations[language] ||
+      translations.English;
+
+
+    document.title =
+      t.browserTitle;
+
+
+    document.getElementById("headerTitle").textContent =
+      t.header;
+
+
+    document.getElementById("backButton").textContent =
+      t.back;
+
+
+    document.getElementById("videoButton").textContent =
+      t.video;
+
+
+    document.getElementById("locationButton").textContent =
+      t.locationButton;
+
+
+    document.getElementById("whatsappButton").textContent =
+      t.whatsapp;
+
+
+    document.getElementById("houseTitle").textContent =
+      t.houseTitle;
+
+
+    document.getElementById("propertyType").textContent =
+      t.propertyType;
+
+
+    document.getElementById("houseLocation").textContent =
+      t.location;
+
+
+    document.getElementById("propertyDetailsTitle").textContent =
+      t.propertyDetails;
+
+
+    document.getElementById("bedrooms").textContent =
+      t.bedrooms;
+
+
+    document.getElementById("bathrooms").textContent =
+      t.bathrooms;
+
+
+    document.getElementById("parking").textContent =
+      t.parking;
+
+
+    document.getElementById("propertyTypeDetail").textContent =
+      t.propertyTypeDetail;
+
+
+    document.getElementById("descriptionTitle").textContent =
+      t.descriptionTitle;
+
+
+    document.getElementById("houseDescription").textContent =
+      t.description;
+
+
+    document.getElementById("contactTitle").textContent =
+      t.contact;
+
+
+    document.getElementById("callButton").textContent =
+      t.call;
+
+
+    document.getElementById("followTitle").textContent =
+      t.follow;
+
+
+    document.getElementById("youtubeButton").textContent =
+      t.youtube;
+
+
+    document.getElementById("facebookButton").textContent =
+      t.facebook;
+
+
+    document.getElementById("instagramButton").textContent =
+      t.instagram;
+
   </script>
 
 </body>
 </html>
-```
