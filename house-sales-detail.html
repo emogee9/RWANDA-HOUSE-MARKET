@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -260,7 +261,7 @@
 
   <div class="container">
 
-    <!-- PHOTO SLIDER -->
+    <!-- MAIN PHOTO -->
 
     <div class="photo-slider">
 
@@ -284,7 +285,7 @@
     </div>
 
 
-    <!-- GALLERY -->
+    <!-- PHOTO GALLERY -->
 
     <div class="gallery">
 
@@ -359,7 +360,7 @@
       </div>
 
       <div class="location">
-        📍 <span id="houseLocation">Kigali, Rwanda</span>
+        📍 <span id="locationText">Kigali, Rwanda</span>
       </div>
 
 
@@ -369,27 +370,16 @@
 
       <div class="details-list">
 
-        🛏️ <span id="bedrooms">
-          Bedrooms: 4
-        </span>
-
+        🛏️ <span id="bedrooms">Bedrooms: 4</span>
         <br>
 
-        🚿 <span id="bathrooms">
-          Bathrooms: 3
-        </span>
-
+        🚿 <span id="bathrooms">Bathrooms: 3</span>
         <br>
 
-        🚗 <span id="parking">
-          Parking: Available
-        </span>
-
+        🚗 <span id="parking">Parking: Available</span>
         <br>
 
-        🏠 <span id="propertyTypeDetail">
-          Property Type: Etaje
-        </span>
+        🏠 <span id="propertyStyle">Property Type: Etaje</span>
 
       </div>
 
@@ -400,7 +390,7 @@
 
       <p
         class="description"
-        id="houseDescription">
+        id="descriptionText">
 
         Beautiful modern family house available for sale
         in Kigali, Rwanda. The property has comfortable
@@ -443,24 +433,21 @@
           <a
             href="https://www.youtube.com/channel/UCGWVPGW9WXJZqWiB7oDHp3Q"
             target="_blank"
-            class="youtube"
-            id="youtubeButton">
+            class="youtube">
             ▶ YouTube
           </a>
 
           <a
             href="https://www.facebook.com/rwandahousemarket"
             target="_blank"
-            class="facebook"
-            id="facebookButton">
+            class="facebook">
             f Facebook
           </a>
 
           <a
             href="https://www.instagram.com/rwandahousemarket/"
             target="_blank"
-            class="instagram"
-            id="instagramButton">
+            class="instagram">
             ◎ Instagram
           </a>
 
@@ -493,6 +480,7 @@
 
     let currentPhoto = 0;
 
+
     function showPhoto(index) {
 
       currentPhoto = index;
@@ -501,6 +489,7 @@
         photos[currentPhoto];
 
     }
+
 
     function nextPhoto() {
 
@@ -513,6 +502,7 @@
       showPhoto(currentPhoto);
 
     }
+
 
     function previousPhoto() {
 
@@ -560,7 +550,7 @@
         houseTitle:
           "Inzu nziza y'umuryango",
 
-        propertyType:
+        type:
           "Inzu igurishwa",
 
         location:
@@ -576,34 +566,25 @@
           "Ubwiherero: 3",
 
         parking:
-          "Parking: Iraboneka",
+          "Parking: Irahari",
 
-        propertyTypeDetail:
-          "Ubwoko bw'umutungo: Etaje",
+        propertyStyle:
+          "Ubwoko bw'inzu: Etaje",
 
         descriptionTitle:
           "Ibisobanuro",
 
         description:
-          "Inzu nziza igezweho y'umuryango iri kugurishwa i Kigali mu Rwanda. Ifite ibyumba byiza, parking n'ibindi byorohereza abayibamo. Twandikire cyangwa uduhamagare kugira ngo ubone amakuru menshi kandi utegure igihe cyo kuyisura.",
+          "Inzu nziza igezweho y'umuryango iri kugurishwa i Kigali, Rwanda. Ifite ibyumba byiza, parking n'ibindi byorohereza abayituramo. Menyesha Rwanda House Market kugira ngo ubone andi makuru cyangwa utegure igihe cyo kuyisura.",
 
         contact:
-          "📞 Twandikire",
+          "📞 Aho mwadusanga",
 
         call:
-          "📞 Hamagara nonaha",
+          "📞 Hamagara Ubu",
 
         follow:
-          "🌐 Kurikira Rwanda House Market",
-
-        youtube:
-          "▶ YouTube",
-
-        facebook:
-          "f Facebook",
-
-        instagram:
-          "◎ Instagram"
+          "🌐 Kurikira Rwanda House Market"
 
       },
 
@@ -631,7 +612,7 @@
         houseTitle:
           "Modern Family House",
 
-        propertyType:
+        type:
           "House for Sale",
 
         location:
@@ -649,7 +630,7 @@
         parking:
           "Parking: Available",
 
-        propertyTypeDetail:
+        propertyStyle:
           "Property Type: Etaje",
 
         descriptionTitle:
@@ -665,16 +646,7 @@
           "📞 Call Now",
 
         follow:
-          "🌐 Follow Rwanda House Market",
-
-        youtube:
-          "▶ YouTube",
-
-        facebook:
-          "f Facebook",
-
-        instagram:
-          "◎ Instagram"
+          "🌐 Follow Rwanda House Market"
 
       },
 
@@ -702,7 +674,7 @@
         houseTitle:
           "Maison familiale moderne",
 
-        propertyType:
+        type:
           "Maison à vendre",
 
         location:
@@ -720,14 +692,14 @@
         parking:
           "Parking: Disponible",
 
-        propertyTypeDetail:
+        propertyStyle:
           "Type de propriété: Maison à étages",
 
         descriptionTitle:
           "Description",
 
         description:
-          "Belle maison familiale moderne à vendre à Kigali, au Rwanda. La propriété dispose de pièces confortables et d'un espace de stationnement. Contactez Rwanda House Market pour plus d'informations et pour organiser une visite.",
+          "Belle maison familiale moderne disponible à la vente à Kigali, Rwanda. La propriété dispose de chambres confortables et d'un espace de stationnement. Contactez Rwanda House Market pour plus d'informations et pour organiser une visite.",
 
         contact:
           "📞 Contact",
@@ -736,16 +708,7 @@
           "📞 Appeler maintenant",
 
         follow:
-          "🌐 Suivez Rwanda House Market",
-
-        youtube:
-          "▶ YouTube",
-
-        facebook:
-          "f Facebook",
-
-        instagram:
-          "◎ Instagram"
+          "🌐 Suivez Rwanda House Market"
 
       },
 
@@ -773,32 +736,32 @@
         houseTitle:
           "Nyumba ya Kisasa ya Familia",
 
-        propertyType:
+        type:
           "Nyumba ya Kuuza",
 
         location:
           "Kigali, Rwanda",
 
         propertyDetails:
-          "Maelezo ya Nyumba",
+          "Maelezo ya Mali",
 
         bedrooms:
           "Vyumba vya kulala: 4",
 
         bathrooms:
-          "Bafu: 3",
+          "Vyumba vya bafu: 3",
 
         parking:
           "Maegesho: Yanapatikana",
 
-        propertyTypeDetail:
-          "Aina ya Nyumba: Etaje",
+        propertyStyle:
+          "Aina ya nyumba: Ghorofa",
 
         descriptionTitle:
           "Maelezo",
 
         description:
-          "Nyumba nzuri ya kisasa ya familia inauzwa Kigali, Rwanda. Nyumba ina vyumba vizuri na nafasi ya maegesho. Wasiliana na Rwanda House Market kwa maelezo zaidi na kupanga muda wa kutembelea nyumba.",
+          "Nyumba nzuri ya kisasa ya familia inauzwa Kigali, Rwanda. Mali hii ina vyumba vizuri na nafasi ya maegesho. Wasiliana na Rwanda House Market kwa maelezo zaidi na kupanga muda wa kutembelea.",
 
         contact:
           "📞 Mawasiliano",
@@ -807,16 +770,7 @@
           "📞 Piga Simu Sasa",
 
         follow:
-          "🌐 Fuatilia Rwanda House Market",
-
-        youtube:
-          "▶ YouTube",
-
-        facebook:
-          "f Facebook",
-
-        instagram:
-          "◎ Instagram"
+          "🌐 Fuata Rwanda House Market"
 
       },
 
@@ -844,7 +798,7 @@
         houseTitle:
           "现代家庭住宅",
 
-        propertyType:
+        type:
           "出售房屋",
 
         location:
@@ -862,14 +816,14 @@
         parking:
           "停车位：有",
 
-        propertyTypeDetail:
-          "房产类型：多层住宅",
+        propertyStyle:
+          "房屋类型：多层住宅",
 
         descriptionTitle:
           "描述",
 
         description:
-          "这是一套位于卢旺达基加利的漂亮现代家庭住宅，目前正在出售。房屋拥有舒适的房间和停车空间。如需更多信息或预约看房，请联系 Rwanda House Market。",
+          "这是一套位于卢旺达基加利的漂亮现代家庭住宅，目前出售。房屋拥有舒适的房间和停车空间。如需更多信息或预约看房，请联系 Rwanda House Market。",
 
         contact:
           "📞 联系方式",
@@ -878,16 +832,7 @@
           "📞 立即致电",
 
         follow:
-          "🌐 关注 Rwanda House Market",
-
-        youtube:
-          "▶ YouTube",
-
-        facebook:
-          "f Facebook",
-
-        instagram:
-          "◎ Instagram"
+          "🌐 关注 Rwanda House Market"
 
       }
 
@@ -932,10 +877,10 @@
 
 
     document.getElementById("propertyType").textContent =
-      t.propertyType;
+      t.type;
 
 
-    document.getElementById("houseLocation").textContent =
+    document.getElementById("locationText").textContent =
       t.location;
 
 
@@ -955,15 +900,15 @@
       t.parking;
 
 
-    document.getElementById("propertyTypeDetail").textContent =
-      t.propertyTypeDetail;
+    document.getElementById("propertyStyle").textContent =
+      t.propertyStyle;
 
 
     document.getElementById("descriptionTitle").textContent =
       t.descriptionTitle;
 
 
-    document.getElementById("houseDescription").textContent =
+    document.getElementById("descriptionText").textContent =
       t.description;
 
 
@@ -977,18 +922,6 @@
 
     document.getElementById("followTitle").textContent =
       t.follow;
-
-
-    document.getElementById("youtubeButton").textContent =
-      t.youtube;
-
-
-    document.getElementById("facebookButton").textContent =
-      t.facebook;
-
-
-    document.getElementById("instagramButton").textContent =
-      t.instagram;
 
   </script>
 
