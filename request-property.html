@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Request Property - Rwanda House Market</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f4f1;
+      color: #2f211b;
+    }
+
+    /* HEADER */
+
+    header {
+      background: #4b2e24;
+      color: white;
+      padding: 20px 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 27px;
+    }
+
+    /* NAVBAR */
+
+    .navbar {
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      padding: 8px;
+      flex-wrap: wrap;
+      border-bottom: 2px solid #4b2e24;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .navbar a {
+      color: #4b2e24;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 11px 14px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .navbar a:hover {
+      background: #4b2e24;
+      color: white;
+    }
+
+    .active {
+      background: #4b2e24 !important;
+      color: white !important;
+    }
+
+    /* CONTAINER */
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 30px 20px 100px;
+    }
+
+    /* TITLE */
+
+    .title {
+      background: white;
+      padding: 28px;
+      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+      margin-bottom: 25px;
+    }
+
+    .title h2 {
+      margin-top: 0;
+      color: #4b2e24;
+      font-size: 29px;
+    }
+
+    .title p {
+      color: #66554d;
+    }
+
+    /* FORM */
+
+    .form-box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #4b2e24;
+    }
+
+    select,
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #cfc7c2;
+      border-radius: 8px;
+      font-size: 16px;
+      background: white;
+      color: #2f211b;
+      outline: none;
+    }
+
+    select:focus,
+    input:focus {
+      border-color: #4b2e24;
+    }
+
+    /* HIDDEN OPTIONS */
+
+    .hidden {
+      display: none;
+    }
+
+    /* COMMISSION */
+
+    .commission-box {
+      background: #f7f4f1;
+      border: 1px solid #d8cec8;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 10px;
+    }
+
+    .commission-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin: 10px 0;
+      font-size: 17px;
+    }
+
+    .commission-total {
+      border-top: 1px solid #cfc7c2;
+      padding-top: 15px;
+      margin-top: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #4b2e24;
+    }
+
+    /* SUBMIT */
+
+    .submit-button {
+      width: 100%;
+      border: none;
+      background: #4b2e24;
+      color: white;
+      padding: 15px;
+      border-radius: 9px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .submit-button:hover {
+      background: #321e17;
+    }
+
+    /* SUCCESS MESSAGE */
+
+    .success {
+      display: none;
+      background: #f1eee9;
+      border-left: 5px solid #4b2e24;
+      padding: 20px;
+      margin-top: 25px;
+      border-radius: 8px;
+    }
+
+    .success h3 {
+      color: #4b2e24;
+      margin-top: 0;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #4b2e24;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+    }
+
+    .chat-now {
+      display: inline-block;
+      background: white;
+      color: #4b2e24;
+      padding: 11px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .facebook {
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      .navbar {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+      }
+
+      .navbar a {
+        white-space: nowrap;
+      }
+
+      .container {
+        padding: 20px 15px 80px;
+      }
+
+      .form-box {
+        padding: 20px;
+      }
+
+      .commission-row {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+    <h1>🏠 RWANDA HOUSE MARKET 🇷🇼</h1>
+  </header>
+
+
+  <!-- NAVIGATION -->
+
+  <nav class="navbar">
+
+    <a href="./customer-home.html" id="navHome">
+      Home
+    </a>
+
+    <a href="./rent.html" id="navRent">
+      Houses for Rent
+    </a>
+
+    <a href="./houses-sale.html" id="navSale">
+      Houses for Sale
+    </a>
+
+    <a href="./plots.html" id="navPlots">
+      Plots
+    </a>
+
+    <a
+      href="./request-property.html"
+      class="active"
+      id="navRequest">
+      Request Property
+    </a>
+
+    <a href="./profile.html" id="navProfile">
+      👤 Profile
+    </a>
+
+  </nav>
+
+
+  <!-- MAIN -->
+
+  <main class="container">
+
+    <section class="title">
+
+      <h2 id="pageTitle">
+        🔎 Request Property
+      </h2>
+
+      <p id="pageDescription">
+        Tell us what type of property you are looking for.
+      </p>
+
+    </section>
+
+
+    <!-- FORM -->
+
+    <section class="form-box">
+
+      <!-- PROPERTY TYPE -->
+
+      <div class="form-group">
+
+        <label for="propertyType" id="propertyTypeLabel">
+          1. Property Type
+        </label>
+
+        <select id="propertyType">
+
+          <option value="">
+            Select Property Type
+          </option>
+
+          <option value="rent">
+            House for Rent
+          </option>
+
+          <option value="sale">
+            House for Sale
+          </option>
+
+          <option value="plot">
+            Plot for Sale
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- HOUSE TYPE -->
+
+      <div class="form-group hidden" id="houseTypeGroup">
+
+        <label for="houseType" id="houseTypeLabel">
+          2. House Type
+        </label>
+
+        <select id="houseType">
+
+          <option value="">
+            Select House Type
+          </option>
+
+          <option>
+            One Story House
+          </option>
+
+          <option>
+            Two Story House
+          </option>
+
+          <option>
+            Three Story House
+          </option>
+
+          <option>
+            Apartment
+          </option>
+
+          <option>
+            Villa
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- PLOT TYPE -->
+
+      <div class="form-group hidden" id="plotTypeGroup">
+
+        <label for="plotType" id="plotTypeLabel">
+          2. Plot Type
+        </label>
+
+        <select id="plotType">
+
+          <option value="">
+            Select Plot Type
+          </option>
+
+          <option>
+            Residential Plot
+          </option>
+
+          <option>
+            Commercial Plot
+          </option>
+
+          <option>
+            Large Building Plot
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- FLOORS -->
+
+      <div class="form-group hidden" id="floorsGroup">
+
+        <label for="floors" id="floorsLabel">
+          Floors / Etaje
+        </label>
+
+        <select id="floors">
+
+          <option value="">
+            Select Floors
+          </option>
+
+          <option>
+            1 Floor
+          </option>
+
+          <option>
+            2 Floors
+          </option>
+
+          <option>
+            3 Floors
+          </option>
+
+          <option>
+            4+ Floors
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- LOCATION -->
+
+      <div class="form-group">
+
+        <label for="location" id="locationLabel">
+          3. Location
+        </label>
+
+        <select id="location">
+
+          <option value="">
+            Select Location
+          </option>
+
+          <option>
+            Gasabo
+          </option>
+
+          <option>
+            Kicukiro
+          </option>
+
+          <option>
+            Nyarugenge
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- PRICE -->
+
+      <div class="form-group">
+
+        <label for="price" id="priceLabel">
+          4. Price
+        </label>
+
+        <input
+          type="number"
+          id="price"
+          placeholder="Enter property price in RWF"
+          min="0">
+
+      </div>
+
+
+      <!-- COMMISSION -->
+
+      <div class="form-group">
+
+        <label id="commissionLabel">
+          Commission Fee
+        </label>
+
+        <div class="commission-box">
+
+          <div class="commission-row">
+
+            <span id="propertyPriceText">
+              Property Price
+            </span>
+
+            <strong id="displayPrice">
+              0 RWF
+            </strong>
+
+          </div>
+
+
+          <div class="commission-row">
+
+            <span id="commissionRateText">
+              Commission Rate
+            </span>
+
+            <strong>
+              2.5%
+            </strong>
+
+          </div>
+
+
+          <div class="commission-row commission-total">
+
+            <span id="commissionFeeText">
+              Commission Fee
+            </span>
+
+            <strong id="commissionAmount">
+              0 RWF
+            </strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- SUBMIT -->
+
+      <button
+        class="submit-button"
+        id="submitButton"
+        onclick="submitRequest()">
+
+        Submit Request
+
+      </button>
+
+
+      <!-- SUCCESS -->
+
+      <div class="success" id="successMessage">
+
+        <h3 id="successTitle">
+          ✅ Request Received
+        </h3>
+
+        <p id="successText">
+          Your property request has been received successfully.
+          Our team will contact you within 2 hours.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p id="designed">
+      Designed by Irene
+    </p>
+
+    <a
+      href="https://wa.me/250799645553"
+      target="_blank"
+      class="chat-now"
+      id="chatNow">
+      💬 Chat Now
+    </a>
+
+    <br>
+
+    <a
+      href="https://www.facebook.com/rwandahousemarket"
+      target="_blank"
+      class="facebook"
+      id="facebook">
+      📘 Facebook
+    </a>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    /* ================= LANGUAGE ================= */
+
+    const language =
+      localStorage.getItem("selectedLanguage") || "English";
+
+
+    /* ================= ELEMENTS ================= */
+
+    const propertyType =
+      document.getElementById("propertyType");
+
+    const houseTypeGroup =
+      document.getElementById("houseTypeGroup");
+
+    const plotTypeGroup =
+      document.getElementById("plotTypeGroup");
+
+    const floorsGroup =
+      document.getElementById("floorsGroup");
+
+    const priceInput =
+      document.getElementById("price");
+
+    const displayPrice =
+      document.getElementById("displayPrice");
+
+    const commissionAmount =
+      document.getElementById("commissionAmount");
+
+
+    /* ================= PROPERTY TYPE ================= */
+
+    propertyType.addEventListener("change", function() {
+
+      houseTypeGroup.classList.add("hidden");
+
+      plotTypeGroup.classList.add("hidden");
+
+      floorsGroup.classList.add("hidden");
+
+
+      if (
+        this.value === "rent" ||
+        this.value === "sale"
+      ) {
+
+        houseTypeGroup.classList.remove("hidden");
+
+        floorsGroup.classList.remove("hidden");
+
+      }
+
+
+      if (this.value === "plot") {
+
+        plotTypeGroup.classList.remove("hidden");
+
+      }
+
+    });
+
+
+    /* ================= COMMISSION ================= */
+
+    priceInput.addEventListener("input", function() {
+
+      const price =
+        Number(this.value) || 0;
+
+
+      const commission =
+        price * 0.025;
+
+
+      displayPrice.textContent =
+        formatMoney(price) + " RWF";
+
+
+      commissionAmount.textContent =
+        formatMoney(commission) + " RWF";
+
+    });
+
+
+    function formatMoney(number) {
+
+      return Math.round(number)
+        .toLocaleString("en-US");
+
+    }
+
+
+    /* ================= SUBMIT ================= */
+
+    function submitRequest() {
+
+      const type =
+        propertyType.value;
+
+      const location =
+        document.getElementById("location").value;
+
+      const price =
+        Number(priceInput.value) || 0;
+
+
+      if (!type) {
+
+        alert(
+          "Please select the property type."
+        );
+
+        return;
+
+      }
+
+
+      if (!location) {
+
+        alert(
+          "Please select the location."
+        );
+
+        return;
+
+      }
+
+
+      if (!price || price <= 0) {
+
+        alert(
+          "Please enter the property price."
+        );
+
+        return;
+
+      }
+
+
+      const commission =
+        price * 0.025;
+
+
+      /*
+        SAVE REQUEST TEMPORARILY
+
+        Later we will connect this
+        to the admin system/database.
+      */
+
+      const request = {
+
+        propertyType:
+          type,
+
+        houseType:
+          document.getElementById("houseType").value,
+
+        plotType:
+          document.getElementById("plotType").value,
+
+        floors:
+          document.getElementById("floors").value,
+
+        location:
+          location,
+
+        price:
+          price,
+
+        commission:
+          commission,
+
+        date:
+          new Date().toISOString()
+
+      };
+
+
+      localStorage.setItem(
+        "propertyRequest",
+        JSON.stringify(request)
+      );
+
+
+      document.getElementById(
+        "successMessage"
+      ).style.display = "block";
+
+
+      document.getElementById(
+        "successMessage"
+      ).scrollIntoView({
+        behavior: "smooth"
+      });
+
+    }
+
+
+    /* ================= TRANSLATIONS ================= */
+
+    const translations = {
+
+      Kinyarwanda: {
+
+        home: "Ahabanza",
+
+        rent: "Amazu akodeshwa",
+
+        sale: "Amazu agurishwa",
+
+        plots: "Ibibanza",
+
+        request: "Gusaba umutungo",
+
+        profile: "👤 Umwirondoro",
+
+        title:
+          "🔎 Gusaba umutungo",
+
+        description:
+          "Tubwire ubwoko bw'umutungo ushaka.",
+
+        propertyType:
+          "1. Ubwoko bw'umutungo",
+
+        houseType:
+          "2. Ubwoko bw'inzu",
+
+        plotType:
+          "2. Ubwoko bw'ikibanza",
+
+        floors:
+          "Etaje",
+
+        location:
+          "3. Aho ushaka",
+
+        price:
+          "4. Igiciro",
+
+        propertyPrice:
+          "Igiciro cy'umutungo",
+
+        commissionRate:
+          "Igipimo cya commission",
+
+        commissionFee:
+          "Commission Fee",
+
+        submit:
+          "Ohereza ubusabe",
+
+        successTitle:
+          "✅ Ubusabe bwakiriwe",
+
+        successText:
+          "Ubusabe bwawe bwakiriwe neza. Tuzagusubiza mu gihe kitarenze amasaha 2.",
+
+        designed:
+          "Byakozwe na Irene",
+
+        chat:
+          "💬 Chat Now",
+
+        facebook:
+          "📘 Facebook"
+
+      },
+
+
+      English: {
+
+        home: "Home",
+
+        rent: "Houses for Rent",
+
+        sale: "Houses for Sale",
+
+        plots: "Plots",
+
+        request: "Request Property",
+
+        profile: "👤 Profile",
+
+        title:
+          "🔎 Request Property",
+
+        description:
+          "Tell us what type of property you are looking for.",
+
+        propertyType:
+          "1. Property Type",
+
+        houseType:
+          "2. House Type",
+
+        plotType:
+          "2. Plot Type",
+
+        floors:
+          "Floors / Etaje",
+
+        location:
+          "3. Location",
+
+        price:
+          "4. Price",
+
+        propertyPrice:
+          "Property Price",
+
+        commissionRate:
+          "Commission Rate",
+
+        commissionFee:
+          "Commission Fee",
+
+        submit:
+          "Submit Request",
+
+        successTitle:
+          "✅ Request Received",
+
+        successText:
+          "Your property request has been received successfully. Our team will contact you within 2 hours.",
+
+        designed:
+          "Designed by Irene",
+
+        chat:
+          "💬 Chat Now",
+
+        facebook:
+          "📘 Facebook"
+
+      },
+
+
+      Français: {
+
+        home: "Accueil",
+
+        rent: "Maisons à louer",
+
+        sale: "Maisons à vendre",
+
+        plots: "Terrains",
+
+        request: "Demander un bien",
+
+        profile: "👤 Profil",
+
+        title:
+          "🔎 Demander un bien",
+
+        description:
+          "Dites-nous quel type de bien vous recherchez.",
+
+        propertyType:
+          "1. Type de bien",
+
+        houseType:
+          "2. Type de maison",
+
+        plotType:
+          "2. Type de terrain",
+
+        floors:
+          "Étages",
+
+        location:
+          "3. Emplacement",
+
+        price:
+          "4. Prix",
+
+        propertyPrice:
+          "Prix du bien",
+
+        commissionRate:
+          "Taux de commission",
+
+        commissionFee:
+          "Commission",
+
+        submit:
+          "Envoyer la demande",
+
+        successTitle:
+          "✅ Demande reçue",
+
+        successText:
+          "Votre demande a été reçue. Notre équipe vous contactera dans un délai maximum de 2 heures.",
+
+        designed:
+          "Conçu par Irene",
+
+        chat:
+          "💬 Chat Now",
+
+        facebook:
+          "📘 Facebook"
+
+      },
+
+
+      Kiswahili: {
+
+        home: "Nyumbani",
+
+        rent: "Nyumba za Kupangisha",
+
+        sale: "Nyumba za Kuuza",
+
+        plots: "Viwanja",
+
+        request: "Omba Mali",
+
+        profile: "👤 Wasifu",
+
+        title:
+          "🔎 Omba Mali",
+
+        description:
+          "Tuambie aina ya mali unayotafuta.",
+
+        propertyType:
+          "1. Aina ya Mali",
+
+        houseType:
+          "2. Aina ya Nyumba",
+
+        plotType:
+          "2. Aina ya Kiwanja",
+
+        floors:
+          "Ghorofa",
+
+        location:
+          "3. Mahali",
+
+        price:
+          "4. Bei",
+
+        propertyPrice:
+          "Bei ya Mali",
+
+        commissionRate:
+          "Kiwango cha Commission",
+
+        commissionFee:
+          "Commission Fee",
+
+        submit:
+          "Tuma Ombi",
+
+        successTitle:
+          "✅ Ombi Limepokelewa",
+
+        successText:
+          "Ombi lako limepokelewa. Timu yetu itawasiliana nawe ndani ya saa 2.",
+
+        designed:
+          "Imeundwa na Irene",
+
+        chat:
+          "💬 Chat Now",
+
+        facebook:
+          "📘 Facebook"
+
+      },
+
+
+      "中文": {
+
+        home: "首页",
+
+        rent: "出租房屋",
+
+        sale: "出售房屋",
+
+        plots: "土地",
+
+        request: "申请房产",
+
+        profile: "👤 个人资料",
+
+        title:
+          "🔎 申请房产",
+
+        description:
+          "告诉我们您正在寻找的房产类型。",
+
+        propertyType:
+          "1. 房产类型",
+
+        houseType:
+          "2. 房屋类型",
+
+        plotType:
+          "2. 土地类型",
+
+        floors:
+          "楼层",
+
+        location:
+          "3. 位置",
+
+        price:
+          "4. 价格",
+
+        propertyPrice:
+          "房产价格",
+
+        commissionRate:
+          "佣金比例",
+
+        commissionFee:
+          "佣金",
+
+        submit:
+          "提交申请",
+
+        successTitle:
+          "✅ 已收到申请",
+
+        successText:
+          "您的房产申请已成功提交。我们的团队将在2小时内与您联系。",
+
+        designed:
+          "由 Irene 设计",
+
+        chat:
+          "💬 Chat Now",
+
+        facebook:
+          "📘 Facebook"
+
+      }
+
+    };
+
+
+    /* ================= APPLY LANGUAGE ================= */
+
+    const t =
+      translations[language] ||
+      translations.English;
+
+
+    document.getElementById("navHome").textContent =
+      t.home;
+
+    document.getElementById("navRent").textContent =
+      t.rent;
+
+    document.getElementById("navSale").textContent =
+      t.sale;
+
+    document.getElementById("navPlots").textContent =
+      t.plots;
+
+    document.getElementById("navRequest").textContent =
+      t.request;
+
+    document.getElementById("navProfile").textContent =
+      t.profile;
+
+
+    document.getElementById("pageTitle").textContent =
+      t.title;
+
+    document.getElementById("pageDescription").textContent =
+      t.description;
+
+
+    document.getElementById("propertyTypeLabel").textContent =
+      t.propertyType;
+
+    document.getElementById("houseTypeLabel").textContent =
+      t.houseType;
+
+    document.getElementById("plotTypeLabel").textContent =
+      t.plotType;
+
+    document.getElementById("floorsLabel").textContent =
+      t.floors;
+
+    document.getElementById("locationLabel").textContent =
+      t.location;
+
+    document.getElementById("priceLabel").textContent =
+      t.price;
+
+
+    document.getElementById("propertyPriceText").textContent =
+      t.propertyPrice;
+
+    document.getElementById("commissionRateText").textContent =
+      t.commissionRate;
+
+    document.getElementById("commissionFeeText").textContent =
+      t.commissionFee;
+
+
+    document.getElementById("submitButton").textContent =
+      t.submit;
+
+
+    document.getElementById("successTitle").textContent =
+      t.successTitle;
+
+    document.getElementById("successText").textContent =
+      t.successText;
+
+
+    document.getElementById("designed").textContent =
+      t.designed;
+
+    document.getElementById("chatNow").textContent =
+      t.chat;
+
+    document.getElementById("facebook").textContent =
+      t.facebook;
+
+  </script>
+
+</body>
+</html>
