@@ -1,10 +1,11 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Houses for Rent - Rwanda House Market</title>
+
+  <title id="pageTitleBrowser">Houses for Rent - Rwanda House Market</title>
 
   <style>
     * {
@@ -123,100 +124,143 @@
 <body>
 
   <header>
-    <h1>🏠 RWANDA HOUSE MARKET</h1>
-    <a href="home.html" class="back" id="backButton">← Back</a>
+
+    <h1 id="headerTitle">
+      🏠 RWANDA HOUSE MARKET
+    </h1>
+
+    <a
+      href="home.html"
+      class="back"
+      id="backButton">
+      ← Back
+    </a>
+
   </header>
+
 
   <div class="container">
 
     <div class="title">
-      <h2 id="pageTitle">Houses for Rent</h2>
+
+      <h2 id="pageTitle">
+        Houses for Rent
+      </h2>
+
       <p id="pageDescription">
         Find houses available for rent in Rwanda.
       </p>
+
     </div>
+
 
     <div class="properties">
 
+
       <!-- HOUSE 1 -->
+
       <div class="card">
 
         <img
+          id="houseImage1"
           src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
           alt="Modern Family House">
 
         <div class="card-content">
 
-          <h3>Modern Family House</h3>
+          <h3 id="houseName1">
+            Modern Family House
+          </h3>
 
           <div class="price">
-            500,000 RWF / month
+            500,000 RWF <span id="month1">/ month</span>
           </div>
 
           <div class="location">
-            📍 Kigali, Rwanda
+            📍 <span id="location1">Kigali, Rwanda</span>
           </div>
 
-          <a href="house-details.html" class="details" id="details1">
+          <a
+            href="house-details.html"
+            class="details"
+            id="details1">
             View Details
           </a>
 
         </div>
+
       </div>
 
 
       <!-- HOUSE 2 -->
+
       <div class="card">
 
         <img
+          id="houseImage2"
           src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85"
           alt="Beautiful Rental House">
 
         <div class="card-content">
 
-          <h3>Beautiful Rental House</h3>
+          <h3 id="houseName2">
+            Beautiful Rental House
+          </h3>
 
           <div class="price">
-            650,000 RWF / month
+            650,000 RWF <span id="month2">/ month</span>
           </div>
 
           <div class="location">
-            📍 Kicukiro, Rwanda
+            📍 <span id="location2">Kicukiro, Rwanda</span>
           </div>
 
-          <a href="house-details.html" class="details" id="details2">
+          <a
+            href="house-details.html"
+            class="details"
+            id="details2">
             View Details
           </a>
 
         </div>
+
       </div>
 
 
       <!-- HOUSE 3 -->
+
       <div class="card">
 
         <img
+          id="houseImage3"
           src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85"
           alt="Spacious House">
 
         <div class="card-content">
 
-          <h3>Spacious House</h3>
+          <h3 id="houseName3">
+            Spacious House
+          </h3>
 
           <div class="price">
-            800,000 RWF / month
+            800,000 RWF <span id="month3">/ month</span>
           </div>
 
           <div class="location">
-            📍 Gasabo, Rwanda
+            📍 <span id="location3">Gasabo, Rwanda</span>
           </div>
 
-          <a href="house-details.html" class="details" id="details3">
+          <a
+            href="house-details.html"
+            class="details"
+            id="details3">
             View Details
           </a>
 
         </div>
+
       </div>
+
 
     </div>
 
@@ -225,70 +269,364 @@
 
   <script>
 
-    const language = localStorage.getItem("selectedLanguage");
+    /*
+      GET SELECTED LANGUAGE
+    */
+
+    const language =
+      localStorage.getItem("selectedLanguage") || "English";
+
+
+    /*
+      TRANSLATIONS
+    */
 
     const translations = {
 
-      "Kinyarwanda": {
-        title: "Amazu akodeshwa",
-        description: "Shaka amazu ahari yo gukodesha mu Rwanda.",
-        details: "Reba ibisobanuro",
-        back: "← Subira inyuma"
+
+      Kinyarwanda: {
+
+        browserTitle:
+          "Amazu akodeshwa - Rwanda House Market",
+
+        header:
+          "🏠 RWANDA HOUSE MARKET",
+
+        back:
+          "← Subira kuri Home",
+
+        title:
+          "Amazu akodeshwa",
+
+        description:
+          "Shaka amazu ahari yo gukodesha mu Rwanda.",
+
+        details:
+          "Reba ibisobanuro",
+
+        month:
+          "/ ukwezi",
+
+        houses: [
+          {
+            name: "Inzu nziza y'umuryango",
+            location: "Kigali, Rwanda"
+          },
+          {
+            name: "Inzu nziza ikodeshwa",
+            location: "Kicukiro, Rwanda"
+          },
+          {
+            name: "Inzu yagutse",
+            location: "Gasabo, Rwanda"
+          }
+        ]
+
       },
 
-      "English": {
-        title: "Houses for Rent",
-        description: "Find houses available for rent in Rwanda.",
-        details: "View Details",
-        back: "← Back"
+
+      English: {
+
+        browserTitle:
+          "Houses for Rent - Rwanda House Market",
+
+        header:
+          "🏠 RWANDA HOUSE MARKET",
+
+        back:
+          "← Back to Home",
+
+        title:
+          "Houses for Rent",
+
+        description:
+          "Find houses available for rent in Rwanda.",
+
+        details:
+          "View Details",
+
+        month:
+          "/ month",
+
+        houses: [
+          {
+            name: "Modern Family House",
+            location: "Kigali, Rwanda"
+          },
+          {
+            name: "Beautiful Rental House",
+            location: "Kicukiro, Rwanda"
+          },
+          {
+            name: "Spacious House",
+            location: "Gasabo, Rwanda"
+          }
+        ]
+
       },
 
-      "Français": {
-        title: "Maisons à louer",
-        description: "Trouvez des maisons disponibles à la location au Rwanda.",
-        details: "Voir les détails",
-        back: "← Retour"
+
+      Français: {
+
+        browserTitle:
+          "Maisons à louer - Rwanda House Market",
+
+        header:
+          "🏠 RWANDA HOUSE MARKET",
+
+        back:
+          "← Retour à l'accueil",
+
+        title:
+          "Maisons à louer",
+
+        description:
+          "Trouvez des maisons disponibles à la location au Rwanda.",
+
+        details:
+          "Voir les détails",
+
+        month:
+          "/ mois",
+
+        houses: [
+          {
+            name: "Maison familiale moderne",
+            location: "Kigali, Rwanda"
+          },
+          {
+            name: "Belle maison à louer",
+            location: "Kicukiro, Rwanda"
+          },
+          {
+            name: "Maison spacieuse",
+            location: "Gasabo, Rwanda"
+          }
+        ]
+
       },
 
-      "Kiswahili": {
-        title: "Nyumba za Kupangisha",
-        description: "Pata nyumba zinazopatikana kwa kupangisha nchini Rwanda.",
-        details: "Tazama Maelezo",
-        back: "← Rudi"
+
+      Kiswahili: {
+
+        browserTitle:
+          "Nyumba za Kupangisha - Rwanda House Market",
+
+        header:
+          "🏠 RWANDA HOUSE MARKET",
+
+        back:
+          "← Rudi kwenye Mwanzo",
+
+        title:
+          "Nyumba za Kupangisha",
+
+        description:
+          "Pata nyumba zinazopatikana kwa kupangisha nchini Rwanda.",
+
+        details:
+          "Tazama Maelezo",
+
+        month:
+          "/ mwezi",
+
+        houses: [
+          {
+            name: "Nyumba ya Kisasa ya Familia",
+            location: "Kigali, Rwanda"
+          },
+          {
+            name: "Nyumba Nzuri ya Kupangisha",
+            location: "Kicukiro, Rwanda"
+          },
+          {
+            name: "Nyumba yenye Nafasi",
+            location: "Gasabo, Rwanda"
+          }
+        ]
+
       },
+
 
       "中文": {
-        title: "出租房屋",
-        description: "寻找卢旺达可出租的房屋。",
-        details: "查看详情",
-        back: "← 返回"
+
+        browserTitle:
+          "出租房屋 - Rwanda House Market",
+
+        header:
+          "🏠 RWANDA HOUSE MARKET",
+
+        back:
+          "← 返回首页",
+
+        title:
+          "出租房屋",
+
+        description:
+          "寻找卢旺达可出租的房屋。",
+
+        details:
+          "查看详情",
+
+        month:
+          "/ 月",
+
+        houses: [
+          {
+            name: "现代家庭住宅",
+            location: "基加利，卢旺达"
+          },
+          {
+            name: "漂亮的出租房屋",
+            location: "基库基罗，卢旺达"
+          },
+          {
+            name: "宽敞的房屋",
+            location: "加萨博，卢旺达"
+          }
+        ]
+
       }
 
     };
 
 
-    const t = translations[language] || translations["English"];
+    /*
+      SELECT LANGUAGE
+    */
+
+    const t =
+      translations[language] ||
+      translations.English;
 
 
-    document.getElementById("pageTitle").textContent = t.title;
+    /*
+      SAVE LANGUAGE AGAIN
+      SO NEXT PAGE CAN USE IT
+    */
 
-    document.getElementById("pageDescription").textContent =
+    localStorage.setItem(
+      "selectedLanguage",
+      language
+    );
+
+
+    /*
+      PAGE TRANSLATION
+    */
+
+    document.title =
+      t.browserTitle;
+
+
+    document.getElementById(
+      "headerTitle"
+    ).textContent =
+      t.header;
+
+
+    document.getElementById(
+      "backButton"
+    ).textContent =
+      t.back;
+
+
+    document.getElementById(
+      "pageTitle"
+    ).textContent =
+      t.title;
+
+
+    document.getElementById(
+      "pageDescription"
+    ).textContent =
       t.description;
 
-    document.getElementById("details1").textContent =
+
+    /*
+      HOUSE 1
+    */
+
+    document.getElementById(
+      "houseName1"
+    ).textContent =
+      t.houses[0].name;
+
+
+    document.getElementById(
+      "location1"
+    ).textContent =
+      t.houses[0].location;
+
+
+    document.getElementById(
+      "details1"
+    ).textContent =
       t.details;
 
-    document.getElementById("details2").textContent =
+
+    document.getElementById(
+      "month1"
+    ).textContent =
+      t.month;
+
+
+    /*
+      HOUSE 2
+    */
+
+    document.getElementById(
+      "houseName2"
+    ).textContent =
+      t.houses[1].name;
+
+
+    document.getElementById(
+      "location2"
+    ).textContent =
+      t.houses[1].location;
+
+
+    document.getElementById(
+      "details2"
+    ).textContent =
       t.details;
 
-    document.getElementById("details3").textContent =
+
+    document.getElementById(
+      "month2"
+    ).textContent =
+      t.month;
+
+
+    /*
+      HOUSE 3
+    */
+
+    document.getElementById(
+      "houseName3"
+    ).textContent =
+      t.houses[2].name;
+
+
+    document.getElementById(
+      "location3"
+    ).textContent =
+      t.houses[2].location;
+
+
+    document.getElementById(
+      "details3"
+    ).textContent =
       t.details;
 
-    document.getElementById("backButton").textContent =
-      t.back;
+
+    document.getElementById(
+      "month3"
+    ).textContent =
+      t.month;
 
   </script>
 
 </body>
 </html>
-```
