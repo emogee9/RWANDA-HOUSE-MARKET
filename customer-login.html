@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Customer Login - Rwanda House Market</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f3ef;
+      color: #3b2418;
+    }
+
+    /* =========================
+       TOP BAR
+    ========================= */
+
+    header {
+      background: #5a321f;
+      color: white;
+      min-height: 70px;
+      padding: 15px 25px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .language-select {
+      background: white;
+      color: #5a321f;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      margin: 45px auto;
+      padding: 0 20px;
+    }
+
+    .box {
+      background: white;
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .title h1 {
+      margin: 0 0 10px;
+      color: #5a321f;
+      font-size: 30px;
+    }
+
+    .title p {
+      color: #765b4b;
+      margin: 0;
+    }
+
+    /* =========================
+       TABS
+    ========================= */
+
+    .tabs {
+      display: flex;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #eadfd8;
+    }
+
+    .tab {
+      width: 50%;
+      border: none;
+      background: transparent;
+      padding: 14px;
+      font-size: 17px;
+      font-weight: bold;
+      color: #765b4b;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      color: #5a321f;
+      border-bottom: 3px solid #5a321f;
+    }
+
+    /* =========================
+       FORM
+    ========================= */
+
+    .form {
+      display: none;
+    }
+
+    .form.active {
+      display: block;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: bold;
+      color: #4a2c1d;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d8c8be;
+      border-radius: 9px;
+      font-size: 16px;
+      outline: none;
+      background: white;
+      color: #3b2418;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: #5a321f;
+    }
+
+    /* =========================
+       PROFILE PHOTO
+    ========================= */
+
+    .profile-area {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .profile-preview {
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #5a321f;
+      display: block;
+      margin: 0 auto 10px;
+      background: #f0e8e2;
+    }
+
+    .photo-label {
+      display: inline-block;
+      background: #eee3dc;
+      color: #5a321f;
+      padding: 9px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #profilePicture {
+      display: none;
+    }
+
+    /* =========================
+       BUTTON
+    ========================= */
+
+    .main-button {
+      width: 100%;
+      border: none;
+      background: #5a321f;
+      color: white;
+      padding: 14px;
+      border-radius: 9px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .main-button:hover {
+      background: #3f2114;
+    }
+
+    .forgot {
+      display: block;
+      text-align: right;
+      margin: 5px 0 18px;
+      color: #5a321f;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .forgot:hover {
+      text-decoration: underline;
+    }
+
+    .message {
+      display: none;
+      margin-top: 18px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #eee3dc;
+      color: #5a321f;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+      color: #765b4b;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #5a321f;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 13px 15px;
+      }
+
+      .logo {
+        font-size: 17px;
+      }
+
+      .language-select {
+        font-size: 13px;
+        padding: 8px;
+      }
+
+      .container {
+        margin: 25px auto;
+      }
+
+      .box {
+        padding: 22px 18px;
+      }
+
+      .title h1 {
+        font-size: 25px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <header>
+
+    <div class="logo">
+      🏠 RWANDA HOUSE MARKET
+    </div>
+
+    <select
+      id="languageSelect"
+      class="language-select"
+      onchange="changeLanguage()">
+
+      <option value="Kinyarwanda">Kinyarwanda</option>
+      <option value="English">English</option>
+      <option value="Français">Français</option>
+      <option value="Kiswahili">Kiswahili</option>
+      <option value="中文">中文</option>
+
+    </select>
+
+  </header>
+
+
+  <!-- =========================
+       MAIN
+  ========================= -->
+
+  <div class="container">
+
+    <div class="box">
+
+
+      <div class="title">
+
+        <h1 id="mainTitle">
+          Customer Account
+        </h1>
+
+        <p id="mainDescription">
+          Login or create your customer account
+        </p>
+
+      </div>
+
+
+      <!-- =========================
+           TABS
+      ========================= -->
+
+      <div class="tabs">
+
+        <button
+          id="loginTab"
+          class="tab active"
+          onclick="showLogin()">
+
+          Login
+
+        </button>
+
+
+        <button
+          id="registerTab"
+          class="tab"
+          onclick="showRegister()">
+
+          Register
+
+        </button>
+
+      </div>
+
+
+      <!-- =========================
+           LOGIN FORM
+      ========================= -->
+
+      <div
+        id="loginForm"
+        class="form active">
+
+        <div class="field">
+
+          <label id="loginEmailLabel">
+            Email or Phone
+          </label>
+
+          <input
+            type="text"
+            id="loginEmail"
+            placeholder="Enter email or phone">
+
+        </div>
+
+
+        <div class="field">
+
+          <label id="loginPasswordLabel">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="Enter password">
+
+        </div>
+
+
+        <a
+          href="#"
+          class="forgot"
+          id="forgotText"
+          onclick="forgotPassword(event)">
+
+          Forgot Password?
+
+        </a>
+
+
+        <button
+          class="main-button"
+          id="loginButton"
+          onclick="loginCustomer()">
+
+          Login
+
+        </button>
+
+
+        <div
+          id="loginMessage"
+          class="message">
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           REGISTER FORM
+      ========================= -->
+
+      <div
+        id="registerForm"
+        class="form">
+
+
+        <!-- PROFILE PICTURE -->
+
+        <div class="profile-area">
+
+          <img
+            id="profilePreview"
+            class="profile-preview"
+            src="https://via.placeholder.com/150?text=Profile"
+            alt="Profile">
+
+          <label
+            for="profilePicture"
+            class="photo-label"
+            id="photoText">
+
+            📷 Add Profile Picture
+
+          </label>
+
+          <input
+            type="file"
+            id="profilePicture"
+            accept="image/*"
+            onchange="previewProfile(event)">
+
+        </div>
+
+
+        <div class="field">
+
+          <label id="nameLabel">
+            Full Name
+          </label>
+
+          <input
+            type="text"
+            id="registerName"
+            placeholder="Enter your full name">
+
+        </div>
+
+
+        <div class="field">
+
+          <label id="phoneLabel">
+            Phone Number
+          </label>
+
+          <input
+            type="tel"
+            id="registerPhone"
+            placeholder="+250">
+
+        </div>
+
+
+        <div class="field">
+
+          <label id="emailLabel">
+            Email
+          </label>
+
+          <input
+            type="email"
+            id="registerEmail"
+            placeholder="Enter your email">
+
+        </div>
+
+
+        <div class="field">
+
+          <label id="registerPasswordLabel">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="registerPassword"
+            placeholder="Create password">
+
+        </div>
+
+
+        <div class="field">
+
+          <label id="confirmPasswordLabel">
+            Confirm Password
+          </label>
+
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm password">
+
+        </div>
+
+
+        <button
+          class="main-button"
+          id="registerButton"
+          onclick="registerCustomer()">
+
+          Create Account
+
+        </button>
+
+
+        <div
+          id="registerMessage"
+          class="message">
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <footer>
+
+      <span id="footerText">
+        © 2026 Rwanda House Market
+      </span>
+
+      <br><br>
+
+      <a href="./index.html" id="homeText">
+        ← Home
+      </a>
+
+    </footer>
+
+  </div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+
+    /* =========================
+       LANGUAGE
+    ========================= */
+
+    const savedLanguage =
+      localStorage.getItem("selectedLanguage") || "English";
+
+    document.getElementById("languageSelect").value =
+      savedLanguage;
+
+
+    /* =========================
+       TRANSLATIONS
+    ========================= */
+
+    const translations = {
+
+
+      Kinyarwanda: {
+
+        title: "Konti y'umukiriya",
+
+        description:
+          "Injira cyangwa ufungure konti y'umukiriya",
+
+        login: "Kwinjira",
+
+        register: "Kwiyandikisha",
+
+        emailPhone:
+          "Email cyangwa Telefoni",
+
+        emailPlaceholder:
+          "Andika email cyangwa telefoni",
+
+        password:
+          "Ijambo ry'ibanga",
+
+        passwordPlaceholder:
+          "Andika ijambo ry'ibanga",
+
+        forgot:
+          "Wibagiwe ijambo ry'ibanga?",
+
+        loginButton:
+          "Injira",
+
+        fullName:
+          "Amazina yawe",
+
+        fullNamePlaceholder:
+          "Andika amazina yawe",
+
+        phone:
+          "Telefoni",
+
+        phonePlaceholder:
+          "+250",
+
+        email:
+          "Email",
+
+        emailPlaceholderRegister:
+          "Andika email",
+
+        confirm:
+          "Emeza ijambo ry'ibanga",
+
+        confirmPlaceholder:
+          "Ongera wandike ijambo ry'ibanga",
+
+        photo:
+          "📷 Shyiraho ifoto",
+
+        create:
+          "Fungura Konti",
+
+        home:
+          "← Ahabanza",
+
+        loginSuccess:
+          "Winjiye neza. Turimo gutegura konti yawe.",
+
+        registerSuccess:
+          "Konti yawe yafunguwe neza.",
+
+        passwordError:
+          "Amagambo y'ibanga ntabwo ahuye.",
+
+        required:
+          "Uzuza amakuru yose mbere yo gukomeza."
+
+      },
+
+
+      English: {
+
+        title: "Customer Account",
+
+        description:
+          "Login or create your customer account",
+
+        login: "Login",
+
+        register: "Register",
+
+        emailPhone:
+          "Email or Phone",
+
+        emailPlaceholder:
+          "Enter email or phone",
+
+        password:
+          "Password",
+
+        passwordPlaceholder:
+          "Enter password",
+
+        forgot:
+          "Forgot Password?",
+
+        loginButton:
+          "Login",
+
+        fullName:
+          "Full Name",
+
+        fullNamePlaceholder:
+          "Enter your full name",
+
+        phone:
+          "Phone Number",
+
+        phonePlaceholder:
+          "+250",
+
+        email:
+          "Email",
+
+        emailPlaceholderRegister:
+          "Enter your email",
+
+        confirm:
+          "Confirm Password",
+
+        confirmPlaceholder:
+          "Confirm password",
+
+        photo:
+          "📷 Add Profile Picture",
+
+        create:
+          "Create Account",
+
+        home:
+          "← Home",
+
+        loginSuccess:
+          "Login successful. Your customer account is being prepared.",
+
+        registerSuccess:
+          "Your customer account has been created successfully.",
+
+        passwordError:
+          "Passwords do not match.",
+
+        required:
+          "Please fill in all required information."
+
+      },
+
+
+      Français: {
+
+        title: "Compte client",
+
+        description:
+          "Connectez-vous ou créez votre compte client",
+
+        login: "Connexion",
+
+        register: "Inscription",
+
+        emailPhone:
+          "Email ou téléphone",
+
+        emailPlaceholder:
+          "Entrez votre email ou téléphone",
+
+        password:
+          "Mot de passe",
+
+        passwordPlaceholder:
+          "Entrez votre mot de passe",
+
+        forgot:
+          "Mot de passe oublié ?",
+
+        loginButton:
+          "Se connecter",
+
+        fullName:
+          "Nom complet",
+
+        fullNamePlaceholder:
+          "Entrez votre nom complet",
+
+        phone:
+          "Numéro de téléphone",
+
+        phonePlaceholder:
+          "+250",
+
+        email:
+          "Email",
+
+        emailPlaceholderRegister:
+          "Entrez votre email",
+
+        confirm:
+          "Confirmer le mot de passe",
+
+        confirmPlaceholder:
+          "Confirmez votre mot de passe",
+
+        photo:
+          "📷 Ajouter une photo",
+
+        create:
+          "Créer un compte",
+
+        home:
+          "← Accueil",
+
+        loginSuccess:
+          "Connexion réussie. Votre compte client est en préparation.",
+
+        registerSuccess:
+          "Votre compte client a été créé avec succès.",
+
+        passwordError:
+          "Les mots de passe ne correspondent pas.",
+
+        required:
+          "Veuillez remplir toutes les informations nécessaires."
+
+      },
+
+
+      Kiswahili: {
+
+        title: "Akaunti ya Mteja",
+
+        description:
+          "Ingia au fungua akaunti yako ya mteja",
+
+        login: "Ingia",
+
+        register: "Jisajili",
+
+        emailPhone:
+          "Barua pepe au Simu",
+
+        emailPlaceholder:
+          "Weka barua pepe au simu",
+
+        password:
+          "Nenosiri",
+
+        passwordPlaceholder:
+          "Weka nenosiri",
+
+        forgot:
+          "Umesahau nenosiri?",
+
+        loginButton:
+          "Ingia",
+
+        fullName:
+          "Jina Kamili",
+
+        fullNamePlaceholder:
+          "Weka jina lako kamili",
+
+        phone:
+          "Nambari ya Simu",
+
+        phonePlaceholder:
+          "+250",
+
+        email:
+          "Barua pepe",
+
+        emailPlaceholderRegister:
+          "Weka barua pepe yako",
+
+        confirm:
+          "Thibitisha Nenosiri",
+
+        confirmPlaceholder:
+          "Thibitisha nenosiri",
+
+        photo:
+          "📷 Weka Picha ya Wasifu",
+
+        create:
+          "Fungua Akaunti",
+
+        home:
+          "← Mwanzo",
+
+        loginSuccess:
+          "Umeingia vizuri. Akaunti yako ya mteja inaandaliwa.",
+
+        registerSuccess:
+          "Akaunti yako imefunguliwa vizuri.",
+
+        passwordError:
+          "Manenosiri hayalingani.",
+
+        required:
+          "Tafadhali jaza taarifa zote muhimu."
+
+      },
+
+
+      "中文": {
+
+        title: "客户账户",
+
+        description:
+          "登录或创建您的客户账户",
+
+        login: "登录",
+
+        register: "注册",
+
+        emailPhone:
+          "邮箱或电话",
+
+        emailPlaceholder:
+          "输入邮箱或电话",
+
+        password:
+          "密码",
+
+        passwordPlaceholder:
+          "输入密码",
+
+        forgot:
+          "忘记密码？",
+
+        loginButton:
+          "登录",
+
+        fullName:
+          "姓名",
+
+        fullNamePlaceholder:
+          "输入您的姓名",
+
+        phone:
+          "电话号码",
+
+        phonePlaceholder:
+          "+250",
+
+        email:
+          "邮箱",
+
+        emailPlaceholderRegister:
+          "输入您的邮箱",
+
+        confirm:
+          "确认密码",
+
+        confirmPlaceholder:
+          "再次输入密码",
+
+        photo:
+          "📷 添加头像",
+
+        create:
+          "创建账户",
+
+        home:
+          "← 首页",
+
+        loginSuccess:
+          "登录成功。正在准备您的客户账户。",
+
+        registerSuccess:
+          "您的客户账户已成功创建。",
+
+        passwordError:
+          "两次输入的密码不一致。",
+
+        required:
+          "请填写所有必要的信息。"
+
+      }
+
+    };
+
+
+    let t =
+      translations[savedLanguage] ||
+      translations.English;
+
+
+    /* =========================
+       APPLY LANGUAGE
+    ========================= */
+
+    function applyLanguage() {
+
+      const language =
+        document.getElementById("languageSelect").value;
+
+      t =
+        translations[language] ||
+        translations.English;
+
+      localStorage.setItem(
+        "selectedLanguage",
+        language
+      );
+
+
+      document.getElementById("mainTitle").textContent =
+        t.title;
+
+      document.getElementById("mainDescription").textContent =
+        t.description;
+
+      document.getElementById("loginTab").textContent =
+        t.login;
+
+      document.getElementById("registerTab").textContent =
+        t.register;
+
+      document.getElementById("loginEmailLabel").textContent =
+        t.emailPhone;
+
+      document.getElementById("loginEmail").placeholder =
+        t.emailPlaceholder;
+
+      document.getElementById("loginPasswordLabel").textContent =
+        t.password;
+
+      document.getElementById("loginPassword").placeholder =
+        t.passwordPlaceholder;
+
+      document.getElementById("forgotText").textContent =
+        t.forgot;
+
+      document.getElementById("loginButton").textContent =
+        t.loginButton;
+
+      document.getElementById("nameLabel").textContent =
+        t.fullName;
+
+      document.getElementById("registerName").placeholder =
+        t.fullNamePlaceholder;
+
+      document.getElementById("phoneLabel").textContent =
+        t.phone;
+
+      document.getElementById("registerPhone").placeholder =
+        t.phonePlaceholder;
+
+      document.getElementById("emailLabel").textContent =
+        t.email;
+
+      document.getElementById("registerEmail").placeholder =
+        t.emailPlaceholderRegister;
+
+      document.getElementById("registerPasswordLabel").textContent =
+        t.password;
+
+      document.getElementById("registerPassword").placeholder =
+        t.passwordPlaceholder;
+
+      document.getElementById("confirmPasswordLabel").textContent =
+        t.confirm;
+
+      document.getElementById("confirmPassword").placeholder =
+        t.confirmPlaceholder;
+
+      document.getElementById("photoText").textContent =
+        t.photo;
+
+      document.getElementById("registerButton").textContent =
+        t.create;
+
+      document.getElementById("homeText").textContent =
+        t.home;
+
+    }
+
+
+    function changeLanguage() {
+
+      applyLanguage();
+
+    }
+
+
+    /* =========================
+       LOGIN / REGISTER TABS
+    ========================= */
+
+    function showLogin() {
+
+      document
+        .getElementById("loginForm")
+        .classList.add("active");
+
+      document
+        .getElementById("registerForm")
+        .classList.remove("active");
+
+      document
+        .getElementById("loginTab")
+        .classList.add("active");
+
+      document
+        .getElementById("registerTab")
+        .classList.remove("active");
+
+    }
+
+
+    function showRegister() {
+
+      document
+        .getElementById("registerForm")
+        .classList.add("active");
+
+      document
+        .getElementById("loginForm")
+        .classList.remove("active");
+
+      document
+        .getElementById("registerTab")
+        .classList.add("active");
+
+      document
+        .getElementById("loginTab")
+        .classList.remove("active");
+
+    }
+
+
+    /* =========================
+       PROFILE PHOTO
+    ========================= */
+
+    function previewProfile(event) {
+
+      const file =
+        event.target.files[0];
+
+      if (!file) {
+        return;
+      }
+
+      const reader =
+        new FileReader();
+
+      reader.onload = function(e) {
+
+        document
+          .getElementById("profilePreview")
+          .src = e.target.result;
+
+      };
+
+      reader.readAsDataURL(file);
+
+    }
+
+
+    /* =========================
+       REGISTER
+    ========================= */
+
+    function registerCustomer() {
+
+      const name =
+        document.getElementById("registerName").value.trim();
+
+      const phone =
+        document.getElementById("registerPhone").value.trim();
+
+      const email =
+        document.getElementById("registerEmail").value.trim();
+
+      const password =
+        document.getElementById("registerPassword").value;
+
+      const confirm =
+        document.getElementById("confirmPassword").value;
+
+
+      const message =
+        document.getElementById("registerMessage");
+
+
+      if (
+        name === "" ||
+        phone === "" ||
+        email === "" ||
+        password === "" ||
+        confirm === ""
+      ) {
+
+        message.style.display = "block";
+
+        message.textContent =
+          t.required;
+
+        return;
+
+      }
+
+
+      if (password !== confirm) {
+
+        message.style.display = "block";
+
+        message.textContent =
+          t.passwordError;
+
+        return;
+
+      }
+
+
+      /*
+        FOR NOW WE SAVE BASIC CUSTOMER DATA
+        LOCALLY.
+
+        LATER WE WILL CONNECT THIS TO
+        THE REAL CUSTOMER DATABASE.
+      */
+
+      localStorage.setItem(
+        "customerName",
+        name
+      );
+
+      localStorage.setItem(
+        "customerPhone",
+        phone
+      );
+
+      localStorage.setItem(
+        "customerEmail",
+        email
+      );
+
+      localStorage.setItem(
+        "customerLoggedIn",
+        "true"
+      );
+
+
+      message.style.display = "block";
+
+      message.textContent =
+        t.registerSuccess;
+
+
+      /*
+        NEXT STEP:
+        CUSTOMER HOME PAGE
+      */
+
+      setTimeout(function() {
+
+        window.location.href =
+          "./customer-home.html";
+
+      }, 1200);
+
+    }
+
+
+    /* =========================
+       LOGIN
+    ========================= */
+
+    function loginCustomer() {
+
+      const email =
+        document.getElementById("loginEmail").value.trim();
+
+      const password =
+        document.getElementById("loginPassword").value;
+
+
+      const message =
+        document.getElementById("loginMessage");
+
+
+      if (
+        email === "" ||
+        password === ""
+      ) {
+
+        message.style.display = "block";
+
+        message.textContent =
+          t.required;
+
+        return;
+
+      }
+
+
+      /*
+        TEMPORARY LOGIN
+
+        REAL AUTHENTICATION WILL BE
+        CONNECTED LATER.
+      */
+
+      localStorage.setItem(
+        "customerLoggedIn",
+        "true"
+      );
+
+
+      message.style.display = "block";
+
+      message.textContent =
+        t.loginSuccess;
+
+
+      setTimeout(function() {
+
+        window.location.href =
+          "./customer-home.html";
+
+      }, 1200);
+
+    }
+
+
+    /* =========================
+       FORGOT PASSWORD
+    ========================= */
+
+    function forgotPassword(event) {
+
+      event.preventDefault();
+
+      alert(
+        "Password recovery will be connected to the customer account system."
+      );
+
+    }
+
+
+    /* =========================
+       START
+    ========================= */
+
+    applyLanguage();
+
+  </script>
+
+
+</body>
+
+</html>
