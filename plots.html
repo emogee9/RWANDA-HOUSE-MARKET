@@ -1,11 +1,11 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Plots for Sale - Rwanda House Market</title>
+  <title id="browserTitle">Plots for Sale - Rwanda House Market</title>
 
   <style>
     * {
@@ -54,6 +54,10 @@
       box-shadow: 0 3px 12px rgba(0,0,0,0.1);
     }
 
+    .page-title h2 {
+      margin-top: 0;
+    }
+
     .plots {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -94,6 +98,11 @@
       margin-bottom: 15px;
     }
 
+    .description {
+      color: #555;
+      line-height: 1.6;
+    }
+
     .details {
       display: inline-block;
       background: #0b5d1e;
@@ -102,6 +111,7 @@
       padding: 12px 20px;
       border-radius: 8px;
       font-weight: bold;
+      margin-top: 8px;
     }
 
     .details:hover {
@@ -109,9 +119,15 @@
     }
 
     @media (max-width: 600px) {
+
       .plot img {
         height: 200px;
       }
+
+      .container {
+        padding: 20px 15px 40px;
+      }
+
     }
   </style>
 </head>
@@ -119,21 +135,38 @@
 <body>
 
   <header>
-    <h1>🌍 RWANDA HOUSE MARKET</h1>
 
-    <a href="./home.html" class="back">
+    <h1 id="headerTitle">
+      🌍 RWANDA HOUSE MARKET
+    </h1>
+
+    <a
+      href="./home.html"
+      class="back"
+      id="backButton">
       ← Back to Home
     </a>
+
   </header>
+
 
   <div class="container">
 
     <div class="page-title">
-      <h2>🌍 Plots for Sale</h2>
-      <p>Find plots available for sale in Rwanda.</p>
+
+      <h2 id="pageTitle">
+        🌍 Plots for Sale
+      </h2>
+
+      <p id="pageDescription">
+        Find plots available for sale in Rwanda.
+      </p>
+
     </div>
 
+
     <div class="plots">
+
 
       <!-- PLOT 1 -->
 
@@ -141,28 +174,33 @@
 
         <img
           src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85"
+          id="plotImage1"
           alt="Plot for Sale">
 
         <div class="plot-content">
 
-          <h2>Residential Plot</h2>
+          <h2 id="plotName1">
+            Residential Plot
+          </h2>
 
           <div class="price">
             25,000,000 RWF
           </div>
 
           <div class="location">
-            📍 Kigali, Rwanda
+            📍 <span id="location1">Kigali, Rwanda</span>
           </div>
 
-          <p>
-            Good residential plot in a convenient
-            location.
+          <p
+            class="description"
+            id="description1">
+            Good residential plot in a convenient location.
           </p>
 
           <a
             href="./plot-details.html"
-            class="details">
+            class="details"
+            id="details1">
             View Details
           </a>
 
@@ -177,28 +215,33 @@
 
         <img
           src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=85"
+          id="plotImage2"
           alt="Plot for Sale">
 
         <div class="plot-content">
 
-          <h2>Large Building Plot</h2>
+          <h2 id="plotName2">
+            Large Building Plot
+          </h2>
 
           <div class="price">
             40,000,000 RWF
           </div>
 
           <div class="location">
-            📍 Kigali, Rwanda
+            📍 <span id="location2">Kigali, Rwanda</span>
           </div>
 
-          <p>
-            Spacious plot suitable for building
-            a family house.
+          <p
+            class="description"
+            id="description2">
+            Spacious plot suitable for building a family house.
           </p>
 
           <a
             href="./plot-details.html"
-            class="details">
+            class="details"
+            id="details2">
             View Details
           </a>
 
@@ -213,27 +256,33 @@
 
         <img
           src="https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?auto=format&fit=crop&w=1200&q=85"
+          id="plotImage3"
           alt="Plot for Sale">
 
         <div class="plot-content">
 
-          <h2>Commercial Plot</h2>
+          <h2 id="plotName3">
+            Commercial Plot
+          </h2>
 
           <div class="price">
             60,000,000 RWF
           </div>
 
           <div class="location">
-            📍 Kigali, Rwanda
+            📍 <span id="location3">Kigali, Rwanda</span>
           </div>
 
-          <p>
+          <p
+            class="description"
+            id="description3">
             Plot suitable for commercial development.
           </p>
 
           <a
             href="./plot-details.html"
-            class="details">
+            class="details"
+            id="details3">
             View Details
           </a>
 
@@ -241,10 +290,406 @@
 
       </div>
 
+
     </div>
 
   </div>
 
+
+  <script>
+
+    /*
+      GET SELECTED LANGUAGE
+    */
+
+    const language =
+      localStorage.getItem("selectedLanguage") || "English";
+
+
+    /*
+      TRANSLATIONS
+    */
+
+    const translations = {
+
+
+      Kinyarwanda: {
+
+        browserTitle:
+          "Ibibanza bigurishwa - Rwanda House Market",
+
+        header:
+          "🌍 RWANDA HOUSE MARKET",
+
+        back:
+          "← Subira kuri Home",
+
+        title:
+          "🌍 Ibibanza bigurishwa",
+
+        description:
+          "Shaka ibibanza bihari byo kugura mu Rwanda.",
+
+        details:
+          "Reba ibisobanuro",
+
+        plots: [
+
+          {
+            name: "Ikibanza cyo guturamo",
+            location: "Kigali, Rwanda",
+            description:
+              "Ikibanza cyiza cyo kubakamo inzu kiri ahantu heza."
+          },
+
+          {
+            name: "Ikibanza kinini cyo kubakamo",
+            location: "Kigali, Rwanda",
+            description:
+              "Ikibanza kinini gikwiriye kubakamo inzu y'umuryango."
+          },
+
+          {
+            name: "Ikibanza cy'ubucuruzi",
+            location: "Kigali, Rwanda",
+            description:
+              "Ikibanza gikwiriye kubakamo ibikorwa by'ubucuruzi."
+          }
+
+        ]
+
+      },
+
+
+      English: {
+
+        browserTitle:
+          "Plots for Sale - Rwanda House Market",
+
+        header:
+          "🌍 RWANDA HOUSE MARKET",
+
+        back:
+          "← Back to Home",
+
+        title:
+          "🌍 Plots for Sale",
+
+        description:
+          "Find plots available for sale in Rwanda.",
+
+        details:
+          "View Details",
+
+        plots: [
+
+          {
+            name: "Residential Plot",
+            location: "Kigali, Rwanda",
+            description:
+              "Good residential plot in a convenient location."
+          },
+
+          {
+            name: "Large Building Plot",
+            location: "Kigali, Rwanda",
+            description:
+              "Spacious plot suitable for building a family house."
+          },
+
+          {
+            name: "Commercial Plot",
+            location: "Kigali, Rwanda",
+            description:
+              "Plot suitable for commercial development."
+          }
+
+        ]
+
+      },
+
+
+      Français: {
+
+        browserTitle:
+          "Terrains à vendre - Rwanda House Market",
+
+        header:
+          "🌍 RWANDA HOUSE MARKET",
+
+        back:
+          "← Retour à l'accueil",
+
+        title:
+          "🌍 Terrains à vendre",
+
+        description:
+          "Trouvez des terrains disponibles à la vente au Rwanda.",
+
+        details:
+          "Voir les détails",
+
+        plots: [
+
+          {
+            name: "Terrain résidentiel",
+            location: "Kigali, Rwanda",
+            description:
+              "Beau terrain résidentiel situé dans un endroit pratique."
+          },
+
+          {
+            name: "Grand terrain à bâtir",
+            location: "Kigali, Rwanda",
+            description:
+              "Grand terrain adapté à la construction d'une maison familiale."
+          },
+
+          {
+            name: "Terrain commercial",
+            location: "Kigali, Rwanda",
+            description:
+              "Terrain adapté au développement commercial."
+          }
+
+        ]
+
+      },
+
+
+      Kiswahili: {
+
+        browserTitle:
+          "Viwanja vya Kuuza - Rwanda House Market",
+
+        header:
+          "🌍 RWANDA HOUSE MARKET",
+
+        back:
+          "← Rudi Mwanzo",
+
+        title:
+          "🌍 Viwanja vya Kuuza",
+
+        description:
+          "Pata viwanja vinavyopatikana kwa kuuza nchini Rwanda.",
+
+        details:
+          "Tazama Maelezo",
+
+        plots: [
+
+          {
+            name: "Kiwanja cha Makazi",
+            location: "Kigali, Rwanda",
+            description:
+              "Kiwanja kizuri cha makazi kilicho katika eneo zuri."
+          },
+
+          {
+            name: "Kiwanja Kikubwa cha Kujenga",
+            location: "Kigali, Rwanda",
+            description:
+              "Kiwanja kikubwa kinachofaa kujenga nyumba ya familia."
+          },
+
+          {
+            name: "Kiwanja cha Biashara",
+            location: "Kigali, Rwanda",
+            description:
+              "Kiwanja kinachofaa kwa maendeleo ya biashara."
+          }
+
+        ]
+
+      },
+
+
+      "中文": {
+
+        browserTitle:
+          "出售土地 - Rwanda House Market",
+
+        header:
+          "🌍 RWANDA HOUSE MARKET",
+
+        back:
+          "← 返回首页",
+
+        title:
+          "🌍 出售土地",
+
+        description:
+          "寻找卢旺达可出售的土地。",
+
+        details:
+          "查看详情",
+
+        plots: [
+
+          {
+            name: "住宅用地",
+            location: "基加利，卢旺达",
+            description:
+              "位于便利位置的优质住宅用地。"
+          },
+
+          {
+            name: "大型建筑用地",
+            location: "基加利，卢旺达",
+            description:
+              "宽敞的土地，适合建造家庭住宅。"
+          },
+
+          {
+            name: "商业用地",
+            location: "基加利，卢旺达",
+            description:
+              "适合商业开发的土地。"
+          }
+
+        ]
+
+      }
+
+    };
+
+
+    /*
+      SELECT TRANSLATION
+    */
+
+    const t =
+      translations[language] ||
+      translations.English;
+
+
+    /*
+      KEEP LANGUAGE SAVED
+    */
+
+    localStorage.setItem(
+      "selectedLanguage",
+      language
+    );
+
+
+    /*
+      PAGE TEXT
+    */
+
+    document.title =
+      t.browserTitle;
+
+
+    document.getElementById(
+      "headerTitle"
+    ).textContent =
+      t.header;
+
+
+    document.getElementById(
+      "backButton"
+    ).textContent =
+      t.back;
+
+
+    document.getElementById(
+      "pageTitle"
+    ).textContent =
+      t.title;
+
+
+    document.getElementById(
+      "pageDescription"
+    ).textContent =
+      t.description;
+
+
+    /*
+      PLOT 1
+    */
+
+    document.getElementById(
+      "plotName1"
+    ).textContent =
+      t.plots[0].name;
+
+
+    document.getElementById(
+      "location1"
+    ).textContent =
+      t.plots[0].location;
+
+
+    document.getElementById(
+      "description1"
+    ).textContent =
+      t.plots[0].description;
+
+
+    document.getElementById(
+      "details1"
+    ).textContent =
+      t.details;
+
+
+    /*
+      PLOT 2
+    */
+
+    document.getElementById(
+      "plotName2"
+    ).textContent =
+      t.plots[1].name;
+
+
+    document.getElementById(
+      "location2"
+    ).textContent =
+      t.plots[1].location;
+
+
+    document.getElementById(
+      "description2"
+    ).textContent =
+      t.plots[1].description;
+
+
+    document.getElementById(
+      "details2"
+    ).textContent =
+      t.details;
+
+
+    /*
+      PLOT 3
+    */
+
+    document.getElementById(
+      "plotName3"
+    ).textContent =
+      t.plots[2].name;
+
+
+    document.getElementById(
+      "location3"
+    ).textContent =
+      t.plots[2].location;
+
+
+    document.getElementById(
+      "description3"
+    ).textContent =
+      t.plots[2].description;
+
+
+    document.getElementById(
+      "details3"
+    ).textContent =
+      t.details;
+
+  </script>
+
 </body>
 </html>
-```
