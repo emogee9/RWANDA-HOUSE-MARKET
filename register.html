@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Register - Rwanda House Market</title>
+  <title>Request Property - Rwanda House Market</title>
 
   <style>
     * {
@@ -14,958 +15,599 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f5f1ed;
-      color: #3b2418;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      background: #ffffff;
+      color: #222222;
     }
+
+    /* ================= HEADER ================= */
 
     header {
-      background: #5a321f;
-      color: white;
-      padding: 22px 15px;
-      text-align: center;
+      background: #f4b400;
+      color: #222222;
+      padding: 18px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #222222;
     }
 
-    header p {
-      margin: 8px 0 0;
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
+
+    nav a {
+      color: #222222;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      background: #ffffff;
+    }
+
+    /* ================= MAIN ================= */
 
     .container {
-      width: 100%;
-      max-width: 520px;
-      margin: auto;
-      padding: 30px 20px;
+      max-width: 850px;
+      margin: 35px auto;
+      padding: 0 20px;
     }
 
-    .register-box {
-      background: white;
-      padding: 35px 30px;
+    .card {
+      background: #ffffff;
+      padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+      border: 2px solid #f4b400;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
     }
 
-    .register-box h2 {
-      text-align: center;
+    h1 {
       margin-top: 0;
-      color: #5a321f;
-      font-size: 28px;
+      color: #222222;
+      text-align: center;
     }
 
-    .register-box > p {
+    .subtitle {
       text-align: center;
-      color: #777;
+      color: #555555;
       margin-bottom: 25px;
     }
 
-    .form-group {
-      margin-bottom: 18px;
-    }
+    /* ================= FORM ================= */
 
     label {
       display: block;
       font-weight: bold;
+      margin-top: 15px;
       margin-bottom: 7px;
+      color: #222222;
     }
 
-    input {
+    input,
+    textarea,
+    select {
       width: 100%;
-      padding: 14px;
-      border: 1px solid #cdbfb6;
+      padding: 13px;
+      border: 2px solid #eeeeee;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 15px;
+      background: #ffffff;
+      color: #222222;
       outline: none;
     }
 
-    input:focus {
-      border-color: #5a321f;
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #f4b400;
     }
 
-    .profile-preview {
-      text-align: center;
-      margin-bottom: 20px;
+    textarea {
+      min-height: 120px;
+      resize: vertical;
     }
 
-    .profile-preview img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #5a321f;
-      display: none;
-      margin: 10px auto;
-    }
+    /* ================= BUTTON ================= */
 
-    .register-button {
+    button {
       width: 100%;
+      margin-top: 22px;
       padding: 14px;
-      background: #5a321f;
-      color: white;
+      background: #f4b400;
+      color: #222222;
       border: none;
       border-radius: 8px;
       font-size: 17px;
       font-weight: bold;
       cursor: pointer;
-      margin-top: 5px;
     }
 
-    .register-button:hover {
-      background: #3f2114;
+    button:hover {
+      background: #ffd45a;
     }
 
-    .message {
+    /* ================= SUCCESS ================= */
+
+    .success {
       display: none;
-      margin-top: 15px;
-      padding: 12px;
+      margin-top: 20px;
+      padding: 15px;
+      background: #fff8d6;
+      color: #7a5b00;
+      border: 1px solid #f4b400;
       border-radius: 8px;
       text-align: center;
       font-weight: bold;
     }
 
-    .login {
+    /* ================= REQUEST LIST ================= */
+
+    .request-list {
+      margin-top: 35px;
+    }
+
+    .request-item {
+      background: #ffffff;
+      border-left: 6px solid #f4b400;
+      border-top: 1px solid #eeeeee;
+      border-right: 1px solid #eeeeee;
+      border-bottom: 1px solid #eeeeee;
+      padding: 18px;
+      margin-top: 15px;
+      border-radius: 8px;
+    }
+
+    .request-item h3 {
+      margin-top: 0;
+      color: #222222;
+    }
+
+    .request-item p {
+      margin: 7px 0;
+      color: #555555;
+    }
+
+    .empty {
       text-align: center;
-      margin-top: 22px;
+      color: #777777;
+      padding: 20px;
     }
 
-    .login a {
-      color: #5a321f;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .login a:hover {
-      text-decoration: underline;
-    }
-
-    .back {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #5a321f;
-      text-decoration: none;
-      font-weight: bold;
-    }
+    /* ================= FOOTER ================= */
 
     footer {
-      background: #5a321f;
-      color: white;
+      margin-top: 50px;
+      background: #f4b400;
+      color: #222222;
       text-align: center;
-      padding: 18px 10px;
-      margin-top: auto;
-    }
-
-    footer a {
-      color: white;
-      text-decoration: none;
+      padding: 20px;
+      font-size: 14px;
       font-weight: bold;
     }
 
-    @media (max-width: 500px) {
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 700px) {
+
+      header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      nav a {
+        background: #ffffff;
+      }
+
       .container {
-        padding: 20px 15px;
+        margin: 25px auto;
+        padding: 0 15px;
       }
 
-      .register-box {
-        padding: 30px 20px;
+      .card {
+        padding: 25px 18px;
       }
 
-      header h1 {
-        font-size: 24px;
+      h1 {
+        font-size: 25px;
       }
+
+      .logo {
+        font-size: 19px;
+      }
+
     }
   </style>
 </head>
 
 <body>
 
+  <!-- ================= HEADER ================= -->
+
   <header>
 
-    <h1>🏠 RWANDA HOUSE MARKET</h1>
+    <div class="logo">
+      RWANDA HOUSE MARKET 🇷🇼
+    </div>
 
-    <p id="headerSubtitle">
-      Customer Registration
-    </p>
+    <nav>
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="customer-home.html">
+        Properties
+      </a>
+
+      <a href="request-property.html">
+        Request Property
+      </a>
+
+    </nav>
 
   </header>
 
 
+  <!-- ================= MAIN ================= -->
+
   <div class="container">
 
-    <div class="register-box">
+    <div class="card">
 
-      <h2 id="registerTitle">
-        Create Account
-      </h2>
+      <h1>
+        Request a Property
+      </h1>
 
-      <p id="registerDescription">
-        Create your customer account to find your property.
+      <p class="subtitle">
+        Tell us what kind of property you are looking for.
       </p>
 
 
-      <form id="registerForm">
+      <form id="requestForm">
+
+        <label for="name">
+          Your Name
+        </label>
+
+        <input
+          type="text"
+          id="name"
+          placeholder="Enter your name"
+          required
+        >
 
 
-        <!-- PROFILE PICTURE -->
+        <label for="phone">
+          Phone Number
+        </label>
 
-        <div class="profile-preview">
-
-          <label for="profilePicture" id="pictureLabel">
-            Profile Picture
-          </label>
-
-          <input
-            type="file"
-            id="profilePicture"
-            accept="image/*">
-
-          <img
-            id="profilePreview"
-            alt="Profile Preview">
-
-        </div>
+        <input
+          type="tel"
+          id="phone"
+          placeholder="07XXXXXXXX"
+          required
+        >
 
 
-        <!-- NAME -->
+        <label for="propertyType">
+          Property Type
+        </label>
 
-        <div class="form-group">
+        <select
+          id="propertyType"
+          required
+        >
 
-          <label for="fullName" id="nameLabel">
-            Full Name
-          </label>
+          <option value="">
+            Choose property type
+          </option>
 
-          <input
-            type="text"
-            id="fullName"
-            placeholder="Enter your full name"
-            required>
+          <option value="House for Rent">
+            House for Rent
+          </option>
 
-        </div>
+          <option value="Plot for Sale">
+            Plot for Sale
+          </option>
 
+          <option value="Apartment">
+            Apartment
+          </option>
 
-        <!-- PHONE -->
+          <option value="Commercial Property">
+            Commercial Property
+          </option>
 
-        <div class="form-group">
+          <option value="Other">
+            Other
+          </option>
 
-          <label for="phone" id="phoneLabel">
-            Phone Number
-          </label>
-
-          <input
-            type="tel"
-            id="phone"
-            placeholder="+250 7XX XXX XXX"
-            required>
-
-        </div>
-
-
-        <!-- EMAIL -->
-
-        <div class="form-group">
-
-          <label for="email" id="emailLabel">
-            Email
-          </label>
-
-          <input
-            type="email"
-            id="email"
-            placeholder="Enter your email"
-            required>
-
-        </div>
+        </select>
 
 
-        <!-- PASSWORD -->
+        <label for="location">
+          Preferred Location
+        </label>
 
-        <div class="form-group">
-
-          <label for="password" id="passwordLabel">
-            Password
-          </label>
-
-          <input
-            type="password"
-            id="password"
-            placeholder="Create a password"
-            required>
-
-        </div>
+        <input
+          type="text"
+          id="location"
+          placeholder="Example: Kigali, Kicukiro"
+          required
+        >
 
 
-        <!-- CONFIRM PASSWORD -->
+        <label for="budget">
+          Budget
+        </label>
 
-        <div class="form-group">
-
-          <label
-            for="confirmPassword"
-            id="confirmPasswordLabel">
-
-            Confirm Password
-
-          </label>
-
-          <input
-            type="password"
-            id="confirmPassword"
-            placeholder="Confirm your password"
-            required>
-
-        </div>
+        <input
+          type="text"
+          id="budget"
+          placeholder="Example: 300,000 RWF"
+          required
+        >
 
 
-        <button
-          type="submit"
-          class="register-button"
-          id="registerButton">
+        <label for="message">
+          Property Details
+        </label>
 
-          Register
+        <textarea
+          id="message"
+          placeholder="Describe the property you need..."
+          required
+        ></textarea>
 
+
+        <button type="submit">
+          Submit Property Request
         </button>
-
 
       </form>
 
 
       <div
-        class="message"
-        id="message">
+        class="success"
+        id="successMessage"
+      >
+        ✅ Your property request has been submitted successfully!
       </div>
 
+    </div>
 
-      <div class="login">
 
-        <span id="alreadyAccount">
-          Already have an account?
-        </span>
+    <!-- ================= REQUESTS ================= -->
 
-        <a
-          href="./login.html"
-          id="loginLink">
+    <div class="card request-list">
 
-          Login
+      <h1>
+        Property Requests
+      </h1>
 
-        </a>
+      <p class="subtitle">
+        Requests submitted by customers will appear here.
+      </p>
+
+      <div id="requestsContainer">
+
+        <div class="empty">
+          No property requests yet.
+        </div>
 
       </div>
-
-
-      <a
-        href="./home.html"
-        class="back"
-        id="backButton">
-
-        ← Back to Home
-
-      </a>
 
     </div>
 
   </div>
 
 
+  <!-- ================= FOOTER ================= -->
+
   <footer>
 
-    <div>
-      © 2026 Rwanda House Market
-    </div>
-
-    <div style="margin-top:8px;">
-
-      Designed by Irene |
-
-      <a
-        href="https://www.facebook.com/"
-        target="_blank">
-
-        Chat Now
-
-      </a>
-
-    </div>
+    © 2026 Rwanda House Market 🇷🇼 — Find Houses, Plots & Properties
 
   </footer>
 
 
+  <!-- ================= JAVASCRIPT ================= -->
+
   <script>
 
-    /*
-      GET SELECTED LANGUAGE
-    */
+    const form =
+      document.getElementById("requestForm");
 
-    const language =
-      localStorage.getItem("selectedLanguage") || "English";
+    const requestsContainer =
+      document.getElementById("requestsContainer");
 
+    const successMessage =
+      document.getElementById("successMessage");
 
-    /*
-      TRANSLATIONS
-    */
 
-    const translations = {
+    function displayRequests() {
 
-      Kinyarwanda: {
+      const requests =
+        JSON.parse(
+          localStorage.getItem("propertyRequests")
+        ) || [];
 
-        headerSubtitle:
-          "Kwiyandikisha k'umukiriya",
 
-        registerTitle:
-          "Kora Konti",
+      if (requests.length === 0) {
 
-        registerDescription:
-          "Kora konti yawe kugira ngo ushake umutungo wawe.",
+        requestsContainer.innerHTML =
+          '<div class="empty">No property requests yet.</div>';
 
-        pictureLabel:
-          "Ifoto ya Profile",
+        return;
 
-        nameLabel:
-          "Amazina Yuzuye",
-
-        namePlaceholder:
-          "Andika amazina yawe",
-
-        phoneLabel:
-          "Numero ya Telefoni",
-
-        emailLabel:
-          "Email",
-
-        emailPlaceholder:
-          "Andika email yawe",
-
-        passwordLabel:
-          "Ijambo ry'ibanga",
-
-        passwordPlaceholder:
-          "Kora ijambo ry'ibanga",
-
-        confirmPasswordLabel:
-          "Emeza Ijambo ry'ibanga",
-
-        confirmPasswordPlaceholder:
-          "Ongera wandike ijambo ry'ibanga",
-
-        registerButton:
-          "Iyandikishe",
-
-        alreadyAccount:
-          "Usanzwe ufite konti?",
-
-        login:
-          "Injira",
-
-        back:
-          "← Subira kuri Home",
-
-        success:
-          "Konti yawe yakozwe neza.",
-
-        passwordError:
-          "Amagambo y'ibanga ntabwo ahura.",
-
-        requiredError:
-          "Nyamuneka uzuza amakuru yose."
-      },
-
-
-      English: {
-
-        headerSubtitle:
-          "Customer Registration",
-
-        registerTitle:
-          "Create Account",
-
-        registerDescription:
-          "Create your customer account to find your property.",
-
-        pictureLabel:
-          "Profile Picture",
-
-        nameLabel:
-          "Full Name",
-
-        namePlaceholder:
-          "Enter your full name",
-
-        phoneLabel:
-          "Phone Number",
-
-        emailLabel:
-          "Email",
-
-        emailPlaceholder:
-          "Enter your email",
-
-        passwordLabel:
-          "Password",
-
-        passwordPlaceholder:
-          "Create a password",
-
-        confirmPasswordLabel:
-          "Confirm Password",
-
-        confirmPasswordPlaceholder:
-          "Confirm your password",
-
-        registerButton:
-          "Register",
-
-        alreadyAccount:
-          "Already have an account?",
-
-        login:
-          "Login",
-
-        back:
-          "← Back to Home",
-
-        success:
-          "Your account has been created successfully.",
-
-        passwordError:
-          "Passwords do not match.",
-
-        requiredError:
-          "Please complete all required information."
-      },
-
-
-      Français: {
-
-        headerSubtitle:
-          "Inscription client",
-
-        registerTitle:
-          "Créer un compte",
-
-        registerDescription:
-          "Créez votre compte client pour rechercher votre propriété.",
-
-        pictureLabel:
-          "Photo de profil",
-
-        nameLabel:
-          "Nom complet",
-
-        namePlaceholder:
-          "Entrez votre nom complet",
-
-        phoneLabel:
-          "Numéro de téléphone",
-
-        emailLabel:
-          "Email",
-
-        emailPlaceholder:
-          "Entrez votre email",
-
-        passwordLabel:
-          "Mot de passe",
-
-        passwordPlaceholder:
-          "Créez un mot de passe",
-
-        confirmPasswordLabel:
-          "Confirmer le mot de passe",
-
-        confirmPasswordPlaceholder:
-          "Confirmez votre mot de passe",
-
-        registerButton:
-          "S'inscrire",
-
-        alreadyAccount:
-          "Vous avez déjà un compte ?",
-
-        login:
-          "Connexion",
-
-        back:
-          "← Retour à l'accueil",
-
-        success:
-          "Votre compte a été créé avec succès.",
-
-        passwordError:
-          "Les mots de passe ne correspondent pas.",
-
-        requiredError:
-          "Veuillez compléter toutes les informations obligatoires."
-      },
-
-
-      Kiswahili: {
-
-        headerSubtitle:
-          "Usajili wa Mteja",
-
-        registerTitle:
-          "Fungua Akaunti",
-
-        registerDescription:
-          "Fungua akaunti yako ili kutafuta mali yako.",
-
-        pictureLabel:
-          "Picha ya Wasifu",
-
-        nameLabel:
-          "Jina Kamili",
-
-        namePlaceholder:
-          "Ingiza jina lako kamili",
-
-        phoneLabel:
-          "Nambari ya Simu",
-
-        emailLabel:
-          "Barua pepe",
-
-        emailPlaceholder:
-          "Ingiza barua pepe yako",
-
-        passwordLabel:
-          "Nenosiri",
-
-        passwordPlaceholder:
-          "Unda nenosiri",
-
-        confirmPasswordLabel:
-          "Thibitisha Nenosiri",
-
-        confirmPasswordPlaceholder:
-          "Thibitisha nenosiri lako",
-
-        registerButton:
-          "Jisajili",
-
-        alreadyAccount:
-          "Tayari una akaunti?",
-
-        login:
-          "Ingia",
-
-        back:
-          "← Rudi Mwanzo",
-
-        success:
-          "Akaunti yako imeundwa kwa mafanikio.",
-
-        passwordError:
-          "Nenosiri hazilingani.",
-
-        requiredError:
-          "Tafadhali jaza taarifa zote zinazohitajika."
-      },
-
-
-      "中文": {
-
-        headerSubtitle:
-          "客户注册",
-
-        registerTitle:
-          "创建账户",
-
-        registerDescription:
-          "创建客户账户以查找您的房产。",
-
-        pictureLabel:
-          "头像",
-
-        nameLabel:
-          "全名",
-
-        namePlaceholder:
-          "输入您的全名",
-
-        phoneLabel:
-          "电话号码",
-
-        emailLabel:
-          "电子邮件",
-
-        emailPlaceholder:
-          "输入您的电子邮件",
-
-        passwordLabel:
-          "密码",
-
-        passwordPlaceholder:
-          "创建密码",
-
-        confirmPasswordLabel:
-          "确认密码",
-
-        confirmPasswordPlaceholder:
-          "再次输入密码",
-
-        registerButton:
-          "注册",
-
-        alreadyAccount:
-          "已经有账户？",
-
-        login:
-          "登录",
-
-        back:
-          "← 返回首页",
-
-        success:
-          "您的账户已成功创建。",
-
-        passwordError:
-          "两次输入的密码不一致。",
-
-        requiredError:
-          "请填写所有必填信息。"
       }
 
-    };
+
+      requestsContainer.innerHTML = "";
 
 
-    /*
-      SELECT LANGUAGE
-    */
+      requests.forEach((request) => {
 
-    const t =
-      translations[language] ||
-      translations.English;
+        const item =
+          document.createElement("div");
 
-
-    /*
-      APPLY TRANSLATIONS
-    */
-
-    document.getElementById("headerSubtitle").textContent =
-      t.headerSubtitle;
-
-    document.getElementById("registerTitle").textContent =
-      t.registerTitle;
-
-    document.getElementById("registerDescription").textContent =
-      t.registerDescription;
-
-    document.getElementById("pictureLabel").textContent =
-      t.pictureLabel;
-
-    document.getElementById("nameLabel").textContent =
-      t.nameLabel;
-
-    document.getElementById("fullName").placeholder =
-      t.namePlaceholder;
-
-    document.getElementById("phoneLabel").textContent =
-      t.phoneLabel;
-
-    document.getElementById("emailLabel").textContent =
-      t.emailLabel;
-
-    document.getElementById("email").placeholder =
-      t.emailPlaceholder;
-
-    document.getElementById("passwordLabel").textContent =
-      t.passwordLabel;
-
-    document.getElementById("password").placeholder =
-      t.passwordPlaceholder;
-
-    document.getElementById("confirmPasswordLabel").textContent =
-      t.confirmPasswordLabel;
-
-    document.getElementById("confirmPassword").placeholder =
-      t.confirmPasswordPlaceholder;
-
-    document.getElementById("registerButton").textContent =
-      t.registerButton;
-
-    document.getElementById("alreadyAccount").textContent =
-      t.alreadyAccount + " ";
-
-    document.getElementById("loginLink").textContent =
-      t.login;
-
-    document.getElementById("backButton").textContent =
-      t.back;
+        item.className =
+          "request-item";
 
 
-    /*
-      PROFILE PICTURE PREVIEW
-    */
+        item.innerHTML = `
 
-    document
-      .getElementById("profilePicture")
-      .addEventListener("change", function(event) {
+          <h3>
+            ${request.propertyType}
+          </h3>
 
-        const file =
-          event.target.files[0];
+          <p>
+            <strong>Name:</strong>
+            ${request.name}
+          </p>
 
-        const preview =
-          document.getElementById("profilePreview");
+          <p>
+            <strong>Phone:</strong>
+            ${request.phone}
+          </p>
 
-        if (file) {
+          <p>
+            <strong>Location:</strong>
+            ${request.location}
+          </p>
 
-          const reader =
-            new FileReader();
+          <p>
+            <strong>Budget:</strong>
+            ${request.budget}
+          </p>
 
-          reader.onload =
-            function(e) {
+          <p>
+            <strong>Details:</strong>
+            ${request.message}
+          </p>
 
-              preview.src =
-                e.target.result;
+          <p>
+            <strong>Date:</strong>
+            ${request.date}
+          </p>
 
-              preview.style.display =
-                "block";
+        `;
 
-            };
 
-          reader.readAsDataURL(file);
-
-        }
+        requestsContainer.appendChild(item);
 
       });
 
+    }
 
-    /*
-      REGISTER FORM
-    */
 
-    document
-      .getElementById("registerForm")
-      .addEventListener("submit", function(event) {
+    form.addEventListener(
+      "submit",
+      function(event) {
 
         event.preventDefault();
 
 
-        const fullName =
-          document.getElementById("fullName").value.trim();
+        const request = {
 
-        const phone =
-          document.getElementById("phone").value.trim();
+          name:
+            document
+              .getElementById("name")
+              .value,
 
-        const email =
-          document.getElementById("email").value.trim();
+          phone:
+            document
+              .getElementById("phone")
+              .value,
 
-        const password =
-          document.getElementById("password").value;
+          propertyType:
+            document
+              .getElementById("propertyType")
+              .value,
 
-        const confirmPassword =
-          document.getElementById("confirmPassword").value;
+          location:
+            document
+              .getElementById("location")
+              .value,
 
-        const message =
-          document.getElementById("message");
+          budget:
+            document
+              .getElementById("budget")
+              .value,
 
+          message:
+            document
+              .getElementById("message")
+              .value,
 
-        if (
-          !fullName ||
-          !phone ||
-          !email ||
-          !password ||
-          !confirmPassword
-        ) {
+          date:
+            new Date().toLocaleString()
 
-          message.style.display =
-            "block";
-
-          message.style.background =
-            "#f8d7da";
-
-          message.style.color =
-            "#842029";
-
-          message.textContent =
-            t.requiredError;
-
-          return;
-
-        }
+        };
 
 
-        if (password !== confirmPassword) {
-
-          message.style.display =
-            "block";
-
-          message.style.background =
-            "#f8d7da";
-
-          message.style.color =
-            "#842029";
-
-          message.textContent =
-            t.passwordError;
-
-          return;
-
-        }
+        const requests =
+          JSON.parse(
+            localStorage.getItem(
+              "propertyRequests"
+            )
+          ) || [];
 
 
-        /*
-          TEMPORARY CUSTOMER DATA
+        requests.push(request);
 
-          Later we will connect this
-          to Supabase.
-        */
 
         localStorage.setItem(
-          "customerName",
-          fullName
-        );
-
-        localStorage.setItem(
-          "customerPhone",
-          phone
-        );
-
-        localStorage.setItem(
-          "customerEmail",
-          email
-        );
-
-        localStorage.setItem(
-          "customerRegistered",
-          "true"
+          "propertyRequests",
+          JSON.stringify(requests)
         );
 
 
-        /*
-          SUCCESS MESSAGE
-        */
+        form.reset();
 
-        message.style.display =
+
+        successMessage.style.display =
           "block";
 
-        message.style.background =
-          "#d1e7dd";
 
-        message.style.color =
-          "#0f5132";
+        setTimeout(
+          function() {
 
-        message.textContent =
-          t.success;
+            successMessage.style.display =
+              "none";
+
+          },
+          4000
+        );
 
 
-        /*
-          GO TO LOGIN
-        */
+        displayRequests();
 
-        setTimeout(function() {
+      }
+    );
 
-          window.location.href =
-            "./login.html";
 
-        }, 1200);
-
-      });
+    displayRequests();
 
   </script>
 
 </body>
+
 </html>
