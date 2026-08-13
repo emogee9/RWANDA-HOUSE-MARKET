@@ -15,15 +15,16 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #222;
+      background: #ffffff;
+      color: #222222;
     }
 
     header {
-      background: #0b5d1e;
-      color: white;
+      background: #f4b400;
+      color: #222222;
       padding: 22px 15px;
       text-align: center;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
     }
 
     header h1 {
@@ -34,9 +35,16 @@
     .back {
       display: inline-block;
       margin-top: 12px;
-      color: white;
+      color: #222222;
       text-decoration: none;
       font-weight: bold;
+      background: #ffffff;
+      padding: 9px 15px;
+      border-radius: 8px;
+    }
+
+    .back:hover {
+      background: #fff8d6;
     }
 
     .container {
@@ -47,10 +55,11 @@
 
     .main-photo {
       position: relative;
-      background: white;
+      background: #ffffff;
       padding: 12px;
       border-radius: 15px;
       box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+      border: 2px solid #f4b400;
     }
 
     .main-photo img {
@@ -74,8 +83,8 @@
       border: none;
       border-radius: 10px;
 
-      background: rgba(0, 0, 0, 0.55);
-      color: white;
+      background: rgba(244, 180, 0, 0.9);
+      color: #222222;
 
       font-size: 45px;
       cursor: pointer;
@@ -95,7 +104,7 @@
 
     .prev:hover,
     .next:hover {
-      background: rgba(0, 0, 0, 0.8);
+      background: #ffd45a;
     }
 
     .gallery {
@@ -113,18 +122,21 @@
       display: block;
       cursor: pointer;
       transition: 0.2s;
+      border: 2px solid #ffffff;
     }
 
     .gallery img:hover {
       transform: scale(1.03);
+      border-color: #f4b400;
     }
 
     .info {
-      background: white;
+      background: #ffffff;
       margin-top: 25px;
       padding: 28px;
       border-radius: 15px;
       box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+      border: 2px solid #f4b400;
     }
 
     .info h2 {
@@ -134,18 +146,20 @@
 
     .type {
       display: inline-block;
-      background: #e7f4ea;
-      color: #0b5d1e;
+      background: #fff8d6;
+      color: #7a5b00;
       padding: 8px 15px;
       border-radius: 20px;
       font-weight: bold;
       margin-bottom: 15px;
+      border: 1px solid #f4b400;
     }
 
     .price {
       font-size: 25px;
       font-weight: bold;
       margin: 10px 0 15px;
+      color: #7a5b00;
     }
 
     .location {
@@ -154,15 +168,15 @@
     }
 
     .description {
-      color: #555;
+      color: #555555;
       line-height: 1.7;
     }
 
     .maps {
       display: inline-block;
       margin-top: 10px;
-      background: #0b5d1e;
-      color: white;
+      background: #f4b400;
+      color: #222222;
       padding: 13px 20px;
       border-radius: 8px;
       text-decoration: none;
@@ -170,13 +184,13 @@
     }
 
     .maps:hover {
-      background: #084716;
+      background: #ffd45a;
     }
 
     .links {
       margin-top: 30px;
       padding-top: 20px;
-      border-top: 1px solid #ddd;
+      border-top: 2px solid #f4b400;
     }
 
     .links h3 {
@@ -197,22 +211,38 @@
       background: #cc0000;
     }
 
+    .youtube:hover {
+      background: #990000;
+    }
+
     .facebook {
       background: #1877f2;
+    }
+
+    .facebook:hover {
+      background: #0d5dcc;
     }
 
     .whatsapp {
       background: #128c7e;
     }
 
+    .whatsapp:hover {
+      background: #0d6f63;
+    }
+
     .website {
-      background: #444;
+      background: #444444;
+    }
+
+    .website:hover {
+      background: #222222;
     }
 
     .contact {
       margin-top: 25px;
       padding-top: 20px;
-      border-top: 1px solid #ddd;
+      border-top: 2px solid #f4b400;
     }
 
     .phone {
@@ -223,8 +253,8 @@
     .call-button {
       display: inline-block;
       margin-top: 10px;
-      background: #0b5d1e;
-      color: white;
+      background: #f4b400;
+      color: #222222;
       padding: 13px 25px;
       border-radius: 8px;
       text-decoration: none;
@@ -232,7 +262,7 @@
     }
 
     .call-button:hover {
-      background: #084716;
+      background: #ffd45a;
     }
 
     @media (max-width: 700px) {
@@ -441,8 +471,6 @@
         </h3>
 
 
-        <!-- YOUTUBE -->
-
         <a
           href="https://www.youtube.com/channel/UCGWVPGW9WXJZqWiB7oDHp3Q"
           target="_blank"
@@ -451,8 +479,6 @@
           ▶️ YouTube
         </a>
 
-
-        <!-- FACEBOOK -->
 
         <a
           href="#"
@@ -463,8 +489,6 @@
         </a>
 
 
-        <!-- WHATSAPP -->
-
         <a
           href="https://wa.me/250799645553"
           target="_blank"
@@ -473,8 +497,6 @@
           💬 WhatsApp
         </a>
 
-
-        <!-- WEBSITE -->
 
         <a
           href="#"
@@ -516,17 +538,9 @@
 
   <script>
 
-    /*
-      GET SELECTED LANGUAGE
-    */
-
     const language =
       localStorage.getItem("selectedLanguage") || "English";
 
-
-    /*
-      TRANSLATIONS
-    */
 
     const translations = {
 
@@ -827,28 +841,16 @@
     };
 
 
-    /*
-      SELECT LANGUAGE
-    */
-
     const t =
       translations[language] ||
       translations.English;
 
-
-    /*
-      SAVE LANGUAGE
-    */
 
     localStorage.setItem(
       "selectedLanguage",
       language
     );
 
-
-    /*
-      APPLY TRANSLATIONS
-    */
 
     document.getElementById(
       "headerTitle"
@@ -944,10 +946,6 @@
       "callButton"
     ).textContent = t.call;
 
-
-    /*
-      PHOTO SLIDER
-    */
 
     const plotPhotos = [
 
