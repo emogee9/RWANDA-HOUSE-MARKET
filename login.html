@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Login - Rwanda House Market</title>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -14,246 +18,293 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f5f1ed;
-      color: #3b2418;
+      background: #ffffff;
+      color: #222222;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
 
     header {
-      background: #5a321f;
-      color: white;
-      padding: 22px 15px;
-      text-align: center;
+      background: #f4b400;
+      color: #222222;
+      padding: 18px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
     }
 
-    header p {
-      margin: 8px 0 0;
+    nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #222222;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      background: #ffffff;
     }
 
     .container {
-      width: 100%;
-      max-width: 480px;
-      margin: auto;
-      padding: 30px 20px;
+      max-width: 850px;
+      margin: 35px auto;
+      padding: 0 20px;
     }
 
-    .login-box {
-      background: white;
-      padding: 35px 30px;
+    .card {
+      background: #ffffff;
+      padding: 30px;
+      border: 2px solid #f4b400;
       border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-    }
-
-    .login-box h2 {
-      text-align: center;
-      margin-top: 0;
-      color: #5a321f;
-      font-size: 28px;
-    }
-
-    .login-box > p {
-      text-align: center;
-      color: #777;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
       margin-bottom: 25px;
     }
 
-    .form-group {
-      margin-bottom: 18px;
+    h1,
+    h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666666;
+      margin-bottom: 25px;
     }
 
     label {
       display: block;
       font-weight: bold;
+      margin-top: 15px;
       margin-bottom: 7px;
     }
 
-    input {
+    input,
+    select {
       width: 100%;
-      padding: 14px;
-      border: 1px solid #cdbfb6;
+      padding: 13px;
+      border: 2px solid #eeeeee;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 15px;
       outline: none;
+      background: #ffffff;
     }
 
-    input:focus {
-      border-color: #5a321f;
+    input:focus,
+    select:focus {
+      border-color: #f4b400;
     }
 
-    .login-button {
+    button {
       width: 100%;
+      margin-top: 20px;
       padding: 14px;
-      background: #5a321f;
-      color: white;
+      background: #f4b400;
+      color: #222222;
       border: none;
       border-radius: 8px;
       font-size: 17px;
       font-weight: bold;
       cursor: pointer;
-      margin-top: 5px;
     }
 
-    .login-button:hover {
-      background: #3f2114;
+    button:hover {
+      background: #ffd45a;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     .message {
       display: none;
       margin-top: 15px;
-      padding: 12px;
+      padding: 13px;
       border-radius: 8px;
       text-align: center;
       font-weight: bold;
     }
 
-    .register {
-      text-align: center;
-      margin-top: 22px;
-    }
-
-    .register a {
-      color: #5a321f;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .register a:hover {
-      text-decoration: underline;
-    }
-
-    .back {
+    .success {
       display: block;
+      background: #fff8d6;
+      color: #7a5b00;
+      border: 1px solid #f4b400;
+    }
+
+    .error {
+      display: block;
+      background: #ffeaea;
+      color: #9b2226;
+      border: 1px solid #e0aaaa;
+    }
+
+    .register-link {
       text-align: center;
       margin-top: 20px;
-      color: #5a321f;
-      text-decoration: none;
+    }
+
+    .register-link a {
+      color: #b27b00;
       font-weight: bold;
+      text-decoration: none;
+    }
+
+    .deposit-box {
+      background: #fffdf3;
+      border: 2px solid #f4b400;
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+
+    .balance {
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .hidden {
+      display: none;
     }
 
     footer {
-      background: #5a321f;
-      color: white;
+      margin-top: 50px;
+      background: #f4b400;
+      color: #222222;
       text-align: center;
-      padding: 18px 10px;
-      margin-top: auto;
-    }
-
-    footer a {
-      color: white;
-      text-decoration: none;
+      padding: 20px;
       font-weight: bold;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 700px) {
+
+      header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+
       .container {
-        padding: 20px 15px;
+        padding: 0 15px;
       }
 
-      .login-box {
-        padding: 30px 20px;
+      .card {
+        padding: 25px 18px;
       }
 
-      header h1 {
-        font-size: 24px;
-      }
     }
+
   </style>
+
 </head>
 
 <body>
 
-  <header>
-    <h1>🏠 RWANDA HOUSE MARKET</h1>
-    <p id="headerSubtitle">Customer Login</p>
-  </header>
+<header>
+
+  <div class="logo">
+    RWANDA HOUSE MARKET 🇷🇼
+  </div>
+
+  <nav>
+
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="customer-home.html">
+      Properties
+    </a>
+
+    <a href="register.html">
+      Register
+    </a>
+
+  </nav>
+
+</header>
 
 
-  <div class="container">
-
-    <div class="login-box">
-
-      <h2 id="loginTitle">Login</h2>
-
-      <p id="loginDescription">
-        Login to continue to Rwanda House Market.
-      </p>
+<div class="container">
 
 
-      <form id="loginForm">
+  <!-- LOGIN -->
 
-        <div class="form-group">
+  <div class="card">
 
-          <label for="email" id="emailLabel">
-            Email or Phone
-          </label>
+    <h1>
+      Customer Login
+    </h1>
 
-          <input
-            type="text"
-            id="email"
-            placeholder="Enter your email or phone"
-            required>
-
-        </div>
+    <p class="subtitle">
+      Login to continue to Rwanda House Market.
+    </p>
 
 
-        <div class="form-group">
+    <form id="loginForm">
 
-          <label for="password" id="passwordLabel">
-            Password
-          </label>
+      <label for="email">
+        Email
+      </label>
 
-          <input
-            type="password"
-            id="password"
-            placeholder="Enter your password"
-            required>
-
-        </div>
-
-
-        <button
-          type="submit"
-          class="login-button"
-          id="loginButton">
-          Login
-        </button>
-
-      </form>
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your email"
+        required
+      >
 
 
-      <div
-        class="message"
-        id="message">
-      </div>
+      <label for="password">
+        Password
+      </label>
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter your password"
+        required
+      >
 
 
-      <div class="register">
+      <button
+        type="submit"
+        id="loginButton"
+      >
+        Login
+      </button>
 
-        <span id="noAccount">
-          Don't have an account?
-        </span>
-
-        <a
-          href="./register.html"
-          id="registerLink">
-          Register
-        </a>
-
-      </div>
+    </form>
 
 
-      <a
-        href="./home.html"
-        class="back"
-        id="backButton">
-        ← Back to Home
+    <div
+      id="loginMessage"
+      class="message">
+    </div>
+
+
+    <div class="register-link">
+
+      Don't have an account?
+
+      <a href="register.html">
+        Register
       </a>
 
     </div>
@@ -261,381 +312,471 @@
   </div>
 
 
-  <footer>
+  <!-- DEPOSIT -->
 
-    <div>
-      © 2026 Rwanda House Market
+  <div
+    class="card hidden"
+    id="depositCard">
+
+    <h2>
+      💰 Deposit
+    </h2>
+
+    <p class="subtitle">
+      Request a deposit to your account.
+    </p>
+
+
+    <div class="balance">
+
+      Balance:
+
+      <span id="balance">
+        0
+      </span>
+
+      RWF
+
     </div>
 
-    <div style="margin-top:8px;">
-      Designed by Irene
-      |
-      <a
-        href="https://www.facebook.com/"
-        target="_blank"
-        id="chatNow">
-        Chat Now
-      </a>
+
+    <div class="deposit-box">
+
+      <label for="depositAmount">
+        Deposit Amount
+      </label>
+
+      <input
+        type="number"
+        id="depositAmount"
+        placeholder="Example: 5000"
+        min="1"
+        required
+      >
+
+
+      <label for="paymentMethod">
+        Payment Method
+      </label>
+
+      <select id="paymentMethod">
+
+        <option value="">
+          Choose payment method
+        </option>
+
+        <option value="Mobile Money">
+          Mobile Money
+        </option>
+
+        <option value="Bank">
+          Bank
+        </option>
+
+      </select>
+
+
+      <button
+        type="button"
+        id="depositButton"
+      >
+        Request Deposit
+      </button>
+
+
+      <div
+        id="depositMessage"
+        class="message">
+      </div>
+
     </div>
 
-  </footer>
+  </div>
 
+</div>
 
-  <script>
 
-    /*
-      GET SELECTED LANGUAGE
-    */
+<footer>
 
-    const language =
-      localStorage.getItem("selectedLanguage") || "English";
+  © 2026 Rwanda House Market 🇷🇼 — Find Houses, Plots & Properties
 
+</footer>
 
-    /*
-      TRANSLATIONS
-    */
 
-    const translations = {
+<script>
 
-      Kinyarwanda: {
+  /* ================================
+     SUPABASE
+  ================================= */
 
-        headerSubtitle: "Kwinjira kw'umukiriya",
+  const SUPABASE_URL =
+    "YOUR_SUPABASE_URL";
 
-        loginTitle: "Kwinjira",
+  const SUPABASE_KEY =
+    "YOUR_SUPABASE_PUBLISHABLE_KEY";
 
-        loginDescription:
-          "Injira kugira ngo ukomeze kuri Rwanda House Market.",
 
-        emailLabel:
-          "Email cyangwa Telefoni",
-
-        emailPlaceholder:
-          "Andika email cyangwa telefoni",
-
-        passwordLabel:
-          "Ijambo ry'ibanga",
-
-        passwordPlaceholder:
-          "Andika ijambo ry'ibanga",
-
-        loginButton:
-          "Injira",
-
-        noAccount:
-          "Ntabwo ufite konti?",
-
-        register:
-          "Iyandikishe",
-
-        back:
-          "← Subira kuri Home",
-
-        success:
-          "Winjiye neza. Turagutegereza kuri customer page.",
-
-        error:
-          "Nyamuneka andika email/telefoni n'ijambo ry'ibanga."
-      },
-
-
-      English: {
-
-        headerSubtitle:
-          "Customer Login",
-
-        loginTitle:
-          "Login",
-
-        loginDescription:
-          "Login to continue to Rwanda House Market.",
-
-        emailLabel:
-          "Email or Phone",
-
-        emailPlaceholder:
-          "Enter your email or phone",
-
-        passwordLabel:
-          "Password",
-
-        passwordPlaceholder:
-          "Enter your password",
-
-        loginButton:
-          "Login",
-
-        noAccount:
-          "Don't have an account?",
-
-        register:
-          "Register",
-
-        back:
-          "← Back to Home",
-
-        success:
-          "Login successful.",
-
-        error:
-          "Please enter your email/phone and password."
-      },
-
-
-      Français: {
-
-        headerSubtitle:
-          "Connexion client",
-
-        loginTitle:
-          "Connexion",
-
-        loginDescription:
-          "Connectez-vous pour continuer sur Rwanda House Market.",
-
-        emailLabel:
-          "Email ou téléphone",
-
-        emailPlaceholder:
-          "Entrez votre email ou téléphone",
-
-        passwordLabel:
-          "Mot de passe",
-
-        passwordPlaceholder:
-          "Entrez votre mot de passe",
-
-        loginButton:
-          "Se connecter",
-
-        noAccount:
-          "Vous n'avez pas de compte ?",
-
-        register:
-          "S'inscrire",
-
-        back:
-          "← Retour à l'accueil",
-
-        success:
-          "Connexion réussie.",
-
-        error:
-          "Veuillez entrer votre email/téléphone et votre mot de passe."
-      },
-
-
-      Kiswahili: {
-
-        headerSubtitle:
-          "Kuingia kwa Mteja",
-
-        loginTitle:
-          "Ingia",
-
-        loginDescription:
-          "Ingia ili kuendelea kwenye Rwanda House Market.",
-
-        emailLabel:
-          "Barua pepe au Simu",
-
-        emailPlaceholder:
-          "Ingiza barua pepe au simu",
-
-        passwordLabel:
-          "Nenosiri",
-
-        passwordPlaceholder:
-          "Ingiza nenosiri",
-
-        loginButton:
-          "Ingia",
-
-        noAccount:
-          "Huna akaunti?",
-
-        register:
-          "Jisajili",
-
-        back:
-          "← Rudi Mwanzo",
-
-        success:
-          "Umeingia kwa mafanikio.",
-
-        error:
-          "Tafadhali ingiza barua pepe/simu na nenosiri."
-      },
-
-
-      "中文": {
-
-        headerSubtitle:
-          "客户登录",
-
-        loginTitle:
-          "登录",
-
-        loginDescription:
-          "登录以继续使用 Rwanda House Market。",
-
-        emailLabel:
-          "电子邮件或电话",
-
-        emailPlaceholder:
-          "输入电子邮件或电话",
-
-        passwordLabel:
-          "密码",
-
-        passwordPlaceholder:
-          "输入密码",
-
-        loginButton:
-          "登录",
-
-        noAccount:
-          "还没有账户？",
-
-        register:
-          "注册",
-
-        back:
-          "← 返回首页",
-
-        success:
-          "登录成功。",
-
-        error:
-          "请输入电子邮件/电话和密码。"
-      }
-
-    };
-
-
-    /*
-      SELECT LANGUAGE
-    */
-
-    const t =
-      translations[language] ||
-      translations.English;
-
-
-    /*
-      APPLY TRANSLATION
-    */
-
-    document.getElementById("headerSubtitle").textContent =
-      t.headerSubtitle;
-
-    document.getElementById("loginTitle").textContent =
-      t.loginTitle;
-
-    document.getElementById("loginDescription").textContent =
-      t.loginDescription;
-
-    document.getElementById("emailLabel").textContent =
-      t.emailLabel;
-
-    document.getElementById("email").placeholder =
-      t.emailPlaceholder;
-
-    document.getElementById("passwordLabel").textContent =
-      t.passwordLabel;
-
-    document.getElementById("password").placeholder =
-      t.passwordPlaceholder;
-
-    document.getElementById("loginButton").textContent =
-      t.loginButton;
-
-    document.getElementById("noAccount").textContent =
-      t.noAccount + " ";
-
-    document.getElementById("registerLink").textContent =
-      t.register;
-
-    document.getElementById("backButton").textContent =
-      t.back;
-
-
-    /*
-      LOGIN FORM
-    */
-
-    document.getElementById("loginForm").addEventListener(
-      "submit",
-      function(event) {
-
-        event.preventDefault();
-
-        const email =
-          document.getElementById("email").value.trim();
-
-        const password =
-          document.getElementById("password").value.trim();
-
-        const message =
-          document.getElementById("message");
-
-
-        if (!email || !password) {
-
-          message.style.display = "block";
-
-          message.style.background = "#f8d7da";
-
-          message.style.color = "#842029";
-
-          message.textContent = t.error;
-
-          return;
-        }
-
-
-        /*
-          Temporary login system.
-
-          Later we will connect this page
-          to the real customer database.
-        */
-
-        localStorage.setItem(
-          "customerLoggedIn",
-          "true"
-        );
-
-        localStorage.setItem(
-          "customerEmail",
-          email
-        );
-
-
-        message.style.display = "block";
-
-        message.style.background = "#d1e7dd";
-
-        message.style.color = "#0f5132";
-
-        message.textContent = t.success;
-
-
-        /*
-          Go to customer home
-          after login.
-        */
-
-        setTimeout(function() {
-
-          window.location.href =
-            "./customer-home.html";
-
-        }, 1000);
-
-      }
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
     );
 
-  </script>
+
+  /* ================================
+     ELEMENTS
+  ================================= */
+
+  const loginForm =
+    document.getElementById("loginForm");
+
+  const loginButton =
+    document.getElementById("loginButton");
+
+  const loginMessage =
+    document.getElementById("loginMessage");
+
+  const depositCard =
+    document.getElementById("depositCard");
+
+  const depositButton =
+    document.getElementById("depositButton");
+
+  const depositMessage =
+    document.getElementById("depositMessage");
+
+  const balanceElement =
+    document.getElementById("balance");
+
+
+  /* ================================
+     MESSAGE
+  ================================= */
+
+  function showMessage(
+    element,
+    text,
+    type
+  ) {
+
+    element.textContent = text;
+
+    element.className =
+      "message " + type;
+
+  }
+
+
+  /* ================================
+     LOAD PROFILE
+  ================================= */
+
+  async function loadProfile() {
+
+    const {
+      data: {
+        user
+      }
+    } =
+      await supabaseClient.auth.getUser();
+
+
+    if (!user) {
+      return;
+    }
+
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("Profile")
+        .select("balance")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+
+    if (error) {
+
+      console.error(
+        "Profile error:",
+        error
+      );
+
+      return;
+    }
+
+
+    if (data) {
+
+      balanceElement.textContent =
+        Number(data.balance || 0)
+          .toLocaleString();
+
+    }
+
+  }
+
+
+  /* ================================
+     LOGIN
+  ================================= */
+
+  loginForm.addEventListener(
+    "submit",
+    async function(event) {
+
+      event.preventDefault();
+
+
+      const email =
+        document
+          .getElementById("email")
+          .value
+          .trim();
+
+
+      const password =
+        document
+          .getElementById("password")
+          .value;
+
+
+      loginButton.disabled = true;
+
+      loginButton.textContent =
+        "Logging in...";
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient.auth
+          .signInWithPassword({
+
+            email: email,
+
+            password: password
+
+          });
+
+
+      if (error) {
+
+        showMessage(
+          loginMessage,
+          "❌ " + error.message,
+          "error"
+        );
+
+
+        loginButton.disabled =
+          false;
+
+        loginButton.textContent =
+          "Login";
+
+        return;
+      }
+
+
+      showMessage(
+        loginMessage,
+        "✅ Login successful!",
+        "success"
+      );
+
+
+      depositCard.classList.remove(
+        "hidden"
+      );
+
+
+      await loadProfile();
+
+
+      loginButton.disabled =
+        false;
+
+      loginButton.textContent =
+        "Login";
+
+    }
+  );
+
+
+  /* ================================
+     DEPOSIT REQUEST
+  ================================= */
+
+  depositButton.addEventListener(
+    "click",
+    async function() {
+
+      const amount =
+        Number(
+          document
+            .getElementById("depositAmount")
+            .value
+        );
+
+
+      const paymentMethod =
+        document
+          .getElementById("paymentMethod")
+          .value;
+
+
+      if (!amount || amount <= 0) {
+
+        showMessage(
+          depositMessage,
+          "❌ Enter a valid amount.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      if (!paymentMethod) {
+
+        showMessage(
+          depositMessage,
+          "❌ Choose a payment method.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      const {
+        data: {
+          user
+        }
+      } =
+        await supabaseClient.auth
+          .getUser();
+
+
+      if (!user) {
+
+        showMessage(
+          depositMessage,
+          "❌ Please login first.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      depositButton.disabled =
+        true;
+
+      depositButton.textContent =
+        "Sending...";
+
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .from("deposits")
+          .insert({
+
+            user_id: user.id,
+
+            amount: amount,
+
+            payment_method:
+              paymentMethod,
+
+            status: "pending"
+
+          });
+
+
+      if (error) {
+
+        showMessage(
+          depositMessage,
+          "❌ " + error.message,
+          "error"
+        );
+
+        depositButton.disabled =
+          false;
+
+        depositButton.textContent =
+          "Request Deposit";
+
+        return;
+      }
+
+
+      showMessage(
+        depositMessage,
+        "✅ Deposit request sent successfully. It is waiting for confirmation.",
+        "success"
+      );
+
+
+      document
+        .getElementById("depositAmount")
+        .value = "";
+
+
+      document
+        .getElementById("paymentMethod")
+        .value = "";
+
+
+      depositButton.disabled =
+        false;
+
+      depositButton.textContent =
+        "Request Deposit";
+
+    }
+  );
+
+
+  /* ================================
+     CHECK EXISTING SESSION
+  ================================= */
+
+  async function checkSession() {
+
+    const {
+      data: {
+        session
+      }
+    } =
+      await supabaseClient.auth
+        .getSession();
+
+
+    if (session) {
+
+      depositCard.classList.remove(
+        "hidden"
+      );
+
+      await loadProfile();
+
+    }
+
+  }
+
+
+  checkSession();
+
+</script>
 
 </body>
+
 </html>
