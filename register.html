@@ -24,6 +24,7 @@
 
     header {
       background: #f4b400;
+      color: #222222;
       padding: 18px 25px;
       display: flex;
       justify-content: space-between;
@@ -44,7 +45,7 @@
     }
 
     nav a {
-      color: #222;
+      color: #222222;
       text-decoration: none;
       padding: 9px 12px;
       border-radius: 7px;
@@ -53,7 +54,7 @@
     }
 
     nav a:hover {
-      background: #fff;
+      background: #ffffff;
     }
 
     .container {
@@ -63,7 +64,7 @@
     }
 
     .card {
-      background: #fff;
+      background: #ffffff;
       padding: 30px;
       border: 2px solid #f4b400;
       border-radius: 16px;
@@ -77,7 +78,7 @@
 
     .subtitle {
       text-align: center;
-      color: #666;
+      color: #666666;
       margin-bottom: 25px;
     }
 
@@ -91,10 +92,12 @@
     input {
       width: 100%;
       padding: 13px;
-      border: 2px solid #eee;
+      border: 2px solid #eeeeee;
       border-radius: 8px;
       font-size: 15px;
       outline: none;
+      background: #ffffff;
+      color: #222222;
     }
 
     input:focus {
@@ -106,7 +109,7 @@
       margin-top: 22px;
       padding: 14px;
       background: #f4b400;
-      color: #222;
+      color: #222222;
       border: none;
       border-radius: 8px;
       font-size: 17px;
@@ -116,6 +119,11 @@
 
     button:hover {
       background: #ffd45a;
+    }
+
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
     }
 
     #message {
@@ -129,14 +137,16 @@
 
     .success {
       display: block !important;
-      background: #e8f5e9;
+      background: #ffffff;
       color: #176b2c;
+      border: 2px solid #f4b400;
     }
 
     .error {
       display: block !important;
-      background: #ffebee;
+      background: #ffffff;
       color: #b00020;
+      border: 2px solid #f4b400;
     }
 
     .login-link {
@@ -145,24 +155,38 @@
     }
 
     .login-link a {
-      color: #c58b00;
+      color: #b88600;
       font-weight: bold;
       text-decoration: none;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
     }
 
     footer {
       margin-top: 50px;
       background: #f4b400;
+      color: #222222;
       text-align: center;
       padding: 20px;
       font-weight: bold;
     }
 
     @media (max-width: 700px) {
+
       header {
         flex-direction: column;
         gap: 15px;
         text-align: center;
+      }
+
+      nav {
+        justify-content: center;
+      }
+
+      nav a {
+        background: #ffffff;
       }
 
       .container {
@@ -172,6 +196,7 @@
       .card {
         padding: 25px 18px;
       }
+
     }
   </style>
 </head>
@@ -185,26 +210,30 @@
     </div>
 
     <nav>
-      <a href="index.html">Home</a>
-      <a href="customer-home.html">Properties</a>
-      <a href="login.html">Login</a>
+      <a href="index.html" id="homeLink">Home</a>
+      <a href="customer-home.html" id="propertiesLink">Properties</a>
+      <a href="login.html" id="loginLink">Login</a>
     </nav>
 
   </header>
+
 
   <div class="container">
 
     <div class="card">
 
-      <h1>Create Account</h1>
+      <h1 id="title">
+        Create Account
+      </h1>
 
-      <p class="subtitle">
+      <p class="subtitle" id="subtitle">
         Create your Rwanda House Market account
       </p>
 
+
       <form id="registerForm">
 
-        <label for="fullname">
+        <label for="fullname" id="fullnameLabel">
           Full Name
         </label>
 
@@ -215,7 +244,8 @@
           required
         >
 
-        <label for="email">
+
+        <label for="email" id="emailLabel">
           Email Address
         </label>
 
@@ -226,7 +256,8 @@
           required
         >
 
-        <label for="password">
+
+        <label for="password" id="passwordLabel">
           Password
         </label>
 
@@ -238,7 +269,8 @@
           required
         >
 
-        <label for="phone">
+
+        <label for="phone" id="phoneLabel">
           Phone Number
         </label>
 
@@ -249,38 +281,433 @@
           required
         >
 
-        <button type="submit" id="registerButton">
+
+        <button
+          type="submit"
+          id="registerButton">
           Create Account
         </button>
 
       </form>
 
+
       <div id="message"></div>
 
+
       <div class="login-link">
-        Already have an account?
-        <a href="login.html">Login here</a>
+
+        <span id="alreadyAccount">
+          Already have an account?
+        </span>
+
+        <a
+          href="login.html"
+          id="loginHere">
+          Login here
+        </a>
+
       </div>
 
     </div>
 
   </div>
 
-  <footer>
+
+  <footer id="footerText">
     © 2026 Rwanda House Market 🇷🇼 — Find Houses, Plots & Properties
   </footer>
 
+
   <script>
 
-    const SUPABASE_URL = "https://hsmnybmcddtsyooltozw.supabase.co/rest/v1/";
+    /* =========================================
+       SUPABASE
+    ========================================= */
 
-    const SUPABASE_KEY =" sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u ";
+    const SUPABASE_URL =
+      "https://hsmnybmcddtsyooltozw.supabase.co";
+
+    /*
+      SHYIRAMO SUPABASE PUBLISHABLE KEY YAWE HANO
+    */
+
+    const SUPABASE_KEY =
+      "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
 
     const supabaseClient =
       window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
       );
+
+
+    /* =========================================
+       LANGUAGE
+    ========================================= */
+
+    const language =
+      localStorage.getItem("selectedLanguage") || "English";
+
+
+    const translations = {
+
+      Kinyarwanda: {
+
+        home: "Ahabanza",
+
+        properties: "Imitungo",
+
+        login: "Kwinjira",
+
+        title: "Fungura Konti",
+
+        subtitle:
+          "Fungura konti yawe kuri Rwanda House Market.",
+
+        fullname:
+          "Amazina Yuzuye",
+
+        fullnamePlaceholder:
+          "Andika amazina yawe",
+
+        email:
+          "Email",
+
+        emailPlaceholder:
+          "Andika email yawe",
+
+        password:
+          "Ijambo ry'ibanga",
+
+        passwordPlaceholder:
+          "Shyiraho ijambo ry'ibanga",
+
+        phone:
+          "Numero ya Telefoni",
+
+        phonePlaceholder:
+          "07XXXXXXXX",
+
+        register:
+          "Fungura Konti",
+
+        creating:
+          "Konti iri gukorwa...",
+
+        already:
+          "Usanzwe ufite konti?",
+
+        loginHere:
+          "Injira hano",
+
+        success:
+          "✅ Konti yakozwe neza! Reba email yawe niba hakenewe kwemeza konti.",
+
+        footer:
+          "© 2026 Rwanda House Market 🇷🇼 — Shaka Inzu, Ibibanza n'Imitungo"
+
+      },
+
+
+      English: {
+
+        home: "Home",
+
+        properties: "Properties",
+
+        login: "Login",
+
+        title: "Create Account",
+
+        subtitle:
+          "Create your Rwanda House Market account",
+
+        fullname:
+          "Full Name",
+
+        fullnamePlaceholder:
+          "Enter your full name",
+
+        email:
+          "Email Address",
+
+        emailPlaceholder:
+          "Enter your email",
+
+        password:
+          "Password",
+
+        passwordPlaceholder:
+          "Create a password",
+
+        phone:
+          "Phone Number",
+
+        phonePlaceholder:
+          "07XXXXXXXX",
+
+        register:
+          "Create Account",
+
+        creating:
+          "Creating Account...",
+
+        already:
+          "Already have an account?",
+
+        loginHere:
+          "Login here",
+
+        success:
+          "✅ Account created successfully! Check your email if confirmation is required.",
+
+        footer:
+          "© 2026 Rwanda House Market 🇷🇼 — Find Houses, Plots & Properties"
+
+      },
+
+
+      Français: {
+
+        home: "Accueil",
+
+        properties: "Propriétés",
+
+        login: "Connexion",
+
+        title: "Créer un compte",
+
+        subtitle:
+          "Créez votre compte Rwanda House Market",
+
+        fullname:
+          "Nom complet",
+
+        fullnamePlaceholder:
+          "Entrez votre nom complet",
+
+        email:
+          "Adresse email",
+
+        emailPlaceholder:
+          "Entrez votre email",
+
+        password:
+          "Mot de passe",
+
+        passwordPlaceholder:
+          "Créez un mot de passe",
+
+        phone:
+          "Numéro de téléphone",
+
+        phonePlaceholder:
+          "07XXXXXXXX",
+
+        register:
+          "Créer un compte",
+
+        creating:
+          "Création du compte...",
+
+        already:
+          "Vous avez déjà un compte ?",
+
+        loginHere:
+          "Connectez-vous ici",
+
+        success:
+          "✅ Compte créé avec succès ! Vérifiez votre email si une confirmation est nécessaire.",
+
+        footer:
+          "© 2026 Rwanda House Market 🇷🇼 — Trouvez des maisons, terrains et propriétés"
+
+      },
+
+
+      Kiswahili: {
+
+        home: "Mwanzo",
+
+        properties: "Mali",
+
+        login: "Ingia",
+
+        title: "Fungua Akaunti",
+
+        subtitle:
+          "Fungua akaunti yako ya Rwanda House Market",
+
+        fullname:
+          "Jina Kamili",
+
+        fullnamePlaceholder:
+          "Ingiza jina lako kamili",
+
+        email:
+          "Barua pepe",
+
+        emailPlaceholder:
+          "Ingiza barua pepe yako",
+
+        password:
+          "Nenosiri",
+
+        passwordPlaceholder:
+          "Tengeneza nenosiri",
+
+        phone:
+          "Nambari ya Simu",
+
+        phonePlaceholder:
+          "07XXXXXXXX",
+
+        register:
+          "Fungua Akaunti",
+
+        creating:
+          "Akaunti inafunguliwa...",
+
+        already:
+          "Tayari una akaunti?",
+
+        loginHere:
+          "Ingia hapa",
+
+        success:
+          "✅ Akaunti imeundwa kwa mafanikio! Angalia barua pepe yako ikiwa uthibitisho unahitajika.",
+
+        footer:
+          "© 2026 Rwanda House Market 🇷🇼 — Tafuta Nyumba, Viwanja na Mali"
+
+      },
+
+
+      "中文": {
+
+        home: "首页",
+
+        properties: "房产",
+
+        login: "登录",
+
+        title: "创建账户",
+
+        subtitle:
+          "创建您的 Rwanda House Market 账户",
+
+        fullname:
+          "姓名",
+
+        fullnamePlaceholder:
+          "输入您的姓名",
+
+        email:
+          "电子邮件",
+
+        emailPlaceholder:
+          "输入您的电子邮件",
+
+        password:
+          "密码",
+
+        passwordPlaceholder:
+          "创建密码",
+
+        phone:
+          "电话号码",
+
+        phonePlaceholder:
+          "07XXXXXXXX",
+
+        register:
+          "创建账户",
+
+        creating:
+          "正在创建账户...",
+
+        already:
+          "已经有账户？",
+
+        loginHere:
+          "在这里登录",
+
+        success:
+          "✅ 账户创建成功！如果需要确认，请检查您的电子邮件。",
+
+        footer:
+          "© 2026 Rwanda House Market 🇷🇼 — 寻找房屋、土地和房产"
+
+      }
+
+    };
+
+
+    const t =
+      translations[language] ||
+      translations.English;
+
+
+    /* =========================================
+       APPLY LANGUAGE
+    ========================================= */
+
+    document.getElementById("homeLink").textContent =
+      t.home;
+
+    document.getElementById("propertiesLink").textContent =
+      t.properties;
+
+    document.getElementById("loginLink").textContent =
+      t.login;
+
+    document.getElementById("title").textContent =
+      t.title;
+
+    document.getElementById("subtitle").textContent =
+      t.subtitle;
+
+    document.getElementById("fullnameLabel").textContent =
+      t.fullname;
+
+    document.getElementById("fullname").placeholder =
+      t.fullnamePlaceholder;
+
+    document.getElementById("emailLabel").textContent =
+      t.email;
+
+    document.getElementById("email").placeholder =
+      t.emailPlaceholder;
+
+    document.getElementById("passwordLabel").textContent =
+      t.password;
+
+    document.getElementById("password").placeholder =
+      t.passwordPlaceholder;
+
+    document.getElementById("phoneLabel").textContent =
+      t.phone;
+
+    document.getElementById("phone").placeholder =
+      t.phonePlaceholder;
+
+    document.getElementById("registerButton").textContent =
+      t.register;
+
+    document.getElementById("alreadyAccount").textContent =
+      t.already + " ";
+
+    document.getElementById("loginHere").textContent =
+      t.loginHere;
+
+    document.getElementById("footerText").textContent =
+      t.footer;
+
+
+    /* =========================================
+       REGISTER
+    ========================================= */
 
     const form =
       document.getElementById("registerForm");
@@ -291,70 +718,114 @@
     const registerButton =
       document.getElementById("registerButton");
 
-    form.addEventListener("submit", async function(event) {
 
-      event.preventDefault();
+    form.addEventListener(
+      "submit",
+      async function(event) {
 
-      message.className = "";
-      message.style.display = "none";
+        event.preventDefault();
 
-      const fullname =
-        document.getElementById("fullname").value.trim();
 
-      const email =
-        document.getElementById("email").value.trim();
+        message.className = "";
 
-      const password =
-        document.getElementById("password").value;
+        message.style.display = "none";
 
-      const phone =
-        document.getElementById("phone").value.trim();
 
-      registerButton.disabled = true;
-      registerButton.textContent = "Creating Account...";
+        const fullname =
+          document
+            .getElementById("fullname")
+            .value
+            .trim();
 
-      const {
-        data,
-        error
-      } = await supabaseClient.auth.signUp({
 
-        email: email,
+        const email =
+          document
+            .getElementById("email")
+            .value
+            .trim();
 
-        password: password,
 
-        options: {
-          data: {
-            fullname: fullname,
-            phone: phone
-          }
+        const password =
+          document
+            .getElementById("password")
+            .value;
+
+
+        const phone =
+          document
+            .getElementById("phone")
+            .value
+            .trim();
+
+
+        registerButton.disabled = true;
+
+        registerButton.textContent =
+          t.creating;
+
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient.auth.signUp({
+
+            email: email,
+
+            password: password,
+
+            options: {
+
+              data: {
+
+                fullname: fullname,
+
+                phone: phone
+
+              }
+
+            }
+
+          });
+
+
+        if (error) {
+
+          message.textContent =
+            "❌ " + error.message;
+
+          message.className =
+            "error";
+
+          registerButton.disabled =
+            false;
+
+          registerButton.textContent =
+            t.register;
+
+          return;
+
         }
 
-      });
-
-      if (error) {
 
         message.textContent =
-          "❌ " + error.message;
+          t.success;
 
-        message.className = "error";
+        message.className =
+          "success";
 
-        registerButton.disabled = false;
-        registerButton.textContent = "Create Account";
 
-        return;
+        form.reset();
+
+
+        registerButton.disabled =
+          false;
+
+        registerButton.textContent =
+          t.register;
+
       }
-
-      message.textContent =
-        "✅ Account created successfully!";
-
-      message.className = "success";
-
-      form.reset();
-
-      registerButton.disabled = false;
-      registerButton.textContent = "Create Account";
-
-    });
+    );
 
   </script>
 
