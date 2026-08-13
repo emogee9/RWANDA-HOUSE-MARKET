@@ -19,8 +19,6 @@
       color: #333333;
     }
 
-    /* ================= NAVBAR ================= */
-
     header {
       background: #ffd700;
       color: #222222;
@@ -57,15 +55,11 @@
       background: #ffffff;
     }
 
-    /* ================= CONTAINER ================= */
-
     .container {
       max-width: 850px;
       margin: 35px auto;
       padding: 0 20px;
     }
-
-    /* ================= CARD ================= */
 
     .card {
       background: #ffffff;
@@ -86,8 +80,6 @@
       color: #666666;
       margin-bottom: 25px;
     }
-
-    /* ================= FORM ================= */
 
     label {
       display: block;
@@ -121,8 +113,6 @@
       resize: vertical;
     }
 
-    /* ================= BUTTON ================= */
-
     button {
       width: 100%;
       margin-top: 22px;
@@ -141,8 +131,6 @@
       background: #ffdf33;
     }
 
-    /* ================= SUCCESS ================= */
-
     .success {
       display: none;
       margin-top: 20px;
@@ -154,8 +142,6 @@
       text-align: center;
       font-weight: bold;
     }
-
-    /* ================= REQUEST LIST ================= */
 
     .request-list {
       margin-top: 35px;
@@ -189,8 +175,6 @@
       padding: 20px;
     }
 
-    /* ================= FOOTER ================= */
-
     footer {
       margin-top: 50px;
       background: #ffd700;
@@ -200,8 +184,6 @@
       font-size: 14px;
       font-weight: bold;
     }
-
-    /* ================= MOBILE ================= */
 
     @media (max-width: 700px) {
 
@@ -246,15 +228,15 @@
 
   <nav>
 
-    <a href="index.html">
+    <a href="index.html" id="homeLink">
       Home
     </a>
 
-    <a href="customer-home.html">
+    <a href="customer-home.html" id="propertiesLink">
       Properties
     </a>
 
-    <a href="request-property.html">
+    <a href="request-property.html" id="requestLink">
       Request Property
     </a>
 
@@ -265,21 +247,19 @@
 
 <div class="container">
 
-  <!-- REQUEST FORM -->
-
   <div class="card">
 
-    <h1>
+    <h1 id="requestTitle">
       Request a Property
     </h1>
 
-    <p class="subtitle">
+    <p class="subtitle" id="requestSubtitle">
       Tell us what kind of property you are looking for.
     </p>
 
     <form id="requestForm">
 
-      <label for="name">
+      <label for="name" id="nameLabel">
         Your Name
       </label>
 
@@ -291,7 +271,7 @@
       >
 
 
-      <label for="phone">
+      <label for="phone" id="phoneLabel">
         Phone Number
       </label>
 
@@ -303,40 +283,40 @@
       >
 
 
-      <label for="propertyType">
+      <label for="propertyType" id="propertyTypeLabel">
         Property Type
       </label>
 
       <select id="propertyType" required>
 
-        <option value="">
+        <option value="" id="chooseProperty">
           Choose property type
         </option>
 
-        <option value="House for Rent">
+        <option value="House for Rent" id="houseRent">
           House for Rent
         </option>
 
-        <option value="Plot for Sale">
+        <option value="Plot for Sale" id="plotSale">
           Plot for Sale
         </option>
 
-        <option value="Apartment">
+        <option value="Apartment" id="apartment">
           Apartment
         </option>
 
-        <option value="Commercial Property">
+        <option value="Commercial Property" id="commercial">
           Commercial Property
         </option>
 
-        <option value="Other">
+        <option value="Other" id="other">
           Other
         </option>
 
       </select>
 
 
-      <label for="location">
+      <label for="location" id="locationLabel">
         Preferred Location
       </label>
 
@@ -348,7 +328,7 @@
       >
 
 
-      <label for="budget">
+      <label for="budget" id="budgetLabel">
         Budget
       </label>
 
@@ -360,7 +340,7 @@
       >
 
 
-      <label for="message">
+      <label for="message" id="messageLabel">
         Property Details
       </label>
 
@@ -371,7 +351,7 @@
       ></textarea>
 
 
-      <button type="submit">
+      <button type="submit" id="submitButton">
         Submit Property Request
       </button>
 
@@ -385,21 +365,19 @@
   </div>
 
 
-  <!-- REQUESTS ALREADY SUBMITTED -->
-
   <div class="card request-list">
 
-    <h1>
+    <h1 id="requestsTitle">
       Property Requests
     </h1>
 
-    <p class="subtitle">
+    <p class="subtitle" id="requestsSubtitle">
       Requests submitted by customers will appear here.
     </p>
 
     <div id="requestsContainer">
 
-      <div class="empty">
+      <div class="empty" id="emptyMessage">
         No property requests yet.
       </div>
 
@@ -412,12 +390,649 @@
 
 <footer>
 
-  © 2026 Rwanda House Market 🇷🇼 — Find Houses, Plots & Properties
+  © 2026 Rwanda House Market 🇷🇼 — <span id="footerText">Find Houses, Plots & Properties</span>
 
 </footer>
 
 
 <script>
+
+  /* ================= LANGUAGE ================= */
+
+  const language =
+    localStorage.getItem("selectedLanguage") || "English";
+
+
+  /* ================= TRANSLATIONS ================= */
+
+  const translations = {
+
+    Kinyarwanda: {
+
+      home: "Ahabanza",
+
+      properties: "Imitungo",
+
+      request: "Saba Umutungo",
+
+      title: "Saba Umutungo",
+
+      subtitle:
+        "Tubwire ubwoko bw'umutungo ushaka.",
+
+      name:
+        "Amazina yawe",
+
+      namePlaceholder:
+        "Andika amazina yawe",
+
+      phone:
+        "Numero ya Telefoni",
+
+      phonePlaceholder:
+        "07XXXXXXXX",
+
+      propertyType:
+        "Ubwoko bw'umutungo",
+
+      choose:
+        "Hitamo ubwoko bw'umutungo",
+
+      house:
+        "Inzu yo Gukodesha",
+
+      plot:
+        "Ikibanza Kigurisihwa",
+
+      apartment:
+        "Apartment",
+
+      commercial:
+        "Umutungo w'Ubucuruzi",
+
+      other:
+        "Ikindi",
+
+      location:
+        "Aho wifuza",
+
+      locationPlaceholder:
+        "Urugero: Kigali, Kicukiro",
+
+      budget:
+        "Ingengo y'imari",
+
+      budgetPlaceholder:
+        "Urugero: 300,000 RWF",
+
+      details:
+        "Ibisobanuro by'umutungo",
+
+      detailsPlaceholder:
+        "Sobanura umutungo ushaka...",
+
+      submit:
+        "Ohereza Gusaba Umutungo",
+
+      success:
+        "✅ Gusaba umutungo byagenze neza!",
+
+      requests:
+        "Abasaba Imitungo",
+
+      requestsSubtitle:
+        "Abohereje ibisabwa by'imitungo bazagaragara hano.",
+
+      empty:
+        "Nta busabe bw'umutungo burahari.",
+
+      nameInfo:
+        "Amazina:",
+
+      phoneInfo:
+        "Telefoni:",
+
+      locationInfo:
+        "Aho:",
+
+      budgetInfo:
+        "Ingengo y'imari:",
+
+      detailsInfo:
+        "Ibisobanuro:",
+
+      dateInfo:
+        "Itariki:",
+
+      footer:
+        "Shaka Inzu, Ibibanza n'Imitungo"
+
+    },
+
+
+    English: {
+
+      home:
+        "Home",
+
+      properties:
+        "Properties",
+
+      request:
+        "Request Property",
+
+      title:
+        "Request a Property",
+
+      subtitle:
+        "Tell us what kind of property you are looking for.",
+
+      name:
+        "Your Name",
+
+      namePlaceholder:
+        "Enter your name",
+
+      phone:
+        "Phone Number",
+
+      phonePlaceholder:
+        "07XXXXXXXX",
+
+      propertyType:
+        "Property Type",
+
+      choose:
+        "Choose property type",
+
+      house:
+        "House for Rent",
+
+      plot:
+        "Plot for Sale",
+
+      apartment:
+        "Apartment",
+
+      commercial:
+        "Commercial Property",
+
+      other:
+        "Other",
+
+      location:
+        "Preferred Location",
+
+      locationPlaceholder:
+        "Example: Kigali, Kicukiro",
+
+      budget:
+        "Budget",
+
+      budgetPlaceholder:
+        "Example: 300,000 RWF",
+
+      details:
+        "Property Details",
+
+      detailsPlaceholder:
+        "Describe the property you need...",
+
+      submit:
+        "Submit Property Request",
+
+      success:
+        "✅ Your property request has been submitted successfully!",
+
+      requests:
+        "Property Requests",
+
+      requestsSubtitle:
+        "Requests submitted by customers will appear here.",
+
+      empty:
+        "No property requests yet.",
+
+      nameInfo:
+        "Name:",
+
+      phoneInfo:
+        "Phone:",
+
+      locationInfo:
+        "Location:",
+
+      budgetInfo:
+        "Budget:",
+
+      detailsInfo:
+        "Details:",
+
+      dateInfo:
+        "Date:",
+
+      footer:
+        "Find Houses, Plots & Properties"
+
+    },
+
+
+    Français: {
+
+      home:
+        "Accueil",
+
+      properties:
+        "Propriétés",
+
+      request:
+        "Demander une propriété",
+
+      title:
+        "Demander une propriété",
+
+      subtitle:
+        "Dites-nous quel type de propriété vous recherchez.",
+
+      name:
+        "Votre nom",
+
+      namePlaceholder:
+        "Entrez votre nom",
+
+      phone:
+        "Numéro de téléphone",
+
+      phonePlaceholder:
+        "07XXXXXXXX",
+
+      propertyType:
+        "Type de propriété",
+
+      choose:
+        "Choisissez le type de propriété",
+
+      house:
+        "Maison à louer",
+
+      plot:
+        "Terrain à vendre",
+
+      apartment:
+        "Appartement",
+
+      commercial:
+        "Propriété commerciale",
+
+      other:
+        "Autre",
+
+      location:
+        "Emplacement souhaité",
+
+      locationPlaceholder:
+        "Exemple : Kigali, Kicukiro",
+
+      budget:
+        "Budget",
+
+      budgetPlaceholder:
+        "Exemple : 300 000 RWF",
+
+      details:
+        "Détails de la propriété",
+
+      detailsPlaceholder:
+        "Décrivez la propriété que vous recherchez...",
+
+      submit:
+        "Envoyer la demande",
+
+      success:
+        "✅ Votre demande de propriété a été envoyée avec succès !",
+
+      requests:
+        "Demandes de propriétés",
+
+      requestsSubtitle:
+        "Les demandes envoyées par les clients apparaîtront ici.",
+
+      empty:
+        "Aucune demande de propriété pour le moment.",
+
+      nameInfo:
+        "Nom :",
+
+      phoneInfo:
+        "Téléphone :",
+
+      locationInfo:
+        "Emplacement :",
+
+      budgetInfo:
+        "Budget :",
+
+      detailsInfo:
+        "Détails :",
+
+      dateInfo:
+        "Date :",
+
+      footer:
+        "Trouvez des maisons, terrains et propriétés"
+
+    },
+
+
+    Kiswahili: {
+
+      home:
+        "Nyumbani",
+
+      properties:
+        "Mali",
+
+      request:
+        "Omba Mali",
+
+      title:
+        "Omba Mali",
+
+      subtitle:
+        "Tuambie aina ya mali unayotafuta.",
+
+      name:
+        "Jina lako",
+
+      namePlaceholder:
+        "Ingiza jina lako",
+
+      phone:
+        "Nambari ya Simu",
+
+      phonePlaceholder:
+        "07XXXXXXXX",
+
+      propertyType:
+        "Aina ya Mali",
+
+      choose:
+        "Chagua aina ya mali",
+
+      house:
+        "Nyumba ya Kupangisha",
+
+      plot:
+        "Kiwanja cha Kuuza",
+
+      apartment:
+        "Ghorofa",
+
+      commercial:
+        "Mali ya Biashara",
+
+      other:
+        "Nyingine",
+
+      location:
+        "Eneo Unalopendelea",
+
+      locationPlaceholder:
+        "Mfano: Kigali, Kicukiro",
+
+      budget:
+        "Bajeti",
+
+      budgetPlaceholder:
+        "Mfano: 300,000 RWF",
+
+      details:
+        "Maelezo ya Mali",
+
+      detailsPlaceholder:
+        "Eleza mali unayohitaji...",
+
+      submit:
+        "Tuma Ombi la Mali",
+
+      success:
+        "✅ Ombi lako la mali limetumwa kwa mafanikio!",
+
+      requests:
+        "Maombi ya Mali",
+
+      requestsSubtitle:
+        "Maombi yaliyotumwa na wateja yataonekana hapa.",
+
+      empty:
+        "Hakuna maombi ya mali bado.",
+
+      nameInfo:
+        "Jina:",
+
+      phoneInfo:
+        "Simu:",
+
+      locationInfo:
+        "Eneo:",
+
+      budgetInfo:
+        "Bajeti:",
+
+      detailsInfo:
+        "Maelezo:",
+
+      dateInfo:
+        "Tarehe:",
+
+      footer:
+        "Pata Nyumba, Viwanja na Mali"
+
+    },
+
+
+    "中文": {
+
+      home:
+        "首页",
+
+      properties:
+        "房产",
+
+      request:
+        "申请房产",
+
+      title:
+        "申请房产",
+
+      subtitle:
+        "告诉我们您正在寻找什么类型的房产。",
+
+      name:
+        "您的姓名",
+
+      namePlaceholder:
+        "输入您的姓名",
+
+      phone:
+        "电话号码",
+
+      phonePlaceholder:
+        "07XXXXXXXX",
+
+      propertyType:
+        "房产类型",
+
+      choose:
+        "选择房产类型",
+
+      house:
+        "出租房屋",
+
+      plot:
+        "出售土地",
+
+      apartment:
+        "公寓",
+
+      commercial:
+        "商业房产",
+
+      other:
+        "其他",
+
+      location:
+        "首选位置",
+
+      locationPlaceholder:
+        "例如：Kigali, Kicukiro",
+
+      budget:
+        "预算",
+
+      budgetPlaceholder:
+        "例如：300,000 RWF",
+
+      details:
+        "房产详情",
+
+      detailsPlaceholder:
+        "描述您需要的房产...",
+
+      submit:
+        "提交房产申请",
+
+      success:
+        "✅ 您的房产申请已成功提交！",
+
+      requests:
+        "房产申请",
+
+      requestsSubtitle:
+        "客户提交的房产申请将显示在这里。",
+
+      empty:
+        "目前没有房产申请。",
+
+      nameInfo:
+        "姓名：",
+
+      phoneInfo:
+        "电话：",
+
+      locationInfo:
+        "位置：",
+
+      budgetInfo:
+        "预算：",
+
+      detailsInfo:
+        "详情：",
+
+      dateInfo:
+        "日期：",
+
+      footer:
+        "寻找房屋、土地和房产"
+
+    }
+
+  };
+
+
+  const t =
+    translations[language] ||
+    translations.English;
+
+
+  /* ================= APPLY LANGUAGE ================= */
+
+  document.getElementById("homeLink").textContent =
+    t.home;
+
+  document.getElementById("propertiesLink").textContent =
+    t.properties;
+
+  document.getElementById("requestLink").textContent =
+    t.request;
+
+  document.getElementById("requestTitle").textContent =
+    t.title;
+
+  document.getElementById("requestSubtitle").textContent =
+    t.subtitle;
+
+  document.getElementById("nameLabel").textContent =
+    t.name;
+
+  document.getElementById("name").placeholder =
+    t.namePlaceholder;
+
+  document.getElementById("phoneLabel").textContent =
+    t.phone;
+
+  document.getElementById("phone").placeholder =
+    t.phonePlaceholder;
+
+  document.getElementById("propertyTypeLabel").textContent =
+    t.propertyType;
+
+  document.getElementById("chooseProperty").textContent =
+    t.choose;
+
+  document.getElementById("houseRent").textContent =
+    t.house;
+
+  document.getElementById("plotSale").textContent =
+    t.plot;
+
+  document.getElementById("apartment").textContent =
+    t.apartment;
+
+  document.getElementById("commercial").textContent =
+    t.commercial;
+
+  document.getElementById("other").textContent =
+    t.other;
+
+  document.getElementById("locationLabel").textContent =
+    t.location;
+
+  document.getElementById("location").placeholder =
+    t.locationPlaceholder;
+
+  document.getElementById("budgetLabel").textContent =
+    t.budget;
+
+  document.getElementById("budget").placeholder =
+    t.budgetPlaceholder;
+
+  document.getElementById("messageLabel").textContent =
+    t.details;
+
+  document.getElementById("message").placeholder =
+    t.detailsPlaceholder;
+
+  document.getElementById("submitButton").textContent =
+    t.submit;
+
+  document.getElementById("successMessage").textContent =
+    t.success;
+
+  document.getElementById("requestsTitle").textContent =
+    t.requests;
+
+  document.getElementById("requestsSubtitle").textContent =
+    t.requestsSubtitle;
+
+  document.getElementById("emptyMessage").textContent =
+    t.empty;
+
+  document.getElementById("footerText").textContent =
+    t.footer;
+
+
+  /* ================= REQUEST SYSTEM ================= */
 
   const form =
     document.getElementById("requestForm");
@@ -440,7 +1055,7 @@
     if (requests.length === 0) {
 
       requestsContainer.innerHTML =
-        '<div class="empty">No property requests yet.</div>';
+        `<div class="empty">${t.empty}</div>`;
 
       return;
     }
@@ -449,7 +1064,7 @@
     requestsContainer.innerHTML = "";
 
 
-    requests.forEach((request, index) => {
+    requests.forEach((request) => {
 
       const item =
         document.createElement("div");
@@ -465,32 +1080,32 @@
         </h3>
 
         <p>
-          <strong>Name:</strong>
+          <strong>${t.nameInfo}</strong>
           ${request.name}
         </p>
 
         <p>
-          <strong>Phone:</strong>
+          <strong>${t.phoneInfo}</strong>
           ${request.phone}
         </p>
 
         <p>
-          <strong>Location:</strong>
+          <strong>${t.locationInfo}</strong>
           ${request.location}
         </p>
 
         <p>
-          <strong>Budget:</strong>
+          <strong>${t.budgetInfo}</strong>
           ${request.budget}
         </p>
 
         <p>
-          <strong>Details:</strong>
+          <strong>${t.detailsInfo}</strong>
           ${request.message}
         </p>
 
         <p>
-          <strong>Date:</strong>
+          <strong>${t.dateInfo}</strong>
           ${request.date}
         </p>
 
@@ -514,22 +1129,22 @@
       const request = {
 
         name:
-          document.getElementById("name").value,
+          document.getElementById("name").value.trim(),
 
         phone:
-          document.getElementById("phone").value,
+          document.getElementById("phone").value.trim(),
 
         propertyType:
           document.getElementById("propertyType").value,
 
         location:
-          document.getElementById("location").value,
+          document.getElementById("location").value.trim(),
 
         budget:
-          document.getElementById("budget").value,
+          document.getElementById("budget").value.trim(),
 
         message:
-          document.getElementById("message").value,
+          document.getElementById("message").value.trim(),
 
         date:
           new Date().toLocaleString()
