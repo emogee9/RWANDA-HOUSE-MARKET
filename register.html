@@ -5,7 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Request Property - Rwanda House Market</title>
+  <title>Register - Rwanda House Market</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     * {
@@ -17,35 +19,32 @@
       font-family: Arial, sans-serif;
       background: #ffffff;
       color: #222222;
+      min-height: 100vh;
     }
-
-    /* ================= HEADER ================= */
 
     header {
       background: #f4b400;
-      color: #222222;
       padding: 18px 25px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
     }
 
     .logo {
       font-size: 22px;
       font-weight: bold;
-      color: #222222;
     }
 
     nav {
       display: flex;
-      flex-wrap: wrap;
       gap: 8px;
+      flex-wrap: wrap;
     }
 
     nav a {
-      color: #222222;
+      color: #222;
       text-decoration: none;
       padding: 9px 12px;
       border-radius: 7px;
@@ -54,79 +53,60 @@
     }
 
     nav a:hover {
-      background: #ffffff;
+      background: #fff;
     }
 
-    /* ================= MAIN ================= */
-
     .container {
-      max-width: 850px;
-      margin: 35px auto;
+      max-width: 500px;
+      margin: 50px auto;
       padding: 0 20px;
     }
 
     .card {
-      background: #ffffff;
+      background: #fff;
       padding: 30px;
-      border-radius: 16px;
       border: 2px solid #f4b400;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
     }
 
     h1 {
-      margin-top: 0;
-      color: #222222;
       text-align: center;
+      margin-top: 0;
     }
 
     .subtitle {
       text-align: center;
-      color: #555555;
+      color: #666;
       margin-bottom: 25px;
     }
 
-    /* ================= FORM ================= */
-
     label {
       display: block;
-      font-weight: bold;
       margin-top: 15px;
       margin-bottom: 7px;
-      color: #222222;
+      font-weight: bold;
     }
 
-    input,
-    textarea,
-    select {
+    input {
       width: 100%;
       padding: 13px;
-      border: 2px solid #eeeeee;
+      border: 2px solid #eee;
       border-radius: 8px;
       font-size: 15px;
-      background: #ffffff;
-      color: #222222;
       outline: none;
     }
 
-    input:focus,
-    textarea:focus,
-    select:focus {
+    input:focus {
       border-color: #f4b400;
     }
-
-    textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    /* ================= BUTTON ================= */
 
     button {
       width: 100%;
       margin-top: 22px;
       padding: 14px;
       background: #f4b400;
-      color: #222222;
+      color: #222;
       border: none;
       border-radius: 8px;
       font-size: 17px;
@@ -138,107 +118,65 @@
       background: #ffd45a;
     }
 
-    /* ================= SUCCESS ================= */
-
-    .success {
+    #message {
       display: none;
-      margin-top: 20px;
-      padding: 15px;
-      background: #fff8d6;
-      color: #7a5b00;
-      border: 1px solid #f4b400;
+      margin-top: 18px;
+      padding: 13px;
       border-radius: 8px;
       text-align: center;
       font-weight: bold;
     }
 
-    /* ================= REQUEST LIST ================= */
-
-    .request-list {
-      margin-top: 35px;
+    .success {
+      display: block !important;
+      background: #e8f5e9;
+      color: #176b2c;
     }
 
-    .request-item {
-      background: #ffffff;
-      border-left: 6px solid #f4b400;
-      border-top: 1px solid #eeeeee;
-      border-right: 1px solid #eeeeee;
-      border-bottom: 1px solid #eeeeee;
-      padding: 18px;
-      margin-top: 15px;
-      border-radius: 8px;
+    .error {
+      display: block !important;
+      background: #ffebee;
+      color: #b00020;
     }
 
-    .request-item h3 {
-      margin-top: 0;
-      color: #222222;
-    }
-
-    .request-item p {
-      margin: 7px 0;
-      color: #555555;
-    }
-
-    .empty {
+    .login-link {
       text-align: center;
-      color: #777777;
-      padding: 20px;
+      margin-top: 20px;
     }
 
-    /* ================= FOOTER ================= */
+    .login-link a {
+      color: #c58b00;
+      font-weight: bold;
+      text-decoration: none;
+    }
 
     footer {
       margin-top: 50px;
       background: #f4b400;
-      color: #222222;
       text-align: center;
       padding: 20px;
-      font-size: 14px;
       font-weight: bold;
     }
 
-    /* ================= MOBILE ================= */
-
     @media (max-width: 700px) {
-
       header {
         flex-direction: column;
         gap: 15px;
         text-align: center;
       }
 
-      nav {
-        justify-content: center;
-      }
-
-      nav a {
-        background: #ffffff;
-      }
-
       .container {
-        margin: 25px auto;
-        padding: 0 15px;
+        margin: 30px auto;
       }
 
       .card {
         padding: 25px 18px;
       }
-
-      h1 {
-        font-size: 25px;
-      }
-
-      .logo {
-        font-size: 19px;
-      }
-
     }
   </style>
 </head>
 
 <body>
-
-  <!-- ================= HEADER ================= -->
 
   <header>
 
@@ -247,52 +185,58 @@
     </div>
 
     <nav>
-
-      <a href="index.html">
-        Home
-      </a>
-
-      <a href="customer-home.html">
-        Properties
-      </a>
-
-      <a href="request-property.html">
-        Request Property
-      </a>
-
+      <a href="index.html">Home</a>
+      <a href="customer-home.html">Properties</a>
+      <a href="login.html">Login</a>
     </nav>
 
   </header>
-
-
-  <!-- ================= MAIN ================= -->
 
   <div class="container">
 
     <div class="card">
 
-      <h1>
-        Request a Property
-      </h1>
+      <h1>Create Account</h1>
 
       <p class="subtitle">
-        Tell us what kind of property you are looking for.
+        Create your Rwanda House Market account
       </p>
 
+      <form id="registerForm">
 
-      <form id="requestForm">
-
-        <label for="name">
-          Your Name
+        <label for="fullname">
+          Full Name
         </label>
 
         <input
           type="text"
-          id="name"
-          placeholder="Enter your name"
+          id="fullname"
+          placeholder="Enter your full name"
           required
         >
 
+        <label for="email">
+          Email Address
+        </label>
+
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          required
+        >
+
+        <label for="password">
+          Password
+        </label>
+
+        <input
+          type="password"
+          id="password"
+          placeholder="Create a password"
+          minlength="6"
+          required
+        >
 
         <label for="phone">
           Phone Number
@@ -305,306 +249,113 @@
           required
         >
 
-
-        <label for="propertyType">
-          Property Type
-        </label>
-
-        <select
-          id="propertyType"
-          required
-        >
-
-          <option value="">
-            Choose property type
-          </option>
-
-          <option value="House for Rent">
-            House for Rent
-          </option>
-
-          <option value="Plot for Sale">
-            Plot for Sale
-          </option>
-
-          <option value="Apartment">
-            Apartment
-          </option>
-
-          <option value="Commercial Property">
-            Commercial Property
-          </option>
-
-          <option value="Other">
-            Other
-          </option>
-
-        </select>
-
-
-        <label for="location">
-          Preferred Location
-        </label>
-
-        <input
-          type="text"
-          id="location"
-          placeholder="Example: Kigali, Kicukiro"
-          required
-        >
-
-
-        <label for="budget">
-          Budget
-        </label>
-
-        <input
-          type="text"
-          id="budget"
-          placeholder="Example: 300,000 RWF"
-          required
-        >
-
-
-        <label for="message">
-          Property Details
-        </label>
-
-        <textarea
-          id="message"
-          placeholder="Describe the property you need..."
-          required
-        ></textarea>
-
-
-        <button type="submit">
-          Submit Property Request
+        <button type="submit" id="registerButton">
+          Create Account
         </button>
 
       </form>
 
+      <div id="message"></div>
 
-      <div
-        class="success"
-        id="successMessage"
-      >
-        ✅ Your property request has been submitted successfully!
-      </div>
-
-    </div>
-
-
-    <!-- ================= REQUESTS ================= -->
-
-    <div class="card request-list">
-
-      <h1>
-        Property Requests
-      </h1>
-
-      <p class="subtitle">
-        Requests submitted by customers will appear here.
-      </p>
-
-      <div id="requestsContainer">
-
-        <div class="empty">
-          No property requests yet.
-        </div>
-
+      <div class="login-link">
+        Already have an account?
+        <a href="login.html">Login here</a>
       </div>
 
     </div>
 
   </div>
 
-
-  <!-- ================= FOOTER ================= -->
-
   <footer>
-
     © 2026 Rwanda House Market 🇷🇼 — Find Houses, Plots & Properties
-
   </footer>
-
-
-  <!-- ================= JAVASCRIPT ================= -->
 
   <script>
 
+    const SUPABASE_URL = "YOUR_SUPABASE_URL";
+
+    const SUPABASE_KEY =
+      "YOUR_SUPABASE_PUBLISHABLE_KEY";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
     const form =
-      document.getElementById("requestForm");
+      document.getElementById("registerForm");
 
-    const requestsContainer =
-      document.getElementById("requestsContainer");
+    const message =
+      document.getElementById("message");
 
-    const successMessage =
-      document.getElementById("successMessage");
+    const registerButton =
+      document.getElementById("registerButton");
 
+    form.addEventListener("submit", async function(event) {
 
-    function displayRequests() {
+      event.preventDefault();
 
-      const requests =
-        JSON.parse(
-          localStorage.getItem("propertyRequests")
-        ) || [];
+      message.className = "";
+      message.style.display = "none";
 
+      const fullname =
+        document.getElementById("fullname").value.trim();
 
-      if (requests.length === 0) {
+      const email =
+        document.getElementById("email").value.trim();
 
-        requestsContainer.innerHTML =
-          '<div class="empty">No property requests yet.</div>';
+      const password =
+        document.getElementById("password").value;
 
-        return;
+      const phone =
+        document.getElementById("phone").value.trim();
 
-      }
+      registerButton.disabled = true;
+      registerButton.textContent = "Creating Account...";
 
+      const {
+        data,
+        error
+      } = await supabaseClient.auth.signUp({
 
-      requestsContainer.innerHTML = "";
+        email: email,
 
+        password: password,
 
-      requests.forEach((request) => {
-
-        const item =
-          document.createElement("div");
-
-        item.className =
-          "request-item";
-
-
-        item.innerHTML = `
-
-          <h3>
-            ${request.propertyType}
-          </h3>
-
-          <p>
-            <strong>Name:</strong>
-            ${request.name}
-          </p>
-
-          <p>
-            <strong>Phone:</strong>
-            ${request.phone}
-          </p>
-
-          <p>
-            <strong>Location:</strong>
-            ${request.location}
-          </p>
-
-          <p>
-            <strong>Budget:</strong>
-            ${request.budget}
-          </p>
-
-          <p>
-            <strong>Details:</strong>
-            ${request.message}
-          </p>
-
-          <p>
-            <strong>Date:</strong>
-            ${request.date}
-          </p>
-
-        `;
-
-
-        requestsContainer.appendChild(item);
+        options: {
+          data: {
+            fullname: fullname,
+            phone: phone
+          }
+        }
 
       });
 
-    }
+      if (error) {
 
+        message.textContent =
+          "❌ " + error.message;
 
-    form.addEventListener(
-      "submit",
-      function(event) {
+        message.className = "error";
 
-        event.preventDefault();
+        registerButton.disabled = false;
+        registerButton.textContent = "Create Account";
 
-
-        const request = {
-
-          name:
-            document
-              .getElementById("name")
-              .value,
-
-          phone:
-            document
-              .getElementById("phone")
-              .value,
-
-          propertyType:
-            document
-              .getElementById("propertyType")
-              .value,
-
-          location:
-            document
-              .getElementById("location")
-              .value,
-
-          budget:
-            document
-              .getElementById("budget")
-              .value,
-
-          message:
-            document
-              .getElementById("message")
-              .value,
-
-          date:
-            new Date().toLocaleString()
-
-        };
-
-
-        const requests =
-          JSON.parse(
-            localStorage.getItem(
-              "propertyRequests"
-            )
-          ) || [];
-
-
-        requests.push(request);
-
-
-        localStorage.setItem(
-          "propertyRequests",
-          JSON.stringify(requests)
-        );
-
-
-        form.reset();
-
-
-        successMessage.style.display =
-          "block";
-
-
-        setTimeout(
-          function() {
-
-            successMessage.style.display =
-              "none";
-
-          },
-          4000
-        );
-
-
-        displayRequests();
-
+        return;
       }
-    );
 
+      message.textContent =
+        "✅ Account created successfully!";
 
-    displayRequests();
+      message.className = "success";
+
+      form.reset();
+
+      registerButton.disabled = false;
+      registerButton.textContent = "Create Account";
+
+    });
 
   </script>
 
