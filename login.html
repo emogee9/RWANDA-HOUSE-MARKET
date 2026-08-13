@@ -10,7 +10,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-
     * {
       box-sizing: border-box;
     }
@@ -193,7 +192,6 @@
     }
 
     @media (max-width: 700px) {
-
       header {
         flex-direction: column;
         gap: 15px;
@@ -207,11 +205,8 @@
       .card {
         padding: 25px 18px;
       }
-
     }
-
   </style>
-
 </head>
 
 <body>
@@ -223,26 +218,15 @@
   </div>
 
   <nav>
-
-    <a href="index.html">
-      Home
-    </a>
-
-    <a href="customer-home.html">
-      Properties
-    </a>
-
-    <a href="register.html">
-      Register
-    </a>
-
+    <a href="index.html">Home</a>
+    <a href="customer-home.html">Properties</a>
+    <a href="register.html">Register</a>
   </nav>
 
 </header>
 
 
 <div class="container">
-
 
   <!-- LOGIN -->
 
@@ -255,7 +239,6 @@
     <p class="subtitle">
       Login to continue to Rwanda House Market.
     </p>
-
 
     <form id="loginForm">
 
@@ -270,7 +253,6 @@
         required
       >
 
-
       <label for="password">
         Password
       </label>
@@ -282,22 +264,18 @@
         required
       >
 
-
       <button
         type="submit"
-        id="loginButton"
-      >
+        id="loginButton">
         Login
       </button>
 
     </form>
 
-
     <div
       id="loginMessage"
       class="message">
     </div>
-
 
     <div class="register-link">
 
@@ -326,7 +304,6 @@
       Request a deposit to your account.
     </p>
 
-
     <div class="balance">
 
       Balance:
@@ -339,7 +316,6 @@
 
     </div>
 
-
     <div class="deposit-box">
 
       <label for="depositAmount">
@@ -351,9 +327,7 @@
         id="depositAmount"
         placeholder="Example: 5000"
         min="1"
-        required
       >
-
 
       <label for="paymentMethod">
         Payment Method
@@ -365,8 +339,12 @@
           Choose payment method
         </option>
 
-        <option value="Mobile Money">
-          Mobile Money
+        <option value="MTN Mobile Money">
+          MTN Mobile Money
+        </option>
+
+        <option value="Airtel Money">
+          Airtel Money
         </option>
 
         <option value="Bank">
@@ -375,14 +353,11 @@
 
       </select>
 
-
       <button
         type="button"
-        id="depositButton"
-      >
+        id="depositButton">
         Request Deposit
       </button>
-
 
       <div
         id="depositMessage"
@@ -409,9 +384,11 @@
      SUPABASE
   ================================= */
 
-  const SUPABASE_URL ="https://hsmnybmcddtsyooltozw.supabase.co/rest/v1/;
+  const SUPABASE_URL =
+    "https://hsmnybmcddtsyooltozw.supabase.co";
 
-  const SUPABASE_KEY ="sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+  const SUPABASE_KEY =
+    "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
 
 
   const supabaseClient =
@@ -451,11 +428,7 @@
      MESSAGE
   ================================= */
 
-  function showMessage(
-    element,
-    text,
-    type
-  ) {
+  function showMessage(element, text, type) {
 
     element.textContent = text;
 
@@ -474,12 +447,13 @@
     const {
       data: {
         user
-      }
+      },
+      error: userError
     } =
       await supabaseClient.auth.getUser();
 
 
-    if (!user) {
+    if (userError || !user) {
       return;
     }
 
@@ -570,8 +544,7 @@
         );
 
 
-        loginButton.disabled =
-          false;
+        loginButton.disabled = false;
 
         loginButton.textContent =
           "Login";
@@ -595,8 +568,7 @@
       await loadProfile();
 
 
-      loginButton.disabled =
-        false;
+      loginButton.disabled = false;
 
       loginButton.textContent =
         "Login";
@@ -672,8 +644,7 @@
       }
 
 
-      depositButton.disabled =
-        true;
+      depositButton.disabled = true;
 
       depositButton.textContent =
         "Sending...";
@@ -718,7 +689,7 @@
 
       showMessage(
         depositMessage,
-        "✅ Deposit request sent successfully. It is waiting for confirmation.",
+        "✅ Deposit request sent successfully. Waiting for confirmation.",
         "success"
       );
 
@@ -776,5 +747,4 @@
 </script>
 
 </body>
-
 </html>
