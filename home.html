@@ -13,161 +13,2392 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
       font-family: Arial, sans-serif;
-
-      background: #f4c542;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      padding: 25px;
+      background: #f8f5f2;
+      color: #3b2418;
     }
 
-    .container {
-      width: 100%;
-      max-width: 650px;
+    /* ================= NAVBAR ================= */
+
+    .navbar {
+      background: #d4a017;
+      color: white;
+      min-height: 70px;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 7px;
+      flex: 1;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 11px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      background: #b8860b;
+    }
+
+    .auth-links {
+      display: flex;
+      gap: 7px;
+      white-space: nowrap;
+    }
+
+    .auth-links a {
+      text-decoration: none;
+      color: #d4a017;
+      background: white;
+      padding: 9px 13px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .auth-links a:hover {
+      background: #fff3c4;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      background: #e0ad18;
+      color: white;
+      padding: 55px 20px;
       text-align: center;
     }
 
-    .welcome {
-      color: white;
+    header h1 {
+      margin: 0;
       font-size: 38px;
+    }
+
+    header p {
+      font-size: 19px;
+      margin: 12px 0 0;
+    }
+
+    /* ================= MAIN ================= */
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 35px 20px 60px;
+    }
+
+    .welcome {
+      background: white;
+      padding: 30px;
+      text-align: center;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 3px 12px rgba(70,40,20,0.12);
+    }
+
+    .welcome h2 {
+      margin-top: 0;
+      color: #d4a017;
+      font-size: 29px;
+    }
+
+    .welcome p {
+      color: #6d5a4e;
+      font-size: 17px;
+    }
+
+    /* ================= PROPERTY SECTION ================= */
+
+    .property-section {
+      margin-top: 30px;
+    }
+
+    .property-section-title {
+      text-align: center;
+      color: #d4a017;
+      font-size: 30px;
+      margin-bottom: 25px;
+    }
+
+    .property-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .property-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(70,40,20,0.15);
+      transition: 0.2s;
+    }
+
+    .property-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 18px rgba(70,40,20,0.20);
+    }
+
+    .main-photo-wrapper {
+      width: 100%;
+      height: 240px;
+      background: #eee;
+      overflow: hidden;
+    }
+
+    .main-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .property-content {
+      padding: 18px;
+    }
+
+    .property-title {
+      color: #d4a017;
+      font-size: 21px;
+      font-weight: bold;
+      margin: 0 0 10px;
+    }
+
+    .property-price {
+      color: #2f7d32;
+      font-size: 21px;
       font-weight: bold;
       margin-bottom: 12px;
-
-      text-shadow: 0 3px 8px rgba(0,0,0,0.25);
     }
 
-    .subtitle {
-      color: white;
-      font-size: 21px;
-      margin-bottom: 30px;
-
-      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    .location {
+      color: #6d625c;
+      line-height: 1.6;
+      font-size: 14px;
+      margin-bottom: 12px;
     }
 
-    .languages {
+    .features {
       display: flex;
-      flex-direction: column;
-      gap: 15px;
-      width: 100%;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 15px;
     }
 
-    .language-button {
-      width: 100%;
-      min-height: 75px;
-
-      border: 3px solid white;
-      border-radius: 14px;
-
-      background: white;
-      color: #d49b00;
-
-      font-size: 23px;
+    .feature {
+      background: #fff6d8;
+      color: #7a5a00;
+      padding: 7px 9px;
+      border-radius: 7px;
+      font-size: 13px;
       font-weight: bold;
+    }
 
+    .details-button {
+      width: 100%;
+      border: none;
+      background: #e0ad18;
+      color: white;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: bold;
       cursor: pointer;
-
-      box-shadow: 0 5px 12px rgba(0,0,0,0.20);
-
-      transition: 0.2s ease;
     }
 
-    .language-button:hover {
-      background: #fff8d6;
-      border-color: #ffffff;
-      transform: translateY(-2px);
-
-      box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+    .details-button:hover {
+      background: #b8860b;
     }
 
-    .language-button:active {
-      transform: scale(0.98);
-    }
+    /* ================= EMPTY / LOADING ================= */
 
-    .kinyarwanda,
-    .english,
-    .french,
-    .kiswahili,
-    .chinese {
+    .message {
       background: white;
-      color: #d49b00;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      color: #6d625c;
+      box-shadow: 0 3px 12px rgba(70,40,20,0.10);
+      grid-column: 1 / -1;
+    }
+
+    /* ================= MODAL ================= */
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.70);
+      z-index: 3000;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .modal.active {
+      display: block;
+    }
+
+    .modal-box {
+      background: white;
+      max-width: 850px;
+      margin: 30px auto;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.65);
+      color: white;
+      font-size: 25px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      height: 430px;
+      background: #eee;
+    }
+
+    .slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slider-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.60);
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .slider-button:hover {
+      background: rgba(0,0,0,0.80);
+    }
+
+    .previous-button {
+      left: 15px;
+    }
+
+    .next-button {
+      right: 15px;
+    }
+
+    .modal-content {
+      padding: 25px;
+    }
+
+    .modal-title {
+      color: #d4a017;
+      font-size: 28px;
+      margin-top: 0;
+    }
+
+    .modal-price {
+      color: #2f7d32;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .detail-item {
+      background: #fff8df;
+      padding: 13px;
+      border-radius: 8px;
+    }
+
+    .detail-label {
+      display: block;
+      color: #806f60;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .detail-value {
+      font-weight: bold;
+      color: #3b2418;
+    }
+
+    .description {
+      color: #5f5148;
+      line-height: 1.7;
+      white-space: pre-line;
+    }
+
+    /* ================= EXTRA ACTIONS ================= */
+
+    .actions {
+      margin-top: 35px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .action-card {
+      background: white;
+      padding: 28px;
+      border-radius: 15px;
+      box-shadow: 0 3px 12px rgba(70,40,20,0.12);
+      text-align: center;
+    }
+
+    .action-card h2 {
+      color: #d4a017;
+      margin-top: 0;
+    }
+
+    .action-card p {
+      color: #6d625c;
+      line-height: 1.6;
+    }
+
+    .action-button {
+      display: inline-block;
+      background: #e0ad18;
+      color: white;
+      text-decoration: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .action-button:hover {
+      background: #b8860b;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      background: #a87800;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 20px;
+    }
+
+    footer p {
+      margin: 7px 0;
+    }
+
+    .footer-links {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      background: #e0ad18;
+      padding: 10px 18px;
+      border-radius: 7px;
+      font-weight: bold;
+    }
+
+    .footer-links a:hover {
+      background: #b8860b;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 900px) {
+
+      .navbar {
+        flex-direction: column;
+        padding: 14px;
+      }
+
+      .nav-links {
+        width: 100%;
+      }
+
+      .auth-links {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .property-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 30px;
+      }
     }
 
     @media (max-width: 600px) {
 
+      .nav-links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+      }
+
+      .nav-links a {
+        text-align: center;
+        font-size: 13px;
+      }
+
+      .auth-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .auth-links a {
+        text-align: center;
+      }
+
+      header {
+        padding: 40px 15px;
+      }
+
+      header h1 {
+        font-size: 26px;
+      }
+
+      header p {
+        font-size: 16px;
+      }
+
+      .container {
+        padding: 25px 15px 45px;
+      }
+
       .welcome {
-        font-size: 28px;
+        padding: 22px 15px;
       }
 
-      .subtitle {
-        font-size: 18px;
+      .welcome h2 {
+        font-size: 24px;
       }
 
-      .language-button {
-        min-height: 68px;
-        font-size: 20px;
+      .property-grid {
+        grid-template-columns: 1fr;
       }
 
+      .slider {
+        height: 300px;
+      }
+
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
 <body>
 
+  <!-- ================= NAVBAR ================= -->
+
+  <nav class="navbar">
+
+    <div class="logo">
+      🏠 Rwanda Property Visata
+    </div>
+
+    <div class="nav-links">
+
+      <a href="./home.html" id="navHome">
+        Home
+      </a>
+
+      <a href="./rent.html" id="navRent">
+        Houses for Rent
+      </a>
+
+      <a href="./houses-sales.html" id="navSale">
+        Houses for Sale
+      </a>
+
+      <a href="./plots.html" id="navPlots">
+        Plots
+      </a>
+
+      <a href="./request-property.html" id="navRequest">
+        Request Property
+      </a>
+
+      <a href="./sell-property.html" id="navSell">
+        Sell Your Property
+      </a>
+
+    </div>
+
+    <div class="auth-links">
+
+      <a href="./login.html" id="navLogin">
+        Login
+      </a>
+
+      <a href="./register.html" id="navRegister">
+        Register
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <!-- ================= HEADER ================= -->
+
+  <header>
+
+    <h1 id="headerTitle">
+      RWANDA PROPERTY VISATA 🇷🇼
+    </h1>
+
+    <p id="subtitle">
+      Find your next property in Rwanda
+    </p>
+
+  </header>
+
+
+  <!-- ================= MAIN ================= -->
+
   <div class="container">
 
     <div class="welcome">
-      WELCOME TO RWANDA PROPERTY VISATA 🇷🇼
+
+      <h2 id="welcome">
+        Welcome to Rwanda Property Visata
+      </h2>
+
+      <p id="choose">
+        Choose what you are looking for
+      </p>
+
     </div>
 
-    <div class="subtitle">
-      Choose your language
-    </div>
 
-    <div class="languages">
+    <!-- ================= PROPERTIES FROM SUPABASE ================= -->
 
-      <button
-        class="language-button kinyarwanda"
-        onclick="goToHome('Kinyarwanda')">
-        🇷🇼 Kinyarwanda
-      </button>
+    <section class="property-section">
 
-      <button
-        class="language-button english"
-        onclick="goToHome('English')">
-        🇬🇧 English
-      </button>
+      <h2 class="property-section-title" id="propertySectionTitle">
+        Available Properties
+      </h2>
 
-      <button
-        class="language-button french"
-        onclick="goToHome('Français')">
-        🇫🇷 Français
-      </button>
+      <div
+        class="property-grid"
+        id="propertyGrid">
 
-      <button
-        class="language-button kiswahili"
-        onclick="goToHome('Kiswahili')">
-        🌍 Kiswahili
-      </button>
+        <div class="message" id="loadingMessage">
+          Loading properties...
+        </div>
 
-      <button
-        class="language-button chinese"
-        onclick="goToHome('中文')">
-        🇨🇳 中文
-      </button>
+      </div>
+
+    </section>
+
+
+    <!-- ================= EXTRA ACTIONS ================= -->
+
+    <div class="actions">
+
+      <div class="action-card">
+
+        <h2 id="requestTitle">
+          🔎 Request Property
+        </h2>
+
+        <p id="requestText">
+          Tell us what type of property you are looking for
+          and we will help you find it.
+        </p>
+
+        <a
+          href="./request-property.html"
+          class="action-button"
+          id="requestButton">
+          Request Property
+        </a>
+
+      </div>
+
+
+      <div class="action-card">
+
+        <h2 id="sellTitle">
+          🏷️ Sell Your Property
+        </h2>
+
+        <p id="sellText">
+          Have a house or property you want us to help
+          you sell? Send us your property information.
+        </p>
+
+        <a
+          href="./sell-property.html"
+          class="action-button"
+          id="sellButton">
+          Sell Your Property
+        </a>
+
+      </div>
 
     </div>
 
   </div>
 
+
+  <!-- ================= PROPERTY DETAILS MODAL ================= -->
+
+  <div
+    class="modal"
+    id="propertyModal">
+
+    <div class="modal-box">
+
+      <button
+        class="close-button"
+        onclick="closePropertyModal()">
+        ×
+      </button>
+
+      <div class="slider">
+
+        <img
+          id="sliderImage"
+          src=""
+          alt="Property photo">
+
+        <button
+          class="slider-button previous-button"
+          onclick="previousPhoto()">
+          ‹
+        </button>
+
+        <button
+          class="slider-button next-button"
+          onclick="nextPhoto()">
+          ›
+        </button>
+
+      </div>
+
+      <div class="modal-content">
+
+        <h2
+          class="modal-title"
+          id="modalTitle">
+          Property
+        </h2>
+
+        <div
+          class="modal-price"
+          id="modalPrice">
+          -
+        </div>
+
+        <div class="detail-grid">
+
+          <div class="detail-item">
+            <span class="detail-label" id="countryLabel">
+              Country
+            </span>
+
+            <span
+              class="detail-value"
+              id="modalCountry">
+              -
+            </span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label" id="provinceLabel">
+              Province
+            </span>
+
+            <span
+              class="detail-value"
+              id="modalProvince">
+              -
+            </span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label" id="districtLabel">
+              District
+            </span>
+
+            <span
+              class="detail-value"
+              id="modalDistrict">
+              -
+            </span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label" id="sectorLabel">
+              Sector
+            </span>
+
+            <span
+              class="detail-value"
+              id="modalSector">
+              -
+            </span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label" id="bedroomsLabel">
+              Bedrooms
+            </span>
+
+            <span
+              class="detail-value"
+              id="modalBedrooms">
+              -
+            </span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label" id="bathroomsLabel">
+              Bathrooms
+            </span>
+
+            <span
+              class="detail-value"
+              id="modalBathrooms">
+              -
+            </span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label" id="parkingLabel">
+              Parking
+            </span>
+
+            <span
+              class="detail-value"
+              id="modalParking">
+              -
+            </span>
+          </div>
+
+        </div>
+
+        <div
+          class="description"
+          id="modalDescription">
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <p>
+      © 2026 Rwanda Property Visata
+    </p>
+
+    <p id="designed">
+      Designed by Irene
+    </p>
+
+    <div class="footer-links">
+
+      <a
+        href="https://wa.me/250799645553"
+        target="_blank"
+        id="chatNow">
+        💬 Chat Now
+      </a>
+
+      <a
+        href="https://www.facebook.com/rwandahousemarket"
+        target="_blank"
+        id="facebook">
+        📘 Facebook
+      </a>
+
+    </div>
+
+  </footer>
+
+
+  <!-- ================= SUPABASE ================= -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
-    function goToHome(language) {
-      localStorage.setItem("selectedLanguage", language);
-      window.location.href = "home.html";
+
+    /*
+      ============================================================
+      SUPABASE SETTINGS
+      ============================================================
+
+      const SUPABASE_URL =
+        "https://hsmnybmcddtsyooltozw.supabase.co/rest/v1/";
+
+      const SUPABASE_ANON_KEY =
+        "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
+      ============================================================
+    */
+
+    const SUPABASE_URL =
+      "https://hsmnybmcddtsyooltozw.supabase.co/rest/v1/";
+
+    const SUPABASE_ANON_KEY =
+      "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+      );
+
+
+    /* ============================================================
+       LANGUAGE
+       ============================================================ */
+
+    const language =
+      localStorage.getItem("selectedLanguage") || "English";
+
+
+    const translations = {
+
+      Kinyarwanda: {
+
+        header:
+          "RWANDA PROPERTY VISATA 🇷🇼",
+
+        subtitle:
+          "Shaka umutungo wawe utaha mu Rwanda",
+
+        welcome:
+          "Murakaza neza kuri Rwanda Property Visata",
+
+        choose:
+          "Hitamo icyo urimo gushaka",
+
+        home:
+          "Ahabanza",
+
+        rent:
+          "Amazu akodeshwa",
+
+        sale:
+          "Amazu agurishwa",
+
+        plots:
+          "Ibibanza",
+
+        request:
+          "Gusaba umutungo",
+
+        sell:
+          "Tugurishe umutungo wawe",
+
+        login:
+          "Injira",
+
+        register:
+          "Iyandikishe",
+
+        propertySection:
+          "Imitungo ihari",
+
+        viewDetails:
+          "Reba ibisobanuro",
+
+        country:
+          "Igihugu",
+
+        province:
+          "Intara",
+
+        district:
+          "Akarere",
+
+        sector:
+          "Umurenge",
+
+        bedrooms:
+          "Ibyumba",
+
+        bathrooms:
+          "Ubwiherero",
+
+        parking:
+          "Aho guhagarika imodoka",
+
+        requestTitle:
+          "🔎 Saba umutungo",
+
+        requestText:
+          "Tubwire ubwoko bw'umutungo ushaka maze tugufashe kuwubona.",
+
+        requestButton:
+          "Saba umutungo",
+
+        sellTitle:
+          "🏷️ Tugurishe umutungo wawe",
+
+        sellText:
+          "Ufite inzu cyangwa umutungo ushaka ko tugufasha kugurisha? Twoherereze amakuru yawo.",
+
+        sellButton:
+          "Tugurishe umutungo",
+
+        designed:
+          "Byakozwe na Irene",
+
+        chat:
+          "💬 Ganira natwe",
+
+        facebook:
+          "📘 Facebook",
+
+        loading:
+          "Turimo kuzana imitungo...",
+
+        noProperties:
+          "Nta mitungo irashyirwaho.",
+
+        error:
+          "Habaye ikibazo mu kuzana imitungo."
+
+      },
+
+
+      English: {
+
+        header:
+          "RWANDA PROPERTY VISATA 🇷🇼",
+
+        subtitle:
+          "Find your next property in Rwanda",
+
+        welcome:
+          "Welcome to Rwanda Property Visata",
+
+        choose:
+          "Choose what you are looking for",
+
+        home:
+          "Home",
+
+        rent:
+          "Houses for Rent",
+
+        sale:
+          "Houses for Sale",
+
+        plots:
+          "Plots",
+
+        request:
+          "Request Property",
+
+        sell:
+          "Sell Your Property",
+
+        login:
+          "Login",
+
+        register:
+          "Register",
+
+        propertySection:
+          "Available Properties",
+
+        viewDetails:
+          "View Details",
+
+        country:
+          "Country",
+
+        province:
+          "Province",
+
+        district:
+          "District",
+
+        sector:
+          "Sector",
+
+        bedrooms:
+          "Bedrooms",
+
+        bathrooms:
+          "Bathrooms",
+
+        parking:
+          "Parking",
+
+        requestTitle:
+          "🔎 Request Property",
+
+        requestText:
+          "Tell us what type of property you are looking for and we will help you find it.",
+
+        requestButton:
+          "Request Property",
+
+        sellTitle:
+          "🏷️ Sell Your Property",
+
+        sellText:
+          "Have a house or property you want us to help you sell? Send us your property information.",
+
+        sellButton:
+          "Sell Your Property",
+
+        designed:
+          "Designed by Irene",
+
+        chat:
+          "💬 Chat Now",
+
+        facebook:
+          "📘 Facebook",
+
+        loading:
+          "Loading properties...",
+
+        noProperties:
+          "No properties have been posted yet.",
+
+        error:
+          "There was a problem loading properties."
+
+      },
+
+
+      Français: {
+
+        header:
+          "RWANDA PROPERTY VISATA 🇷🇼",
+
+        subtitle:
+          "Trouvez votre prochain bien immobilier au Rwanda",
+
+        welcome:
+          "Bienvenue sur Rwanda Property Visata",
+
+        choose:
+          "Choisissez ce que vous recherchez",
+
+        home:
+          "Accueil",
+
+        rent:
+          "Maisons à louer",
+
+        sale:
+          "Maisons à vendre",
+
+        plots:
+          "Terrains",
+
+        request:
+          "Demander un bien",
+
+        sell:
+          "Vendre votre propriété",
+
+        login:
+          "Connexion",
+
+        register:
+          "S'inscrire",
+
+        propertySection:
+          "Biens disponibles",
+
+        viewDetails:
+          "Voir les détails",
+
+        country:
+          "Pays",
+
+        province:
+          "Province",
+
+        district:
+          "District",
+
+        sector:
+          "Secteur",
+
+        bedrooms:
+          "Chambres",
+
+        bathrooms:
+          "Salles de bain",
+
+        parking:
+          "Parking",
+
+        requestTitle:
+          "🔎 Demander un bien",
+
+        requestText:
+          "Dites-nous quel type de propriété vous recherchez et nous vous aiderons à la trouver.",
+
+        requestButton:
+          "Demander un bien",
+
+        sellTitle:
+          "🏷️ Vendre votre propriété",
+
+        sellText:
+          "Vous avez une maison ou une propriété à vendre ? Envoyez-nous ses informations.",
+
+        sellButton:
+          "Vendre votre propriété",
+
+        designed:
+          "Conçu par Irene",
+
+        chat:
+          "💬 Chat maintenant",
+
+        facebook:
+          "📘 Facebook",
+
+        loading:
+          "Chargement des biens...",
+
+        noProperties:
+          "Aucun bien n'a encore été publié.",
+
+        error:
+          "Un problème est survenu lors du chargement des biens."
+
+      },
+
+
+      Kiswahili: {
+
+        header:
+          "RWANDA PROPERTY VISATA 🇷🇼",
+
+        subtitle:
+          "Pata mali yako inayofuata nchini Rwanda",
+
+        welcome:
+          "Karibu Rwanda Property Visata",
+
+        choose:
+          "Chagua unachotafuta",
+
+        home:
+          "Nyumbani",
+
+        rent:
+          "Nyumba za Kupangisha",
+
+        sale:
+          "Nyumba za Kuuza",
+
+        plots:
+          "Viwanja",
+
+        request:
+          "Omba Mali",
+
+        sell:
+          "Uza Mali Yako",
+
+        login:
+          "Ingia",
+
+        register:
+          "Jisajili",
+
+        propertySection:
+          "Mali Zinazopatikana",
+
+        viewDetails:
+          "Angalia Maelezo",
+
+        country:
+          "Nchi",
+
+        province:
+          "Mkoa",
+
+        district:
+          "Wilaya",
+
+        sector:
+          "Sekta",
+
+        bedrooms:
+          "Vyumba vya kulala",
+
+        bathrooms:
+          "Vyumba vya kuoga",
+
+        parking:
+          "Maegesho",
+
+        requestTitle:
+          "🔎 Omba Mali",
+
+        requestText:
+          "Tuambie aina ya mali unayotafuta na tutakusaidia kuipata.",
+
+        requestButton:
+          "Omba Mali",
+
+        sellTitle:
+          "🏷️ Uza Mali Yako",
+
+        sellText:
+          "Una nyumba au mali unayotaka tuuze kwa niaba yako? Tutumie taarifa zake.",
+
+        sellButton:
+          "Uza Mali Yako",
+
+        designed:
+          "Imeundwa na Irene",
+
+        chat:
+          "💬 Zungumza Nasi",
+
+        facebook:
+          "📘 Facebook",
+
+        loading:
+          "Inapakia mali...",
+
+        noProperties:
+          "Hakuna mali zilizowekwa bado.",
+
+        error:
+          "Kuna tatizo katika kupakia mali."
+
+      },
+
+
+      "中文": {
+
+        header:
+          "RWANDA PROPERTY VISATA 🇷🇼",
+
+        subtitle:
+          "在卢旺达寻找您的下一处房产",
+
+        welcome:
+          "欢迎来到 Rwanda Property Visata",
+
+        choose:
+          "请选择您要寻找的房产",
+
+        home:
+          "首页",
+
+        rent:
+          "出租房屋",
+
+        sale:
+          "出售房屋",
+
+        plots:
+          "土地",
+
+        request:
+          "申请房产",
+
+        sell:
+          "出售您的房产",
+
+        login:
+          "登录",
+
+        register:
+          "注册",
+
+        propertySection:
+          "可用房产",
+
+        viewDetails:
+          "查看详情",
+
+        country:
+          "国家",
+
+        province:
+          "省",
+
+        district:
+          "地区",
+
+        sector:
+          "区域",
+
+        bedrooms:
+          "卧室",
+
+        bathrooms:
+          "浴室",
+
+        parking:
+          "停车位",
+
+        requestTitle:
+          "🔎 申请房产",
+
+        requestText:
+          "告诉我们您正在寻找什么类型的房产，我们将帮助您寻找。",
+
+        requestButton:
+          "申请房产",
+
+        sellTitle:
+          "🏷️ 出售您的房产",
+
+        sellText:
+          "您有房屋或房产需要出售吗？请向我们发送您的房产信息。",
+
+        sellButton:
+          "出售您的房产",
+
+        designed:
+          "由 Irene 设计",
+
+        chat:
+          "💬 立即聊天",
+
+        facebook:
+          "📘 Facebook",
+
+        loading:
+          "正在加载房产...",
+
+        noProperties:
+          "目前还没有发布房产。",
+
+        error:
+          "加载房产时出现问题。"
+
+      }
+
+    };
+
+
+    const t =
+      translations[language] ||
+      translations.English;
+
+
+    /* ============================================================
+       APPLY LANGUAGE
+       ============================================================ */
+
+    document.getElementById("navHome").textContent = t.home;
+    document.getElementById("navRent").textContent = t.rent;
+    document.getElementById("navSale").textContent = t.sale;
+    document.getElementById("navPlots").textContent = t.plots;
+    document.getElementById("navRequest").textContent = t.request;
+    document.getElementById("navSell").textContent = t.sell;
+    document.getElementById("navLogin").textContent = t.login;
+    document.getElementById("navRegister").textContent = t.register;
+
+    document.getElementById("headerTitle").textContent =
+      t.header;
+
+    document.getElementById("subtitle").textContent =
+      t.subtitle;
+
+    document.getElementById("welcome").textContent =
+      t.welcome;
+
+    document.getElementById("choose").textContent =
+      t.choose;
+
+    document.getElementById("propertySectionTitle").textContent =
+      t.propertySection;
+
+    document.getElementById("requestTitle").textContent =
+      t.requestTitle;
+
+    document.getElementById("requestText").textContent =
+      t.requestText;
+
+    document.getElementById("requestButton").textContent =
+      t.requestButton;
+
+    document.getElementById("sellTitle").textContent =
+      t.sellTitle;
+
+    document.getElementById("sellText").textContent =
+      t.sellText;
+
+    document.getElementById("sellButton").textContent =
+      t.sellButton;
+
+    document.getElementById("designed").textContent =
+      t.designed;
+
+    document.getElementById("chatNow").textContent =
+      t.chat;
+
+    document.getElementById("facebook").textContent =
+      t.facebook;
+
+    document.getElementById("loadingMessage").textContent =
+      t.loading;
+
+
+    /* ============================================================
+       PROPERTY DATA
+       ============================================================ */
+
+    let currentProperty = null;
+    let currentPhotoIndex = 0;
+
+
+    function formatPrice(price) {
+
+      if (
+        price === null ||
+        price === undefined ||
+        price === ""
+      ) {
+        return "-";
+      }
+
+      const number =
+        Number(price);
+
+      if (
+        Number.isNaN(number)
+      ) {
+        return price;
+      }
+
+      return number.toLocaleString("en-US") + " RWF";
     }
+
+
+    function safeText(value) {
+
+      if (
+        value === null ||
+        value === undefined ||
+        value === ""
+      ) {
+        return "-";
+      }
+
+      return String(value);
+    }
+
+
+    function getPhotos(property) {
+
+      let photos = [];
+
+      if (
+        property.main_photo &&
+        typeof property.main_photo === "string"
+      ) {
+        photos.push(property.main_photo);
+      }
+
+      if (
+        Array.isArray(property.other_photos)
+      ) {
+
+        property.other_photos.forEach(
+          function(photo) {
+
+            if (
+              photo &&
+              typeof photo === "string"
+            ) {
+              photos.push(photo);
+            }
+
+          }
+        );
+
+      } else if (
+        typeof property.other_photos === "string" &&
+        property.other_photos.trim() !== ""
+      ) {
+
+        try {
+
+          const parsed =
+            JSON.parse(
+              property.other_photos
+            );
+
+          if (
+            Array.isArray(parsed)
+          ) {
+
+            parsed.forEach(
+              function(photo) {
+
+                if (
+                  photo &&
+                  typeof photo === "string"
+                ) {
+                  photos.push(photo);
+                }
+
+              }
+            );
+
+          }
+
+        } catch (error) {
+
+          property.other_photos
+            .split(",")
+            .map(
+              function(photo) {
+                return photo.trim();
+              }
+            )
+            .filter(Boolean)
+            .forEach(
+              function(photo) {
+                photos.push(photo);
+              }
+            );
+
+        }
+
+      }
+
+      return photos;
+    }
+
+
+    /* ============================================================
+       LOAD PROPERTIES FROM SUPABASE
+       ============================================================ */
+
+    async function loadProperties() {
+
+      const grid =
+        document.getElementById(
+          "propertyGrid"
+        );
+
+      grid.innerHTML =
+        '<div class="message">' +
+        t.loading +
+        '</div>';
+
+
+      if (
+        SUPABASE_URL ===
+        "SHAKA_SUPABASE_URL_YAWE" ||
+        SUPABASE_ANON_KEY ===
+        "SHAKA_SUPABASE_ANON_KEY_YAWE"
+      ) {
+
+        grid.innerHTML =
+          '<div class="message">' +
+          "Supabase URL na anon key ntibirashyirwamo." +
+          "</div>";
+
+        return;
+      }
+
+
+      try {
+
+        const result =
+          await supabaseClient
+            .from("properties")
+            .select("*")
+            .order(
+              "created_at",
+              {
+                ascending: false
+              }
+            );
+
+
+        if (
+          result.error
+        ) {
+
+          console.error(
+            result.error
+          );
+
+          grid.innerHTML =
+            '<div class="message">' +
+            t.error +
+            "</div>";
+
+          return;
+        }
+
+
+        const properties =
+          result.data || [];
+
+
+        if (
+          properties.length === 0
+        ) {
+
+          grid.innerHTML =
+            '<div class="message">' +
+            t.noProperties +
+            "</div>";
+
+          return;
+        }
+
+
+        grid.innerHTML = "";
+
+
+        properties.forEach(
+          function(property) {
+
+            const card =
+              createPropertyCard(
+                property
+              );
+
+            grid.appendChild(card);
+
+          }
+        );
+
+      } catch (error) {
+
+        console.error(
+          error
+        );
+
+        grid.innerHTML =
+          '<div class="message">' +
+          t.error +
+          "</div>";
+
+      }
+
+    }
+
+
+    /* ============================================================
+       CREATE PROPERTY CARD
+       ============================================================ */
+
+    function createPropertyCard(
+      property
+    ) {
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+      card.className =
+        "property-card";
+
+
+      const photoWrapper =
+        document.createElement(
+          "div"
+        );
+
+      photoWrapper.className =
+        "main-photo-wrapper";
+
+
+      const image =
+        document.createElement(
+          "img"
+        );
+
+      image.className =
+        "main-photo";
+
+      image.alt =
+        safeText(
+          property.title
+        );
+
+
+      const photos =
+        getPhotos(property);
+
+
+      if (
+        photos.length > 0
+      ) {
+
+        image.src =
+          photos[0];
+
+      } else {
+
+        image.src =
+          "https://placehold.co/800x500?text=No+Photo";
+
+      }
+
+
+      photoWrapper.appendChild(
+        image
+      );
+
+
+      const content =
+        document.createElement(
+          "div"
+        );
+
+      content.className =
+        "property-content";
+
+
+      const title =
+        document.createElement(
+          "h3"
+        );
+
+      title.className =
+        "property-title";
+
+      title.textContent =
+        safeText(
+          property.title
+        );
+
+
+      const price =
+        document.createElement(
+          "div"
+        );
+
+      price.className =
+        "property-price";
+
+      price.textContent =
+        formatPrice(
+          property.price
+        );
+
+
+      const location =
+        document.createElement(
+          "div"
+        );
+
+      location.className =
+        "location";
+
+      location.innerHTML =
+        "<strong>" +
+        t.country +
+        ":</strong> " +
+        escapeHTML(
+          safeText(
+            property.country
+          )
+        ) +
+        "<br>" +
+
+        "<strong>" +
+        t.province +
+        ":</strong> " +
+        escapeHTML(
+          safeText(
+            property.province
+          )
+        ) +
+        "<br>" +
+
+        "<strong>" +
+        t.district +
+        ":</strong> " +
+        escapeHTML(
+          safeText(
+            property.district
+          )
+        ) +
+        "<br>" +
+
+        "<strong>" +
+        t.sector +
+        ":</strong> " +
+        escapeHTML(
+          safeText(
+            property.sector
+          )
+        );
+
+
+      const features =
+        document.createElement(
+          "div"
+        );
+
+      features.className =
+        "features";
+
+
+      addFeature(
+        features,
+        "🛏️ " +
+        safeText(
+          property.bedrooms
+        ) +
+        " " +
+        t.bedrooms
+      );
+
+
+      addFeature(
+        features,
+        "🚿 " +
+        safeText(
+          property.bathrooms
+        ) +
+        " " +
+        t.bathrooms
+      );
+
+
+      addFeature(
+        features,
+        "🚗 " +
+        safeText(
+          property.parking
+        ) +
+        " " +
+        t.parking
+      );
+
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+      button.className =
+        "details-button";
+
+      button.textContent =
+        t.viewDetails;
+
+
+      button.addEventListener(
+        "click",
+        function() {
+
+          openPropertyModal(
+            property
+          );
+
+        }
+      );
+
+
+      content.appendChild(
+        title
+      );
+
+      content.appendChild(
+        price
+      );
+
+      content.appendChild(
+        location
+      );
+
+      content.appendChild(
+        features
+      );
+
+      content.appendChild(
+        button
+      );
+
+
+      card.appendChild(
+        photoWrapper
+      );
+
+      card.appendChild(
+        content
+      );
+
+
+      return card;
+    }
+
+
+    function addFeature(
+      parent,
+      text
+    ) {
+
+      const feature =
+        document.createElement(
+          "span"
+        );
+
+      feature.className =
+        "feature";
+
+      feature.textContent =
+        text;
+
+      parent.appendChild(
+        feature
+      );
+
+    }
+
+
+    function escapeHTML(
+      value
+    ) {
+
+      return String(value)
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    /* ============================================================
+       PROPERTY MODAL
+       ============================================================ */
+
+    function openPropertyModal(
+      property
+    ) {
+
+      currentProperty =
+        property;
+
+      currentPhotoIndex =
+        0;
+
+
+      document.getElementById(
+        "modalTitle"
+      ).textContent =
+        safeText(
+          property.title
+        );
+
+
+      document.getElementById(
+        "modalPrice"
+      ).textContent =
+        formatPrice(
+          property.price
+        );
+
+
+      document.getElementById(
+        "modalCountry"
+      ).textContent =
+        safeText(
+          property.country
+        );
+
+
+      document.getElementById(
+        "modalProvince"
+      ).textContent =
+        safeText(
+          property.province
+        );
+
+
+      document.getElementById(
+        "modalDistrict"
+      ).textContent =
+        safeText(
+          property.district
+        );
+
+
+      document.getElementById(
+        "modalSector"
+      ).textContent =
+        safeText(
+          property.sector
+        );
+
+
+      document.getElementById(
+        "modalBedrooms"
+      ).textContent =
+        safeText(
+          property.bedrooms
+        );
+
+
+      document.getElementById(
+        "modalBathrooms"
+      ).textContent =
+        safeText(
+          property.bathrooms
+        );
+
+
+      document.getElementById(
+        "modalParking"
+      ).textContent =
+        safeText(
+          property.parking
+        );
+
+
+      document.getElementById(
+        "modalDescription"
+      ).textContent =
+        safeText(
+          property.description
+        );
+
+
+      updateSlider();
+
+
+      document.getElementById(
+        "propertyModal"
+      ).classList.add(
+        "active"
+      );
+
+    }
+
+
+    function closePropertyModal() {
+
+      document.getElementById(
+        "propertyModal"
+      ).classList.remove(
+        "active"
+      );
+
+      currentProperty =
+        null;
+
+    }
+
+
+    function updateSlider() {
+
+      if (
+        !currentProperty
+      ) {
+        return;
+      }
+
+
+      const photos =
+        getPhotos(
+          currentProperty
+        );
+
+
+      const image =
+        document.getElementById(
+          "sliderImage"
+        );
+
+
+      if (
+        photos.length === 0
+      ) {
+
+        image.src =
+          "https://placehold.co/1000x700?text=No+Photo";
+
+        return;
+
+      }
+
+
+      if (
+        currentPhotoIndex < 0
+      ) {
+
+        currentPhotoIndex =
+          photos.length - 1;
+
+      }
+
+
+      if (
+        currentPhotoIndex >=
+        photos.length
+      ) {
+
+        currentPhotoIndex =
+          0;
+
+      }
+
+
+      image.src =
+        photos[
+          currentPhotoIndex
+        ];
+
+    }
+
+
+    function previousPhoto() {
+
+      if (
+        !currentProperty
+      ) {
+        return;
+      }
+
+
+      const photos =
+        getPhotos(
+          currentProperty
+        );
+
+
+      if (
+        photos.length <= 1
+      ) {
+        return;
+      }
+
+
+      currentPhotoIndex--;
+
+      if (
+        currentPhotoIndex < 0
+      ) {
+
+        currentPhotoIndex =
+          photos.length - 1;
+
+      }
+
+
+      updateSlider();
+
+    }
+
+
+    function nextPhoto() {
+
+      if (
+        !currentProperty
+      ) {
+        return;
+      }
+
+
+      const photos =
+        getPhotos(
+          currentProperty
+        );
+
+
+      if (
+        photos.length <= 1
+      ) {
+        return;
+      }
+
+
+      currentPhotoIndex++;
+
+      if (
+        currentPhotoIndex >=
+        photos.length
+      ) {
+
+        currentPhotoIndex =
+          0;
+
+      }
+
+
+      updateSlider();
+
+    }
+
+
+    /* ============================================================
+       CLOSE MODAL WHEN CLICKING OUTSIDE
+       ============================================================ */
+
+    document
+      .getElementById(
+        "propertyModal"
+      )
+      .addEventListener(
+        "click",
+        function(event) {
+
+          if (
+            event.target ===
+            this
+          ) {
+
+            closePropertyModal();
+
+          }
+
+        }
+      );
+
+
+    /* ============================================================
+       KEYBOARD ARROWS
+       ============================================================ */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        const modal =
+          document.getElementById(
+            "propertyModal"
+          );
+
+
+        if (
+          !modal.classList.contains(
+            "active"
+          )
+        ) {
+          return;
+        }
+
+
+        if (
+          event.key === "ArrowLeft"
+        ) {
+
+          previousPhoto();
+
+        }
+
+
+        if (
+          event.key === "ArrowRight"
+        ) {
+
+          nextPhoto();
+
+        }
+
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          closePropertyModal();
+
+        }
+
+      }
+    );
+
+
+    /* ============================================================
+       START
+       ============================================================ */
+
+    loadProperties();
+
   </script>
 
 </body>
