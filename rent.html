@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title id="browserTitle">House Details - Rwanda Property Visata</title>
+  <title id="pageTitleBrowser">Houses for Rent - Rwanda Property Visata</title>
 
   <style>
     * {
@@ -17,253 +16,191 @@
       margin: 0;
       font-family: Arial, sans-serif;
       background: #fffdf5;
-      color: #4a3900;
+      color: #333333;
     }
 
+    /* ================= HEADER ================= */
+
     header {
-      background: #f2c300;
-      color: white;
+      background: #ffd21f;
+      color: #222222;
       padding: 22px 15px;
       text-align: center;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+      border-bottom: 3px solid #f0b900;
     }
 
     header h1 {
       margin: 0;
       font-size: 28px;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      font-weight: bold;
     }
 
     .back {
       display: inline-block;
-      margin-top: 10px;
-      color: white;
+      margin-top: 12px;
+      background: white;
+      color: #5c4700;
       text-decoration: none;
+      font-size: 15px;
       font-weight: bold;
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: 0.2s;
     }
 
     .back:hover {
-      text-decoration: underline;
+      background: #fff5b8;
     }
+
+    /* ================= CONTAINER ================= */
 
     .container {
-      max-width: 1100px;
+      max-width: 1150px;
       margin: auto;
-      padding: 25px 20px 50px;
+      padding: 35px 20px 70px;
     }
 
-    .photo-slider {
-      position: relative;
+    /* ================= TITLE ================= */
+
+    .title {
       background: white;
-      padding: 12px;
+      text-align: center;
+      padding: 28px 20px;
+      margin-bottom: 30px;
       border-radius: 15px;
-      box-shadow: 0 3px 12px rgba(180,140,0,0.15);
-      border-top: 5px solid #f2c300;
+      border: 1px solid #f2df72;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
     }
 
-    .photo-slider img {
-      width: 100%;
-      height: 520px;
-      object-fit: cover;
-      border-radius: 10px;
-      display: block;
-    }
-
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: #f2c300;
-      color: white;
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      font-size: 28px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .arrow:hover {
-      background: #d9ad00;
-    }
-
-    .left {
-      left: 25px;
-    }
-
-    .right {
-      right: 25px;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 15px;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 10px;
-      cursor: pointer;
-      border: 3px solid white;
-      box-shadow: 0 3px 8px rgba(180,140,0,0.15);
-    }
-
-    .gallery img:hover {
-      border-color: #f2c300;
-    }
-
-    .info {
-      background: white;
-      margin-top: 25px;
-      padding: 28px;
-      border-radius: 15px;
-      box-shadow: 0 3px 12px rgba(180,140,0,0.15);
-      border-top: 5px solid #f2c300;
-    }
-
-    .info h2 {
+    .title h2 {
+      color: #5c4700;
       font-size: 30px;
-      margin-top: 0;
-      color: #b28b00;
+      margin: 0 0 10px;
     }
 
-    .type {
-      display: inline-block;
-      background: #fff7d6;
-      color: #b28b00;
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-weight: bold;
-      border: 1px solid #f2c300;
+    .title p {
+      color: #666666;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    /* ================= PROPERTIES ================= */
+
+    .properties {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 25px;
+    }
+
+    /* ================= CARD ================= */
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 1px solid #f0df79;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.09);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.13);
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      background: #fff8cf;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: #3d3200;
+      font-size: 21px;
     }
 
     .price {
-      font-size: 25px;
+      display: inline-block;
+      background: #fff3a8;
+      color: #5c4700;
+      padding: 8px 12px;
+      border-radius: 7px;
+      font-size: 19px;
       font-weight: bold;
-      margin: 15px 0;
-      color: #b28b00;
+      margin: 10px 0 14px;
     }
 
     .location {
-      font-size: 18px;
-      margin-bottom: 20px;
-      color: #5f5000;
+      color: #666666;
+      margin-bottom: 18px;
+      font-size: 15px;
     }
 
-    .details-list {
-      line-height: 2;
-      font-size: 17px;
-      color: #5f5000;
-    }
-
-    .description {
-      color: #70652f;
-      line-height: 1.7;
-    }
-
-    .action-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 25px;
-    }
-
-    .action-button {
-      padding: 13px 20px;
-      border-radius: 8px;
-      color: white;
-      background: #f2c300;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.2s;
-    }
-
-    .action-button:hover {
-      background: #d9ad00;
-      transform: translateY(-2px);
-    }
-
-    .call {
+    .details {
       display: inline-block;
-      margin-top: 15px;
-      background: #f2c300;
-      color: white;
-      padding: 13px 25px;
+      background: #ffd21f;
+      color: #332800;
+      padding: 12px 20px;
       border-radius: 8px;
       text-decoration: none;
-      font-weight: bold;
-    }
-
-    .call:hover {
-      background: #d9ad00;
-    }
-
-    .social {
-      margin-top: 30px;
-      padding-top: 25px;
-      border-top: 2px solid #f2c300;
-      text-align: center;
-    }
-
-    .social h3 {
-      color: #b28b00;
-    }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 15px;
-    }
-
-    .social-links a {
-      padding: 12px 18px;
-      color: white;
-      background: #f2c300;
-      text-decoration: none;
-      border-radius: 8px;
       font-weight: bold;
       transition: 0.2s;
     }
 
-    .social-links a:hover {
-      background: #d9ad00;
-      transform: translateY(-2px);
+    .details:hover {
+      background: #f0b900;
+      color: #222222;
     }
 
-    @media (max-width: 700px) {
+    /* ================= MOBILE ================= */
 
-      .photo-slider img {
-        height: 300px;
+    @media (max-width: 600px) {
+
+      header {
+        padding: 20px 12px;
       }
 
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
+      header h1 {
+        font-size: 23px;
       }
 
-      .gallery img {
-        height: 100px;
+      .container {
+        padding: 20px 15px 60px;
       }
 
-      .info h2 {
+      .title {
+        padding: 24px 15px;
+      }
+
+      .title h2 {
         font-size: 25px;
       }
 
-      .action-button {
-        width: 100%;
-        text-align: center;
+      .card img {
+        height: 200px;
+      }
+
+      .card-content {
+        padding: 18px;
+      }
+
+      .price {
+        font-size: 17px;
       }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- ================= HEADER ================= -->
 
   <header>
 
@@ -272,358 +209,201 @@
     </h1>
 
     <a
-      href="./rent.html"
+      href="customer-home.html"
       class="back"
       id="backButton">
-      ← Back to Houses for Rent
+      ← Back
     </a>
 
   </header>
 
 
+  <!-- ================= MAIN ================= -->
+
   <div class="container">
 
-    <!-- MAIN PHOTO -->
+    <div class="title">
 
-    <div class="photo-slider">
-
-      <button
-        class="arrow left"
-        onclick="previousPhoto()">
-        ‹
-      </button>
-
-      <img
-        id="mainPhoto"
-        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=90"
-        alt="Rental House">
-
-      <button
-        class="arrow right"
-        onclick="nextPhoto()">
-        ›
-      </button>
-
-    </div>
-
-
-    <!-- GALLERY -->
-
-    <div class="gallery">
-
-      <img
-        onclick="showPhoto(0)"
-        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=85"
-        alt="House">
-
-      <img
-        onclick="showPhoto(1)"
-        src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=85"
-        alt="House">
-
-      <img
-        onclick="showPhoto(2)"
-        src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=85"
-        alt="House">
-
-      <img
-        onclick="showPhoto(3)"
-        src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85"
-        alt="House">
-
-    </div>
-
-
-    <!-- ACTION BUTTONS -->
-
-    <div class="action-buttons">
-
-      <a
-        href="https://www.youtube.com/channel/UCGWVPGW9WXJZqWiB7oDHp3Q"
-        target="_blank"
-        class="action-button"
-        id="videoButton">
-        🎥 View Video
-      </a>
-
-      <a
-        href="https://www.google.com/maps/search/?api=1&query=Kigali,Rwanda"
-        target="_blank"
-        class="action-button"
-        id="locationButton">
-        📍 View Location
-      </a>
-
-      <a
-        href="https://wa.me/250799645553"
-        target="_blank"
-        class="action-button"
-        id="whatsappButton">
-        💬 WhatsApp
-      </a>
-
-    </div>
-
-
-    <!-- HOUSE INFORMATION -->
-
-    <div class="info">
-
-      <h2 id="houseTitle">
-        Modern Family House
+      <h2 id="pageTitle">
+        Houses for Rent
       </h2>
 
-      <div class="type" id="propertyType">
-        House for Rent
-      </div>
-
-      <div class="price">
-        500,000 RWF / month
-      </div>
-
-      <div class="location">
-        📍 <span id="houseLocation">Kigali, Rwanda</span>
-      </div>
-
-
-      <h3 id="propertyDetailsTitle">
-        Property Details
-      </h3>
-
-      <div class="details-list">
-
-        🛏️ <span id="bedrooms">
-          Bedrooms: 4
-        </span>
-
-        <br>
-
-        🚿 <span id="bathrooms">
-          Bathrooms: 3
-        </span>
-
-        <br>
-
-        🚗 <span id="parking">
-          Parking: Available
-        </span>
-
-        <br>
-
-        🏠 <span id="propertyTypeDetail">
-          Property Type: House
-        </span>
-
-      </div>
-
-
-      <h3 id="descriptionTitle">
-        Description
-      </h3>
-
-      <p
-        class="description"
-        id="houseDescription">
-
-        Beautiful modern family house available for rent
-        in Kigali, Rwanda. The house has comfortable rooms,
-        parking space and a convenient location.
-
-        Contact Rwanda Property Visata for more information
-        and to arrange a visit.
-
+      <p id="pageDescription">
+        Find houses available for rent in Rwanda.
       </p>
 
-
-      <!-- CONTACT -->
-
-      <h3 id="contactTitle">
-        📞 Contact
-      </h3>
-
-      <p>
-        <strong>+250 799 645 553</strong>
-      </p>
-
-      <a
-        href="tel:+250799645553"
-        class="call"
-        id="callButton">
-        📞 Call Now
-      </a>
+    </div>
 
 
-      <!-- SOCIAL MEDIA -->
+    <!-- ================= PROPERTIES ================= -->
 
-      <div class="social">
+    <div class="properties">
 
-        <h3 id="followTitle">
-          🌐 Follow Rwanda Property Visata
-        </h3>
 
-        <div class="social-links">
+      <!-- HOUSE 1 -->
 
-          <a
-            href="https://www.youtube.com/channel/UCGWVPGW9WXJZqWiB7oDHp3Q"
-            target="_blank"
-            id="youtubeButton">
-            ▶ YouTube
-          </a>
+      <div class="card">
+
+        <img
+          id="houseImage1"
+          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+          alt="Modern Family House">
+
+        <div class="card-content">
+
+          <h3 id="houseName1">
+            Modern Family House
+          </h3>
+
+          <div class="price">
+            500,000 RWF
+            <span id="month1">/ month</span>
+          </div>
+
+          <div class="location">
+            📍 <span id="location1">Kigali, Rwanda</span>
+          </div>
 
           <a
-            href="https://www.facebook.com/rwandahousemarket"
-            target="_blank"
-            id="facebookButton">
-            f Facebook
-          </a>
-
-          <a
-            href="https://www.instagram.com/rwandahousemarket/"
-            target="_blank"
-            id="instagramButton">
-            ◎ Instagram
+            href="house-details.html"
+            class="details"
+            id="details1">
+            View Details
           </a>
 
         </div>
 
       </div>
 
+
+      <!-- HOUSE 2 -->
+
+      <div class="card">
+
+        <img
+          id="houseImage2"
+          src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85"
+          alt="Beautiful Rental House">
+
+        <div class="card-content">
+
+          <h3 id="houseName2">
+            Beautiful Rental House
+          </h3>
+
+          <div class="price">
+            650,000 RWF
+            <span id="month2">/ month</span>
+          </div>
+
+          <div class="location">
+            📍 <span id="location2">Kicukiro, Rwanda</span>
+          </div>
+
+          <a
+            href="house-details.html"
+            class="details"
+            id="details2">
+            View Details
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- HOUSE 3 -->
+
+      <div class="card">
+
+        <img
+          id="houseImage3"
+          src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85"
+          alt="Spacious House">
+
+        <div class="card-content">
+
+          <h3 id="houseName3">
+            Spacious House
+          </h3>
+
+          <div class="price">
+            800,000 RWF
+            <span id="month3">/ month</span>
+          </div>
+
+          <div class="location">
+            📍 <span id="location3">Gasabo, Rwanda</span>
+          </div>
+
+          <a
+            href="house-details.html"
+            class="details"
+            id="details3">
+            View Details
+          </a>
+
+        </div>
+
+      </div>
+
+
     </div>
 
   </div>
 
 
+  <!-- ================= JAVASCRIPT ================= -->
+
   <script>
 
-    /* =========================
-       PHOTO SLIDER
-    ========================= */
-
-    const photos = [
-
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=90",
-
-      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=90",
-
-      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1600&q=90",
-
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=90"
-
-    ];
-
-    let currentPhoto = 0;
-
-    function showPhoto(index) {
-
-      currentPhoto = index;
-
-      document.getElementById("mainPhoto").src =
-        photos[currentPhoto];
-
-    }
-
-    function nextPhoto() {
-
-      currentPhoto++;
-
-      if (currentPhoto >= photos.length) {
-        currentPhoto = 0;
-      }
-
-      showPhoto(currentPhoto);
-
-    }
-
-    function previousPhoto() {
-
-      currentPhoto--;
-
-      if (currentPhoto < 0) {
-        currentPhoto = photos.length - 1;
-      }
-
-      showPhoto(currentPhoto);
-
-    }
-
-
-    /* =========================
-       LANGUAGE SYSTEM
-    ========================= */
+    /* ================= LANGUAGE ================= */
 
     const language =
       localStorage.getItem("selectedLanguage") || "English";
 
+
+    /* ================= TRANSLATIONS ================= */
 
     const translations = {
 
       Kinyarwanda: {
 
         browserTitle:
-          "Ibisobanuro by'inzu - Rwanda Property Visata",
+          "Amazu akodeshwa - Rwanda Property Visata",
 
         header:
           "🏠 RWANDA PROPERTY VISATA",
 
         back:
-          "← Subira ku mazu akodeshwa",
+          "← Subira kuri Home",
 
-        video:
-          "🎥 Reba Video",
-
-        locationButton:
-          "📍 Reba Aho Iherereye",
-
-        whatsapp:
-          "💬 WhatsApp",
-
-        houseTitle:
-          "Inzu nziza y'umuryango",
-
-        propertyType:
-          "Inzu ikodeshwa",
-
-        location:
-          "Kigali, Rwanda",
-
-        propertyDetails:
-          "Ibisobanuro by'inzu",
-
-        bedrooms:
-          "Ibyumba byo kuraramo: 4",
-
-        bathrooms:
-          "Ubwiherero: 3",
-
-        parking:
-          "Parking: Iraboneka",
-
-        propertyTypeDetail:
-          "Ubwoko bw'inzu: Inzu y'umuryango",
-
-        descriptionTitle:
-          "Ibisobanuro",
+        title:
+          "Amazu akodeshwa",
 
         description:
-          "Inzu nziza igezweho y'umuryango iri gukodeshwa i Kigali mu Rwanda. Ifite ibyumba byiza, parking kandi iri ahantu heza. Twandikire cyangwa uduhamagare kugira ngo ubone amakuru menshi kandi utegure igihe cyo kuyisura.",
+          "Shaka amazu ahari yo gukodesha mu Rwanda.",
 
-        contact:
-          "📞 Twandikire",
+        details:
+          "Reba ibisobanuro",
 
-        call:
-          "📞 Hamagara nonaha",
+        month:
+          "/ ukwezi",
 
-        follow:
-          "🌐 Kurikira Rwanda Property Visata",
-
-        youtube:
-          "▶ YouTube",
-
-        facebook:
-          "f Facebook",
-
-        instagram:
-          "◎ Instagram"
+        houses: [
+          {
+            name: "Inzu nziza y'umuryango",
+            location: "Kigali, Rwanda"
+          },
+          {
+            name: "Inzu nziza ikodeshwa",
+            location: "Kicukiro, Rwanda"
+          },
+          {
+            name: "Inzu yagutse",
+            location: "Gasabo, Rwanda"
+          }
+        ]
 
       },
 
@@ -631,70 +411,40 @@
       English: {
 
         browserTitle:
-          "House Details - Rwanda Property Visata",
+          "Houses for Rent - Rwanda Property Visata",
 
         header:
           "🏠 RWANDA PROPERTY VISATA",
 
         back:
-          "← Back to Houses for Rent",
+          "← Back to Home",
 
-        video:
-          "🎥 View Video",
-
-        locationButton:
-          "📍 View Location",
-
-        whatsapp:
-          "💬 WhatsApp",
-
-        houseTitle:
-          "Modern Family House",
-
-        propertyType:
-          "House for Rent",
-
-        location:
-          "Kigali, Rwanda",
-
-        propertyDetails:
-          "Property Details",
-
-        bedrooms:
-          "Bedrooms: 4",
-
-        bathrooms:
-          "Bathrooms: 3",
-
-        parking:
-          "Parking: Available",
-
-        propertyTypeDetail:
-          "Property Type: House",
-
-        descriptionTitle:
-          "Description",
+        title:
+          "Houses for Rent",
 
         description:
-          "Beautiful modern family house available for rent in Kigali, Rwanda. The house has comfortable rooms, parking space and a convenient location. Contact Rwanda Property Visata for more information and to arrange a visit.",
+          "Find houses available for rent in Rwanda.",
 
-        contact:
-          "📞 Contact",
+        details:
+          "View Details",
 
-        call:
-          "📞 Call Now",
+        month:
+          "/ month",
 
-        follow:
-          "🌐 Follow Rwanda Property Visata",
-
-        youtube:
-          "▶ YouTube",
-
-        facebook:
-          "f Facebook",
-
-        instagram:
-          "◎ Instagram"
+        houses: [
+          {
+            name: "Modern Family House",
+            location: "Kigali, Rwanda"
+          },
+          {
+            name: "Beautiful Rental House",
+            location: "Kicukiro, Rwanda"
+          },
+          {
+            name: "Spacious House",
+            location: "Gasabo, Rwanda"
+          }
+        ]
 
       },
 
@@ -702,70 +452,40 @@
       Français: {
 
         browserTitle:
-          "Détails de la maison - Rwanda Property Visata",
+          "Maisons à louer - Rwanda Property Visata",
 
         header:
           "🏠 RWANDA PROPERTY VISATA",
 
         back:
-          "← Retour aux maisons à louer",
+          "← Retour à l'accueil",
 
-        video:
-          "🎥 Voir la vidéo",
-
-        locationButton:
-          "📍 Voir l'emplacement",
-
-        whatsapp:
-          "💬 WhatsApp",
-
-        houseTitle:
-          "Maison familiale moderne",
-
-        propertyType:
-          "Maison à louer",
-
-        location:
-          "Kigali, Rwanda",
-
-        propertyDetails:
-          "Détails de la propriété",
-
-        bedrooms:
-          "Chambres: 4",
-
-        bathrooms:
-          "Salles de bain: 3",
-
-        parking:
-          "Parking: Disponible",
-
-        propertyTypeDetail:
-          "Type de propriété: Maison",
-
-        descriptionTitle:
-          "Description",
+        title:
+          "Maisons à louer",
 
         description:
-          "Belle maison familiale moderne disponible à la location à Kigali, au Rwanda. La maison dispose de pièces confortables, d'un parking et d'un emplacement pratique. Contactez Rwanda Property Visata pour plus d'informations et pour organiser une visite.",
+          "Trouvez des maisons disponibles à la location au Rwanda.",
 
-        contact:
-          "📞 Contact",
+        details:
+          "Voir les détails",
 
-        call:
-          "📞 Appeler maintenant",
+        month:
+          "/ mois",
 
-        follow:
-          "🌐 Suivez Rwanda Property Visata",
-
-        youtube:
-          "▶ YouTube",
-
-        facebook:
-          "f Facebook",
-
-        instagram:
-          "◎ Instagram"
+        houses: [
+          {
+            name: "Maison familiale moderne",
+            location: "Kigali, Rwanda"
+          },
+          {
+            name: "Belle maison à louer",
+            location: "Kicukiro, Rwanda"
+          },
+          {
+            name: "Maison spacieuse",
+            location: "Gasabo, Rwanda"
+          }
+        ]
 
       },
 
@@ -773,70 +493,40 @@
       Kiswahili: {
 
         browserTitle:
-          "Maelezo ya Nyumba - Rwanda Property Visata",
+          "Nyumba za Kupangisha - Rwanda Property Visata",
 
         header:
           "🏠 RWANDA PROPERTY VISATA",
 
         back:
-          "← Rudi kwenye Nyumba za Kupangisha",
+          "← Rudi kwenye Mwanzo",
 
-        video:
-          "🎥 Tazama Video",
-
-        locationButton:
-          "📍 Tazama Mahali",
-
-        whatsapp:
-          "💬 WhatsApp",
-
-        houseTitle:
-          "Nyumba ya Kisasa ya Familia",
-
-        propertyType:
-          "Nyumba ya Kupangisha",
-
-        location:
-          "Kigali, Rwanda",
-
-        propertyDetails:
-          "Maelezo ya Nyumba",
-
-        bedrooms:
-          "Vyumba vya kulala: 4",
-
-        bathrooms:
-          "Bafu: 3",
-
-        parking:
-          "Maegesho: Yanapatikana",
-
-        propertyTypeDetail:
-          "Aina ya Nyumba: Nyumba ya Familia",
-
-        descriptionTitle:
-          "Maelezo",
+        title:
+          "Nyumba za Kupangisha",
 
         description:
-          "Nyumba nzuri ya kisasa ya familia inapatikana kwa kupangishwa Kigali, Rwanda. Nyumba ina vyumba vizuri, nafasi ya maegesho na iko katika eneo zuri. Wasiliana na Rwanda Property Visata kwa maelezo zaidi na kupanga muda wa kutembelea nyumba.",
+          "Pata nyumba zinazopatikana kwa kupangisha nchini Rwanda.",
 
-        contact:
-          "📞 Mawasiliano",
+        details:
+          "Tazama Maelezo",
 
-        call:
-          "📞 Piga Simu Sasa",
+        month:
+          "/ mwezi",
 
-        follow:
-          "🌐 Fuatilia Rwanda Property Visata",
-
-        youtube:
-          "▶ YouTube",
-
-        facebook:
-          "f Facebook",
-
-        instagram:
-          "◎ Instagram"
+        houses: [
+          {
+            name: "Nyumba ya Kisasa ya Familia",
+            location: "Kigali, Rwanda"
+          },
+          {
+            name: "Nyumba Nzuri ya Kupangisha",
+            location: "Kicukiro, Rwanda"
+          },
+          {
+            name: "Nyumba yenye Nafasi",
+            location: "Gasabo, Rwanda"
+          }
+        ]
 
       },
 
@@ -844,174 +534,167 @@
       "中文": {
 
         browserTitle:
-          "出租房屋详情 - Rwanda Property Visata",
+          "出租房屋 - Rwanda Property Visata",
 
         header:
           "🏠 RWANDA PROPERTY VISATA",
 
         back:
-          "← 返回出租房屋",
+          "← 返回首页",
 
-        video:
-          "🎥 查看视频",
-
-        locationButton:
-          "📍 查看位置",
-
-        whatsapp:
-          "💬 WhatsApp",
-
-        houseTitle:
-          "现代家庭住宅",
-
-        propertyType:
+        title:
           "出租房屋",
 
-        location:
-          "基加利，卢旺达",
-
-        propertyDetails:
-          "房产详情",
-
-        bedrooms:
-          "卧室：4",
-
-        bathrooms:
-          "浴室：3",
-
-        parking:
-          "停车位：有",
-
-        propertyTypeDetail:
-          "房产类型：家庭住宅",
-
-        descriptionTitle:
-          "描述",
-
         description:
-          "这是一套位于卢旺达基加利的漂亮现代家庭住宅，目前出租。房屋拥有舒适的房间、停车空间，并且位置便利。如需更多信息或预约看房，请联系 Rwanda Property Visata。",
+          "寻找卢旺达可出租的房屋。",
 
-        contact:
-          "📞 联系方式",
+        details:
+          "查看详情",
 
-        call:
-          "📞 立即致电",
+        month:
+          "/ 月",
 
-        follow:
-          "🌐 关注 Rwanda Property Visata",
-
-        youtube:
-          "▶ YouTube",
-
-        facebook:
-          "f Facebook",
-
-        instagram:
-          "◎ Instagram"
+        houses: [
+          {
+            name: "现代家庭住宅",
+            location: "基加利，卢旺达"
+          },
+          {
+            name: "漂亮的出租房屋",
+            location: "基库基罗，卢旺达"
+          },
+          {
+            name: "宽敞的房屋",
+            location: "加萨博，卢旺达"
+          }
+        ]
 
       }
 
     };
 
 
-    /* =========================
-       APPLY LANGUAGE
-    ========================= */
+    /* ================= SELECT LANGUAGE ================= */
 
     const t =
       translations[language] ||
       translations.English;
 
 
+    localStorage.setItem(
+      "selectedLanguage",
+      language
+    );
+
+
+    /* ================= PAGE ================= */
+
     document.title =
       t.browserTitle;
 
 
-    document.getElementById("headerTitle").textContent =
+    document.getElementById(
+      "headerTitle"
+    ).textContent =
       t.header;
 
 
-    document.getElementById("backButton").textContent =
+    document.getElementById(
+      "backButton"
+    ).textContent =
       t.back;
 
 
-    document.getElementById("videoButton").textContent =
-      t.video;
+    document.getElementById(
+      "pageTitle"
+    ).textContent =
+      t.title;
 
 
-    document.getElementById("locationButton").textContent =
-      t.locationButton;
-
-
-    document.getElementById("whatsappButton").textContent =
-      t.whatsapp;
-
-
-    document.getElementById("houseTitle").textContent =
-      t.houseTitle;
-
-
-    document.getElementById("propertyType").textContent =
-      t.propertyType;
-
-
-    document.getElementById("houseLocation").textContent =
-      t.location;
-
-
-    document.getElementById("propertyDetailsTitle").textContent =
-      t.propertyDetails;
-
-
-    document.getElementById("bedrooms").textContent =
-      t.bedrooms;
-
-
-    document.getElementById("bathrooms").textContent =
-      t.bathrooms;
-
-
-    document.getElementById("parking").textContent =
-      t.parking;
-
-
-    document.getElementById("propertyTypeDetail").textContent =
-      t.propertyTypeDetail;
-
-
-    document.getElementById("descriptionTitle").textContent =
-      t.descriptionTitle;
-
-
-    document.getElementById("houseDescription").textContent =
+    document.getElementById(
+      "pageDescription"
+    ).textContent =
       t.description;
 
 
-    document.getElementById("contactTitle").textContent =
-      t.contact;
+    /* ================= HOUSE 1 ================= */
+
+    document.getElementById(
+      "houseName1"
+    ).textContent =
+      t.houses[0].name;
 
 
-    document.getElementById("callButton").textContent =
-      t.call;
+    document.getElementById(
+      "location1"
+    ).textContent =
+      t.houses[0].location;
 
 
-    document.getElementById("followTitle").textContent =
-      t.follow;
+    document.getElementById(
+      "details1"
+    ).textContent =
+      t.details;
 
 
-    document.getElementById("youtubeButton").textContent =
-      t.youtube;
+    document.getElementById(
+      "month1"
+    ).textContent =
+      t.month;
 
 
-    document.getElementById("facebookButton").textContent =
-      t.facebook;
+    /* ================= HOUSE 2 ================= */
+
+    document.getElementById(
+      "houseName2"
+    ).textContent =
+      t.houses[1].name;
 
 
-    document.getElementById("instagramButton").textContent =
-      t.instagram;
+    document.getElementById(
+      "location2"
+    ).textContent =
+      t.houses[1].location;
+
+
+    document.getElementById(
+      "details2"
+    ).textContent =
+      t.details;
+
+
+    document.getElementById(
+      "month2"
+    ).textContent =
+      t.month;
+
+
+    /* ================= HOUSE 3 ================= */
+
+    document.getElementById(
+      "houseName3"
+    ).textContent =
+      t.houses[2].name;
+
+
+    document.getElementById(
+      "location3"
+    ).textContent =
+      t.houses[2].location;
+
+
+    document.getElementById(
+      "details3"
+    ).textContent =
+      t.details;
+
+
+    document.getElementById(
+      "month3"
+    ).textContent =
+      t.month;
 
   </script>
 
 </body>
 </html>
-```
