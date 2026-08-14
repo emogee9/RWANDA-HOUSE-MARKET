@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Customer Dashboard - Rwanda House Market</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #222222;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      background: #f4b400;
+      color: #222222;
+      padding: 18px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #222222;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 7px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      background: #ffffff;
+    }
+
+    /* ================= MAIN ================= */
+
+    .container {
+      max-width: 1150px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .welcome {
+      background: #ffffff;
+      border: 2px solid #f4b400;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .welcome h1 {
+      margin-top: 0;
+    }
+
+    .welcome p {
+      color: #666666;
+    }
+
+    /* ================= BALANCE ================= */
+
+    .balance-card {
+      background: #f4b400;
+      color: #222222;
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 25px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+    }
+
+    .balance-card h2 {
+      margin: 0 0 10px;
+    }
+
+    .balance {
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    /* ================= DASHBOARD GRID ================= */
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .dashboard-card {
+      background: #ffffff;
+      border: 2px solid #f4b400;
+      border-radius: 14px;
+      padding: 25px 20px;
+      text-align: center;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+      transition: 0.2s;
+    }
+
+    .dashboard-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(0,0,0,0.12);
+    }
+
+    .dashboard-icon {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .dashboard-card h3 {
+      margin: 0 0 8px;
+    }
+
+    .dashboard-card p {
+      color: #666666;
+      margin: 0 0 15px;
+      font-size: 14px;
+    }
+
+    .dashboard-button {
+      display: inline-block;
+      background: #f4b400;
+      color: #222222;
+      text-decoration: none;
+      padding: 11px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .dashboard-button:hover {
+      background: #ffd45a;
+    }
+
+    /* ================= PROFILE ================= */
+
+    .profile-section {
+      margin-top: 30px;
+      background: #ffffff;
+      border: 2px solid #f4b400;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .profile-section h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    .profile-picture {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 15px auto;
+      border: 4px solid #f4b400;
+      background: #eeeeee;
+    }
+
+    .profile-info {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .profile-info p {
+      margin: 8px 0;
+    }
+
+    .profile-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .profile-button {
+      display: block;
+      text-align: center;
+      padding: 13px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      background: #f4b400;
+      color: #222222;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .profile-button:hover {
+      background: #ffd45a;
+    }
+
+    .logout-button {
+      background: #222222;
+      color: #ffffff;
+    }
+
+    .logout-button:hover {
+      background: #444444;
+    }
+
+    /* ================= MESSAGE ================= */
+
+    #message {
+      display: none;
+      padding: 13px;
+      margin-top: 20px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .success {
+      display: block !important;
+      background: #fff8d6;
+      border: 1px solid #f4b400;
+      color: #7a5b00;
+    }
+
+    .error {
+      display: block !important;
+      background: #ffeaea;
+      border: 1px solid #e0aaaa;
+      color: #9b2226;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      margin-top: 50px;
+      background: #f4b400;
+      color: #222222;
+      text-align: center;
+      padding: 22px;
+      font-weight: bold;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 850px) {
+
+      .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .profile-actions {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+    @media (max-width: 600px) {
+
+      header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+
+      .container {
+        padding: 0 15px;
+      }
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome {
+        text-align: center;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+  <div class="logo">
+    RWANDA HOUSE MARKET 🇷🇼
+  </div>
+
+  <nav>
+
+    <a href="index.html">
+      Home
+    </a>
+
+    <a href="customer-home.html">
+      Properties
+    </a>
+
+    <a href="#profile">
+      Profile
+    </a>
+
+  </nav>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+
+  <!-- WELCOME -->
+
+  <div class="welcome">
+
+    <h1>
+      👋 Welcome to Your Customer Dashboard
+    </h1>
+
+    <p>
+      Manage your properties, balance, transactions and account from here.
+    </p>
+
+  </div>
+
+
+  <!-- BALANCE -->
+
+  <div class="balance-card">
+
+    <h2>
+      💰 My Balance
+    </h2>
+
+    <div class="balance">
+
+      <span id="balance">
+        0
+      </span>
+
+      RWF
+
+    </div>
+
+  </div>
+
+
+  <!-- DASHBOARD CARDS -->
+
+  <div class="dashboard-grid">
+
+
+    <!-- HOUSE RENT -->
+
+    <div class="dashboard-card">
+
+      <div class="dashboard-icon">
+        🏠
+      </div>
+
+      <h3>
+        House for Rent
+      </h3>
+
+      <p>
+        Find houses available for rent.
+      </p>
+
+      <a
+        href="houses.html"
+        class="dashboard-button">
+        View Houses
+      </a>
+
+    </div>
+
+
+    <!-- HOUSE SALE -->
+
+    <div class="dashboard-card">
+
+      <div class="dashboard-icon">
+        🏡
+      </div>
+
+      <h3>
+        House for Sale
+      </h3>
+
+      <p>
+        Find houses available for sale.
+      </p>
+
+      <a
+        href="house-sale.html"
+        class="dashboard-button">
+        View Houses
+      </a>
+
+    </div>
+
+
+    <!-- PLOT SALE -->
+
+    <div class="dashboard-card">
+
+      <div class="dashboard-icon">
+        🌳
+      </div>
+
+      <h3>
+        Plot for Sale
+      </h3>
+
+      <p>
+        Find plots available for sale.
+      </p>
+
+      <a
+        href="plots.html"
+        class="dashboard-button">
+        View Plots
+      </a>
+
+    </div>
+
+
+    <!-- SELL PROPERTY -->
+
+    <div class="dashboard-card">
+
+      <div class="dashboard-icon">
+        📤
+      </div>
+
+      <h3>
+        Sell Your Property
+      </h3>
+
+      <p>
+        Upload your property and make it available to customers.
+      </p>
+
+      <a
+        href="sell-property.html"
+        class="dashboard-button">
+        Sell Property
+      </a>
+
+    </div>
+
+
+    <!-- MY PROPERTIES -->
+
+    <div class="dashboard-card">
+
+      <div class="dashboard-icon">
+        🏘️
+      </div>
+
+      <h3>
+        My Properties
+      </h3>
+
+      <p>
+        View properties you have uploaded.
+      </p>
+
+      <a
+        href="my-properties.html"
+        class="dashboard-button">
+        My Properties
+      </a>
+
+    </div>
+
+
+    <!-- TRANSACTIONS -->
+
+    <div class="dashboard-card">
+
+      <div class="dashboard-icon">
+        💳
+      </div>
+
+      <h3>
+        Transaction History
+      </h3>
+
+      <p>
+        View your account transactions.
+      </p>
+
+      <a
+        href="transactions.html"
+        class="dashboard-button">
+        Transactions
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= PROFILE ================= -->
+
+  <div
+    class="profile-section"
+    id="profile">
+
+    <h2>
+      👤 My Profile
+    </h2>
+
+
+    <img
+      id="profilePicture"
+      class="profile-picture"
+      src="https://via.placeholder.com/110"
+      alt="Profile Picture"
+    >
+
+
+    <div class="profile-info">
+
+      <p>
+        <strong>Name:</strong>
+
+        <span id="fullName">
+          Loading...
+        </span>
+
+      </p>
+
+
+      <p>
+        <strong>Email:</strong>
+
+        <span id="email">
+          Loading...
+        </span>
+
+      </p>
+
+
+      <p>
+        <strong>Phone:</strong>
+
+        <span id="phone">
+          Loading...
+        </span>
+
+      </p>
+
+    </div>
+
+
+    <!-- PROFILE ACTIONS -->
+
+    <div class="profile-actions">
+
+      <a
+        href="deposit.html"
+        class="profile-button">
+        💰 Deposit
+      </a>
+
+
+      <a
+        href="withdraw.html"
+        class="profile-button">
+        💸 Withdraw
+      </a>
+
+
+      <button
+        type="button"
+        class="profile-button logout-button"
+        id="logoutButton">
+        🚪 Logout
+      </button>
+
+    </div>
+
+
+    <div id="message"></div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  © 2026 Rwanda House Market 🇷🇼 — Find Houses, Plots & Properties
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+  /* ================================
+     SUPABASE
+  ================================= */
+
+  const SUPABASE_URL =
+    "https://hsmnybmcddtsyooltozw.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+
+  /* ================================
+     ELEMENTS
+  ================================= */
+
+  const balanceElement =
+    document.getElementById("balance");
+
+  const fullNameElement =
+    document.getElementById("fullName");
+
+  const emailElement =
+    document.getElementById("email");
+
+  const phoneElement =
+    document.getElementById("phone");
+
+  const profilePicture =
+    document.getElementById("profilePicture");
+
+  const logoutButton =
+    document.getElementById("logoutButton");
+
+  const message =
+    document.getElementById("message");
+
+
+  /* ================================
+     LOAD CUSTOMER
+  ================================= */
+
+  async function loadCustomer() {
+
+    const {
+      data: {
+        user
+      },
+      error
+    } =
+      await supabaseClient.auth.getUser();
+
+
+    /* NO LOGIN */
+
+    if (error || !user) {
+
+      window.location.href =
+        "login.html";
+
+      return;
+    }
+
+
+    /* EMAIL */
+
+    emailElement.textContent =
+      user.email || "Not available";
+
+
+    /* USER METADATA */
+
+    const metadata =
+      user.user_metadata || {};
+
+
+    fullNameElement.textContent =
+      metadata.fullname ||
+      metadata.full_name ||
+      "Customer";
+
+
+    phoneElement.textContent =
+      metadata.phone ||
+      "Not available";
+
+
+    /* ================================
+       LOAD PROFILE TABLE
+    ================================= */
+
+    const {
+      data: profile,
+      error: profileError
+    } =
+      await supabaseClient
+        .from("Profile")
+        .select("*")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+
+    if (profileError) {
+
+      console.log(
+        "Profile table:",
+        profileError.message
+      );
+
+    }
+
+
+    if (profile) {
+
+      /* BALANCE */
+
+      balanceElement.textContent =
+        Number(
+          profile.balance || 0
+        ).toLocaleString();
+
+
+      /* NAME */
+
+      if (
+        profile.full_name ||
+        profile.fullname
+      ) {
+
+        fullNameElement.textContent =
+          profile.full_name ||
+          profile.fullname;
+
+      }
+
+
+      /* PHONE */
+
+      if (profile.phone) {
+
+        phoneElement.textContent =
+          profile.phone;
+
+      }
+
+
+      /* PROFILE PICTURE */
+
+      if (profile.profile_picture) {
+
+        profilePicture.src =
+          profile.profile_picture;
+
+      }
+
+    }
+
+  }
+
+
+  /* ================================
+     LOGOUT
+  ================================= */
+
+  logoutButton.addEventListener(
+    "click",
+    async function() {
+
+      logoutButton.disabled =
+        true;
+
+      logoutButton.textContent =
+        "Logging out...";
+
+
+      const {
+        error
+      } =
+        await supabaseClient.auth
+          .signOut();
+
+
+      if (error) {
+
+        message.textContent =
+          "❌ " + error.message;
+
+        message.className =
+          "error";
+
+        logoutButton.disabled =
+          false;
+
+        logoutButton.textContent =
+          "🚪 Logout";
+
+        return;
+      }
+
+
+      message.textContent =
+        "✅ Logged out successfully.";
+
+      message.className =
+        "success";
+
+
+      setTimeout(
+        function() {
+
+          window.location.href =
+            "login.html";
+
+        },
+        800
+      );
+
+    }
+  );
+
+
+  /* ================================
+     START
+  ================================= */
+
+  loadCustomer();
+
+</script>
+
+
+</body>
+
+</html>
