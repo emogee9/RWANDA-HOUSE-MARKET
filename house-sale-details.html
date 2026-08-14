@@ -8,6 +8,7 @@
   <title id="browserTitle">House for Sale - Rwanda House Market</title>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -15,15 +16,18 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #222;
+      background: #ffffff;
+      color: #222222;
     }
 
+    /* ================= HEADER ================= */
+
     header {
-      background: #0b5d1e;
-      color: white;
+      background: #f4b400;
+      color: #222222;
       padding: 22px 15px;
       text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
     }
 
     header h1 {
@@ -34,10 +38,19 @@
     .back {
       display: inline-block;
       margin-top: 10px;
-      color: white;
+      color: #222222;
       text-decoration: none;
       font-weight: bold;
+      background: #ffffff;
+      padding: 9px 15px;
+      border-radius: 8px;
     }
+
+    .back:hover {
+      background: #fff8d6;
+    }
+
+    /* ================= CONTAINER ================= */
 
     .container {
       max-width: 1100px;
@@ -45,11 +58,14 @@
       padding: 25px 20px 50px;
     }
 
+    /* ================= PHOTO ================= */
+
     .photo-slider {
       position: relative;
-      background: white;
+      background: #ffffff;
       padding: 12px;
       border-radius: 15px;
+      border: 2px solid #f4b400;
       box-shadow: 0 3px 12px rgba(0,0,0,0.12);
     }
 
@@ -61,18 +77,26 @@
       display: block;
     }
 
+    /* ================= ARROWS ================= */
+
     .arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0,0,0,0.55);
-      color: white;
+      background: #f4b400;
+      color: #222222;
       border: none;
       width: 50px;
       height: 50px;
       border-radius: 50%;
       font-size: 28px;
+      font-weight: bold;
       cursor: pointer;
+      z-index: 5;
+    }
+
+    .arrow:hover {
+      background: #ffd45a;
     }
 
     .left {
@@ -82,6 +106,8 @@
     .right {
       right: 25px;
     }
+
+    /* ================= GALLERY ================= */
 
     .gallery {
       display: grid;
@@ -96,41 +122,60 @@
       object-fit: cover;
       border-radius: 10px;
       cursor: pointer;
+      border: 2px solid transparent;
     }
 
+    .gallery img:hover {
+      border-color: #f4b400;
+      transform: scale(1.02);
+    }
+
+    /* ================= INFO ================= */
+
     .info {
-      background: white;
+      background: #ffffff;
       margin-top: 25px;
       padding: 28px;
       border-radius: 15px;
+      border: 2px solid #f4b400;
       box-shadow: 0 3px 12px rgba(0,0,0,0.12);
     }
 
     .info h2 {
       font-size: 30px;
       margin-top: 0;
+      color: #222222;
     }
+
+    /* ================= TYPE ================= */
 
     .type {
       display: inline-block;
-      background: #e7f4ea;
-      color: #0b5d1e;
+      background: #fff8d6;
+      color: #8a6500;
       padding: 8px 15px;
       border-radius: 20px;
+      border: 1px solid #f4b400;
       font-weight: bold;
     }
+
+    /* ================= PRICE ================= */
 
     .price {
       font-size: 25px;
       font-weight: bold;
       margin: 15px 0;
-      color: #0b5d1e;
+      color: #b27b00;
     }
+
+    /* ================= LOCATION ================= */
 
     .location {
       font-size: 18px;
       margin-bottom: 20px;
     }
+
+    /* ================= DETAILS ================= */
 
     .details-list {
       line-height: 2;
@@ -138,9 +183,11 @@
     }
 
     .description {
-      color: #555;
+      color: #555555;
       line-height: 1.7;
     }
+
+    /* ================= ACTION BUTTONS ================= */
 
     .action-buttons {
       display: flex;
@@ -162,28 +209,41 @@
     }
 
     .location-button {
-      background: #1565c0;
+      background: #f4b400;
+      color: #222222;
+    }
+
+    .location-button:hover {
+      background: #ffd45a;
     }
 
     .whatsapp {
       background: #128c7e;
     }
 
+    /* ================= CALL ================= */
+
     .call {
       display: inline-block;
       margin-top: 15px;
-      background: #0b5d1e;
-      color: white;
+      background: #f4b400;
+      color: #222222;
       padding: 13px 25px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
     }
 
+    .call:hover {
+      background: #ffd45a;
+    }
+
+    /* ================= SOCIAL ================= */
+
     .social {
       margin-top: 30px;
       padding-top: 25px;
-      border-top: 1px solid #ddd;
+      border-top: 2px solid #f4b400;
       text-align: center;
     }
 
@@ -215,6 +275,8 @@
       background: #c13584;
     }
 
+    /* ================= MOBILE ================= */
+
     @media (max-width: 700px) {
 
       .photo-slider img {
@@ -237,7 +299,9 @@
         width: 100%;
         text-align: center;
       }
+
     }
+
   </style>
 </head>
 
@@ -477,6 +541,7 @@
       "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=90"
 
     ];
+
 
     let currentPhoto = 0;
 
