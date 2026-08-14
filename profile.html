@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Profile - Rwanda House Market</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #222222;
+    }
+
+    header {
+      background: #f4b400;
+      padding: 18px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #222;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-radius: 7px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      background: #ffffff;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 35px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 2px solid #f4b400;
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    h1,
+    h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .profile-picture {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .profile-picture img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #f4b400;
+      background: #fff8d6;
+    }
+
+    .upload-label {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 16px;
+      background: #f4b400;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #photoInput {
+      display: none;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 13px;
+      border: 2px solid #eeeeee;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #f4b400;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      background: #f4b400;
+      color: #222222;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ffd45a;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .balance-card {
+      background: #f4b400;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .balance {
+      font-size: 32px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .message {
+      display: none;
+      margin-top: 15px;
+      padding: 13px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .success {
+      display: block;
+      background: #fff8d6;
+      color: #765900;
+      border: 1px solid #f4b400;
+    }
+
+    .error {
+      display: block;
+      background: #ffeaea;
+      color: #9b2226;
+      border: 1px solid #e0aaaa;
+    }
+
+    .logout {
+      background: #222222;
+      color: #ffffff;
+    }
+
+    .logout:hover {
+      background: #444444;
+    }
+
+    footer {
+      margin-top: 50px;
+      background: #f4b400;
+      text-align: center;
+      padding: 20px;
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 700px) {
+
+      header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+
+      .container {
+        padding: 0 15px;
+      }
+
+      .card {
+        padding: 25px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo">
+    RWANDA HOUSE MARKET 🇷🇼
+  </div>
+
+  <nav>
+
+    <a href="customer-dashboard.html">
+      Dashboard
+    </a>
+
+    <a href="index.html">
+      Home
+    </a>
+
+  </nav>
+
+</header>
+
+
+<div class="container">
+
+  <!-- PROFILE -->
+
+  <div class="card">
+
+    <h1>
+      👤 My Profile
+    </h1>
+
+    <div class="profile-picture">
+
+      <img
+        id="profileImage"
+        src="https://via.placeholder.com/130"
+        alt="Profile Picture">
+
+      <br>
+
+      <label
+        for="photoInput"
+        class="upload-label">
+        📷 Change Profile Picture
+      </label>
+
+      <input
+        type="file"
+        id="photoInput"
+        accept="image/*">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Full Name
+      </label>
+
+      <input
+        type="text"
+        id="fullName"
+        placeholder="Your full name">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Email
+      </label>
+
+      <input
+        type="email"
+        id="email"
+        disabled>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Phone Number
+      </label>
+
+      <input
+        type="tel"
+        id="phone"
+        placeholder="07XXXXXXXX">
+
+    </div>
+
+
+    <button id="saveProfileButton">
+      Save Profile
+    </button>
+
+    <div
+      id="profileMessage"
+      class="message">
+    </div>
+
+  </div>
+
+
+  <!-- BALANCE -->
+
+  <div class="card">
+
+    <div class="balance-card">
+
+      <h2>
+        💰 My Balance
+      </h2>
+
+      <div class="balance">
+
+        <span id="balance">
+          0
+        </span>
+
+        RWF
+
+      </div>
+
+    </div>
+
+
+    <!-- DEPOSIT -->
+
+    <h2>
+      ➕ Deposit
+    </h2>
+
+    <div class="form-group">
+
+      <label>
+        Amount
+      </label>
+
+      <input
+        type="number"
+        id="depositAmount"
+        placeholder="Enter amount"
+        min="1">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Payment Method
+      </label>
+
+      <select id="depositMethod">
+
+        <option value="">
+          Choose payment method
+        </option>
+
+        <option value="MTN Mobile Money">
+          MTN Mobile Money
+        </option>
+
+        <option value="Airtel Money">
+          Airtel Money
+        </option>
+
+        <option value="Bank">
+          Bank
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <button id="depositButton">
+      Request Deposit
+    </button>
+
+
+    <div
+      id="depositMessage"
+      class="message">
+    </div>
+
+
+    <!-- WITHDRAW -->
+
+    <h2 style="margin-top:30px;">
+      ➖ Withdraw
+    </h2>
+
+    <div class="form-group">
+
+      <label>
+        Amount
+      </label>
+
+      <input
+        type="number"
+        id="withdrawAmount"
+        placeholder="Enter amount"
+        min="1">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Withdrawal Method
+      </label>
+
+      <select id="withdrawMethod">
+
+        <option value="">
+          Choose withdrawal method
+        </option>
+
+        <option value="MTN Mobile Money">
+          MTN Mobile Money
+        </option>
+
+        <option value="Airtel Money">
+          Airtel Money
+        </option>
+
+        <option value="Bank">
+          Bank
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <button id="withdrawButton">
+      Request Withdraw
+    </button>
+
+
+    <div
+      id="withdrawMessage"
+      class="message">
+    </div>
+
+  </div>
+
+
+  <!-- LOGOUT -->
+
+  <div class="card">
+
+    <button
+      class="logout"
+      id="logoutButton">
+      🚪 Logout
+    </button>
+
+  </div>
+
+</div>
+
+
+<footer>
+
+  © 2026 Rwanda House Market 🇷🇼 — Find Houses, Plots & Properties
+
+</footer>
+
+
+<script>
+
+  /* ==============================
+     SUPABASE
+  ============================== */
+
+  const SUPABASE_URL =
+    "https://hsmnybmcddtsyooltozw.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+
+  /* ==============================
+     ELEMENTS
+  ============================== */
+
+  const fullName =
+    document.getElementById("fullName");
+
+  const email =
+    document.getElementById("email");
+
+  const phone =
+    document.getElementById("phone");
+
+  const balance =
+    document.getElementById("balance");
+
+  const profileImage =
+    document.getElementById("profileImage");
+
+
+  /* ==============================
+     MESSAGE
+  ============================== */
+
+  function showMessage(element, text, type) {
+
+    element.textContent = text;
+
+    element.className =
+      "message " + type;
+
+  }
+
+
+  /* ==============================
+     LOAD PROFILE
+  ============================== */
+
+  async function loadProfile() {
+
+    const {
+      data: {
+        user
+      }
+    } =
+      await supabaseClient.auth.getUser();
+
+
+    if (!user) {
+
+      window.location.href =
+        "login.html";
+
+      return;
+
+    }
+
+
+    email.value =
+      user.email || "";
+
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .from("Profile")
+        .select("*")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+
+    if (error) {
+
+      console.error(error);
+
+      return;
+
+    }
+
+
+    if (data) {
+
+      fullName.value =
+        data.full_name || "";
+
+      phone.value =
+        data.phone || "";
+
+      balance.textContent =
+        Number(data.balance || 0)
+          .toLocaleString();
+
+      if (data.profile_picture) {
+
+        profileImage.src =
+          data.profile_picture;
+
+      }
+
+    }
+
+  }
+
+
+  /* ==============================
+     SAVE PROFILE
+  ============================== */
+
+  document
+    .getElementById("saveProfileButton")
+    .addEventListener(
+      "click",
+      async function() {
+
+        const {
+          data: {
+            user
+          }
+        } =
+          await supabaseClient.auth.getUser();
+
+
+        if (!user) {
+
+          window.location.href =
+            "login.html";
+
+          return;
+
+        }
+
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("Profile")
+            .update({
+
+              full_name:
+                fullName.value.trim(),
+
+              phone:
+                phone.value.trim()
+
+            })
+            .eq(
+              "user_id",
+              user.id
+            );
+
+
+        if (error) {
+
+          showMessage(
+            document.getElementById(
+              "profileMessage"
+            ),
+            "❌ " + error.message,
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        showMessage(
+          document.getElementById(
+            "profileMessage"
+          ),
+          "✅ Profile updated successfully.",
+          "success"
+        );
+
+      }
+    );
+
+
+  /* ==============================
+     PROFILE PICTURE PREVIEW
+  ============================== */
+
+  document
+    .getElementById("photoInput")
+    .addEventListener(
+      "change",
+      function(event) {
+
+        const file =
+          event.target.files[0];
+
+        if (!file) {
+          return;
+        }
+
+        const reader =
+          new FileReader();
+
+        reader.onload =
+          function(e) {
+
+            profileImage.src =
+              e.target.result;
+
+          };
+
+        reader.readAsDataURL(file);
+
+      }
+    );
+
+
+  /* ==============================
+     DEPOSIT REQUEST
+  ============================== */
+
+  document
+    .getElementById("depositButton")
+    .addEventListener(
+      "click",
+      async function() {
+
+        const amount =
+          Number(
+            document.getElementById(
+              "depositAmount"
+            ).value
+          );
+
+        const method =
+          document.getElementById(
+            "depositMethod"
+          ).value;
+
+
+        if (!amount || amount <= 0) {
+
+          showMessage(
+            document.getElementById(
+              "depositMessage"
+            ),
+            "❌ Enter a valid amount.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if (!method) {
+
+          showMessage(
+            document.getElementById(
+              "depositMessage"
+            ),
+            "❌ Choose a payment method.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        const {
+          data: {
+            user
+          }
+        } =
+          await supabaseClient.auth.getUser();
+
+
+        if (!user) {
+
+          window.location.href =
+            "login.html";
+
+          return;
+
+        }
+
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("deposits")
+            .insert({
+
+              user_id:
+                user.id,
+
+              amount:
+                amount,
+
+              payment_method:
+                method,
+
+              status:
+                "pending"
+
+            });
+
+
+        if (error) {
+
+          showMessage(
+            document.getElementById(
+              "depositMessage"
+            ),
+            "❌ " + error.message,
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        showMessage(
+          document.getElementById(
+            "depositMessage"
+          ),
+          "✅ Deposit request sent successfully.",
+          "success"
+        );
+
+
+        document.getElementById(
+          "depositAmount"
+        ).value = "";
+
+        document.getElementById(
+          "depositMethod"
+        ).value = "";
+
+      }
+    );
+
+
+  /* ==============================
+     WITHDRAW REQUEST
+  ============================== */
+
+  document
+    .getElementById("withdrawButton")
+    .addEventListener(
+      "click",
+      async function() {
+
+        const amount =
+          Number(
+            document.getElementById(
+              "withdrawAmount"
+            ).value
+          );
+
+        const method =
+          document.getElementById(
+            "withdrawMethod"
+          ).value;
+
+
+        if (!amount || amount <= 0) {
+
+          showMessage(
+            document.getElementById(
+              "withdrawMessage"
+            ),
+            "❌ Enter a valid amount.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        if (!method) {
+
+          showMessage(
+            document.getElementById(
+              "withdrawMessage"
+            ),
+            "❌ Choose a withdrawal method.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        const {
+          data: {
+            user
+          }
+        } =
+          await supabaseClient.auth.getUser();
+
+
+        if (!user) {
+
+          window.location.href =
+            "login.html";
+
+          return;
+
+        }
+
+
+        const {
+          error
+        } =
+          await supabaseClient
+            .from("withdrawals")
+            .insert({
+
+              user_id:
+                user.id,
+
+              amount:
+                amount,
+
+              payment_method:
+                method,
+
+              status:
+                "pending"
+
+            });
+
+
+        if (error) {
+
+          showMessage(
+            document.getElementById(
+              "withdrawMessage"
+            ),
+            "❌ " + error.message,
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        showMessage(
+          document.getElementById(
+            "withdrawMessage"
+          ),
+          "✅ Withdrawal request sent successfully.",
+          "success"
+        );
+
+
+        document.getElementById(
+          "withdrawAmount"
+        ).value = "";
+
+        document.getElementById(
+          "withdrawMethod"
+        ).value = "";
+
+      }
+    );
+
+
+  /* ==============================
+     LOGOUT
+  ============================== */
+
+  document
+    .getElementById("logoutButton")
+    .addEventListener(
+      "click",
+      async function() {
+
+        await supabaseClient.auth.signOut();
+
+        window.location.href =
+          "login.html";
+
+      }
+    );
+
+
+  /* ==============================
+     START
+  ============================== */
+
+  loadProfile();
+
+</script>
+
+</body>
+</html>
