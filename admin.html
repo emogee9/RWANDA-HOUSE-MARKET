@@ -1,17 +1,15 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Admin - Rwanda House Market</title>
+<title>Rwanda House Market - Admin</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -60,16 +58,17 @@ body{
   padding:25px 18px 60px;
 }
 
-h1,h2{
-  margin-top:0;
-}
-
-.page-title{
+.page-title,
+.card{
   background:white;
-  padding:25px;
+  padding:22px;
   border-radius:14px;
   box-shadow:0 3px 12px rgba(0,0,0,.1);
   margin-bottom:20px;
+}
+
+h1,h2,h3{
+  margin-top:0;
 }
 
 .tabs{
@@ -99,14 +98,6 @@ h1,h2{
 
 .section.active{
   display:block;
-}
-
-.card{
-  background:white;
-  border-radius:14px;
-  padding:22px;
-  margin-bottom:20px;
-  box-shadow:0 3px 12px rgba(0,0,0,.1);
 }
 
 label{
@@ -166,10 +157,6 @@ textarea{
   color:white;
 }
 
-.delete:hover{
-  background:#9e1f1f;
-}
-
 .secondary{
   background:#eee;
   color:#333;
@@ -183,13 +170,13 @@ textarea{
   font-weight:bold;
 }
 
-.success{
+.message.success{
   display:block;
   background:#e9f8e9;
   color:#227522;
 }
 
-.error{
+.message.error{
   display:block;
   background:#ffe8e8;
   color:#a00000;
@@ -240,7 +227,6 @@ textarea{
 .property-actions{
   display:flex;
   gap:8px;
-  margin-top:15px;
 }
 
 .property-actions button{
@@ -261,32 +247,23 @@ textarea{
   border-radius:8px;
 }
 
-.request{
-  border-left:5px solid #d4a017;
-}
-
-.request-header{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  flex-wrap:wrap;
-}
-
-.status{
-  background:#fff3c4;
-  color:#8b6800;
-  padding:5px 9px;
-  border-radius:6px;
-  font-size:13px;
-  font-weight:bold;
-}
-
 .empty{
   text-align:center;
   padding:35px;
   color:#777;
   background:white;
   border-radius:12px;
+  grid-column:1/-1;
+}
+
+.status{
+  display:inline-block;
+  background:#fff3c4;
+  color:#8b6800;
+  padding:5px 9px;
+  border-radius:6px;
+  font-size:13px;
+  font-weight:bold;
 }
 
 @media(max-width:900px){
@@ -327,14 +304,12 @@ textarea{
 
 </nav>
 
-
 <div class="container">
 
   <div class="page-title">
     <h1>Admin Dashboard</h1>
-    <p>Manage properties, posts and customer requests.</p>
+    <p>Manage Rwanda House Market properties.</p>
   </div>
-
 
   <div class="tabs">
 
@@ -350,12 +325,6 @@ textarea{
       ➕ New Post
     </button>
 
-    <button
-      class="tab"
-      onclick="showSection('requestsSection',this)">
-      📩 Request Property
-    </button>
-
   </div>
 
 
@@ -367,10 +336,10 @@ textarea{
 
     <div class="card">
 
-      <h2>🏠 Properties</h2>
+      <h2>🏠 All Properties</h2>
 
       <p>
-        Hano niho uzajya ubona amazu n'ibibanza byose washyize kuri website.
+        Posts zose ukoresheje New Post zizagaragara hano.
       </p>
 
     </div>
@@ -396,7 +365,7 @@ textarea{
 
     <div class="card">
 
-      <h2>➕ new-post.html</h2>
+      <h2>➕ New Property Post</h2>
 
       <form id="propertyForm">
 
@@ -419,15 +388,34 @@ textarea{
           </option>
 
           <option value="rent">
-            House for Rent
+            🏠 House for Rent
           </option>
 
           <option value="sale">
-            House for Sale
+            🏡 House for Sale
           </option>
 
           <option value="plot">
-            Plot for Sale
+            📍 Plot for Sale
+          </option>
+
+        </select>
+
+
+        <label>Transaction Type</label>
+
+        <select id="transactionType" required>
+
+          <option value="">
+            Choose transaction
+          </option>
+
+          <option value="rent">
+            For Rent
+          </option>
+
+          <option value="sale">
+            For Sale
           </option>
 
         </select>
@@ -438,7 +426,8 @@ textarea{
         <input
           type="number"
           id="price"
-          placeholder="Example: 500000"
+          min="0"
+          placeholder="Example: 50000000"
           required
         >
 
@@ -452,7 +441,6 @@ textarea{
             <input
               type="text"
               id="country"
-              placeholder="Rwanda"
               value="Rwanda"
               required
             >
@@ -550,6 +538,24 @@ textarea{
         </div>
 
 
+        <label>Seller Name</label>
+
+        <input
+          type="text"
+          id="sellerName"
+          placeholder="Seller name"
+        >
+
+
+        <label>Phone</label>
+
+        <input
+          type="text"
+          id="phone"
+          placeholder="078..."
+        >
+
+
         <label>Main Photo</label>
 
         <input
@@ -603,34 +609,6 @@ textarea{
 
   </section>
 
-
-  <!-- ================= REQUESTS ================= -->
-
-  <section
-    id="requestsSection"
-    class="section">
-
-    <div class="card">
-
-      <h2>📩 Customer Property Requests</h2>
-
-      <p>
-        Aha niho uzajya ubona messages z'abakiriya basabye property.
-      </p>
-
-    </div>
-
-
-    <div id="requests">
-
-      <div class="empty">
-        Loading requests...
-      </div>
-
-    </div>
-
-  </section>
-
 </div>
 
 
@@ -646,7 +624,6 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
   "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
 
-
 const supabaseClient =
   window.supabase.createClient(
     SUPABASE_URL,
@@ -660,9 +637,6 @@ const supabaseClient =
 
 const propertiesElement =
   document.getElementById("properties");
-
-const requestsElement =
-  document.getElementById("requests");
 
 const propertyForm =
   document.getElementById("propertyForm");
@@ -678,58 +652,7 @@ const photoPreview =
 
 
 /* =========================================
-   SHOW SECTION
-========================================= */
-
-function showSection(id, button){
-
-  document
-    .querySelectorAll(".section")
-    .forEach(section => {
-      section.classList.remove("active");
-    });
-
-  document
-    .getElementById(id)
-    .classList.add("active");
-
-
-  document
-    .querySelectorAll(".tab")
-    .forEach(tab => {
-      tab.classList.remove("active");
-    });
-
-  button.classList.add("active");
-
-
-  if(id === "propertiesSection"){
-    loadProperties();
-  }
-
-  if(id === "requestsSection"){
-    loadRequests();
-  }
-
-}
-
-
-/* =========================================
-   MESSAGE
-========================================= */
-
-function showMessage(element,text,type){
-
-  element.textContent = text;
-
-  element.className =
-    "message " + type;
-
-}
-
-
-/* =========================================
-   CHECK ADMIN LOGIN
+   ADMIN LOGIN
 ========================================= */
 
 async function checkAdmin(){
@@ -756,7 +679,63 @@ async function checkAdmin(){
 
 
 /* =========================================
-   IMAGE PREVIEW
+   SECTION
+========================================= */
+
+function showSection(id,button){
+
+  document
+    .querySelectorAll(".section")
+    .forEach(section => {
+
+      section.classList.remove("active");
+
+    });
+
+
+  document
+    .getElementById(id)
+    .classList.add("active");
+
+
+  document
+    .querySelectorAll(".tab")
+    .forEach(tab => {
+
+      tab.classList.remove("active");
+
+    });
+
+
+  button.classList.add("active");
+
+
+  if(id === "propertiesSection"){
+
+    loadProperties();
+
+  }
+
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+function showMessage(text,type){
+
+  postMessage.textContent =
+    text;
+
+  postMessage.className =
+    "message " + type;
+
+}
+
+
+/* =========================================
+   PHOTO PREVIEW
 ========================================= */
 
 document
@@ -767,8 +746,8 @@ document
 
       photoPreview.innerHTML = "";
 
-
-      Array.from(this.files)
+      Array
+        .from(this.files)
         .forEach(file => {
 
           const img =
@@ -791,6 +770,20 @@ document
 
 async function uploadImage(file){
 
+  if(!file){
+
+    throw new Error(
+      "Image file irabura."
+    );
+
+  }
+
+
+  const safeName =
+    file.name
+      .replace(/[^a-zA-Z0-9._-]/g,"-");
+
+
   const fileName =
     Date.now() +
     "-" +
@@ -798,8 +791,7 @@ async function uploadImage(file){
       .toString(36)
       .substring(2) +
     "-" +
-    file.name
-      .replace(/\s+/g,"-");
+    safeName;
 
 
   const filePath =
@@ -835,7 +827,9 @@ async function uploadImage(file){
   supabaseClient
     .storage
     .from("property-images")
-    .getPublicUrl(filePath);
+    .getPublicUrl(
+      filePath
+    );
 
 
   return data.publicUrl;
@@ -860,6 +854,12 @@ propertyForm.addEventListener(
       "Posting...";
 
 
+    showMessage(
+      "Posting property...",
+      "success"
+    );
+
+
     try{
 
       const title =
@@ -872,6 +872,12 @@ propertyForm.addEventListener(
       const propertyType =
         document
           .getElementById("propertyType")
+          .value;
+
+
+      const transactionType =
+        document
+          .getElementById("transactionType")
           .value;
 
 
@@ -935,6 +941,20 @@ propertyForm.addEventListener(
         );
 
 
+      const sellerName =
+        document
+          .getElementById("sellerName")
+          .value
+          .trim();
+
+
+      const phone =
+        document
+          .getElementById("phone")
+          .value
+          .trim();
+
+
       const description =
         document
           .getElementById("description")
@@ -965,7 +985,24 @@ propertyForm.addEventListener(
       }
 
 
-      /* MAIN PHOTO */
+      if(
+        propertyType === "plot"
+      ){
+
+        /*
+          Plot nta bedrooms,
+          bathrooms cyangwa
+          parking bisabwa.
+          Ariko columns zizakomeza
+          kubaho muri table.
+        */
+
+      }
+
+
+      /* ==========================
+         MAIN PHOTO
+      ========================== */
 
       const mainPhotoUrl =
         await uploadImage(
@@ -973,7 +1010,9 @@ propertyForm.addEventListener(
         );
 
 
-      /* OTHER PHOTOS */
+      /* ==========================
+         OTHER PHOTOS
+      ========================== */
 
       const otherPhotoUrls = [];
 
@@ -991,35 +1030,85 @@ propertyForm.addEventListener(
       }
 
 
-      /* INSERT PROPERTY */
+      /* ==========================
+         POSTING FEE
+      ========================== */
+
+      /*
+        Admin post fee:
+        <= 50,000,000 = 0.5%
+        >  50,000,000 = 1%
+      */
+
+      let postingFee = 0;
+
+
+      if(price < 50000000){
+
+        postingFee =
+          price * 0.005;
+
+      }
+      else{
+
+        postingFee =
+          price * 0.01;
+
+      }
+
+
+      /* ==========================
+         INSERT INTO NEW TABLE
+      ========================== */
 
       const {
         error
       } =
       await supabaseClient
-        .from("properties")
+        .from("property_posts")
         .insert({
 
-          title:title,
+          seller_name:
+            sellerName,
+
+          phone:
+            phone,
 
           property_type:
             propertyType,
 
-          price:price,
+          transaction_type:
+            transactionType,
 
-          country:country,
+          title:
+            title,
 
-          province:province,
+          country:
+            country,
 
-          district:district,
+          province:
+            province,
 
-          sector:sector,
+          district:
+            district,
 
-          bedrooms:bedrooms,
+          sector:
+            sector,
 
-          bathrooms:bathrooms,
+          bedrooms:
+            bedrooms,
 
-          parking:parking,
+          bathrooms:
+            bathrooms,
+
+          parking:
+            parking,
+
+          price:
+            price,
+
+          posting_fee:
+            postingFee,
 
           main_photo:
             mainPhotoUrl,
@@ -1027,7 +1116,11 @@ propertyForm.addEventListener(
           other_photos:
             otherPhotoUrls,
 
-          description:description
+          description:
+            description,
+
+          status:
+            "published"
 
         });
 
@@ -1040,7 +1133,6 @@ propertyForm.addEventListener(
 
 
       showMessage(
-        postMessage,
         "✅ Property posted successfully!",
         "success"
       );
@@ -1048,14 +1140,18 @@ propertyForm.addEventListener(
 
       propertyForm.reset();
 
+
       document
         .getElementById("country")
-        .value = "Rwanda";
+        .value =
+        "Rwanda";
 
-      photoPreview.innerHTML = "";
+
+      photoPreview.innerHTML =
+        "";
 
 
-      loadProperties();
+      await loadProperties();
 
     }
     catch(error){
@@ -1063,8 +1159,8 @@ propertyForm.addEventListener(
       console.error(error);
 
       showMessage(
-        postMessage,
-        "❌ " + error.message,
+        "❌ " +
+        error.message,
         "error"
       );
 
@@ -1098,7 +1194,7 @@ async function loadProperties(){
     error
   } =
   await supabaseClient
-    .from("properties")
+    .from("property_posts")
     .select("*")
     .order(
       "created_at",
@@ -1114,10 +1210,11 @@ async function loadProperties(){
 
     propertiesElement.innerHTML =
       `<div class="empty">
-        ❌ ${error.message}
+        ❌ ${escapeHtml(error.message)}
       </div>`;
 
     return;
+
   }
 
 
@@ -1133,7 +1230,8 @@ async function loadProperties(){
   }
 
 
-  propertiesElement.innerHTML = "";
+  propertiesElement.innerHTML =
+    "";
 
 
   data.forEach(property => {
@@ -1148,9 +1246,13 @@ async function loadProperties(){
     const mainPhoto =
       property.main_photo ||
       (
-        Array.isArray(property.other_photos)
-          ? property.other_photos[0]
-          : ""
+        Array.isArray(
+          property.other_photos
+        )
+        ?
+        property.other_photos[0]
+        :
+        ""
       ) ||
       "https://via.placeholder.com/600x400?text=No+Photo";
 
@@ -1161,30 +1263,70 @@ async function loadProperties(){
         src="${escapeHtml(mainPhoto)}"
         alt="Property">
 
+
       <div class="property-body">
 
         <div class="property-title">
-          ${escapeHtml(property.title || "Property")}
+
+          ${escapeHtml(
+            property.title ||
+            "Property"
+          )}
+
         </div>
 
+
         <div class="price">
-          ${Number(property.price || 0).toLocaleString()} RWF
+
+          ${Number(
+            property.price || 0
+          ).toLocaleString()}
+
+          RWF
+
         </div>
+
 
         <div class="location">
 
           📍
-          ${escapeHtml(property.country || "")},
-          ${escapeHtml(property.province || "")},
-          ${escapeHtml(property.district || "")},
-          ${escapeHtml(property.sector || "")}
+          ${escapeHtml(
+            property.country || ""
+          )},
+          ${escapeHtml(
+            property.province || ""
+          )},
+          ${escapeHtml(
+            property.district || ""
+          )},
+          ${escapeHtml(
+            property.sector || ""
+          )}
+
+          <br><br>
+
+          🏷️ Type:
+          ${escapeHtml(
+            property.property_type || ""
+          )}
+
+          <br>
+
+          📌 Status:
+          <span class="status">
+
+            ${escapeHtml(
+              property.status || "pending"
+            )}
+
+          </span>
 
           <br><br>
 
           🛏️ Bedrooms:
           ${property.bedrooms ?? 0}
 
-          &nbsp;&nbsp;
+          <br>
 
           🚿 Bathrooms:
           ${property.bathrooms ?? 0}
@@ -1202,91 +1344,32 @@ async function loadProperties(){
           <button
             class="button secondary"
             onclick="viewProperty('${property.id}')">
+
             View
+
           </button>
+
 
           <button
             class="button delete"
             onclick="deleteProperty('${property.id}')">
+
             🗑️ Delete
+
           </button>
 
         </div>
 
       </div>
+
     `;
 
 
-    propertiesElement.appendChild(card);
+    propertiesElement.appendChild(
+      card
+    );
 
   });
-
-}
-
-
-/* =========================================
-   DELETE PROPERTY
-========================================= */
-
-async function deleteProperty(id){
-
-  const confirmed =
-    confirm(
-      "Urashaka koko gusiba iyi property? Nuyisiba ntizongera kugaragara kuri website."
-    );
-
-
-  if(!confirmed){
-
-    return;
-
-  }
-
-
-  try{
-
-    /*
-      Banza usibe property muri database.
-    */
-
-    const {
-      error
-    } =
-    await supabaseClient
-      .from("properties")
-      .delete()
-      .eq("id",id);
-
-
-    if(error){
-
-      throw error;
-
-    }
-
-
-    alert(
-      "✅ Property yasibwe neza."
-    );
-
-
-    /*
-      Ongera usome properties
-    */
-
-    await loadProperties();
-
-  }
-  catch(error){
-
-    console.error(error);
-
-    alert(
-      "❌ Ntibyashobotse gusiba property: " +
-      error.message
-    );
-
-  }
 
 }
 
@@ -1302,7 +1385,7 @@ async function viewProperty(id){
     error
   } =
   await supabaseClient
-    .from("properties")
+    .from("property_posts")
     .select("*")
     .eq("id",id)
     .maybeSingle();
@@ -1311,7 +1394,8 @@ async function viewProperty(id){
   if(error){
 
     alert(
-      "❌ " + error.message
+      "❌ " +
+      error.message
     );
 
     return;
@@ -1330,30 +1414,34 @@ async function viewProperty(id){
   }
 
 
-  let photos = [];
+  const message =
 
-
-  if(
-    Array.isArray(
-      data.other_photos
-    )
-  ){
-
-    photos =
-      data.other_photos;
-
-  }
-
-
-  let message =
     "PROPERTY DETAILS\n\n" +
 
     "Title: " +
     (data.title || "") +
 
+    "\n\nSeller: " +
+    (data.seller_name || "") +
+
+    "\nPhone: " +
+    (data.phone || "") +
+
+    "\n\nProperty Type: " +
+    (data.property_type || "") +
+
+    "\nTransaction: " +
+    (data.transaction_type || "") +
+
     "\n\nPrice: " +
     Number(
       data.price || 0
+    ).toLocaleString() +
+    " RWF" +
+
+    "\nPosting Fee: " +
+    Number(
+      data.posting_fee || 0
     ).toLocaleString() +
     " RWF" +
 
@@ -1385,142 +1473,18 @@ async function viewProperty(id){
 
 
 /* =========================================
-   LOAD CUSTOMER REQUESTS
+   DELETE PROPERTY
 ========================================= */
 
-async function loadRequests(){
+async function deleteProperty(id){
 
-  requestsElement.innerHTML =
-    `<div class="empty">
-      Loading requests...
-    </div>`;
-
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("property_requests")
-    .select("*")
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
+  const confirmed =
+    confirm(
+      "Urashaka koko gusiba iyi property?"
     );
 
 
-  if(error){
-
-    console.error(error);
-
-    requestsElement.innerHTML =
-      `<div class="empty">
-        ❌ ${error.message}
-      </div>`;
-
-    return;
-
-  }
-
-
-  if(!data || data.length === 0){
-
-    requestsElement.innerHTML =
-      `<div class="empty">
-        Nta request iraboneka.
-      </div>`;
-
-    return;
-
-  }
-
-
-  requestsElement.innerHTML = "";
-
-
-  data.forEach(request => {
-
-    const card =
-      document.createElement("div");
-
-    card.className =
-      "card request";
-
-
-    card.innerHTML = `
-
-      <div class="request-header">
-
-        <h3>
-          📩 Property Request
-        </h3>
-
-        <span class="status">
-          ${escapeHtml(request.status || "pending")}
-        </span>
-
-      </div>
-
-
-      <p>
-        <strong>Name:</strong>
-        ${escapeHtml(request.name || request.full_name || "")}
-      </p>
-
-
-      <p>
-        <strong>Email:</strong>
-        ${escapeHtml(request.email || "")}
-      </p>
-
-
-      <p>
-        <strong>Phone:</strong>
-        ${escapeHtml(request.phone || "")}
-      </p>
-
-
-      <p>
-        <strong>Property Type:</strong>
-        ${escapeHtml(request.property_type || "")}
-      </p>
-
-
-      <p>
-        <strong>Message:</strong><br>
-        ${escapeHtml(request.message || request.description || "")}
-      </p>
-
-
-      <button
-        class="button delete"
-        onclick="deleteRequest('${request.id}')">
-        🗑️ Delete Request
-      </button>
-
-    `;
-
-
-    requestsElement.appendChild(card);
-
-  });
-
-}
-
-
-/* =========================================
-   DELETE REQUEST
-========================================= */
-
-async function deleteRequest(id){
-
-  if(
-    !confirm(
-      "Urashaka koko gusiba iyi request?"
-    )
-  ){
+  if(!confirmed){
 
     return;
 
@@ -1531,7 +1495,7 @@ async function deleteRequest(id){
     error
   } =
   await supabaseClient
-    .from("property_requests")
+    .from("property_posts")
     .delete()
     .eq("id",id);
 
@@ -1539,7 +1503,8 @@ async function deleteRequest(id){
   if(error){
 
     alert(
-      "❌ " + error.message
+      "❌ " +
+      error.message
     );
 
     return;
@@ -1548,11 +1513,11 @@ async function deleteRequest(id){
 
 
   alert(
-    "✅ Request yasibwe."
+    "✅ Property yasibwe neza."
   );
 
 
-  loadRequests();
+  await loadProperties();
 
 }
 
@@ -1591,7 +1556,9 @@ function goHome(){
 
 async function logout(){
 
-  await supabaseClient.auth.signOut();
+  await supabaseClient
+    .auth
+    .signOut();
 
   window.location.href =
     "login.html";
@@ -1624,3 +1591,4 @@ async function logout(){
 
 </body>
 </html>
+```
