@@ -1,13 +1,23 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
+
 <meta
   name="viewport"
-  content="width=device-width, initial-scale=1.0">
+  content="width=device-width, initial-scale=1.0"
+>
 
-<title>House Detail - Rwanda House Market</title>
+<title>House Detail - Rwanda Property Visata</title>
+
+<link
+  rel="icon"
+  type="image/png"
+  href="logo.png"
+>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -24,19 +34,42 @@ body{
   color:#222;
 }
 
+
+/* ================= HEADER ================= */
+
 header{
   background:#f2c400;
-  padding:22px 15px;
+  padding:18px 15px;
   text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.brand img{
+  width:55px;
+  height:55px;
+  object-fit:contain;
+}
+
+.brand-name{
+  font-size:27px;
+  font-weight:bold;
 }
 
 header h1{
-  margin:0;
+  margin:8px 0 0;
+  font-size:22px;
 }
 
 .back{
   display:inline-block;
-  margin-top:12px;
+  margin-top:14px;
   background:white;
   color:#222;
   text-decoration:none;
@@ -45,11 +78,21 @@ header h1{
   font-weight:bold;
 }
 
+.back:hover{
+  background:#f7f7f7;
+}
+
+
+/* ================= CONTAINER ================= */
+
 .container{
   max-width:1100px;
   margin:auto;
   padding:30px 20px 60px;
 }
+
+
+/* ================= CARD ================= */
 
 .card{
   background:white;
@@ -59,6 +102,9 @@ header h1{
   box-shadow:0 3px 12px rgba(0,0,0,.12);
 }
 
+
+/* ================= MAIN PHOTO ================= */
+
 .main-photo{
   width:100%;
   height:500px;
@@ -66,6 +112,9 @@ header h1{
   border-radius:12px;
   display:block;
 }
+
+
+/* ================= GALLERY ================= */
 
 .gallery{
   display:grid;
@@ -85,6 +134,9 @@ header h1{
 .gallery img:hover{
   opacity:.8;
 }
+
+
+/* ================= PROPERTY ================= */
 
 .title{
   font-size:30px;
@@ -108,6 +160,9 @@ header h1{
   font-weight:bold;
 }
 
+
+/* ================= INFO ================= */
+
 .info-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -119,12 +174,20 @@ header h1{
   background:#fafafa;
   padding:15px;
   border-radius:8px;
+  line-height:1.6;
 }
+
+
+/* ================= DESCRIPTION ================= */
 
 .description{
   line-height:1.7;
   color:#555;
+  white-space:pre-line;
 }
+
+
+/* ================= CONTACT ================= */
 
 .contact{
   display:flex;
@@ -146,17 +209,32 @@ header h1{
   color:#222;
 }
 
+.call:hover{
+  background:#dcb200;
+}
+
 .whatsapp{
   background:#128c7e;
   color:white;
 }
+
+.whatsapp:hover{
+  background:#0e7569;
+}
+
+
+/* ================= LOADING ================= */
 
 .loading{
   background:white;
   padding:40px;
   text-align:center;
   border-radius:12px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
+
+
+/* ================= ERROR ================= */
 
 .error{
   background:#ffe8e8;
@@ -166,7 +244,19 @@ header h1{
   text-align:center;
 }
 
+
+/* ================= MOBILE ================= */
+
 @media(max-width:700px){
+
+  .brand-name{
+    font-size:21px;
+  }
+
+  .brand img{
+    width:48px;
+    height:48px;
+  }
 
   .main-photo{
     height:300px;
@@ -184,27 +274,52 @@ header h1{
     font-size:25px;
   }
 
+  .price{
+    font-size:22px;
+  }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <header>
 
-  <h1>🏡 RWANDA HOUSE MARKET</h1>
+  <div class="brand">
+
+    <img
+      src="logo.png"
+      alt="Rwanda Property Visata Logo"
+    >
+
+    <div class="brand-name">
+      Rwanda Property Visata
+    </div>
+
+  </div>
+
+
+  <h1>
+    🏡 House for Sale
+  </h1>
+
 
   <a
     href="houses-sale.html"
-    class="back">
+    class="back"
+  >
 
     ← Back to Houses for Sale
 
   </a>
 
 </header>
+
 
 
 <div class="container">
@@ -220,6 +335,7 @@ header h1{
 </div>
 
 
+
 <script>
 
 /* =========================
@@ -229,8 +345,10 @@ header h1{
 const SUPABASE_URL =
   "https://hsmnybmcddtsyooltozw.supabase.co";
 
+
 const SUPABASE_KEY =
   "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
 
 const supabaseClient =
   window.supabase.createClient(
@@ -244,7 +362,9 @@ const supabaseClient =
 ========================= */
 
 const content =
-  document.getElementById("content");
+  document.getElementById(
+    "content"
+  );
 
 
 /* =========================
@@ -264,13 +384,14 @@ function escapeHtml(value){
 
 
 /* =========================
-   GET PROPERTY ID
+   GET ID
 ========================= */
 
 const params =
   new URLSearchParams(
     window.location.search
   );
+
 
 const propertyId =
   params.get("id");
@@ -285,12 +406,17 @@ async function loadProperty(){
   if(!propertyId){
 
     content.innerHTML = `
+
       <div class="error">
+
         ❌ Property ID ntibonetse.
+
       </div>
+
     `;
 
     return;
+
   }
 
 
@@ -299,10 +425,21 @@ async function loadProperty(){
     error
   } =
   await supabaseClient
+
     .from("property_posts")
+
     .select("*")
-    .eq("id",propertyId)
-    .eq("property_type","sale")
+
+    .eq(
+      "id",
+      propertyId
+    )
+
+    .eq(
+      "property_type",
+      "sale"
+    )
+
     .maybeSingle();
 
 
@@ -311,24 +448,36 @@ async function loadProperty(){
     console.error(error);
 
     content.innerHTML = `
+
       <div class="error">
-        ❌ ${escapeHtml(error.message)}
+
+        ❌ ${escapeHtml(
+          error.message
+        )}
+
       </div>
+
     `;
 
     return;
+
   }
 
 
   if(!data){
 
     content.innerHTML = `
+
       <div class="error">
+
         ❌ Iyi nzu ntiyabonetse.
+
       </div>
+
     `;
 
     return;
+
   }
 
 
@@ -344,8 +493,11 @@ async function loadProperty(){
 function renderProperty(property){
 
   document.title =
-    (property.title || "House Detail") +
-    " - Rwanda House Market";
+    (
+      property.title ||
+      "House Detail"
+    ) +
+    " - Rwanda Property Visata";
 
 
   const mainPhoto =
@@ -365,11 +517,15 @@ function renderProperty(property){
   }
 
 
-  if(
-    Array.isArray(
-      property.other_photos
-    )
-  ){
+  /*
+    other_photos twabikoze
+    nk JSONB muri property_posts.
+    Kubanza kugenzura array.
+  */
+
+  if(Array.isArray(
+    property.other_photos
+  )){
 
     photos =
       photos.concat(
@@ -379,9 +535,51 @@ function renderProperty(property){
   }
 
 
+  /*
+    Niba Supabase yagaruye
+    other_photos nka string,
+    tugerageza kuyihindura array.
+  */
+
+  if(
+    typeof property.other_photos ===
+    "string"
+  ){
+
+    try{
+
+      const parsed =
+        JSON.parse(
+          property.other_photos
+        );
+
+
+      if(Array.isArray(parsed)){
+
+        photos =
+          photos.concat(parsed);
+
+      }
+
+    }
+    catch(error){
+
+      console.log(
+        "Other photos parsing skipped."
+      );
+
+    }
+
+  }
+
+
   const uniquePhotos =
-    [...new Set(photos)]
-      .filter(Boolean);
+    [
+      ...new Set(
+        photos
+      )
+    ]
+    .filter(Boolean);
 
 
   let galleryHTML = "";
@@ -392,9 +590,16 @@ function renderProperty(property){
     galleryHTML += `
 
       <img
+
         src="${escapeHtml(photo)}"
+
         onclick="changeMainPhoto(this.src)"
-        alt="Property Photo">
+
+        alt="Property Photo"
+
+        loading="lazy"
+
+      >
 
     `;
 
@@ -406,10 +611,20 @@ function renderProperty(property){
     <div class="card">
 
       <img
+
         id="mainPhoto"
+
         class="main-photo"
+
         src="${escapeHtml(mainPhoto)}"
-        alt="House">
+
+        alt="${escapeHtml(
+          property.title ||
+          "House"
+        )}"
+
+      >
+
 
       <div class="gallery">
 
@@ -422,31 +637,47 @@ function renderProperty(property){
 
     <div class="card">
 
+
       <span class="type">
+
         🏠 House for Sale
+
       </span>
 
+
       <h2 class="title">
+
         ${escapeHtml(
           property.title ||
           "House for Sale"
         )}
+
       </h2>
+
 
       <div class="price">
 
         ${Number(
           property.price || 0
-        ).toLocaleString()} RWF
+        ).toLocaleString()}
+
+        RWF
 
       </div>
 
 
       <div class="info-grid">
 
+
         <div class="info">
 
-          🌍 <strong>Country</strong><br>
+          🌍
+
+          <strong>
+            Country
+          </strong>
+
+          <br>
 
           ${escapeHtml(
             property.country || ""
@@ -457,7 +688,13 @@ function renderProperty(property){
 
         <div class="info">
 
-          📍 <strong>Province</strong><br>
+          📍
+
+          <strong>
+            Province
+          </strong>
+
+          <br>
 
           ${escapeHtml(
             property.province || ""
@@ -468,7 +705,13 @@ function renderProperty(property){
 
         <div class="info">
 
-          📍 <strong>District</strong><br>
+          📍
+
+          <strong>
+            District
+          </strong>
+
+          <br>
 
           ${escapeHtml(
             property.district || ""
@@ -479,7 +722,13 @@ function renderProperty(property){
 
         <div class="info">
 
-          📍 <strong>Sector</strong><br>
+          📍
+
+          <strong>
+            Sector
+          </strong>
+
+          <br>
 
           ${escapeHtml(
             property.sector || ""
@@ -490,7 +739,13 @@ function renderProperty(property){
 
         <div class="info">
 
-          🛏️ <strong>Bedrooms</strong><br>
+          🛏️
+
+          <strong>
+            Bedrooms
+          </strong>
+
+          <br>
 
           ${property.bedrooms ?? 0}
 
@@ -499,7 +754,13 @@ function renderProperty(property){
 
         <div class="info">
 
-          🚿 <strong>Bathrooms</strong><br>
+          🚿
+
+          <strong>
+            Bathrooms
+          </strong>
+
+          <br>
 
           ${property.bathrooms ?? 0}
 
@@ -508,9 +769,33 @@ function renderProperty(property){
 
         <div class="info">
 
-          🚗 <strong>Parking</strong><br>
+          🚗
+
+          <strong>
+            Parking
+          </strong>
+
+          <br>
 
           ${property.parking ?? 0}
+
+        </div>
+
+
+        <div class="info">
+
+          👤
+
+          <strong>
+            Seller
+          </strong>
+
+          <br>
+
+          ${escapeHtml(
+            property.seller_name ||
+            "Rwanda Property Visata"
+          )}
 
         </div>
 
@@ -520,6 +805,7 @@ function renderProperty(property){
       <h3>
         Description
       </h3>
+
 
       <p class="description">
 
@@ -532,31 +818,75 @@ function renderProperty(property){
 
 
       <h3>
-        📞 Contact Rwanda House Market
+        📞 Contact
       </h3>
 
 
       <div class="contact">
 
+
+        ${
+          property.phone
+          ?
+
+          `
+
+          <a
+
+            href="tel:${escapeHtml(
+              property.phone
+            )}"
+
+            class="button call"
+
+          >
+
+            📞 Call Seller
+
+          </a>
+
+          `
+
+          :
+
+          `
+
+          <a
+
+            href="tel:+250799645553"
+
+            class="button call"
+
+          >
+
+            📞 Call
+
+          </a>
+
+          `
+
+        }
+
+
         <a
-          href="tel:+250799645553"
-          class="button call">
 
-          📞 Call
-
-        </a>
-
-
-        <a
           href="https://wa.me/250799645553"
+
           target="_blank"
-          class="button whatsapp">
+
+          rel="noopener noreferrer"
+
+          class="button whatsapp"
+
+        >
 
           💬 WhatsApp
 
         </a>
 
+
       </div>
+
 
     </div>
 
@@ -571,9 +901,18 @@ function renderProperty(property){
 
 function changeMainPhoto(src){
 
-  document
-    .getElementById("mainPhoto")
-    .src = src;
+  const mainPhoto =
+    document.getElementById(
+      "mainPhoto"
+    );
+
+
+  if(mainPhoto){
+
+    mainPhoto.src =
+      src;
+
+  }
 
 }
 
@@ -588,3 +927,4 @@ loadProperty();
 
 </body>
 </html>
+```
