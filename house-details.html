@@ -1,1003 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rwanda Property Visata</title>
+  <title>Rwanda Property Visata</title>
 
-<style>
-* {
-  box-sizing: border-box;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fffdf5;
-  color: #4a3900;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fffdf5;
+      color: #4a3900;
+    }
 
-header {
-  background: #f2c300;
-  color: #fff;
-  padding: 22px 15px;
-  text-align: center;
-  box-shadow: 0 3px 10px rgba(0,0,0,.15);
-}
+    header {
+      background: #f2c300;
+      color: #fff;
+      padding: 22px 15px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,.15);
+    }
 
-header h1 {
-  margin: 0;
-  font-size: 28px;
-  text-shadow: 0 2px 5px rgba(0,0,0,.15);
-}
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      text-shadow: 0 2px 5px rgba(0,0,0,.15);
+    }
 
-.back {
-  display: inline-block;
-  margin-top: 10px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-}
+    .back {
+      display: inline-block;
+      margin-top: 10px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      background: #b28b00;
+      padding: 10px 18px;
+      border-radius: 8px;
+    }
 
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 25px 20px 50px;
-}
+    .back:hover {
+      background: #8f7000;
+    }
 
-.photo-slider {
-  position: relative;
-  background: #fff;
-  padding: 12px;
-  border-radius: 15px;
-  box-shadow: 0 3px 12px rgba(180,140,0,.15);
-  border-top: 5px solid #f2c300;
-}
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px 70px;
+    }
 
-.photo-slider img {
-  width: 100%;
-  height: 520px;
-  object-fit: cover;
-  border-radius: 10px;
-  display: block;
-}
+    .empty-box {
+      background: #fff;
+      border-radius: 15px;
+      padding: 60px 25px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(180,140,0,.15);
+      border-top: 5px solid #f2c300;
+    }
 
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #f2c300;
-  color: #fff;
-  border: 0;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 28px;
-  cursor: pointer;
-  font-weight: bold;
-  z-index: 2;
-}
+    .empty-box h2 {
+      margin: 0 0 15px;
+      color: #b28b00;
+      font-size: 30px;
+    }
 
-.arrow:hover {
-  background: #d9ad00;
-}
+    .empty-box p {
+      margin: 0;
+      color: #70652f;
+      font-size: 17px;
+      line-height: 1.6;
+    }
 
-.left {
-  left: 25px;
-}
+    .empty-icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
 
-.right {
-  right: 25px;
-}
+    @media(max-width:700px) {
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
-  margin-top: 15px;
-}
+      header {
+        padding: 20px 12px;
+      }
 
-.gallery img {
-  width: 100%;
-  height: 105px;
-  object-fit: cover;
-  border-radius: 10px;
-  cursor: pointer;
-  border: 3px solid white;
-  box-shadow: 0 3px 8px rgba(180,140,0,.15);
-}
+      header h1 {
+        font-size: 23px;
+      }
 
-.gallery img.active {
-  border-color: #f2c300;
-}
+      .container {
+        padding: 25px 15px 60px;
+      }
 
-.info {
-  background: #fff;
-  margin-top: 25px;
-  padding: 28px;
-  border-radius: 15px;
-  box-shadow: 0 3px 12px rgba(180,140,0,.15);
-  border-top: 5px solid #f2c300;
-}
+      .empty-box {
+        padding: 45px 20px;
+      }
 
-.info h2 {
-  font-size: 30px;
-  margin-top: 0;
-  color: #b28b00;
-}
-
-.type {
-  display: inline-block;
-  background: #fff7d6;
-  color: #b28b00;
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-weight: bold;
-  border: 1px solid #f2c300;
-}
-
-.price {
-  font-size: 25px;
-  font-weight: bold;
-  margin: 15px 0;
-  color: #b28b00;
-}
-
-.location {
-  font-size: 18px;
-  margin-bottom: 20px;
-  color: #5f5000;
-}
-
-.details-list {
-  line-height: 2;
-  font-size: 17px;
-  color: #5f5000;
-}
-
-.description {
-  color: #70652f;
-  line-height: 1.7;
-}
-
-.action-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 25px;
-}
-
-.action-button,
-.call,
-.social-links a {
-  padding: 13px 20px;
-  border-radius: 8px;
-  color: white;
-  background: #f2c300;
-  text-decoration: none;
-  font-weight: bold;
-  transition: .2s;
-}
-
-.action-button:hover,
-.call:hover,
-.social-links a:hover {
-  background: #d9ad00;
-  transform: translateY(-2px);
-}
-
-.call {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 13px 25px;
-}
-
-.social {
-  margin-top: 30px;
-  padding-top: 25px;
-  border-top: 2px solid #f2c300;
-  text-align: center;
-}
-
-.social h3 {
-  color: #b28b00;
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 15px;
-}
-
-@media(max-width:700px) {
-
-  .photo-slider img {
-    height: 300px;
-  }
-
-  .gallery {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .gallery img {
-    height: 90px;
-  }
-
-  .info h2 {
-    font-size: 25px;
-  }
-
-  .action-button {
-    width: 100%;
-    text-align: center;
-  }
-}
-</style>
+      .empty-box h2 {
+        font-size: 25px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
+  <header>
 
-  <h1 id="headerTitle">
-    🏠 RWANDA PROPERTY VISATA
-  </h1>
-
-  <a href="./rent.html" class="back" id="backButton">
-    ← Back to Houses for Rent
-  </a>
-
-</header>
-
-<div class="container">
-
-  <div class="photo-slider">
-
-    <button class="arrow left" onclick="previousProperty()">
-      ‹
-    </button>
-
-    <img
-      id="mainPhoto"
-      src="images/property1.jpg"
-      alt="Property"
-    >
-
-    <button class="arrow right" onclick="nextProperty()">
-      ›
-    </button>
-
-  </div>
-
-  <div class="gallery" id="gallery"></div>
-
-  <div class="action-buttons">
+    <h1 id="headerTitle">
+      🏠 RWANDA PROPERTY VISATA
+    </h1>
 
     <a
-      href="https://www.youtube.com/channel/UCGWVPGW9WXJZqWiB7oDHp3Q"
-      target="_blank"
-      class="action-button"
-      id="videoButton">
-      🎥 View Video
+      href="./rent.html"
+      class="back"
+      id="backButton">
+      ← Back to Houses for Rent
     </a>
 
-    <a
-      href="https://www.google.com/maps/search/?api=1&query=Kigali,Rwanda"
-      target="_blank"
-      class="action-button"
-      id="locationButton">
-      📍 View Location
-    </a>
+  </header>
 
-    <a
-      href="https://wa.me/250799645553"
-      target="_blank"
-      class="action-button"
-      id="whatsappButton">
-      💬 WhatsApp
-    </a>
 
-  </div>
+  <div class="container">
 
-  <div class="info">
+    <div class="empty-box">
 
-    <h2 id="houseTitle"></h2>
-
-    <div class="type" id="propertyType"></div>
-
-    <div class="price" id="price"></div>
-
-    <div class="location">
-      📍 <span id="houseLocation"></span>
-    </div>
-
-    <h3 id="propertyDetailsTitle"></h3>
-
-    <div class="details-list" id="detailsList"></div>
-
-    <h3 id="descriptionTitle"></h3>
-
-    <p class="description" id="houseDescription"></p>
-
-    <h3 id="contactTitle">
-      📞 Contact
-    </h3>
-
-    <p>
-      <strong>+250 799 645 553</strong>
-    </p>
-
-    <a
-      href="tel:+250799645553"
-      class="call"
-      id="callButton">
-      📞 Call Now
-    </a>
-
-    <div class="social">
-
-      <h3 id="followTitle">
-        🌐 Follow Rwanda Property Visata
-      </h3>
-
-      <div class="social-links">
-
-        <a
-          href="https://www.youtube.com/channel/UCGWVPGW9WXJZqWiB7oDHp3Q"
-          target="_blank"
-          id="youtubeButton">
-          ▶ YouTube
-        </a>
-
-        <a
-          href="#"
-          target="_blank"
-          id="facebookButton">
-          f Facebook
-        </a>
-
-        <a
-          href="#"
-          target="_blank"
-          id="instagramButton">
-          ◎ Instagram
-        </a>
-
+      <div class="empty-icon">
+        🏠
       </div>
 
+      <h2 id="emptyTitle">
+        No Properties Available
+      </h2>
+
+      <p id="emptyText">
+        There are currently no properties posted.
+        Please check again later.
+      </p>
+
     </div>
 
   </div>
 
-</div>
-
-<script>
-
-/* =========================
-   AMAFOTO 6
-========================= */
-
-const photos = [
-  "images/property1.jpg",
-  "images/property2.jpg",
-  "images/property3.jpg",
-  "images/property4.jpg",
-  "images/property5.jpg",
-  "images/property6.jpg"
-];
-
-
-/* =========================
-   INZU 6
-========================= */
-
-const properties = [
-
-  {
-    title: {
-      Kinyarwanda: "Inzu nziza y'umuryango",
-      English: "Beautiful Family House",
-      Français: "Belle maison familiale",
-      Kiswahili: "Nyumba nzuri ya familia",
-      "中文": "漂亮的家庭住宅"
-    },
-
-    type: {
-      Kinyarwanda: "Inzu igurishwa",
-      English: "House for Sale",
-      Français: "Maison à vendre",
-      Kiswahili: "Nyumba ya Kuuzwa",
-      "中文": "出售房屋"
-    },
-
-    price: "350,000,000 RWF",
-
-    location: {
-      Kinyarwanda: "Kigali, Rwanda",
-      English: "Kigali, Rwanda",
-      Français: "Kigali, Rwanda",
-      Kiswahili: "Kigali, Rwanda",
-      "中文": "基加利，卢旺达"
-    },
-
-    details: {
-      Kinyarwanda: "Inzu nziza y'umuryango",
-      English: "Beautiful family property",
-      Français: "Belle propriété familiale",
-      Kiswahili: "Nyumba nzuri ya familia",
-      "中文": "漂亮的家庭房产"
-    },
-
-    description: {
-      Kinyarwanda:
-        "Inzu nziza y'umuryango ifite isura nziza kandi ikwiye umuryango ushaka inzu nziza i Kigali.",
-
-      English:
-        "A beautiful family house with an attractive design, suitable for a family looking for a quality home in Kigali.",
-
-      Français:
-        "Une belle maison familiale au design agréable, idéale pour une famille à la recherche d'une maison de qualité à Kigali.",
-
-      Kiswahili:
-        "Nyumba nzuri ya familia yenye muundo mzuri, inayofaa familia inayotafuta nyumba bora Kigali.",
-
-      "中文":
-        "这是一套设计漂亮的家庭住宅，适合希望在基加利拥有优质住房的家庭。"
-    }
-  },
-
-
-  {
-    title: {
-      Kinyarwanda: "Inzu nziza y'umuryango",
-      English: "Beautiful Family House",
-      Français: "Belle maison familiale",
-      Kiswahili: "Nyumba nzuri ya familia",
-      "中文": "漂亮的家庭住宅"
-    },
-
-    type: {
-      Kinyarwanda: "Inzu igurishwa",
-      English: "House for Sale",
-      Français: "Maison à vendre",
-      Kiswahili: "Nyumba ya Kuuzwa",
-      "中文": "出售房屋"
-    },
-
-    price: "600,000,000 FRW",
-
-    location: {
-      Kinyarwanda: "Kigali, Rwanda",
-      English: "Kigali, Rwanda",
-      Français: "Kigali, Rwanda",
-      Kiswahili: "Kigali, Rwanda",
-      "中文": "基加利，卢旺达"
-    },
-
-    details: {
-      Kinyarwanda: "Inzu nziza y'umuryango",
-      English: "Beautiful family property",
-      Français: "Belle propriété familiale",
-      Kiswahili: "Nyumba nzuri ya familia",
-      "中文": "漂亮的家庭房产"
-    },
-
-    description: {
-      Kinyarwanda:
-        "Inzu nziza y'umuryango iri ahantu heza kandi ifite umwanya mwiza wo guturamo.",
-
-      English:
-        "A beautiful family property in a good location with comfortable living space.",
-
-      Français:
-        "Une belle propriété familiale située dans un bon emplacement avec un espace de vie confortable.",
-
-      Kiswahili:
-        "Nyumba nzuri ya familia iliyoko katika eneo zuri na yenye nafasi nzuri ya kuishi.",
-
-      "中文":
-        "一套位于优质地段、拥有舒适生活空间的漂亮家庭住宅。"
-    }
-  },
-
-
-  {
-    title: {
-      Kinyarwanda: "Inzu nziza y'umuryango",
-      English: "Beautiful Family House",
-      Français: "Belle maison familiale",
-      Kiswahili: "Nyumba nzuri ya familia",
-      "中文": "漂亮的家庭住宅"
-    },
-
-    type: {
-      Kinyarwanda: "Inzu igurishwa",
-      English: "House for Sale",
-      Français: "Maison à vendre",
-      Kiswahili: "Nyumba ya Kuuzwa",
-      "中文": "出售房屋"
-    },
-
-    price: "30,000,000 FRW",
-
-    location: {
-      Kinyarwanda: "Kigali, Rwanda",
-      English: "Kigali, Rwanda",
-      Français: "Kigali, Rwanda",
-      Kiswahili: "Kigali, Rwanda",
-      "中文": "基加利，卢旺达"
-    },
-
-    details: {
-      Kinyarwanda: "Inzu nziza y'umuryango",
-      English: "Beautiful family property",
-      Français: "Belle propriété familiale",
-      Kiswahili: "Nyumba nzuri ya familia",
-      "中文": "漂亮的家庭房产"
-    },
-
-    description: {
-      Kinyarwanda:
-        "Inzu nziza y'umuryango ifite igishushanyo cyoroshye kandi ikwiye umuntu ushaka aho gutura.",
-
-      English:
-        "A family house with a simple attractive design, suitable for someone looking for a home.",
-
-      Français:
-        "Une maison familiale au design simple et agréable, adaptée à ceux qui recherchent un logement.",
-
-      Kiswahili:
-        "Nyumba ya familia yenye muundo rahisi na mzuri, inayofaa mtu anayetafuta makazi.",
-
-      "中文":
-        "一套设计简洁漂亮的家庭住宅，适合正在寻找住房的人。"
-    }
-  },
-
-
-  {
-    title: {
-      Kinyarwanda: "Inzu z'ubucuruzi",
-      English: "Commercial Buildings",
-      Français: "Bâtiments commerciaux",
-      Kiswahili: "Majengo ya Biashara",
-      "中文": "商业房产"
-    },
-
-    type: {
-      Kinyarwanda: "Inzu z'ubucuruzi",
-      English: "Commercial Property",
-      Français: "Propriété commerciale",
-      Kiswahili: "Mali ya Biashara",
-      "中文": "商业物业"
-    },
-
-    price: "60,000,000 FRW",
-
-    location: {
-      Kinyarwanda: "Kigali, Rwanda",
-      English: "Kigali, Rwanda",
-      Français: "Kigali, Rwanda",
-      Kiswahili: "Kigali, Rwanda",
-      "中文": "基加利，卢旺达"
-    },
-
-    details: {
-      Kinyarwanda: "Inzu z'ubucuruzi",
-      English: "Commercial property",
-      Français: "Propriété commerciale",
-      Kiswahili: "Mali ya biashara",
-      "中文": "商业房产"
-    },
-
-    description: {
-      Kinyarwanda:
-        "Inzu z'ubucuruzi ziri i Kigali, Rwanda, zikwiye ibikorwa bitandukanye by'ubucuruzi.",
-
-      English:
-        "Commercial buildings in Kigali, Rwanda, suitable for different business activities.",
-
-      Français:
-        "Des bâtiments commerciaux à Kigali, au Rwanda, adaptés à différentes activités commerciales.",
-
-      Kiswahili:
-        "Majengo ya biashara huko Kigali, Rwanda, yanafaa kwa shughuli mbalimbali za biashara.",
-
-      "中文":
-        "位于卢旺达基加利的商业房产，适合开展不同类型的商业活动。"
-    }
-  },
-
-
-  {
-    title: {
-      Kinyarwanda: "Inzu nziza y'akataraboneka",
-      English: "Exceptional Beautiful House",
-      Français: "Magnifique maison exceptionnelle",
-      Kiswahili: "Nyumba nzuri ya kipekee",
-      "中文": "非凡漂亮的住宅"
-    },
-
-    type: {
-      Kinyarwanda: "Inzu igurishwa",
-      English: "House for Sale",
-      Français: "Maison à vendre",
-      Kiswahili: "Nyumba ya Kuuzwa",
-      "中文": "出售房屋"
-    },
-
-    price: "300,000,000 FRW",
-
-    location: {
-      Kinyarwanda: "Kigali, Rwanda",
-      English: "Kigali, Rwanda",
-      Français: "Kigali, Rwanda",
-      Kiswahili: "Kigali, Rwanda",
-      "中文": "基加利，卢旺达"
-    },
-
-    details: {
-      Kinyarwanda: "Inzu yagutse y'umuryango y'akataraboneka",
-      English: "Exceptional spacious family house",
-      Français: "Maison familiale spacieuse et exceptionnelle",
-      Kiswahili: "Nyumba kubwa ya familia ya kipekee",
-      "中文": "非凡宽敞的家庭住宅"
-    },
-
-    description: {
-      Kinyarwanda:
-        "Inzu yagutse y'umuryango y'akataraboneka, iri ahantu heza i Kigali kandi ifite umwanya uhagije wo guturamo.",
-
-      English:
-        "An exceptional spacious family house in Kigali, offering generous living space in a good location.",
-
-      Français:
-        "Une maison familiale spacieuse et exceptionnelle à Kigali, offrant un grand espace de vie dans un bon emplacement.",
-
-      Kiswahili:
-        "Nyumba kubwa ya familia ya kipekee huko Kigali, yenye nafasi kubwa ya kuishi katika eneo zuri.",
-
-      "中文":
-        "这是一套位于基加利优质地段的非凡宽敞家庭住宅，拥有充足的生活空间。"
-    }
-  },
-
-
-  {
-    title: {
-      Kinyarwanda: "Inzu nziza igezweho",
-      English: "Modern Beautiful House",
-      Français: "Belle maison moderne",
-      Kiswahili: "Nyumba nzuri ya kisasa",
-      "中文": "漂亮的现代住宅"
-    },
-
-    type: {
-      Kinyarwanda: "Inzu igurishwa",
-      English: "House for Sale",
-      Français: "Maison à vendre",
-      Kiswahili: "Nyumba ya Kuuzwa",
-      "中文": "出售房屋"
-    },
-
-    price: "220,000,000 FRW",
-
-    location: {
-      Kinyarwanda: "Kigali, Rwanda",
-      English: "Kigali, Rwanda",
-      Français: "Kigali, Rwanda",
-      Kiswahili: "Kigali, Rwanda",
-      "中文": "基加利，卢旺达"
-    },
-
-    details: {
-      Kinyarwanda: "Inzu nziza iri ahantu heza",
-      English: "Beautiful house in a good location",
-      Français: "Belle maison située dans un bon emplacement",
-      Kiswahili: "Nyumba nzuri iliyo katika eneo zuri",
-      "中文": "位于优质地段的漂亮住宅"
-    },
-
-    description: {
-      Kinyarwanda:
-        "Inzu nziza igezweho iri ahantu heza i Kigali, ikwiye umuryango ushaka gutura ahantu heza.",
-
-      English:
-        "A modern beautiful house in a good location in Kigali, suitable for a family seeking a quality home.",
-
-      Français:
-        "Une belle maison moderne située dans un bon emplacement à Kigali, idéale pour une famille à la recherche d'un logement de qualité.",
-
-      Kiswahili:
-        "Nyumba nzuri ya kisasa iliyo katika eneo zuri Kigali, inayofaa familia inayotafuta makazi bora.",
-
-      "中文":
-        "一套位于基加利优质地段的漂亮现代住宅，适合寻找高品质住房的家庭。"
-    }
-  }
-
-];
-
-
-/* =========================
-   INDI 5
-========================= */
-
-const translations = {
-
-  Kinyarwanda: {
-    header: "🏠 RWANDA PROPERTY VISATA",
-    back: "← Subira ku mazu",
-    video: "🎥 Reba Video",
-    locationButton: "📍 Reba Aho Iherereye",
-    whatsapp: "💬 WhatsApp",
-    propertyDetails: "Ibisobanuro by'umutungo",
-    descriptionTitle: "Ibisobanuro",
-    contact: "📞 Twandikire",
-    call: "📞 Hamagara nonaha",
-    follow: "🌐 Kurikira Rwanda Property Visata",
-    youtube: "▶ YouTube",
-    facebook: "f Facebook",
-    instagram: "◎ Instagram"
-  },
-
-  English: {
-    header: "🏠 RWANDA PROPERTY VISATA",
-    back: "← Back to Properties",
-    video: "🎥 View Video",
-    locationButton: "📍 View Location",
-    whatsapp: "💬 WhatsApp",
-    propertyDetails: "Property Details",
-    descriptionTitle: "Description",
-    contact: "📞 Contact",
-    call: "📞 Call Now",
-    follow: "🌐 Follow Rwanda Property Visata",
-    youtube: "▶ YouTube",
-    facebook: "f Facebook",
-    instagram: "◎ Instagram"
-  },
-
-  Français: {
-    header: "🏠 RWANDA PROPERTY VISATA",
-    back: "← Retour aux propriétés",
-    video: "🎥 Voir la vidéo",
-    locationButton: "📍 Voir l'emplacement",
-    whatsapp: "💬 WhatsApp",
-    propertyDetails: "Détails de la propriété",
-    descriptionTitle: "Description",
-    contact: "📞 Contact",
-    call: "📞 Appeler maintenant",
-    follow: "🌐 Suivez Rwanda Property Visata",
-    youtube: "▶ YouTube",
-    facebook: "f Facebook",
-    instagram: "◎ Instagram"
-  },
-
-  Kiswahili: {
-    header: "🏠 RWANDA PROPERTY VISATA",
-    back: "← Rudi kwenye Mali",
-    video: "🎥 Tazama Video",
-    locationButton: "📍 Tazama Mahali",
-    whatsapp: "💬 WhatsApp",
-    propertyDetails: "Maelezo ya Mali",
-    descriptionTitle: "Maelezo",
-    contact: "📞 Mawasiliano",
-    call: "📞 Piga Simu Sasa",
-    follow: "🌐 Fuatilia Rwanda Property Visata",
-    youtube: "▶ YouTube",
-    facebook: "f Facebook",
-    instagram: "◎ Instagram"
-  },
-
-  "中文": {
-    header: "🏠 RWANDA PROPERTY VISATA",
-    back: "← 返回房产",
-    video: "🎥 查看视频",
-    locationButton: "📍 查看位置",
-    whatsapp: "💬 WhatsApp",
-    propertyDetails: "房产详情",
-    descriptionTitle: "描述",
-    contact: "📞 联系方式",
-    call: "📞 立即致电",
-    follow: "🌐 关注 Rwanda Property Visata",
-    youtube: "▶ YouTube",
-    facebook: "f Facebook",
-    instagram: "◎ Instagram"
-  }
-
-};
-
-
-/* =========================
-   LANGUAGE
-========================= */
-
-const language =
-  localStorage.getItem("selectedLanguage") || "English";
-
-const t =
-  translations[language] || translations.English;
-
-let currentProperty = 0;
-
-
-/* =========================
-   LANGUAGE FUNCTION
-========================= */
-
-function applyLanguage() {
-
-  document.getElementById("headerTitle").textContent =
-    t.header;
-
-  document.getElementById("backButton").textContent =
-    t.back;
-
-  document.getElementById("videoButton").textContent =
-    t.video;
-
-  document.getElementById("locationButton").textContent =
-    t.locationButton;
-
-  document.getElementById("whatsappButton").textContent =
-    t.whatsapp;
-
-  document.getElementById("propertyDetailsTitle").textContent =
-    t.propertyDetails;
-
-  document.getElementById("descriptionTitle").textContent =
-    t.descriptionTitle;
-
-  document.getElementById("contactTitle").textContent =
-    t.contact;
-
-  document.getElementById("callButton").textContent =
-    t.call;
-
-  document.getElementById("followTitle").textContent =
-    t.follow;
-
-  document.getElementById("youtubeButton").textContent =
-    t.youtube;
-
-  document.getElementById("facebookButton").textContent =
-    t.facebook;
-
-  document.getElementById("instagramButton").textContent =
-    t.instagram;
-
-  document.title =
-    "Rwanda Property Visata";
-}
-
-
-/* =========================
-   GALLERY
-========================= */
-
-function renderGallery() {
-
-  const gallery =
-    document.getElementById("gallery");
-
-  gallery.innerHTML = "";
-
-  photos.forEach((src, i) => {
-
-    const img =
-      document.createElement("img");
-
-    img.src = src;
-
-    img.alt =
-      "Property " + (i + 1);
-
-    img.className =
-      i === currentProperty
-        ? "active"
-        : "";
-
-    img.onclick =
-      () => showProperty(i);
-
-    gallery.appendChild(img);
-
-  });
-}
-
-
-/* =========================
-   SHOW PROPERTY
-========================= */
-
-function showProperty(i) {
-
-  currentProperty = i;
-
-  const p =
-    properties[i];
-
-  document.getElementById("mainPhoto").src =
-    photos[i];
-
-  document.getElementById("mainPhoto").alt =
-    p.title[language] ||
-    p.title.English;
-
-  document.getElementById("houseTitle").textContent =
-    p.title[language] ||
-    p.title.English;
-
-  document.getElementById("propertyType").textContent =
-    p.type[language] ||
-    p.type.English;
-
-  document.getElementById("price").textContent =
-    p.price;
-
-  document.getElementById("houseLocation").textContent =
-    p.location[language] ||
-    p.location.English;
-
-  document.getElementById("detailsList").textContent =
-    p.details[language] ||
-    p.details.English;
-
-  document.getElementById("houseDescription").textContent =
-    p.description[language] ||
-    p.description.English;
-
-  [
-    ...document.querySelectorAll(".gallery img")
-  ].forEach((el, n) => {
-
-    el.classList.toggle(
-      "active",
-      n === i
-    );
-
-  });
-
-}
-
-
-/* =========================
-   NEXT / PREVIOUS
-========================= */
-
-function nextProperty() {
-
-  showProperty(
-    (currentProperty + 1) %
-    properties.length
-  );
-
-}
-
-function previousProperty() {
-
-  showProperty(
-    (currentProperty - 1 + properties.length) %
-    properties.length
-  );
-
-}
-
-
-/* =========================
-   START
-========================= */
-
-applyLanguage();
-
-renderGallery();
-
-showProperty(0);
-
-</script>
+
+  <script>
+
+    /* =========================
+       LANGUAGE
+    ========================= */
+
+    const language =
+      localStorage.getItem("selectedLanguage") || "English";
+
+
+    /* =========================
+       TRANSLATIONS
+    ========================= */
+
+    const translations = {
+
+      Kinyarwanda: {
+
+        header:
+          "🏠 RWANDA PROPERTY VISATA",
+
+        back:
+          "← Subira ku mazu",
+
+        title:
+          "Nta mutungo uhari",
+
+        text:
+          "Kugeza ubu nta mutungo washyizweho. Ongera ugerageze nyuma."
+
+      },
+
+
+      English: {
+
+        header:
+          "🏠 RWANDA PROPERTY VISATA",
+
+        back:
+          "← Back to Houses for Rent",
+
+        title:
+          "No Properties Available",
+
+        text:
+          "There are currently no properties posted. Please check again later."
+
+      },
+
+
+      Français: {
+
+        header:
+          "🏠 RWANDA PROPERTY VISATA",
+
+        back:
+          "← Retour aux maisons",
+
+        title:
+          "Aucune propriété disponible",
+
+        text:
+          "Aucune propriété n'est actuellement publiée. Veuillez revenir plus tard."
+
+      },
+
+
+      Kiswahili: {
+
+        header:
+          "🏠 RWANDA PROPERTY VISATA",
+
+        back:
+          "← Rudi kwenye nyumba",
+
+        title:
+          "Hakuna mali inayopatikana",
+
+        text:
+          "Kwa sasa hakuna mali iliyowekwa. Tafadhali jaribu tena baadaye."
+
+      },
+
+
+      "中文": {
+
+        header:
+          "🏠 RWANDA PROPERTY VISATA",
+
+        back:
+          "← 返回房屋",
+
+        title:
+          "暂无房产",
+
+        text:
+          "目前没有发布任何房产。请稍后再查看。"
+
+      }
+
+    };
+
+
+    /* =========================
+       SELECT LANGUAGE
+    ========================= */
+
+    const t =
+      translations[language] ||
+      translations.English;
+
+
+    /* =========================
+       APPLY LANGUAGE
+    ========================= */
+
+    document.getElementById(
+      "headerTitle"
+    ).textContent =
+      t.header;
+
+
+    document.getElementById(
+      "backButton"
+    ).textContent =
+      t.back;
+
+
+    document.getElementById(
+      "emptyTitle"
+    ).textContent =
+      t.title;
+
+
+    document.getElementById(
+      "emptyText"
+    ).textContent =
+      t.text;
+
+
+    document.title =
+      "Rwanda Property Visata";
+
+  </script>
 
 </body>
+
 </html>
