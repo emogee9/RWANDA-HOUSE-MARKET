@@ -299,7 +299,7 @@ async function loadProperty(){
     error
   } =
   await supabaseClient
-    .from("properties")
+    .from("property_posts")
     .select("*")
     .eq("id",propertyId)
     .eq("property_type","sale")
