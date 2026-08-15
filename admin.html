@@ -452,9 +452,7 @@ textarea{
   </div>
 
 
-  <!-- =====================================================
-       POSTS
-  ====================================================== -->
+  <!-- ================= POSTS ================= -->
 
   <section
     id="postsSection"
@@ -487,9 +485,7 @@ textarea{
   </section>
 
 
-  <!-- =====================================================
-       ADD POST
-  ====================================================== -->
+  <!-- ================= ADD POST ================= -->
 
   <section
     id="addPostSection"
@@ -766,9 +762,7 @@ textarea{
   </section>
 
 
-  <!-- =====================================================
-       REQUESTED
-  ====================================================== -->
+  <!-- ================= REQUESTED ================= -->
 
   <section
     id="requestedSection"
@@ -799,9 +793,7 @@ textarea{
   </section>
 
 
-  <!-- =====================================================
-       APPROVALS
-  ====================================================== -->
+  <!-- ================= APPROVALS ================= -->
 
   <section
     id="approvalSection"
@@ -1274,25 +1266,6 @@ propertyForm.addEventListener(
       }
 
 
-      /* POSTING FEE */
-
-      let postingFee = 0;
-
-
-      if(price < 50000000){
-
-        postingFee =
-          price * 0.005;
-
-      }
-      else{
-
-        postingFee =
-          price * 0.01;
-
-      }
-
-
       /* INSERT INTO property_posts */
 
       const {
@@ -1337,9 +1310,6 @@ propertyForm.addEventListener(
 
           price:
             price,
-
-          posting_fee:
-            postingFee,
 
           main_photo:
             mainPhotoUrl,
@@ -1665,12 +1635,6 @@ async function viewProperty(id){
     "\n\nPrice: " +
     Number(
       data.price || 0
-    ).toLocaleString() +
-    " RWF" +
-
-    "\nPosting Fee: " +
-    Number(
-      data.posting_fee || 0
     ).toLocaleString() +
     " RWF" +
 
@@ -2255,11 +2219,6 @@ async function logout(){
 
   await loadProperties();
 
-
-  /*
-    Kubara requests ziri pending
-    tutabanje gufungura Requested.
-  */
 
   const {
     data
