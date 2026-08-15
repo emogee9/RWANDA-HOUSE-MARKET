@@ -1,462 +1,1336 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Sell Your Property - Rwanda House Market</title>
+<title>Sell Your Property - Rwanda House Market</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #ffffff;
-      color: #222222;
-    }
+<style>
 
-    header {
-      background: #f4b400;
-      color: #222222;
-      padding: 18px 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-    }
+*{
+  box-sizing:border-box;
+}
 
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-    }
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f7f5ef;
+  color:#33251d;
+}
 
-    nav {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
+header{
+  background:#d4a017;
+  color:white;
+  padding:22px 15px;
+  text-align:center;
+}
 
-    nav a {
-      color: #222222;
-      text-decoration: none;
-      padding: 9px 12px;
-      border-radius: 7px;
-      font-weight: bold;
-      font-size: 14px;
-    }
+header h1{
+  margin:0;
+  font-size:28px;
+}
 
-    nav a:hover {
-      background: #ffffff;
-    }
+.back{
+  display:inline-block;
+  margin-top:12px;
+  background:white;
+  color:#a87800;
+  padding:9px 15px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
 
-    .container {
-      max-width: 850px;
-      margin: 35px auto;
-      padding: 0 20px;
-    }
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:25px 18px 60px;
+}
 
-    .card {
-      background: #ffffff;
-      padding: 30px;
-      border: 2px solid #f4b400;
-      border-radius: 16px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    }
+.card{
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 3px 15px rgba(0,0,0,.1);
+}
 
-    h1 {
-      text-align: center;
-      margin-top: 0;
-    }
+h2{
+  margin-top:0;
+}
 
-    .subtitle {
-      text-align: center;
-      color: #666666;
-      margin-bottom: 25px;
-      line-height: 1.6;
-    }
+label{
+  display:block;
+  font-weight:bold;
+  margin:16px 0 7px;
+}
 
-    label {
-      display: block;
-      margin-top: 16px;
-      margin-bottom: 7px;
-      font-weight: bold;
-    }
+input,
+select,
+textarea{
+  width:100%;
+  padding:13px;
+  border:2px solid #eee;
+  border-radius:8px;
+  font-size:15px;
+  outline:none;
+}
 
-    input,
-    textarea,
-    select {
-      width: 100%;
-      padding: 13px;
-      border: 2px solid #eeeeee;
-      border-radius: 8px;
-      font-size: 15px;
-      background: #ffffff;
-      color: #222222;
-      outline: none;
-    }
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#d4a017;
+}
 
-    input:focus,
-    textarea:focus,
-    select:focus {
-      border-color: #f4b400;
-    }
+textarea{
+  min-height:130px;
+  resize:vertical;
+}
 
-    textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
 
-    .submit-button {
-      width: 100%;
-      margin-top: 25px;
-      padding: 15px;
-      background: #f4b400;
-      color: #222222;
-      border: none;
-      border-radius: 8px;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+.photo-preview{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:10px;
+}
 
-    .submit-button:hover {
-      background: #ffd45a;
-    }
+.photo-preview img{
+  width:110px;
+  height:85px;
+  object-fit:cover;
+  border-radius:8px;
+}
 
-    .message {
-      display: none;
-      margin-top: 18px;
-      padding: 14px;
-      border-radius: 8px;
-      text-align: center;
-      font-weight: bold;
-    }
+.fee-box{
+  margin-top:25px;
+  background:#fff8d6;
+  border:2px solid #d4a017;
+  border-radius:12px;
+  padding:20px;
+}
 
-    .success {
-      display: block;
-      background: #fff8d6;
-      color: #7a5b00;
-      border: 1px solid #f4b400;
-    }
+.fee-row{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  margin:9px 0;
+}
 
-    .error {
-      display: block;
-      background: #ffeaea;
-      color: #9b2226;
-      border: 1px solid #e0aaaa;
-    }
+.total{
+  border-top:2px solid #d4a017;
+  padding-top:12px;
+  margin-top:12px;
+  font-size:21px;
+  font-weight:bold;
+}
 
-    .note {
-      margin-top: 20px;
-      padding: 15px;
-      background: #fffdf3;
-      border-left: 5px solid #f4b400;
-      border-radius: 7px;
-      line-height: 1.6;
-      color: #555555;
-    }
+.post-button{
+  width:100%;
+  border:0;
+  background:#d4a017;
+  color:white;
+  padding:15px;
+  border-radius:9px;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:25px;
+}
 
-    footer {
-      margin-top: 50px;
-      background: #f4b400;
-      color: #222222;
-      text-align: center;
-      padding: 20px;
-      font-weight: bold;
-    }
+.post-button:hover{
+  background:#a87800;
+}
 
-    @media (max-width: 700px) {
-      header {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-      }
+.message{
+  display:none;
+  padding:14px;
+  margin-top:15px;
+  border-radius:8px;
+  font-weight:bold;
+}
 
-      .container {
-        margin: 25px auto;
-        padding: 0 15px;
-      }
+.error{
+  display:block;
+  background:#ffe8e8;
+  color:#a00000;
+}
 
-      .card {
-        padding: 25px 18px;
-      }
-    }
-  </style>
+@media(max-width:650px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
 <header>
 
-  <div class="logo">
-    RWANDA HOUSE MARKET 🇷🇼
-  </div>
+<h1 id="headerTitle">
+🏠 RWANDA HOUSE MARKET
+</h1>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="customer-home.html">Properties</a>
-    <a href="request-property.html">Request Property</a>
-    <a href="login.html">Login</a>
-  </nav>
+<a
+href="home.html"
+class="back"
+id="backButton">
+← Back to Home
+</a>
 
 </header>
 
 
 <div class="container">
 
-  <div class="card">
+<div class="card">
 
-    <h1>
-      🏠 Sell Your Property
-    </h1>
+<h2 id="pageTitle">
+🏠 Sell Your Property
+</h2>
 
-    <p class="subtitle">
-      List your property on Rwanda House Market and let customers find it.
-    </p>
-
-
-    <form id="propertyForm">
-
-      <label for="title">
-        Property Title
-      </label>
-
-      <input
-        type="text"
-        id="title"
-        placeholder="Example: Beautiful House in Kigali"
-        required
-      >
+<p id="pageDescription">
+Fill in the information about your property.
+</p>
 
 
-      <label for="propertyType">
-        Property Type
-      </label>
-
-      <select id="propertyType" required>
-
-        <option value="">
-          Choose property type
-        </option>
-
-        <option value="House for Rent">
-          House for Rent
-        </option>
-
-        <option value="Plot for Sale">
-          Plot for Sale
-        </option>
-
-        <option value="Apartment">
-          Apartment
-        </option>
-
-        <option value="Commercial Property">
-          Commercial Property
-        </option>
-
-      </select>
+<form id="sellForm">
 
 
-      <label for="price">
-        Price
-      </label>
+<!-- NAME -->
 
-      <input
-        type="text"
-        id="price"
-        placeholder="Example: 25,000,000 RWF"
-        required
-      >
+<label id="nameLabel">
+Full Name
+</label>
 
-
-      <label for="location">
-        Location
-      </label>
-
-      <input
-        type="text"
-        id="location"
-        placeholder="Example: Kigali, Kicukiro"
-        required
-      >
+<input
+type="text"
+id="sellerName"
+required
+placeholder="Your full name"
+>
 
 
-      <label for="phone">
-        Phone Number
-      </label>
+<!-- PHONE -->
 
-      <input
-        type="tel"
-        id="phone"
-        placeholder="07XXXXXXXX"
-        required
-      >
+<label id="phoneLabel">
+Phone Number
+</label>
 
-
-      <label for="imageUrl">
-        Main Image URL
-      </label>
-
-      <input
-        type="url"
-        id="imageUrl"
-        placeholder="https://example.com/property.jpg"
-        required
-      >
+<input
+type="tel"
+id="sellerPhone"
+required
+placeholder="+250 7XX XXX XXX"
+>
 
 
-      <label for="description">
-        Property Description
-      </label>
+<!-- PROPERTY TYPE -->
 
-      <textarea
-        id="description"
-        placeholder="Describe your property..."
-        required
-      ></textarea>
+<label id="propertyTypeLabel">
+Property Type
+</label>
 
+<select
+id="propertyType"
+required>
 
-      <button
-        type="submit"
-        class="submit-button"
-        id="submitButton"
-      >
-        Submit Property
-      </button>
+<option value="">
+Choose property type
+</option>
 
-    </form>
+<option value="house">
+House
+</option>
 
+<option value="plot">
+Plot
+</option>
 
-    <div
-      id="message"
-      class="message">
-    </div>
+</select>
 
 
-    <div class="note">
-      <strong>Important:</strong>
-      Please provide correct property information and contact details.
-      Your property will be reviewed before it appears publicly.
-    </div>
+<!-- SALE / RENT -->
 
-  </div>
+<label id="transactionLabel">
+Property Status
+</label>
+
+<select
+id="transactionType"
+required>
+
+<option value="">
+Choose
+</option>
+
+<option value="sale">
+For Sale
+</option>
+
+<option value="rent">
+For Rent
+</option>
+
+</select>
+
+
+<!-- LOCATION -->
+
+<h3 id="locationTitle">
+📍 Location
+</h3>
+
+<div class="grid">
+
+<div>
+
+<label id="countryLabel">
+Country
+</label>
+
+<input
+type="text"
+id="country"
+value="Rwanda"
+required
+>
 
 </div>
 
 
-<footer>
-  © 2026 Rwanda House Market 🇷🇼 — Find Houses, Plots & Properties
-</footer>
+<div>
+
+<label id="provinceLabel">
+Province
+</label>
+
+<input
+type="text"
+id="province"
+required
+>
+
+</div>
+
+
+<div>
+
+<label id="districtLabel">
+District
+</label>
+
+<input
+type="text"
+id="district"
+required
+>
+
+</div>
+
+
+<div>
+
+<label id="sectorLabel">
+Sector
+</label>
+
+<input
+type="text"
+id="sector"
+required
+>
+
+</div>
+
+</div>
+
+
+<!-- HOUSE DETAILS -->
+
+<div id="houseDetails">
+
+<h3 id="detailsTitle">
+🏠 Property Details
+</h3>
+
+<div class="grid">
+
+<div>
+
+<label id="bedroomsLabel">
+Bedrooms
+</label>
+
+<input
+type="number"
+id="bedrooms"
+min="0"
+value="0"
+>
+
+</div>
+
+
+<div>
+
+<label id="bathroomsLabel">
+Toilets / Bathrooms
+</label>
+
+<input
+type="number"
+id="bathrooms"
+min="0"
+value="0"
+>
+
+</div>
+
+
+<div>
+
+<label id="parkingLabel">
+Parking
+</label>
+
+<input
+type="number"
+id="parking"
+min="0"
+value="0"
+>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PHOTOS -->
+
+<label id="photosLabel">
+📷 Property Photos
+</label>
+
+<input
+type="file"
+id="photos"
+accept="image/*"
+multiple
+required
+>
+
+<div
+id="photoPreview"
+class="photo-preview">
+</div>
+
+
+<!-- DESCRIPTION -->
+
+<label id="descriptionLabel">
+Property Details / Description
+</label>
+
+<textarea
+id="description"
+required
+placeholder="Describe the property..."
+></textarea>
+
+
+<!-- PRICE -->
+
+<label id="priceLabel">
+Price
+</label>
+
+<input
+type="number"
+id="price"
+min="1"
+required
+placeholder="Example: 50000000"
+>
+
+
+<!-- FEE -->
+
+<div class="fee-box">
+
+<h3 id="feeTitle">
+💰 Posting Fee
+</h3>
+
+<div class="fee-row">
+
+<span id="propertyPriceText">
+Property Price
+</span>
+
+<strong id="displayPrice">
+0 RWF
+</strong>
+
+</div>
+
+
+<div class="fee-row">
+
+<span id="feeRateText">
+Posting Fee Rate
+</span>
+
+<strong id="feeRate">
+0.01%
+</strong>
+
+</div>
+
+
+<div class="fee-row total">
+
+<span id="feeText">
+Posting Fee
+</span>
+
+<strong id="postingFee">
+0 RWF
+</strong>
+
+</div>
+
+</div>
+
+
+<button
+type="submit"
+class="post-button"
+id="postButton">
+
+Post Property
+
+</button>
+
+
+<div
+id="message"
+class="message">
+</div>
+
+</form>
+
+</div>
+
+</div>
 
 
 <script>
 
-  /*
-    TEMPORARY VERSION
+/* =========================================
+   SUPABASE
+========================================= */
 
-    Next step:
-    We will connect this form to Supabase
-    so properties are saved in the real database.
-  */
+const SUPABASE_URL =
+"https://hsmnybmcddtsyooltozw.supabase.co";
 
-  const form =
-    document.getElementById("propertyForm");
+const SUPABASE_KEY =
+"sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29";
 
-  const message =
-    document.getElementById("message");
-
-  const submitButton =
-    document.getElementById("submitButton");
-
-
-  form.addEventListener(
-    "submit",
-    function(event) {
-
-      event.preventDefault();
+const supabaseClient =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
 
 
-      const title =
-        document.getElementById("title").value.trim();
+/* =========================================
+   LANGUAGE
+========================================= */
 
-      const propertyType =
-        document.getElementById("propertyType").value;
-
-      const price =
-        document.getElementById("price").value.trim();
-
-      const location =
-        document.getElementById("location").value.trim();
-
-      const phone =
-        document.getElementById("phone").value.trim();
-
-      const imageUrl =
-        document.getElementById("imageUrl").value.trim();
-
-      const description =
-        document.getElementById("description").value.trim();
+const language =
+localStorage.getItem("selectedLanguage")
+|| "English";
 
 
-      if (
-        !title ||
-        !propertyType ||
-        !price ||
-        !location ||
-        !phone ||
-        !imageUrl ||
-        !description
-      ) {
+/* =========================================
+   TRANSLATIONS
+========================================= */
 
-        message.textContent =
-          "❌ Please fill in all fields.";
+const translations = {
 
-        message.className =
-          "message error";
+Kinyarwanda:{
 
-        return;
-      }
+header:"🏠 RWANDA HOUSE MARKET",
+
+back:"← Subira kuri Home",
+
+title:"🏠 Shyiraho Property Yawe",
+
+description:
+"Uzuza amakuru yose ya property yawe.",
+
+name:"Amazina yawe",
+
+phone:"Nimero ya telefone",
+
+propertyType:"Ubwoko bwa Property",
+
+house:"Inzu",
+
+plot:"Ikibanza",
+
+transaction:"Uko property iri",
+
+sale:"Igurishwa",
+
+rent:"Igikodeshwa",
+
+location:"📍 Aho iherereye",
+
+country:"Igihugu",
+
+province:"Province",
+
+district:"Akarere",
+
+sector:"Umurenge",
+
+details:"🏠 Ibisobanuro bya Property",
+
+bedrooms:"Ibyumba",
+
+bathrooms:"Toilet / Ubwiherero",
+
+parking:"Parking",
+
+photos:"📷 Amafoto ya Property",
+
+descriptionLabel:"Ibisobanuro birambuye",
+
+price:"Igiciro",
+
+feeTitle:"💰 Amafaranga yo gushyira Post",
+
+propertyPrice:"Igiciro cya Property",
+
+feeRate:"Igipimo cya Posting Fee",
+
+fee:"Posting Fee",
+
+post:"Shyiraho Property",
+
+choose:"Hitamo",
+
+success:
+"Property yabitswe. Ubu jya kuri payment.",
+
+required:
+"Uzuza amakuru yose asabwa."
+
+},
 
 
-      submitButton.disabled = true;
+English:{
 
-      submitButton.textContent =
-        "Submitting...";
+header:"🏠 RWANDA HOUSE MARKET",
+
+back:"← Back to Home",
+
+title:"🏠 Sell Your Property",
+
+description:
+"Fill in all information about your property.",
+
+name:"Full Name",
+
+phone:"Phone Number",
+
+propertyType:"Property Type",
+
+house:"House",
+
+plot:"Plot",
+
+transaction:"Property Status",
+
+sale:"For Sale",
+
+rent:"For Rent",
+
+location:"📍 Location",
+
+country:"Country",
+
+province:"Province",
+
+district:"District",
+
+sector:"Sector",
+
+details:"🏠 Property Details",
+
+bedrooms:"Bedrooms",
+
+bathrooms:"Toilets / Bathrooms",
+
+parking:"Parking",
+
+photos:"📷 Property Photos",
+
+descriptionLabel:"Property Details / Description",
+
+price:"Price",
+
+feeTitle:"💰 Posting Fee",
+
+propertyPrice:"Property Price",
+
+feeRate:"Posting Fee Rate",
+
+fee:"Posting Fee",
+
+post:"Post Property",
+
+choose:"Choose",
+
+success:
+"Property saved. Continue to payment.",
+
+required:
+"Please fill all required information."
+
+},
 
 
-      /*
-        For now we only show success.
-        Supabase connection will be added
-        in the next step.
-      */
+Français:{
 
-      setTimeout(function() {
+header:"🏠 RWANDA HOUSE MARKET",
 
-        message.textContent =
-          "✅ Property submitted successfully!";
+back:"← Retour à l'accueil",
 
-        message.className =
-          "message success";
+title:"🏠 Publier votre propriété",
+
+description:
+"Remplissez toutes les informations de votre propriété.",
+
+name:"Nom complet",
+
+phone:"Numéro de téléphone",
+
+propertyType:"Type de propriété",
+
+house:"Maison",
+
+plot:"Terrain",
+
+transaction:"Statut",
+
+sale:"À vendre",
+
+rent:"À louer",
+
+location:"📍 Emplacement",
+
+country:"Pays",
+
+province:"Province",
+
+district:"District",
+
+sector:"Secteur",
+
+details:"🏠 Détails de la propriété",
+
+bedrooms:"Chambres",
+
+bathrooms:"Toilettes / Salles de bain",
+
+parking:"Parking",
+
+photos:"📷 Photos de la propriété",
+
+descriptionLabel:"Description détaillée",
+
+price:"Prix",
+
+feeTitle:"💰 Frais de publication",
+
+propertyPrice:"Prix de la propriété",
+
+feeRate:"Taux des frais",
+
+fee:"Frais de publication",
+
+post:"Publier",
+
+choose:"Choisir",
+
+success:
+"Propriété enregistrée. Continuez vers le paiement.",
+
+required:
+"Veuillez remplir toutes les informations obligatoires."
+
+},
 
 
-        form.reset();
+Kiswahili:{
+
+header:"🏠 RWANDA HOUSE MARKET",
+
+back:"← Rudi Mwanzo",
+
+title:"🏠 Weka Mali Yako",
+
+description:
+"Jaza taarifa zote za mali yako.",
+
+name:"Jina Kamili",
+
+phone:"Nambari ya Simu",
+
+propertyType:"Aina ya Mali",
+
+house:"Nyumba",
+
+plot:"Kiwanja",
+
+transaction:"Hali ya Mali",
+
+sale:"Inauzwa",
+
+rent:"Inapangishwa",
+
+location:"📍 Mahali",
+
+country:"Nchi",
+
+province:"Mkoa",
+
+district:"Wilaya",
+
+sector:"Sekta",
+
+details:"🏠 Maelezo ya Mali",
+
+bedrooms:"Vyumba vya kulala",
+
+bathrooms:"Vyoo / Bafu",
+
+parking:"Maegesho",
+
+photos:"📷 Picha za Mali",
+
+descriptionLabel:"Maelezo ya Mali",
+
+price:"Bei",
+
+feeTitle:"💰 Ada ya Kuchapisha",
+
+propertyPrice:"Bei ya Mali",
+
+feeRate:"Kiwango cha Ada",
+
+fee:"Ada ya Kuchapisha",
+
+post:"Chapisha Mali",
+
+choose:"Chagua",
+
+success:
+"Mali imehifadhiwa. Endelea na malipo.",
+
+required:
+"Jaza taarifa zote zinazohitajika."
+
+},
 
 
-        submitButton.disabled =
-          false;
+"中文":{
 
-        submitButton.textContent =
-          "Submit Property";
+header:"🏠 RWANDA HOUSE MARKET",
 
-      }, 700);
+back:"← 返回首页",
 
-    }
-  );
+title:"🏠 发布您的房产",
+
+description:
+"填写您的房产全部信息。",
+
+name:"姓名",
+
+phone:"电话号码",
+
+propertyType:"房产类型",
+
+house:"房屋",
+
+plot:"土地",
+
+transaction:"房产状态",
+
+sale:"出售",
+
+rent:"出租",
+
+location:"📍 房产位置",
+
+country:"国家",
+
+province:"省",
+
+district:"地区",
+
+sector:"区域",
+
+details:"🏠 房产详情",
+
+bedrooms:"卧室",
+
+bathrooms:"厕所 / 浴室",
+
+parking:"停车位",
+
+photos:"📷 房产照片",
+
+descriptionLabel:"房产详细描述",
+
+price:"价格",
+
+feeTitle:"💰 发布费用",
+
+propertyPrice:"房产价格",
+
+feeRate:"发布费率",
+
+fee:"发布费用",
+
+post:"发布房产",
+
+choose:"选择",
+
+success:
+"房产已保存。请继续付款。",
+
+required:
+"请填写所有必填信息。"
+
+}
+
+};
+
+
+const t =
+translations[language]
+|| translations.English;
+
+
+/* =========================================
+   APPLY LANGUAGE
+========================================= */
+
+function applyLanguage(){
+
+document.getElementById("headerTitle").textContent=t.header;
+
+document.getElementById("backButton").textContent=t.back;
+
+document.getElementById("pageTitle").textContent=t.title;
+
+document.getElementById("pageDescription").textContent=t.description;
+
+document.getElementById("nameLabel").textContent=t.name;
+
+document.getElementById("phoneLabel").textContent=t.phone;
+
+document.getElementById("propertyTypeLabel").textContent=t.propertyType;
+
+document.getElementById("transactionLabel").textContent=t.transaction;
+
+document.getElementById("locationTitle").textContent=t.location;
+
+document.getElementById("countryLabel").textContent=t.country;
+
+document.getElementById("provinceLabel").textContent=t.province;
+
+document.getElementById("districtLabel").textContent=t.district;
+
+document.getElementById("sectorLabel").textContent=t.sector;
+
+document.getElementById("detailsTitle").textContent=t.details;
+
+document.getElementById("bedroomsLabel").textContent=t.bedrooms;
+
+document.getElementById("bathroomsLabel").textContent=t.bathrooms;
+
+document.getElementById("parkingLabel").textContent=t.parking;
+
+document.getElementById("photosLabel").textContent=t.photos;
+
+document.getElementById("descriptionLabel").textContent=t.descriptionLabel;
+
+document.getElementById("priceLabel").textContent=t.price;
+
+document.getElementById("feeTitle").textContent=t.feeTitle;
+
+document.getElementById("propertyPriceText").textContent=t.propertyPrice;
+
+document.getElementById("feeRateText").textContent=t.feeRate;
+
+document.getElementById("feeText").textContent=t.fee;
+
+document.getElementById("postButton").textContent=t.post;
+
+document.querySelector(
+"#propertyType option[value='']"
+).textContent=t.choose;
+
+document.querySelector(
+"#transactionType option[value='']"
+).textContent=t.choose;
+
+document.querySelector(
+"#propertyType option[value='house']"
+).textContent=t.house;
+
+document.querySelector(
+"#propertyType option[value='plot']"
+).textContent=t.plot;
+
+document.querySelector(
+"#transactionType option[value='sale']"
+).textContent=t.sale;
+
+document.querySelector(
+"#transactionType option[value='rent']"
+).textContent=t.rent;
+
+}
+
+applyLanguage();
+
+
+/* =========================================
+   FEE CALCULATION
+========================================= */
+
+const priceInput =
+document.getElementById("price");
+
+const displayPrice =
+document.getElementById("displayPrice");
+
+const feeRate =
+document.getElementById("feeRate");
+
+const postingFee =
+document.getElementById("postingFee");
+
+
+function calculateFee(){
+
+const price =
+Number(priceInput.value || 0);
+
+
+/*
+  Under or equal to 50M = 0.01%
+  Above 50M = 0.02%
+*/
+
+let rate;
+
+if(price <= 50000000){
+
+rate = 0.0001;
+
+}else{
+
+rate = 0.0002;
+
+}
+
+
+const fee =
+price * rate;
+
+
+displayPrice.textContent =
+price.toLocaleString() +
+" RWF";
+
+
+feeRate.textContent =
+(rate * 100) +
+"%";
+
+
+postingFee.textContent =
+Math.ceil(fee).toLocaleString() +
+" RWF";
+
+
+return Math.ceil(fee);
+
+}
+
+
+priceInput.addEventListener(
+"input",
+calculateFee
+);
+
+
+/* =========================================
+   PHOTO PREVIEW
+========================================= */
+
+document
+.getElementById("photos")
+.addEventListener(
+"change",
+function(){
+
+const preview =
+document.getElementById("photoPreview");
+
+preview.innerHTML="";
+
+Array.from(this.files)
+.forEach(file=>{
+
+const img =
+document.createElement("img");
+
+img.src =
+URL.createObjectURL(file);
+
+preview.appendChild(img);
+
+});
+
+});
+
+
+/* =========================================
+   PROPERTY TYPE
+========================================= */
+
+document
+.getElementById("propertyType")
+.addEventListener(
+"change",
+function(){
+
+const houseDetails =
+document.getElementById("houseDetails");
+
+if(this.value === "house"){
+
+houseDetails.style.display="block";
+
+}else{
+
+houseDetails.style.display="none";
+
+}
+
+});
+
+
+/* =========================================
+   SUBMIT
+========================================= */
+
+document
+.getElementById("sellForm")
+.addEventListener(
+"submit",
+async function(e){
+
+e.preventDefault();
+
+
+const button =
+document.getElementById("postButton");
+
+const message =
+document.getElementById("message");
+
+
+try{
+
+button.disabled=true;
+
+button.textContent="Processing...";
+
+
+const name =
+document.getElementById("sellerName").value.trim();
+
+const phone =
+document.getElementById("sellerPhone").value.trim();
+
+const propertyType =
+document.getElementById("propertyType").value;
+
+const transactionType =
+document.getElementById("transactionType").value;
+
+const country =
+document.getElementById("country").value.trim();
+
+const province =
+document.getElementById("province").value.trim();
+
+const district =
+document.getElementById("district").value.trim();
+
+const sector =
+document.getElementById("sector").value.trim();
+
+const bedrooms =
+Number(document.getElementById("bedrooms").value || 0);
+
+const bathrooms =
+Number(document.getElementById("bathrooms").value || 0);
+
+const parking =
+Number(document.getElementById("parking").value || 0);
+
+const description =
+document.getElementById("description").value.trim();
+
+const price =
+Number(document.getElementById("price").value);
+
+const photos =
+document.getElementById("photos").files;
+
+
+if(!name ||
+!phone ||
+!propertyType ||
+!transactionType ||
+!country ||
+!province ||
+!district ||
+!sector ||
+!price ||
+photos.length===0){
+
+throw new Error(t.required);
+
+}
+
+
+/* CALCULATE FEE */
+
+const fee =
+calculateFee();
+
+
+/*
+  Save information temporarily.
+  The payment page will use this data.
+*/
+
+const propertyData = {
+
+seller_name:name,
+
+seller_phone:phone,
+
+property_type:propertyType,
+
+transaction_type:transactionType,
+
+country:country,
+
+province:province,
+
+district:district,
+
+sector:sector,
+
+bedrooms:bedrooms,
+
+bathrooms:bathrooms,
+
+parking:parking,
+
+description:description,
+
+price:price,
+
+posting_fee:fee,
+
+language:language
+
+};
+
+
+localStorage.setItem(
+"pendingProperty",
+JSON.stringify(propertyData)
+);
+
+
+/*
+  Save selected photos temporarily.
+*/
+
+const photoNames =
+Array.from(photos)
+.map(file=>file.name);
+
+localStorage.setItem(
+"pendingPropertyPhotoNames",
+JSON.stringify(photoNames)
+);
+
+
+/*
+  GO TO PAYMENT
+*/
+
+window.location.href =
+"property-payment.html";
+
+
+}
+catch(error){
+
+message.textContent =
+"❌ " + error.message;
+
+message.className =
+"message error";
+
+
+button.disabled=false;
+
+button.textContent=t.post;
+
+}
+
+});
 
 </script>
 
