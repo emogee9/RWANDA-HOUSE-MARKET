@@ -643,14 +643,14 @@ const maiif (!mainPhoto) {
 }nPhoto = document.getElementById("mainPhoto").files[0];
     const { error: uploadError } = await supabaseClient
   .storage
-  .from("property-images")
+  .from("property_posts")
   .upload(fileName, mainPhoto);
     if (uploadError) {
   alert("Photo upload failed: " + uploadError.message);
   return;
 }const { data: publicUrlData } = supabaseClient
   .storage
-  .from("property-images")
+  .from("property_posts")
   .getPublicUrl(fileName);
     const imageUrl = publicUrlData.publicUrl;
 
