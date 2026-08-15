@@ -2,12 +2,18 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Login - Rwanda Property Visata</title>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Admin Login - Rwanda Property Visata</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
   <style>
 
@@ -15,162 +21,269 @@
       box-sizing: border-box;
     }
 
+
     body {
+
       margin: 0;
+
       font-family: Arial, sans-serif;
+
       background: #f8f5f2;
+
       color: #3b2418;
+
       min-height: 100vh;
 
       display: flex;
+
       justify-content: center;
+
       align-items: center;
 
       padding: 20px;
+
     }
+
 
     .login-container {
+
       width: 100%;
-      max-width: 450px;
+
+      max-width: 470px;
+
     }
 
+
     .login-card {
+
       background: white;
+
       padding: 35px;
 
       border-radius: 18px;
+
       border-top: 6px solid #d4a017;
 
       box-shadow:
         0 8px 25px rgba(0,0,0,0.15);
 
       text-align: center;
+
     }
 
-    .logo {
-      font-size: 45px;
-      margin-bottom: 10px;
+
+    .top-bar {
+
+      display: flex;
+
+      justify-content: flex-end;
+
+      margin-bottom: 15px;
+
     }
 
-    h1 {
-      margin: 0;
-      color: #d4a017;
-      font-size: 30px;
-    }
 
-    .site-name {
-      margin-top: 8px;
-      color: #555;
-      font-size: 17px;
-      font-weight: bold;
-    }
+    .language-select {
 
-    .subtitle {
-      color: #777;
-      margin: 8px 0 28px;
-      line-height: 1.5;
-    }
+      padding: 9px 12px;
 
-    .form-group {
-      text-align: left;
-      margin-bottom: 18px;
-    }
+      border: 2px solid #d4a017;
 
-    label {
-      display: block;
-      margin-bottom: 7px;
-      font-weight: bold;
+      border-radius: 8px;
+
+      background: white;
+
       color: #3b2418;
-    }
 
-    input {
-      width: 100%;
-      padding: 14px;
-
-      border: 2px solid #ddd;
-      border-radius: 9px;
-
-      font-size: 16px;
-      outline: none;
-    }
-
-    input:focus {
-      border-color: #d4a017;
-    }
-
-    .login-button {
-      width: 100%;
-      padding: 14px;
-      margin-top: 8px;
-
-      border: none;
-      border-radius: 9px;
-
-      background: #d4a017;
-      color: white;
-
-      font-size: 17px;
       font-weight: bold;
 
       cursor: pointer;
-      transition: 0.2s;
+
+      outline: none;
+
     }
+
+
+    .logo {
+
+      font-size: 45px;
+
+      margin-bottom: 10px;
+
+    }
+
+
+    h1 {
+
+      margin: 0;
+
+      color: #d4a017;
+
+      font-size: 30px;
+
+    }
+
+
+    .site-name {
+
+      margin-top: 8px;
+
+      color: #555;
+
+      font-size: 17px;
+
+      font-weight: bold;
+
+    }
+
+
+    .subtitle {
+
+      color: #777;
+
+      margin: 8px 0 28px;
+
+      line-height: 1.5;
+
+    }
+
+
+    .form-group {
+
+      text-align: left;
+
+      margin-bottom: 18px;
+
+    }
+
+
+    label {
+
+      display: block;
+
+      margin-bottom: 7px;
+
+      font-weight: bold;
+
+      color: #3b2418;
+
+    }
+
+
+    input {
+
+      width: 100%;
+
+      padding: 14px;
+
+      border: 2px solid #ddd;
+
+      border-radius: 9px;
+
+      font-size: 16px;
+
+      outline: none;
+
+    }
+
+
+    input:focus {
+
+      border-color: #d4a017;
+
+    }
+
+
+    .login-button {
+
+      width: 100%;
+
+      padding: 14px;
+
+      margin-top: 8px;
+
+      border: none;
+
+      border-radius: 9px;
+
+      background: #d4a017;
+
+      color: white;
+
+      font-size: 17px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+
+    }
+
 
     .login-button:hover {
+
       background: #b8860b;
+
     }
+
 
     .login-button:disabled {
+
       opacity: 0.6;
+
       cursor: not-allowed;
+
     }
 
+
     #message {
+
       display: none;
 
       margin-top: 18px;
+
       padding: 13px;
 
       border-radius: 9px;
 
       font-weight: bold;
-      line-height: 1.4;
+
+      line-height: 1.5;
+
+      word-break: break-word;
+
     }
 
+
     .success {
+
       display: block !important;
 
       background: #e5f8e9;
+
       color: #16752d;
 
       border: 1px solid #9ad8a8;
+
     }
 
+
     .error {
+
       display: block !important;
 
       background: #ffe7e7;
+
       color: #a00000;
 
       border: 1px solid #e3aaaa;
+
     }
 
-    .back-home {
-      display: inline-block;
-
-      margin-top: 22px;
-
-      color: #d4a017;
-
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .back-home:hover {
-      text-decoration: underline;
-    }
 
     .admin-note {
+
       margin-top: 22px;
 
       padding: 12px;
@@ -184,16 +297,45 @@
       font-size: 13px;
 
       line-height: 1.5;
+
     }
+
+
+    .back-home {
+
+      display: inline-block;
+
+      margin-top: 22px;
+
+      color: #d4a017;
+
+      text-decoration: none;
+
+      font-weight: bold;
+
+    }
+
+
+    .back-home:hover {
+
+      text-decoration: underline;
+
+    }
+
 
     @media (max-width: 600px) {
 
       .login-card {
-        padding: 28px 20px;
+
+        padding: 25px 20px;
+
       }
 
+
       h1 {
+
         font-size: 26px;
+
       }
 
     }
@@ -212,39 +354,87 @@
     <div class="login-card">
 
 
+      <!-- LANGUAGE -->
+
+      <div class="top-bar">
+
+        <select
+          id="languageSelect"
+          class="language-select">
+
+          <option value="Kinyarwanda">
+            🇷🇼 Kinyarwanda
+          </option>
+
+          <option value="English">
+            🇬🇧 English
+          </option>
+
+          <option value="Français">
+            🇫🇷 Français
+          </option>
+
+          <option value="Kiswahili">
+            🌍 Kiswahili
+          </option>
+
+          <option value="中文">
+            🇨🇳 中文
+          </option>
+
+        </select>
+
+      </div>
+
+
       <div class="logo">
         🔐
       </div>
 
 
-      <h1>
+      <h1 id="title">
         Admin Login
       </h1>
 
 
-      <div class="site-name">
+      <div
+        class="site-name"
+        id="siteName">
+
         Rwanda Property Visata
+
       </div>
 
 
-      <p class="subtitle">
+      <p
+        class="subtitle"
+        id="subtitle">
+
         Injira muri Admin Panel kugira ngo ucunge properties za website.
+
       </p>
 
+
+      <!-- LOGIN FORM -->
 
       <form id="loginForm">
 
 
         <div class="form-group">
 
-          <label for="email">
+          <label
+            for="email"
+            id="emailLabel">
+
             Admin Email
+
           </label>
+
 
           <input
             type="email"
             id="email"
-            placeholder="Enter admin email"
+            placeholder="Andika email ya Admin"
             autocomplete="email"
             required
           >
@@ -254,14 +444,19 @@
 
         <div class="form-group">
 
-          <label for="password">
+          <label
+            for="password"
+            id="passwordLabel">
+
             Password
+
           </label>
+
 
           <input
             type="password"
             id="password"
-            placeholder="Enter password"
+            placeholder="Andika password"
             autocomplete="current-password"
             required
           >
@@ -285,19 +480,21 @@
       <div id="message"></div>
 
 
-      <div class="admin-note">
+      <div
+        class="admin-note"
+        id="adminNote">
 
-        🔒 Uru rubuga rwa Admin rugenewe gusa
-        umuyobozi wa Rwanda Property Visata.
+        🔒 Uru rubuga rwa Admin rugenewe gusa umuyobozi wa Rwanda Property Visata.
 
       </div>
 
 
       <a
         href="./home.html"
-        class="back-home">
+        class="back-home"
+        id="backHome">
 
-        ← Back to Website
+        ← Subira kuri Website
 
       </a>
 
@@ -342,28 +539,435 @@
 
 
     /* =========================================
+       TRANSLATIONS
+    ========================================= */
+
+
+    const translations = {
+
+
+      Kinyarwanda: {
+
+        title:
+          "Kwinjira kwa Admin",
+
+        subtitle:
+          "Injira muri Admin Panel kugira ngo ucunge properties za website.",
+
+        email:
+          "Email ya Admin",
+
+        emailPlaceholder:
+          "Andika email ya Admin",
+
+        password:
+          "Password",
+
+        passwordPlaceholder:
+          "Andika password",
+
+        login:
+          "Injira nka Admin",
+
+        loading:
+          "Turimo kwinjira...",
+
+        success:
+          "✅ Login yakozwe neza! Turakujyana kuri website...",
+
+        wrongEmail:
+          "❌ Iyi email ntabwo yemerewe kwinjira muri Admin.",
+
+        emptyPassword:
+          "❌ Andika password.",
+
+        error:
+          "❌ Email cyangwa password ntabwo ari byo.",
+
+        adminNote:
+          "🔒 Uru rubuga rwa Admin rugenewe gusa umuyobozi wa Rwanda Property Visata.",
+
+        back:
+          "← Subira kuri Website"
+
+      },
+
+
+      English: {
+
+        title:
+          "Admin Login",
+
+        subtitle:
+          "Login to the Admin Panel to manage website properties.",
+
+        email:
+          "Admin Email",
+
+        emailPlaceholder:
+          "Enter admin email",
+
+        password:
+          "Password",
+
+        passwordPlaceholder:
+          "Enter password",
+
+        login:
+          "Login as Admin",
+
+        loading:
+          "Logging in...",
+
+        success:
+          "✅ Login successful! Opening website...",
+
+        wrongEmail:
+          "❌ This email is not authorized as an Admin.",
+
+        emptyPassword:
+          "❌ Please enter your password.",
+
+        error:
+          "❌ Incorrect email or password.",
+
+        adminNote:
+          "🔒 This Admin area is only for the Rwanda Property Visata administrator.",
+
+        back:
+          "← Back to Website"
+
+      },
+
+
+      Français: {
+
+        title:
+          "Connexion Admin",
+
+        subtitle:
+          "Connectez-vous au panneau Admin pour gérer les propriétés du site.",
+
+        email:
+          "Email Admin",
+
+        emailPlaceholder:
+          "Entrez l'email Admin",
+
+        password:
+          "Mot de passe",
+
+        passwordPlaceholder:
+          "Entrez le mot de passe",
+
+        login:
+          "Se connecter comme Admin",
+
+        loading:
+          "Connexion...",
+
+        success:
+          "✅ Connexion réussie ! Ouverture du site...",
+
+        wrongEmail:
+          "❌ Cet email n'est pas autorisé comme Admin.",
+
+        emptyPassword:
+          "❌ Veuillez entrer votre mot de passe.",
+
+        error:
+          "❌ Email ou mot de passe incorrect.",
+
+        adminNote:
+          "🔒 Cette zone Admin est réservée à l'administrateur de Rwanda Property Visata.",
+
+        back:
+          "← Retour au site"
+
+      },
+
+
+      Kiswahili: {
+
+        title:
+          "Kuingia kwa Admin",
+
+        subtitle:
+          "Ingia kwenye Admin Panel ili kudhibiti mali za tovuti.",
+
+        email:
+          "Barua pepe ya Admin",
+
+        emailPlaceholder:
+          "Weka barua pepe ya Admin",
+
+        password:
+          "Nenosiri",
+
+        passwordPlaceholder:
+          "Weka nenosiri",
+
+        login:
+          "Ingia kama Admin",
+
+        loading:
+          "Inaingia...",
+
+        success:
+          "✅ Umeingia kwa mafanikio! Tunafungua tovuti...",
+
+        wrongEmail:
+          "❌ Barua pepe hii hairuhusiwi kuwa Admin.",
+
+        emptyPassword:
+          "❌ Tafadhali weka nenosiri.",
+
+        error:
+          "❌ Barua pepe au nenosiri si sahihi.",
+
+        adminNote:
+          "🔒 Sehemu hii ya Admin ni kwa msimamizi wa Rwanda Property Visata pekee.",
+
+        back:
+          "← Rudi kwenye Tovuti"
+
+      },
+
+
+      "中文": {
+
+        title:
+          "管理员登录",
+
+        subtitle:
+          "登录管理面板以管理网站上的房产。",
+
+        email:
+          "管理员邮箱",
+
+        emailPlaceholder:
+          "输入管理员邮箱",
+
+        password:
+          "密码",
+
+        passwordPlaceholder:
+          "输入密码",
+
+        login:
+          "管理员登录",
+
+        loading:
+          "正在登录...",
+
+        success:
+          "✅ 登录成功！正在打开网站...",
+
+        wrongEmail:
+          "❌ 此邮箱没有管理员权限。",
+
+        emptyPassword:
+          "❌ 请输入密码。",
+
+        error:
+          "❌ 邮箱或密码错误。",
+
+        adminNote:
+          "🔒 此管理员区域仅供 Rwanda Property Visata 管理员使用。",
+
+        back:
+          "← 返回网站"
+
+      }
+
+    };
+
+
+    /* =========================================
        ELEMENTS
     ========================================= */
 
 
-    const loginForm =
-      document.getElementById("loginForm");
+    const languageSelect =
+      document.getElementById(
+        "languageSelect"
+      );
+
+
+    const title =
+      document.getElementById(
+        "title"
+      );
+
+
+    const subtitle =
+      document.getElementById(
+        "subtitle"
+      );
+
+
+    const emailLabel =
+      document.getElementById(
+        "emailLabel"
+      );
 
 
     const emailInput =
-      document.getElementById("email");
+      document.getElementById(
+        "email"
+      );
+
+
+    const passwordLabel =
+      document.getElementById(
+        "passwordLabel"
+      );
 
 
     const passwordInput =
-      document.getElementById("password");
+      document.getElementById(
+        "password"
+      );
 
 
     const loginButton =
-      document.getElementById("loginButton");
+      document.getElementById(
+        "loginButton"
+      );
 
 
     const message =
-      document.getElementById("message");
+      document.getElementById(
+        "message"
+      );
+
+
+    const adminNote =
+      document.getElementById(
+        "adminNote"
+      );
+
+
+    const backHome =
+      document.getElementById(
+        "backHome"
+      );
+
+
+    /* =========================================
+       CURRENT LANGUAGE
+    ========================================= */
+
+
+    let currentLanguage =
+      localStorage.getItem(
+        "selectedLanguage"
+      ) || "Kinyarwanda";
+
+
+    if (
+      !translations[currentLanguage]
+    ) {
+
+      currentLanguage =
+        "Kinyarwanda";
+
+    }
+
+
+    languageSelect.value =
+      currentLanguage;
+
+
+    /* =========================================
+       APPLY LANGUAGE
+    ========================================= */
+
+
+    function applyLanguage() {
+
+
+      const t =
+        translations[currentLanguage];
+
+
+      title.textContent =
+        t.title;
+
+
+      subtitle.textContent =
+        t.subtitle;
+
+
+      emailLabel.textContent =
+        t.email;
+
+
+      emailInput.placeholder =
+        t.emailPlaceholder;
+
+
+      passwordLabel.textContent =
+        t.password;
+
+
+      passwordInput.placeholder =
+        t.passwordPlaceholder;
+
+
+      loginButton.textContent =
+        t.login;
+
+
+      adminNote.textContent =
+        t.adminNote;
+
+
+      backHome.textContent =
+        t.back;
+
+
+      document.documentElement.lang =
+        currentLanguage === "中文"
+          ? "zh"
+          : currentLanguage === "Français"
+          ? "fr"
+          : currentLanguage === "Kiswahili"
+          ? "sw"
+          : currentLanguage === "Kinyarwanda"
+          ? "rw"
+          : "en";
+
+    }
+
+
+    applyLanguage();
+
+
+    /* =========================================
+       CHANGE LANGUAGE
+    ========================================= */
+
+
+    languageSelect.addEventListener(
+      "change",
+      function() {
+
+
+        currentLanguage =
+          languageSelect.value;
+
+
+        localStorage.setItem(
+          "selectedLanguage",
+          currentLanguage
+        );
+
+
+        applyLanguage();
+
+      }
+    );
 
 
     /* =========================================
@@ -371,11 +975,16 @@
     ========================================= */
 
 
-    function showMessage(text, type) {
+    function showMessage(
+      text,
+      type
+    ) {
 
-      message.textContent = text;
+      message.textContent =
+        text;
 
-      message.className = type;
+      message.className =
+        type;
 
     }
 
@@ -389,7 +998,12 @@
       "submit",
       async function(event) {
 
+
         event.preventDefault();
+
+
+        const t =
+          translations[currentLanguage];
 
 
         const email =
@@ -402,12 +1016,15 @@
           passwordInput.value;
 
 
-        /* Email igomba kuba iya Admin */
+        /* CHECK EMAIL */
 
-        if (email !== ADMIN_EMAIL) {
+        if (
+          email !==
+          ADMIN_EMAIL
+        ) {
 
           showMessage(
-            "❌ Ntabwo wemerewe kwinjira muri Admin.",
+            t.wrongEmail,
             "error"
           );
 
@@ -416,12 +1033,14 @@
         }
 
 
-        /* Password ntigomba kuba empty */
+        /* CHECK PASSWORD */
 
-        if (!password) {
+        if (
+          password.length === 0
+        ) {
 
           showMessage(
-            "❌ Andika password.",
+            t.emptyPassword,
             "error"
           );
 
@@ -430,10 +1049,16 @@
         }
 
 
-        loginButton.disabled = true;
+        loginButton.disabled =
+          true;
+
 
         loginButton.textContent =
-          "Logging in...";
+          t.loading;
+
+
+        message.style.display =
+          "none";
 
 
         try {
@@ -444,41 +1069,54 @@
           ===================================== */
 
 
-          const {
-            data,
-            error
-          } =
+          const result =
             await supabaseClient
               .auth
               .signInWithPassword({
 
-                email: email,
+                email:
+                  email,
 
-                password: password
+                password:
+                  password
 
               });
 
 
-          /* Login yanze */
+          const data =
+            result.data;
+
+
+          const error =
+            result.error;
+
+
+          /* =====================================
+             LOGIN ERROR
+          ===================================== */
+
 
           if (error) {
 
             console.error(
-              "Supabase login error:",
+              "Supabase error:",
               error
             );
 
 
             showMessage(
-              "❌ Email cyangwa password ntabwo ari byo.",
+              "❌ " + error.message,
               "error"
             );
 
 
-            loginButton.disabled = false;
+            loginButton.disabled =
+              false;
+
 
             loginButton.textContent =
-              "Login as Admin";
+              t.login;
+
 
             return;
 
@@ -486,7 +1124,7 @@
 
 
           /* =====================================
-             REBA USER
+             USER CHECK
           ===================================== */
 
 
@@ -496,30 +1134,33 @@
           ) {
 
             showMessage(
-              "❌ Login ntiyagenze neza.",
+              t.error,
               "error"
             );
 
 
-            loginButton.disabled = false;
+            loginButton.disabled =
+              false;
+
 
             loginButton.textContent =
-              "Login as Admin";
+              t.login;
+
 
             return;
 
           }
 
 
-          /* =====================================
-             ONGEYE KUGENZURA ADMIN EMAIL
-          ===================================== */
-
-
           const loggedEmail =
             data.user.email
               .trim()
               .toLowerCase();
+
+
+          /* =====================================
+             ADMIN CHECK
+          ===================================== */
 
 
           if (
@@ -534,15 +1175,18 @@
 
 
             showMessage(
-              "❌ Uyu account ntabwo ari Admin.",
+              t.wrongEmail,
               "error"
             );
 
 
-            loginButton.disabled = false;
+            loginButton.disabled =
+              false;
+
 
             loginButton.textContent =
-              "Login as Admin";
+              t.login;
+
 
             return;
 
@@ -550,27 +1194,26 @@
 
 
           /* =====================================
-             LOGIN SUCCESSFUL
+             SUCCESS
           ===================================== */
 
 
           showMessage(
-            "✅ Login successful! Turakujyana kuri Home...",
+            t.success,
             "success"
           );
 
 
-          loginButton.disabled = true;
-
-          loginButton.textContent =
-            "Opening...";
+          loginButton.disabled =
+            true;
 
 
           /*
-             KUGEZA UBU NTITURAKORA admin.html.
+            KUGEZA UBU TUTARAKORA
+            admin.html.
 
-             Ni yo mpamvu tujya kuri home.html
-             aho kujya kuri admin.html.
+            Ni yo mpamvu tujya kuri
+            home.html aho kubona 404.
           */
 
 
@@ -592,30 +1235,34 @@
 
 
           console.error(
-            "Unexpected login error:",
+            "Unexpected error:",
             error
           );
 
 
           showMessage(
-            "❌ Habaye ikibazo. Ongera ugerageze.",
+            "❌ " +
+            (
+              error.message ||
+              "Connection error. Please try again."
+            ),
             "error"
           );
 
 
-          loginButton.disabled = false;
+          loginButton.disabled =
+            false;
+
 
           loginButton.textContent =
-            "Login as Admin";
+            t.login;
 
         }
 
       }
     );
 
-
   </script>
-
 
 </body>
 
