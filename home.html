@@ -1453,12 +1453,10 @@
         error
       } =
       await supabaseClient
-        .from("properties")
-        .select("*")
-        .order(
-          "created_at",
-          {
-            ascending: false
+        .from("property_posts")
+.select("*")
+.eq("status", "approved")
+.order("created_at", { ascending: false })
           }
         )
         .limit(6);
