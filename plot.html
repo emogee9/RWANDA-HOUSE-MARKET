@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Plots for Sale - Rwanda House Market</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f5f5;
+  color:#222;
+}
+
+header{
+  background:#f2c400;
+  padding:25px 15px;
+  text-align:center;
+  box-shadow:0 3px 12px rgba(0,0,0,.15);
+}
+
+header h1{
+  margin:0;
+  font-size:30px;
+}
+
+.back{
+  display:inline-block;
+  margin-top:12px;
+  padding:10px 18px;
+  background:white;
+  color:#222;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+.container{
+  max-width:1150px;
+  margin:auto;
+  padding:30px 20px 60px;
+}
+
+.page-title{
+  background:white;
+  padding:25px;
+  text-align:center;
+  border-radius:15px;
+  margin-bottom:25px;
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
+}
+
+.page-title h2{
+  margin-top:0;
+}
+
+.plots{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.plot{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+
+.plot img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  display:block;
+}
+
+.plot-body{
+  padding:18px;
+}
+
+.plot-title{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.price{
+  color:#b27b00;
+  font-size:21px;
+  font-weight:bold;
+  margin-bottom:12px;
+}
+
+.location{
+  color:#555;
+  line-height:1.6;
+}
+
+.detail-button{
+  display:block;
+  margin-top:15px;
+  background:#f2c400;
+  color:#222;
+  text-align:center;
+  text-decoration:none;
+  padding:12px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+.detail-button:hover{
+  background:#d4a900;
+}
+
+.empty{
+  background:white;
+  padding:40px;
+  text-align:center;
+  border-radius:12px;
+  color:#777;
+}
+
+@media(max-width:900px){
+  .plots{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:600px){
+  .plots{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <h1 id="headerTitle">
+    🏡 RWANDA HOUSE MARKET
+  </h1>
+
+  <a
+    href="./home.html"
+    class="back"
+    id="backButton">
+    ← Back to Home
+  </a>
+
+</header>
+
+
+<div class="container">
+
+  <div class="page-title">
+
+    <h2 id="pageTitle">
+      🌍 Plots for Sale
+    </h2>
+
+    <p id="pageDescription">
+      Find plots available for sale in Rwanda.
+    </p>
+
+  </div>
+
+
+  <div
+    id="plots"
+    class="plots">
+
+    <div class="empty">
+      Loading plots...
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* ===============================
+   SUPABASE
+================================ */
+
+const SUPABASE_URL =
+  "https://hsmnybmcddtsyooltozw.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* ===============================
+   ELEMENT
+================================ */
+
+const plotsElement =
+  document.getElementById("plots");
+
+
+/* ===============================
+   ESCAPE HTML
+================================ */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ===============================
+   LOAD PLOTS
+================================ */
+
+async function loadPlots(){
+
+  plotsElement.innerHTML =
+    `<div class="empty">
+      Loading plots...
+    </div>`;
+
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("properties")
+    .select("*")
+    .eq("property_type","plot")
+    .order(
+      "created_at",
+      {
+        ascending:false
+      }
+    );
+
+
+  if(error){
+
+    console.error(error);
+
+    plotsElement.innerHTML =
+      `<div class="empty">
+        ❌ ${escapeHtml(error.message)}
+      </div>`;
+
+    return;
+  }
+
+
+  if(!data || data.length === 0){
+
+    plotsElement.innerHTML =
+      `<div class="empty">
+        No plots are available yet.
+      </div>`;
+
+    return;
+  }
+
+
+  plotsElement.innerHTML = "";
+
+
+  data.forEach(plot => {
+
+    const photo =
+      plot.main_photo ||
+      (
+        Array.isArray(plot.other_photos)
+        ? plot.other_photos[0]
+        : ""
+      ) ||
+      "https://via.placeholder.com/800x500?text=No+Photo";
+
+
+    const card =
+      document.createElement("div");
+
+    card.className = "plot";
+
+
+    card.innerHTML = `
+
+      <img
+        src="${escapeHtml(photo)}"
+        alt="Plot">
+
+      <div class="plot-body">
+
+        <div class="plot-title">
+          ${escapeHtml(
+            plot.title || "Plot for Sale"
+          )}
+        </div>
+
+        <div class="price">
+          ${Number(
+            plot.price || 0
+          ).toLocaleString()} RWF
+        </div>
+
+        <div class="location">
+
+          🌍 Country:
+          ${escapeHtml(plot.country || "")}
+
+          <br>
+
+          📍 District:
+          ${escapeHtml(plot.district || "")}
+
+        </div>
+
+        <a
+          class="detail-button"
+          href="./plot-detail.html?id=${encodeURIComponent(plot.id)}">
+
+          View Detail
+
+        </a>
+
+      </div>
+
+    `;
+
+
+    plotsElement.appendChild(card);
+
+  });
+
+}
+
+
+/* ===============================
+   LANGUAGE
+================================ */
+
+const language =
+  localStorage.getItem(
+    "selectedLanguage"
+  ) || "English";
+
+
+const translations = {
+
+  Kinyarwanda:{
+
+    title:
+      "🌍 Ibibanza bigurishwa",
+
+    description:
+      "Shaka ibibanza biri kugurishwa mu Rwanda.",
+
+    back:
+      "← Subira kuri Home",
+
+    detail:
+      "Reba ibisobanuro"
+
+  },
+
+  English:{
+
+    title:
+      "🌍 Plots for Sale",
+
+    description:
+      "Find plots available for sale in Rwanda.",
+
+    back:
+      "← Back to Home",
+
+    detail:
+      "View Detail"
+
+  },
+
+  Français:{
+
+    title:
+      "🌍 Terrains à vendre",
+
+    description:
+      "Trouvez des terrains disponibles à la vente au Rwanda.",
+
+    back:
+      "← Retour à l'accueil",
+
+    detail:
+      "Voir les détails"
+
+  },
+
+  Kiswahili:{
+
+    title:
+      "🌍 Viwanja vya Kuuza",
+
+    description:
+      "Pata viwanja vinavyopatikana kwa kuuza nchini Rwanda.",
+
+    back:
+      "← Rudi Mwanzo",
+
+    detail:
+      "Tazama Maelezo"
+
+  },
+
+  "中文":{
+
+    title:
+      "🌍 出售土地",
+
+    description:
+      "寻找卢旺达可出售的土地。",
+
+    back:
+      "← 返回首页",
+
+    detail:
+      "查看详情"
+
+  }
+
+};
+
+
+const t =
+  translations[language] ||
+  translations.English;
+
+
+document.getElementById(
+  "pageTitle"
+).textContent = t.title;
+
+
+document.getElementById(
+  "pageDescription"
+).textContent = t.description;
+
+
+document.getElementById(
+  "backButton"
+).textContent = t.back;
+
+
+/* ===============================
+   START
+================================ */
+
+loadPlots();
+
+</script>
+
+</body>
+</html>
