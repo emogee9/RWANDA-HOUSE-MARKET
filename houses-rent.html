@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Houses for Rent - Rwanda House Market</title>
+
+  <!-- FAVICON -->
+  <link
+    rel="icon"
+    type="image/png"
+    href="logo.png"
+  >
+
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <style>
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      font-family:Arial,sans-serif;
+      background:#f7f5ef;
+      color:#33251d;
+    }
+
+
+    /* ================= NAVBAR ================= */
+
+    .navbar{
+
+      background:#d4a017;
+      color:white;
+
+      padding:15px 20px;
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      gap:15px;
+
+      position:sticky;
+      top:0;
+
+      z-index:1000;
+
+      box-shadow:
+        0 3px 12px rgba(0,0,0,.20);
+
+    }
+
+
+    .brand{
+
+      display:flex;
+      align-items:center;
+      gap:10px;
+
+      font-size:22px;
+      font-weight:bold;
+    }
+
+
+    .brand img{
+
+      width:45px;
+      height:45px;
+
+      object-fit:contain;
+
+      background:white;
+
+      border-radius:8px;
+
+      padding:3px;
+    }
+
+
+    .nav-links{
+
+      display:flex;
+      gap:8px;
+
+      flex-wrap:wrap;
+
+      justify-content:center;
+    }
+
+
+    .nav-links a{
+
+      background:white;
+
+      color:#8a6500;
+
+      text-decoration:none;
+
+      padding:9px 14px;
+
+      border-radius:7px;
+
+      font-weight:bold;
+
+      font-size:14px;
+    }
+
+
+    .nav-links a:hover{
+
+      background:#fff3bd;
+    }
+
+
+    /* ================= HEADER ================= */
+
+    .page-header{
+
+      background:
+        linear-gradient(
+          rgba(0,0,0,.45),
+          rgba(0,0,0,.45)
+        ),
+        url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=90")
+        center/cover no-repeat;
+
+      min-height:300px;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      text-align:center;
+
+      padding:40px 20px;
+
+      color:white;
+    }
+
+
+    .page-header-content{
+
+      max-width:800px;
+    }
+
+
+    .page-header h1{
+
+      font-size:42px;
+
+      margin:0 0 15px;
+    }
+
+
+    .page-header p{
+
+      font-size:19px;
+
+      line-height:1.6;
+
+      margin:0;
+    }
+
+
+    /* ================= CONTAINER ================= */
+
+    .container{
+
+      max-width:1200px;
+
+      margin:auto;
+
+      padding:35px 20px 60px;
+    }
+
+
+    .top-box{
+
+      background:white;
+
+      border-radius:14px;
+
+      padding:22px;
+
+      margin-bottom:25px;
+
+      box-shadow:
+        0 3px 12px rgba(0,0,0,.10);
+
+      text-align:center;
+    }
+
+
+    .top-box h2{
+
+      margin:0 0 8px;
+
+      font-size:28px;
+    }
+
+
+    .top-box p{
+
+      color:#666;
+
+      margin:0;
+    }
+
+
+    /* ================= PROPERTIES ================= */
+
+    .properties{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap:20px;
+    }
+
+
+    .property{
+
+      background:white;
+
+      border-radius:14px;
+
+      overflow:hidden;
+
+      box-shadow:
+        0 3px 12px rgba(0,0,0,.12);
+
+      transition:
+        transform .2s,
+        box-shadow .2s;
+    }
+
+
+    .property:hover{
+
+      transform:translateY(-3px);
+
+      box-shadow:
+        0 7px 20px rgba(0,0,0,.16);
+    }
+
+
+    .property-image{
+
+      width:100%;
+
+      height:230px;
+
+      object-fit:cover;
+
+      display:block;
+    }
+
+
+    .property-body{
+
+      padding:18px;
+    }
+
+
+    .property-title{
+
+      font-size:20px;
+
+      font-weight:bold;
+
+      margin-bottom:10px;
+
+      color:#33251d;
+    }
+
+
+    .price{
+
+      color:#b27b00;
+
+      font-size:20px;
+
+      font-weight:bold;
+
+      margin-bottom:12px;
+    }
+
+
+    .location{
+
+      color:#666;
+
+      line-height:1.6;
+
+      margin-bottom:14px;
+    }
+
+
+    .info{
+
+      display:grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap:6px;
+
+      margin-bottom:15px;
+    }
+
+
+    .info div{
+
+      background:#f7f5ef;
+
+      border-radius:7px;
+
+      padding:8px 5px;
+
+      text-align:center;
+
+      font-size:13px;
+
+      color:#555;
+    }
+
+
+    .view-button{
+
+      display:block;
+
+      width:100%;
+
+      text-align:center;
+
+      background:#d4a017;
+
+      color:white;
+
+      text-decoration:none;
+
+      padding:12px;
+
+      border-radius:8px;
+
+      font-weight:bold;
+    }
+
+
+    .view-button:hover{
+
+      background:#a87800;
+    }
+
+
+    /* ================= EMPTY / ERROR ================= */
+
+    .message{
+
+      background:white;
+
+      border-radius:14px;
+
+      padding:35px 20px;
+
+      text-align:center;
+
+      color:#777;
+
+      grid-column:1/-1;
+
+      box-shadow:
+        0 3px 12px rgba(0,0,0,.08);
+    }
+
+
+    .error{
+
+      color:#a00000;
+
+      background:#ffeaea;
+    }
+
+
+    .loading{
+
+      color:#8a6500;
+    }
+
+
+    /* ================= FOOTER ================= */
+
+    footer{
+
+      background:#222;
+
+      color:white;
+
+      text-align:center;
+
+      padding:30px 20px;
+
+      margin-top:30px;
+    }
+
+
+    footer p{
+
+      margin:7px 0;
+    }
+
+
+    /* ================= MOBILE ================= */
+
+    @media(max-width:900px){
+
+      .properties{
+
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .page-header h1{
+
+        font-size:36px;
+      }
+
+    }
+
+
+    @media(max-width:650px){
+
+      .navbar{
+
+        flex-direction:column;
+      }
+
+
+      .brand{
+
+        justify-content:center;
+
+        text-align:center;
+      }
+
+
+      .nav-links{
+
+        width:100%;
+      }
+
+
+      .nav-links a{
+
+        flex:1;
+
+        text-align:center;
+      }
+
+
+      .properties{
+
+        grid-template-columns:1fr;
+      }
+
+
+      .page-header{
+
+        min-height:260px;
+      }
+
+
+      .page-header h1{
+
+        font-size:30px;
+      }
+
+
+      .page-header p{
+
+        font-size:16px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- ================= NAVBAR ================= -->
+
+  <nav class="navbar">
+
+    <div class="brand">
+
+      <img
+        src="logo.png"
+        alt="Rwanda House Market Logo"
+      >
+
+      <span>
+        Rwanda House Market
+      </span>
+
+    </div>
+
+
+    <div class="nav-links">
+
+      <a href="home.html">
+        Home
+      </a>
+
+      <a href="houses-rent.html">
+        House for Rent
+      </a>
+
+      <a href="houses-sale.html">
+        House for Sale
+      </a>
+
+      <a href="plot.html">
+        Plot for Sale
+      </a>
+
+    </div>
+
+  </nav>
+
+
+
+  <!-- ================= HEADER ================= -->
+
+  <section class="page-header">
+
+    <div class="page-header-content">
+
+      <h1>
+        🏠 Houses for Rent
+      </h1>
+
+      <p>
+        Find houses available for rent
+        across Rwanda.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ================= MAIN ================= -->
+
+  <main class="container">
+
+
+    <div class="top-box">
+
+      <h2>
+        Houses Available for Rent
+      </h2>
+
+      <p>
+        These are properties currently
+        published on Rwanda House Market.
+      </p>
+
+    </div>
+
+
+    <div
+      id="properties"
+      class="properties"
+    >
+
+      <div class="message loading">
+
+        Loading houses for rent...
+
+      </div>
+
+    </div>
+
+
+  </main>
+
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <p>
+      🏠
+      <strong>
+        Rwanda House Market
+      </strong>
+    </p>
+
+    <p>
+      Houses for rent,
+      houses for sale and
+      plots for sale in Rwanda.
+    </p>
+
+    <p>
+      ©
+      <span id="year"></span>
+      Rwanda House Market
+    </p>
+
+  </footer>
+
+
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script>
+
+
+    /* =========================================
+       SUPABASE
+    ========================================= */
+
+    const SUPABASE_URL =
+      "https://hsmnybmcddtsyooltozw.supabase.co";
+
+
+    const SUPABASE_KEY =
+      "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+
+    /* =========================================
+       ELEMENT
+    ========================================= */
+
+    const propertiesElement =
+      document.getElementById(
+        "properties"
+      );
+
+
+
+    /* =========================================
+       ESCAPE HTML
+    ========================================= */
+
+    function escapeHtml(value){
+
+      return String(value ?? "")
+
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+
+        .replace(
+          /</g,
+          "&lt;"
+        )
+
+        .replace(
+          />/g,
+          "&gt;"
+        )
+
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+
+    /* =========================================
+       LOAD RENTAL PROPERTIES
+    ========================================= */
+
+    async function loadRentalProperties(){
+
+
+      propertiesElement.innerHTML = `
+
+        <div class="message loading">
+
+          Loading houses for rent...
+
+        </div>
+
+      `;
+
+
+
+      /*
+        IMPORTANT:
+
+        Table:
+        property_posts
+
+        We only want:
+        property_type = rent
+
+        AND:
+        status = published
+      */
+
+
+      const {
+        data,
+        error
+      } =
+
+      await supabaseClient
+
+        .from("property_posts")
+
+        .select("*")
+
+        .eq(
+          "property_type",
+          "rent"
+        )
+
+        .eq(
+          "status",
+          "published"
+        )
+
+        .order(
+          "created_at",
+          {
+            ascending:false
+          }
+        );
+
+
+
+      /* =====================================
+         ERROR
+      ===================================== */
+
+      if(error){
+
+        console.error(
+          "Supabase error:",
+          error
+        );
+
+
+        propertiesElement.innerHTML = `
+
+          <div class="message error">
+
+            ❌
+            ${escapeHtml(
+              error.message
+            )}
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+
+      /* =====================================
+         EMPTY
+      ===================================== */
+
+      if(
+        !data ||
+        data.length === 0
+      ){
+
+        propertiesElement.innerHTML = `
+
+          <div class="message">
+
+            🏠
+
+            <br><br>
+
+            No houses for rent
+            have been published yet.
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+
+      /* =====================================
+         CLEAR
+      ===================================== */
+
+      propertiesElement.innerHTML = "";
+
+
+
+      /* =====================================
+         CREATE CARDS
+      ===================================== */
+
+      data.forEach(
+        property => {
+
+
+          const card =
+            document.createElement(
+              "div"
+            );
+
+
+          card.className =
+            "property";
+
+
+
+          /* MAIN PHOTO */
+
+          const mainPhoto =
+
+            property.main_photo ||
+
+            (
+              Array.isArray(
+                property.other_photos
+              )
+
+              ?
+
+              property.other_photos[0]
+
+              :
+
+              ""
+            ) ||
+
+            "https://via.placeholder.com/800x500?text=No+Photo";
+
+
+
+          /* LOCATION */
+
+          const location = [
+
+            property.country,
+
+            property.province,
+
+            property.district,
+
+            property.sector
+
+          ]
+
+          .filter(Boolean)
+
+          .join(", ");
+
+
+
+          /* DETAIL PAGE */
+
+          const detailUrl =
+
+            "rent-detail.html?id=" +
+
+            encodeURIComponent(
+              property.id
+            );
+
+
+
+          /* CARD */
+
+          card.innerHTML = `
+
+            <img
+
+              class="property-image"
+
+              src="${escapeHtml(
+                mainPhoto
+              )}"
+
+              alt="${escapeHtml(
+                property.title ||
+                "House for Rent"
+              )}"
+
+            >
+
+
+            <div class="property-body">
+
+
+              <div class="property-title">
+
+                ${escapeHtml(
+                  property.title ||
+                  "House for Rent"
+                )}
+
+              </div>
+
+
+
+              <div class="price">
+
+                ${Number(
+                  property.price || 0
+                ).toLocaleString()}
+
+                RWF
+
+              </div>
+
+
+
+              <div class="location">
+
+                📍
+
+                ${escapeHtml(
+                  location ||
+                  "Rwanda"
+                )}
+
+              </div>
+
+
+
+              <div class="info">
+
+
+                <div>
+
+                  🛏️
+
+                  <br>
+
+                  ${property.bedrooms ?? 0}
+
+                  Bedrooms
+
+                </div>
+
+
+                <div>
+
+                  🚿
+
+                  <br>
+
+                  ${property.bathrooms ?? 0}
+
+                  Bathrooms
+
+                </div>
+
+
+                <div>
+
+                  🚗
+
+                  <br>
+
+                  ${property.parking ?? 0}
+
+                  Parking
+
+                </div>
+
+
+              </div>
+
+
+
+              <a
+
+                href="${detailUrl}"
+
+                class="view-button"
+
+              >
+
+                View Details
+
+              </a>
+
+
+            </div>
+
+          `;
+
+
+
+          propertiesElement.appendChild(
+            card
+          );
+
+        }
+      );
+
+    }
+
+
+
+    /* =========================================
+       YEAR
+    ========================================= */
+
+    document.getElementById(
+      "year"
+    ).textContent =
+      new Date().getFullYear();
+
+
+
+    /* =========================================
+       START
+    ========================================= */
+
+    loadRentalProperties();
+
+
+  </script>
+
+
+</body>
+</html>
