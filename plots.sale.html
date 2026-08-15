@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title id="browserTitle">Plots for Sale - Rwanda House Market</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: #f2c400;
+      color: #222;
+      padding: 25px 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 10px;
+      color: #222;
+      text-decoration: none;
+      font-weight: bold;
+      background: white;
+      padding: 9px 15px;
+      border-radius: 8px;
+    }
+
+    .back:hover {
+      background: #fff8d6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 30px 20px 50px;
+    }
+
+    .page-title {
+      background: white;
+      padding: 25px;
+      text-align: center;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    }
+
+    .page-title h2 {
+      margin-top: 0;
+    }
+
+    .plots {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .plot {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+    }
+
+    .plot img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .plot-content {
+      padding: 20px;
+    }
+
+    .plot h3 {
+      margin-top: 0;
+      font-size: 21px;
+      line-height: 1.4;
+    }
+
+    .price {
+      color: #c39200;
+      font-size: 21px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .location {
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .details {
+      display: inline-block;
+      background: #f2c400;
+      color: #222;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .details:hover {
+      background: #d4a900;
+    }
+
+    .loading,
+    .empty,
+    .error {
+      background: white;
+      padding: 35px;
+      border-radius: 12px;
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+
+    .error {
+      color: #b00000;
+    }
+
+    @media (max-width: 600px) {
+
+      .container {
+        padding: 20px 15px 40px;
+      }
+
+      .plot img {
+        height: 210px;
+      }
+
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <header>
+
+    <h1 id="headerTitle">
+      🏡 RWANDA HOUSE MARKET
+    </h1>
+
+    <a
+      href="./home.html"
+      class="back"
+      id="backButton">
+      ← Back to Home
+    </a>
+
+  </header>
+
+
+  <div class="container">
+
+    <div class="page-title">
+
+      <h2 id="pageTitle">
+        🌍 Plots for Sale
+      </h2>
+
+      <p id="pageDescription">
+        Find plots available for sale in Rwanda.
+      </p>
+
+    </div>
+
+
+    <div
+      id="plots"
+      class="plots">
+
+      <div class="loading">
+        Loading plots...
+      </div>
+
+    </div>
+
+  </div>
+
+
+<script>
+
+/* =========================================
+   SUPABASE
+========================================= */
+
+const SUPABASE_URL =
+  "https://hsmnybmcddtsyooltozw.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================================
+   ELEMENT
+========================================= */
+
+const plotsElement =
+  document.getElementById("plots");
+
+
+/* =========================================
+   LANGUAGE
+========================================= */
+
+const language =
+  localStorage.getItem("selectedLanguage") ||
+  "English";
+
+
+/* =========================================
+   TRANSLATIONS - 5 LANGUAGES
+========================================= */
+
+const translations = {
+
+  Kinyarwanda: {
+
+    browserTitle:
+      "Ibibanza bigurishwa - Rwanda House Market",
+
+    header:
+      "🏡 RWANDA HOUSE MARKET",
+
+    back:
+      "← Subira kuri Home",
+
+    title:
+      "🌍 Ibibanza bigurishwa",
+
+    description:
+      "Shaka ibibanza biri kugurishwa mu Rwanda.",
+
+    details:
+      "Reba Details",
+
+    loading:
+      "Birimo gutegurwa...",
+
+    empty:
+      "Nta kibanza kigurishwa kiraboneka.",
+
+    error:
+      "Habaye ikibazo mu kubona ibibanza."
+
+  },
+
+
+  English: {
+
+    browserTitle:
+      "Plots for Sale - Rwanda House Market",
+
+    header:
+      "🏡 RWANDA HOUSE MARKET",
+
+    back:
+      "← Back to Home",
+
+    title:
+      "🌍 Plots for Sale",
+
+    description:
+      "Find plots available for sale in Rwanda.",
+
+    details:
+      "View Details",
+
+    loading:
+      "Loading plots...",
+
+    empty:
+      "No plots for sale found.",
+
+    error:
+      "There was a problem loading plots."
+
+  },
+
+
+  Français: {
+
+    browserTitle:
+      "Terrains à vendre - Rwanda House Market",
+
+    header:
+      "🏡 RWANDA HOUSE MARKET",
+
+    back:
+      "← Retour à l'accueil",
+
+    title:
+      "🌍 Terrains à vendre",
+
+    description:
+      "Trouvez des terrains disponibles à la vente au Rwanda.",
+
+    details:
+      "Voir les détails",
+
+    loading:
+      "Chargement des terrains...",
+
+    empty:
+      "Aucun terrain à vendre trouvé.",
+
+    error:
+      "Un problème est survenu lors du chargement."
+
+  },
+
+
+  Kiswahili: {
+
+    browserTitle:
+      "Viwanja vya Kuuza - Rwanda House Market",
+
+    header:
+      "🏡 RWANDA HOUSE MARKET",
+
+    back:
+      "← Rudi Mwanzo",
+
+    title:
+      "🌍 Viwanja vya Kuuza",
+
+    description:
+      "Pata viwanja vinavyopatikana kwa kuuza nchini Rwanda.",
+
+    details:
+      "Tazama Maelezo",
+
+    loading:
+      "Inapakia viwanja...",
+
+    empty:
+      "Hakuna viwanja vya kuuza vilivyopatikana.",
+
+    error:
+      "Kuna tatizo katika kupakia viwanja."
+
+  },
+
+
+  "中文": {
+
+    browserTitle:
+      "出售地块 - Rwanda House Market",
+
+    header:
+      "🏡 RWANDA HOUSE MARKET",
+
+    back:
+      "← 返回首页",
+
+    title:
+      "🌍 出售地块",
+
+    description:
+      "寻找卢旺达可出售的土地。",
+
+    details:
+      "查看详情",
+
+    loading:
+      "正在加载土地...",
+
+    empty:
+      "没有找到出售的地块。",
+
+    error:
+      "加载地块时出现问题。"
+
+  }
+
+};
+
+
+/* =========================================
+   SELECT LANGUAGE
+========================================= */
+
+const t =
+  translations[language] ||
+  translations.English;
+
+
+/* =========================================
+   APPLY LANGUAGE
+========================================= */
+
+document.title =
+  t.browserTitle;
+
+document.getElementById(
+  "headerTitle"
+).textContent =
+  t.header;
+
+document.getElementById(
+  "backButton"
+).textContent =
+  t.back;
+
+document.getElementById(
+  "pageTitle"
+).textContent =
+  t.title;
+
+document.getElementById(
+  "pageDescription"
+).textContent =
+  t.description;
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================
+   LOAD PLOTS
+========================================= */
+
+async function loadPlots(){
+
+  plotsElement.innerHTML = `
+    <div class="loading">
+      ${escapeHtml(t.loading)}
+    </div>
+  `;
+
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("properties")
+    .select("*")
+    .eq("property_type","plot")
+    .order(
+      "created_at",
+      {
+        ascending:false
+      }
+    );
+
+
+  /* =========================================
+     ERROR
+  ========================================= */
+
+  if(error){
+
+    console.error(error);
+
+    plotsElement.innerHTML = `
+      <div class="error">
+        ❌ ${escapeHtml(t.error)}
+        <br><br>
+        ${escapeHtml(error.message)}
+      </div>
+    `;
+
+    return;
+  }
+
+
+  /* =========================================
+     EMPTY
+  ========================================= */
+
+  if(!data || data.length === 0){
+
+    plotsElement.innerHTML = `
+      <div class="empty">
+        ${escapeHtml(t.empty)}
+      </div>
+    `;
+
+    return;
+  }
+
+
+  /* =========================================
+     CLEAR
+  ========================================= */
+
+  plotsElement.innerHTML = "";
+
+
+  /* =========================================
+     CREATE PLOT CARDS
+  ========================================= */
+
+  data.forEach(property => {
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "plot";
+
+
+    /* =========================================
+       MAIN PHOTO
+    ========================================= */
+
+    let mainPhoto =
+      property.main_photo;
+
+
+    if(!mainPhoto){
+
+      if(
+        Array.isArray(
+          property.other_photos
+        ) &&
+        property.other_photos.length > 0
+      ){
+
+        mainPhoto =
+          property.other_photos[0];
+
+      }
+
+    }
+
+
+    if(!mainPhoto){
+
+      mainPhoto =
+        "https://via.placeholder.com/800x500?text=No+Photo";
+
+    }
+
+
+    /* =========================================
+       PRICE
+    ========================================= */
+
+    const formattedPrice =
+      Number(
+        property.price || 0
+      ).toLocaleString();
+
+
+    /* =========================================
+       LOCATION
+    ========================================= */
+
+    const country =
+      property.country || "";
+
+    const province =
+      property.province || "";
+
+    const district =
+      property.district || "";
+
+
+    /* =========================================
+       CARD
+    ========================================= */
+
+    card.innerHTML = `
+
+      <img
+        src="${escapeHtml(mainPhoto)}"
+        alt="${escapeHtml(
+          property.title ||
+          "Plot for Sale"
+        )}">
+
+
+      <div class="plot-content">
+
+        <h3>
+          ${escapeHtml(
+            property.title ||
+            "Plot for Sale"
+          )}
+        </h3>
+
+
+        <div class="price">
+
+          ${formattedPrice} RWF
+
+        </div>
+
+
+        <div class="location">
+
+          🌍
+          ${escapeHtml(country)}
+
+          <br>
+
+          📍
+          ${escapeHtml(province)}
+
+          <br>
+
+          📍
+          ${escapeHtml(district)}
+
+        </div>
+
+
+        <a
+          class="details"
+          href="./property-details.html?id=${encodeURIComponent(
+            property.id
+          )}">
+
+          ${escapeHtml(t.details)}
+
+        </a>
+
+      </div>
+
+    `;
+
+
+    plotsElement.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+loadPlots();
+
+</script>
+
+</body>
+</html>
