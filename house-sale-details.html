@@ -1,333 +1,590 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title id="browserTitle">House for Sale - Rwanda House Market</title>
+<meta charset="UTF-8">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0">
 
-  <style>
+<title>House Detail - Rwanda House Market</title>
 
-    * {
-      box-sizing: border-box;
-    }
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #ffffff;
-      color: #222222;
-    }
+<style>
 
-    /* ================= HEADER ================= */
+*{
+  box-sizing:border-box;
+}
 
-    header {
-      background: #f4b400;
-      color: #222222;
-      padding: 22px 15px;
-      text-align: center;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-    }
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f5f5;
+  color:#222;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
-    }
+header{
+  background:#f2c400;
+  padding:22px 15px;
+  text-align:center;
+}
 
-    .back {
-      display: inline-block;
-      margin-top: 10px;
-      color: #222222;
-      text-decoration: none;
-      font-weight: bold;
-      background: #ffffff;
-      padding: 9px 15px;
-      border-radius: 8px;
-    }
+header h1{
+  margin:0;
+}
 
-    .back:hover {
-      background: #fff8d6;
-    }
+.back{
+  display:inline-block;
+  margin-top:12px;
+  background:white;
+  color:#222;
+  text-decoration:none;
+  padding:10px 16px;
+  border-radius:8px;
+  font-weight:bold;
+}
 
-    /* ================= CONTAINER ================= */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:30px 20px 60px;
+}
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 30px 20px 60px;
-    }
+.card{
+  background:white;
+  border-radius:15px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
 
-    /* ================= EMPTY ================= */
+.main-photo{
+  width:100%;
+  height:500px;
+  object-fit:cover;
+  border-radius:12px;
+  display:block;
+}
 
-    .empty {
-      min-height: 400px;
-      background: #ffffff;
-      border: 2px solid #f4b400;
-      border-radius: 15px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:12px;
+}
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+.gallery img{
+  width:100%;
+  height:110px;
+  object-fit:cover;
+  border-radius:8px;
+  cursor:pointer;
+}
 
-      text-align: center;
-      padding: 30px;
-    }
+.gallery img:hover{
+  opacity:.8;
+}
 
-    .empty-content {
-      max-width: 600px;
-    }
+.title{
+  font-size:30px;
+  margin-top:0;
+}
 
-    .empty-icon {
-      font-size: 65px;
-      margin-bottom: 15px;
-    }
+.price{
+  color:#b27b00;
+  font-size:26px;
+  font-weight:bold;
+  margin:15px 0;
+}
 
-    .empty h2 {
-      margin: 0 0 12px;
-      font-size: 28px;
-    }
+.type{
+  display:inline-block;
+  background:#fff4bf;
+  border:1px solid #f2c400;
+  color:#8a6500;
+  padding:8px 14px;
+  border-radius:20px;
+  font-weight:bold;
+}
 
-    .empty p {
-      margin: 0;
-      color: #666666;
-      font-size: 17px;
-      line-height: 1.6;
-    }
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+  margin-top:20px;
+}
 
-    /* ================= MOBILE ================= */
+.info{
+  background:#fafafa;
+  padding:15px;
+  border-radius:8px;
+}
 
-    @media (max-width: 700px) {
+.description{
+  line-height:1.7;
+  color:#555;
+}
 
-      header {
-        padding: 20px 12px;
-      }
+.contact{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:20px;
+}
 
-      header h1 {
-        font-size: 24px;
-      }
+.button{
+  display:inline-block;
+  padding:13px 20px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
 
-      .container {
-        padding: 20px 15px 50px;
-      }
+.call{
+  background:#f2c400;
+  color:#222;
+}
 
-      .empty {
-        min-height: 300px;
-      }
+.whatsapp{
+  background:#128c7e;
+  color:white;
+}
 
-      .empty-icon {
-        font-size: 50px;
-      }
+.loading{
+  background:white;
+  padding:40px;
+  text-align:center;
+  border-radius:12px;
+}
 
-      .empty h2 {
-        font-size: 23px;
-      }
+.error{
+  background:#ffe8e8;
+  color:#a00000;
+  padding:30px;
+  border-radius:12px;
+  text-align:center;
+}
 
-    }
+@media(max-width:700px){
 
-  </style>
+  .main-photo{
+    height:300px;
+  }
+
+  .gallery{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .info-grid{
+    grid-template-columns:1fr;
+  }
+
+  .title{
+    font-size:25px;
+  }
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-  <!-- ================= HEADER ================= -->
+<header>
 
-  <header>
+  <h1>🏡 RWANDA HOUSE MARKET</h1>
 
-    <h1 id="headerTitle">
-      🏡 RWANDA HOUSE MARKET
-    </h1>
+  <a
+    href="houses-sale.html"
+    class="back">
 
-    <a
-      href="./houses-sale.html"
-      class="back"
-      id="backButton">
-      ← Back to Houses for Sale
-    </a>
+    ← Back to Houses for Sale
 
-  </header>
+  </a>
+
+</header>
 
 
-  <!-- ================= MAIN ================= -->
+<div class="container">
 
-  <div class="container">
+  <div id="content">
 
-    <div class="empty">
+    <div class="loading">
+      Loading property...
+    </div>
 
-      <div class="empty-content">
+  </div>
 
-        <div class="empty-icon">
-          🏠
-        </div>
+</div>
 
-        <h2 id="emptyTitle">
-          No property available
-        </h2>
 
-        <p id="emptyDescription">
-          There is currently no property posted here.
-        </p>
+<script>
+
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+  "https://hsmnybmcddtsyooltozw.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================
+   ELEMENT
+========================= */
+
+const content =
+  document.getElementById("content");
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   GET PROPERTY ID
+========================= */
+
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
+
+const propertyId =
+  params.get("id");
+
+
+/* =========================
+   LOAD PROPERTY
+========================= */
+
+async function loadProperty(){
+
+  if(!propertyId){
+
+    content.innerHTML = `
+      <div class="error">
+        ❌ Property ID ntibonetse.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("properties")
+    .select("*")
+    .eq("id",propertyId)
+    .eq("property_type","sale")
+    .maybeSingle();
+
+
+  if(error){
+
+    console.error(error);
+
+    content.innerHTML = `
+      <div class="error">
+        ❌ ${escapeHtml(error.message)}
+      </div>
+    `;
+
+    return;
+  }
+
+
+  if(!data){
+
+    content.innerHTML = `
+      <div class="error">
+        ❌ Iyi nzu ntiyabonetse.
+      </div>
+    `;
+
+    return;
+  }
+
+
+  renderProperty(data);
+
+}
+
+
+/* =========================
+   RENDER PROPERTY
+========================= */
+
+function renderProperty(property){
+
+  document.title =
+    (property.title || "House Detail") +
+    " - Rwanda House Market";
+
+
+  const mainPhoto =
+    property.main_photo ||
+    "https://via.placeholder.com/1000x600?text=No+Photo";
+
+
+  let photos = [];
+
+
+  if(property.main_photo){
+
+    photos.push(
+      property.main_photo
+    );
+
+  }
+
+
+  if(
+    Array.isArray(
+      property.other_photos
+    )
+  ){
+
+    photos =
+      photos.concat(
+        property.other_photos
+      );
+
+  }
+
+
+  const uniquePhotos =
+    [...new Set(photos)]
+      .filter(Boolean);
+
+
+  let galleryHTML = "";
+
+
+  uniquePhotos.forEach(photo => {
+
+    galleryHTML += `
+
+      <img
+        src="${escapeHtml(photo)}"
+        onclick="changeMainPhoto(this.src)"
+        alt="Property Photo">
+
+    `;
+
+  });
+
+
+  content.innerHTML = `
+
+    <div class="card">
+
+      <img
+        id="mainPhoto"
+        class="main-photo"
+        src="${escapeHtml(mainPhoto)}"
+        alt="House">
+
+      <div class="gallery">
+
+        ${galleryHTML}
 
       </div>
 
     </div>
 
-  </div>
+
+    <div class="card">
+
+      <span class="type">
+        🏠 House for Sale
+      </span>
+
+      <h2 class="title">
+        ${escapeHtml(
+          property.title ||
+          "House for Sale"
+        )}
+      </h2>
+
+      <div class="price">
+
+        ${Number(
+          property.price || 0
+        ).toLocaleString()} RWF
+
+      </div>
 
 
-  <!-- ================= LANGUAGE ================= -->
+      <div class="info-grid">
 
-  <script>
+        <div class="info">
 
-    const language =
-      localStorage.getItem("selectedLanguage") || "English";
+          🌍 <strong>Country</strong><br>
 
+          ${escapeHtml(
+            property.country || ""
+          )}
 
-    const translations = {
-
-      Kinyarwanda: {
-
-        browserTitle:
-          "Inzu igurishwa - Rwanda House Market",
-
-        header:
-          "🏡 RWANDA HOUSE MARKET",
-
-        back:
-          "← Subira ku mazu agurishwa",
-
-        emptyTitle:
-          "Nta mutungo uhari",
-
-        emptyDescription:
-          "Kugeza ubu nta mutungo washyizwe kuri iyi page."
-
-      },
+        </div>
 
 
-      English: {
+        <div class="info">
 
-        browserTitle:
-          "House for Sale - Rwanda House Market",
+          📍 <strong>Province</strong><br>
 
-        header:
-          "🏡 RWANDA HOUSE MARKET",
+          ${escapeHtml(
+            property.province || ""
+          )}
 
-        back:
-          "← Back to Houses for Sale",
-
-        emptyTitle:
-          "No property available",
-
-        emptyDescription:
-          "There is currently no property posted here."
-
-      },
+        </div>
 
 
-      Français: {
+        <div class="info">
 
-        browserTitle:
-          "Maison à vendre - Rwanda House Market",
+          📍 <strong>District</strong><br>
 
-        header:
-          "🏡 RWANDA HOUSE MARKET",
+          ${escapeHtml(
+            property.district || ""
+          )}
 
-        back:
-          "← Retour aux maisons à vendre",
-
-        emptyTitle:
-          "Aucune propriété disponible",
-
-        emptyDescription:
-          "Aucune propriété n'est actuellement publiée ici."
-
-      },
+        </div>
 
 
-      Kiswahili: {
+        <div class="info">
 
-        browserTitle:
-          "Nyumba ya Kuuza - Rwanda House Market",
+          📍 <strong>Sector</strong><br>
 
-        header:
-          "🏡 RWANDA HOUSE MARKET",
+          ${escapeHtml(
+            property.sector || ""
+          )}
 
-        back:
-          "← Rudi kwenye Nyumba za Kuuza",
-
-        emptyTitle:
-          "Hakuna mali inayopatikana",
-
-        emptyDescription:
-          "Kwa sasa hakuna mali iliyowekwa hapa."
-
-      },
+        </div>
 
 
-      "中文": {
+        <div class="info">
 
-        browserTitle:
-          "出售房屋 - Rwanda House Market",
+          🛏️ <strong>Bedrooms</strong><br>
 
-        header:
-          "🏡 RWANDA HOUSE MARKET",
+          ${property.bedrooms ?? 0}
 
-        back:
-          "← 返回出售房屋",
-
-        emptyTitle:
-          "暂无房产",
-
-        emptyDescription:
-          "目前这里没有发布任何房产。"
-
-      }
-
-    };
+        </div>
 
 
-    const t =
-      translations[language] ||
-      translations.English;
+        <div class="info">
+
+          🚿 <strong>Bathrooms</strong><br>
+
+          ${property.bathrooms ?? 0}
+
+        </div>
 
 
-    document.title =
-      t.browserTitle;
+        <div class="info">
+
+          🚗 <strong>Parking</strong><br>
+
+          ${property.parking ?? 0}
+
+        </div>
+
+      </div>
 
 
-    document.getElementById(
-      "headerTitle"
-    ).textContent =
-      t.header;
+      <h3>
+        Description
+      </h3>
+
+      <p class="description">
+
+        ${escapeHtml(
+          property.description ||
+          "No description available."
+        )}
+
+      </p>
 
 
-    document.getElementById(
-      "backButton"
-    ).textContent =
-      t.back;
+      <h3>
+        📞 Contact Rwanda House Market
+      </h3>
 
 
-    document.getElementById(
-      "emptyTitle"
-    ).textContent =
-      t.emptyTitle;
+      <div class="contact">
+
+        <a
+          href="tel:+250799645553"
+          class="button call">
+
+          📞 Call
+
+        </a>
 
 
-    document.getElementById(
-      "emptyDescription"
-    ).textContent =
-      t.emptyDescription;
+        <a
+          href="https://wa.me/250799645553"
+          target="_blank"
+          class="button whatsapp">
+
+          💬 WhatsApp
+
+        </a>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
 
 
-    localStorage.setItem(
-      "selectedLanguage",
-      language
-    );
+/* =========================
+   CHANGE MAIN PHOTO
+========================= */
 
-  </script>
+function changeMainPhoto(src){
+
+  document
+    .getElementById("mainPhoto")
+    .src = src;
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadProperty();
+
+</script>
 
 </body>
-
 </html>
