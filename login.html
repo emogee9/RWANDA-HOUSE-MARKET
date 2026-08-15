@@ -667,54 +667,7 @@
         }
 
       }
-    );
-
-
-
-    /* =========================================
-       CHECK EXISTING SESSION
-    ========================================= */
-
-
-    async function checkExistingSession() {
-
-
-      const {
-        data
-      } =
-        await supabaseClient
-          .auth
-          .getSession();
-
-
-      const session =
-        data.session;
-
-
-      if (
-        session &&
-        session.user &&
-        session.user.email
-          .toLowerCase() ===
-          ADMIN_EMAIL
-      ) {
-
-
-        /*
-          Niba admin yari asanzwe
-          yinjiye, mujye muri admin.
-        */
-
-
-        window.location.href =
-          "./admin.html";
-
-      }
-
-    }
-
-
-    checkExistingSession();
+    
 
 
   </script>
