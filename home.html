@@ -1,1190 +1,1446 @@
+# Complete `home.html`
+
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Rwanda Property Visata</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<title id="browserTitle">
+  Rwanda House Market
+</title>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8f5f2;
-      color: #3b2418;
-    }
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    /* ================= NAVBAR ================= */
+<style>
 
-    .navbar {
-      background: #d4a017;
-      color: white;
-      min-height: 70px;
-      padding: 10px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    }
+*{
+  box-sizing:border-box;
+}
 
-    .logo {
-      font-size: 21px;
-      font-weight: bold;
-      white-space: nowrap;
-    }
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f7f5ef;
+  color:#33251d;
+}
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 7px;
-      flex: 1;
-    }
+/* ================= NAVBAR ================= */
 
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      padding: 10px 11px;
-      border-radius: 7px;
-      font-size: 14px;
-      font-weight: bold;
-      transition: 0.2s;
-    }
+.navbar{
+  background:#d4a017;
+  color:white;
+  padding:15px 20px;
 
-    .nav-links a:hover {
-      background: #b8860b;
-    }
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 
-    .auth-links {
-      display: flex;
-      gap: 7px;
-      white-space: nowrap;
-    }
+  gap:20px;
 
-    .auth-links a {
-      text-decoration: none;
-      color: #d4a017;
-      background: white;
-      padding: 9px 13px;
-      border-radius: 7px;
-      font-size: 14px;
-      font-weight: bold;
-    }
+  position:sticky;
+  top:0;
+  z-index:1000;
 
-    .auth-links a:hover {
-      background: #fff3c4;
-    }
+  box-shadow:0 3px 12px rgba(0,0,0,.2);
+}
 
-    /* ================= HEADER ================= */
+.logo{
+  font-size:21px;
+  font-weight:bold;
+}
 
-    header {
-      background: #e0ad18;
-      color: white;
-      padding: 55px 20px;
-      text-align: center;
-    }
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 38px;
-    }
+.nav-links a,
+.language-select{
+  background:white;
+  color:#8a6500;
 
-    header p {
-      font-size: 19px;
-      margin: 12px 0 0;
-    }
+  padding:9px 12px;
 
-    /* ================= MAIN ================= */
+  border-radius:7px;
 
-    .container {
-      max-width: 1150px;
-      margin: auto;
-      padding: 35px 20px 60px;
-    }
+  text-decoration:none;
 
-    .welcome {
-      background: white;
-      padding: 30px;
-      text-align: center;
-      border-radius: 15px;
-      margin-bottom: 30px;
-      box-shadow: 0 3px 12px rgba(70,40,20,0.12);
-    }
+  font-weight:bold;
 
-    .welcome h2 {
-      margin-top: 0;
-      color: #d4a017;
-      font-size: 29px;
-    }
+  border:0;
 
-    .welcome p {
-      color: #6d5a4e;
-      font-size: 17px;
-    }
+  cursor:pointer;
+}
 
-    /* ================= PROPERTY CARDS ================= */
+.nav-links a:hover{
+  background:#fff4c2;
+}
 
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
+.language-select{
+  outline:none;
+}
 
-    .category {
-      background: white;
-      padding: 35px 22px;
-      text-align: center;
-      border-radius: 15px;
-      box-shadow: 0 3px 12px rgba(70,40,20,0.12);
-      border-top: 5px solid #e0ad18;
-    }
+/* ================= HERO ================= */
 
-    .icon {
-      font-size: 55px;
-      margin-bottom: 15px;
-    }
+.hero{
+  min-height:430px;
 
-    .category h2 {
-      margin: 10px 0;
-      color: #d4a017;
-    }
+  display:flex;
+  justify-content:center;
+  align-items:center;
 
-    .category p {
-      color: #6d625c;
-      min-height: 45px;
-      line-height: 1.5;
-    }
+  text-align:center;
 
-    .category a {
-      display: inline-block;
-      background: #e0ad18;
-      color: white;
-      padding: 12px 25px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-top: 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+  padding:50px 20px;
 
-    .category a:hover {
-      background: #b8860b;
-    }
+  background:
+    linear-gradient(
+      rgba(0,0,0,.48),
+      rgba(0,0,0,.48)
+    ),
+    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=90");
 
-    /* ================= EXTRA ACTIONS ================= */
+  background-size:cover;
+  background-position:center;
+}
 
-    .actions {
-      margin-top: 30px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
+.hero-content{
+  max-width:850px;
+  color:white;
+}
 
-    .action-card {
-      background: white;
-      padding: 28px;
-      border-radius: 15px;
-      box-shadow: 0 3px 12px rgba(70,40,20,0.12);
-      text-align: center;
-    }
+.hero h1{
+  font-size:48px;
+  margin:0 0 15px;
+}
 
-    .action-card h2 {
-      color: #d4a017;
-      margin-top: 0;
-    }
+.hero p{
+  font-size:20px;
+  line-height:1.6;
+}
 
-    .action-card p {
-      color: #6d625c;
-      line-height: 1.6;
-    }
+.hero-button{
+  display:inline-block;
 
-    .action-button {
-      display: inline-block;
-      background: #e0ad18;
-      color: white;
-      text-decoration: none;
-      padding: 12px 25px;
-      border-radius: 8px;
-      font-weight: bold;
-      margin-top: 8px;
-    }
+  margin-top:20px;
 
-    .action-button:hover {
-      background: #b8860b;
-    }
+  background:#d4a017;
+  color:white;
 
-    /* ================= FOOTER ================= */
+  padding:14px 24px;
 
-    footer {
-      background: #a87800;
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-      margin-top: 20px;
-    }
+  border-radius:8px;
 
-    footer p {
-      margin: 7px 0;
-    }
+  text-decoration:none;
 
-    .footer-links {
-      margin-top: 15px;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+  font-weight:bold;
 
-    .footer-links a {
-      color: white;
-      text-decoration: none;
-      background: #e0ad18;
-      padding: 10px 18px;
-      border-radius: 7px;
-      font-weight: bold;
-    }
+  font-size:17px;
+}
 
-    .footer-links a:hover {
-      background: #b8860b;
-    }
+.hero-button:hover{
+  background:#a87800;
+}
 
-    /* ================= MOBILE ================= */
+/* ================= CONTAINER ================= */
 
-    @media (max-width: 900px) {
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:40px 20px 60px;
+}
 
-      .navbar {
-        flex-direction: column;
-        padding: 14px;
-      }
+.section-title{
+  text-align:center;
+  margin-bottom:25px;
+}
 
-      .nav-links {
-        width: 100%;
-      }
+.section-title h2{
+  margin-bottom:8px;
+  font-size:32px;
+}
 
-      .auth-links {
-        width: 100%;
-        justify-content: center;
-      }
+/* ================= CATEGORY ================= */
 
-      .categories {
-        grid-template-columns: 1fr;
-      }
+.categories{
+  display:grid;
 
-      .actions {
-        grid-template-columns: 1fr;
-      }
+  grid-template-columns:
+    repeat(3,1fr);
 
-      header h1 {
-        font-size: 30px;
-      }
-    }
+  gap:20px;
 
-    @media (max-width: 600px) {
+  margin-bottom:50px;
+}
 
-      .nav-links {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        width: 100%;
-      }
+.category{
+  background:white;
 
-      .nav-links a {
-        text-align: center;
-        font-size: 13px;
-      }
+  padding:28px 20px;
 
-      .auth-links {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
+  text-align:center;
 
-      .auth-links a {
-        text-align: center;
-      }
+  border-radius:15px;
 
-      header {
-        padding: 40px 15px;
-      }
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.1);
 
-      header h1 {
-        font-size: 26px;
-      }
+  border:2px solid transparent;
 
-      header p {
-        font-size: 16px;
-      }
+  text-decoration:none;
 
-      .container {
-        padding: 25px 15px 45px;
-      }
+  color:#33251d;
+}
 
-      .welcome {
-        padding: 22px 15px;
-      }
+.category:hover{
+  border-color:#d4a017;
+  transform:translateY(-3px);
+}
 
-      .welcome h2 {
-        font-size: 24px;
-      }
-    }
-  </style>
+.category-icon{
+  font-size:45px;
+}
+
+.category h3{
+  margin:12px 0 8px;
+}
+
+.category p{
+  color:#666;
+}
+
+/* ================= PROPERTY GRID ================= */
+
+.properties{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:20px;
+}
+
+.property{
+  background:white;
+
+  border-radius:14px;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.12);
+}
+
+.property img{
+  width:100%;
+  height:220px;
+
+  object-fit:cover;
+
+  display:block;
+}
+
+.property-body{
+  padding:18px;
+}
+
+.property-title{
+  font-size:20px;
+  font-weight:bold;
+
+  margin-bottom:10px;
+}
+
+.price{
+  color:#b27b00;
+
+  font-size:20px;
+
+  font-weight:bold;
+
+  margin-bottom:10px;
+}
+
+.location{
+  color:#666;
+
+  line-height:1.6;
+
+  margin-bottom:15px;
+}
+
+.view-detail{
+  display:block;
+
+  text-align:center;
+
+  background:#d4a017;
+
+  color:white;
+
+  padding:12px;
+
+  border-radius:8px;
+
+  text-decoration:none;
+
+  font-weight:bold;
+}
+
+.view-detail:hover{
+  background:#a87800;
+}
+
+/* ================= SELL ================= */
+
+.sell-section{
+  margin-top:55px;
+
+  background:#fff8d6;
+
+  border:2px solid #d4a017;
+
+  border-radius:15px;
+
+  padding:35px 25px;
+
+  text-align:center;
+}
+
+.sell-section h2{
+  margin-top:0;
+}
+
+.sell-button{
+  display:inline-block;
+
+  background:#d4a017;
+
+  color:white;
+
+  padding:14px 25px;
+
+  border-radius:8px;
+
+  text-decoration:none;
+
+  font-weight:bold;
+
+  margin-top:10px;
+}
+
+/* ================= EMPTY ================= */
+
+.empty{
+  grid-column:1/-1;
+
+  text-align:center;
+
+  background:white;
+
+  padding:35px;
+
+  border-radius:12px;
+
+  color:#777;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+  background:#33251d;
+
+  color:white;
+
+  text-align:center;
+
+  padding:30px 20px;
+}
+
+footer p{
+  margin:7px 0;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+  .properties,
+  .categories{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .hero h1{
+    font-size:38px;
+  }
+
+}
+
+@media(max-width:650px){
+
+  .navbar{
+    flex-direction:column;
+  }
+
+  .nav-links{
+    justify-content:center;
+  }
+
+  .properties,
+  .categories{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    min-height:380px;
+  }
+
+  .hero h1{
+    font-size:32px;
+  }
+
+  .hero p{
+    font-size:17px;
+  }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-  <!-- ================= NAVBAR ================= -->
 
-  <nav class="navbar">
+<!-- ================= NAVBAR ================= -->
 
-    <div class="logo">
-      🏠 Rwanda Property Visata
-    </div>
+<nav class="navbar">
 
-    <div class="nav-links">
+  <div class="logo">
+    🏠 Rwanda House Market
+  </div>
 
-      <a href="./home.html" id="navHome">
-        Home
-      </a>
+  <div class="nav-links">
 
-      <a href="./rent.html" id="navRent">
-        Houses for Rent
-      </a>
+    <a href="rent.html" id="rentLink">
+      House for Rent
+    </a>
 
-      <a href="./houses-sales.html" id="navSale">
-        Houses for Sale
-      </a>
+    <a href="sale.html" id="saleLink">
+      House for Sale
+    </a>
 
-      <a href="./plots.html" id="navPlots">
-        Plots
-      </a>
+    <a href="plot.html" id="plotLink">
+      Plot for Sale
+    </a>
 
-      <a href="./request-property.html" id="navRequest">
-        Request Property
-      </a>
+    <a href="sell-your-property.html" id="sellLink">
+      Sell Your Property
+    </a>
 
-      <a href="./sell-property.html" id="navSell">
-        Sell Your Property
-      </a>
+    <select
+      id="languageSelect"
+      class="language-select">
 
-    </div>
+      <option value="Kinyarwanda">
+        Kinyarwanda
+      </option>
 
-    <div class="auth-links">
+      <option value="English">
+        English
+      </option>
 
-      <a href="./login.html" id="navLogin">
-        Login
-      </a>
+      <option value="Français">
+        Français
+      </option>
 
-      <a href="./register.html" id="navRegister">
-        Register
-      </a>
+      <option value="Kiswahili">
+        Kiswahili
+      </option>
 
-    </div>
+      <option value="中文">
+        中文
+      </option>
 
-  </nav>
+    </select>
+
+  </div>
+
+</nav>
 
 
-  <!-- ================= HEADER ================= -->
+<!-- ================= HERO ================= -->
 
-  <header>
+<section class="hero">
 
-    <h1 id="headerTitle">
-      RWANDA PROPERTY VISATA 🇷🇼
+  <div class="hero-content">
+
+    <h1 id="heroTitle">
+      🏡 Rwanda House Market
     </h1>
 
-    <p id="subtitle">
-      Find your next property in Rwanda
+    <p id="heroDescription">
+      Find houses and plots for rent or sale
+      anywhere in Rwanda.
     </p>
 
-  </header>
+    <a
+      href="sell-your-property.html"
+      class="hero-button"
+      id="heroButton">
+
+      Sell Your Property
+
+    </a>
+
+  </div>
+
+</section>
 
 
-  <!-- ================= MAIN ================= -->
+<!-- ================= MAIN ================= -->
 
-  <div class="container">
+<main class="container">
 
-    <div class="welcome">
 
-      <h2 id="welcome">
-        Welcome to Rwanda Property Visata
-      </h2>
+  <!-- CATEGORIES -->
 
-      <p id="choose">
-        Choose what you are looking for
+  <div class="section-title">
+
+    <h2 id="categoryTitle">
+      Find Your Property
+    </h2>
+
+    <p id="categoryDescription">
+      Choose the type of property you are looking for.
+    </p>
+
+  </div>
+
+
+  <div class="categories">
+
+
+    <a
+      href="rent.html"
+      class="category">
+
+      <div class="category-icon">
+        🏠
+      </div>
+
+      <h3 id="rentTitle">
+        Houses for Rent
+      </h3>
+
+      <p id="rentDescription">
+        Find houses available for rent.
       </p>
 
-    </div>
+    </a>
 
 
-    <!-- PROPERTY CATEGORIES -->
+    <a
+      href="sale.html"
+      class="category">
 
-    <div class="categories">
-
-      <!-- RENT -->
-
-      <div class="category">
-
-        <div class="icon">
-          🏠
-        </div>
-
-        <h2 id="rentTitle">
-          Houses for Rent
-        </h2>
-
-        <p id="rentText">
-          Find houses available for rent.
-        </p>
-
-        <a
-          href="./rent.html"
-          id="rentButton">
-          View Houses
-        </a>
-
+      <div class="category-icon">
+        🏡
       </div>
 
+      <h3 id="saleTitle">
+        Houses for Sale
+      </h3>
 
-      <!-- SALE -->
+      <p id="saleDescription">
+        Find houses available for sale.
+      </p>
 
-      <div class="category">
+    </a>
 
-        <div class="icon">
-          🏡
-        </div>
 
-        <h2 id="saleTitle">
-          Houses for Sale
-        </h2>
+    <a
+      href="plot.html"
+      class="category">
 
-        <p id="saleText">
-          Find houses available for sale.
-        </p>
-
-        <a
-          href="./houses-sales.html"
-          id="saleButton">
-          View Houses
-        </a>
-
+      <div class="category-icon">
+        🌍
       </div>
 
+      <h3 id="plotTitle">
+        Plots for Sale
+      </h3>
 
-      <!-- PLOTS -->
+      <p id="plotDescription">
+        Find plots available for sale.
+      </p>
 
-      <div class="category">
-
-        <div class="icon">
-          🌍
-        </div>
-
-        <h2 id="plotTitle">
-          Plots for Sale
-        </h2>
-
-        <p id="plotText">
-          Find plots available for sale.
-        </p>
-
-        <a
-          href="./plots.html"
-          id="plotButton">
-          View Plots
-        </a>
-
-      </div>
-
-    </div>
+    </a>
 
 
-    <!-- ================= EXTRA ACTIONS ================= -->
-
-    <div class="actions">
-
-      <!-- REQUEST PROPERTY -->
-
-      <div class="action-card">
-
-        <h2 id="requestTitle">
-          🔎 Request Property
-        </h2>
-
-        <p id="requestText">
-          Tell us what type of property you are looking for
-          and we will help you find it.
-        </p>
-
-        <a
-          href="./request-property.html"
-          class="action-button"
-          id="requestButton">
-          Request Property
-        </a>
-
-      </div>
+  </div>
 
 
-      <!-- SELL PROPERTY -->
+  <!-- RECENT PROPERTIES -->
 
-      <div class="action-card">
+  <div class="section-title">
 
-        <h2 id="sellTitle">
-          🏷️ Sell Your Property
-        </h2>
+    <h2 id="recentTitle">
+      Latest Properties
+    </h2>
 
-        <p id="sellText">
-          Have a house or property you want us to help
-          you sell? Send us your property information.
-        </p>
+    <p id="recentDescription">
+      Recently posted properties.
+    </p>
 
-        <a
-          href="./sell-property.html"
-          class="action-button"
-          id="sellButton">
-          Sell Your Property
-        </a>
+  </div>
 
-      </div>
 
+  <div
+    id="properties"
+    class="properties">
+
+    <div class="empty">
+      Loading properties...
     </div>
 
   </div>
 
 
-  <!-- ================= FOOTER ================= -->
+  <!-- SELL PROPERTY -->
 
-  <footer>
+  <section class="sell-section">
 
-    <p>
-      © 2026 Rwanda Property Visata
+    <h2 id="sellTitle">
+      Have a House or Plot to Sell?
+    </h2>
+
+    <p id="sellDescription">
+      Post your property on Rwanda House Market
+      and reach potential customers.
     </p>
 
-    <p id="designed">
-      Designed by Irene
-    </p>
+    <a
+      href="sell-your-property.html"
+      class="sell-button"
+      id="sellButton">
 
-    <div class="footer-links">
+      Sell Your Property
 
-      <a
-        href="https://wa.me/250799645553"
-        target="_blank"
-        id="chatNow">
-        💬 Chat Now
-      </a>
+    </a>
 
-      <a
-        href="https://www.facebook.com/rwandahousemarket"
-        target="_blank"
-        id="facebook">
-        📘 Facebook
-      </a>
+  </section>
 
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <p>
+    🏠 Rwanda House Market
+  </p>
+
+  <p id="footerText">
+    Houses and plots in Rwanda.
+  </p>
+
+  <p>
+    © 2026 Rwanda House Market
+  </p>
+
+</footer>
+
+
+<script>
+
+/* =========================================
+   SUPABASE
+========================================= */
+
+const SUPABASE_URL =
+  "https://hsmnybmcddtsyooltozw.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================================
+   LANGUAGE
+========================================= */
+
+const translations = {
+
+  Kinyarwanda: {
+
+    browserTitle:
+      "Rwanda House Market",
+
+    rent:
+      "Amazu akodeshwa",
+
+    sale:
+      "Amazu agurishwa",
+
+    plot:
+      "Ibibanza bigurishwa",
+
+    sell:
+      "Gurisha umutungo wawe",
+
+    heroTitle:
+      "🏡 Rwanda House Market",
+
+    heroDescription:
+      "Shaka amazu n'ibibanza bikodeshwa cyangwa bigurishwa mu Rwanda.",
+
+    heroButton:
+      "Gurisha umutungo wawe",
+
+    categoryTitle:
+      "Shaka umutungo",
+
+    categoryDescription:
+      "Hitamo ubwoko bw'umutungo ushaka.",
+
+    rentDescription:
+      "Shaka amazu akodeshwa.",
+
+    saleDescription:
+      "Shaka amazu agurishwa.",
+
+    plotDescription:
+      "Shaka ibibanza bigurishwa.",
+
+    recentTitle:
+      "Umutungo mushya",
+
+    recentDescription:
+      "Amazu n'ibibanza biheruka gushyirwa kuri website.",
+
+    view:
+      "Reba ibisobanuro",
+
+    sellTitle:
+      "Ufite inzu cyangwa ikibanza ushaka kugurisha?",
+
+    sellDescription:
+      "Shyira umutungo wawe kuri Rwanda House Market ubone abakiriya.",
+
+    sellButton:
+      "Gurisha umutungo wawe",
+
+    footer:
+      "Amazu n'ibibanza mu Rwanda."
+
+  },
+
+
+  English: {
+
+    browserTitle:
+      "Rwanda House Market",
+
+    rent:
+      "House for Rent",
+
+    sale:
+      "House for Sale",
+
+    plot:
+      "Plot for Sale",
+
+    sell:
+      "Sell Your Property",
+
+    heroTitle:
+      "🏡 Rwanda House Market",
+
+    heroDescription:
+      "Find houses and plots for rent or sale anywhere in Rwanda.",
+
+    heroButton:
+      "Sell Your Property",
+
+    categoryTitle:
+      "Find Your Property",
+
+    categoryDescription:
+      "Choose the type of property you are looking for.",
+
+    rentDescription:
+      "Find houses available for rent.",
+
+    saleDescription:
+      "Find houses available for sale.",
+
+    plotDescription:
+      "Find plots available for sale.",
+
+    recentTitle:
+      "Latest Properties",
+
+    recentDescription:
+      "Recently posted properties.",
+
+    view:
+      "View Details",
+
+    sellTitle:
+      "Have a House or Plot to Sell?",
+
+    sellDescription:
+      "Post your property on Rwanda House Market and reach potential customers.",
+
+    sellButton:
+      "Sell Your Property",
+
+    footer:
+      "Houses and plots in Rwanda."
+
+  },
+
+
+  Français: {
+
+    browserTitle:
+      "Rwanda House Market",
+
+    rent:
+      "Maisons à louer",
+
+    sale:
+      "Maisons à vendre",
+
+    plot:
+      "Terrains à vendre",
+
+    sell:
+      "Vendre votre propriété",
+
+    heroTitle:
+      "🏡 Rwanda House Market",
+
+    heroDescription:
+      "Trouvez des maisons et des terrains à louer ou à vendre au Rwanda.",
+
+    heroButton:
+      "Vendre votre propriété",
+
+    categoryTitle:
+      "Trouvez votre propriété",
+
+    categoryDescription:
+      "Choisissez le type de propriété que vous recherchez.",
+
+    rentDescription:
+      "Trouvez des maisons disponibles à la location.",
+
+    saleDescription:
+      "Trouvez des maisons disponibles à la vente.",
+
+    plotDescription:
+      "Trouvez des terrains disponibles à la vente.",
+
+    recentTitle:
+      "Propriétés récentes",
+
+    recentDescription:
+      "Propriétés récemment publiées.",
+
+    view:
+      "Voir les détails",
+
+    sellTitle:
+      "Vous avez une maison ou un terrain à vendre ?",
+
+    sellDescription:
+      "Publiez votre propriété sur Rwanda House Market et trouvez des clients.",
+
+    sellButton:
+      "Vendre votre propriété",
+
+    footer:
+      "Maisons et terrains au Rwanda."
+
+  },
+
+
+  Kiswahili: {
+
+    browserTitle:
+      "Rwanda House Market",
+
+    rent:
+      "Nyumba za Kupangisha",
+
+    sale:
+      "Nyumba za Kuuza",
+
+    plot:
+      "Viwanja vya Kuuza",
+
+    sell:
+      "Uza Mali Yako",
+
+    heroTitle:
+      "🏡 Rwanda House Market",
+
+    heroDescription:
+      "Pata nyumba na viwanja vya kukodisha au kuuza nchini Rwanda.",
+
+    heroButton:
+      "Uza Mali Yako",
+
+    categoryTitle:
+      "Tafuta Mali Yako",
+
+    categoryDescription:
+      "Chagua aina ya mali unayotafuta.",
+
+    rentDescription:
+      "Pata nyumba zinazopatikana kwa kukodisha.",
+
+    saleDescription:
+      "Pata nyumba zinazopatikana kwa kuuza.",
+
+    plotDescription:
+      "Pata viwanja vinavyopatikana kwa kuuza.",
+
+    recentTitle:
+      "Mali Mpya",
+
+    recentDescription:
+      "Mali zilizowekwa hivi karibuni.",
+
+    view:
+      "Tazama Maelezo",
+
+    sellTitle:
+      "Una Nyumba au Kiwanja cha Kuuza?",
+
+    sellDescription:
+      "Weka mali yako kwenye Rwanda House Market na upate wateja.",
+
+    sellButton:
+      "Uza Mali Yako",
+
+    footer:
+      "Nyumba na viwanja nchini Rwanda."
+
+  },
+
+
+  "中文": {
+
+    browserTitle:
+      "Rwanda House Market",
+
+    rent:
+      "出租房屋",
+
+    sale:
+      "出售房屋",
+
+    plot:
+      "出售土地",
+
+    sell:
+      "出售您的房产",
+
+    heroTitle:
+      "🏡 Rwanda House Market",
+
+    heroDescription:
+      "寻找卢旺达各地出租或出售的房屋和土地。",
+
+    heroButton:
+      "出售您的房产",
+
+    categoryTitle:
+      "寻找房产",
+
+    categoryDescription:
+      "选择您正在寻找的房产类型。",
+
+    rentDescription:
+      "寻找可出租的房屋。",
+
+    saleDescription:
+      "寻找可出售的房屋。",
+
+    plotDescription:
+      "寻找可出售的土地。",
+
+    recentTitle:
+      "最新房产",
+
+    recentDescription:
+      "最近发布的房产。",
+
+    view:
+      "查看详情",
+
+    sellTitle:
+      "您有房屋或土地要出售吗？",
+
+    sellDescription:
+      "将您的房产发布到 Rwanda House Market，寻找潜在客户。",
+
+    sellButton:
+      "出售您的房产",
+
+    footer:
+      "卢旺达的房屋和土地。"
+
+  }
+
+};
+
+
+/* =========================================
+   APPLY LANGUAGE
+========================================= */
+
+function applyLanguage(language){
+
+  const t =
+    translations[language] ||
+    translations.English;
+
+
+  document.title =
+    t.browserTitle;
+
+
+  document.getElementById(
+    "rentLink"
+  ).textContent =
+    t.rent;
+
+
+  document.getElementById(
+    "saleLink"
+  ).textContent =
+    t.sale;
+
+
+  document.getElementById(
+    "plotLink"
+  ).textContent =
+    t.plot;
+
+
+  document.getElementById(
+    "sellLink"
+  ).textContent =
+    t.sell;
+
+
+  document.getElementById(
+    "heroTitle"
+  ).textContent =
+    t.heroTitle;
+
+
+  document.getElementById(
+    "heroDescription"
+  ).textContent =
+    t.heroDescription;
+
+
+  document.getElementById(
+    "heroButton"
+  ).textContent =
+    t.heroButton;
+
+
+  document.getElementById(
+    "categoryTitle"
+  ).textContent =
+    t.categoryTitle;
+
+
+  document.getElementById(
+    "categoryDescription"
+  ).textContent =
+    t.categoryDescription;
+
+
+  document.getElementById(
+    "rentTitle"
+  ).textContent =
+    t.rent;
+
+
+  document.getElementById(
+    "saleTitle"
+  ).textContent =
+    t.sale;
+
+
+  document.getElementById(
+    "plotTitle"
+  ).textContent =
+    t.plot;
+
+
+  document.getElementById(
+    "rentDescription"
+  ).textContent =
+    t.rentDescription;
+
+
+  document.getElementById(
+    "saleDescription"
+  ).textContent =
+    t.saleDescription;
+
+
+  document.getElementById(
+    "plotDescription"
+  ).textContent =
+    t.plotDescription;
+
+
+  document.getElementById(
+    "recentTitle"
+  ).textContent =
+    t.recentTitle;
+
+
+  document.getElementById(
+    "recentDescription"
+  ).textContent =
+    t.recentDescription;
+
+
+  document.getElementById(
+    "sellTitle"
+  ).textContent =
+    t.sellTitle;
+
+
+  document.getElementById(
+    "sellDescription"
+  ).textContent =
+    t.sellDescription;
+
+
+  document.getElementById(
+    "sellButton"
+  ).textContent =
+    t.sellButton;
+
+
+  document.getElementById(
+    "footerText"
+  ).textContent =
+    t.footer;
+
+
+  localStorage.setItem(
+    "selectedLanguage",
+    language
+  );
+
+}
+
+
+/* =========================================
+   LANGUAGE SELECT
+========================================= */
+
+const savedLanguage =
+  localStorage.getItem(
+    "selectedLanguage"
+  ) || "Kinyarwanda";
+
+
+document.getElementById(
+  "languageSelect"
+).value =
+  savedLanguage;
+
+
+applyLanguage(
+  savedLanguage
+);
+
+
+document.getElementById(
+  "languageSelect"
+).addEventListener(
+  "change",
+  function(){
+
+    applyLanguage(
+      this.value
+    );
+
+  }
+);
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================
+   GET DETAIL PAGE
+========================================= */
+
+function getDetailPage(type){
+
+  if(type === "rent"){
+
+    return "house-rent-details.html";
+
+  }
+
+
+  if(type === "sale"){
+
+    return "house-sale-details.html";
+
+  }
+
+
+  if(type === "plot"){
+
+    return "plot-details.html";
+
+  }
+
+
+  return "house-sale-details.html";
+
+}
+
+
+/* =========================================
+   LOAD LATEST PROPERTIES
+========================================= */
+
+async function loadLatestProperties(){
+
+  const container =
+    document.getElementById(
+      "properties"
+    );
+
+
+  container.innerHTML = `
+    <div class="empty">
+      Loading properties...
     </div>
-
-  </footer>
-
-
-  <!-- ================= TRANSLATIONS ================= -->
-
-  <script>
-
-    const language =
-      localStorage.getItem("selectedLanguage") || "English";
-
-
-    const translations = {
-
-      Kinyarwanda: {
-
-        header:
-          "RWANDA PROPERTY VISATA 🇷🇼",
-
-        subtitle:
-          "Shaka umutungo wawe utaha mu Rwanda",
-
-        welcome:
-          "Murakaza neza kuri Rwanda Property Visata",
-
-        choose:
-          "Hitamo icyo urimo gushaka",
-
-        home:
-          "Ahabanza",
-
-        rent:
-          "Amazu akodeshwa",
-
-        sale:
-          "Amazu agurishwa",
-
-        plots:
-          "Ibibanza",
-
-        request:
-          "Gusaba umutungo",
-
-        sell:
-          "Tugurishe umutungo wawe",
-
-        login:
-          "Injira",
-
-        register:
-          "Iyandikishe",
-
-        rentTitle:
-          "Amazu akodeshwa",
-
-        rentText:
-          "Shaka amazu ahari yo gukodesha.",
-
-        rentButton:
-          "Reba amazu",
-
-        saleTitle:
-          "Amazu agurishwa",
-
-        saleText:
-          "Shaka amazu ahari yo kugura.",
-
-        saleButton:
-          "Reba amazu",
-
-        plotTitle:
-          "Ibibanza bigurishwa",
-
-        plotText:
-          "Shaka ibibanza bihari byo kugura.",
-
-        plotButton:
-          "Reba ibibanza",
-
-        requestTitle:
-          "🔎 Saba umutungo",
-
-        requestText:
-          "Tubwire ubwoko bw'umutungo ushaka maze tugufashe kuwubona.",
-
-        requestButton:
-          "Saba umutungo",
-
-        sellTitle:
-          "🏷️ Tugurishe umutungo wawe",
-
-        sellText:
-          "Ufite inzu cyangwa umutungo ushaka ko tugufasha kugurisha? Twoherereze amakuru yawo.",
-
-        sellButton:
-          "Tugurishe umutungo",
-
-        designed:
-          "Byakozwe na Irene",
-
-        chat:
-          "💬 Ganira natwe",
-
-        facebook:
-          "📘 Facebook"
-
-      },
-
-
-      English: {
-
-        header:
-          "RWANDA PROPERTY VISATA 🇷🇼",
-
-        subtitle:
-          "Find your next property in Rwanda",
-
-        welcome:
-          "Welcome to Rwanda Property Visata",
-
-        choose:
-          "Choose what you are looking for",
-
-        home:
-          "Home",
-
-        rent:
-          "Houses for Rent",
-
-        sale:
-          "Houses for Sale",
-
-        plots:
-          "Plots",
-
-        request:
-          "Request Property",
-
-        sell:
-          "Sell Your Property",
-
-        login:
-          "Login",
-
-        register:
-          "Register",
-
-        rentTitle:
-          "Houses for Rent",
-
-        rentText:
-          "Find houses available for rent.",
-
-        rentButton:
-          "View Houses",
-
-        saleTitle:
-          "Houses for Sale",
-
-        saleText:
-          "Find houses available for sale.",
-
-        saleButton:
-          "View Houses",
-
-        plotTitle:
-          "Plots for Sale",
-
-        plotText:
-          "Find plots available for sale.",
-
-        plotButton:
-          "View Plots",
-
-        requestTitle:
-          "🔎 Request Property",
-
-        requestText:
-          "Tell us what type of property you are looking for and we will help you find it.",
-
-        requestButton:
-          "Request Property",
-
-        sellTitle:
-          "🏷️ Sell Your Property",
-
-        sellText:
-          "Have a house or property you want us to help you sell? Send us your property information.",
-
-        sellButton:
-          "Sell Your Property",
-
-        designed:
-          "Designed by Irene",
-
-        chat:
-          "💬 Chat Now",
-
-        facebook:
-          "📘 Facebook"
-
-      },
-
-
-      Français: {
-
-        header:
-          "RWANDA PROPERTY VISATA 🇷🇼",
-
-        subtitle:
-          "Trouvez votre prochain bien immobilier au Rwanda",
-
-        welcome:
-          "Bienvenue sur Rwanda Property Visata",
-
-        choose:
-          "Choisissez ce que vous recherchez",
-
-        home:
-          "Accueil",
-
-        rent:
-          "Maisons à louer",
-
-        sale:
-          "Maisons à vendre",
-
-        plots:
-          "Terrains",
-
-        request:
-          "Demander un bien",
-
-        sell:
-          "Vendre votre propriété",
-
-        login:
-          "Connexion",
-
-        register:
-          "S'inscrire",
-
-        rentTitle:
-          "Maisons à louer",
-
-        rentText:
-          "Trouvez des maisons disponibles à la location.",
-
-        rentButton:
-          "Voir les maisons",
-
-        saleTitle:
-          "Maisons à vendre",
-
-        saleText:
-          "Trouvez des maisons disponibles à la vente.",
-
-        saleButton:
-          "Voir les maisons",
-
-        plotTitle:
-          "Terrains à vendre",
-
-        plotText:
-          "Trouvez des terrains disponibles à la vente.",
-
-        plotButton:
-          "Voir les terrains",
-
-        requestTitle:
-          "🔎 Demander un bien",
-
-        requestText:
-          "Dites-nous quel type de propriété vous recherchez et nous vous aiderons à la trouver.",
-
-        requestButton:
-          "Demander un bien",
-
-        sellTitle:
-          "🏷️ Vendre votre propriété",
-
-        sellText:
-          "Vous avez une maison ou une propriété à vendre ? Envoyez-nous ses informations.",
-
-        sellButton:
-          "Vendre votre propriété",
-
-        designed:
-          "Conçu par Irene",
-
-        chat:
-          "💬 Chat maintenant",
-
-        facebook:
-          "📘 Facebook"
-
-      },
-
-
-      Kiswahili: {
-
-        header:
-          "RWANDA PROPERTY VISATA 🇷🇼",
-
-        subtitle:
-          "Pata mali yako inayofuata nchini Rwanda",
-
-        welcome:
-          "Karibu Rwanda Property Visata",
-
-        choose:
-          "Chagua unachotafuta",
-
-        home:
-          "Nyumbani",
-
-        rent:
-          "Nyumba za Kupangisha",
-
-        sale:
-          "Nyumba za Kuuza",
-
-        plots:
-          "Viwanja",
-
-        request:
-          "Omba Mali",
-
-        sell:
-          "Uza Mali Yako",
-
-        login:
-          "Ingia",
-
-        register:
-          "Jisajili",
-
-        rentTitle:
-          "Nyumba za Kupangisha",
-
-        rentText:
-          "Pata nyumba zinazopatikana kwa kupangisha.",
-
-        rentButton:
-          "Tazama Nyumba",
-
-        saleTitle:
-          "Nyumba za Kuuza",
-
-        saleText:
-          "Pata nyumba zinazopatikana kwa kuuza.",
-
-        saleButton:
-          "Tazama Nyumba",
-
-        plotTitle:
-          "Viwanja vya Kuuza",
-
-        plotText:
-          "Pata viwanja vinavyopatikana kwa kuuza.",
-
-        plotButton:
-          "Tazama Viwanja",
-
-        requestTitle:
-          "🔎 Omba Mali",
-
-        requestText:
-          "Tuambie aina ya mali unayotafuta na tutakusaidia kuipata.",
-
-        requestButton:
-          "Omba Mali",
-
-        sellTitle:
-          "🏷️ Uza Mali Yako",
-
-        sellText:
-          "Una nyumba au mali unayotaka tuuze kwa niaba yako? Tutumie taarifa zake.",
-
-        sellButton:
-          "Uza Mali Yako",
-
-        designed:
-          "Imeundwa na Irene",
-
-        chat:
-          "💬 Zungumza Nasi",
-
-        facebook:
-          "📘 Facebook"
-
-      },
-
-
-      "中文": {
-
-        header:
-          "RWANDA PROPERTY VISATA 🇷🇼",
-
-        subtitle:
-          "在卢旺达寻找您的下一处房产",
-
-        welcome:
-          "欢迎来到 Rwanda Property Visata",
-
-        choose:
-          "请选择您要寻找的房产",
-
-        home:
-          "首页",
-
-        rent:
-          "出租房屋",
-
-        sale:
-          "出售房屋",
-
-        plots:
-          "土地",
-
-        request:
-          "申请房产",
-
-        sell:
-          "出售您的房产",
-
-        login:
-          "登录",
-
-        register:
-          "注册",
-
-        rentTitle:
-          "出租房屋",
-
-        rentText:
-          "寻找可出租的房屋。",
-
-        rentButton:
-          "查看房屋",
-
-        saleTitle:
-          "出售房屋",
-
-        saleText:
-          "寻找可出售的房屋。",
-
-        saleButton:
-          "查看房屋",
-
-        plotTitle:
-          "出售土地",
-
-        plotText:
-          "寻找可出售的土地。",
-
-        plotButton:
-          "查看土地",
-
-        requestTitle:
-          "🔎 申请房产",
-
-        requestText:
-          "告诉我们您正在寻找什么类型的房产，我们将帮助您寻找。",
-
-        requestButton:
-          "申请房产",
-
-        sellTitle:
-          "🏷️ 出售您的房产",
-
-        sellText:
-          "您有房屋或房产需要出售吗？请向我们发送您的房产信息。",
-
-        sellButton:
-          "出售您的房产",
-
-        designed:
-          "由 Irene 设计",
-
-        chat:
-          "💬 立即聊天",
-
-        facebook:
-          "📘 Facebook"
-
+  `;
+
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("properties")
+    .select("*")
+    .order(
+      "created_at",
+      {
+        ascending:false
       }
-
-    };
-
-
-    const t =
-      translations[language] ||
-      translations.English;
+    )
+    .limit(6);
 
 
-    /* NAVBAR */
+  if(error){
 
-    document.getElementById("navHome").textContent = t.home;
-    document.getElementById("navRent").textContent = t.rent;
-    document.getElementById("navSale").textContent = t.sale;
-    document.getElementById("navPlots").textContent = t.plots;
-    document.getElementById("navRequest").textContent = t.request;
-    document.getElementById("navSell").textContent = t.sell;
-    document.getElementById("navLogin").textContent = t.login;
-    document.getElementById("navRegister").textContent = t.register;
+    console.error(error);
 
+    container.innerHTML = `
+      <div class="empty">
+        ❌ ${escapeHtml(error.message)}
+      </div>
+    `;
 
-    /* HEADER */
+    return;
 
-    document.getElementById("headerTitle").textContent =
-      t.header;
-
-    document.getElementById("subtitle").textContent =
-      t.subtitle;
+  }
 
 
-    /* WELCOME */
+  if(
+    !data ||
+    data.length === 0
+  ){
 
-    document.getElementById("welcome").textContent =
-      t.welcome;
+    container.innerHTML = `
+      <div class="empty">
+        Nta property irashyirwaho.
+      </div>
+    `;
 
-    document.getElementById("choose").textContent =
-      t.choose;
+    return;
 
-
-    /* RENT */
-
-    document.getElementById("rentTitle").textContent =
-      t.rentTitle;
-
-    document.getElementById("rentText").textContent =
-      t.rentText;
-
-    document.getElementById("rentButton").textContent =
-      t.rentButton;
+  }
 
 
-    /* SALE */
-
-    document.getElementById("saleTitle").textContent =
-      t.saleTitle;
-
-    document.getElementById("saleText").textContent =
-      t.saleText;
-
-    document.getElementById("saleButton").textContent =
-      t.saleButton;
+  container.innerHTML = "";
 
 
-    /* PLOTS */
+  data.forEach(property => {
 
-    document.getElementById("plotTitle").textContent =
-      t.plotTitle;
+    const card =
+      document.createElement(
+        "div"
+      );
 
-    document.getElementById("plotText").textContent =
-      t.plotText;
-
-    document.getElementById("plotButton").textContent =
-      t.plotButton;
-
-
-    /* REQUEST */
-
-    document.getElementById("requestTitle").textContent =
-      t.requestTitle;
-
-    document.getElementById("requestText").textContent =
-      t.requestText;
-
-    document.getElementById("requestButton").textContent =
-      t.requestButton;
+    card.className =
+      "property";
 
 
-    /* SELL */
+    const mainPhoto =
+      property.main_photo ||
+      (
+        Array.isArray(
+          property.other_photos
+        )
+        ?
+        property.other_photos[0]
+        :
+        ""
+      ) ||
+      "https://via.placeholder.com/800x500?text=No+Photo";
 
-    document.getElementById("sellTitle").textContent =
-      t.sellTitle;
 
-    document.getElementById("sellText").textContent =
-      t.sellText;
-
-    document.getElementById("sellButton").textContent =
-      t.sellButton;
+    const detailPage =
+      getDetailPage(
+        property.property_type
+      );
 
 
-    /* FOOTER */
+    const detailUrl =
+      detailPage +
+      "?id=" +
+      encodeURIComponent(
+        property.id
+      );
 
-    document.getElementById("designed").textContent =
-      t.designed;
 
-    document.getElementById("chatNow").textContent =
-      t.chat;
+    const price =
+      Number(
+        property.price || 0
+      ).toLocaleString();
 
-    document.getElementById("facebook").textContent =
-      t.facebook;
 
-  </script>
+    card.innerHTML = `
+
+      <img
+        src="${escapeHtml(mainPhoto)}"
+        alt="${escapeHtml(property.title || "Property")}">
+
+
+      <div class="property-body">
+
+        <div class="property-title">
+
+          ${escapeHtml(
+            property.title ||
+            "Property"
+          )}
+
+        </div>
+
+
+        <div class="price">
+
+          ${price} RWF
+
+        </div>
+
+
+        <div class="location">
+
+          🌍
+          ${escapeHtml(
+            property.country || ""
+          )}
+
+          <br>
+
+          📍
+          ${escapeHtml(
+            property.district || ""
+          )}
+
+        </div>
+
+
+        <a
+          href="${escapeHtml(detailUrl)}"
+          class="view-detail">
+
+          ${
+            translations[
+              localStorage.getItem(
+                "selectedLanguage"
+              ) || "Kinyarwanda"
+            ]?.view ||
+            "View Details"
+          }
+
+        </a>
+
+      </div>
+
+    `;
+
+
+    container.appendChild(
+      card
+    );
+
+  });
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+loadLatestProperties();
+
+</script>
 
 </body>
+
 </html>
+```
