@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Admin Login - Rwanda Property Visata</title>
+  <title>Login - Rwanda Property Visata</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -20,7 +20,6 @@
       font-family: Arial, sans-serif;
       background: #f8f5f2;
       color: #3b2418;
-
       min-height: 100vh;
 
       display: flex;
@@ -37,11 +36,9 @@
 
     .login-card {
       background: white;
-
       padding: 35px;
 
       border-radius: 18px;
-
       border-top: 6px solid #d4a017;
 
       box-shadow:
@@ -57,56 +54,43 @@
 
     h1 {
       margin: 0;
-
       color: #d4a017;
-
       font-size: 30px;
     }
 
     .site-name {
       margin-top: 8px;
-
       color: #555;
-
       font-size: 17px;
       font-weight: bold;
     }
 
     .subtitle {
       color: #777;
-
       margin: 8px 0 28px;
-
       line-height: 1.5;
     }
 
     .form-group {
       text-align: left;
-
       margin-bottom: 18px;
     }
 
     label {
       display: block;
-
       margin-bottom: 7px;
-
       font-weight: bold;
-
       color: #3b2418;
     }
 
     input {
       width: 100%;
-
       padding: 14px;
 
       border: 2px solid #ddd;
-
       border-radius: 9px;
 
       font-size: 16px;
-
       outline: none;
     }
 
@@ -116,25 +100,19 @@
 
     .login-button {
       width: 100%;
-
       padding: 14px;
-
       margin-top: 8px;
 
       border: none;
-
       border-radius: 9px;
 
       background: #d4a017;
-
       color: white;
 
       font-size: 17px;
-
       font-weight: bold;
 
       cursor: pointer;
-
       transition: 0.2s;
     }
 
@@ -144,7 +122,6 @@
 
     .login-button:disabled {
       opacity: 0.6;
-
       cursor: not-allowed;
     }
 
@@ -152,13 +129,11 @@
       display: none;
 
       margin-top: 18px;
-
       padding: 13px;
 
       border-radius: 9px;
 
       font-weight: bold;
-
       line-height: 1.4;
     }
 
@@ -166,7 +141,6 @@
       display: block !important;
 
       background: #e5f8e9;
-
       color: #16752d;
 
       border: 1px solid #9ad8a8;
@@ -176,7 +150,6 @@
       display: block !important;
 
       background: #ffe7e7;
-
       color: #a00000;
 
       border: 1px solid #e3aaaa;
@@ -190,7 +163,6 @@
       color: #d4a017;
 
       text-decoration: none;
-
       font-weight: bold;
     }
 
@@ -360,7 +332,6 @@
       );
 
 
-
     /* =========================================
        ADMIN EMAIL
     ========================================= */
@@ -370,41 +341,29 @@
       "rwandahousemarket@gmail.com";
 
 
-
     /* =========================================
        ELEMENTS
     ========================================= */
 
 
     const loginForm =
-      document.getElementById(
-        "loginForm"
-      );
+      document.getElementById("loginForm");
 
 
     const emailInput =
-      document.getElementById(
-        "email"
-      );
+      document.getElementById("email");
 
 
     const passwordInput =
-      document.getElementById(
-        "password"
-      );
+      document.getElementById("password");
 
 
     const loginButton =
-      document.getElementById(
-        "loginButton"
-      );
+      document.getElementById("loginButton");
 
 
     const message =
-      document.getElementById(
-        "message"
-      );
-
+      document.getElementById("message");
 
 
     /* =========================================
@@ -412,23 +371,17 @@
     ========================================= */
 
 
-    function showMessage(
-      text,
-      type
-    ) {
+    function showMessage(text, type) {
 
-      message.textContent =
-        text;
+      message.textContent = text;
 
-      message.className =
-        type;
+      message.className = type;
 
     }
 
 
-
     /* =========================================
-       ADMIN LOGIN
+       LOGIN
     ========================================= */
 
 
@@ -449,19 +402,12 @@
           passwordInput.value;
 
 
-        /*
-          Banza turebe ko email
-          ari iya Admin.
-        */
+        /* Email igomba kuba iya Admin */
 
-
-        if (
-          email !==
-          ADMIN_EMAIL
-        ) {
+        if (email !== ADMIN_EMAIL) {
 
           showMessage(
-            "❌ Ntabwo wemerewe kwinjira muri Admin Panel.",
+            "❌ Ntabwo wemerewe kwinjira muri Admin.",
             "error"
           );
 
@@ -470,9 +416,21 @@
         }
 
 
-        loginButton.disabled =
-          true;
+        /* Password ntigomba kuba empty */
 
+        if (!password) {
+
+          showMessage(
+            "❌ Andika password.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        loginButton.disabled = true;
 
         loginButton.textContent =
           "Logging in...";
@@ -481,9 +439,9 @@
         try {
 
 
-          /*
-            SUPABASE AUTH LOGIN
-          */
+          /* =====================================
+             SUPABASE LOGIN
+          ===================================== */
 
 
           const {
@@ -494,22 +452,22 @@
               .auth
               .signInWithPassword({
 
-                email:
-                  email,
+                email: email,
 
-                password:
-                  password
+                password: password
 
               });
 
 
-
-          /*
-            NIBA LOGIN YANZE
-          */
-
+          /* Login yanze */
 
           if (error) {
+
+            console.error(
+              "Supabase login error:",
+              error
+            );
+
 
             showMessage(
               "❌ Email cyangwa password ntabwo ari byo.",
@@ -517,23 +475,19 @@
             );
 
 
-            loginButton.disabled =
-              false;
-
+            loginButton.disabled = false;
 
             loginButton.textContent =
               "Login as Admin";
-
 
             return;
 
           }
 
 
-
-          /*
-            REBA USER WABONETSE
-          */
+          /* =====================================
+             REBA USER
+          ===================================== */
 
 
           if (
@@ -547,23 +501,19 @@
             );
 
 
-            loginButton.disabled =
-              false;
-
+            loginButton.disabled = false;
 
             loginButton.textContent =
               "Login as Admin";
-
 
             return;
 
           }
 
 
-
-          /*
-            ONGEYE KUGENZURA EMAIL
-          */
+          /* =====================================
+             ONGEYE KUGENZURA ADMIN EMAIL
+          ===================================== */
 
 
           const loggedEmail =
@@ -578,12 +528,6 @@
           ) {
 
 
-            /*
-              NIBA ATARI ADMIN,
-              TURASOHORA USER.
-            */
-
-
             await supabaseClient
               .auth
               .signOut();
@@ -595,38 +539,38 @@
             );
 
 
-            loginButton.disabled =
-              false;
-
+            loginButton.disabled = false;
 
             loginButton.textContent =
               "Login as Admin";
-
 
             return;
 
           }
 
 
-
-          /*
-            LOGIN YAGENZE NEZA
-          */
+          /* =====================================
+             LOGIN SUCCESSFUL
+          ===================================== */
 
 
           showMessage(
-            "✅ Admin login successful! Turafungura Admin Panel...",
+            "✅ Login successful! Turakujyana kuri Home...",
             "success"
           );
 
 
-          loginButton.textContent =
-            "Opening Admin Panel...";
+          loginButton.disabled = true;
 
+          loginButton.textContent =
+            "Opening...";
 
 
           /*
-            JYA MURI ADMIN PANEL
+             KUGEZA UBU NTITURAKORA admin.html.
+
+             Ni yo mpamvu tujya kuri home.html
+             aho kujya kuri admin.html.
           */
 
 
@@ -634,32 +578,32 @@
             function() {
 
               window.location.href =
-                "./admin.html";
+                "./home.html";
 
             },
-            800
+            1200
           );
 
 
         }
 
+
         catch(error) {
 
+
           console.error(
-            "Login error:",
+            "Unexpected login error:",
             error
           );
 
 
           showMessage(
-            "❌ Habaye ikibazo mu kwinjira. Ongera ugerageze.",
+            "❌ Habaye ikibazo. Ongera ugerageze.",
             "error"
           );
 
 
-          loginButton.disabled =
-            false;
-
+          loginButton.disabled = false;
 
           loginButton.textContent =
             "Login as Admin";
@@ -667,7 +611,7 @@
         }
 
       }
-    
+    );
 
 
   </script>
