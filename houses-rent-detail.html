@@ -9,6 +9,13 @@
   House for Rent - Rwanda House Market
 </title>
 
+<!-- GOOGLE ADSENSE -->
+<script
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7520250190173475"
+  crossorigin="anonymous">
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
@@ -118,6 +125,25 @@ header h1{
 
 .gallery img:hover{
   border-color:#f2c400;
+}
+
+
+/* ================= GOOGLE ADSENSE ================= */
+
+.ad-container{
+  width:100%;
+  background:white;
+  margin-top:25px;
+  padding:15px;
+  border-radius:15px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+  text-align:center;
+}
+
+.ad-label{
+  font-size:12px;
+  color:#777;
+  margin-bottom:8px;
 }
 
 
@@ -300,6 +326,30 @@ header h1{
   <div
     id="gallery"
     class="gallery">
+  </div>
+
+
+  <!-- ================= GOOGLE ADSENSE AD ================= -->
+
+  <div class="ad-container">
+
+    <div class="ad-label">
+      Advertisement
+    </div>
+
+    <ins
+      class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-7520250190173475"
+      data-ad-slot="7793944660"
+      data-ad-format="auto"
+      data-full-width-responsive="true">
+    </ins>
+
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
   </div>
 
 
@@ -647,7 +697,6 @@ const params =
   new URLSearchParams(
     window.location.search
   );
-
 
 const propertyId =
   params.get("id");
@@ -1013,6 +1062,7 @@ async function loadProperty(){
     <a
       href="https://wa.me/250799645553"
       target="_blank"
+      rel="noopener noreferrer"
       class="whatsapp">
 
       ${escapeHtml(t.whatsapp)}
@@ -1020,7 +1070,6 @@ async function loadProperty(){
     </a>
 
   `;
-
 
 }
 
