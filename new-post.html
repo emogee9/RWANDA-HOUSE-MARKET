@@ -891,7 +891,7 @@ async function uploadImage(file){
   } =
   await supabaseClient
     .storage
-    .from("property-images")
+    .from("property_posts")
     .upload(
       filePath,
       file,
@@ -913,7 +913,7 @@ async function uploadImage(file){
   } =
   supabaseClient
     .storage
-    .from("property-images")
+    .from("property_posts")
     .getPublicUrl(filePath);
 
 
@@ -1033,7 +1033,7 @@ propertyForm.addEventListener(
         error
       } =
       await supabaseClient
-        .from("properties")
+        .from("property_posts")
         .insert({
 
           title:title,
@@ -1131,7 +1131,7 @@ async function loadProperties(){
     error
   } =
   await supabaseClient
-    .from("properties")
+    .from("property_posts")
     .select("*")
     .order(
       "created_at",
@@ -1253,7 +1253,7 @@ async function viewProperty(id){
     error
   } =
   await supabaseClient
-    .from("properties")
+    .from("property_posts")
     .select("*")
     .eq("id",id)
     .maybeSingle();
@@ -1339,7 +1339,7 @@ async function deleteProperty(id){
     error
   } =
   await supabaseClient
-    .from("properties")
+    .from("property_posts")
     .delete()
     .eq("id",id);
 
