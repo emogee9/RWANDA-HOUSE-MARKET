@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Property Payment - Rwanda House Market</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f7f5ef;
+color:#33251d;
+}
+
+header{
+background:#d4a017;
+color:white;
+padding:22px;
+text-align:center;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+padding:25px 18px 60px;
+}
+
+.card{
+background:white;
+padding:28px;
+border-radius:15px;
+box-shadow:0 3px 15px rgba(0,0,0,.12);
+}
+
+.payment{
+background:#fff8d6;
+border:2px solid #d4a017;
+padding:25px;
+border-radius:12px;
+text-align:center;
+}
+
+.payment-code{
+font-size:26px;
+font-weight:bold;
+margin:20px 0;
+word-break:break-word;
+}
+
+.amount{
+font-size:30px;
+font-weight:bold;
+color:#b27b00;
+}
+
+.call-button{
+display:block;
+background:#d4a017;
+color:white;
+text-decoration:none;
+padding:16px;
+border-radius:9px;
+font-weight:bold;
+text-align:center;
+margin-top:20px;
+}
+
+.next{
+display:block;
+background:#128c7e;
+color:white;
+text-decoration:none;
+padding:15px;
+border-radius:9px;
+font-weight:bold;
+text-align:center;
+margin-top:15px;
+}
+
+.warning{
+margin-top:20px;
+padding:15px;
+background:#ffe8e8;
+border-radius:8px;
+color:#8b0000;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>
+🏠 RWANDA HOUSE MARKET
+</h1>
+
+</header>
+
+
+<div class="container">
+
+<div class="card">
+
+<h2 id="title">
+💰 Property Posting Payment
+</h2>
+
+<p id="instruction">
+Please pay the posting fee below.
+</p>
+
+
+<div class="payment">
+
+<p id="feeLabel">
+Posting Fee
+</p>
+
+<div
+class="amount"
+id="amount">
+0 RWF
+</div>
+
+
+<p id="codeLabel">
+Use this payment code:
+</p>
+
+<div
+class="payment-code"
+id="paymentCode">
+*182*8*1*2204606*0#
+</div>
+
+
+<a
+id="callButton"
+class="call-button"
+href="#">
+📞 Call to Pay
+</a>
+
+</div>
+
+
+<div class="warning">
+
+<strong id="warningTitle">
+Important
+</strong>
+
+<p id="warningText">
+After payment, keep your payment screenshot. You will upload it on the next page.
+</p>
+
+</div>
+
+
+<a
+href="payment-screenshot.html"
+class="next"
+id="nextButton">
+I Have Paid → Upload Screenshot
+</a>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================
+   GET PENDING PROPERTY
+========================================= */
+
+const stored =
+localStorage.getItem(
+"pendingProperty"
+);
+
+
+if(!stored){
+
+window.location.href =
+"sell-property.html";
+
+}
+
+
+const property =
+JSON.parse(stored);
+
+
+const amount =
+Number(
+property.posting_fee || 0
+);
+
+
+/* =========================================
+   DISPLAY
+========================================= */
+
+document.getElementById(
+"amount"
+).textContent =
+amount.toLocaleString() +
+" RWF";
+
+
+const ussd =
+"*182*8*1*2204606*" +
+amount +
+"#";
+
+
+document.getElementById(
+"paymentCode"
+).textContent =
+ussd;
+
+
+/*
+  tel: allows the phone dialer
+  to open when supported.
+*/
+
+document.getElementById(
+"callButton"
+).href =
+"tel:" +
+encodeURIComponent(ussd);
+
+</script>
+
+</body>
+</html>
