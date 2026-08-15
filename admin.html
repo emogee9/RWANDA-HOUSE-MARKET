@@ -1,2461 +1,1626 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>Admin Panel - Rwanda Property Visata</title>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-  <style>
-
-    * {
-      box-sizing: border-box;
-    }
-
-
-    body {
-
-      margin: 0;
-
-      font-family: Arial, sans-serif;
-
-      background: #f6f3ee;
-
-      color: #3b2418;
-
-    }
-
-
-    /* ================= NAVBAR ================= */
-
-    .navbar {
-
-      background: #d4a017;
-
-      color: white;
-
-      padding: 15px 22px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 15px;
-
-      position: sticky;
-
-      top: 0;
-
-      z-index: 1000;
-
-      box-shadow:
-        0 3px 12px rgba(0,0,0,0.18);
-
-    }
-
-
-    .logo {
-
-      font-size: 21px;
-
-      font-weight: bold;
-
-    }
-
-
-    .logout-button {
-
-      background: white;
-
-      color: #a87500;
-
-      border: none;
-
-      padding: 10px 17px;
-
-      border-radius: 8px;
-
-      font-weight: bold;
-
-      cursor: pointer;
-
-    }
-
-
-    .logout-button:hover {
-
-      background: #fff3c4;
-
-    }
-
-
-    /* ================= CONTAINER ================= */
-
-    .container {
-
-      max-width: 1200px;
-
-      margin: 30px auto;
-
-      padding: 0 20px 60px;
-
-    }
-
-
-    /* ================= WELCOME ================= */
-
-    .welcome {
-
-      background: white;
-
-      padding: 25px;
-
-      border-radius: 15px;
-
-      box-shadow:
-        0 3px 12px rgba(70,40,20,0.12);
-
-      margin-bottom: 25px;
-
-    }
-
-
-    .welcome h1 {
-
-      margin: 0 0 8px;
-
-      color: #d4a017;
-
-    }
-
-
-    .welcome p {
-
-      margin: 0;
-
-      color: #666;
-
-    }
-
-
-    /* ================= TABS ================= */
-
-    .tabs {
-
-      display: flex;
-
-      flex-wrap: wrap;
-
-      gap: 10px;
-
-      margin-bottom: 25px;
-
-    }
-
-
-    .tab {
-
-      border: none;
-
-      background: white;
-
-      color: #a87500;
-
-      padding: 13px 22px;
-
-      border-radius: 9px;
-
-      font-size: 15px;
-
-      font-weight: bold;
-
-      cursor: pointer;
-
-      box-shadow:
-        0 3px 10px rgba(0,0,0,0.10);
-
-    }
-
-
-    .tab.active {
-
-      background: #d4a017;
-
-      color: white;
-
-    }
-
-
-    .tab:hover {
-
-      background: #d4a017;
-
-      color: white;
-
-    }
-
-
-    /* ================= SECTIONS ================= */
-
-    .section {
-
-      display: none;
-
-    }
-
-
-    .section.active {
-
-      display: block;
-
-    }
-
-
-    .card {
-
-      background: white;
-
-      padding: 28px;
-
-      border-radius: 15px;
-
-      box-shadow:
-        0 3px 12px rgba(70,40,20,0.12);
-
-      margin-bottom: 25px;
-
-    }
-
-
-    .card h2 {
-
-      margin-top: 0;
-
-      color: #d4a017;
-
-    }
-
-
-    /* ================= MESSAGE ================= */
-
-    .message {
-
-      display: none;
-
-      padding: 14px;
-
-      margin-bottom: 20px;
-
-      border-radius: 9px;
-
-      font-weight: bold;
-
-      line-height: 1.5;
-
-    }
-
-
-    .message.success {
-
-      display: block;
-
-      background: #e6f7e9;
-
-      color: #16752d;
-
-      border: 1px solid #a4d9ae;
-
-    }
-
-
-    .message.error {
-
-      display: block;
-
-      background: #ffe7e7;
-
-      color: #a00000;
-
-      border: 1px solid #e1aaaa;
-
-    }
-
-
-    /* ================= FORM ================= */
-
-    .form-grid {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(2, 1fr);
-
-      gap: 18px;
-
-    }
-
-
-    .full {
-
-      grid-column: 1 / -1;
-
-    }
-
-
-    .form-group {
-
-      display: flex;
-
-      flex-direction: column;
-
-    }
-
-
-    label {
-
-      font-weight: bold;
-
-      margin-bottom: 7px;
-
-    }
-
-
-    input,
-    select,
-    textarea {
-
-      width: 100%;
-
-      padding: 13px;
-
-      border: 2px solid #e2e2e2;
-
-      border-radius: 8px;
-
-      font-size: 15px;
-
-      outline: none;
-
-      background: white;
-
-    }
-
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-
-      border-color: #d4a017;
-
-    }
-
-
-    textarea {
-
-      min-height: 120px;
-
-      resize: vertical;
-
-    }
-
-
-    /* ================= BUTTONS ================= */
-
-    .button {
-
-      border: none;
-
-      padding: 13px 20px;
-
-      border-radius: 8px;
-
-      font-weight: bold;
-
-      cursor: pointer;
-
-      font-size: 15px;
-
-    }
-
-
-    .primary {
-
-      background: #d4a017;
-
-      color: white;
-
-    }
-
-
-    .primary:hover {
-
-      background: #b8860b;
-
-    }
-
-
-    .danger {
-
-      background: #b42323;
-
-      color: white;
-
-    }
-
-
-    .danger:hover {
-
-      background: #8e1717;
-
-    }
-
-
-    .secondary {
-
-      background: #eee;
-
-      color: #333;
-
-    }
-
-
-    .button:disabled {
-
-      opacity: .6;
-
-      cursor: not-allowed;
-
-    }
-
-
-    /* ================= PHOTO PREVIEW ================= */
-
-    .photo-preview {
-
-      display: flex;
-
-      flex-wrap: wrap;
-
-      gap: 10px;
-
-      margin-top: 12px;
-
-    }
-
-
-    .photo-preview img {
-
-      width: 120px;
-
-      height: 90px;
-
-      object-fit: cover;
-
-      border-radius: 8px;
-
-      border: 2px solid #ddd;
-
-    }
-
-
-    /* ================= PROPERTY ================= */
-
-    .property-list {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 20px;
-
-    }
-
-
-    .property-card {
-
-      background: white;
-
-      border-radius: 13px;
-
-      overflow: hidden;
-
-      box-shadow:
-        0 3px 12px rgba(0,0,0,0.12);
-
-      border: 1px solid #eee;
-
-    }
-
-
-    .property-card img {
-
-      width: 100%;
-
-      height: 190px;
-
-      object-fit: cover;
-
-      display: block;
-
-    }
-
-
-    .property-content {
-
-      padding: 17px;
-
-    }
-
-
-    .property-content h3 {
-
-      margin: 0 0 8px;
-
-      color: #d4a017;
-
-    }
-
-
-    .property-price {
-
-      font-weight: bold;
-
-      font-size: 18px;
-
-      margin-bottom: 8px;
-
-    }
-
-
-    .location {
-
-      color: #666;
-
-      line-height: 1.5;
-
-      margin-bottom: 12px;
-
-    }
-
-
-    /* ================= REQUESTS ================= */
-
-    .request-list {
-
-      display: grid;
-
-      gap: 18px;
-
-    }
-
-
-    .request-card {
-
-      background: #fff;
-
-      border: 1px solid #ddd;
-
-      border-left: 5px solid #d4a017;
-
-      padding: 20px;
-
-      border-radius: 10px;
-
-    }
-
-
-    .request-card h3 {
-
-      margin-top: 0;
-
-      color: #d4a017;
-
-    }
-
-
-    .request-info {
-
-      line-height: 1.7;
-
-      color: #555;
-
-    }
-
-
-    .status {
-
-      display: inline-block;
-
-      padding: 6px 10px;
-
-      border-radius: 20px;
-
-      font-size: 12px;
-
-      font-weight: bold;
-
-      background: #fff1bd;
-
-      color: #765900;
-
-    }
-
-
-    /* ================= LOADING ================= */
-
-    .loading {
-
-      text-align: center;
-
-      padding: 30px;
-
-      color: #777;
-
-    }
-
-
-    .empty {
-
-      text-align: center;
-
-      padding: 35px;
-
-      color: #777;
-
-      background: #fafafa;
-
-      border-radius: 10px;
-
-    }
-
-
-    /* ================= MOBILE ================= */
-
-    @media (max-width: 900px) {
-
-      .property-list {
-
-        grid-template-columns: 1fr 1fr;
-
-      }
-
-    }
-
-
-    @media (max-width: 650px) {
-
-      .navbar {
-
-        flex-direction: column;
-
-        text-align: center;
-
-      }
-
-
-      .form-grid {
-
-        grid-template-columns: 1fr;
-
-      }
-
-
-      .full {
-
-        grid-column: auto;
-
-      }
-
-
-      .property-list {
-
-        grid-template-columns: 1fr;
-
-      }
-
-
-      .tabs {
-
-        flex-direction: column;
-
-      }
-
-
-      .tab {
-
-        width: 100%;
-
-      }
-
-    }
-
-  </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin - Rwanda House Market</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f7f5ef;
+  color:#33251d;
+}
+
+.navbar{
+  background:#d4a017;
+  color:white;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.logo{
+  font-size:21px;
+  font-weight:bold;
+}
+
+.nav-buttons{
+  display:flex;
+  gap:8px;
+}
+
+.nav-buttons button{
+  border:0;
+  background:white;
+  color:#a87800;
+  padding:9px 14px;
+  border-radius:7px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:25px 18px 60px;
+}
+
+h1,h2{
+  margin-top:0;
+}
+
+.page-title{
+  background:white;
+  padding:25px;
+  border-radius:14px;
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
+  margin-bottom:20px;
+}
+
+.tabs{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+
+.tab{
+  background:#d4a017;
+  color:white;
+  border:0;
+  padding:12px 18px;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.tab.active{
+  background:#a87800;
+}
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
+
+.card{
+  background:white;
+  border-radius:14px;
+  padding:22px;
+  margin-bottom:20px;
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  margin:14px 0 6px;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  padding:12px;
+  border:2px solid #eee;
+  border-radius:8px;
+  font-size:15px;
+  outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#d4a017;
+}
+
+textarea{
+  min-height:120px;
+  resize:vertical;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+}
+
+.button{
+  border:0;
+  padding:12px 18px;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:15px;
+}
+
+.primary{
+  background:#d4a017;
+  color:white;
+}
+
+.primary:hover{
+  background:#a87800;
+}
+
+.delete{
+  background:#c62828;
+  color:white;
+}
+
+.delete:hover{
+  background:#9e1f1f;
+}
+
+.secondary{
+  background:#eee;
+  color:#333;
+}
+
+.message{
+  display:none;
+  padding:12px;
+  border-radius:8px;
+  margin-top:15px;
+  font-weight:bold;
+}
+
+.success{
+  display:block;
+  background:#e9f8e9;
+  color:#227522;
+}
+
+.error{
+  display:block;
+  background:#ffe8e8;
+  color:#a00000;
+}
+
+.properties{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.property{
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+
+.property img{
+  width:100%;
+  height:210px;
+  object-fit:cover;
+  display:block;
+}
+
+.property-body{
+  padding:16px;
+}
+
+.property-title{
+  font-size:19px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.price{
+  color:#b27b00;
+  font-size:19px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.location{
+  color:#666;
+  line-height:1.5;
+}
+
+.property-actions{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
+}
+
+.property-actions button{
+  flex:1;
+}
+
+.photos-preview{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:10px;
+}
+
+.photos-preview img{
+  width:100px;
+  height:80px;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+.request{
+  border-left:5px solid #d4a017;
+}
+
+.request-header{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.status{
+  background:#fff3c4;
+  color:#8b6800;
+  padding:5px 9px;
+  border-radius:6px;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.empty{
+  text-align:center;
+  padding:35px;
+  color:#777;
+  background:white;
+  border-radius:12px;
+}
+
+@media(max-width:900px){
+  .properties{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:650px){
+  .navbar{
+    flex-direction:column;
+  }
+
+  .grid,
+  .properties{
+    grid-template-columns:1fr;
+  }
+
+  .property-actions{
+    flex-direction:column;
+  }
+}
+</style>
 </head>
-
 
 <body>
 
+<nav class="navbar">
 
-  <!-- ================= NAVBAR ================= -->
+  <div class="logo">
+    🏠 Rwanda House Market — ADMIN
+  </div>
 
-  <nav class="navbar">
+  <div class="nav-buttons">
+    <button onclick="goHome()">Home</button>
+    <button onclick="logout()">Logout</button>
+  </div>
 
-    <div class="logo">
+</nav>
 
-      🏠 Rwanda Property Visata — Admin
+
+<div class="container">
+
+  <div class="page-title">
+    <h1>Admin Dashboard</h1>
+    <p>Manage properties, posts and customer requests.</p>
+  </div>
+
+
+  <div class="tabs">
+
+    <button
+      class="tab active"
+      onclick="showSection('propertiesSection',this)">
+      🏠 Properties
+    </button>
+
+    <button
+      class="tab"
+      onclick="showSection('newPostSection',this)">
+      ➕ New Post
+    </button>
+
+    <button
+      class="tab"
+      onclick="showSection('requestsSection',this)">
+      📩 Request Property
+    </button>
+
+  </div>
+
+
+  <!-- ================= PROPERTIES ================= -->
+
+  <section
+    id="propertiesSection"
+    class="section active">
+
+    <div class="card">
+
+      <h2>🏠 Properties</h2>
+
+      <p>
+        Hano niho uzajya ubona amazu n'ibibanza byose washyize kuri website.
+      </p>
 
     </div>
 
+    <div
+      id="properties"
+      class="properties">
 
-    <button
-      class="logout-button"
-      id="logoutButton">
+      <div class="empty">
+        Loading properties...
+      </div>
 
-      Logout
+    </div>
 
-    </button>
-
-  </nav>
-
-
-
-  <main class="container">
+  </section>
 
 
-    <!-- ================= WELCOME ================= -->
+  <!-- ================= NEW POST ================= -->
 
-    <div class="welcome">
+  <section
+    id="newPostSection"
+    class="section">
 
-      <h1>
-        Admin Panel
-      </h1>
+    <div class="card">
+
+      <h2>➕ New Post</h2>
+
+      <form id="propertyForm">
+
+        <label>Property Title</label>
+
+        <input
+          type="text"
+          id="title"
+          placeholder="Example: Beautiful House in Kigali"
+          required
+        >
+
+
+        <label>Property Type</label>
+
+        <select id="propertyType" required>
+
+          <option value="">
+            Choose property type
+          </option>
+
+          <option value="rent">
+            House for Rent
+          </option>
+
+          <option value="sale">
+            House for Sale
+          </option>
+
+          <option value="plot">
+            Plot for Sale
+          </option>
+
+        </select>
+
+
+        <label>Price</label>
+
+        <input
+          type="number"
+          id="price"
+          placeholder="Example: 500000"
+          required
+        >
+
+
+        <div class="grid">
+
+          <div>
+
+            <label>Country</label>
+
+            <input
+              type="text"
+              id="country"
+              placeholder="Rwanda"
+              value="Rwanda"
+              required
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>Province</label>
+
+            <input
+              type="text"
+              id="province"
+              placeholder="Kigali"
+              required
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>District</label>
+
+            <input
+              type="text"
+              id="district"
+              placeholder="Gasabo"
+              required
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>Sector</label>
+
+            <input
+              type="text"
+              id="sector"
+              placeholder="Remera"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="grid">
+
+          <div>
+
+            <label>Bedrooms</label>
+
+            <input
+              type="number"
+              id="bedrooms"
+              min="0"
+              value="0"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>Bathrooms</label>
+
+            <input
+              type="number"
+              id="bathrooms"
+              min="0"
+              value="0"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label>Parking</label>
+
+            <input
+              type="number"
+              id="parking"
+              min="0"
+              value="0"
+            >
+
+          </div>
+
+        </div>
+
+
+        <label>Main Photo</label>
+
+        <input
+          type="file"
+          id="mainPhoto"
+          accept="image/*"
+          required
+        >
+
+
+        <label>Other Photos</label>
+
+        <input
+          type="file"
+          id="otherPhotos"
+          accept="image/*"
+          multiple
+        >
+
+
+        <label>Description</label>
+
+        <textarea
+          id="description"
+          placeholder="Write property description..."
+        ></textarea>
+
+
+        <div
+          id="photoPreview"
+          class="photos-preview">
+        </div>
+
+
+        <button
+          type="submit"
+          id="postButton"
+          class="button primary">
+          Post Property
+        </button>
+
+
+        <div
+          id="postMessage"
+          class="message">
+        </div>
+
+      </form>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= REQUESTS ================= -->
+
+  <section
+    id="requestsSection"
+    class="section">
+
+    <div class="card">
+
+      <h2>📩 Customer Property Requests</h2>
 
       <p>
-        Manage properties and customer requests.
+        Aha niho uzajya ubona messages z'abakiriya basabye property.
       </p>
 
     </div>
 
 
-    <!-- ================= GLOBAL MESSAGE ================= -->
+    <div id="requests">
 
-    <div
-      id="globalMessage"
-      class="message">
-    </div>
-
-
-    <!-- ================= TABS ================= -->
-
-    <div class="tabs">
-
-      <button
-        class="tab active"
-        data-section="postsSection">
-
-        📋 Posts
-
-      </button>
-
-
-      <button
-        class="tab"
-        data-section="newPostSection">
-
-        ➕ New Post
-
-      </button>
-
-
-      <button
-        class="tab"
-        data-section="requestsSection">
-
-        📩 Requests / Messages
-
-      </button>
-
-    </div>
-
-
-
-    <!-- =====================================================
-         POSTS
-    ====================================================== -->
-
-    <section
-      id="postsSection"
-      class="section active">
-
-
-      <div class="card">
-
-        <h2>
-          📋 Properties
-        </h2>
-
-        <p>
-          Aha ni ho ubona properties zose ziri kuri website.
-        </p>
-
-
-        <button
-          class="button primary"
-          id="refreshPosts">
-
-          🔄 Refresh Posts
-
-        </button>
-
-      </div>
-
-
-      <div
-        id="postsLoading"
-        class="loading">
-
-        Loading properties...
-
-      </div>
-
-
-      <div
-        id="propertyList"
-        class="property-list">
-
-      </div>
-
-
-    </section>
-
-
-
-    <!-- =====================================================
-         NEW POST
-    ====================================================== -->
-
-    <section
-      id="newPostSection"
-      class="section">
-
-
-      <div class="card">
-
-        <h2>
-          ➕ New Property
-        </h2>
-
-
-        <form
-          id="propertyForm">
-
-
-          <div class="form-grid">
-
-
-            <!-- TITLE -->
-
-            <div class="form-group full">
-
-              <label>
-                Property Title
-              </label>
-
-              <input
-                type="text"
-                id="title"
-                placeholder="Urugero: Inzu nziza y'umuryango"
-                required>
-
-            </div>
-
-
-            <!-- TYPE -->
-
-            <div class="form-group">
-
-              <label>
-                Property Type
-              </label>
-
-              <select
-                id="propertyType"
-                required>
-
-                <option value="">
-                  Choose type
-                </option>
-
-                <option value="house">
-                  House
-                </option>
-
-                <option value="apartment">
-                  Apartment
-                </option>
-
-                <option value="plot">
-                  Plot
-                </option>
-
-                <option value="commercial">
-                  Commercial
-                </option>
-
-              </select>
-
-            </div>
-
-
-            <!-- PURPOSE -->
-
-            <div class="form-group">
-
-              <label>
-                Purpose
-              </label>
-
-              <select
-                id="purpose"
-                required>
-
-                <option value="">
-                  Choose purpose
-                </option>
-
-                <option value="sale">
-                  For Sale
-                </option>
-
-                <option value="rent">
-                  For Rent
-                </option>
-
-              </select>
-
-            </div>
-
-
-            <!-- PRICE -->
-
-            <div class="form-group">
-
-              <label>
-                Price
-              </label>
-
-              <input
-                type="number"
-                id="price"
-                placeholder="350000000"
-                min="0"
-                required>
-
-            </div>
-
-
-            <!-- COUNTRY -->
-
-            <div class="form-group">
-
-              <label>
-                Country
-              </label>
-
-              <input
-                type="text"
-                id="country"
-                value="Rwanda"
-                required>
-
-            </div>
-
-
-            <!-- PROVINCE -->
-
-            <div class="form-group">
-
-              <label>
-                Province
-              </label>
-
-              <input
-                type="text"
-                id="province"
-                placeholder="Kigali"
-                required>
-
-            </div>
-
-
-            <!-- DISTRICT -->
-
-            <div class="form-group">
-
-              <label>
-                District
-              </label>
-
-              <input
-                type="text"
-                id="district"
-                placeholder="Gasabo"
-                required>
-
-            </div>
-
-
-            <!-- SECTOR -->
-
-            <div class="form-group">
-
-              <label>
-                Sector
-              </label>
-
-              <input
-                type="text"
-                id="sector"
-                placeholder="Kimironko"
-                required>
-
-            </div>
-
-
-            <!-- BEDROOMS -->
-
-            <div class="form-group">
-
-              <label>
-                Bedrooms
-              </label>
-
-              <input
-                type="number"
-                id="bedrooms"
-                min="0"
-                value="0">
-
-            </div>
-
-
-            <!-- BATHROOMS -->
-
-            <div class="form-group">
-
-              <label>
-                Bathrooms
-              </label>
-
-              <input
-                type="number"
-                id="bathrooms"
-                min="0"
-                value="0">
-
-            </div>
-
-
-            <!-- PARKING -->
-
-            <div class="form-group">
-
-              <label>
-                Parking
-              </label>
-
-              <input
-                type="number"
-                id="parking"
-                min="0"
-                value="0">
-
-            </div>
-
-
-            <!-- DESCRIPTION -->
-
-            <div class="form-group full">
-
-              <label>
-                Description
-              </label>
-
-              <textarea
-                id="description"
-                placeholder="Andika ibisobanuro bya property..."></textarea>
-
-            </div>
-
-
-            <!-- MAIN PHOTO -->
-
-            <div class="form-group full">
-
-              <label>
-                🖼️ Main Photo
-              </label>
-
-              <input
-                type="file"
-                id="mainPhoto"
-                accept="image/*"
-                required>
-
-              <div
-                id="mainPreview"
-                class="photo-preview">
-              </div>
-
-            </div>
-
-
-            <!-- OTHER PHOTOS -->
-
-            <div class="form-group full">
-
-              <label>
-                🖼️ Other Photos
-              </label>
-
-              <input
-                type="file"
-                id="otherPhotos"
-                accept="image/*"
-                multiple>
-
-              <div
-                id="otherPreview"
-                class="photo-preview">
-              </div>
-
-            </div>
-
-
-            <!-- SUBMIT -->
-
-            <div class="form-group full">
-
-              <button
-                type="submit"
-                class="button primary"
-                id="postButton">
-
-                🚀 Post Property
-
-              </button>
-
-            </div>
-
-
-          </div>
-
-        </form>
-
-      </div>
-
-
-    </section>
-
-
-
-    <!-- =====================================================
-         REQUESTS
-    ====================================================== -->
-
-    <section
-      id="requestsSection"
-      class="section">
-
-
-      <div class="card">
-
-        <h2>
-          📩 Customer Requests
-        </h2>
-
-        <p>
-          Aha ni ho uzajya ubona requests customer bakoze kuri
-          <strong>Request Property</strong>.
-        </p>
-
-
-        <button
-          class="button primary"
-          id="refreshRequests">
-
-          🔄 Refresh Requests
-
-        </button>
-
-      </div>
-
-
-      <div
-        id="requestsLoading"
-        class="loading">
-
+      <div class="empty">
         Loading requests...
-
       </div>
 
+    </div>
 
-      <div
-        id="requestList"
-        class="request-list">
+  </section>
 
-      </div>
-
-
-    </section>
+</div>
 
 
-  </main>
+<script>
+
+/* =========================================
+   SUPABASE
+========================================= */
+
+const SUPABASE_URL =
+  "https://hsmnybmcddtsyooltozw.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
 
 
-
-  <script>
-
-
-    /* =====================================================
-       SUPABASE
-    ====================================================== */
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
 
-    const SUPABASE_URL =
-      "https://hsmnybmcddtsyooltozw.supabase.co";
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const propertiesElement =
+  document.getElementById("properties");
+
+const requestsElement =
+  document.getElementById("requests");
+
+const propertyForm =
+  document.getElementById("propertyForm");
+
+const postButton =
+  document.getElementById("postButton");
+
+const postMessage =
+  document.getElementById("postMessage");
+
+const photoPreview =
+  document.getElementById("photoPreview");
 
 
-    const SUPABASE_KEY =
-      "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+/* =========================================
+   SHOW SECTION
+========================================= */
+
+function showSection(id, button){
+
+  document
+    .querySelectorAll(".section")
+    .forEach(section => {
+      section.classList.remove("active");
+    });
+
+  document
+    .getElementById(id)
+    .classList.add("active");
 
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-      );
+  document
+    .querySelectorAll(".tab")
+    .forEach(tab => {
+      tab.classList.remove("active");
+    });
+
+  button.classList.add("active");
 
 
+  if(id === "propertiesSection"){
+    loadProperties();
+  }
 
-    /* =====================================================
-       ADMIN EMAIL
-    ====================================================== */
+  if(id === "requestsSection"){
+    loadRequests();
+  }
 
-
-    const ADMIN_EMAIL =
-      "rwandahousemarket@gmail.com";
-
-
-
-    /* =====================================================
-       ELEMENTS
-    ====================================================== */
+}
 
 
-    const globalMessage =
-      document.getElementById(
-        "globalMessage"
-      );
+/* =========================================
+   MESSAGE
+========================================= */
+
+function showMessage(element,text,type){
+
+  element.textContent = text;
+
+  element.className =
+    "message " + type;
+
+}
 
 
-    const propertyList =
-      document.getElementById(
-        "propertyList"
-      );
+/* =========================================
+   CHECK ADMIN LOGIN
+========================================= */
+
+async function checkAdmin(){
+
+  const {
+    data:{
+      session
+    }
+  } =
+  await supabaseClient.auth.getSession();
 
 
-    const postsLoading =
-      document.getElementById(
-        "postsLoading"
-      );
+  if(!session){
+
+    window.location.href =
+      "login.html";
+
+    return false;
+  }
 
 
-    const requestList =
-      document.getElementById(
-        "requestList"
-      );
+  return true;
+}
 
 
-    const requestsLoading =
-      document.getElementById(
-        "requestsLoading"
-      );
+/* =========================================
+   IMAGE PREVIEW
+========================================= */
+
+document
+  .getElementById("otherPhotos")
+  .addEventListener(
+    "change",
+    function(){
+
+      photoPreview.innerHTML = "";
 
 
+      Array.from(this.files)
+        .forEach(file => {
 
-    /* =====================================================
-       MESSAGE
-    ====================================================== */
+          const img =
+            document.createElement("img");
 
+          img.src =
+            URL.createObjectURL(file);
 
-    function showMessage(
-      text,
-      type
-    ) {
+          photoPreview.appendChild(img);
 
-      globalMessage.textContent =
-        text;
-
-      globalMessage.className =
-        "message " + type;
+        });
 
     }
+  );
 
 
+/* =========================================
+   UPLOAD IMAGE
+========================================= */
 
-    /* =====================================================
-       TABS
-    ====================================================== */
+async function uploadImage(file){
 
-
-    document
-      .querySelectorAll(".tab")
-      .forEach(function(tab) {
-
-
-        tab.addEventListener(
-          "click",
-          function() {
-
-
-            document
-              .querySelectorAll(".tab")
-              .forEach(function(item) {
-
-                item.classList.remove(
-                  "active"
-                );
-
-              });
+  const fileName =
+    Date.now() +
+    "-" +
+    Math.random()
+      .toString(36)
+      .substring(2) +
+    "-" +
+    file.name
+      .replace(/\s+/g,"-");
 
 
-            document
-              .querySelectorAll(".section")
-              .forEach(function(section) {
-
-                section.classList.remove(
-                  "active"
-                );
-
-              });
+  const filePath =
+    "properties/" +
+    fileName;
 
 
-            tab.classList.add(
-              "active"
-            );
+  const {
+    error
+  } =
+  await supabaseClient
+    .storage
+    .from("property-images")
+    .upload(
+      filePath,
+      file,
+      {
+        upsert:false
+      }
+    );
 
 
-            document
-              .getElementById(
-                tab.dataset.section
-              )
-              .classList.add(
-                "active"
-              );
+  if(error){
+
+    throw error;
+
+  }
 
 
-          }
+  const {
+    data
+  } =
+  supabaseClient
+    .storage
+    .from("property-images")
+    .getPublicUrl(filePath);
+
+
+  return data.publicUrl;
+}
+
+
+/* =========================================
+   CREATE PROPERTY
+========================================= */
+
+propertyForm.addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
+
+
+    postButton.disabled =
+      true;
+
+    postButton.textContent =
+      "Posting...";
+
+
+    try{
+
+      const title =
+        document
+          .getElementById("title")
+          .value
+          .trim();
+
+
+      const propertyType =
+        document
+          .getElementById("propertyType")
+          .value;
+
+
+      const price =
+        Number(
+          document
+            .getElementById("price")
+            .value
         );
 
 
-      });
+      const country =
+        document
+          .getElementById("country")
+          .value
+          .trim();
 
 
-
-    /* =====================================================
-       CHECK ADMIN
-    ====================================================== */
-
-
-    async function checkAdmin() {
+      const province =
+        document
+          .getElementById("province")
+          .value
+          .trim();
 
 
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .auth
-          .getSession();
+      const district =
+        document
+          .getElementById("district")
+          .value
+          .trim();
 
 
-      if (
-        error ||
-        !data.session
-      ) {
+      const sector =
+        document
+          .getElementById("sector")
+          .value
+          .trim();
 
-        window.location.href =
-          "./login.html";
 
-        return false;
+      const bedrooms =
+        Number(
+          document
+            .getElementById("bedrooms")
+            .value || 0
+        );
+
+
+      const bathrooms =
+        Number(
+          document
+            .getElementById("bathrooms")
+            .value || 0
+        );
+
+
+      const parking =
+        Number(
+          document
+            .getElementById("parking")
+            .value || 0
+        );
+
+
+      const description =
+        document
+          .getElementById("description")
+          .value
+          .trim();
+
+
+      const mainPhotoFile =
+        document
+          .getElementById("mainPhoto")
+          .files[0];
+
+
+      const otherPhotoFiles =
+        Array.from(
+          document
+            .getElementById("otherPhotos")
+            .files
+        );
+
+
+      if(!mainPhotoFile){
+
+        throw new Error(
+          "Main Photo irakenewe."
+        );
 
       }
 
 
-      const email =
-        data.session.user.email
-          .trim()
-          .toLowerCase();
+      /* MAIN PHOTO */
+
+      const mainPhotoUrl =
+        await uploadImage(
+          mainPhotoFile
+        );
 
 
-      if (
-        email !==
-        ADMIN_EMAIL
-      ) {
+      /* OTHER PHOTOS */
 
-        await supabaseClient
-          .auth
-          .signOut();
+      const otherPhotoUrls = [];
 
 
-        window.location.href =
-          "./login.html";
+      for(
+        const file
+        of otherPhotoFiles
+      ){
 
+        const url =
+          await uploadImage(file);
 
-        return false;
+        otherPhotoUrls.push(url);
 
       }
 
 
-      return true;
-
-    }
-
-
-
-    /* =====================================================
-       LOGOUT
-    ====================================================== */
-
-
-    document
-      .getElementById(
-        "logoutButton"
-      )
-      .addEventListener(
-        "click",
-        async function() {
-
-
-          await supabaseClient
-            .auth
-            .signOut();
-
-
-          window.location.href =
-            "./login.html";
-
-
-        }
-      );
-
-
-
-    /* =====================================================
-       PHOTO PREVIEW
-    ====================================================== */
-
-
-    document
-      .getElementById(
-        "mainPhoto"
-      )
-      .addEventListener(
-        "change",
-        function() {
-
-
-          const preview =
-            document.getElementById(
-              "mainPreview"
-            );
-
-
-          preview.innerHTML = "";
-
-
-          const file =
-            this.files[0];
-
-
-          if (!file) {
-            return;
-          }
-
-
-          const img =
-            document.createElement(
-              "img"
-            );
-
-
-          img.src =
-            URL.createObjectURL(
-              file
-            );
-
-
-          preview.appendChild(
-            img
-          );
-
-
-        }
-      );
-
-
-
-    document
-      .getElementById(
-        "otherPhotos"
-      )
-      .addEventListener(
-        "change",
-        function() {
-
-
-          const preview =
-            document.getElementById(
-              "otherPreview"
-            );
-
-
-          preview.innerHTML = "";
-
-
-          Array.from(
-            this.files
-          ).forEach(
-            function(file) {
-
-
-              const img =
-                document.createElement(
-                  "img"
-                );
-
-
-              img.src =
-                URL.createObjectURL(
-                  file
-                );
-
-
-              preview.appendChild(
-                img
-              );
-
-
-            }
-          );
-
-
-        }
-      );
-
-
-
-    /* =====================================================
-       UPLOAD PHOTO
-    ====================================================== */
-
-
-    async function uploadPhoto(
-      file
-    ) {
-
-
-      const extension =
-        file.name
-          .split(".")
-          .pop();
-
-
-      const filename =
-        Date.now() +
-        "-" +
-        Math.random()
-          .toString(36)
-          .substring(2) +
-        "." +
-        extension;
-
-
-      const path =
-        "properties/" +
-        filename;
-
+      /* INSERT PROPERTY */
 
       const {
         error
       } =
-        await supabaseClient
-          .storage
-          .from("property-images")
-          .upload(
-            path,
-            file
-          );
+      await supabaseClient
+        .from("properties")
+        .insert({
+
+          title:title,
+
+          property_type:
+            propertyType,
+
+          price:price,
+
+          country:country,
+
+          province:province,
+
+          district:district,
+
+          sector:sector,
+
+          bedrooms:bedrooms,
+
+          bathrooms:bathrooms,
+
+          parking:parking,
+
+          main_photo:
+            mainPhotoUrl,
+
+          other_photos:
+            otherPhotoUrls,
+
+          description:description
+
+        });
 
 
-      if (error) {
+      if(error){
 
         throw error;
 
       }
 
 
-      const {
-        data
-      } =
-        supabaseClient
-          .storage
-          .from("property-images")
-          .getPublicUrl(
-            path
-          );
-
-
-      return data.publicUrl;
-
-    }
-
-
-
-    /* =====================================================
-       CREATE PROPERTY
-    ====================================================== */
-
-
-    document
-      .getElementById(
-        "propertyForm"
-      )
-      .addEventListener(
-        "submit",
-        async function(event) {
-
-
-          event.preventDefault();
-
-
-          const button =
-            document.getElementById(
-              "postButton"
-            );
-
-
-          const mainFile =
-            document.getElementById(
-              "mainPhoto"
-            ).files[0];
-
-
-          if (!mainFile) {
-
-            showMessage(
-              "❌ Shyiramo Main Photo.",
-              "error"
-            );
-
-            return;
-
-          }
-
-
-          button.disabled =
-            true;
-
-
-          button.textContent =
-            "Uploading...";
-
-
-          try {
-
-
-            /* MAIN PHOTO */
-
-            const mainPhotoUrl =
-              await uploadPhoto(
-                mainFile
-              );
-
-
-            /* OTHER PHOTOS */
-
-            const otherFiles =
-              Array.from(
-                document.getElementById(
-                  "otherPhotos"
-                ).files
-              );
-
-
-            const otherPhotoUrls =
-              [];
-
-
-            for (
-              const file
-              of otherFiles
-            ) {
-
-              const url =
-                await uploadPhoto(
-                  file
-                );
-
-
-              otherPhotoUrls.push(
-                url
-              );
-
-            }
-
-
-            /* PROPERTY DATA */
-
-            const property = {
-
-              title:
-                document
-                  .getElementById(
-                    "title"
-                  )
-                  .value
-                  .trim(),
-
-              property_type:
-                document
-                  .getElementById(
-                    "propertyType"
-                  )
-                  .value,
-
-              purpose:
-                document
-                  .getElementById(
-                    "purpose"
-                  )
-                  .value,
-
-              price:
-                Number(
-                  document
-                    .getElementById(
-                      "price"
-                    )
-                    .value
-                ),
-
-              country:
-                document
-                  .getElementById(
-                    "country"
-                  )
-                  .value
-                  .trim(),
-
-              province:
-                document
-                  .getElementById(
-                    "province"
-                  )
-                  .value
-                  .trim(),
-
-              district:
-                document
-                  .getElementById(
-                    "district"
-                  )
-                  .value
-                  .trim(),
-
-              sector:
-                document
-                  .getElementById(
-                    "sector"
-                  )
-                  .value
-                  .trim(),
-
-              bedrooms:
-                Number(
-                  document
-                    .getElementById(
-                      "bedrooms"
-                    )
-                    .value || 0
-                ),
-
-              bathrooms:
-                Number(
-                  document
-                    .getElementById(
-                      "bathrooms"
-                    )
-                    .value || 0
-                ),
-
-              parking:
-                Number(
-                  document
-                    .getElementById(
-                      "parking"
-                    )
-                    .value || 0
-                ),
-
-              description:
-                document
-                  .getElementById(
-                    "description"
-                  )
-                  .value
-                  .trim(),
-
-              main_photo:
-                mainPhotoUrl,
-
-              other_photos:
-                otherPhotoUrls
-
-            };
-
-
-            button.textContent =
-              "Posting...";
-
-
-            const {
-              error
-            } =
-              await supabaseClient
-                .from("properties")
-                .insert(
-                  property
-                );
-
-
-            if (error) {
-
-              throw error;
-
-            }
-
-
-            showMessage(
-              "✅ Property yashyizwe kuri website neza.",
-              "success"
-            );
-
-
-            document
-              .getElementById(
-                "propertyForm"
-              )
-              .reset();
-
-
-            document
-              .getElementById(
-                "mainPreview"
-              )
-              .innerHTML = "";
-
-
-            document
-              .getElementById(
-                "otherPreview"
-              )
-              .innerHTML = "";
-
-
-            await loadProperties();
-
-
-            document
-              .querySelector(
-                '[data-section="postsSection"]'
-              )
-              .click();
-
-
-          }
-
-
-          catch(error) {
-
-
-            console.error(
-              error
-            );
-
-
-            showMessage(
-              "❌ " +
-              error.message,
-              "error"
-            );
-
-          }
-
-
-          button.disabled =
-            false;
-
-
-          button.textContent =
-            "🚀 Post Property";
-
-
-        }
-      );
-
-
-
-    /* =====================================================
-       LOAD PROPERTIES
-    ====================================================== */
-
-
-    async function loadProperties() {
-
-
-      postsLoading.style.display =
-        "block";
-
-
-      propertyList.innerHTML =
-        "";
-
-
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .from("properties")
-          .select("*")
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          );
-
-
-      postsLoading.style.display =
-        "none";
-
-
-      if (error) {
-
-
-        propertyList.innerHTML =
-
-          `<div class="empty">
-            ❌ ${error.message}
-          </div>`;
-
-
-        return;
-
-      }
-
-
-      if (
-        !data ||
-        data.length === 0
-      ) {
-
-
-        propertyList.innerHTML =
-
-          `<div class="empty">
-            Nta property urashyiramo.
-          </div>`;
-
-
-        return;
-
-      }
-
-
-      data.forEach(
-        function(property) {
-
-
-          const card =
-            document.createElement(
-              "div"
-            );
-
-
-          card.className =
-            "property-card";
-
-
-          const image =
-            property.main_photo ||
-            (
-              Array.isArray(
-                property.other_photos
-              )
-                ? property.other_photos[0]
-                : ""
-            );
-
-
-          card.innerHTML = `
-
-            ${
-              image
-                ? `<img src="${image}" alt="Property">`
-                : ""
-            }
-
-            <div class="property-content">
-
-              <h3>
-                ${escapeHtml(
-                  property.title || "Property"
-                )}
-              </h3>
-
-              <div class="property-price">
-
-                ${Number(
-                  property.price || 0
-                ).toLocaleString()}
-                RWF
-
-              </div>
-
-              <div class="location">
-
-                ${escapeHtml(
-                  property.country || ""
-                )},
-
-                ${escapeHtml(
-                  property.province || ""
-                )},
-
-                ${escapeHtml(
-                  property.district || ""
-                )},
-
-                ${escapeHtml(
-                  property.sector || ""
-                )}
-
-              </div>
-
-              <button
-                class="button danger"
-                onclick="deleteProperty('${property.id}')">
-
-                🗑️ Delete
-
-              </button>
-
-            </div>
-
-          `;
-
-
-          propertyList.appendChild(
-            card
-          );
-
-
-        }
-      );
-
-
-    }
-
-
-
-    /* =====================================================
-       DELETE PROPERTY
-    ====================================================== */
-
-
-    async function deleteProperty(
-      id
-    ) {
-
-
-      const confirmed =
-        confirm(
-          "Urashaka koko gusiba iyi property?"
-        );
-
-
-      if (!confirmed) {
-        return;
-      }
-
-
-      const {
-        error
-      } =
-        await supabaseClient
-          .from("properties")
-          .delete()
-          .eq(
-            "id",
-            id
-          );
-
-
-      if (error) {
-
-
-        showMessage(
-          "❌ " +
-          error.message,
-          "error"
-        );
-
-
-        return;
-
-      }
-
-
       showMessage(
-        "✅ Property yasibwe.",
+        postMessage,
+        "✅ Property posted successfully!",
         "success"
       );
 
 
-      await loadProperties();
+      propertyForm.reset();
+
+      document
+        .getElementById("country")
+        .value = "Rwanda";
+
+      photoPreview.innerHTML = "";
+
+
+      loadProperties();
 
     }
+    catch(error){
 
+      console.error(error);
 
-
-    /* =====================================================
-       LOAD CUSTOMER REQUESTS
-    ====================================================== */
-
-
-    async function loadRequests() {
-
-
-      requestsLoading.style.display =
-        "block";
-
-
-      requestList.innerHTML =
-        "";
-
-
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .from("property_requests")
-          .select("*")
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          );
-
-
-      requestsLoading.style.display =
-        "none";
-
-
-      if (error) {
-
-
-        requestList.innerHTML =
-
-          `<div class="empty">
-            ❌ ${error.message}
-          </div>`;
-
-
-        return;
-
-      }
-
-
-      if (
-        !data ||
-        data.length === 0
-      ) {
-
-
-        requestList.innerHTML =
-
-          `<div class="empty">
-            Nta customer request iraboneka.
-          </div>`;
-
-
-        return;
-
-      }
-
-
-      data.forEach(
-        function(request) {
-
-
-          const card =
-            document.createElement(
-              "div"
-            );
-
-
-          card.className =
-            "request-card";
-
-
-          card.innerHTML = `
-
-            <h3>
-              📩 Property Request
-            </h3>
-
-            <div class="request-info">
-
-              <strong>
-                Name:
-              </strong>
-
-              ${escapeHtml(
-                request.name || "-"
-              )}
-
-              <br>
-
-              <strong>
-                Email:
-              </strong>
-
-              ${escapeHtml(
-                request.email || "-"
-              )}
-
-              <br>
-
-              <strong>
-                Phone:
-              </strong>
-
-              ${escapeHtml(
-                request.phone || "-"
-              )}
-
-              <br>
-
-              <strong>
-                Property:
-              </strong>
-
-              ${escapeHtml(
-                request.property_type || "-"
-              )}
-
-              <br>
-
-              <strong>
-                Country:
-              </strong>
-
-              ${escapeHtml(
-                request.country || "-"
-              )}
-
-              <br>
-
-              <strong>
-                Province:
-              </strong>
-
-              ${escapeHtml(
-                request.province || "-"
-              )}
-
-              <br>
-
-              <strong>
-                District:
-              </strong>
-
-              ${escapeHtml(
-                request.district || "-"
-              )}
-
-              <br>
-
-              <strong>
-                Budget:
-              </strong>
-
-              ${Number(
-                request.budget || 0
-              ).toLocaleString()}
-              RWF
-
-              <br>
-
-              <strong>
-                Message:
-              </strong>
-
-              ${escapeHtml(
-                request.message || "-"
-              )}
-
-              <br><br>
-
-              <span class="status">
-
-                ${escapeHtml(
-                  request.status || "pending"
-                )}
-
-              </span>
-
-            </div>
-
-          `;
-
-
-          requestList.appendChild(
-            card
-          );
-
-
-        }
+      showMessage(
+        postMessage,
+        "❌ " + error.message,
+        "error"
       );
 
-
     }
 
 
+    postButton.disabled =
+      false;
 
-    /* =====================================================
-       REFRESH BUTTONS
-    ====================================================== */
+    postButton.textContent =
+      "Post Property";
 
-
-    document
-      .getElementById(
-        "refreshPosts"
-      )
-      .addEventListener(
-        "click",
-        loadProperties
-      );
+  }
+);
 
 
-    document
-      .getElementById(
-        "refreshRequests"
-      )
-      .addEventListener(
-        "click",
-        loadRequests
-      );
+/* =========================================
+   LOAD PROPERTIES
+========================================= */
+
+async function loadProperties(){
+
+  propertiesElement.innerHTML =
+    `<div class="empty">
+      Loading properties...
+    </div>`;
 
 
-
-    /* =====================================================
-       ESCAPE HTML
-    ====================================================== */
-
-
-    function escapeHtml(
-      value
-    ) {
-
-      return String(
-        value ?? ""
-      )
-        .replace(
-          /&/g,
-          "&amp;"
-        )
-        .replace(
-          /</g,
-          "&lt;"
-        )
-        .replace(
-          />/g,
-          "&gt;"
-        )
-        .replace(
-          /"/g,
-          "&quot;"
-        )
-        .replace(
-          /'/g,
-          "&#039;"
-        );
-
-    }
-
-
-
-    /* =====================================================
-       START ADMIN
-    ====================================================== */
-
-
-    async function startAdmin() {
-
-
-      const allowed =
-        await checkAdmin();
-
-
-      if (!allowed) {
-        return;
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("properties")
+    .select("*")
+    .order(
+      "created_at",
+      {
+        ascending:false
       }
+    );
 
 
-      await loadProperties();
+  if(error){
+
+    console.error(error);
+
+    propertiesElement.innerHTML =
+      `<div class="empty">
+        ❌ ${error.message}
+      </div>`;
+
+    return;
+  }
 
 
-      await loadRequests();
+  if(!data || data.length === 0){
 
+    propertiesElement.innerHTML =
+      `<div class="empty">
+        Nta property iraboneka.
+      </div>`;
+
+    return;
+
+  }
+
+
+  propertiesElement.innerHTML = "";
+
+
+  data.forEach(property => {
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "property";
+
+
+    const mainPhoto =
+      property.main_photo ||
+      (
+        Array.isArray(property.other_photos)
+          ? property.other_photos[0]
+          : ""
+      ) ||
+      "https://via.placeholder.com/600x400?text=No+Photo";
+
+
+    card.innerHTML = `
+
+      <img
+        src="${escapeHtml(mainPhoto)}"
+        alt="Property">
+
+      <div class="property-body">
+
+        <div class="property-title">
+          ${escapeHtml(property.title || "Property")}
+        </div>
+
+        <div class="price">
+          ${Number(property.price || 0).toLocaleString()} RWF
+        </div>
+
+        <div class="location">
+
+          📍
+          ${escapeHtml(property.country || "")},
+          ${escapeHtml(property.province || "")},
+          ${escapeHtml(property.district || "")},
+          ${escapeHtml(property.sector || "")}
+
+          <br><br>
+
+          🛏️ Bedrooms:
+          ${property.bedrooms ?? 0}
+
+          &nbsp;&nbsp;
+
+          🚿 Bathrooms:
+          ${property.bathrooms ?? 0}
+
+          <br>
+
+          🚗 Parking:
+          ${property.parking ?? 0}
+
+        </div>
+
+
+        <div class="property-actions">
+
+          <button
+            class="button secondary"
+            onclick="viewProperty('${property.id}')">
+            View
+          </button>
+
+          <button
+            class="button delete"
+            onclick="deleteProperty('${property.id}')">
+            🗑️ Delete
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+
+    propertiesElement.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================================
+   DELETE PROPERTY
+========================================= */
+
+async function deleteProperty(id){
+
+  const confirmed =
+    confirm(
+      "Urashaka koko gusiba iyi property? Nuyisiba ntizongera kugaragara kuri website."
+    );
+
+
+  if(!confirmed){
+
+    return;
+
+  }
+
+
+  try{
+
+    /*
+      Banza usibe property muri database.
+    */
+
+    const {
+      error
+    } =
+    await supabaseClient
+      .from("properties")
+      .delete()
+      .eq("id",id);
+
+
+    if(error){
+
+      throw error;
 
     }
 
 
-    startAdmin();
+    alert(
+      "✅ Property yasibwe neza."
+    );
 
 
-  </script>
+    /*
+      Ongera usome properties
+    */
 
+    await loadProperties();
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    alert(
+      "❌ Ntibyashobotse gusiba property: " +
+      error.message
+    );
+
+  }
+
+}
+
+
+/* =========================================
+   VIEW PROPERTY
+========================================= */
+
+async function viewProperty(id){
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("properties")
+    .select("*")
+    .eq("id",id)
+    .maybeSingle();
+
+
+  if(error){
+
+    alert(
+      "❌ " + error.message
+    );
+
+    return;
+
+  }
+
+
+  if(!data){
+
+    alert(
+      "Property ntiyabonetse."
+    );
+
+    return;
+
+  }
+
+
+  let photos = [];
+
+
+  if(
+    Array.isArray(
+      data.other_photos
+    )
+  ){
+
+    photos =
+      data.other_photos;
+
+  }
+
+
+  let message =
+    "PROPERTY DETAILS\n\n" +
+
+    "Title: " +
+    (data.title || "") +
+
+    "\n\nPrice: " +
+    Number(
+      data.price || 0
+    ).toLocaleString() +
+    " RWF" +
+
+    "\n\nLocation: " +
+    (data.country || "") +
+    " / " +
+    (data.province || "") +
+    " / " +
+    (data.district || "") +
+    " / " +
+    (data.sector || "") +
+
+    "\n\nBedrooms: " +
+    (data.bedrooms ?? 0) +
+
+    "\nBathrooms: " +
+    (data.bathrooms ?? 0) +
+
+    "\nParking: " +
+    (data.parking ?? 0) +
+
+    "\n\nDescription:\n" +
+    (data.description || "");
+
+
+  alert(message);
+
+}
+
+
+/* =========================================
+   LOAD CUSTOMER REQUESTS
+========================================= */
+
+async function loadRequests(){
+
+  requestsElement.innerHTML =
+    `<div class="empty">
+      Loading requests...
+    </div>`;
+
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("property_requests")
+    .select("*")
+    .order(
+      "created_at",
+      {
+        ascending:false
+      }
+    );
+
+
+  if(error){
+
+    console.error(error);
+
+    requestsElement.innerHTML =
+      `<div class="empty">
+        ❌ ${error.message}
+      </div>`;
+
+    return;
+
+  }
+
+
+  if(!data || data.length === 0){
+
+    requestsElement.innerHTML =
+      `<div class="empty">
+        Nta request iraboneka.
+      </div>`;
+
+    return;
+
+  }
+
+
+  requestsElement.innerHTML = "";
+
+
+  data.forEach(request => {
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "card request";
+
+
+    card.innerHTML = `
+
+      <div class="request-header">
+
+        <h3>
+          📩 Property Request
+        </h3>
+
+        <span class="status">
+          ${escapeHtml(request.status || "pending")}
+        </span>
+
+      </div>
+
+
+      <p>
+        <strong>Name:</strong>
+        ${escapeHtml(request.name || request.full_name || "")}
+      </p>
+
+
+      <p>
+        <strong>Email:</strong>
+        ${escapeHtml(request.email || "")}
+      </p>
+
+
+      <p>
+        <strong>Phone:</strong>
+        ${escapeHtml(request.phone || "")}
+      </p>
+
+
+      <p>
+        <strong>Property Type:</strong>
+        ${escapeHtml(request.property_type || "")}
+      </p>
+
+
+      <p>
+        <strong>Message:</strong><br>
+        ${escapeHtml(request.message || request.description || "")}
+      </p>
+
+
+      <button
+        class="button delete"
+        onclick="deleteRequest('${request.id}')">
+        🗑️ Delete Request
+      </button>
+
+    `;
+
+
+    requestsElement.appendChild(card);
+
+  });
+
+}
+
+
+/* =========================================
+   DELETE REQUEST
+========================================= */
+
+async function deleteRequest(id){
+
+  if(
+    !confirm(
+      "Urashaka koko gusiba iyi request?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+  await supabaseClient
+    .from("property_requests")
+    .delete()
+    .eq("id",id);
+
+
+  if(error){
+
+    alert(
+      "❌ " + error.message
+    );
+
+    return;
+
+  }
+
+
+  alert(
+    "✅ Request yasibwe."
+  );
+
+
+  loadRequests();
+
+}
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================
+   HOME
+========================================= */
+
+function goHome(){
+
+  window.location.href =
+    "home.html";
+
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+async function logout(){
+
+  await supabaseClient.auth.signOut();
+
+  window.location.href =
+    "login.html";
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+(async function(){
+
+  const isAdmin =
+    await checkAdmin();
+
+
+  if(!isAdmin){
+
+    return;
+
+  }
+
+
+  await loadProperties();
+
+})();
+
+</script>
 
 </body>
-
 </html>
