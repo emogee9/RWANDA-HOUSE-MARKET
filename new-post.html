@@ -1,0 +1,3091 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title id="browserTitle">
+  New Post - Rwanda House Market
+</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f7f5ef;
+  color:#33251d;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+  background:#d4a017;
+  color:white;
+  padding:15px 20px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  gap:15px;
+
+  position:sticky;
+  top:0;
+  z-index:1000;
+
+  box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.logo{
+  font-size:21px;
+  font-weight:bold;
+}
+
+.nav-buttons{
+  display:flex;
+  gap:8px;
+}
+
+.nav-buttons button{
+  border:0;
+  background:white;
+  color:#a87800;
+
+  padding:9px 14px;
+
+  border-radius:7px;
+
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.nav-buttons button:hover{
+  background:#fff8d6;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+  max-width:1200px;
+  margin:auto;
+
+  padding:25px 18px 60px;
+}
+
+/* ================= TITLE ================= */
+
+.page-title{
+  background:white;
+
+  padding:25px;
+
+  border-radius:14px;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.1);
+
+  margin-bottom:20px;
+}
+
+.page-title h1{
+  margin-top:0;
+}
+
+/* ================= CARD ================= */
+
+.card{
+  background:white;
+
+  border-radius:14px;
+
+  padding:22px;
+
+  margin-bottom:20px;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.1);
+}
+
+/* ================= FORM ================= */
+
+label{
+  display:block;
+
+  font-weight:bold;
+
+  margin:14px 0 6px;
+}
+
+input,
+select,
+textarea{
+
+  width:100%;
+
+  padding:12px;
+
+  border:2px solid #eee;
+
+  border-radius:8px;
+
+  font-size:15px;
+
+  outline:none;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+  border-color:#d4a017;
+
+}
+
+textarea{
+
+  min-height:140px;
+
+  resize:vertical;
+
+}
+
+.grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:15px;
+
+}
+
+/* ================= BUTTON ================= */
+
+.button{
+
+  border:0;
+
+  padding:12px 18px;
+
+  border-radius:8px;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+  margin-top:15px;
+
+}
+
+.primary{
+
+  background:#d4a017;
+
+  color:white;
+
+}
+
+.primary:hover{
+
+  background:#a87800;
+
+}
+
+.delete{
+
+  background:#c62828;
+
+  color:white;
+
+}
+
+.delete:hover{
+
+  background:#9e1f1f;
+
+}
+
+.secondary{
+
+  background:#eee;
+
+  color:#333;
+
+}
+
+.secondary:hover{
+
+  background:#ddd;
+
+}
+
+/* ================= MESSAGE ================= */
+
+.message{
+
+  display:none;
+
+  padding:12px;
+
+  border-radius:8px;
+
+  margin-top:15px;
+
+  font-weight:bold;
+
+}
+
+.success{
+
+  display:block;
+
+  background:#e9f8e9;
+
+  color:#227522;
+
+}
+
+.error{
+
+  display:block;
+
+  background:#ffe8e8;
+
+  color:#a00000;
+
+}
+
+/* ================= PREVIEW ================= */
+
+.photos-preview{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin-top:15px;
+
+}
+
+.photos-preview img{
+
+  width:120px;
+
+  height:90px;
+
+  object-fit:cover;
+
+  border-radius:8px;
+
+  border:2px solid #eee;
+
+}
+
+/* ================= PROPERTIES ================= */
+
+.properties{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:18px;
+
+}
+
+.property{
+
+  background:white;
+
+  border-radius:14px;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.12);
+
+}
+
+.property img{
+
+  width:100%;
+
+  height:210px;
+
+  object-fit:cover;
+
+  display:block;
+
+}
+
+.property-body{
+
+  padding:16px;
+
+}
+
+.property-title{
+
+  font-size:19px;
+
+  font-weight:bold;
+
+  margin-bottom:8px;
+
+}
+
+.price{
+
+  color:#b27b00;
+
+  font-size:19px;
+
+  font-weight:bold;
+
+  margin-bottom:10px;
+
+}
+
+.location{
+
+  color:#666;
+
+  line-height:1.5;
+
+}
+
+.property-actions{
+
+  display:flex;
+
+  gap:8px;
+
+  margin-top:15px;
+
+}
+
+.property-actions button{
+
+  flex:1;
+
+}
+
+.empty{
+
+  text-align:center;
+
+  padding:35px;
+
+  color:#777;
+
+  background:white;
+
+  border-radius:12px;
+
+}
+
+/* ================= LANGUAGE ================= */
+
+.language-box{
+
+  margin-bottom:20px;
+
+}
+
+.language-box select{
+
+  max-width:300px;
+
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+  .properties{
+
+    grid-template-columns:
+      repeat(2,1fr);
+
+  }
+
+}
+
+@media(max-width:650px){
+
+  .navbar{
+
+    flex-direction:column;
+
+  }
+
+  .grid,
+  .properties{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .property-actions{
+
+    flex-direction:column;
+
+  }
+
+  .photos-preview img{
+
+    width:100px;
+
+    height:80px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+  <div
+    class="logo"
+    id="logoText"
+  >
+    🏠 Rwanda House Market
+  </div>
+
+
+  <div class="nav-buttons">
+
+    <button
+      onclick="goHome()"
+      id="homeButton"
+    >
+      Home
+    </button>
+
+
+    <button
+      onclick="logout()"
+      id="logoutButton"
+    >
+      Logout
+    </button>
+
+  </div>
+
+</nav>
+
+
+
+<div class="container">
+
+
+<!-- ================= PAGE TITLE ================= -->
+
+<div class="page-title">
+
+  <h1 id="pageTitle">
+    ➕ New Property Post
+  </h1>
+
+  <p id="pageDescription">
+    Add a house or plot to Rwanda House Market.
+  </p>
+
+</div>
+
+
+
+<!-- ================= LANGUAGE ================= -->
+
+<div class="card language-box">
+
+  <label id="languageLabel">
+    Language
+  </label>
+
+  <select
+    id="languageSelector"
+    onchange="changeLanguage()"
+  >
+
+    <option value="Kinyarwanda">
+      Kinyarwanda
+    </option>
+
+    <option value="English">
+      English
+    </option>
+
+    <option value="Français">
+      Français
+    </option>
+
+    <option value="Kiswahili">
+      Kiswahili
+    </option>
+
+    <option value="中文">
+      中文
+    </option>
+
+  </select>
+
+</div>
+
+
+
+<!-- ================= NEW POST ================= -->
+
+<div class="card">
+
+  <h2 id="formTitle">
+    ➕ Add Property
+  </h2>
+
+
+  <form id="propertyForm">
+
+
+    <!-- TITLE -->
+
+    <label id="titleLabel">
+      Property Title
+    </label>
+
+    <input
+      type="text"
+      id="title"
+      placeholder="Example: Beautiful House in Kigali"
+      required
+    >
+
+
+
+    <!-- PROPERTY TYPE -->
+
+    <label id="typeLabel">
+      Property Type
+    </label>
+
+    <select
+      id="propertyType"
+      required
+    >
+
+      <option value="">
+        Choose property type
+      </option>
+
+      <option value="rent">
+        House for Rent
+      </option>
+
+      <option value="sale">
+        House for Sale
+      </option>
+
+      <option value="plot">
+        Plot for Sale
+      </option>
+
+    </select>
+
+
+
+    <!-- PRICE -->
+
+    <label id="priceLabel">
+      Price
+    </label>
+
+    <input
+      type="number"
+      id="price"
+      placeholder="Example: 500000"
+      min="0"
+      required
+    >
+
+
+
+    <!-- LOCATION -->
+
+    <div class="grid">
+
+
+      <div>
+
+        <label id="countryLabel">
+          Country
+        </label>
+
+        <input
+          type="text"
+          id="country"
+          value="Rwanda"
+          required
+        >
+
+      </div>
+
+
+
+      <div>
+
+        <label id="provinceLabel">
+          Province
+        </label>
+
+        <input
+          type="text"
+          id="province"
+          placeholder="Kigali"
+          required
+        >
+
+      </div>
+
+
+
+      <div>
+
+        <label id="districtLabel">
+          District
+        </label>
+
+        <input
+          type="text"
+          id="district"
+          placeholder="Gasabo"
+          required
+        >
+
+      </div>
+
+
+
+      <div>
+
+        <label id="sectorLabel">
+          Sector
+        </label>
+
+        <input
+          type="text"
+          id="sector"
+          placeholder="Remera"
+          required
+        >
+
+      </div>
+
+
+    </div>
+
+
+
+    <!-- DETAILS -->
+
+    <div class="grid">
+
+
+      <div>
+
+        <label id="bedroomsLabel">
+          Bedrooms
+        </label>
+
+        <input
+          type="number"
+          id="bedrooms"
+          min="0"
+          value="0"
+        >
+
+      </div>
+
+
+
+      <div>
+
+        <label id="bathroomsLabel">
+          Bathrooms
+        </label>
+
+        <input
+          type="number"
+          id="bathrooms"
+          min="0"
+          value="0"
+        >
+
+      </div>
+
+
+
+      <div>
+
+        <label id="parkingLabel">
+          Parking
+        </label>
+
+        <input
+          type="number"
+          id="parking"
+          min="0"
+          value="0"
+        >
+
+      </div>
+
+
+    </div>
+
+
+
+    <!-- MAIN PHOTO -->
+
+    <label id="mainPhotoLabel">
+      Main Photo
+    </label>
+
+    <input
+      type="file"
+      id="mainPhoto"
+      accept="image/*"
+      required
+    >
+
+
+
+    <!-- OTHER PHOTOS -->
+
+    <label id="otherPhotosLabel">
+      Other Photos
+    </label>
+
+    <input
+      type="file"
+      id="otherPhotos"
+      accept="image/*"
+      multiple
+    >
+
+
+
+    <!-- DESCRIPTION -->
+
+    <label id="descriptionLabel">
+      Description
+    </label>
+
+    <textarea
+      id="description"
+      placeholder="Write property description..."
+    ></textarea>
+
+
+
+    <!-- PREVIEW -->
+
+    <div
+      id="photoPreview"
+      class="photos-preview"
+    >
+    </div>
+
+
+
+    <!-- SUBMIT -->
+
+    <button
+      type="submit"
+      id="postButton"
+      class="button primary"
+    >
+      ➕ Post Property
+    </button>
+
+
+
+    <!-- MESSAGE -->
+
+    <div
+      id="postMessage"
+      class="message"
+    >
+    </div>
+
+
+  </form>
+
+</div>
+
+
+
+<!-- ================= EXISTING PROPERTIES ================= -->
+
+<div class="card">
+
+  <h2 id="propertiesTitle">
+    🏠 My Properties
+  </h2>
+
+  <p id="propertiesDescription">
+    Properties already posted on the website.
+  </p>
+
+</div>
+
+
+
+<div
+  id="properties"
+  class="properties"
+>
+
+  <div class="empty">
+    Loading properties...
+  </div>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+
+const SUPABASE_URL =
+  "https://hsmnybmcddtsyooltozw.supabase.co";
+
+
+const SUPABASE_KEY =
+  "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+
+const propertyForm =
+  document.getElementById(
+    "propertyForm"
+  );
+
+
+const postButton =
+  document.getElementById(
+    "postButton"
+  );
+
+
+const postMessage =
+  document.getElementById(
+    "postMessage"
+  );
+
+
+const propertiesElement =
+  document.getElementById(
+    "properties"
+  );
+
+
+const photoPreview =
+  document.getElementById(
+    "photoPreview"
+  );
+
+
+
+/* =====================================================
+   TRANSLATIONS
+===================================================== */
+
+
+const translations = {
+
+
+  Kinyarwanda: {
+
+    browserTitle:
+      "Shyiraho Property - Rwanda House Market",
+
+    logo:
+      "🏠 Rwanda House Market",
+
+    home:
+      "Ahabanza",
+
+    logout:
+      "Sohoka",
+
+    pageTitle:
+      "➕ Shyiraho Property Nshya",
+
+    pageDescription:
+      "Shyiraho inzu cyangwa ikibanza kuri Rwanda House Market.",
+
+    language:
+      "Ururimi",
+
+    formTitle:
+      "➕ Shyiraho Property",
+
+    title:
+      "Izina rya Property",
+
+    titlePlaceholder:
+      "Urugero: Inzu nziza iri i Kigali",
+
+    type:
+      "Ubwoko bwa Property",
+
+    chooseType:
+      "Hitamo ubwoko",
+
+    rent:
+      "Inzu ikodeshwa",
+
+    sale:
+      "Inzu igurishwa",
+
+    plot:
+      "Ikibanza kigura",
+
+    price:
+      "Igiciro",
+
+    country:
+      "Igihugu",
+
+    province:
+      "Intara / Umujyi",
+
+    district:
+      "Akarere",
+
+    sector:
+      "Umurenge",
+
+    bedrooms:
+      "Ibyumba byo kuraramo",
+
+    bathrooms:
+      "Ubwiherero",
+
+    parking:
+      "Parking",
+
+    mainPhoto:
+      "Ifoto nyamukuru",
+
+    otherPhotos:
+      "Andi mafoto",
+
+    description:
+      "Ibisobanuro",
+
+    descriptionPlaceholder:
+      "Andika ibisobanuro bya property...",
+
+    post:
+      "➕ Shyiraho Property",
+
+    posting:
+      "Birimo gushyirwa...",
+
+    success:
+      "✅ Property yashyizweho neza!",
+
+    properties:
+      "🏠 Properties Zanjye",
+
+    propertiesDescription:
+      "Properties washyize kuri website.",
+
+    loading:
+      "Birimo gushakishwa...",
+
+    noProperties:
+      "Nta property iraboneka.",
+
+    view:
+      "Reba",
+
+    delete:
+      "🗑️ Siba",
+
+    confirmDelete:
+      "Urashaka koko gusiba iyi property?",
+
+    deleted:
+      "✅ Property yasibwe neza.",
+
+    bedroomsText:
+      "Ibyumba",
+
+    bathroomsText:
+      "Ubwiherero",
+
+    parkingText:
+      "Parking"
+
+  },
+
+
+  English: {
+
+    browserTitle:
+      "New Post - Rwanda House Market",
+
+    logo:
+      "🏠 Rwanda House Market",
+
+    home:
+      "Home",
+
+    logout:
+      "Logout",
+
+    pageTitle:
+      "➕ New Property Post",
+
+    pageDescription:
+      "Add a house or plot to Rwanda House Market.",
+
+    language:
+      "Language",
+
+    formTitle:
+      "➕ Add Property",
+
+    title:
+      "Property Title",
+
+    titlePlaceholder:
+      "Example: Beautiful House in Kigali",
+
+    type:
+      "Property Type",
+
+    chooseType:
+      "Choose property type",
+
+    rent:
+      "House for Rent",
+
+    sale:
+      "House for Sale",
+
+    plot:
+      "Plot for Sale",
+
+    price:
+      "Price",
+
+    country:
+      "Country",
+
+    province:
+      "Province",
+
+    district:
+      "District",
+
+    sector:
+      "Sector",
+
+    bedrooms:
+      "Bedrooms",
+
+    bathrooms:
+      "Bathrooms",
+
+    parking:
+      "Parking",
+
+    mainPhoto:
+      "Main Photo",
+
+    otherPhotos:
+      "Other Photos",
+
+    description:
+      "Description",
+
+    descriptionPlaceholder:
+      "Write property description...",
+
+    post:
+      "➕ Post Property",
+
+    posting:
+      "Posting...",
+
+    success:
+      "✅ Property posted successfully!",
+
+    properties:
+      "🏠 My Properties",
+
+    propertiesDescription:
+      "Properties already posted on the website.",
+
+    loading:
+      "Loading properties...",
+
+    noProperties:
+      "No properties found.",
+
+    view:
+      "View",
+
+    delete:
+      "🗑️ Delete",
+
+    confirmDelete:
+      "Are you sure you want to delete this property?",
+
+    deleted:
+      "✅ Property deleted successfully.",
+
+    bedroomsText:
+      "Bedrooms",
+
+    bathroomsText:
+      "Bathrooms",
+
+    parkingText:
+      "Parking"
+
+  },
+
+
+  Français: {
+
+    browserTitle:
+      "Nouvelle annonce - Rwanda House Market",
+
+    logo:
+      "🏠 Rwanda House Market",
+
+    home:
+      "Accueil",
+
+    logout:
+      "Déconnexion",
+
+    pageTitle:
+      "➕ Nouvelle propriété",
+
+    pageDescription:
+      "Ajoutez une maison ou un terrain à Rwanda House Market.",
+
+    language:
+      "Langue",
+
+    formTitle:
+      "➕ Ajouter une propriété",
+
+    title:
+      "Titre de la propriété",
+
+    titlePlaceholder:
+      "Exemple : Belle maison à Kigali",
+
+    type:
+      "Type de propriété",
+
+    chooseType:
+      "Choisir le type",
+
+    rent:
+      "Maison à louer",
+
+    sale:
+      "Maison à vendre",
+
+    plot:
+      "Terrain à vendre",
+
+    price:
+      "Prix",
+
+    country:
+      "Pays",
+
+    province:
+      "Province",
+
+    district:
+      "District",
+
+    sector:
+      "Secteur",
+
+    bedrooms:
+      "Chambres",
+
+    bathrooms:
+      "Salles de bain",
+
+    parking:
+      "Parking",
+
+    mainPhoto:
+      "Photo principale",
+
+    otherPhotos:
+      "Autres photos",
+
+    description:
+      "Description",
+
+    descriptionPlaceholder:
+      "Écrivez la description...",
+
+    post:
+      "➕ Publier",
+
+    posting:
+      "Publication...",
+
+    success:
+      "✅ Propriété publiée avec succès !",
+
+    properties:
+      "🏠 Mes propriétés",
+
+    propertiesDescription:
+      "Propriétés déjà publiées sur le site.",
+
+    loading:
+      "Chargement...",
+
+    noProperties:
+      "Aucune propriété trouvée.",
+
+    view:
+      "Voir",
+
+    delete:
+      "🗑️ Supprimer",
+
+    confirmDelete:
+      "Voulez-vous vraiment supprimer cette propriété ?",
+
+    deleted:
+      "✅ Propriété supprimée.",
+
+    bedroomsText:
+      "Chambres",
+
+    bathroomsText:
+      "Salles de bain",
+
+    parkingText:
+      "Parking"
+
+  },
+
+
+  Kiswahili: {
+
+    browserTitle:
+      "Chapisho Jipya - Rwanda House Market",
+
+    logo:
+      "🏠 Rwanda House Market",
+
+    home:
+      "Nyumbani",
+
+    logout:
+      "Toka",
+
+    pageTitle:
+      "➕ Chapisho Jipya la Mali",
+
+    pageDescription:
+      "Ongeza nyumba au kiwanja kwenye Rwanda House Market.",
+
+    language:
+      "Lugha",
+
+    formTitle:
+      "➕ Ongeza Mali",
+
+    title:
+      "Jina la Mali",
+
+    titlePlaceholder:
+      "Mfano: Nyumba nzuri Kigali",
+
+    type:
+      "Aina ya Mali",
+
+    chooseType:
+      "Chagua aina",
+
+    rent:
+      "Nyumba ya Kupangisha",
+
+    sale:
+      "Nyumba ya Kuuza",
+
+    plot:
+      "Kiwanja cha Kuuza",
+
+    price:
+      "Bei",
+
+    country:
+      "Nchi",
+
+    province:
+      "Mkoa",
+
+    district:
+      "Wilaya",
+
+    sector:
+      "Sekta",
+
+    bedrooms:
+      "Vyumba vya kulala",
+
+    bathrooms:
+      "Vyumba vya bafu",
+
+    parking:
+      "Maegesho",
+
+    mainPhoto:
+      "Picha kuu",
+
+    otherPhotos:
+      "Picha nyingine",
+
+    description:
+      "Maelezo",
+
+    descriptionPlaceholder:
+      "Andika maelezo ya mali...",
+
+    post:
+      "➕ Chapisha Mali",
+
+    posting:
+      "Inachapishwa...",
+
+    success:
+      "✅ Mali imechapishwa kwa mafanikio!",
+
+    properties:
+      "🏠 Mali Zangu",
+
+    propertiesDescription:
+      "Mali ambazo tayari umechapisha.",
+
+    loading:
+      "Inapakia...",
+
+    noProperties:
+      "Hakuna mali iliyopatikana.",
+
+    view:
+      "Tazama",
+
+    delete:
+      "🗑️ Futa",
+
+    confirmDelete:
+      "Una uhakika unataka kufuta mali hii?",
+
+    deleted:
+      "✅ Mali imefutwa.",
+
+    bedroomsText:
+      "Vyumba",
+
+    bathroomsText:
+      "Bafu",
+
+    parkingText:
+      "Maegesho"
+
+  },
+
+
+  "中文": {
+
+    browserTitle:
+      "发布房产 - Rwanda House Market",
+
+    logo:
+      "🏠 Rwanda House Market",
+
+    home:
+      "首页",
+
+    logout:
+      "退出",
+
+    pageTitle:
+      "➕ 发布新房产",
+
+    pageDescription:
+      "在 Rwanda House Market 发布房屋或土地。",
+
+    language:
+      "语言",
+
+    formTitle:
+      "➕ 添加房产",
+
+    title:
+      "房产标题",
+
+    titlePlaceholder:
+      "例如：基加利漂亮的房子",
+
+    type:
+      "房产类型",
+
+    chooseType:
+      "选择类型",
+
+    rent:
+      "出租房屋",
+
+    sale:
+      "出售房屋",
+
+    plot:
+      "出售土地",
+
+    price:
+      "价格",
+
+    country:
+      "国家",
+
+    province:
+      "省 / 城市",
+
+    district:
+      "地区",
+
+    sector:
+      "区域",
+
+    bedrooms:
+      "卧室",
+
+    bathrooms:
+      "浴室",
+
+    parking:
+      "停车位",
+
+    mainPhoto:
+      "主要照片",
+
+    otherPhotos:
+      "其他照片",
+
+    description:
+      "描述",
+
+    descriptionPlaceholder:
+      "输入房产描述...",
+
+    post:
+      "➕ 发布房产",
+
+    posting:
+      "正在发布...",
+
+    success:
+      "✅ 房产发布成功！",
+
+    properties:
+      "🏠 我的房产",
+
+    propertiesDescription:
+      "已经发布到网站的房产。",
+
+    loading:
+      "正在加载...",
+
+    noProperties:
+      "没有找到房产。",
+
+    view:
+      "查看",
+
+    delete:
+      "🗑️ 删除",
+
+    confirmDelete:
+      "确定要删除这个房产吗？",
+
+    deleted:
+      "✅ 房产已删除。",
+
+    bedroomsText:
+      "卧室",
+
+    bathroomsText:
+      "浴室",
+
+    parkingText:
+      "停车位"
+
+  }
+
+};
+
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+
+let currentLanguage =
+  localStorage.getItem(
+    "selectedLanguage"
+  ) || "Kinyarwanda";
+
+
+const languageSelector =
+  document.getElementById(
+    "languageSelector"
+  );
+
+
+languageSelector.value =
+  currentLanguage;
+
+
+
+function changeLanguage(){
+
+  currentLanguage =
+    languageSelector.value;
+
+  localStorage.setItem(
+    "selectedLanguage",
+    currentLanguage
+  );
+
+  applyLanguage();
+
+}
+
+
+
+function applyLanguage(){
+
+  const t =
+    translations[currentLanguage] ||
+    translations.English;
+
+
+  document.title =
+    t.browserTitle;
+
+
+  document.getElementById(
+    "logoText"
+  ).textContent =
+    t.logo;
+
+
+  document.getElementById(
+    "homeButton"
+  ).textContent =
+    t.home;
+
+
+  document.getElementById(
+    "logoutButton"
+  ).textContent =
+    t.logout;
+
+
+  document.getElementById(
+    "pageTitle"
+  ).textContent =
+    t.pageTitle;
+
+
+  document.getElementById(
+    "pageDescription"
+  ).textContent =
+    t.pageDescription;
+
+
+  document.getElementById(
+    "languageLabel"
+  ).textContent =
+    t.language;
+
+
+  document.getElementById(
+    "formTitle"
+  ).textContent =
+    t.formTitle;
+
+
+  document.getElementById(
+    "titleLabel"
+  ).textContent =
+    t.title;
+
+
+  document.getElementById(
+    "title"
+  ).placeholder =
+    t.titlePlaceholder;
+
+
+  document.getElementById(
+    "typeLabel"
+  ).textContent =
+    t.type;
+
+
+  const typeSelect =
+    document.getElementById(
+      "propertyType"
+    );
+
+
+  typeSelect.options[0].text =
+    t.chooseType;
+
+  typeSelect.options[1].text =
+    t.rent;
+
+  typeSelect.options[2].text =
+    t.sale;
+
+  typeSelect.options[3].text =
+    t.plot;
+
+
+  document.getElementById(
+    "priceLabel"
+  ).textContent =
+    t.price;
+
+
+  document.getElementById(
+    "countryLabel"
+  ).textContent =
+    t.country;
+
+
+  document.getElementById(
+    "provinceLabel"
+  ).textContent =
+    t.province;
+
+
+  document.getElementById(
+    "districtLabel"
+  ).textContent =
+    t.district;
+
+
+  document.getElementById(
+    "sectorLabel"
+  ).textContent =
+    t.sector;
+
+
+  document.getElementById(
+    "bedroomsLabel"
+  ).textContent =
+    t.bedrooms;
+
+
+  document.getElementById(
+    "bathroomsLabel"
+  ).textContent =
+    t.bathrooms;
+
+
+  document.getElementById(
+    "parkingLabel"
+  ).textContent =
+    t.parking;
+
+
+  document.getElementById(
+    "mainPhotoLabel"
+  ).textContent =
+    t.mainPhoto;
+
+
+  document.getElementById(
+    "otherPhotosLabel"
+  ).textContent =
+    t.otherPhotos;
+
+
+  document.getElementById(
+    "descriptionLabel"
+  ).textContent =
+    t.description;
+
+
+  document.getElementById(
+    "description"
+  ).placeholder =
+    t.descriptionPlaceholder;
+
+
+  document.getElementById(
+    "postButton"
+  ).textContent =
+    t.post;
+
+
+  document.getElementById(
+    "propertiesTitle"
+  ).textContent =
+    t.properties;
+
+
+  document.getElementById(
+    "propertiesDescription"
+  ).textContent =
+    t.propertiesDescription;
+
+
+  loadProperties();
+
+}
+
+
+
+/* =====================================================
+   ADMIN LOGIN CHECK
+===================================================== */
+
+
+async function checkAdmin(){
+
+  const {
+    data:{
+      session
+    }
+  } =
+  await supabaseClient.auth.getSession();
+
+
+  if(!session){
+
+    window.location.href =
+      "login.html";
+
+    return false;
+
+  }
+
+
+  return true;
+
+}
+
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+
+function showMessage(
+  element,
+  text,
+  type
+){
+
+  element.textContent =
+    text;
+
+  element.className =
+    "message " + type;
+
+}
+
+
+
+/* =====================================================
+   IMAGE PREVIEW
+===================================================== */
+
+
+document
+  .getElementById("otherPhotos")
+  .addEventListener(
+    "change",
+    function(){
+
+      photoPreview.innerHTML =
+        "";
+
+      Array.from(
+        this.files
+      ).forEach(file => {
+
+        const img =
+          document.createElement(
+            "img"
+          );
+
+        img.src =
+          URL.createObjectURL(
+            file
+          );
+
+        photoPreview.appendChild(
+          img
+        );
+
+      });
+
+    }
+  );
+
+
+
+/* =====================================================
+   MAIN PHOTO PREVIEW
+===================================================== */
+
+
+document
+  .getElementById("mainPhoto")
+  .addEventListener(
+    "change",
+    function(){
+
+      const file =
+        this.files[0];
+
+      if(!file){
+
+        return;
+
+      }
+
+
+      const img =
+        document.createElement(
+          "img"
+        );
+
+      img.src =
+        URL.createObjectURL(
+          file
+        );
+
+      img.title =
+        "Main Photo";
+
+      photoPreview.prepend(
+        img
+      );
+
+    }
+  );
+
+
+
+/* =====================================================
+   UPLOAD IMAGE
+===================================================== */
+
+
+async function uploadImage(
+  file
+){
+
+  const fileName =
+
+    Date.now() +
+
+    "-" +
+
+    Math.random()
+      .toString(36)
+      .substring(2) +
+
+    "-" +
+
+    file.name
+      .replace(
+        /\s+/g,
+        "-"
+      );
+
+
+  const filePath =
+    "properties/" +
+    fileName;
+
+
+  const {
+    error
+  } =
+  await supabaseClient
+    .storage
+    .from(
+      "property-images"
+    )
+    .upload(
+      filePath,
+      file,
+      {
+        upsert:false
+      }
+    );
+
+
+  if(error){
+
+    throw error;
+
+  }
+
+
+  const {
+    data
+  } =
+  supabaseClient
+    .storage
+    .from(
+      "property-images"
+    )
+    .getPublicUrl(
+      filePath
+    );
+
+
+  return data.publicUrl;
+
+}
+
+
+
+/* =====================================================
+   CREATE PROPERTY
+===================================================== */
+
+
+propertyForm.addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
+
+
+    postButton.disabled =
+      true;
+
+
+    const t =
+      translations[
+        currentLanguage
+      ] ||
+      translations.English;
+
+
+    postButton.textContent =
+      t.posting;
+
+
+    postMessage.className =
+      "message";
+
+
+    try{
+
+
+      const title =
+        document
+          .getElementById(
+            "title"
+          )
+          .value
+          .trim();
+
+
+      const propertyType =
+        document
+          .getElementById(
+            "propertyType"
+          )
+          .value;
+
+
+      const price =
+        Number(
+          document
+            .getElementById(
+              "price"
+            )
+            .value
+        );
+
+
+      const country =
+        document
+          .getElementById(
+            "country"
+          )
+          .value
+          .trim();
+
+
+      const province =
+        document
+          .getElementById(
+            "province"
+          )
+          .value
+          .trim();
+
+
+      const district =
+        document
+          .getElementById(
+            "district"
+          )
+          .value
+          .trim();
+
+
+      const sector =
+        document
+          .getElementById(
+            "sector"
+          )
+          .value
+          .trim();
+
+
+      const bedrooms =
+        Number(
+          document
+            .getElementById(
+              "bedrooms"
+            )
+            .value || 0
+        );
+
+
+      const bathrooms =
+        Number(
+          document
+            .getElementById(
+              "bathrooms"
+            )
+            .value || 0
+        );
+
+
+      const parking =
+        Number(
+          document
+            .getElementById(
+              "parking"
+            )
+            .value || 0
+        );
+
+
+      const description =
+        document
+          .getElementById(
+            "description"
+          )
+          .value
+          .trim();
+
+
+      const mainPhotoFile =
+        document
+          .getElementById(
+            "mainPhoto"
+          )
+          .files[0];
+
+
+      const otherPhotoFiles =
+        Array.from(
+          document
+            .getElementById(
+              "otherPhotos"
+            )
+            .files
+        );
+
+
+      if(!mainPhotoFile){
+
+        throw new Error(
+          "Main Photo irakenewe."
+        );
+
+      }
+
+
+
+      /* =====================
+         UPLOAD MAIN PHOTO
+      ===================== */
+
+
+      const mainPhotoUrl =
+        await uploadImage(
+          mainPhotoFile
+        );
+
+
+
+      /* =====================
+         UPLOAD OTHER PHOTOS
+      ===================== */
+
+
+      const otherPhotoUrls =
+        [];
+
+
+      for(
+        const file
+        of otherPhotoFiles
+      ){
+
+        const url =
+          await uploadImage(
+            file
+          );
+
+        otherPhotoUrls.push(
+          url
+        );
+
+      }
+
+
+
+      /* =====================
+         INSERT DATABASE
+      ===================== */
+
+
+      const {
+        error
+      } =
+      await supabaseClient
+        .from(
+          "properties"
+        )
+        .insert({
+
+          title:
+            title,
+
+          property_type:
+            propertyType,
+
+          price:
+            price,
+
+          country:
+            country,
+
+          province:
+            province,
+
+          district:
+            district,
+
+          sector:
+            sector,
+
+          bedrooms:
+            bedrooms,
+
+          bathrooms:
+            bathrooms,
+
+          parking:
+            parking,
+
+          main_photo:
+            mainPhotoUrl,
+
+          other_photos:
+            otherPhotoUrls,
+
+          description:
+            description
+
+        });
+
+
+      if(error){
+
+        throw error;
+
+      }
+
+
+
+      /* =====================
+         SUCCESS
+      ===================== */
+
+
+      showMessage(
+        postMessage,
+        t.success,
+        "success"
+      );
+
+
+      propertyForm.reset();
+
+
+      document.getElementById(
+        "country"
+      ).value =
+        "Rwanda";
+
+
+      photoPreview.innerHTML =
+        "";
+
+
+      await loadProperties();
+
+
+    }
+    catch(error){
+
+      console.error(error);
+
+
+      showMessage(
+        postMessage,
+        "❌ " +
+        error.message,
+        "error"
+      );
+
+    }
+
+
+    postButton.disabled =
+      false;
+
+
+    postButton.textContent =
+      t.post;
+
+  }
+);
+
+
+
+/* =====================================================
+   LOAD PROPERTIES
+===================================================== */
+
+
+async function loadProperties(){
+
+  const t =
+    translations[
+      currentLanguage
+    ] ||
+    translations.English;
+
+
+  propertiesElement.innerHTML =
+
+    `<div class="empty">
+      ${t.loading}
+    </div>`;
+
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from(
+      "properties"
+    )
+    .select("*")
+    .order(
+      "created_at",
+      {
+        ascending:false
+      }
+    );
+
+
+  if(error){
+
+    console.error(error);
+
+
+    propertiesElement.innerHTML =
+
+      `<div class="empty">
+        ❌ ${escapeHtml(
+          error.message
+        )}
+      </div>`;
+
+
+    return;
+
+  }
+
+
+  if(
+    !data ||
+    data.length === 0
+  ){
+
+    propertiesElement.innerHTML =
+
+      `<div class="empty">
+        ${t.noProperties}
+      </div>`;
+
+
+    return;
+
+  }
+
+
+  propertiesElement.innerHTML =
+    "";
+
+
+  data.forEach(
+    property => {
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+
+      card.className =
+        "property";
+
+
+      const mainPhoto =
+
+        property.main_photo ||
+
+        (
+          Array.isArray(
+            property.other_photos
+          )
+          ?
+          property.other_photos[0]
+          :
+          ""
+        ) ||
+
+        "https://via.placeholder.com/600x400?text=No+Photo";
+
+
+
+      card.innerHTML = `
+
+        <img
+          src="${escapeHtml(
+            mainPhoto
+          )}"
+          alt="Property"
+        >
+
+
+        <div class="property-body">
+
+
+          <div class="property-title">
+
+            ${escapeHtml(
+              property.title ||
+              "Property"
+            )}
+
+          </div>
+
+
+          <div class="price">
+
+            ${Number(
+              property.price || 0
+            ).toLocaleString()}
+
+            RWF
+
+          </div>
+
+
+          <div class="location">
+
+            📍
+
+            ${escapeHtml(
+              property.country ||
+              ""
+            )}
+
+            ,
+
+            ${escapeHtml(
+              property.province ||
+              ""
+            )}
+
+            ,
+
+            ${escapeHtml(
+              property.district ||
+              ""
+            )}
+
+            ,
+
+            ${escapeHtml(
+              property.sector ||
+              ""
+            )}
+
+            <br><br>
+
+
+            🛏️
+            ${t.bedroomsText}:
+            ${property.bedrooms ?? 0}
+
+            &nbsp;&nbsp;
+
+
+            🚿
+            ${t.bathroomsText}:
+            ${property.bathrooms ?? 0}
+
+            <br>
+
+
+            🚗
+            ${t.parkingText}:
+            ${property.parking ?? 0}
+
+          </div>
+
+
+
+          <div class="property-actions">
+
+
+            <button
+              class="button secondary"
+              onclick="viewProperty('${escapeHtml(
+                property.id
+              )}')"
+            >
+
+              ${t.view}
+
+            </button>
+
+
+            <button
+              class="button delete"
+              onclick="deleteProperty('${escapeHtml(
+                property.id
+              )}')"
+            >
+
+              ${t.delete}
+
+            </button>
+
+
+          </div>
+
+
+        </div>
+
+      `;
+
+
+      propertiesElement.appendChild(
+        card
+      );
+
+    }
+  );
+
+}
+
+
+
+/* =====================================================
+   VIEW PROPERTY
+===================================================== */
+
+
+async function viewProperty(
+  id
+){
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from(
+      "properties"
+    )
+    .select("*")
+    .eq(
+      "id",
+      id
+    )
+    .maybeSingle();
+
+
+  if(error){
+
+    alert(
+      "❌ " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  if(!data){
+
+    alert(
+      "Property ntiyabonetse."
+    );
+
+    return;
+
+  }
+
+
+  const message =
+
+    "PROPERTY DETAILS\n\n" +
+
+    "Title: " +
+    (
+      data.title ||
+      ""
+    ) +
+
+    "\n\nPrice: " +
+
+    Number(
+      data.price || 0
+    ).toLocaleString() +
+
+    " RWF" +
+
+    "\n\nLocation: " +
+
+    (
+      data.country ||
+      ""
+    ) +
+
+    " / " +
+
+    (
+      data.province ||
+      ""
+    ) +
+
+    " / " +
+
+    (
+      data.district ||
+      ""
+    ) +
+
+    " / " +
+
+    (
+      data.sector ||
+      ""
+    ) +
+
+    "\n\nBedrooms: " +
+
+    (
+      data.bedrooms ??
+      0
+    ) +
+
+    "\nBathrooms: " +
+
+    (
+      data.bathrooms ??
+      0
+    ) +
+
+    "\nParking: " +
+
+    (
+      data.parking ??
+      0
+    ) +
+
+    "\n\nDescription:\n" +
+
+    (
+      data.description ||
+      ""
+    );
+
+
+  alert(
+    message
+  );
+
+}
+
+
+
+/* =====================================================
+   DELETE PROPERTY
+===================================================== */
+
+
+async function deleteProperty(
+  id
+){
+
+  const t =
+    translations[
+      currentLanguage
+    ] ||
+    translations.English;
+
+
+  if(
+    !confirm(
+      t.confirmDelete
+    )
+  ){
+
+    return;
+
+  }
+
+
+  try{
+
+
+    /* =========================
+       GET PROPERTY
+    ========================= */
+
+
+    const {
+      data:property,
+      error:fetchError
+    } =
+    await supabaseClient
+      .from(
+        "properties"
+      )
+      .select(
+        "main_photo,other_photos"
+      )
+      .eq(
+        "id",
+        id
+      )
+      .maybeSingle();
+
+
+    if(fetchError){
+
+      throw fetchError;
+
+    }
+
+
+
+    /* =========================
+       DELETE DATABASE RECORD
+    ========================= */
+
+
+    const {
+      error
+    } =
+    await supabaseClient
+      .from(
+        "properties"
+      )
+      .delete()
+      .eq(
+        "id",
+        id
+      );
+
+
+    if(error){
+
+      throw error;
+
+    }
+
+
+
+    /* =========================
+       DELETE STORAGE FILES
+    ========================= */
+
+
+    const filesToDelete =
+      [];
+
+
+    if(
+      property &&
+      property.main_photo
+    ){
+
+      const path =
+        getStoragePath(
+          property.main_photo
+        );
+
+      if(path){
+
+        filesToDelete.push(
+          path
+        );
+
+      }
+
+    }
+
+
+    if(
+      property &&
+      Array.isArray(
+        property.other_photos
+      )
+    ){
+
+      property.other_photos
+        .forEach(
+          url => {
+
+            const path =
+              getStoragePath(
+                url
+              );
+
+            if(path){
+
+              filesToDelete.push(
+                path
+              );
+
+            }
+
+          }
+        );
+
+    }
+
+
+    if(
+      filesToDelete.length
+    ){
+
+      const {
+        error:storageError
+      } =
+      await supabaseClient
+        .storage
+        .from(
+          "property-images"
+        )
+        .remove(
+          filesToDelete
+        );
+
+
+      if(storageError){
+
+        console.warn(
+          "Storage cleanup error:",
+          storageError
+        );
+
+      }
+
+    }
+
+
+
+    alert(
+      t.deleted
+    );
+
+
+    await loadProperties();
+
+
+  }
+  catch(error){
+
+    console.error(error);
+
+
+    alert(
+      "❌ " +
+      error.message
+    );
+
+  }
+
+}
+
+
+
+/* =====================================================
+   GET STORAGE PATH
+===================================================== */
+
+
+function getStoragePath(
+  url
+){
+
+  try{
+
+    if(
+      !url ||
+      typeof url !==
+      "string"
+    ){
+
+      return null;
+
+    }
+
+
+    const marker =
+      "/storage/v1/object/public/property-images/";
+
+
+    const index =
+      url.indexOf(
+        marker
+      );
+
+
+    if(index === -1){
+
+      return null;
+
+    }
+
+
+    return decodeURIComponent(
+      url.substring(
+        index +
+        marker.length
+      )
+    );
+
+  }
+  catch(error){
+
+    return null;
+
+  }
+
+}
+
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+
+function escapeHtml(
+  value
+){
+
+  return String(
+    value ?? ""
+  )
+
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+
+  .replace(
+    /</g,
+    "&lt;"
+  )
+
+  .replace(
+    />/g,
+    "&gt;"
+  )
+
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+
+  .replace(
+    /'/g,
+    "&#039;"
+  );
+
+}
+
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+
+function goHome(){
+
+  window.location.href =
+    "home.html";
+
+}
+
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+
+async function logout(){
+
+  await supabaseClient
+    .auth
+    .signOut();
+
+
+  window.location.href =
+    "login.html";
+
+}
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+
+(async function(){
+
+  const isAdmin =
+    await checkAdmin();
+
+
+  if(!isAdmin){
+
+    return;
+
+  }
+
+
+  applyLanguage();
+
+
+  await loadProperties();
+
+})();
+
+</script>
+
+</body>
+
+</html>
