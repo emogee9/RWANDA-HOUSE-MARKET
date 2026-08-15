@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -333,6 +332,7 @@ textarea{
 }
 
 @media(max-width:900px){
+
   .properties{
     grid-template-columns:repeat(2,1fr);
   }
@@ -340,9 +340,11 @@ textarea{
   .tabs{
     grid-template-columns:repeat(2,1fr);
   }
+
 }
 
 @media(max-width:650px){
+
   .navbar{
     flex-direction:column;
   }
@@ -356,6 +358,7 @@ textarea{
   .property-actions{
     flex-direction:column;
   }
+
 }
 </style>
 </head>
@@ -369,8 +372,15 @@ textarea{
   </div>
 
   <div class="nav-buttons">
-    <button onclick="goHome()">Home</button>
-    <button onclick="logout()">Logout</button>
+
+    <button onclick="goHome()">
+      Home
+    </button>
+
+    <button onclick="logout()">
+      Logout
+    </button>
+
   </div>
 
 </nav>
@@ -378,9 +388,12 @@ textarea{
 
 <div class="container">
 
+
   <div class="page-title">
 
-    <h1>Admin Dashboard</h1>
+    <h1>
+      Admin Dashboard
+    </h1>
 
     <p>
       Manage posts, add properties, review requests and approve property submissions.
@@ -396,26 +409,44 @@ textarea{
     <button
       class="tab active"
       onclick="showSection('postsSection',this)">
+
       📋 Posts
+
     </button>
+
 
     <button
       class="tab"
       onclick="showSection('addPostSection',this)">
+
       ➕ Add Post
+
     </button>
+
 
     <button
       class="tab"
       onclick="showSection('requestedSection',this)">
+
       💬 Requested
-      <span id="requestBadge" class="badge">0</span>
+
+      <span
+        id="requestBadge"
+        class="badge">
+
+        0
+
+      </span>
+
     </button>
+
 
     <button
       class="tab"
       onclick="showSection('approvalSection',this)">
+
       ✅ Approvals
+
     </button>
 
   </div>
@@ -431,7 +462,9 @@ textarea{
 
     <div class="card">
 
-      <h2>📋 Posts</h2>
+      <h2>
+        📋 Posts
+      </h2>
 
       <p>
         Aha ni ho ubona posts zose ziri muri
@@ -439,6 +472,7 @@ textarea{
       </p>
 
     </div>
+
 
     <div
       id="properties"
@@ -463,11 +497,17 @@ textarea{
 
     <div class="card">
 
-      <h2>➕ Add Post</h2>
+      <h2>
+        ➕ Add Post
+      </h2>
+
 
       <form id="propertyForm">
 
-        <label>Property Title</label>
+
+        <label>
+          Property Title
+        </label>
 
         <input
           type="text"
@@ -477,7 +517,9 @@ textarea{
         >
 
 
-        <label>Property Type</label>
+        <label>
+          Property Type
+        </label>
 
         <select
           id="propertyType"
@@ -502,28 +544,9 @@ textarea{
         </select>
 
 
-        <label>Transaction Type</label>
-
-        <select
-          id="transactionType"
-          required>
-
-          <option value="">
-            Choose transaction
-          </option>
-
-          <option value="rent">
-            For Rent
-          </option>
-
-          <option value="sale">
-            For Sale
-          </option>
-
-        </select>
-
-
-        <label>Price</label>
+        <label>
+          Price
+        </label>
 
         <input
           type="number"
@@ -536,9 +559,12 @@ textarea{
 
         <div class="grid">
 
+
           <div>
 
-            <label>Country</label>
+            <label>
+              Country
+            </label>
 
             <input
               type="text"
@@ -549,9 +575,12 @@ textarea{
 
           </div>
 
+
           <div>
 
-            <label>Province</label>
+            <label>
+              Province
+            </label>
 
             <input
               type="text"
@@ -562,9 +591,12 @@ textarea{
 
           </div>
 
+
           <div>
 
-            <label>District</label>
+            <label>
+              District
+            </label>
 
             <input
               type="text"
@@ -575,9 +607,12 @@ textarea{
 
           </div>
 
+
           <div>
 
-            <label>Sector</label>
+            <label>
+              Sector
+            </label>
 
             <input
               type="text"
@@ -588,14 +623,18 @@ textarea{
 
           </div>
 
+
         </div>
 
 
         <div class="grid">
 
+
           <div>
 
-            <label>Bedrooms</label>
+            <label>
+              Bedrooms
+            </label>
 
             <input
               type="number"
@@ -606,9 +645,12 @@ textarea{
 
           </div>
 
+
           <div>
 
-            <label>Bathrooms</label>
+            <label>
+              Bathrooms
+            </label>
 
             <input
               type="number"
@@ -619,9 +661,12 @@ textarea{
 
           </div>
 
+
           <div>
 
-            <label>Parking</label>
+            <label>
+              Parking
+            </label>
 
             <input
               type="number"
@@ -632,10 +677,13 @@ textarea{
 
           </div>
 
+
         </div>
 
 
-        <label>Seller Name</label>
+        <label>
+          Seller Name
+        </label>
 
         <input
           type="text"
@@ -644,7 +692,9 @@ textarea{
         >
 
 
-        <label>Phone</label>
+        <label>
+          Phone
+        </label>
 
         <input
           type="text"
@@ -653,7 +703,9 @@ textarea{
         >
 
 
-        <label>Main Photo</label>
+        <label>
+          Main Photo
+        </label>
 
         <input
           type="file"
@@ -663,7 +715,9 @@ textarea{
         >
 
 
-        <label>Other Photos</label>
+        <label>
+          Other Photos
+        </label>
 
         <input
           type="file"
@@ -673,7 +727,9 @@ textarea{
         >
 
 
-        <label>Description</label>
+        <label>
+          Description
+        </label>
 
         <textarea
           id="description"
@@ -702,6 +758,7 @@ textarea{
           class="message">
         </div>
 
+
       </form>
 
     </div>
@@ -719,7 +776,9 @@ textarea{
 
     <div class="card">
 
-      <h2>💬 Requested</h2>
+      <h2>
+        💬 Requested
+      </h2>
 
       <p>
         Aha ni ho uzajya ubona messages abantu banditse muri
@@ -727,6 +786,7 @@ textarea{
       </p>
 
     </div>
+
 
     <div id="requestsList">
 
@@ -749,7 +809,9 @@ textarea{
 
     <div class="card">
 
-      <h2>✅ Approvals</h2>
+      <h2>
+        ✅ Approvals
+      </h2>
 
       <p>
         Aha ni ho uzajya wemeza cyangwa uhakane abantu
@@ -757,6 +819,7 @@ textarea{
       </p>
 
     </div>
+
 
     <div id="approvalsList">
 
@@ -767,6 +830,7 @@ textarea{
     </div>
 
   </section>
+
 
 </div>
 
@@ -839,10 +903,12 @@ async function checkAdmin(){
       "login.html";
 
     return false;
+
   }
 
 
   return true;
+
 }
 
 
@@ -944,6 +1010,7 @@ document
 
       photoPreview.innerHTML = "";
 
+
       Array
         .from(this.files)
         .forEach(file => {
@@ -1034,6 +1101,7 @@ async function uploadImage(file){
 
 
   return data.publicUrl;
+
 }
 
 
@@ -1073,12 +1141,6 @@ propertyForm.addEventListener(
       const propertyType =
         document
           .getElementById("propertyType")
-          .value;
-
-
-      const transactionType =
-        document
-          .getElementById("transactionType")
           .value;
 
 
@@ -1248,9 +1310,6 @@ propertyForm.addEventListener(
 
           property_type:
             propertyType,
-
-          transaction_type:
-            transactionType,
 
           title:
             title,
@@ -1441,11 +1500,14 @@ async function loadProperties(){
 
       <div class="property-body">
 
+
         <div class="property-title">
+
           ${escapeHtml(
             property.title ||
             "Property"
           )}
+
         </div>
 
 
@@ -1471,6 +1533,7 @@ async function loadProperties(){
           <br><br>
 
           🏷️ Type:
+
           ${escapeHtml(
             property.property_type || ""
           )}
@@ -1479,7 +1542,8 @@ async function loadProperties(){
 
           📌 Status:
 
-          <span class="status status-${escapeHtml(status)}">
+          <span
+            class="status status-${escapeHtml(status)}">
 
             ${escapeHtml(status)}
 
@@ -1488,22 +1552,26 @@ async function loadProperties(){
           <br><br>
 
           🛏️ Bedrooms:
+
           ${property.bedrooms ?? 0}
 
           <br>
 
           🚿 Bathrooms:
+
           ${property.bathrooms ?? 0}
 
           <br>
 
           🚗 Parking:
+
           ${property.parking ?? 0}
 
         </div>
 
 
         <div class="property-actions">
+
 
           <button
             class="button secondary"
@@ -1522,7 +1590,9 @@ async function loadProperties(){
 
           </button>
 
+
         </div>
+
 
       </div>
 
@@ -1591,9 +1661,6 @@ async function viewProperty(id){
 
     "\n\nType: " +
     (data.property_type || "") +
-
-    "\nTransaction: " +
-    (data.transaction_type || "") +
 
     "\n\nPrice: " +
     Number(
@@ -1672,13 +1739,7 @@ async function deleteProperty(id){
 
 /* =========================================================
    LOAD REQUESTS
-=========================================================
-
-   IMPORTANT:
-   Table y'ubutumwa bw'abantu:
-   property_requests
-
-*/
+========================================================= */
 
 async function loadRequests(){
 
@@ -1755,6 +1816,7 @@ async function loadRequests(){
       <div class="request-title">
 
         💬
+
         ${escapeHtml(
           request.name ||
           request.full_name ||
@@ -1766,6 +1828,7 @@ async function loadRequests(){
 
 
       <div class="request-info">
+
 
         ${
           request.email
@@ -1812,6 +1875,7 @@ async function loadRequests(){
           ""
         }
 
+
       </div>
 
     `;
@@ -1826,17 +1890,7 @@ async function loadRequests(){
 
 /* =========================================================
    LOAD APPROVAL REQUESTS
-=========================================================
-
-   Requests zo gusaba POST property
-   zitegerejwe kuba muri property_requests.
-
-   status:
-   pending
-   approved
-   rejected
-
-*/
+========================================================= */
 
 async function loadApprovals(){
 
@@ -1919,6 +1973,7 @@ async function loadApprovals(){
       <div class="request-title">
 
         🏠
+
         ${escapeHtml(
           request.property_title ||
           request.title ||
@@ -1930,6 +1985,7 @@ async function loadApprovals(){
 
 
       <div class="request-info">
+
 
         ${
           request.name ||
@@ -2003,10 +2059,12 @@ async function loadApprovals(){
           ""
         }
 
+
       </div>
 
 
       <div class="request-actions">
+
 
         <button
           class="button approve"
@@ -2024,6 +2082,7 @@ async function loadApprovals(){
           ❌ Reject
 
         </button>
+
 
       </div>
 
@@ -2196,6 +2255,7 @@ async function logout(){
 
   await loadProperties();
 
+
   /*
     Kubara requests ziri pending
     tutabanje gufungura Requested.
@@ -2229,8 +2289,8 @@ async function logout(){
   }
 
 })();
+
 </script>
 
 </body>
 </html>
-```
