@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title id="browserTitle">
+  House for Rent - Rwanda House Market
+</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f5f5;
+  color:#222;
+}
+
+header{
+  background:#f2c400;
+  padding:22px 15px;
+  text-align:center;
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+.back{
+  display:inline-block;
+  margin-top:10px;
+  background:white;
+  color:#222;
+  text-decoration:none;
+  padding:9px 15px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:25px 20px 60px;
+}
+
+
+/* ================= PHOTO ================= */
+
+.photo-slider{
+  position:relative;
+  background:white;
+  padding:12px;
+  border-radius:15px;
+  border:2px solid #f2c400;
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+
+.photo-slider img{
+  width:100%;
+  height:520px;
+  object-fit:cover;
+  border-radius:10px;
+  display:block;
+}
+
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:50px;
+  height:50px;
+  border:0;
+  border-radius:50%;
+  background:#f2c400;
+  color:#222;
+  font-size:28px;
+  font-weight:bold;
+  cursor:pointer;
+  z-index:5;
+}
+
+.left{
+  left:25px;
+}
+
+.right{
+  right:25px;
+}
+
+
+/* ================= GALLERY ================= */
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:15px;
+}
+
+.gallery img{
+  width:100%;
+  height:120px;
+  object-fit:cover;
+  border-radius:10px;
+  cursor:pointer;
+  border:2px solid transparent;
+}
+
+.gallery img:hover{
+  border-color:#f2c400;
+}
+
+
+/* ================= INFO ================= */
+
+.info{
+  background:white;
+  margin-top:25px;
+  padding:28px;
+  border-radius:15px;
+  border:2px solid #f2c400;
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
+
+.info h2{
+  margin-top:0;
+  font-size:30px;
+}
+
+.type{
+  display:inline-block;
+  background:#fff8d6;
+  color:#8a6500;
+  padding:8px 15px;
+  border-radius:20px;
+  border:1px solid #f2c400;
+  font-weight:bold;
+}
+
+.price{
+  color:#b27b00;
+  font-size:26px;
+  font-weight:bold;
+  margin:15px 0;
+}
+
+.location{
+  font-size:18px;
+  line-height:1.8;
+  margin-bottom:20px;
+}
+
+.details-list{
+  line-height:2;
+  font-size:17px;
+}
+
+.description{
+  color:#555;
+  line-height:1.7;
+}
+
+
+/* ================= CONTACT ================= */
+
+.call{
+  display:inline-block;
+  margin-top:10px;
+  background:#f2c400;
+  color:#222;
+  padding:13px 25px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.whatsapp{
+  display:inline-block;
+  margin-top:10px;
+  margin-left:8px;
+  background:#128c7e;
+  color:white;
+  padding:13px 25px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+
+/* ================= LOADING ================= */
+
+.loading,
+.error{
+  background:white;
+  padding:40px;
+  border-radius:15px;
+  text-align:center;
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
+
+  .photo-slider img{
+    height:300px;
+  }
+
+  .gallery{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .gallery img{
+    height:100px;
+  }
+
+  .info h2{
+    font-size:25px;
+  }
+
+  .whatsapp{
+    margin-left:0;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<header>
+
+  <h1 id="headerTitle">
+    🏠 RWANDA HOUSE MARKET
+  </h1>
+
+  <a
+    href="./houses-rent.html"
+    class="back"
+    id="backButton">
+
+    ← Back to Houses for Rent
+
+  </a>
+
+</header>
+
+
+<div class="container">
+
+
+  <!-- ================= MAIN PHOTO ================= -->
+
+  <div
+    id="photoArea"
+    class="photo-slider">
+
+    <button
+      class="arrow left"
+      onclick="previousPhoto()">
+
+      ‹
+
+    </button>
+
+
+    <img
+      id="mainPhoto"
+      src=""
+      alt="House">
+
+
+    <button
+      class="arrow right"
+      onclick="nextPhoto()">
+
+      ›
+
+    </button>
+
+  </div>
+
+
+  <!-- ================= GALLERY ================= -->
+
+  <div
+    id="gallery"
+    class="gallery">
+  </div>
+
+
+  <!-- ================= INFORMATION ================= -->
+
+  <div
+    id="info"
+    class="info">
+
+    <div class="loading">
+      Loading property...
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<script>
+
+/* =========================================
+   SUPABASE
+========================================= */
+
+const SUPABASE_URL =
+  "https://hsmnybmcddtsyooltozw.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================================
+   LANGUAGE
+========================================= */
+
+const language =
+  localStorage.getItem("selectedLanguage") ||
+  "English";
+
+
+const translations = {
+
+  Kinyarwanda: {
+
+    title:
+      "Inzu ikodeshwa",
+
+    header:
+      "🏠 RWANDA HOUSE MARKET",
+
+    back:
+      "← Subira ku mazu akodeshwa",
+
+    type:
+      "Inzu ikodeshwa",
+
+    propertyDetails:
+      "Ibisobanuro by'inzu",
+
+    bedrooms:
+      "Ibyumba byo kuraramo",
+
+    bathrooms:
+      "Ubwiherero",
+
+    parking:
+      "Parking",
+
+    country:
+      "Igihugu",
+
+    province:
+      "Province",
+
+    district:
+      "Akarere",
+
+    sector:
+      "Umurenge",
+
+    description:
+      "Ibisobanuro",
+
+    contact:
+      "📞 Aho mwadusanga",
+
+    call:
+      "📞 Hamagara",
+
+    whatsapp:
+      "💬 WhatsApp"
+
+  },
+
+
+  English: {
+
+    title:
+      "House for Rent",
+
+    header:
+      "🏠 RWANDA HOUSE MARKET",
+
+    back:
+      "← Back to Houses for Rent",
+
+    type:
+      "House for Rent",
+
+    propertyDetails:
+      "Property Details",
+
+    bedrooms:
+      "Bedrooms",
+
+    bathrooms:
+      "Bathrooms",
+
+    parking:
+      "Parking",
+
+    country:
+      "Country",
+
+    province:
+      "Province",
+
+    district:
+      "District",
+
+    sector:
+      "Sector",
+
+    description:
+      "Description",
+
+    contact:
+      "📞 Contact",
+
+    call:
+      "📞 Call Now",
+
+    whatsapp:
+      "💬 WhatsApp"
+
+  },
+
+
+  Français: {
+
+    title:
+      "Maison à louer",
+
+    header:
+      "🏠 RWANDA HOUSE MARKET",
+
+    back:
+      "← Retour aux maisons à louer",
+
+    type:
+      "Maison à louer",
+
+    propertyDetails:
+      "Détails de la propriété",
+
+    bedrooms:
+      "Chambres",
+
+    bathrooms:
+      "Salles de bain",
+
+    parking:
+      "Parking",
+
+    country:
+      "Pays",
+
+    province:
+      "Province",
+
+    district:
+      "District",
+
+    sector:
+      "Secteur",
+
+    description:
+      "Description",
+
+    contact:
+      "📞 Contact",
+
+    call:
+      "📞 Appeler",
+
+    whatsapp:
+      "💬 WhatsApp"
+
+  },
+
+
+  Kiswahili: {
+
+    title:
+      "Nyumba ya Kupangisha",
+
+    header:
+      "🏠 RWANDA HOUSE MARKET",
+
+    back:
+      "← Rudi kwenye Nyumba za Kupangisha",
+
+    type:
+      "Nyumba ya Kupangisha",
+
+    propertyDetails:
+      "Maelezo ya Nyumba",
+
+    bedrooms:
+      "Vyumba vya kulala",
+
+    bathrooms:
+      "Vyumba vya bafu",
+
+    parking:
+      "Maegesho",
+
+    country:
+      "Nchi",
+
+    province:
+      "Mkoa",
+
+    district:
+      "Wilaya",
+
+    sector:
+      "Sekta",
+
+    description:
+      "Maelezo",
+
+    contact:
+      "📞 Mawasiliano",
+
+    call:
+      "📞 Piga Simu",
+
+    whatsapp:
+      "💬 WhatsApp"
+
+  },
+
+
+  "中文": {
+
+    title:
+      "出租房屋",
+
+    header:
+      "🏠 RWANDA HOUSE MARKET",
+
+    back:
+      "← 返回出租房屋",
+
+    type:
+      "出租房屋",
+
+    propertyDetails:
+      "房产详情",
+
+    bedrooms:
+      "卧室",
+
+    bathrooms:
+      "浴室",
+
+    parking:
+      "停车位",
+
+    country:
+      "国家",
+
+    province:
+      "省",
+
+    district:
+      "地区",
+
+    sector:
+      "区",
+
+    description:
+      "描述",
+
+    contact:
+      "📞 联系方式",
+
+    call:
+      "📞 立即致电",
+
+    whatsapp:
+      "💬 WhatsApp"
+
+  }
+
+};
+
+
+const t =
+  translations[language] ||
+  translations.English;
+
+
+/* =========================================
+   APPLY HEADER
+========================================= */
+
+document.title =
+  t.title + " - Rwanda House Market";
+
+document.getElementById(
+  "headerTitle"
+).textContent =
+  t.header;
+
+document.getElementById(
+  "backButton"
+).textContent =
+  t.back;
+
+
+/* =========================================
+   GET PROPERTY ID
+========================================= */
+
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
+
+
+const propertyId =
+  params.get("id");
+
+
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const mainPhoto =
+  document.getElementById("mainPhoto");
+
+const gallery =
+  document.getElementById("gallery");
+
+const info =
+  document.getElementById("info");
+
+
+/* =========================================
+   PHOTOS
+========================================= */
+
+let photos = [];
+
+let currentPhoto = 0;
+
+
+function showPhoto(index){
+
+  if(!photos.length){
+    return;
+  }
+
+  currentPhoto =
+    index;
+
+  if(
+    currentPhoto < 0
+  ){
+    currentPhoto =
+      photos.length - 1;
+  }
+
+  if(
+    currentPhoto >= photos.length
+  ){
+    currentPhoto = 0;
+  }
+
+  mainPhoto.src =
+    photos[currentPhoto];
+
+}
+
+
+function nextPhoto(){
+
+  showPhoto(
+    currentPhoto + 1
+  );
+
+}
+
+
+function previousPhoto(){
+
+  showPhoto(
+    currentPhoto - 1
+  );
+
+}
+
+
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================
+   LOAD PROPERTY
+========================================= */
+
+async function loadProperty(){
+
+  if(!propertyId){
+
+    info.innerHTML = `
+      <div class="error">
+        ❌ Property ID ntabwo yabonetse.
+      </div>
+    `;
+
+    document.getElementById(
+      "photoArea"
+    ).style.display = "none";
+
+    return;
+  }
+
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("properties")
+    .select("*")
+    .eq("id",propertyId)
+    .eq("property_type","rent")
+    .maybeSingle();
+
+
+  if(error){
+
+    console.error(error);
+
+    info.innerHTML = `
+      <div class="error">
+        ❌ ${escapeHtml(error.message)}
+      </div>
+    `;
+
+    return;
+  }
+
+
+  if(!data){
+
+    info.innerHTML = `
+      <div class="error">
+        ❌ Iyi nzu ntiyabonetse cyangwa ntikiriho.
+      </div>
+    `;
+
+    document.getElementById(
+      "photoArea"
+    ).style.display = "none";
+
+    return;
+  }
+
+
+  /* =========================
+     PHOTOS
+  ========================= */
+
+  photos = [];
+
+
+  if(data.main_photo){
+
+    photos.push(
+      data.main_photo
+    );
+
+  }
+
+
+  if(
+    Array.isArray(
+      data.other_photos
+    )
+  ){
+
+    data.other_photos
+      .forEach(photo => {
+
+        if(
+          photo &&
+          !photos.includes(photo)
+        ){
+
+          photos.push(photo);
+
+        }
+
+      });
+
+  }
+
+
+  if(!photos.length){
+
+    photos.push(
+      "https://via.placeholder.com/1200x700?text=No+Photo"
+    );
+
+  }
+
+
+  showPhoto(0);
+
+
+  /* =========================
+     GALLERY
+  ========================= */
+
+  gallery.innerHTML = "";
+
+
+  photos.forEach(
+    (photo,index) => {
+
+      const img =
+        document.createElement("img");
+
+      img.src = photo;
+
+      img.alt =
+        data.title ||
+        "House";
+
+      img.onclick =
+        function(){
+
+          showPhoto(index);
+
+        };
+
+      gallery.appendChild(img);
+
+    }
+  );
+
+
+  /* =========================
+     INFO
+  ========================= */
+
+  info.innerHTML = `
+
+    <h2>
+      ${escapeHtml(
+        data.title ||
+        t.title
+      )}
+    </h2>
+
+
+    <div class="type">
+      ${escapeHtml(t.type)}
+    </div>
+
+
+    <div class="price">
+
+      ${Number(
+        data.price || 0
+      ).toLocaleString()} RWF
+
+    </div>
+
+
+    <div class="location">
+
+      🌍
+      <strong>
+        ${escapeHtml(t.country)}:
+      </strong>
+      ${escapeHtml(data.country || "")}
+
+      <br>
+
+      🗺️
+      <strong>
+        ${escapeHtml(t.province)}:
+      </strong>
+      ${escapeHtml(data.province || "")}
+
+      <br>
+
+      📍
+      <strong>
+        ${escapeHtml(t.district)}:
+      </strong>
+      ${escapeHtml(data.district || "")}
+
+      <br>
+
+      📌
+      <strong>
+        ${escapeHtml(t.sector)}:
+      </strong>
+      ${escapeHtml(data.sector || "")}
+
+    </div>
+
+
+    <h3>
+      ${escapeHtml(t.propertyDetails)}
+    </h3>
+
+
+    <div class="details-list">
+
+      🛏️
+      ${escapeHtml(t.bedrooms)}:
+      ${data.bedrooms ?? 0}
+
+      <br>
+
+      🚿
+      ${escapeHtml(t.bathrooms)}:
+      ${data.bathrooms ?? 0}
+
+      <br>
+
+      🚗
+      ${escapeHtml(t.parking)}:
+      ${data.parking ?? 0}
+
+    </div>
+
+
+    <h3>
+      ${escapeHtml(t.description)}
+    </h3>
+
+
+    <p class="description">
+
+      ${escapeHtml(
+        data.description ||
+        ""
+      )}
+
+    </p>
+
+
+    <h3>
+      ${escapeHtml(t.contact)}
+    </h3>
+
+
+    <p>
+      <strong>
+        +250 799 645 553
+      </strong>
+    </p>
+
+
+    <a
+      href="tel:+250799645553"
+      class="call">
+
+      ${escapeHtml(t.call)}
+
+    </a>
+
+
+    <a
+      href="https://wa.me/250799645553"
+      target="_blank"
+      class="whatsapp">
+
+      ${escapeHtml(t.whatsapp)}
+
+    </a>
+
+  `;
+
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+loadProperty();
+
+</script>
+
+</body>
+</html>
