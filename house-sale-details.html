@@ -55,249 +55,73 @@
     .container {
       max-width: 1100px;
       margin: auto;
-      padding: 25px 20px 50px;
+      padding: 30px 20px 60px;
     }
 
-    /* ================= PHOTO ================= */
+    /* ================= EMPTY ================= */
 
-    .photo-slider {
-      position: relative;
+    .empty {
+      min-height: 400px;
       background: #ffffff;
-      padding: 12px;
-      border-radius: 15px;
       border: 2px solid #f4b400;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-    }
-
-    .photo-slider img {
-      width: 100%;
-      height: 520px;
-      object-fit: cover;
-      border-radius: 10px;
-      display: block;
-    }
-
-    /* ================= ARROWS ================= */
-
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: #f4b400;
-      color: #222222;
-      border: none;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 5;
-    }
-
-    .arrow:hover {
-      background: #ffd45a;
-    }
-
-    .left {
-      left: 25px;
-    }
-
-    .right {
-      right: 25px;
-    }
-
-    /* ================= GALLERY ================= */
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 15px;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 10px;
-      cursor: pointer;
-      border: 2px solid transparent;
-    }
-
-    .gallery img:hover {
-      border-color: #f4b400;
-      transform: scale(1.02);
-    }
-
-    /* ================= INFO ================= */
-
-    .info {
-      background: #ffffff;
-      margin-top: 25px;
-      padding: 28px;
       border-radius: 15px;
-      border: 2px solid #f4b400;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-    }
+      box-shadow: 0 3px 12px rgba(0,0,0,0.10);
 
-    .info h2 {
-      font-size: 30px;
-      margin-top: 0;
-      color: #222222;
-    }
-
-    /* ================= TYPE ================= */
-
-    .type {
-      display: inline-block;
-      background: #fff8d6;
-      color: #8a6500;
-      padding: 8px 15px;
-      border-radius: 20px;
-      border: 1px solid #f4b400;
-      font-weight: bold;
-    }
-
-    /* ================= PRICE ================= */
-
-    .price {
-      font-size: 25px;
-      font-weight: bold;
-      margin: 15px 0;
-      color: #b27b00;
-    }
-
-    /* ================= LOCATION ================= */
-
-    .location {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-
-    /* ================= DETAILS ================= */
-
-    .details-list {
-      line-height: 2;
-      font-size: 17px;
-    }
-
-    .description {
-      color: #555555;
-      line-height: 1.7;
-    }
-
-    /* ================= ACTION BUTTONS ================= */
-
-    .action-buttons {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 25px;
-    }
-
-    .action-button {
-      padding: 13px 20px;
-      border-radius: 8px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .video {
-      background: #d60000;
-    }
-
-    .location-button {
-      background: #f4b400;
-      color: #222222;
-    }
-
-    .location-button:hover {
-      background: #ffd45a;
-    }
-
-    .whatsapp {
-      background: #128c7e;
-    }
-
-    /* ================= CALL ================= */
-
-    .call {
-      display: inline-block;
-      margin-top: 15px;
-      background: #f4b400;
-      color: #222222;
-      padding: 13px 25px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .call:hover {
-      background: #ffd45a;
-    }
-
-    /* ================= SOCIAL ================= */
-
-    .social {
-      margin-top: 30px;
-      padding-top: 25px;
-      border-top: 2px solid #f4b400;
-      text-align: center;
-    }
-
-    .social-links {
-      display: flex;
+      align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 15px;
+
+      text-align: center;
+      padding: 30px;
     }
 
-    .social-links a {
-      padding: 12px 18px;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
+    .empty-content {
+      max-width: 600px;
     }
 
-    .youtube {
-      background: #ff0000;
+    .empty-icon {
+      font-size: 65px;
+      margin-bottom: 15px;
     }
 
-    .facebook {
-      background: #1877f2;
+    .empty h2 {
+      margin: 0 0 12px;
+      font-size: 28px;
     }
 
-    .instagram {
-      background: #c13584;
+    .empty p {
+      margin: 0;
+      color: #666666;
+      font-size: 17px;
+      line-height: 1.6;
     }
 
     /* ================= MOBILE ================= */
 
     @media (max-width: 700px) {
 
-      .photo-slider img {
-        height: 300px;
+      header {
+        padding: 20px 12px;
       }
 
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
+      header h1 {
+        font-size: 24px;
       }
 
-      .gallery img {
-        height: 100px;
+      .container {
+        padding: 20px 15px 50px;
       }
 
-      .info h2 {
-        font-size: 25px;
+      .empty {
+        min-height: 300px;
       }
 
-      .action-button {
-        width: 100%;
-        text-align: center;
+      .empty-icon {
+        font-size: 50px;
+      }
+
+      .empty h2 {
+        font-size: 23px;
       }
 
     }
@@ -306,6 +130,8 @@
 </head>
 
 <body>
+
+  <!-- ================= HEADER ================= -->
 
   <header>
 
@@ -323,199 +149,25 @@
   </header>
 
 
+  <!-- ================= MAIN ================= -->
+
   <div class="container">
 
-    <!-- MAIN PHOTO -->
+    <div class="empty">
 
-    <div class="photo-slider">
+      <div class="empty-content">
 
-      <button
-        class="arrow left"
-        onclick="previousPhoto()">
-        ‹
-      </button>
-
-      <img
-        id="mainPhoto"
-        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=90"
-        alt="House for Sale">
-
-      <button
-        class="arrow right"
-        onclick="nextPhoto()">
-        ›
-      </button>
-
-    </div>
-
-
-    <!-- PHOTO GALLERY -->
-
-    <div class="gallery">
-
-      <img
-        onclick="showPhoto(0)"
-        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=85"
-        alt="House">
-
-      <img
-        onclick="showPhoto(1)"
-        src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=85"
-        alt="House">
-
-      <img
-        onclick="showPhoto(2)"
-        src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=85"
-        alt="House">
-
-      <img
-        onclick="showPhoto(3)"
-        src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85"
-        alt="House">
-
-    </div>
-
-
-    <!-- ACTION BUTTONS -->
-
-    <div class="action-buttons">
-
-      <a
-        href="https://www.youtube.com/channel/UCGWVPGW9WXJZqWiB7oDHp3Q"
-        target="_blank"
-        class="action-button video"
-        id="videoButton">
-        🎥 View Video
-      </a>
-
-      <a
-        href="https://www.google.com/maps/search/?api=1&query=Kigali,Rwanda"
-        target="_blank"
-        class="action-button location-button"
-        id="locationButton">
-        📍 View Location
-      </a>
-
-      <a
-        href="https://wa.me/250799645553"
-        target="_blank"
-        class="action-button whatsapp"
-        id="whatsappButton">
-        💬 WhatsApp
-      </a>
-
-    </div>
-
-
-    <!-- HOUSE INFORMATION -->
-
-    <div class="info">
-
-      <h2 id="houseTitle">
-        Modern Family House
-      </h2>
-
-      <div class="type" id="propertyType">
-        House for Sale
-      </div>
-
-      <div class="price">
-        85,000,000 RWF
-      </div>
-
-      <div class="location">
-        📍 <span id="locationText">Kigali, Rwanda</span>
-      </div>
-
-
-      <h3 id="propertyDetailsTitle">
-        Property Details
-      </h3>
-
-      <div class="details-list">
-
-        🛏️ <span id="bedrooms">Bedrooms: 4</span>
-        <br>
-
-        🚿 <span id="bathrooms">Bathrooms: 3</span>
-        <br>
-
-        🚗 <span id="parking">Parking: Available</span>
-        <br>
-
-        🏠 <span id="propertyStyle">Property Type: Etaje</span>
-
-      </div>
-
-
-      <h3 id="descriptionTitle">
-        Description
-      </h3>
-
-      <p
-        class="description"
-        id="descriptionText">
-
-        Beautiful modern family house available for sale
-        in Kigali, Rwanda. The property has comfortable
-        rooms, parking space and parking facilities.
-
-        Contact Rwanda House Market for more information
-        and to arrange a visit.
-
-      </p>
-
-
-      <!-- CONTACT -->
-
-      <h3 id="contactTitle">
-        📞 Contact
-      </h3>
-
-      <p>
-        <strong>+250 799 645 553</strong>
-      </p>
-
-      <a
-        href="tel:+250799645553"
-        class="call"
-        id="callButton">
-        📞 Call Now
-      </a>
-
-
-      <!-- SOCIAL MEDIA -->
-
-      <div class="social">
-
-        <h3 id="followTitle">
-          🌐 Follow Rwanda House Market
-        </h3>
-
-        <div class="social-links">
-
-          <a
-            href="https://www.youtube.com/channel/UCGWVPGW9WXJZqWiB7oDHp3Q"
-            target="_blank"
-            class="youtube">
-            ▶ YouTube
-          </a>
-
-          <a
-            href="https://www.facebook.com/rwandahousemarket"
-            target="_blank"
-            class="facebook">
-            f Facebook
-          </a>
-
-          <a
-            href="https://www.instagram.com/rwandahousemarket/"
-            target="_blank"
-            class="instagram">
-            ◎ Instagram
-          </a>
-
+        <div class="empty-icon">
+          🏠
         </div>
+
+        <h2 id="emptyTitle">
+          No property available
+        </h2>
+
+        <p id="emptyDescription">
+          There is currently no property posted here.
+        </p>
 
       </div>
 
@@ -524,67 +176,9 @@
   </div>
 
 
+  <!-- ================= LANGUAGE ================= -->
+
   <script>
-
-    /* =========================
-       PHOTO SLIDER
-    ========================= */
-
-    const photos = [
-
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=90",
-
-      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=90",
-
-      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1600&q=90",
-
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=90"
-
-    ];
-
-
-    let currentPhoto = 0;
-
-
-    function showPhoto(index) {
-
-      currentPhoto = index;
-
-      document.getElementById("mainPhoto").src =
-        photos[currentPhoto];
-
-    }
-
-
-    function nextPhoto() {
-
-      currentPhoto++;
-
-      if (currentPhoto >= photos.length) {
-        currentPhoto = 0;
-      }
-
-      showPhoto(currentPhoto);
-
-    }
-
-
-    function previousPhoto() {
-
-      currentPhoto--;
-
-      if (currentPhoto < 0) {
-        currentPhoto = photos.length - 1;
-      }
-
-      showPhoto(currentPhoto);
-
-    }
-
-
-    /* =========================
-       LANGUAGE
-    ========================= */
 
     const language =
       localStorage.getItem("selectedLanguage") || "English";
@@ -603,53 +197,11 @@
         back:
           "← Subira ku mazu agurishwa",
 
-        video:
-          "🎥 Reba Video",
+        emptyTitle:
+          "Nta mutungo uhari",
 
-        locationButton:
-          "📍 Reba Aho Iherereye",
-
-        whatsapp:
-          "💬 WhatsApp",
-
-        houseTitle:
-          "Inzu nziza y'umuryango",
-
-        type:
-          "Inzu igurishwa",
-
-        location:
-          "Kigali, Rwanda",
-
-        propertyDetails:
-          "Ibisobanuro by'umutungo",
-
-        bedrooms:
-          "Ibyumba byo kuraramo: 4",
-
-        bathrooms:
-          "Ubwiherero: 3",
-
-        parking:
-          "Parking: Irahari",
-
-        propertyStyle:
-          "Ubwoko bw'inzu: Etaje",
-
-        descriptionTitle:
-          "Ibisobanuro",
-
-        description:
-          "Inzu nziza igezweho y'umuryango iri kugurishwa i Kigali, Rwanda. Ifite ibyumba byiza, parking n'ibindi byorohereza abayituramo. Menyesha Rwanda House Market kugira ngo ubone andi makuru cyangwa utegure igihe cyo kuyisura.",
-
-        contact:
-          "📞 Aho mwadusanga",
-
-        call:
-          "📞 Hamagara Ubu",
-
-        follow:
-          "🌐 Kurikira Rwanda House Market"
+        emptyDescription:
+          "Kugeza ubu nta mutungo washyizwe kuri iyi page."
 
       },
 
@@ -665,53 +217,11 @@
         back:
           "← Back to Houses for Sale",
 
-        video:
-          "🎥 View Video",
+        emptyTitle:
+          "No property available",
 
-        locationButton:
-          "📍 View Location",
-
-        whatsapp:
-          "💬 WhatsApp",
-
-        houseTitle:
-          "Modern Family House",
-
-        type:
-          "House for Sale",
-
-        location:
-          "Kigali, Rwanda",
-
-        propertyDetails:
-          "Property Details",
-
-        bedrooms:
-          "Bedrooms: 4",
-
-        bathrooms:
-          "Bathrooms: 3",
-
-        parking:
-          "Parking: Available",
-
-        propertyStyle:
-          "Property Type: Etaje",
-
-        descriptionTitle:
-          "Description",
-
-        description:
-          "Beautiful modern family house available for sale in Kigali, Rwanda. The property has comfortable rooms, parking space and parking facilities. Contact Rwanda House Market for more information and to arrange a visit.",
-
-        contact:
-          "📞 Contact",
-
-        call:
-          "📞 Call Now",
-
-        follow:
-          "🌐 Follow Rwanda House Market"
+        emptyDescription:
+          "There is currently no property posted here."
 
       },
 
@@ -727,53 +237,11 @@
         back:
           "← Retour aux maisons à vendre",
 
-        video:
-          "🎥 Voir la vidéo",
+        emptyTitle:
+          "Aucune propriété disponible",
 
-        locationButton:
-          "📍 Voir l'emplacement",
-
-        whatsapp:
-          "💬 WhatsApp",
-
-        houseTitle:
-          "Maison familiale moderne",
-
-        type:
-          "Maison à vendre",
-
-        location:
-          "Kigali, Rwanda",
-
-        propertyDetails:
-          "Détails de la propriété",
-
-        bedrooms:
-          "Chambres: 4",
-
-        bathrooms:
-          "Salles de bain: 3",
-
-        parking:
-          "Parking: Disponible",
-
-        propertyStyle:
-          "Type de propriété: Maison à étages",
-
-        descriptionTitle:
-          "Description",
-
-        description:
-          "Belle maison familiale moderne disponible à la vente à Kigali, Rwanda. La propriété dispose de chambres confortables et d'un espace de stationnement. Contactez Rwanda House Market pour plus d'informations et pour organiser une visite.",
-
-        contact:
-          "📞 Contact",
-
-        call:
-          "📞 Appeler maintenant",
-
-        follow:
-          "🌐 Suivez Rwanda House Market"
+        emptyDescription:
+          "Aucune propriété n'est actuellement publiée ici."
 
       },
 
@@ -789,53 +257,11 @@
         back:
           "← Rudi kwenye Nyumba za Kuuza",
 
-        video:
-          "🎥 Tazama Video",
+        emptyTitle:
+          "Hakuna mali inayopatikana",
 
-        locationButton:
-          "📍 Tazama Mahali",
-
-        whatsapp:
-          "💬 WhatsApp",
-
-        houseTitle:
-          "Nyumba ya Kisasa ya Familia",
-
-        type:
-          "Nyumba ya Kuuza",
-
-        location:
-          "Kigali, Rwanda",
-
-        propertyDetails:
-          "Maelezo ya Mali",
-
-        bedrooms:
-          "Vyumba vya kulala: 4",
-
-        bathrooms:
-          "Vyumba vya bafu: 3",
-
-        parking:
-          "Maegesho: Yanapatikana",
-
-        propertyStyle:
-          "Aina ya nyumba: Ghorofa",
-
-        descriptionTitle:
-          "Maelezo",
-
-        description:
-          "Nyumba nzuri ya kisasa ya familia inauzwa Kigali, Rwanda. Mali hii ina vyumba vizuri na nafasi ya maegesho. Wasiliana na Rwanda House Market kwa maelezo zaidi na kupanga muda wa kutembelea.",
-
-        contact:
-          "📞 Mawasiliano",
-
-        call:
-          "📞 Piga Simu Sasa",
-
-        follow:
-          "🌐 Fuata Rwanda House Market"
+        emptyDescription:
+          "Kwa sasa hakuna mali iliyowekwa hapa."
 
       },
 
@@ -851,62 +277,16 @@
         back:
           "← 返回出售房屋",
 
-        video:
-          "🎥 查看视频",
+        emptyTitle:
+          "暂无房产",
 
-        locationButton:
-          "📍 查看位置",
-
-        whatsapp:
-          "💬 WhatsApp",
-
-        houseTitle:
-          "现代家庭住宅",
-
-        type:
-          "出售房屋",
-
-        location:
-          "基加利，卢旺达",
-
-        propertyDetails:
-          "房产详情",
-
-        bedrooms:
-          "卧室：4",
-
-        bathrooms:
-          "浴室：3",
-
-        parking:
-          "停车位：有",
-
-        propertyStyle:
-          "房屋类型：多层住宅",
-
-        descriptionTitle:
-          "描述",
-
-        description:
-          "这是一套位于卢旺达基加利的漂亮现代家庭住宅，目前出售。房屋拥有舒适的房间和停车空间。如需更多信息或预约看房，请联系 Rwanda House Market。",
-
-        contact:
-          "📞 联系方式",
-
-        call:
-          "📞 立即致电",
-
-        follow:
-          "🌐 关注 Rwanda House Market"
+        emptyDescription:
+          "目前这里没有发布任何房产。"
 
       }
 
     };
 
-
-    /* =========================
-       APPLY LANGUAGE
-    ========================= */
 
     const t =
       translations[language] ||
@@ -917,78 +297,37 @@
       t.browserTitle;
 
 
-    document.getElementById("headerTitle").textContent =
+    document.getElementById(
+      "headerTitle"
+    ).textContent =
       t.header;
 
 
-    document.getElementById("backButton").textContent =
+    document.getElementById(
+      "backButton"
+    ).textContent =
       t.back;
 
 
-    document.getElementById("videoButton").textContent =
-      t.video;
+    document.getElementById(
+      "emptyTitle"
+    ).textContent =
+      t.emptyTitle;
 
 
-    document.getElementById("locationButton").textContent =
-      t.locationButton;
+    document.getElementById(
+      "emptyDescription"
+    ).textContent =
+      t.emptyDescription;
 
 
-    document.getElementById("whatsappButton").textContent =
-      t.whatsapp;
-
-
-    document.getElementById("houseTitle").textContent =
-      t.houseTitle;
-
-
-    document.getElementById("propertyType").textContent =
-      t.type;
-
-
-    document.getElementById("locationText").textContent =
-      t.location;
-
-
-    document.getElementById("propertyDetailsTitle").textContent =
-      t.propertyDetails;
-
-
-    document.getElementById("bedrooms").textContent =
-      t.bedrooms;
-
-
-    document.getElementById("bathrooms").textContent =
-      t.bathrooms;
-
-
-    document.getElementById("parking").textContent =
-      t.parking;
-
-
-    document.getElementById("propertyStyle").textContent =
-      t.propertyStyle;
-
-
-    document.getElementById("descriptionTitle").textContent =
-      t.descriptionTitle;
-
-
-    document.getElementById("descriptionText").textContent =
-      t.description;
-
-
-    document.getElementById("contactTitle").textContent =
-      t.contact;
-
-
-    document.getElementById("callButton").textContent =
-      t.call;
-
-
-    document.getElementById("followTitle").textContent =
-      t.follow;
+    localStorage.setItem(
+      "selectedLanguage",
+      language
+    );
 
   </script>
 
 </body>
+
 </html>
