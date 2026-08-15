@@ -53,7 +53,7 @@ body{
 }
 
 .container{
-  max-width:1200px;
+  max-width:1250px;
   margin:auto;
   padding:25px 18px 60px;
 }
@@ -72,9 +72,9 @@ h1,h2,h3{
 }
 
 .tabs{
-  display:flex;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
   gap:10px;
-  flex-wrap:wrap;
   margin-bottom:20px;
 }
 
@@ -82,14 +82,15 @@ h1,h2,h3{
   background:#d4a017;
   color:white;
   border:0;
-  padding:12px 18px;
+  padding:14px 12px;
   border-radius:8px;
   font-weight:bold;
   cursor:pointer;
+  font-size:15px;
 }
 
 .tab.active{
-  background:#a87800;
+  background:#8f6700;
 }
 
 .section{
@@ -153,6 +154,16 @@ textarea{
 }
 
 .delete{
+  background:#c62828;
+  color:white;
+}
+
+.approve{
+  background:#2e7d32;
+  color:white;
+}
+
+.reject{
   background:#c62828;
   color:white;
 }
@@ -258,16 +269,75 @@ textarea{
 
 .status{
   display:inline-block;
-  background:#fff3c4;
-  color:#8b6800;
   padding:5px 9px;
   border-radius:6px;
   font-size:13px;
   font-weight:bold;
 }
 
+.status-published{
+  background:#e5f7e5;
+  color:#267126;
+}
+
+.status-pending{
+  background:#fff3c4;
+  color:#8b6800;
+}
+
+.status-rejected{
+  background:#ffe2e2;
+  color:#a00000;
+}
+
+.request{
+  background:white;
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:15px;
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
+}
+
+.request-title{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+.request-info{
+  color:#555;
+  line-height:1.7;
+}
+
+.request-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.request-actions button{
+  margin-top:0;
+}
+
+.badge{
+  display:inline-block;
+  min-width:25px;
+  text-align:center;
+  padding:4px 8px;
+  background:#c62828;
+  color:white;
+  border-radius:20px;
+  font-size:12px;
+  margin-left:5px;
+}
+
 @media(max-width:900px){
   .properties{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .tabs{
     grid-template-columns:repeat(2,1fr);
   }
 }
@@ -278,7 +348,8 @@ textarea{
   }
 
   .grid,
-  .properties{
+  .properties,
+  .tabs{
     grid-template-columns:1fr;
   }
 
@@ -304,42 +375,67 @@ textarea{
 
 </nav>
 
+
 <div class="container">
 
   <div class="page-title">
+
     <h1>Admin Dashboard</h1>
-    <p>Manage Rwanda House Market properties.</p>
+
+    <p>
+      Manage posts, add properties, review requests and approve property submissions.
+    </p>
+
   </div>
+
+
+  <!-- ================= TABS ================= -->
 
   <div class="tabs">
 
     <button
       class="tab active"
-      onclick="showSection('propertiesSection',this)">
-      🏠 Properties
+      onclick="showSection('postsSection',this)">
+      📋 Posts
     </button>
 
     <button
       class="tab"
-      onclick="showSection('newPostSection',this)">
-      ➕ New Post
+      onclick="showSection('addPostSection',this)">
+      ➕ Add Post
+    </button>
+
+    <button
+      class="tab"
+      onclick="showSection('requestedSection',this)">
+      💬 Requested
+      <span id="requestBadge" class="badge">0</span>
+    </button>
+
+    <button
+      class="tab"
+      onclick="showSection('approvalSection',this)">
+      ✅ Approvals
     </button>
 
   </div>
 
 
-  <!-- ================= PROPERTIES ================= -->
+  <!-- =====================================================
+       POSTS
+  ====================================================== -->
 
   <section
-    id="propertiesSection"
+    id="postsSection"
     class="section active">
 
     <div class="card">
 
-      <h2>🏠 All Properties</h2>
+      <h2>📋 Posts</h2>
 
       <p>
-        Posts zose ukoresheje New Post zizagaragara hano.
+        Aha ni ho ubona posts zose ziri muri
+        <strong>property_posts</strong>.
       </p>
 
     </div>
@@ -349,7 +445,7 @@ textarea{
       class="properties">
 
       <div class="empty">
-        Loading properties...
+        Loading posts...
       </div>
 
     </div>
@@ -357,15 +453,17 @@ textarea{
   </section>
 
 
-  <!-- ================= NEW POST ================= -->
+  <!-- =====================================================
+       ADD POST
+  ====================================================== -->
 
   <section
-    id="newPostSection"
+    id="addPostSection"
     class="section">
 
     <div class="card">
 
-      <h2>➕ New Property Post</h2>
+      <h2>➕ Add Post</h2>
 
       <form id="propertyForm">
 
@@ -381,7 +479,9 @@ textarea{
 
         <label>Property Type</label>
 
-        <select id="propertyType" required>
+        <select
+          id="propertyType"
+          required>
 
           <option value="">
             Choose property type
@@ -404,7 +504,9 @@ textarea{
 
         <label>Transaction Type</label>
 
-        <select id="transactionType" required>
+        <select
+          id="transactionType"
+          required>
 
           <option value="">
             Choose transaction
@@ -447,7 +549,6 @@ textarea{
 
           </div>
 
-
           <div>
 
             <label>Province</label>
@@ -461,7 +562,6 @@ textarea{
 
           </div>
 
-
           <div>
 
             <label>District</label>
@@ -474,7 +574,6 @@ textarea{
             >
 
           </div>
-
 
           <div>
 
@@ -507,7 +606,6 @@ textarea{
 
           </div>
 
-
           <div>
 
             <label>Bathrooms</label>
@@ -520,7 +618,6 @@ textarea{
             >
 
           </div>
-
 
           <div>
 
@@ -594,7 +691,9 @@ textarea{
           type="submit"
           id="postButton"
           class="button primary">
+
           Post Property
+
         </button>
 
 
@@ -609,14 +708,74 @@ textarea{
 
   </section>
 
+
+  <!-- =====================================================
+       REQUESTED
+  ====================================================== -->
+
+  <section
+    id="requestedSection"
+    class="section">
+
+    <div class="card">
+
+      <h2>💬 Requested</h2>
+
+      <p>
+        Aha ni ho uzajya ubona messages abantu banditse muri
+        <strong>Request Property</strong>.
+      </p>
+
+    </div>
+
+    <div id="requestsList">
+
+      <div class="empty">
+        Loading requests...
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       APPROVALS
+  ====================================================== -->
+
+  <section
+    id="approvalSection"
+    class="section">
+
+    <div class="card">
+
+      <h2>✅ Approvals</h2>
+
+      <p>
+        Aha ni ho uzajya wemeza cyangwa uhakane abantu
+        basabye gushyira property yabo kuri website.
+      </p>
+
+    </div>
+
+    <div id="approvalsList">
+
+      <div class="empty">
+        Loading approvals...
+      </div>
+
+    </div>
+
+  </section>
+
 </div>
 
 
 <script>
 
-/* =========================================
+/* =========================================================
    SUPABASE
-========================================= */
+========================================================= */
 
 const SUPABASE_URL =
   "https://hsmnybmcddtsyooltozw.supabase.co";
@@ -631,9 +790,9 @@ const supabaseClient =
   );
 
 
-/* =========================================
+/* =========================================================
    ELEMENTS
-========================================= */
+========================================================= */
 
 const propertiesElement =
   document.getElementById("properties");
@@ -650,10 +809,19 @@ const postMessage =
 const photoPreview =
   document.getElementById("photoPreview");
 
+const requestsList =
+  document.getElementById("requestsList");
 
-/* =========================================
+const approvalsList =
+  document.getElementById("approvalsList");
+
+const requestBadge =
+  document.getElementById("requestBadge");
+
+
+/* =========================================================
    ADMIN LOGIN
-========================================= */
+========================================================= */
 
 async function checkAdmin(){
 
@@ -678,9 +846,9 @@ async function checkAdmin(){
 }
 
 
-/* =========================================
-   SECTION
-========================================= */
+/* =========================================================
+   SECTION SWITCH
+========================================================= */
 
 function showSection(id,button){
 
@@ -710,18 +878,32 @@ function showSection(id,button){
   button.classList.add("active");
 
 
-  if(id === "propertiesSection"){
+  if(id === "postsSection"){
 
     loadProperties();
+
+  }
+
+
+  if(id === "requestedSection"){
+
+    loadRequests();
+
+  }
+
+
+  if(id === "approvalSection"){
+
+    loadApprovals();
 
   }
 
 }
 
 
-/* =========================================
+/* =========================================================
    MESSAGE
-========================================= */
+========================================================= */
 
 function showMessage(text,type){
 
@@ -734,9 +916,25 @@ function showMessage(text,type){
 }
 
 
-/* =========================================
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
    PHOTO PREVIEW
-========================================= */
+========================================================= */
 
 document
   .getElementById("otherPhotos")
@@ -764,9 +962,9 @@ document
   );
 
 
-/* =========================================
+/* =========================================================
    UPLOAD IMAGE
-========================================= */
+========================================================= */
 
 async function uploadImage(file){
 
@@ -781,7 +979,10 @@ async function uploadImage(file){
 
   const safeName =
     file.name
-      .replace(/[^a-zA-Z0-9._-]/g,"-");
+      .replace(
+        /[^a-zA-Z0-9._-]/g,
+        "-"
+      );
 
 
   const fileName =
@@ -836,9 +1037,9 @@ async function uploadImage(file){
 }
 
 
-/* =========================================
-   CREATE PROPERTY
-========================================= */
+/* =========================================================
+   ADD POST
+========================================================= */
 
 propertyForm.addEventListener(
   "submit",
@@ -985,24 +1186,7 @@ propertyForm.addEventListener(
       }
 
 
-      if(
-        propertyType === "plot"
-      ){
-
-        /*
-          Plot nta bedrooms,
-          bathrooms cyangwa
-          parking bisabwa.
-          Ariko columns zizakomeza
-          kubaho muri table.
-        */
-
-      }
-
-
-      /* ==========================
-         MAIN PHOTO
-      ========================== */
+      /* MAIN PHOTO */
 
       const mainPhotoUrl =
         await uploadImage(
@@ -1010,9 +1194,7 @@ propertyForm.addEventListener(
         );
 
 
-      /* ==========================
-         OTHER PHOTOS
-      ========================== */
+      /* OTHER PHOTOS */
 
       const otherPhotoUrls = [];
 
@@ -1030,15 +1212,7 @@ propertyForm.addEventListener(
       }
 
 
-      /* ==========================
-         POSTING FEE
-      ========================== */
-
-      /*
-        Admin post fee:
-        <= 50,000,000 = 0.5%
-        >  50,000,000 = 1%
-      */
+      /* POSTING FEE */
 
       let postingFee = 0;
 
@@ -1057,9 +1231,7 @@ propertyForm.addEventListener(
       }
 
 
-      /* ==========================
-         INSERT INTO NEW TABLE
-      ========================== */
+      /* INSERT INTO property_posts */
 
       const {
         error
@@ -1177,15 +1349,15 @@ propertyForm.addEventListener(
 );
 
 
-/* =========================================
-   LOAD PROPERTIES
-========================================= */
+/* =========================================================
+   LOAD POSTS
+========================================================= */
 
 async function loadProperties(){
 
   propertiesElement.innerHTML =
     `<div class="empty">
-      Loading properties...
+      Loading posts...
     </div>`;
 
 
@@ -1206,8 +1378,6 @@ async function loadProperties(){
 
   if(error){
 
-    console.error(error);
-
     propertiesElement.innerHTML =
       `<div class="empty">
         ❌ ${escapeHtml(error.message)}
@@ -1222,7 +1392,7 @@ async function loadProperties(){
 
     propertiesElement.innerHTML =
       `<div class="empty">
-        Nta property iraboneka.
+        Nta post iraboneka.
       </div>`;
 
     return;
@@ -1257,6 +1427,11 @@ async function loadProperties(){
       "https://via.placeholder.com/600x400?text=No+Photo";
 
 
+    const status =
+      property.status ||
+      "pending";
+
+
     card.innerHTML = `
 
       <img
@@ -1267,12 +1442,10 @@ async function loadProperties(){
       <div class="property-body">
 
         <div class="property-title">
-
           ${escapeHtml(
             property.title ||
             "Property"
           )}
-
         </div>
 
 
@@ -1290,18 +1463,10 @@ async function loadProperties(){
         <div class="location">
 
           📍
-          ${escapeHtml(
-            property.country || ""
-          )},
-          ${escapeHtml(
-            property.province || ""
-          )},
-          ${escapeHtml(
-            property.district || ""
-          )},
-          ${escapeHtml(
-            property.sector || ""
-          )}
+          ${escapeHtml(property.country || "")},
+          ${escapeHtml(property.province || "")},
+          ${escapeHtml(property.district || "")},
+          ${escapeHtml(property.sector || "")}
 
           <br><br>
 
@@ -1313,11 +1478,10 @@ async function loadProperties(){
           <br>
 
           📌 Status:
-          <span class="status">
 
-            ${escapeHtml(
-              property.status || "pending"
-            )}
+          <span class="status status-${escapeHtml(status)}">
+
+            ${escapeHtml(status)}
 
           </span>
 
@@ -1365,18 +1529,16 @@ async function loadProperties(){
     `;
 
 
-    propertiesElement.appendChild(
-      card
-    );
+    propertiesElement.appendChild(card);
 
   });
 
 }
 
 
-/* =========================================
-   VIEW PROPERTY
-========================================= */
+/* =========================================================
+   VIEW POST
+========================================================= */
 
 async function viewProperty(id){
 
@@ -1414,7 +1576,7 @@ async function viewProperty(id){
   }
 
 
-  const message =
+  alert(
 
     "PROPERTY DETAILS\n\n" +
 
@@ -1427,7 +1589,7 @@ async function viewProperty(id){
     "\nPhone: " +
     (data.phone || "") +
 
-    "\n\nProperty Type: " +
+    "\n\nType: " +
     (data.property_type || "") +
 
     "\nTransaction: " +
@@ -1454,37 +1616,23 @@ async function viewProperty(id){
     " / " +
     (data.sector || "") +
 
-    "\n\nBedrooms: " +
-    (data.bedrooms ?? 0) +
-
-    "\nBathrooms: " +
-    (data.bathrooms ?? 0) +
-
-    "\nParking: " +
-    (data.parking ?? 0) +
-
     "\n\nDescription:\n" +
-    (data.description || "");
+    (data.description || "")
 
-
-  alert(message);
+  );
 
 }
 
 
-/* =========================================
-   DELETE PROPERTY
-========================================= */
+/* =========================================================
+   DELETE POST
+========================================================= */
 
 async function deleteProperty(id){
 
-  const confirmed =
-    confirm(
-      "Urashaka koko gusiba iyi property?"
-    );
-
-
-  if(!confirmed){
+  if(!confirm(
+    "Urashaka koko gusiba iyi post?"
+  )){
 
     return;
 
@@ -1513,7 +1661,7 @@ async function deleteProperty(id){
 
 
   alert(
-    "✅ Property yasibwe neza."
+    "✅ Post yasibwe neza."
   );
 
 
@@ -1522,25 +1670,488 @@ async function deleteProperty(id){
 }
 
 
-/* =========================================
-   ESCAPE HTML
-========================================= */
+/* =========================================================
+   LOAD REQUESTS
+=========================================================
 
-function escapeHtml(value){
+   IMPORTANT:
+   Table y'ubutumwa bw'abantu:
+   property_requests
 
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+*/
+
+async function loadRequests(){
+
+  requestsList.innerHTML =
+    `<div class="empty">
+      Loading requests...
+    </div>`;
+
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("property_requests")
+    .select("*")
+    .order(
+      "created_at",
+      {
+        ascending:false
+      }
+    );
+
+
+  if(error){
+
+    requestsList.innerHTML =
+      `<div class="empty">
+        ❌ ${escapeHtml(error.message)}
+      </div>`;
+
+    requestBadge.textContent =
+      "0";
+
+    return;
+
+  }
+
+
+  if(!data || data.length === 0){
+
+    requestsList.innerHTML =
+      `<div class="empty">
+        Nta request iraboneka.
+      </div>`;
+
+    requestBadge.textContent =
+      "0";
+
+    return;
+
+  }
+
+
+  requestBadge.textContent =
+    data.length;
+
+
+  requestsList.innerHTML =
+    "";
+
+
+  data.forEach(request => {
+
+    const box =
+      document.createElement("div");
+
+    box.className =
+      "request";
+
+
+    box.innerHTML = `
+
+      <div class="request-title">
+
+        💬
+        ${escapeHtml(
+          request.name ||
+          request.full_name ||
+          request.subject ||
+          "Property Request"
+        )}
+
+      </div>
+
+
+      <div class="request-info">
+
+        ${
+          request.email
+          ?
+          "📧 Email: " +
+          escapeHtml(request.email) +
+          "<br>"
+          :
+          ""
+        }
+
+
+        ${
+          request.phone
+          ?
+          "📞 Phone: " +
+          escapeHtml(request.phone) +
+          "<br>"
+          :
+          ""
+        }
+
+
+        ${
+          request.message
+          ?
+          "<br>📝 Message:<br>" +
+          escapeHtml(request.message)
+          :
+          ""
+        }
+
+
+        ${
+          request.created_at
+          ?
+          "<br><br>📅 " +
+          escapeHtml(
+            new Date(
+              request.created_at
+            ).toLocaleString()
+          )
+          :
+          ""
+        }
+
+      </div>
+
+    `;
+
+
+    requestsList.appendChild(box);
+
+  });
 
 }
 
 
-/* =========================================
+/* =========================================================
+   LOAD APPROVAL REQUESTS
+=========================================================
+
+   Requests zo gusaba POST property
+   zitegerejwe kuba muri property_requests.
+
+   status:
+   pending
+   approved
+   rejected
+
+*/
+
+async function loadApprovals(){
+
+  approvalsList.innerHTML =
+    `<div class="empty">
+      Loading approvals...
+    </div>`;
+
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("property_requests")
+    .select("*")
+    .order(
+      "created_at",
+      {
+        ascending:false
+      }
+    );
+
+
+  if(error){
+
+    approvalsList.innerHTML =
+      `<div class="empty">
+        ❌ ${escapeHtml(error.message)}
+      </div>`;
+
+    return;
+
+  }
+
+
+  const pending =
+    (data || [])
+      .filter(request => {
+
+        const status =
+          String(
+            request.status ||
+            "pending"
+          )
+          .toLowerCase();
+
+        return status === "pending";
+
+      });
+
+
+  if(pending.length === 0){
+
+    approvalsList.innerHTML =
+      `<div class="empty">
+        ✅ Nta request itegereje kwemezwa.
+      </div>`;
+
+    return;
+
+  }
+
+
+  approvalsList.innerHTML =
+    "";
+
+
+  pending.forEach(request => {
+
+    const box =
+      document.createElement("div");
+
+    box.className =
+      "request";
+
+
+    box.innerHTML = `
+
+      <div class="request-title">
+
+        🏠
+        ${escapeHtml(
+          request.property_title ||
+          request.title ||
+          request.name ||
+          "Property Submission"
+        )}
+
+      </div>
+
+
+      <div class="request-info">
+
+        ${
+          request.name ||
+          request.full_name
+          ?
+          "👤 Owner: " +
+          escapeHtml(
+            request.name ||
+            request.full_name
+          ) +
+          "<br>"
+          :
+          ""
+        }
+
+
+        ${
+          request.phone
+          ?
+          "📞 Phone: " +
+          escapeHtml(request.phone) +
+          "<br>"
+          :
+          ""
+        }
+
+
+        ${
+          request.email
+          ?
+          "📧 Email: " +
+          escapeHtml(request.email) +
+          "<br>"
+          :
+          ""
+        }
+
+
+        ${
+          request.property_type
+          ?
+          "🏷️ Type: " +
+          escapeHtml(
+            request.property_type
+          ) +
+          "<br>"
+          :
+          ""
+        }
+
+
+        ${
+          request.price
+          ?
+          "💰 Price: " +
+          Number(
+            request.price
+          ).toLocaleString() +
+          " RWF<br>"
+          :
+          ""
+        }
+
+
+        ${
+          request.message
+          ?
+          "<br>📝 Message:<br>" +
+          escapeHtml(request.message)
+          :
+          ""
+        }
+
+      </div>
+
+
+      <div class="request-actions">
+
+        <button
+          class="button approve"
+          onclick="approveRequest('${request.id}')">
+
+          ✅ Approve
+
+        </button>
+
+
+        <button
+          class="button reject"
+          onclick="rejectRequest('${request.id}')">
+
+          ❌ Reject
+
+        </button>
+
+      </div>
+
+    `;
+
+
+    approvalsList.appendChild(box);
+
+  });
+
+}
+
+
+/* =========================================================
+   APPROVE REQUEST
+========================================================= */
+
+async function approveRequest(id){
+
+  if(!confirm(
+    "Urashaka kwemeza iyi request?"
+  )){
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+  await supabaseClient
+    .from("property_requests")
+    .update({
+
+      status:
+        "approved"
+
+    })
+    .eq(
+      "id",
+      id
+    );
+
+
+  if(error){
+
+    alert(
+      "❌ " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  alert(
+    "✅ Request yemejwe."
+  );
+
+
+  await loadApprovals();
+
+  await loadRequests();
+
+}
+
+
+/* =========================================================
+   REJECT REQUEST
+========================================================= */
+
+async function rejectRequest(id){
+
+  if(!confirm(
+    "Urashaka guhakana iyi request?"
+  )){
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+  await supabaseClient
+    .from("property_requests")
+    .update({
+
+      status:
+        "rejected"
+
+    })
+    .eq(
+      "id",
+      id
+    );
+
+
+  if(error){
+
+    alert(
+      "❌ " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  alert(
+    "❌ Request yahakanywe."
+  );
+
+
+  await loadApprovals();
+
+  await loadRequests();
+
+}
+
+
+/* =========================================================
    HOME
-========================================= */
+========================================================= */
 
 function goHome(){
 
@@ -1550,9 +2161,9 @@ function goHome(){
 }
 
 
-/* =========================================
+/* =========================================================
    LOGOUT
-========================================= */
+========================================================= */
 
 async function logout(){
 
@@ -1566,9 +2177,9 @@ async function logout(){
 }
 
 
-/* =========================================
+/* =========================================================
    START
-========================================= */
+========================================================= */
 
 (async function(){
 
@@ -1585,8 +2196,39 @@ async function logout(){
 
   await loadProperties();
 
-})();
+  /*
+    Kubara requests ziri pending
+    tutabanje gufungura Requested.
+  */
 
+  const {
+    data
+  } =
+  await supabaseClient
+    .from("property_requests")
+    .select("id,status");
+
+
+  if(data){
+
+    const pending =
+      data.filter(request => {
+
+        return String(
+          request.status ||
+          "pending"
+        ).toLowerCase()
+        === "pending";
+
+      });
+
+
+    requestBadge.textContent =
+      pending.length;
+
+  }
+
+})();
 </script>
 
 </body>
