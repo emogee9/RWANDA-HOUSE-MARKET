@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Admin - Rwanda Property Visata</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f5f2;
+      color: #3b2418;
+    }
+
+    .navbar {
+      background: #d4a017;
+      color: white;
+      padding: 16px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .logout {
+      background: white;
+      color: #b27b00;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px 50px;
+    }
+
+    .welcome {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 3px 12px rgba(70,40,20,0.12);
+      margin-bottom: 25px;
+    }
+
+    .welcome h1 {
+      margin-top: 0;
+      color: #d4a017;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .tab-button {
+      border: none;
+      background: white;
+      color: #d4a017;
+      padding: 14px 25px;
+      border-radius: 9px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+    }
+
+    .tab-button.active,
+    .tab-button:hover {
+      background: #d4a017;
+      color: white;
+    }
+
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 15px;
+      box-shadow: 0 3px 12px rgba(70,40,20,0.12);
+      margin-bottom: 25px;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      color: #d4a017;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .message {
+      display: none;
+      padding: 13px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .success {
+      display: block;
+      background: #e5f8e9;
+      color: #16752d;
+      border: 1px solid #9ad8a8;
+    }
+
+    .error {
+      display: block;
+      background: #ffe7e7;
+      color: #a00000;
+      border: 1px solid #e3aaaa;
+    }
+
+    .new-post-button {
+      background: #d4a017;
+      color: white;
+      border: none;
+      padding: 13px 22px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .new-post-button:hover {
+      background: #b8860b;
+    }
+
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+      }
+
+      .tabs {
+        flex-direction: column;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <nav class="navbar">
+
+    <div class="logo">
+      🏠 Rwanda Property Visata — Admin
+    </div>
+
+    <button
+      class="logout"
+      id="logoutButton">
+      Logout
+    </button>
+
+  </nav>
+
+
+  <main class="container">
+
+    <div class="welcome">
+
+      <h1>
+        Admin Panel
+      </h1>
+
+      <p>
+        Welcome to Rwanda Property Visata Admin Panel.
+      </p>
+
+    </div>
+
+
+    <div
+      id="message"
+      class="message">
+    </div>
+
+
+    <div class="tabs">
+
+      <button
+        class="tab-button active"
+        id="postsTab">
+
+        Posts
+
+      </button>
+
+
+      <button
+        class="tab-button"
+        id="newPostTab">
+
+        New Post
+
+      </button>
+
+    </div>
+
+
+    <!-- POSTS -->
+
+    <section
+      id="postsSection"
+      class="card">
+
+      <h2>
+        Posts
+      </h2>
+
+      <p>
+        Aha ni ho tuzajya tubona properties zose washyize kuri website.
+      </p>
+
+      <p id="postsStatus">
+        Loading posts...
+      </p>
+
+      <div id="postsList"></div>
+
+    </section>
+
+
+    <!-- NEW POST -->
+
+    <section
+      id="newPostSection"
+      class="card hidden">
+
+      <h2>
+        New Post
+      </h2>
+
+      <p>
+        Aha ni ho tuzashyiramo property nshya.
+      </p>
+
+      <button
+        class="new-post-button"
+        id="startNewPost">
+
+        + Add New Property
+
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    /* ==============================
+       SUPABASE
+    ============================== */
+
+    const SUPABASE_URL =
+      "https://hsmnybmcddtsyooltozw.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    /* ==============================
+       ELEMENTS
+    ============================== */
+
+    const postsTab =
+      document.getElementById("postsTab");
+
+    const newPostTab =
+      document.getElementById("newPostTab");
+
+    const postsSection =
+      document.getElementById("postsSection");
+
+    const newPostSection =
+      document.getElementById("newPostSection");
+
+    const logoutButton =
+      document.getElementById("logoutButton");
+
+    const message =
+      document.getElementById("message");
+
+    const postsStatus =
+      document.getElementById("postsStatus");
+
+
+    /* ==============================
+       MESSAGE
+    ============================== */
+
+    function showMessage(text, type) {
+
+      message.textContent = text;
+
+      message.className =
+        "message " + type;
+
+    }
+
+
+    /* ==============================
+       TABS
+    ============================== */
+
+    postsTab.addEventListener(
+      "click",
+      function() {
+
+        postsSection.classList.remove(
+          "hidden"
+        );
+
+        newPostSection.classList.add(
+          "hidden"
+        );
+
+        postsTab.classList.add(
+          "active"
+        );
+
+        newPostTab.classList.remove(
+          "active"
+        );
+
+      }
+    );
+
+
+    newPostTab.addEventListener(
+      "click",
+      function() {
+
+        postsSection.classList.add(
+          "hidden"
+        );
+
+        newPostSection.classList.remove(
+          "hidden"
+        );
+
+        postsTab.classList.remove(
+          "active"
+        );
+
+        newPostTab.classList.add(
+          "active"
+        );
+
+      }
+    );
+
+
+    /* ==============================
+       CHECK ADMIN SESSION
+    ============================== */
+
+    async function checkAdmin() {
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .auth
+          .getSession();
+
+
+      if (
+        error ||
+        !data.session
+      ) {
+
+        window.location.href =
+          "./login.html";
+
+        return false;
+
+      }
+
+
+      const email =
+        data.session.user.email
+          .trim()
+          .toLowerCase();
+
+
+      if (
+        email !==
+        "rwandahousemarket@gmail.com"
+      ) {
+
+        await supabaseClient
+          .auth
+          .signOut();
+
+        window.location.href =
+          "./login.html";
+
+        return false;
+
+      }
+
+
+      return true;
+
+    }
+
+
+    /* ==============================
+       LOAD POSTS
+    ============================== */
+
+    async function loadPosts() {
+
+      postsStatus.textContent =
+        "Posts will appear here after we connect the property table.";
+
+    }
+
+
+    /* ==============================
+       LOGOUT
+    ============================== */
+
+    logoutButton.addEventListener(
+      "click",
+      async function() {
+
+        await supabaseClient
+          .auth
+          .signOut();
+
+        window.location.href =
+          "./login.html";
+
+      }
+    );
+
+
+    /* ==============================
+       NEW POST BUTTON
+    ============================== */
+
+    document
+      .getElementById("startNewPost")
+      .addEventListener(
+        "click",
+        function() {
+
+          showMessage(
+            "New Post form tuzayishyiramo mu ntambwe ikurikira.",
+            "success"
+          );
+
+        }
+      );
+
+
+    /* ==============================
+       START
+    ============================== */
+
+    async function startAdmin() {
+
+      const allowed =
+        await checkAdmin();
+
+
+      if (!allowed) {
+        return;
+      }
+
+
+      await loadPosts();
+
+    }
+
+
+    startAdmin();
+
+  </script>
+
+</body>
+
+</html>
