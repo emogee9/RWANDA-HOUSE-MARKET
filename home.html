@@ -1,14 +1,10 @@
-# Complete `home.html`
-
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title id="browserTitle">Rwanda House Market</title>
+  <title>Rwanda House Market</title>
 
   <style>
     * {
@@ -70,6 +66,17 @@
       background: #fff5c9;
     }
 
+    /* LOGIN */
+
+    .login-link {
+      background: #33251d !important;
+      color: white !important;
+    }
+
+    .login-link:hover {
+      background: #1f1712 !important;
+    }
+
     /* ================= HERO ================= */
 
     .hero {
@@ -79,6 +86,7 @@
       justify-content: center;
       text-align: center;
       padding: 50px 20px;
+
       background:
         linear-gradient(
           rgba(0,0,0,.48),
@@ -362,7 +370,6 @@
       .hero h1 {
         font-size: 38px;
       }
-
     }
 
     @media (max-width: 650px) {
@@ -402,11 +409,9 @@
       .hero p {
         font-size: 17px;
       }
-
     }
   </style>
 </head>
-
 
 <body>
 
@@ -438,6 +443,14 @@
 
       <a href="sell-your-property.html" id="sellLink">
         Sell Your Property
+      </a>
+
+      <!-- LOGIN ONLY - REGISTER REMOVED -->
+      <a
+        href="login.html"
+        id="loginLink"
+        class="login-link">
+        Login
       </a>
 
       <select
@@ -521,7 +534,6 @@
 
   <main class="container">
 
-
     <!-- ================= CATEGORIES ================= -->
 
     <section>
@@ -538,11 +550,9 @@
 
       </div>
 
-
       <div class="categories">
 
-
-        <!-- RENT -->
+        <!-- HOUSE RENT -->
 
         <div class="category">
 
@@ -572,7 +582,7 @@
         </div>
 
 
-        <!-- SALE -->
+        <!-- HOUSE SALE -->
 
         <div class="category">
 
@@ -631,7 +641,6 @@
 
         </div>
 
-
       </div>
 
     </section>
@@ -653,12 +662,13 @@
 
       </div>
 
-
       <div
         id="latestProperties"
         class="properties">
 
-        <div class="empty" id="loadingText">
+        <div
+          class="empty"
+          id="loadingText">
           Loading latest properties...
         </div>
 
@@ -688,7 +698,6 @@
       </a>
 
     </section>
-
 
   </main>
 
@@ -727,6 +736,10 @@
         Sell Your Property
       </a>
 
+      <a href="login.html" id="footerLogin">
+        Login
+      </a>
+
     </div>
 
     <p>
@@ -742,10 +755,6 @@
 
   <script>
 
-    /* =========================================
-       SUPABASE
-    ========================================= */
-
     const SUPABASE_URL =
       "https://hsmnybmcddtsyooltozw.supabase.co";
 
@@ -759,34 +768,25 @@
       );
 
 
-    /* =========================================
-       LANGUAGE
-    ========================================= */
+    /* ================= TRANSLATIONS ================= */
 
     const translations = {
 
       Kinyarwanda: {
 
-        browserTitle:
-          "Rwanda House Market",
+        logo: "🏠 Rwanda House Market",
 
-        logo:
-          "🏠 Rwanda House Market",
+        home: "Ahabanza",
 
-        home:
-          "Ahabanza",
+        rent: "Inzu zikodeshwa",
 
-        rent:
-          "Inzu zikodeshwa",
+        sale: "Inzu zigurishwa",
 
-        sale:
-          "Inzu zigurishwa",
+        plot: "Ibibanza bigurishwa",
 
-        plot:
-          "Ibibanza bigurishwa",
+        sell: "Gurisha Umutungo",
 
-        sell:
-          "Gurisha Umutungo",
+        login: "Login",
 
         heroTitle:
           "Shaka Umutungo wawe mwiza mu Rwanda",
@@ -868,26 +868,19 @@
 
       English: {
 
-        browserTitle:
-          "Rwanda House Market",
+        logo: "🏠 Rwanda House Market",
 
-        logo:
-          "🏠 Rwanda House Market",
+        home: "Home",
 
-        home:
-          "Home",
+        rent: "House for Rent",
 
-        rent:
-          "House for Rent",
+        sale: "House for Sale",
 
-        sale:
-          "House for Sale",
+        plot: "Plot for Sale",
 
-        plot:
-          "Plot for Sale",
+        sell: "Sell Your Property",
 
-        sell:
-          "Sell Your Property",
+        login: "Login",
 
         heroTitle:
           "Find Your Perfect Property in Rwanda",
@@ -969,26 +962,19 @@
 
       Français: {
 
-        browserTitle:
-          "Rwanda House Market",
+        logo: "🏠 Rwanda House Market",
 
-        logo:
-          "🏠 Rwanda House Market",
+        home: "Accueil",
 
-        home:
-          "Accueil",
+        rent: "Maison à louer",
 
-        rent:
-          "Maison à louer",
+        sale: "Maison à vendre",
 
-        sale:
-          "Maison à vendre",
+        plot: "Terrain à vendre",
 
-        plot:
-          "Terrain à vendre",
+        sell: "Vendre votre propriété",
 
-        sell:
-          "Vendre votre propriété",
+        login: "Connexion",
 
         heroTitle:
           "Trouvez votre propriété idéale au Rwanda",
@@ -1070,26 +1056,19 @@
 
       Kiswahili: {
 
-        browserTitle:
-          "Rwanda House Market",
+        logo: "🏠 Rwanda House Market",
 
-        logo:
-          "🏠 Rwanda House Market",
+        home: "Nyumbani",
 
-        home:
-          "Nyumbani",
+        rent: "Nyumba za Kukodisha",
 
-        rent:
-          "Nyumba za Kukodisha",
+        sale: "Nyumba za Kuuza",
 
-        sale:
-          "Nyumba za Kuuza",
+        plot: "Viwanja vya Kuuza",
 
-        plot:
-          "Viwanja vya Kuuza",
+        sell: "Uza Mali Yako",
 
-        sell:
-          "Uza Mali Yako",
+        login: "Ingia",
 
         heroTitle:
           "Pata Mali Yako Bora nchini Rwanda",
@@ -1171,26 +1150,19 @@
 
       "中文": {
 
-        browserTitle:
-          "Rwanda House Market",
+        logo: "🏠 Rwanda House Market",
 
-        logo:
-          "🏠 Rwanda House Market",
+        home: "首页",
 
-        home:
-          "首页",
+        rent: "出租房屋",
 
-        rent:
-          "出租房屋",
+        sale: "出售房屋",
 
-        sale:
-          "出售房屋",
+        plot: "出售土地",
 
-        plot:
-          "出售土地",
+        sell: "出售您的房产",
 
-        sell:
-          "出售您的房产",
+        login: "登录",
 
         heroTitle:
           "在卢旺达寻找您的理想房产",
@@ -1272,9 +1244,7 @@
     };
 
 
-    /* =========================================
-       APPLY LANGUAGE
-    ========================================= */
+    /* ================= LANGUAGE ================= */
 
     function applyLanguage(language) {
 
@@ -1282,10 +1252,8 @@
         translations[language] ||
         translations.English;
 
-
       document.title =
-        t.browserTitle;
-
+        "Rwanda House Market";
 
       document.getElementById("logo").textContent =
         t.logo;
@@ -1305,6 +1273,8 @@
       document.getElementById("sellLink").textContent =
         t.sell;
 
+      document.getElementById("loginLink").textContent =
+        t.login;
 
       document.getElementById("heroTitle").textContent =
         t.heroTitle;
@@ -1321,13 +1291,11 @@
       document.getElementById("heroPlot").textContent =
         t.heroPlot;
 
-
       document.getElementById("categoriesTitle").textContent =
         t.categoriesTitle;
 
       document.getElementById("categoriesDescription").textContent =
         t.categoriesDescription;
-
 
       document.getElementById("rentTitle").textContent =
         t.rentTitle;
@@ -1338,7 +1306,6 @@
       document.getElementById("rentButton").textContent =
         t.rentButton;
 
-
       document.getElementById("saleTitle").textContent =
         t.saleTitle;
 
@@ -1347,7 +1314,6 @@
 
       document.getElementById("saleButton").textContent =
         t.saleButton;
-
 
       document.getElementById("plotTitle").textContent =
         t.plotTitle;
@@ -1358,13 +1324,11 @@
       document.getElementById("plotButton").textContent =
         t.plotButton;
 
-
       document.getElementById("latestTitle").textContent =
         t.latestTitle;
 
       document.getElementById("latestDescription").textContent =
         t.latestDescription;
-
 
       document.getElementById("sellTitle").textContent =
         t.sellTitle;
@@ -1375,10 +1339,8 @@
       document.getElementById("sellButton").textContent =
         t.sellButton;
 
-
       document.getElementById("footerDescription").textContent =
         t.footerDescription;
-
 
       document.getElementById("footerHome").textContent =
         t.home;
@@ -1395,22 +1357,18 @@
       document.getElementById("footerSell").textContent =
         t.sell;
 
+      document.getElementById("footerLogin").textContent =
+        t.login;
 
       document.getElementById("loadingText").textContent =
         t.loading;
-
 
       localStorage.setItem(
         "selectedLanguage",
         language
       );
-
     }
 
-
-    /* =========================================
-       CHANGE LANGUAGE
-    ========================================= */
 
     function changeLanguage() {
 
@@ -1419,17 +1377,13 @@
           "languageSelect"
         ).value;
 
-
       applyLanguage(language);
 
       loadLatestProperties();
-
     }
 
 
-    /* =========================================
-       ESCAPE HTML
-    ========================================= */
+    /* ================= SECURITY ================= */
 
     function escapeHtml(value) {
 
@@ -1439,13 +1393,10 @@
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
-
     }
 
 
-    /* =========================================
-       GET DETAIL PAGE
-    ========================================= */
+    /* ================= DETAIL PAGE ================= */
 
     function getDetailPage(type) {
 
@@ -1454,36 +1405,26 @@
           .toLowerCase()
           .trim();
 
-
       if (
         normalized === "rent" ||
         normalized === "rental" ||
         normalized === "house for rent"
       ) {
-
         return "rent-detail.html";
-
       }
-
 
       if (
         normalized === "plot" ||
         normalized === "land"
       ) {
-
         return "plot-detail.html";
-
       }
 
-
       return "house-sale-details.html";
-
     }
 
 
-    /* =========================================
-       LOAD LATEST PROPERTIES
-    ========================================= */
+    /* ================= LOAD LATEST ================= */
 
     async function loadLatestProperties() {
 
@@ -1492,20 +1433,19 @@
           "latestProperties"
         );
 
-
       const language =
         localStorage.getItem(
           "selectedLanguage"
         ) || "English";
 
-
       const t =
         translations[language] ||
         translations.English;
 
-
       container.innerHTML =
-        `<div class="empty">${escapeHtml(t.loading)}</div>`;
+        `<div class="empty">
+          ${escapeHtml(t.loading)}
+        </div>`;
 
 
       const {
@@ -1526,7 +1466,10 @@
 
       if (error) {
 
-        console.error(error);
+        console.error(
+          "Supabase error:",
+          error
+        );
 
         container.innerHTML =
           `<div class="empty">
@@ -1534,11 +1477,13 @@
           </div>`;
 
         return;
-
       }
 
 
-      if (!data || data.length === 0) {
+      if (
+        !data ||
+        data.length === 0
+      ) {
 
         container.innerHTML =
           `<div class="empty">
@@ -1546,7 +1491,6 @@
           </div>`;
 
         return;
-
       }
 
 
@@ -1556,7 +1500,9 @@
       data.forEach(property => {
 
         const card =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
         card.className =
           "property";
@@ -1565,7 +1511,9 @@
         const mainPhoto =
           property.main_photo ||
           (
-            Array.isArray(property.other_photos)
+            Array.isArray(
+              property.other_photos
+            )
               ? property.other_photos[0]
               : ""
           ) ||
@@ -1589,7 +1537,8 @@
 
         const type =
           String(
-            property.property_type || "sale"
+            property.property_type ||
+            "sale"
           )
           .toLowerCase();
 
@@ -1597,13 +1546,6 @@
         const detailPage =
           getDetailPage(type);
 
-
-        /*
-          IMPORTANT:
-          Property ID is sent to the
-          detail page so every post
-          gets its own details.
-        */
 
         const detailUrl =
           detailPage +
@@ -1617,7 +1559,10 @@
 
           <img
             src="${escapeHtml(mainPhoto)}"
-            alt="${escapeHtml(property.title || "Property")}">
+            alt="${escapeHtml(
+              property.title ||
+              "Property"
+            )}">
 
           <div class="property-body">
 
@@ -1635,13 +1580,11 @@
             </div>
 
             <div class="location">
-
               📍
               ${escapeHtml(
                 location ||
                 "Rwanda"
               )}
-
             </div>
 
             <a
@@ -1659,24 +1602,23 @@
         `;
 
 
-        container.appendChild(card);
+        container.appendChild(
+          card
+        );
 
       });
-
     }
 
 
-    /* =========================================
-       YEAR
-    ========================================= */
+    /* ================= YEAR ================= */
 
-    document.getElementById("year").textContent =
+    document.getElementById(
+      "year"
+    ).textContent =
       new Date().getFullYear();
 
 
-    /* =========================================
-       START
-    ========================================= */
+    /* ================= START ================= */
 
     const savedLanguage =
       localStorage.getItem(
@@ -1701,20 +1643,3 @@
 
 </body>
 </html>
-```
-
-### Icyo iyi `home.html` ikora
-
-* **Register nta yo yashyizwemo.**
-* `House for Rent` ijya kuri `rent.html`.
-* `House for Sale` ijya kuri `houses-sale.html`.
-* `Plot for Sale` ijya kuri `plot.html`.
-* `Sell Your Property` ijya kuri `sell-your-property.html`.
-* Ihuza na **Supabase** wakoresheje muri Admin.
-* Iyo admin akoze post muri `properties`, **Latest Properties** kuri Home irayibona.
-* Kuri Home hagaragara **main photo + title + price + country/location + View Details** gusa.
-* Iyo umuntu akanze **View Details**, yoherezwa kuri detail page ijyanye n'ubwoko bwa post kandi `id` ya post ikoherezwa muri URL, kugira ngo detail page ishobore kwerekana **post nyirizina**.
-* Indimi ni **5**: Kinyarwanda, English, Français, Kiswahili na 中文.
-* Language ibikwa muri `localStorage`, bityo pages zindi zishobora gukoresha language imwe.
-
-**Icyitonderwa:** detail pages za `rent-detail.html`, `plot-detail.html`, na `house-sale-details.html` zigomba kuba zakira `?id=...` zikajya gufata iyo property muri Supabase. Niba izo pages twakoze mbere zitabikora, ni yo ntambwe ikurikira tugomba gukosora mbere yo gukomeza.
