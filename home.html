@@ -131,252 +131,60 @@
       font-size: 17px;
     }
 
-    /* ================= PROPERTY SECTION ================= */
+    /* ================= PROPERTY CARDS ================= */
 
-    .property-section {
-      margin-top: 30px;
-    }
-
-    .property-section-title {
-      text-align: center;
-      color: #d4a017;
-      font-size: 30px;
-      margin-bottom: 25px;
-    }
-
-    .property-grid {
+    .categories {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 25px;
     }
 
-    .property-card {
+    .category {
       background: white;
+      padding: 35px 22px;
+      text-align: center;
       border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 3px 12px rgba(70,40,20,0.15);
-      transition: 0.2s;
+      box-shadow: 0 3px 12px rgba(70,40,20,0.12);
+      border-top: 5px solid #e0ad18;
     }
 
-    .property-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 7px 18px rgba(70,40,20,0.20);
-    }
-
-    .main-photo-wrapper {
-      width: 100%;
-      height: 240px;
-      background: #eee;
-      overflow: hidden;
-    }
-
-    .main-photo {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .property-content {
-      padding: 18px;
-    }
-
-    .property-title {
-      color: #d4a017;
-      font-size: 21px;
-      font-weight: bold;
-      margin: 0 0 10px;
-    }
-
-    .property-price {
-      color: #2f7d32;
-      font-size: 21px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
-
-    .location {
-      color: #6d625c;
-      line-height: 1.6;
-      font-size: 14px;
-      margin-bottom: 12px;
-    }
-
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    .icon {
+      font-size: 55px;
       margin-bottom: 15px;
     }
 
-    .feature {
-      background: #fff6d8;
-      color: #7a5a00;
-      padding: 7px 9px;
-      border-radius: 7px;
-      font-size: 13px;
-      font-weight: bold;
+    .category h2 {
+      margin: 10px 0;
+      color: #d4a017;
     }
 
-    .details-button {
-      width: 100%;
-      border: none;
+    .category p {
+      color: #6d625c;
+      min-height: 45px;
+      line-height: 1.5;
+    }
+
+    .category a {
+      display: inline-block;
       background: #e0ad18;
       color: white;
-      padding: 12px;
+      padding: 12px 25px;
       border-radius: 8px;
-      font-size: 15px;
-      font-weight: bold;
       cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+      text-decoration: none;
+      font-weight: bold;
     }
 
-    .details-button:hover {
+    .category a:hover {
       background: #b8860b;
-    }
-
-    /* ================= EMPTY / LOADING ================= */
-
-    .message {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      text-align: center;
-      color: #6d625c;
-      box-shadow: 0 3px 12px rgba(70,40,20,0.10);
-      grid-column: 1 / -1;
-    }
-
-    /* ================= MODAL ================= */
-
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.70);
-      z-index: 3000;
-      padding: 20px;
-      overflow-y: auto;
-    }
-
-    .modal.active {
-      display: block;
-    }
-
-    .modal-box {
-      background: white;
-      max-width: 850px;
-      margin: 30px auto;
-      border-radius: 15px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .close-button {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 42px;
-      height: 42px;
-      border: none;
-      border-radius: 50%;
-      background: rgba(0,0,0,0.65);
-      color: white;
-      font-size: 25px;
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .slider {
-      position: relative;
-      width: 100%;
-      height: 430px;
-      background: #eee;
-    }
-
-    .slider img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .slider-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 50px;
-      height: 50px;
-      border: none;
-      border-radius: 50%;
-      background: rgba(0,0,0,0.60);
-      color: white;
-      font-size: 30px;
-      cursor: pointer;
-    }
-
-    .slider-button:hover {
-      background: rgba(0,0,0,0.80);
-    }
-
-    .previous-button {
-      left: 15px;
-    }
-
-    .next-button {
-      right: 15px;
-    }
-
-    .modal-content {
-      padding: 25px;
-    }
-
-    .modal-title {
-      color: #d4a017;
-      font-size: 28px;
-      margin-top: 0;
-    }
-
-    .modal-price {
-      color: #2f7d32;
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 18px;
-    }
-
-    .detail-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .detail-item {
-      background: #fff8df;
-      padding: 13px;
-      border-radius: 8px;
-    }
-
-    .detail-label {
-      display: block;
-      color: #806f60;
-      font-size: 13px;
-      margin-bottom: 4px;
-    }
-
-    .detail-value {
-      font-weight: bold;
-      color: #3b2418;
-    }
-
-    .description {
-      color: #5f5148;
-      line-height: 1.7;
-      white-space: pre-line;
     }
 
     /* ================= EXTRA ACTIONS ================= */
 
     .actions {
-      margin-top: 35px;
+      margin-top: 30px;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
@@ -468,8 +276,8 @@
         justify-content: center;
       }
 
-      .property-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .categories {
+        grid-template-columns: 1fr;
       }
 
       .actions {
@@ -525,18 +333,6 @@
 
       .welcome h2 {
         font-size: 24px;
-      }
-
-      .property-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .slider {
-        height: 300px;
-      }
-
-      .detail-grid {
-        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -627,30 +423,92 @@
     </div>
 
 
-    <!-- ================= PROPERTIES FROM SUPABASE ================= -->
+    <!-- PROPERTY CATEGORIES -->
 
-    <section class="property-section">
+    <div class="categories">
 
-      <h2 class="property-section-title" id="propertySectionTitle">
-        Available Properties
-      </h2>
+      <!-- RENT -->
 
-      <div
-        class="property-grid"
-        id="propertyGrid">
+      <div class="category">
 
-        <div class="message" id="loadingMessage">
-          Loading properties...
+        <div class="icon">
+          🏠
         </div>
+
+        <h2 id="rentTitle">
+          Houses for Rent
+        </h2>
+
+        <p id="rentText">
+          Find houses available for rent.
+        </p>
+
+        <a
+          href="./rent.html"
+          id="rentButton">
+          View Houses
+        </a>
 
       </div>
 
-    </section>
+
+      <!-- SALE -->
+
+      <div class="category">
+
+        <div class="icon">
+          🏡
+        </div>
+
+        <h2 id="saleTitle">
+          Houses for Sale
+        </h2>
+
+        <p id="saleText">
+          Find houses available for sale.
+        </p>
+
+        <a
+          href="./houses-sales.html"
+          id="saleButton">
+          View Houses
+        </a>
+
+      </div>
+
+
+      <!-- PLOTS -->
+
+      <div class="category">
+
+        <div class="icon">
+          🌍
+        </div>
+
+        <h2 id="plotTitle">
+          Plots for Sale
+        </h2>
+
+        <p id="plotText">
+          Find plots available for sale.
+        </p>
+
+        <a
+          href="./plots.html"
+          id="plotButton">
+          View Plots
+        </a>
+
+      </div>
+
+    </div>
 
 
     <!-- ================= EXTRA ACTIONS ================= -->
 
     <div class="actions">
+
+      <!-- REQUEST PROPERTY -->
 
       <div class="action-card">
 
@@ -673,6 +531,8 @@
       </div>
 
 
+      <!-- SELL PROPERTY -->
+
       <div class="action-card">
 
         <h2 id="sellTitle">
@@ -690,155 +550,6 @@
           id="sellButton">
           Sell Your Property
         </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- ================= PROPERTY DETAILS MODAL ================= -->
-
-  <div
-    class="modal"
-    id="propertyModal">
-
-    <div class="modal-box">
-
-      <button
-        class="close-button"
-        onclick="closePropertyModal()">
-        ×
-      </button>
-
-      <div class="slider">
-
-        <img
-          id="sliderImage"
-          src=""
-          alt="Property photo">
-
-        <button
-          class="slider-button previous-button"
-          onclick="previousPhoto()">
-          ‹
-        </button>
-
-        <button
-          class="slider-button next-button"
-          onclick="nextPhoto()">
-          ›
-        </button>
-
-      </div>
-
-      <div class="modal-content">
-
-        <h2
-          class="modal-title"
-          id="modalTitle">
-          Property
-        </h2>
-
-        <div
-          class="modal-price"
-          id="modalPrice">
-          -
-        </div>
-
-        <div class="detail-grid">
-
-          <div class="detail-item">
-            <span class="detail-label" id="countryLabel">
-              Country
-            </span>
-
-            <span
-              class="detail-value"
-              id="modalCountry">
-              -
-            </span>
-          </div>
-
-          <div class="detail-item">
-            <span class="detail-label" id="provinceLabel">
-              Province
-            </span>
-
-            <span
-              class="detail-value"
-              id="modalProvince">
-              -
-            </span>
-          </div>
-
-          <div class="detail-item">
-            <span class="detail-label" id="districtLabel">
-              District
-            </span>
-
-            <span
-              class="detail-value"
-              id="modalDistrict">
-              -
-            </span>
-          </div>
-
-          <div class="detail-item">
-            <span class="detail-label" id="sectorLabel">
-              Sector
-            </span>
-
-            <span
-              class="detail-value"
-              id="modalSector">
-              -
-            </span>
-          </div>
-
-          <div class="detail-item">
-            <span class="detail-label" id="bedroomsLabel">
-              Bedrooms
-            </span>
-
-            <span
-              class="detail-value"
-              id="modalBedrooms">
-              -
-            </span>
-          </div>
-
-          <div class="detail-item">
-            <span class="detail-label" id="bathroomsLabel">
-              Bathrooms
-            </span>
-
-            <span
-              class="detail-value"
-              id="modalBathrooms">
-              -
-            </span>
-          </div>
-
-          <div class="detail-item">
-            <span class="detail-label" id="parkingLabel">
-              Parking
-            </span>
-
-            <span
-              class="detail-value"
-              id="modalParking">
-              -
-            </span>
-          </div>
-
-        </div>
-
-        <div
-          class="description"
-          id="modalDescription">
-        </div>
 
       </div>
 
@@ -880,43 +591,9 @@
   </footer>
 
 
-  <!-- ================= SUPABASE ================= -->
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- ================= TRANSLATIONS ================= -->
 
   <script>
-
-    /*
-      ============================================================
-      SUPABASE SETTINGS
-      ============================================================
-
-      const SUPABASE_URL =
-        "https://hsmnybmcddtsyooltozw.supabase.co/rest/v1/";
-
-      const SUPABASE_ANON_KEY =
-        "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
-
-      ============================================================
-    */
-
-    const SUPABASE_URL =
-      "https://hsmnybmcddtsyooltozw.supabase.co/rest/v1/";
-
-    const SUPABASE_ANON_KEY =
-      "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
-
-
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-      );
-
-
-    /* ============================================================
-       LANGUAGE
-       ============================================================ */
 
     const language =
       localStorage.getItem("selectedLanguage") || "English";
@@ -962,32 +639,32 @@
         register:
           "Iyandikishe",
 
-        propertySection:
-          "Imitungo ihari",
+        rentTitle:
+          "Amazu akodeshwa",
 
-        viewDetails:
-          "Reba ibisobanuro",
+        rentText:
+          "Shaka amazu ahari yo gukodesha.",
 
-        country:
-          "Igihugu",
+        rentButton:
+          "Reba amazu",
 
-        province:
-          "Intara",
+        saleTitle:
+          "Amazu agurishwa",
 
-        district:
-          "Akarere",
+        saleText:
+          "Shaka amazu ahari yo kugura.",
 
-        sector:
-          "Umurenge",
+        saleButton:
+          "Reba amazu",
 
-        bedrooms:
-          "Ibyumba",
+        plotTitle:
+          "Ibibanza bigurishwa",
 
-        bathrooms:
-          "Ubwiherero",
+        plotText:
+          "Shaka ibibanza bihari byo kugura.",
 
-        parking:
-          "Aho guhagarika imodoka",
+        plotButton:
+          "Reba ibibanza",
 
         requestTitle:
           "🔎 Saba umutungo",
@@ -1014,16 +691,7 @@
           "💬 Ganira natwe",
 
         facebook:
-          "📘 Facebook",
-
-        loading:
-          "Turimo kuzana imitungo...",
-
-        noProperties:
-          "Nta mitungo irashyirwaho.",
-
-        error:
-          "Habaye ikibazo mu kuzana imitungo."
+          "📘 Facebook"
 
       },
 
@@ -1066,32 +734,32 @@
         register:
           "Register",
 
-        propertySection:
-          "Available Properties",
+        rentTitle:
+          "Houses for Rent",
 
-        viewDetails:
-          "View Details",
+        rentText:
+          "Find houses available for rent.",
 
-        country:
-          "Country",
+        rentButton:
+          "View Houses",
 
-        province:
-          "Province",
+        saleTitle:
+          "Houses for Sale",
 
-        district:
-          "District",
+        saleText:
+          "Find houses available for sale.",
 
-        sector:
-          "Sector",
+        saleButton:
+          "View Houses",
 
-        bedrooms:
-          "Bedrooms",
+        plotTitle:
+          "Plots for Sale",
 
-        bathrooms:
-          "Bathrooms",
+        plotText:
+          "Find plots available for sale.",
 
-        parking:
-          "Parking",
+        plotButton:
+          "View Plots",
 
         requestTitle:
           "🔎 Request Property",
@@ -1118,16 +786,7 @@
           "💬 Chat Now",
 
         facebook:
-          "📘 Facebook",
-
-        loading:
-          "Loading properties...",
-
-        noProperties:
-          "No properties have been posted yet.",
-
-        error:
-          "There was a problem loading properties."
+          "📘 Facebook"
 
       },
 
@@ -1170,32 +829,32 @@
         register:
           "S'inscrire",
 
-        propertySection:
-          "Biens disponibles",
+        rentTitle:
+          "Maisons à louer",
 
-        viewDetails:
-          "Voir les détails",
+        rentText:
+          "Trouvez des maisons disponibles à la location.",
 
-        country:
-          "Pays",
+        rentButton:
+          "Voir les maisons",
 
-        province:
-          "Province",
+        saleTitle:
+          "Maisons à vendre",
 
-        district:
-          "District",
+        saleText:
+          "Trouvez des maisons disponibles à la vente.",
 
-        sector:
-          "Secteur",
+        saleButton:
+          "Voir les maisons",
 
-        bedrooms:
-          "Chambres",
+        plotTitle:
+          "Terrains à vendre",
 
-        bathrooms:
-          "Salles de bain",
+        plotText:
+          "Trouvez des terrains disponibles à la vente.",
 
-        parking:
-          "Parking",
+        plotButton:
+          "Voir les terrains",
 
         requestTitle:
           "🔎 Demander un bien",
@@ -1222,16 +881,7 @@
           "💬 Chat maintenant",
 
         facebook:
-          "📘 Facebook",
-
-        loading:
-          "Chargement des biens...",
-
-        noProperties:
-          "Aucun bien n'a encore été publié.",
-
-        error:
-          "Un problème est survenu lors du chargement des biens."
+          "📘 Facebook"
 
       },
 
@@ -1274,32 +924,32 @@
         register:
           "Jisajili",
 
-        propertySection:
-          "Mali Zinazopatikana",
+        rentTitle:
+          "Nyumba za Kupangisha",
 
-        viewDetails:
-          "Angalia Maelezo",
+        rentText:
+          "Pata nyumba zinazopatikana kwa kupangisha.",
 
-        country:
-          "Nchi",
+        rentButton:
+          "Tazama Nyumba",
 
-        province:
-          "Mkoa",
+        saleTitle:
+          "Nyumba za Kuuza",
 
-        district:
-          "Wilaya",
+        saleText:
+          "Pata nyumba zinazopatikana kwa kuuza.",
 
-        sector:
-          "Sekta",
+        saleButton:
+          "Tazama Nyumba",
 
-        bedrooms:
-          "Vyumba vya kulala",
+        plotTitle:
+          "Viwanja vya Kuuza",
 
-        bathrooms:
-          "Vyumba vya kuoga",
+        plotText:
+          "Pata viwanja vinavyopatikana kwa kuuza.",
 
-        parking:
-          "Maegesho",
+        plotButton:
+          "Tazama Viwanja",
 
         requestTitle:
           "🔎 Omba Mali",
@@ -1326,16 +976,7 @@
           "💬 Zungumza Nasi",
 
         facebook:
-          "📘 Facebook",
-
-        loading:
-          "Inapakia mali...",
-
-        noProperties:
-          "Hakuna mali zilizowekwa bado.",
-
-        error:
-          "Kuna tatizo katika kupakia mali."
+          "📘 Facebook"
 
       },
 
@@ -1378,32 +1019,32 @@
         register:
           "注册",
 
-        propertySection:
-          "可用房产",
+        rentTitle:
+          "出租房屋",
 
-        viewDetails:
-          "查看详情",
+        rentText:
+          "寻找可出租的房屋。",
 
-        country:
-          "国家",
+        rentButton:
+          "查看房屋",
 
-        province:
-          "省",
+        saleTitle:
+          "出售房屋",
 
-        district:
-          "地区",
+        saleText:
+          "寻找可出售的房屋。",
 
-        sector:
-          "区域",
+        saleButton:
+          "查看房屋",
 
-        bedrooms:
-          "卧室",
+        plotTitle:
+          "出售土地",
 
-        bathrooms:
-          "浴室",
+        plotText:
+          "寻找可出售的土地。",
 
-        parking:
-          "停车位",
+        plotButton:
+          "查看土地",
 
         requestTitle:
           "🔎 申请房产",
@@ -1430,16 +1071,7 @@
           "💬 立即聊天",
 
         facebook:
-          "📘 Facebook",
-
-        loading:
-          "正在加载房产...",
-
-        noProperties:
-          "目前还没有发布房产。",
-
-        error:
-          "加载房产时出现问题。"
+          "📘 Facebook"
 
       }
 
@@ -1451,9 +1083,7 @@
       translations.English;
 
 
-    /* ============================================================
-       APPLY LANGUAGE
-       ============================================================ */
+    /* NAVBAR */
 
     document.getElementById("navHome").textContent = t.home;
     document.getElementById("navRent").textContent = t.rent;
@@ -1464,11 +1094,17 @@
     document.getElementById("navLogin").textContent = t.login;
     document.getElementById("navRegister").textContent = t.register;
 
+
+    /* HEADER */
+
     document.getElementById("headerTitle").textContent =
       t.header;
 
     document.getElementById("subtitle").textContent =
       t.subtitle;
+
+
+    /* WELCOME */
 
     document.getElementById("welcome").textContent =
       t.welcome;
@@ -1476,8 +1112,44 @@
     document.getElementById("choose").textContent =
       t.choose;
 
-    document.getElementById("propertySectionTitle").textContent =
-      t.propertySection;
+
+    /* RENT */
+
+    document.getElementById("rentTitle").textContent =
+      t.rentTitle;
+
+    document.getElementById("rentText").textContent =
+      t.rentText;
+
+    document.getElementById("rentButton").textContent =
+      t.rentButton;
+
+
+    /* SALE */
+
+    document.getElementById("saleTitle").textContent =
+      t.saleTitle;
+
+    document.getElementById("saleText").textContent =
+      t.saleText;
+
+    document.getElementById("saleButton").textContent =
+      t.saleButton;
+
+
+    /* PLOTS */
+
+    document.getElementById("plotTitle").textContent =
+      t.plotTitle;
+
+    document.getElementById("plotText").textContent =
+      t.plotText;
+
+    document.getElementById("plotButton").textContent =
+      t.plotButton;
+
+
+    /* REQUEST */
 
     document.getElementById("requestTitle").textContent =
       t.requestTitle;
@@ -1488,6 +1160,9 @@
     document.getElementById("requestButton").textContent =
       t.requestButton;
 
+
+    /* SELL */
+
     document.getElementById("sellTitle").textContent =
       t.sellTitle;
 
@@ -1497,6 +1172,9 @@
     document.getElementById("sellButton").textContent =
       t.sellButton;
 
+
+    /* FOOTER */
+
     document.getElementById("designed").textContent =
       t.designed;
 
@@ -1505,899 +1183,6 @@
 
     document.getElementById("facebook").textContent =
       t.facebook;
-
-    document.getElementById("loadingMessage").textContent =
-      t.loading;
-
-
-    /* ============================================================
-       PROPERTY DATA
-       ============================================================ */
-
-    let currentProperty = null;
-    let currentPhotoIndex = 0;
-
-
-    function formatPrice(price) {
-
-      if (
-        price === null ||
-        price === undefined ||
-        price === ""
-      ) {
-        return "-";
-      }
-
-      const number =
-        Number(price);
-
-      if (
-        Number.isNaN(number)
-      ) {
-        return price;
-      }
-
-      return number.toLocaleString("en-US") + " RWF";
-    }
-
-
-    function safeText(value) {
-
-      if (
-        value === null ||
-        value === undefined ||
-        value === ""
-      ) {
-        return "-";
-      }
-
-      return String(value);
-    }
-
-
-    function getPhotos(property) {
-
-      let photos = [];
-
-      if (
-        property.main_photo &&
-        typeof property.main_photo === "string"
-      ) {
-        photos.push(property.main_photo);
-      }
-
-      if (
-        Array.isArray(property.other_photos)
-      ) {
-
-        property.other_photos.forEach(
-          function(photo) {
-
-            if (
-              photo &&
-              typeof photo === "string"
-            ) {
-              photos.push(photo);
-            }
-
-          }
-        );
-
-      } else if (
-        typeof property.other_photos === "string" &&
-        property.other_photos.trim() !== ""
-      ) {
-
-        try {
-
-          const parsed =
-            JSON.parse(
-              property.other_photos
-            );
-
-          if (
-            Array.isArray(parsed)
-          ) {
-
-            parsed.forEach(
-              function(photo) {
-
-                if (
-                  photo &&
-                  typeof photo === "string"
-                ) {
-                  photos.push(photo);
-                }
-
-              }
-            );
-
-          }
-
-        } catch (error) {
-
-          property.other_photos
-            .split(",")
-            .map(
-              function(photo) {
-                return photo.trim();
-              }
-            )
-            .filter(Boolean)
-            .forEach(
-              function(photo) {
-                photos.push(photo);
-              }
-            );
-
-        }
-
-      }
-
-      return photos;
-    }
-
-
-    /* ============================================================
-       LOAD PROPERTIES FROM SUPABASE
-       ============================================================ */
-
-    async function loadProperties() {
-
-      const grid =
-        document.getElementById(
-          "propertyGrid"
-        );
-
-      grid.innerHTML =
-        '<div class="message">' +
-        t.loading +
-        '</div>';
-
-
-      if (
-        SUPABASE_URL ===
-        "SHAKA_SUPABASE_URL_YAWE" ||
-        SUPABASE_ANON_KEY ===
-        "SHAKA_SUPABASE_ANON_KEY_YAWE"
-      ) {
-
-        grid.innerHTML =
-          '<div class="message">' +
-          "Supabase URL na anon key ntibirashyirwamo." +
-          "</div>";
-
-        return;
-      }
-
-
-      try {
-
-        const result =
-          await supabaseClient
-            .from("properties")
-            .select("*")
-            .order(
-              "created_at",
-              {
-                ascending: false
-              }
-            );
-
-
-        if (
-          result.error
-        ) {
-
-          console.error(
-            result.error
-          );
-
-          grid.innerHTML =
-            '<div class="message">' +
-            t.error +
-            "</div>";
-
-          return;
-        }
-
-
-        const properties =
-          result.data || [];
-
-
-        if (
-          properties.length === 0
-        ) {
-
-          grid.innerHTML =
-            '<div class="message">' +
-            t.noProperties +
-            "</div>";
-
-          return;
-        }
-
-
-        grid.innerHTML = "";
-
-
-        properties.forEach(
-          function(property) {
-
-            const card =
-              createPropertyCard(
-                property
-              );
-
-            grid.appendChild(card);
-
-          }
-        );
-
-      } catch (error) {
-
-        console.error(
-          error
-        );
-
-        grid.innerHTML =
-          '<div class="message">' +
-          t.error +
-          "</div>";
-
-      }
-
-    }
-
-
-    /* ============================================================
-       CREATE PROPERTY CARD
-       ============================================================ */
-
-    function createPropertyCard(
-      property
-    ) {
-
-      const card =
-        document.createElement(
-          "div"
-        );
-
-      card.className =
-        "property-card";
-
-
-      const photoWrapper =
-        document.createElement(
-          "div"
-        );
-
-      photoWrapper.className =
-        "main-photo-wrapper";
-
-
-      const image =
-        document.createElement(
-          "img"
-        );
-
-      image.className =
-        "main-photo";
-
-      image.alt =
-        safeText(
-          property.title
-        );
-
-
-      const photos =
-        getPhotos(property);
-
-
-      if (
-        photos.length > 0
-      ) {
-
-        image.src =
-          photos[0];
-
-      } else {
-
-        image.src =
-          "https://placehold.co/800x500?text=No+Photo";
-
-      }
-
-
-      photoWrapper.appendChild(
-        image
-      );
-
-
-      const content =
-        document.createElement(
-          "div"
-        );
-
-      content.className =
-        "property-content";
-
-
-      const title =
-        document.createElement(
-          "h3"
-        );
-
-      title.className =
-        "property-title";
-
-      title.textContent =
-        safeText(
-          property.title
-        );
-
-
-      const price =
-        document.createElement(
-          "div"
-        );
-
-      price.className =
-        "property-price";
-
-      price.textContent =
-        formatPrice(
-          property.price
-        );
-
-
-      const location =
-        document.createElement(
-          "div"
-        );
-
-      location.className =
-        "location";
-
-      location.innerHTML =
-        "<strong>" +
-        t.country +
-        ":</strong> " +
-        escapeHTML(
-          safeText(
-            property.country
-          )
-        ) +
-        "<br>" +
-
-        "<strong>" +
-        t.province +
-        ":</strong> " +
-        escapeHTML(
-          safeText(
-            property.province
-          )
-        ) +
-        "<br>" +
-
-        "<strong>" +
-        t.district +
-        ":</strong> " +
-        escapeHTML(
-          safeText(
-            property.district
-          )
-        ) +
-        "<br>" +
-
-        "<strong>" +
-        t.sector +
-        ":</strong> " +
-        escapeHTML(
-          safeText(
-            property.sector
-          )
-        );
-
-
-      const features =
-        document.createElement(
-          "div"
-        );
-
-      features.className =
-        "features";
-
-
-      addFeature(
-        features,
-        "🛏️ " +
-        safeText(
-          property.bedrooms
-        ) +
-        " " +
-        t.bedrooms
-      );
-
-
-      addFeature(
-        features,
-        "🚿 " +
-        safeText(
-          property.bathrooms
-        ) +
-        " " +
-        t.bathrooms
-      );
-
-
-      addFeature(
-        features,
-        "🚗 " +
-        safeText(
-          property.parking
-        ) +
-        " " +
-        t.parking
-      );
-
-
-      const button =
-        document.createElement(
-          "button"
-        );
-
-      button.className =
-        "details-button";
-
-      button.textContent =
-        t.viewDetails;
-
-
-      button.addEventListener(
-        "click",
-        function() {
-
-          openPropertyModal(
-            property
-          );
-
-        }
-      );
-
-
-      content.appendChild(
-        title
-      );
-
-      content.appendChild(
-        price
-      );
-
-      content.appendChild(
-        location
-      );
-
-      content.appendChild(
-        features
-      );
-
-      content.appendChild(
-        button
-      );
-
-
-      card.appendChild(
-        photoWrapper
-      );
-
-      card.appendChild(
-        content
-      );
-
-
-      return card;
-    }
-
-
-    function addFeature(
-      parent,
-      text
-    ) {
-
-      const feature =
-        document.createElement(
-          "span"
-        );
-
-      feature.className =
-        "feature";
-
-      feature.textContent =
-        text;
-
-      parent.appendChild(
-        feature
-      );
-
-    }
-
-
-    function escapeHTML(
-      value
-    ) {
-
-      return String(value)
-        .replace(
-          /&/g,
-          "&amp;"
-        )
-        .replace(
-          /</g,
-          "&lt;"
-        )
-        .replace(
-          />/g,
-          "&gt;"
-        )
-        .replace(
-          /"/g,
-          "&quot;"
-        )
-        .replace(
-          /'/g,
-          "&#039;"
-        );
-
-    }
-
-
-    /* ============================================================
-       PROPERTY MODAL
-       ============================================================ */
-
-    function openPropertyModal(
-      property
-    ) {
-
-      currentProperty =
-        property;
-
-      currentPhotoIndex =
-        0;
-
-
-      document.getElementById(
-        "modalTitle"
-      ).textContent =
-        safeText(
-          property.title
-        );
-
-
-      document.getElementById(
-        "modalPrice"
-      ).textContent =
-        formatPrice(
-          property.price
-        );
-
-
-      document.getElementById(
-        "modalCountry"
-      ).textContent =
-        safeText(
-          property.country
-        );
-
-
-      document.getElementById(
-        "modalProvince"
-      ).textContent =
-        safeText(
-          property.province
-        );
-
-
-      document.getElementById(
-        "modalDistrict"
-      ).textContent =
-        safeText(
-          property.district
-        );
-
-
-      document.getElementById(
-        "modalSector"
-      ).textContent =
-        safeText(
-          property.sector
-        );
-
-
-      document.getElementById(
-        "modalBedrooms"
-      ).textContent =
-        safeText(
-          property.bedrooms
-        );
-
-
-      document.getElementById(
-        "modalBathrooms"
-      ).textContent =
-        safeText(
-          property.bathrooms
-        );
-
-
-      document.getElementById(
-        "modalParking"
-      ).textContent =
-        safeText(
-          property.parking
-        );
-
-
-      document.getElementById(
-        "modalDescription"
-      ).textContent =
-        safeText(
-          property.description
-        );
-
-
-      updateSlider();
-
-
-      document.getElementById(
-        "propertyModal"
-      ).classList.add(
-        "active"
-      );
-
-    }
-
-
-    function closePropertyModal() {
-
-      document.getElementById(
-        "propertyModal"
-      ).classList.remove(
-        "active"
-      );
-
-      currentProperty =
-        null;
-
-    }
-
-
-    function updateSlider() {
-
-      if (
-        !currentProperty
-      ) {
-        return;
-      }
-
-
-      const photos =
-        getPhotos(
-          currentProperty
-        );
-
-
-      const image =
-        document.getElementById(
-          "sliderImage"
-        );
-
-
-      if (
-        photos.length === 0
-      ) {
-
-        image.src =
-          "https://placehold.co/1000x700?text=No+Photo";
-
-        return;
-
-      }
-
-
-      if (
-        currentPhotoIndex < 0
-      ) {
-
-        currentPhotoIndex =
-          photos.length - 1;
-
-      }
-
-
-      if (
-        currentPhotoIndex >=
-        photos.length
-      ) {
-
-        currentPhotoIndex =
-          0;
-
-      }
-
-
-      image.src =
-        photos[
-          currentPhotoIndex
-        ];
-
-    }
-
-
-    function previousPhoto() {
-
-      if (
-        !currentProperty
-      ) {
-        return;
-      }
-
-
-      const photos =
-        getPhotos(
-          currentProperty
-        );
-
-
-      if (
-        photos.length <= 1
-      ) {
-        return;
-      }
-
-
-      currentPhotoIndex--;
-
-      if (
-        currentPhotoIndex < 0
-      ) {
-
-        currentPhotoIndex =
-          photos.length - 1;
-
-      }
-
-
-      updateSlider();
-
-    }
-
-
-    function nextPhoto() {
-
-      if (
-        !currentProperty
-      ) {
-        return;
-      }
-
-
-      const photos =
-        getPhotos(
-          currentProperty
-        );
-
-
-      if (
-        photos.length <= 1
-      ) {
-        return;
-      }
-
-
-      currentPhotoIndex++;
-
-      if (
-        currentPhotoIndex >=
-        photos.length
-      ) {
-
-        currentPhotoIndex =
-          0;
-
-      }
-
-
-      updateSlider();
-
-    }
-
-
-    /* ============================================================
-       CLOSE MODAL WHEN CLICKING OUTSIDE
-       ============================================================ */
-
-    document
-      .getElementById(
-        "propertyModal"
-      )
-      .addEventListener(
-        "click",
-        function(event) {
-
-          if (
-            event.target ===
-            this
-          ) {
-
-            closePropertyModal();
-
-          }
-
-        }
-      );
-
-
-    /* ============================================================
-       KEYBOARD ARROWS
-       ============================================================ */
-
-    document.addEventListener(
-      "keydown",
-      function(event) {
-
-        const modal =
-          document.getElementById(
-            "propertyModal"
-          );
-
-
-        if (
-          !modal.classList.contains(
-            "active"
-          )
-        ) {
-          return;
-        }
-
-
-        if (
-          event.key === "ArrowLeft"
-        ) {
-
-          previousPhoto();
-
-        }
-
-
-        if (
-          event.key === "ArrowRight"
-        ) {
-
-          nextPhoto();
-
-        }
-
-
-        if (
-          event.key === "Escape"
-        ) {
-
-          closePropertyModal();
-
-        }
-
-      }
-    );
-
-
-    /* ============================================================
-       START
-       ============================================================ */
-
-    loadProperties();
 
   </script>
 
