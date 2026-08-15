@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>Houses for Sale - Rwanda House Market</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- ================= GOOGLE ADSENSE ================= -->
+
+<script
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7520250190173475"
+  crossorigin="anonymous">
+</script>
+
+
+<!-- SUPABASE -->
+
+<script
+  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</script>
+
 
 <style>
+
 *{
   box-sizing:border-box;
 }
+
 
 body{
   margin:0;
@@ -20,16 +42,19 @@ body{
   color:#222;
 }
 
+
 header{
   background:#f2c400;
   padding:25px 15px;
   text-align:center;
 }
 
+
 header h1{
   margin:0;
   font-size:30px;
 }
+
 
 .back{
   display:inline-block;
@@ -42,11 +67,13 @@ header h1{
   font-weight:bold;
 }
 
+
 .container{
   max-width:1150px;
   margin:auto;
   padding:30px 20px 60px;
 }
+
 
 .page-title{
   background:white;
@@ -57,11 +84,64 @@ header h1{
   box-shadow:0 3px 12px rgba(0,0,0,.1);
 }
 
+
+.page-title h2{
+  margin-top:0;
+}
+
+
+/* ================= GOOGLE ADSENSE ================= */
+
+.ad-container{
+
+  width:100%;
+
+  background:white;
+
+  padding:15px;
+
+  margin:25px 0;
+
+  border-radius:15px;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.08);
+
+  text-align:center;
+
+  overflow:hidden;
+
+}
+
+
+.ad-label{
+
+  font-size:12px;
+
+  color:#777;
+
+  margin-bottom:8px;
+
+}
+
+
+.adsbygoogle{
+
+  width:100%;
+
+  min-height:100px;
+
+}
+
+
+/* ================= PROPERTIES ================= */
+
 .properties{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:22px;
 }
+
 
 .property{
   background:white;
@@ -70,6 +150,7 @@ header h1{
   box-shadow:0 3px 12px rgba(0,0,0,.12);
 }
 
+
 .property img{
   width:100%;
   height:220px;
@@ -77,15 +158,18 @@ header h1{
   display:block;
 }
 
+
 .property-body{
   padding:18px;
 }
+
 
 .property-title{
   font-size:20px;
   font-weight:bold;
   margin-bottom:10px;
 }
+
 
 .price{
   color:#b27b00;
@@ -94,11 +178,13 @@ header h1{
   margin-bottom:10px;
 }
 
+
 .location{
   color:#555;
   line-height:1.6;
   margin-bottom:15px;
 }
+
 
 .details{
   display:block;
@@ -111,9 +197,11 @@ header h1{
   font-weight:bold;
 }
 
+
 .details:hover{
   background:#d4a900;
 }
+
 
 .empty{
   background:white;
@@ -124,43 +212,70 @@ header h1{
   grid-column:1/-1;
 }
 
+
 .loading{
   text-align:center;
   padding:40px;
 }
 
+
+/* ================= MOBILE ================= */
+
 @media(max-width:900px){
+
   .properties{
     grid-template-columns:repeat(2,1fr);
   }
+
 }
 
+
 @media(max-width:600px){
+
   .properties{
     grid-template-columns:1fr;
   }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <header>
 
-  <h1>🏡 RWANDA HOUSE MARKET</h1>
+  <h1>
+    🏡 RWANDA HOUSE MARKET
+  </h1>
 
-  <a href="home.html" class="back">
+
+  <a
+    href="home.html"
+    class="back"
+  >
+
     ← Back to Home
+
   </a>
 
 </header>
 
 
+
 <div class="container">
+
+
+  <!-- ================= PAGE TITLE ================= -->
 
   <div class="page-title">
 
-    <h2>🏠 Houses for Sale</h2>
+    <h2>
+      🏠 Houses for Sale
+    </h2>
 
     <p>
       Find houses available for sale in Rwanda.
@@ -169,7 +284,36 @@ header h1{
   </div>
 
 
-  <div id="properties" class="properties">
+
+  <!-- ================= GOOGLE ADSENSE ================= -->
+
+  <div class="ad-container">
+
+    <div class="ad-label">
+      Advertisement
+    </div>
+
+
+    <ins
+      class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-7520250190173475"
+      data-ad-slot="7793944660"
+      data-ad-format="auto"
+      data-full-width-responsive="true">
+    </ins>
+
+
+  </div>
+
+
+
+  <!-- ================= PROPERTIES ================= -->
+
+  <div
+    id="properties"
+    class="properties"
+  >
 
     <div class="empty">
       Loading houses...
@@ -177,10 +321,44 @@ header h1{
 
   </div>
 
+
 </div>
 
 
+
 <script>
+
+
+/* =========================
+   START GOOGLE ADS
+========================= */
+
+window.addEventListener(
+  "load",
+  function(){
+
+    try{
+
+      (
+        adsbygoogle =
+        window.adsbygoogle ||
+        []
+      ).push({});
+
+    }
+    catch(error){
+
+      console.log(
+        "AdSense:",
+        error
+      );
+
+    }
+
+  }
+);
+
+
 
 /* =========================
    SUPABASE
@@ -189,8 +367,10 @@ header h1{
 const SUPABASE_URL =
   "https://hsmnybmcddtsyooltozw.supabase.co";
 
+
 const SUPABASE_KEY =
   "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
 
 const supabaseClient =
   window.supabase.createClient(
@@ -199,12 +379,16 @@ const supabaseClient =
   );
 
 
+
 /* =========================
    ELEMENT
 ========================= */
 
 const propertiesElement =
-  document.getElementById("properties");
+  document.getElementById(
+    "properties"
+  );
+
 
 
 /* =========================
@@ -214,13 +398,34 @@ const propertiesElement =
 function escapeHtml(value){
 
   return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
+
 
 
 /* =========================
@@ -230,9 +435,13 @@ function escapeHtml(value){
 async function loadSaleProperties(){
 
   propertiesElement.innerHTML = `
+
     <div class="empty">
+
       Loading houses...
+
     </div>
+
   `;
 
 
@@ -240,10 +449,23 @@ async function loadSaleProperties(){
     data,
     error
   } =
+
   await supabaseClient
+
     .from("property_posts")
+
     .select("*")
-    .eq("property_type","sale")
+
+    .eq(
+      "property_type",
+      "sale"
+    )
+
+    .eq(
+      "status",
+      "published"
+    )
+
     .order(
       "created_at",
       {
@@ -252,99 +474,240 @@ async function loadSaleProperties(){
     );
 
 
+  /* =========================
+     ERROR
+  ========================= */
+
   if(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     propertiesElement.innerHTML = `
+
       <div class="empty">
-        ❌ ${escapeHtml(error.message)}
+
+        ❌
+
+        ${escapeHtml(
+          error.message
+        )}
+
       </div>
+
     `;
 
     return;
+
   }
 
 
-  if(!data || data.length === 0){
+
+  /* =========================
+     EMPTY
+  ========================= */
+
+  if(
+    !data ||
+    data.length === 0
+  ){
 
     propertiesElement.innerHTML = `
+
       <div class="empty">
-        No houses for sale available yet.
+
+        No houses for sale
+        available yet.
+
       </div>
+
     `;
 
     return;
+
   }
 
+
+
+  /* =========================
+     CLEAR
+  ========================= */
 
   propertiesElement.innerHTML = "";
 
 
-  data.forEach(property => {
 
-    const card =
-      document.createElement("div");
+  /* =========================
+     CREATE CARDS
+  ========================= */
 
-    card.className = "property";
-
-
-    const image =
-      property.main_photo ||
-      "https://via.placeholder.com/800x500?text=No+Photo";
+  data.forEach(
+    property => {
 
 
-    card.innerHTML = `
+      const card =
+        document.createElement(
+          "div"
+        );
 
-      <img
-        src="${escapeHtml(image)}"
-        alt="${escapeHtml(property.title || "House")}"
-      >
 
-      <div class="property-body">
+      card.className =
+        "property";
 
-        <div class="property-title">
-          ${escapeHtml(
-            property.title || "House for Sale"
-          )}
+
+
+      /* =========================
+         IMAGE
+      ========================= */
+
+      const image =
+
+        property.main_photo ||
+
+        (
+          Array.isArray(
+            property.other_photos
+          )
+
+          ?
+
+          property.other_photos[0]
+
+          :
+
+          ""
+        ) ||
+
+        "https://via.placeholder.com/800x500?text=No+Photo";
+
+
+
+      /* =========================
+         LOCATION
+      ========================= */
+
+      const location = [
+
+        property.country,
+
+        property.province,
+
+        property.district,
+
+        property.sector
+
+      ]
+
+      .filter(Boolean)
+
+      .join(", ");
+
+
+
+      /* =========================
+         DETAIL URL
+      ========================= */
+
+      const detailUrl =
+
+        "house-sale-detail.html?id=" +
+
+        encodeURIComponent(
+          property.id
+        );
+
+
+
+      /* =========================
+         CARD
+      ========================= */
+
+      card.innerHTML = `
+
+        <img
+
+          src="${escapeHtml(
+            image
+          )}"
+
+          alt="${escapeHtml(
+            property.title ||
+            "House for Sale"
+          )}"
+
+          loading="lazy"
+
+        >
+
+
+        <div class="property-body">
+
+
+          <div class="property-title">
+
+            ${escapeHtml(
+              property.title ||
+              "House for Sale"
+            )}
+
+          </div>
+
+
+
+          <div class="price">
+
+            ${Number(
+              property.price || 0
+            ).toLocaleString()}
+
+            RWF
+
+          </div>
+
+
+
+          <div class="location">
+
+            📍
+
+            ${escapeHtml(
+              location ||
+              "Rwanda"
+            )}
+
+          </div>
+
+
+
+          <a
+
+            class="details"
+
+            href="${detailUrl}"
+
+          >
+
+            View Detail
+
+          </a>
+
+
         </div>
 
-        <div class="price">
-          ${Number(
-            property.price || 0
-          ).toLocaleString()} RWF
-        </div>
-
-        <div class="location">
-
-          🌍 Country:
-          ${escapeHtml(property.country || "")}
-
-          <br>
-
-          📍 District:
-          ${escapeHtml(property.district || "")}
-
-        </div>
-
-        <a
-          class="details"
-          href="house-sale-detail.html?id=${encodeURIComponent(property.id)}">
-
-          View Detail
-
-        </a>
-
-      </div>
-
-    `;
+      `;
 
 
-    propertiesElement.appendChild(card);
+      propertiesElement.appendChild(
+        card
+      );
 
-  });
+    }
+  );
 
 }
+
 
 
 /* =========================
@@ -353,7 +716,9 @@ async function loadSaleProperties(){
 
 loadSaleProperties();
 
+
 </script>
+
 
 </body>
 </html>
