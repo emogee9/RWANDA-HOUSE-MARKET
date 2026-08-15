@@ -11,15 +11,30 @@
 
   <title>Houses for Rent - Rwanda House Market</title>
 
+
   <!-- FAVICON -->
+
   <link
     rel="icon"
     type="image/png"
     href="logo.png"
   >
 
+
+  <!-- ================= GOOGLE ADSENSE ================= -->
+
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7520250190173475"
+    crossorigin="anonymous">
+  </script>
+
+
   <!-- SUPABASE -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+  </script>
 
 
   <style>
@@ -27,6 +42,7 @@
     *{
       box-sizing:border-box;
     }
+
 
     body{
       margin:0;
@@ -217,6 +233,47 @@
       color:#666;
 
       margin:0;
+    }
+
+
+    /* ================= GOOGLE ADSENSE ================= */
+
+    .ad-container{
+
+      width:100%;
+
+      background:white;
+
+      border-radius:14px;
+
+      padding:15px;
+
+      margin:25px 0;
+
+      box-shadow:
+        0 3px 12px rgba(0,0,0,.10);
+
+      text-align:center;
+
+      overflow:hidden;
+    }
+
+
+    .ad-label{
+
+      font-size:12px;
+
+      color:#777;
+
+      margin-bottom:8px;
+    }
+
+
+    .adsbygoogle{
+
+      width:100%;
+
+      min-height:100px;
     }
 
 
@@ -588,6 +645,32 @@
     </div>
 
 
+
+    <!-- ================= GOOGLE ADSENSE ================= -->
+
+    <div class="ad-container">
+
+      <div class="ad-label">
+        Advertisement
+      </div>
+
+
+      <ins
+        class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-7520250190173475"
+        data-ad-slot="7793944660"
+        data-ad-format="auto"
+        data-full-width-responsive="true">
+      </ins>
+
+
+    </div>
+
+
+
+    <!-- ================= PROPERTIES ================= -->
+
     <div
       id="properties"
       class="properties"
@@ -636,6 +719,37 @@
   <!-- ================= JAVASCRIPT ================= -->
 
   <script>
+
+
+    /* =========================================
+       START GOOGLE ADS
+    ========================================= */
+
+    window.addEventListener(
+      "load",
+      function(){
+
+        try{
+
+          (
+            adsbygoogle =
+              window.adsbygoogle ||
+              []
+          ).push({});
+
+        }
+        catch(error){
+
+          console.log(
+            "AdSense:",
+            error
+          );
+
+        }
+
+      }
+    );
+
 
 
     /* =========================================
@@ -722,21 +836,6 @@
         </div>
 
       `;
-
-
-
-      /*
-        IMPORTANT:
-
-        Table:
-        property_posts
-
-        We only want:
-        property_type = rent
-
-        AND:
-        status = published
-      */
 
 
       const {
@@ -929,6 +1028,8 @@
                 property.title ||
                 "House for Rent"
               )}"
+
+              loading="lazy"
 
             >
 
