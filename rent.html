@@ -92,71 +92,32 @@
       gap: 25px;
     }
 
-    /* ================= CARD ================= */
+    /* ================= EMPTY MESSAGE ================= */
 
-    .card {
+    .empty-message {
       background: white;
+      border: 2px dashed #f0c928;
       border-radius: 15px;
-      overflow: hidden;
-      border: 1px solid #f0df79;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.09);
-      transition: transform 0.2s, box-shadow 0.2s;
+      padding: 50px 25px;
+      text-align: center;
+      color: #6b5a00;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.13);
+    .empty-message .icon {
+      font-size: 55px;
+      margin-bottom: 15px;
     }
 
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-      background: #fff8cf;
-    }
-
-    .card-content {
-      padding: 20px;
-    }
-
-    .card h3 {
+    .empty-message h3 {
       margin: 0 0 10px;
-      color: #3d3200;
-      font-size: 21px;
+      font-size: 24px;
     }
 
-    .price {
-      display: inline-block;
-      background: #fff3a8;
-      color: #5c4700;
-      padding: 8px 12px;
-      border-radius: 7px;
-      font-size: 19px;
-      font-weight: bold;
-      margin: 10px 0 14px;
-    }
-
-    .location {
-      color: #666666;
-      margin-bottom: 18px;
-      font-size: 15px;
-    }
-
-    .details {
-      display: inline-block;
-      background: #ffd21f;
-      color: #332800;
-      padding: 12px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.2s;
-    }
-
-    .details:hover {
-      background: #f0b900;
-      color: #222222;
+    .empty-message p {
+      margin: 0;
+      color: #777777;
+      font-size: 16px;
     }
 
     /* ================= MOBILE ================= */
@@ -183,17 +144,10 @@
         font-size: 25px;
       }
 
-      .card img {
-        height: 200px;
+      .empty-message {
+        padding: 40px 20px;
       }
 
-      .card-content {
-        padding: 18px;
-      }
-
-      .price {
-        font-size: 17px;
-      }
     }
   </style>
 </head>
@@ -237,116 +191,32 @@
 
     <!-- ================= PROPERTIES ================= -->
 
-    <div class="properties">
+    <div
+      class="properties"
+      id="propertiesContainer">
 
+      <!--
+        NTA PROPERTY IRI HANO.
 
-      <!-- HOUSE 1 -->
+        Property zizajya zongerwa nyuma
+        binyuze muri Admin New Post.
+      -->
 
-      <div class="card">
+      <div class="empty-message">
 
-        <img
-          id="houseImage1"
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
-          alt="Modern Family House">
-
-        <div class="card-content">
-
-          <h3 id="houseName1">
-            Modern Family House
-          </h3>
-
-          <div class="price">
-            500,000 RWF
-            <span id="month1">/ month</span>
-          </div>
-
-          <div class="location">
-            📍 <span id="location1">Kigali, Rwanda</span>
-          </div>
-
-          <a
-            href="house-details.html"
-            class="details"
-            id="details1">
-            View Details
-          </a>
-
+        <div class="icon">
+          🏠
         </div>
 
-      </div>
+        <h3 id="emptyTitle">
+          No houses available
+        </h3>
 
-
-      <!-- HOUSE 2 -->
-
-      <div class="card">
-
-        <img
-          id="houseImage2"
-          src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85"
-          alt="Beautiful Rental House">
-
-        <div class="card-content">
-
-          <h3 id="houseName2">
-            Beautiful Rental House
-          </h3>
-
-          <div class="price">
-            650,000 RWF
-            <span id="month2">/ month</span>
-          </div>
-
-          <div class="location">
-            📍 <span id="location2">Kicukiro, Rwanda</span>
-          </div>
-
-          <a
-            href="house-details.html"
-            class="details"
-            id="details2">
-            View Details
-          </a>
-
-        </div>
+        <p id="emptyText">
+          There are currently no houses available for rent.
+        </p>
 
       </div>
-
-
-      <!-- HOUSE 3 -->
-
-      <div class="card">
-
-        <img
-          id="houseImage3"
-          src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85"
-          alt="Spacious House">
-
-        <div class="card-content">
-
-          <h3 id="houseName3">
-            Spacious House
-          </h3>
-
-          <div class="price">
-            800,000 RWF
-            <span id="month3">/ month</span>
-          </div>
-
-          <div class="location">
-            📍 <span id="location3">Gasabo, Rwanda</span>
-          </div>
-
-          <a
-            href="house-details.html"
-            class="details"
-            id="details3">
-            View Details
-          </a>
-
-        </div>
-
-      </div>
-
 
     </div>
 
@@ -384,26 +254,11 @@
         description:
           "Shaka amazu ahari yo gukodesha mu Rwanda.",
 
-        details:
-          "Reba ibisobanuro",
+        emptyTitle:
+          "Nta nzu irahari",
 
-        month:
-          "/ ukwezi",
-
-        houses: [
-          {
-            name: "Inzu nziza y'umuryango",
-            location: "Kigali, Rwanda"
-          },
-          {
-            name: "Inzu nziza ikodeshwa",
-            location: "Kicukiro, Rwanda"
-          },
-          {
-            name: "Inzu yagutse",
-            location: "Gasabo, Rwanda"
-          }
-        ]
+        emptyText:
+          "Kugeza ubu nta nzu ihari yo gukodesha."
 
       },
 
@@ -425,26 +280,11 @@
         description:
           "Find houses available for rent in Rwanda.",
 
-        details:
-          "View Details",
+        emptyTitle:
+          "No houses available",
 
-        month:
-          "/ month",
-
-        houses: [
-          {
-            name: "Modern Family House",
-            location: "Kigali, Rwanda"
-          },
-          {
-            name: "Beautiful Rental House",
-            location: "Kicukiro, Rwanda"
-          },
-          {
-            name: "Spacious House",
-            location: "Gasabo, Rwanda"
-          }
-        ]
+        emptyText:
+          "There are currently no houses available for rent."
 
       },
 
@@ -466,26 +306,11 @@
         description:
           "Trouvez des maisons disponibles à la location au Rwanda.",
 
-        details:
-          "Voir les détails",
+        emptyTitle:
+          "Aucune maison disponible",
 
-        month:
-          "/ mois",
-
-        houses: [
-          {
-            name: "Maison familiale moderne",
-            location: "Kigali, Rwanda"
-          },
-          {
-            name: "Belle maison à louer",
-            location: "Kicukiro, Rwanda"
-          },
-          {
-            name: "Maison spacieuse",
-            location: "Gasabo, Rwanda"
-          }
-        ]
+        emptyText:
+          "Il n'y a actuellement aucune maison disponible à la location."
 
       },
 
@@ -507,26 +332,11 @@
         description:
           "Pata nyumba zinazopatikana kwa kupangisha nchini Rwanda.",
 
-        details:
-          "Tazama Maelezo",
+        emptyTitle:
+          "Hakuna nyumba zinazopatikana",
 
-        month:
-          "/ mwezi",
-
-        houses: [
-          {
-            name: "Nyumba ya Kisasa ya Familia",
-            location: "Kigali, Rwanda"
-          },
-          {
-            name: "Nyumba Nzuri ya Kupangisha",
-            location: "Kicukiro, Rwanda"
-          },
-          {
-            name: "Nyumba yenye Nafasi",
-            location: "Gasabo, Rwanda"
-          }
-        ]
+        emptyText:
+          "Kwa sasa hakuna nyumba zinazopatikana kwa kupangisha."
 
       },
 
@@ -548,26 +358,11 @@
         description:
           "寻找卢旺达可出租的房屋。",
 
-        details:
-          "查看详情",
+        emptyTitle:
+          "暂无房屋",
 
-        month:
-          "/ 月",
-
-        houses: [
-          {
-            name: "现代家庭住宅",
-            location: "基加利，卢旺达"
-          },
-          {
-            name: "漂亮的出租房屋",
-            location: "基库基罗，卢旺达"
-          },
-          {
-            name: "宽敞的房屋",
-            location: "加萨博，卢旺达"
-          }
-        ]
+        emptyText:
+          "目前没有可出租的房屋。"
 
       }
 
@@ -617,82 +412,16 @@
       t.description;
 
 
-    /* ================= HOUSE 1 ================= */
-
     document.getElementById(
-      "houseName1"
+      "emptyTitle"
     ).textContent =
-      t.houses[0].name;
+      t.emptyTitle;
 
 
     document.getElementById(
-      "location1"
+      "emptyText"
     ).textContent =
-      t.houses[0].location;
-
-
-    document.getElementById(
-      "details1"
-    ).textContent =
-      t.details;
-
-
-    document.getElementById(
-      "month1"
-    ).textContent =
-      t.month;
-
-
-    /* ================= HOUSE 2 ================= */
-
-    document.getElementById(
-      "houseName2"
-    ).textContent =
-      t.houses[1].name;
-
-
-    document.getElementById(
-      "location2"
-    ).textContent =
-      t.houses[1].location;
-
-
-    document.getElementById(
-      "details2"
-    ).textContent =
-      t.details;
-
-
-    document.getElementById(
-      "month2"
-    ).textContent =
-      t.month;
-
-
-    /* ================= HOUSE 3 ================= */
-
-    document.getElementById(
-      "houseName3"
-    ).textContent =
-      t.houses[2].name;
-
-
-    document.getElementById(
-      "location3"
-    ).textContent =
-      t.houses[2].location;
-
-
-    document.getElementById(
-      "details3"
-    ).textContent =
-      t.details;
-
-
-    document.getElementById(
-      "month3"
-    ).textContent =
-      t.month;
+      t.emptyText;
 
   </script>
 
