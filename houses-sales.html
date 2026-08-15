@@ -47,7 +47,7 @@
 
     .page-title {
       background: white;
-      padding: 25px;
+      padding: 30px;
       text-align: center;
       border-radius: 15px;
       margin-bottom: 25px;
@@ -56,81 +56,81 @@
 
     .page-title h2 {
       margin-top: 0;
+      margin-bottom: 10px;
     }
 
-    .houses {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
+    .page-title p {
+      color: #666;
+      margin-bottom: 0;
     }
 
-    .house {
+    .empty {
       background: white;
+      min-height: 300px;
       border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
     }
 
-    .house img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
+    .empty-content {
+      max-width: 600px;
     }
 
-    .house-content {
-      padding: 20px;
-    }
-
-    .house h2 {
-      margin-top: 0;
-    }
-
-    .price {
-      color: #d4a900;
-      font-size: 21px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    .location {
-      color: #555;
+    .empty-icon {
+      font-size: 60px;
       margin-bottom: 15px;
     }
 
-    .description {
-      color: #555;
+    .empty h3 {
+      margin: 0 0 10px;
+      font-size: 25px;
+      color: #444;
+    }
+
+    .empty p {
+      margin: 0;
+      color: #777;
+      font-size: 16px;
       line-height: 1.6;
     }
 
-    .details {
-      display: inline-block;
-      background: #f2c400;
-      color: #222;
-      text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      margin-top: 8px;
-    }
-
-    .details:hover {
-      background: #d4a900;
-    }
-
     @media (max-width: 600px) {
-      .house img {
-        height: 200px;
+
+      header {
+        padding: 20px 12px;
+      }
+
+      header h1 {
+        font-size: 24px;
       }
 
       .container {
         padding: 20px 15px 40px;
+      }
+
+      .page-title {
+        padding: 25px 15px;
+      }
+
+      .empty {
+        min-height: 250px;
+        padding: 20px;
+      }
+
+      .empty h3 {
+        font-size: 21px;
       }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- ================= HEADER ================= -->
 
   <header>
 
@@ -148,6 +148,8 @@
   </header>
 
 
+  <!-- ================= MAIN ================= -->
+
   <div class="container">
 
     <div class="page-title">
@@ -163,154 +165,48 @@
     </div>
 
 
-    <div class="houses">
+    <!-- ================= NO POSTS ================= -->
 
+    <div class="empty">
 
-      <!-- HOUSE 1 -->
+      <div class="empty-content">
 
-      <div class="house">
-
-        <img
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
-          id="image1"
-          alt="House for Sale">
-
-        <div class="house-content">
-
-          <h2 id="houseName1">
-            Modern Family House
-          </h2>
-
-          <div class="price">
-            85,000,000 RWF
-          </div>
-
-          <div class="location">
-            📍 <span id="location1">Kigali, Rwanda</span>
-          </div>
-
-          <p
-            class="description"
-            id="description1">
-            Beautiful family house available for sale in Kigali.
-          </p>
-
-          <a
-            href="./house-sale-details.html"
-            class="details"
-            id="details1">
-            View Details
-          </a>
-
+        <div class="empty-icon">
+          🏠
         </div>
 
-      </div>
+        <h3 id="emptyTitle">
+          No properties available
+        </h3>
 
-
-      <!-- HOUSE 2 -->
-
-      <div class="house">
-
-        <img
-          src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=85"
-          id="image2"
-          alt="House for Sale">
-
-        <div class="house-content">
-
-          <h2 id="houseName2">
-            Beautiful Modern House
-          </h2>
-
-          <div class="price">
-            95,000,000 RWF
-          </div>
-
-          <div class="location">
-            📍 <span id="location2">Kigali, Rwanda</span>
-          </div>
-
-          <p
-            class="description"
-            id="description2">
-            Modern house in a convenient location.
-          </p>
-
-          <a
-            href="./house-details.html"
-            class="details"
-            id="details2">
-            View Details
-          </a>
-
-        </div>
+        <p id="emptyDescription">
+          There are currently no houses posted for sale.
+        </p>
 
       </div>
-
-
-      <!-- HOUSE 3 -->
-
-      <div class="house">
-
-        <img
-          src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85"
-          id="image3"
-          alt="House for Sale">
-
-        <div class="house-content">
-
-          <h2 id="houseName3">
-            Luxury Family House
-          </h2>
-
-          <div class="price">
-            120,000,000 RWF
-          </div>
-
-          <div class="location">
-            📍 <span id="location3">Kigali, Rwanda</span>
-          </div>
-
-          <p
-            class="description"
-            id="description3">
-            Spacious family house with parking space.
-          </p>
-
-          <a
-            href="./house-details.html"
-            class="details"
-            id="details3">
-            View Details
-          </a>
-
-        </div>
-
-      </div>
-
 
     </div>
 
   </div>
 
 
+  <!-- ================= JAVASCRIPT ================= -->
+
   <script>
 
-    /*
-      GET THE LANGUAGE SELECTED
-      ON THE FIRST PAGE
-    */
+    /* =========================
+       LANGUAGE
+    ========================= */
 
     const language =
       localStorage.getItem("selectedLanguage") || "English";
 
 
-    /*
-      TRANSLATIONS
-    */
+    /* =========================
+       TRANSLATIONS
+    ========================= */
 
     const translations = {
-
 
       Kinyarwanda: {
 
@@ -329,33 +225,11 @@
         description:
           "Shaka amazu ahari yo kugura mu Rwanda.",
 
-        details:
-          "Reba ibisobanuro",
+        emptyTitle:
+          "Nta nzu irashyirwaho",
 
-        houses: [
-
-          {
-            name: "Inzu nziza y'umuryango",
-            location: "Kigali, Rwanda",
-            description:
-              "Inzu nziza y'umuryango iri kugurishwa i Kigali."
-          },
-
-          {
-            name: "Inzu nziza igezweho",
-            location: "Kigali, Rwanda",
-            description:
-              "Inzu igezweho iri ahantu heza."
-          },
-
-          {
-            name: "Inzu nziza y'akataraboneka",
-            location: "Kigali, Rwanda",
-            description:
-              "Inzu yagutse y'umuryango ifite aho guhagarika imodoka."
-          }
-
-        ]
+        emptyDescription:
+          "Kugeza ubu nta nzu yashyizweho ngo igurishwe."
 
       },
 
@@ -377,33 +251,11 @@
         description:
           "Find houses available for sale in Rwanda.",
 
-        details:
-          "View Details",
+        emptyTitle:
+          "No properties available",
 
-        houses: [
-
-          {
-            name: "Modern Family House",
-            location: "Kigali, Rwanda",
-            description:
-              "Beautiful family house available for sale in Kigali."
-          },
-
-          {
-            name: "Beautiful Modern House",
-            location: "Kigali, Rwanda",
-            description:
-              "Modern house in a convenient location."
-          },
-
-          {
-            name: "Luxury Family House",
-            location: "Kigali, Rwanda",
-            description:
-              "Spacious family house with parking space."
-          }
-
-        ]
+        emptyDescription:
+          "There are currently no houses posted for sale."
 
       },
 
@@ -425,33 +277,11 @@
         description:
           "Trouvez des maisons disponibles à la vente au Rwanda.",
 
-        details:
-          "Voir les détails",
+        emptyTitle:
+          "Aucune propriété disponible",
 
-        houses: [
-
-          {
-            name: "Maison familiale moderne",
-            location: "Kigali, Rwanda",
-            description:
-              "Belle maison familiale disponible à la vente à Kigali."
-          },
-
-          {
-            name: "Belle maison moderne",
-            location: "Kigali, Rwanda",
-            description:
-              "Maison moderne située dans un endroit pratique."
-          },
-
-          {
-            name: "Maison familiale de luxe",
-            location: "Kigali, Rwanda",
-            description:
-              "Maison familiale spacieuse avec parking."
-          }
-
-        ]
+        emptyDescription:
+          "Aucune maison n'est actuellement publiée à vendre."
 
       },
 
@@ -473,33 +303,11 @@
         description:
           "Pata nyumba zinazopatikana kwa kuuza nchini Rwanda.",
 
-        details:
-          "Tazama Maelezo",
+        emptyTitle:
+          "Hakuna mali inayopatikana",
 
-        houses: [
-
-          {
-            name: "Nyumba ya Kisasa ya Familia",
-            location: "Kigali, Rwanda",
-            description:
-              "Nyumba nzuri ya familia inayouzwa Kigali."
-          },
-
-          {
-            name: "Nyumba Nzuri ya Kisasa",
-            location: "Kigali, Rwanda",
-            description:
-              "Nyumba ya kisasa iliyo katika eneo zuri."
-          },
-
-          {
-            name: "Nyumba ya Familia ya Kifahari",
-            location: "Kigali, Rwanda",
-            description:
-              "Nyumba kubwa ya familia yenye nafasi ya maegesho."
-          }
-
-        ]
+        emptyDescription:
+          "Kwa sasa hakuna nyumba iliyowekwa kwa ajili ya kuuza."
 
       },
 
@@ -521,51 +329,29 @@
         description:
           "寻找卢旺达可出售的房屋。",
 
-        details:
-          "查看详情",
+        emptyTitle:
+          "暂无房产",
 
-        houses: [
-
-          {
-            name: "现代家庭住宅",
-            location: "基加利，卢旺达",
-            description:
-              "位于基加利的漂亮家庭住宅，现出售。"
-          },
-
-          {
-            name: "漂亮的现代住宅",
-            location: "基加利，卢旺达",
-            description:
-              "位于便利位置的现代住宅。"
-          },
-
-          {
-            name: "豪华家庭住宅",
-            location: "基加利，卢旺达",
-            description:
-              "宽敞的家庭住宅，设有停车位。"
-          }
-
-        ]
+        emptyDescription:
+          "目前没有发布出售的房屋。"
 
       }
 
     };
 
 
-    /*
-      CHOOSE TRANSLATION
-    */
+    /* =========================
+       CHOOSE LANGUAGE
+    ========================= */
 
     const t =
       translations[language] ||
       translations.English;
 
 
-    /*
-      KEEP LANGUAGE SAVED
-    */
+    /* =========================
+       KEEP LANGUAGE
+    ========================= */
 
     localStorage.setItem(
       "selectedLanguage",
@@ -573,9 +359,9 @@
     );
 
 
-    /*
-      PAGE TEXT
-    */
+    /* =========================
+       APPLY TEXT
+    ========================= */
 
     document.title =
       t.browserTitle;
@@ -605,90 +391,19 @@
       t.description;
 
 
-    /*
-      HOUSE 1
-    */
-
     document.getElementById(
-      "houseName1"
+      "emptyTitle"
     ).textContent =
-      t.houses[0].name;
+      t.emptyTitle;
 
 
     document.getElementById(
-      "location1"
+      "emptyDescription"
     ).textContent =
-      t.houses[0].location;
-
-
-    document.getElementById(
-      "description1"
-    ).textContent =
-      t.houses[0].description;
-
-
-    document.getElementById(
-      "details1"
-    ).textContent =
-      t.details;
-
-
-    /*
-      HOUSE 2
-    */
-
-    document.getElementById(
-      "houseName2"
-    ).textContent =
-      t.houses[1].name;
-
-
-    document.getElementById(
-      "location2"
-    ).textContent =
-      t.houses[1].location;
-
-
-    document.getElementById(
-      "description2"
-    ).textContent =
-      t.houses[1].description;
-
-
-    document.getElementById(
-      "details2"
-    ).textContent =
-      t.details;
-
-
-    /*
-      HOUSE 3
-    */
-
-    document.getElementById(
-      "houseName3"
-    ).textContent =
-      t.houses[2].name;
-
-
-    document.getElementById(
-      "location3"
-    ).textContent =
-      t.houses[2].location;
-
-
-    document.getElementById(
-      "description3"
-    ).textContent =
-      t.houses[2].description;
-
-
-    document.getElementById(
-      "details3"
-    ).textContent =
-      t.details;
+      t.emptyDescription;
 
   </script>
 
 </body>
+
 </html>
