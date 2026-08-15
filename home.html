@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Rwanda House Market</title>
-<link rel="icon" type="image/png" href="logo.png">
+
+  <!-- LOGO YA WEBSITE / BROWSER TAB -->
+  <link rel="icon" type="image/png" href="logo.png">
+
   <style>
     * {
       box-sizing: border-box;
@@ -23,7 +26,7 @@
     .navbar {
       background: #d4a017;
       color: white;
-      padding: 16px 20px;
+      padding: 12px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -34,11 +37,30 @@
       box-shadow: 0 3px 12px rgba(0,0,0,.2);
     }
 
+    /* ================= LOGO ================= */
+
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-size: 22px;
       font-weight: bold;
       white-space: nowrap;
     }
+
+    .logo img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      display: block;
+      background: transparent;
+    }
+
+    .logo-text {
+      display: inline-block;
+    }
+
+    /* ================= NAV LINKS ================= */
 
     .nav-links {
       display: flex;
@@ -381,6 +403,16 @@
       .logo {
         white-space: normal;
         text-align: center;
+        justify-content: center;
+      }
+
+      .logo img {
+        width: 58px;
+        height: 58px;
+      }
+
+      .logo-text {
+        font-size: 20px;
       }
 
       .nav-links {
@@ -419,33 +451,55 @@
 
   <nav class="navbar">
 
-    <div class="logo" id="logo">
-      🏠 Rwanda House Market
+    <div class="logo">
+
+      <!-- LOGO YAWE -->
+      <img
+        src="logo.png"
+        alt="Rwanda House Market Logo"
+      >
+
+      <span
+        class="logo-text"
+        id="logoText">
+        Rwanda House Market
+      </span>
+
     </div>
+
 
     <div class="nav-links">
 
-      <a href="home.html" id="homeLink">
+      <a
+        href="home.html"
+        id="homeLink">
         Home
       </a>
 
-      <a href="houses-rent.html" id="rentLink">
+      <a
+        href="houses-rent.html"
+        id="rentLink">
         House for Rent
       </a>
 
-      <a href="houses-sale.html" id="saleLink">
+      <a
+        href="houses-sale.html"
+        id="saleLink">
         House for Sale
       </a>
 
-      <a href="plot.html" id="plotLink">
+      <a
+        href="plot.html"
+        id="plotLink">
         Plot for Sale
       </a>
 
-      <a href="sell-your-property.html" id="sellLink">
+      <a
+        href="sell-your-property.html"
+        id="sellLink">
         Sell Your Property
       </a>
 
-      <!-- LOGIN ONLY - REGISTER REMOVED -->
       <a
         href="login.html"
         id="loginLink"
@@ -549,6 +603,7 @@
         </p>
 
       </div>
+
 
       <div class="categories">
 
@@ -662,6 +717,7 @@
 
       </div>
 
+
       <div
         id="latestProperties"
         class="properties">
@@ -707,7 +763,13 @@
   <footer>
 
     <p>
-      🏠 <strong>Rwanda House Market</strong>
+      <img
+        src="logo.png"
+        alt="Logo"
+        style="width:45px;height:45px;object-fit:contain;vertical-align:middle;"
+      >
+
+      <strong>Rwanda House Market</strong>
     </p>
 
     <p id="footerDescription">
@@ -716,34 +778,49 @@
 
     <div class="footer-links">
 
-      <a href="home.html" id="footerHome">
+      <a
+        href="home.html"
+        id="footerHome">
         Home
       </a>
 
-      <a href="house-rent.html" id="footerRent">
+      <!-- FIXED: houses-rent.html -->
+      <a
+        href="houses-rent.html"
+        id="footerRent">
         House for Rent
       </a>
 
-      <a href="houses-sale.html" id="footerSale">
+      <a
+        href="houses-sale.html"
+        id="footerSale">
         House for Sale
       </a>
 
-      <a href="plot.html" id="footerPlot">
+      <a
+        href="plot.html"
+        id="footerPlot">
         Plot for Sale
       </a>
 
-      <a href="sell-your-property.html" id="footerSell">
+      <a
+        href="sell-your-property.html"
+        id="footerSell">
         Sell Your Property
       </a>
 
-      <a href="login.html" id="footerLogin">
+      <a
+        href="login.html"
+        id="footerLogin">
         Login
       </a>
 
     </div>
 
     <p>
-      © <span id="year"></span> Rwanda House Market
+      ©
+      <span id="year"></span>
+      Rwanda House Market
     </p>
 
   </footer>
@@ -774,19 +851,26 @@
 
       Kinyarwanda: {
 
-        logo: "🏠 Rwanda House Market",
+        logo:
+          "Rwanda House Market",
 
-        home: "Ahabanza",
+        home:
+          "Ahabanza",
 
-        rent: "Inzu zikodeshwa",
+        rent:
+          "Inzu zikodeshwa",
 
-        sale: "Inzu zigurishwa",
+        sale:
+          "Inzu zigurishwa",
 
-        plot: "Ibibanza bigurishwa",
+        plot:
+          "Ibibanza bigurishwa",
 
-        sell: "Gurisha Umutungo",
+        sell:
+          "Gurisha Umutungo",
 
-        login: "Login",
+        login:
+          "Login",
 
         heroTitle:
           "Shaka Umutungo wawe mwiza mu Rwanda",
@@ -868,19 +952,26 @@
 
       English: {
 
-        logo: "🏠 Rwanda House Market",
+        logo:
+          "Rwanda House Market",
 
-        home: "Home",
+        home:
+          "Home",
 
-        rent: "House for Rent",
+        rent:
+          "House for Rent",
 
-        sale: "House for Sale",
+        sale:
+          "House for Sale",
 
-        plot: "Plot for Sale",
+        plot:
+          "Plot for Sale",
 
-        sell: "Sell Your Property",
+        sell:
+          "Sell Your Property",
 
-        login: "Login",
+        login:
+          "Login",
 
         heroTitle:
           "Find Your Perfect Property in Rwanda",
@@ -962,19 +1053,26 @@
 
       Français: {
 
-        logo: "🏠 Rwanda House Market",
+        logo:
+          "Rwanda House Market",
 
-        home: "Accueil",
+        home:
+          "Accueil",
 
-        rent: "Maison à louer",
+        rent:
+          "Maison à louer",
 
-        sale: "Maison à vendre",
+        sale:
+          "Maison à vendre",
 
-        plot: "Terrain à vendre",
+        plot:
+          "Terrain à vendre",
 
-        sell: "Vendre votre propriété",
+        sell:
+          "Vendre votre propriété",
 
-        login: "Connexion",
+        login:
+          "Connexion",
 
         heroTitle:
           "Trouvez votre propriété idéale au Rwanda",
@@ -1056,19 +1154,26 @@
 
       Kiswahili: {
 
-        logo: "🏠 Rwanda House Market",
+        logo:
+          "Rwanda House Market",
 
-        home: "Nyumbani",
+        home:
+          "Nyumbani",
 
-        rent: "Nyumba za Kukodisha",
+        rent:
+          "Nyumba za Kukodisha",
 
-        sale: "Nyumba za Kuuza",
+        sale:
+          "Nyumba za Kuuza",
 
-        plot: "Viwanja vya Kuuza",
+        plot:
+          "Viwanja vya Kuuza",
 
-        sell: "Uza Mali Yako",
+        sell:
+          "Uza Mali Yako",
 
-        login: "Ingia",
+        login:
+          "Ingia",
 
         heroTitle:
           "Pata Mali Yako Bora nchini Rwanda",
@@ -1150,19 +1255,26 @@
 
       "中文": {
 
-        logo: "🏠 Rwanda House Market",
+        logo:
+          "Rwanda House Market",
 
-        home: "首页",
+        home:
+          "首页",
 
-        rent: "出租房屋",
+        rent:
+          "出租房屋",
 
-        sale: "出售房屋",
+        sale:
+          "出售房屋",
 
-        plot: "出售土地",
+        plot:
+          "出售土地",
 
-        sell: "出售您的房产",
+        sell:
+          "出售您的房产",
 
-        login: "登录",
+        login:
+          "登录",
 
         heroTitle:
           "在卢旺达寻找您的理想房产",
@@ -1252,121 +1364,232 @@
         translations[language] ||
         translations.English;
 
+
       document.title =
         "Rwanda House Market";
 
-      document.getElementById("logo").textContent =
+
+      document.getElementById(
+        "logoText"
+      ).textContent =
         t.logo;
 
-      document.getElementById("homeLink").textContent =
+
+      document.getElementById(
+        "homeLink"
+      ).textContent =
         t.home;
 
-      document.getElementById("rentLink").textContent =
+
+      document.getElementById(
+        "rentLink"
+      ).textContent =
         t.rent;
 
-      document.getElementById("saleLink").textContent =
+
+      document.getElementById(
+        "saleLink"
+      ).textContent =
         t.sale;
 
-      document.getElementById("plotLink").textContent =
+
+      document.getElementById(
+        "plotLink"
+      ).textContent =
         t.plot;
 
-      document.getElementById("sellLink").textContent =
+
+      document.getElementById(
+        "sellLink"
+      ).textContent =
         t.sell;
 
-      document.getElementById("loginLink").textContent =
+
+      document.getElementById(
+        "loginLink"
+      ).textContent =
         t.login;
 
-      document.getElementById("heroTitle").textContent =
+
+      document.getElementById(
+        "heroTitle"
+      ).textContent =
         t.heroTitle;
 
-      document.getElementById("heroDescription").textContent =
+
+      document.getElementById(
+        "heroDescription"
+      ).textContent =
         t.heroDescription;
 
-      document.getElementById("heroRent").textContent =
+
+      document.getElementById(
+        "heroRent"
+      ).textContent =
         t.heroRent;
 
-      document.getElementById("heroSale").textContent =
+
+      document.getElementById(
+        "heroSale"
+      ).textContent =
         t.heroSale;
 
-      document.getElementById("heroPlot").textContent =
+
+      document.getElementById(
+        "heroPlot"
+      ).textContent =
         t.heroPlot;
 
-      document.getElementById("categoriesTitle").textContent =
+
+      document.getElementById(
+        "categoriesTitle"
+      ).textContent =
         t.categoriesTitle;
 
-      document.getElementById("categoriesDescription").textContent =
+
+      document.getElementById(
+        "categoriesDescription"
+      ).textContent =
         t.categoriesDescription;
 
-      document.getElementById("rentTitle").textContent =
+
+      document.getElementById(
+        "rentTitle"
+      ).textContent =
         t.rentTitle;
 
-      document.getElementById("rentDescription").textContent =
+
+      document.getElementById(
+        "rentDescription"
+      ).textContent =
         t.rentDescription;
 
-      document.getElementById("rentButton").textContent =
+
+      document.getElementById(
+        "rentButton"
+      ).textContent =
         t.rentButton;
 
-      document.getElementById("saleTitle").textContent =
+
+      document.getElementById(
+        "saleTitle"
+      ).textContent =
         t.saleTitle;
 
-      document.getElementById("saleDescription").textContent =
+
+      document.getElementById(
+        "saleDescription"
+      ).textContent =
         t.saleDescription;
 
-      document.getElementById("saleButton").textContent =
+
+      document.getElementById(
+        "saleButton"
+      ).textContent =
         t.saleButton;
 
-      document.getElementById("plotTitle").textContent =
+
+      document.getElementById(
+        "plotTitle"
+      ).textContent =
         t.plotTitle;
 
-      document.getElementById("plotDescription").textContent =
+
+      document.getElementById(
+        "plotDescription"
+      ).textContent =
         t.plotDescription;
 
-      document.getElementById("plotButton").textContent =
+
+      document.getElementById(
+        "plotButton"
+      ).textContent =
         t.plotButton;
 
-      document.getElementById("latestTitle").textContent =
+
+      document.getElementById(
+        "latestTitle"
+      ).textContent =
         t.latestTitle;
 
-      document.getElementById("latestDescription").textContent =
+
+      document.getElementById(
+        "latestDescription"
+      ).textContent =
         t.latestDescription;
 
-      document.getElementById("sellTitle").textContent =
+
+      document.getElementById(
+        "sellTitle"
+      ).textContent =
         t.sellTitle;
 
-      document.getElementById("sellDescription").textContent =
+
+      document.getElementById(
+        "sellDescription"
+      ).textContent =
         t.sellDescription;
 
-      document.getElementById("sellButton").textContent =
+
+      document.getElementById(
+        "sellButton"
+      ).textContent =
         t.sellButton;
 
-      document.getElementById("footerDescription").textContent =
+
+      document.getElementById(
+        "footerDescription"
+      ).textContent =
         t.footerDescription;
 
-      document.getElementById("footerHome").textContent =
+
+      document.getElementById(
+        "footerHome"
+      ).textContent =
         t.home;
 
-      document.getElementById("footerRent").textContent =
+
+      document.getElementById(
+        "footerRent"
+      ).textContent =
         t.rent;
 
-      document.getElementById("footerSale").textContent =
+
+      document.getElementById(
+        "footerSale"
+      ).textContent =
         t.sale;
 
-      document.getElementById("footerPlot").textContent =
+
+      document.getElementById(
+        "footerPlot"
+      ).textContent =
         t.plot;
 
-      document.getElementById("footerSell").textContent =
+
+      document.getElementById(
+        "footerSell"
+      ).textContent =
         t.sell;
 
-      document.getElementById("footerLogin").textContent =
+
+      document.getElementById(
+        "footerLogin"
+      ).textContent =
         t.login;
 
-      document.getElementById("loadingText").textContent =
+
+      document.getElementById(
+        "loadingText"
+      ).textContent =
         t.loading;
+
 
       localStorage.setItem(
         "selectedLanguage",
         language
       );
+
     }
 
 
@@ -1377,9 +1600,14 @@
           "languageSelect"
         ).value;
 
-      applyLanguage(language);
+
+      applyLanguage(
+        language
+      );
+
 
       loadLatestProperties();
+
     }
 
 
@@ -1393,6 +1621,7 @@
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+
     }
 
 
@@ -1405,22 +1634,30 @@
           .toLowerCase()
           .trim();
 
+
       if (
         normalized === "rent" ||
         normalized === "rental" ||
         normalized === "house for rent"
       ) {
+
         return "rent-detail.html";
+
       }
+
 
       if (
         normalized === "plot" ||
         normalized === "land"
       ) {
+
         return "plot-detail.html";
+
       }
 
+
       return "houses-saledetails.html";
+
     }
 
 
@@ -1433,14 +1670,17 @@
           "latestProperties"
         );
 
+
       const language =
         localStorage.getItem(
           "selectedLanguage"
         ) || "English";
 
+
       const t =
         translations[language] ||
         translations.English;
+
 
       container.innerHTML =
         `<div class="empty">
@@ -1448,15 +1688,24 @@
         </div>`;
 
 
+      /*
+        IMPORTANT:
+        Table ni property_posts
+        kandi status igomba kuba approved
+      */
+
       const {
         data,
         error
       } =
       await supabaseClient
         .from("property_posts")
-.select("*")
-.eq("status", "approved")
-.order("created_at", { ascending: false })
+        .select("*")
+        .eq("status", "approved")
+        .order(
+          "created_at",
+          {
+            ascending: false
           }
         )
         .limit(6);
@@ -1469,12 +1718,17 @@
           error
         );
 
+
         container.innerHTML =
           `<div class="empty">
-            ❌ ${escapeHtml(error.message)}
+            ❌ ${escapeHtml(
+              error.message
+            )}
           </div>`;
 
+
         return;
+
       }
 
 
@@ -1485,126 +1739,139 @@
 
         container.innerHTML =
           `<div class="empty">
-            ${escapeHtml(t.empty)}
+            ${escapeHtml(
+              t.empty
+            )}
           </div>`;
 
+
         return;
+
       }
 
 
       container.innerHTML = "";
 
 
-      data.forEach(property => {
+      data.forEach(
+        property => {
 
-        const card =
-          document.createElement(
-            "div"
-          );
-
-        card.className =
-          "property";
+          const card =
+            document.createElement(
+              "div"
+            );
 
 
-        const mainPhoto =
-          property.main_photo ||
-          (
-            Array.isArray(
-              property.other_photos
+          card.className =
+            "property";
+
+
+          const mainPhoto =
+            property.main_photo ||
+            (
+              Array.isArray(
+                property.other_photos
+              )
+                ? property.other_photos[0]
+                : ""
+            ) ||
+            "https://via.placeholder.com/800x500?text=No+Photo";
+
+
+          const location = [
+
+            property.country,
+
+            property.province,
+
+            property.district,
+
+            property.sector
+
+          ]
+          .filter(Boolean)
+          .join(", ");
+
+
+          const type =
+            String(
+              property.property_type ||
+              "sale"
             )
-              ? property.other_photos[0]
-              : ""
-          ) ||
-          "https://via.placeholder.com/800x500?text=No+Photo";
+            .toLowerCase();
 
 
-        const location = [
-
-          property.country,
-
-          property.province,
-
-          property.district,
-
-          property.sector
-
-        ]
-        .filter(Boolean)
-        .join(", ");
+          const detailPage =
+            getDetailPage(
+              type
+            );
 
 
-        const type =
-          String(
-            property.property_type ||
-            "sale"
-          )
-          .toLowerCase();
+          const detailUrl =
+            detailPage +
+            "?id=" +
+            encodeURIComponent(
+              property.id
+            );
 
 
-        const detailPage =
-          getDetailPage(type);
+          card.innerHTML = `
 
-
-        const detailUrl =
-          detailPage +
-          "?id=" +
-          encodeURIComponent(
-            property.id
-          );
-
-
-        card.innerHTML = `
-
-          <img
-            src="${escapeHtml(mainPhoto)}"
-            alt="${escapeHtml(
-              property.title ||
-              "Property"
-            )}">
-
-          <div class="property-body">
-
-            <div class="property-title">
-              ${escapeHtml(
+            <img
+              src="${escapeHtml(
+                mainPhoto
+              )}"
+              alt="${escapeHtml(
                 property.title ||
                 "Property"
-              )}
+              )}">
+
+            <div class="property-body">
+
+              <div class="property-title">
+                ${escapeHtml(
+                  property.title ||
+                  "Property"
+                )}
+              </div>
+
+              <div class="price">
+                ${Number(
+                  property.price || 0
+                ).toLocaleString()}
+                RWF
+              </div>
+
+              <div class="location">
+                📍
+                ${escapeHtml(
+                  location ||
+                  "Rwanda"
+                )}
+              </div>
+
+              <a
+                href="${detailUrl}"
+                class="view-detail">
+
+                ${escapeHtml(
+                  t.viewDetail
+                )}
+
+              </a>
+
             </div>
 
-            <div class="price">
-              ${Number(
-                property.price || 0
-              ).toLocaleString()} RWF
-            </div>
-
-            <div class="location">
-              📍
-              ${escapeHtml(
-                location ||
-                "Rwanda"
-              )}
-            </div>
-
-            <a
-              href="${detailUrl}"
-              class="view-detail">
-
-              ${escapeHtml(
-                t.viewDetail
-              )}
-
-            </a>
-
-          </div>
-
-        `;
+          `;
 
 
-        container.appendChild(
-          card
-        );
+          container.appendChild(
+            card
+          );
 
-      });
+        }
+      );
+
     }
 
 
