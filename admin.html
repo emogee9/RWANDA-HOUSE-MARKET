@@ -2,179 +2,740 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Admin - Rwanda Property Visata</title>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Admin Panel - Rwanda Property Visata</title>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+
     body {
+
       margin: 0;
+
       font-family: Arial, sans-serif;
-      background: #f8f5f2;
+
+      background: #f6f3ee;
+
       color: #3b2418;
+
     }
+
+
+    /* ================= NAVBAR ================= */
 
     .navbar {
+
       background: #d4a017;
+
       color: white;
-      padding: 16px 22px;
+
+      padding: 15px 22px;
+
       display: flex;
-      justify-content: space-between;
+
       align-items: center;
+
+      justify-content: space-between;
+
       gap: 15px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 1000;
+
+      box-shadow:
+        0 3px 12px rgba(0,0,0,0.18);
+
     }
+
 
     .logo {
+
       font-size: 21px;
+
       font-weight: bold;
+
     }
 
-    .logout {
+
+    .logout-button {
+
       background: white;
-      color: #b27b00;
+
+      color: #a87500;
+
       border: none;
-      padding: 10px 16px;
+
+      padding: 10px 17px;
+
       border-radius: 8px;
+
       font-weight: bold;
+
       cursor: pointer;
+
     }
+
+
+    .logout-button:hover {
+
+      background: #fff3c4;
+
+    }
+
+
+    /* ================= CONTAINER ================= */
 
     .container {
-      max-width: 1100px;
+
+      max-width: 1200px;
+
       margin: 30px auto;
-      padding: 0 20px 50px;
+
+      padding: 0 20px 60px;
+
     }
+
+
+    /* ================= WELCOME ================= */
 
     .welcome {
+
       background: white;
+
       padding: 25px;
+
       border-radius: 15px;
-      box-shadow: 0 3px 12px rgba(70,40,20,0.12);
+
+      box-shadow:
+        0 3px 12px rgba(70,40,20,0.12);
+
       margin-bottom: 25px;
+
     }
+
 
     .welcome h1 {
-      margin-top: 0;
+
+      margin: 0 0 8px;
+
       color: #d4a017;
+
     }
+
+
+    .welcome p {
+
+      margin: 0;
+
+      color: #666;
+
+    }
+
+
+    /* ================= TABS ================= */
 
     .tabs {
+
       display: flex;
-      gap: 12px;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+
       margin-bottom: 25px;
+
     }
 
-    .tab-button {
+
+    .tab {
+
       border: none;
+
       background: white;
-      color: #d4a017;
-      padding: 14px 25px;
+
+      color: #a87500;
+
+      padding: 13px 22px;
+
       border-radius: 9px;
-      font-size: 16px;
+
+      font-size: 15px;
+
       font-weight: bold;
+
       cursor: pointer;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+
+      box-shadow:
+        0 3px 10px rgba(0,0,0,0.10);
+
     }
 
-    .tab-button.active,
-    .tab-button:hover {
+
+    .tab.active {
+
       background: #d4a017;
+
       color: white;
+
     }
+
+
+    .tab:hover {
+
+      background: #d4a017;
+
+      color: white;
+
+    }
+
+
+    /* ================= SECTIONS ================= */
+
+    .section {
+
+      display: none;
+
+    }
+
+
+    .section.active {
+
+      display: block;
+
+    }
+
 
     .card {
+
       background: white;
+
       padding: 28px;
+
       border-radius: 15px;
-      box-shadow: 0 3px 12px rgba(70,40,20,0.12);
+
+      box-shadow:
+        0 3px 12px rgba(70,40,20,0.12);
+
       margin-bottom: 25px;
+
     }
+
 
     .card h2 {
+
       margin-top: 0;
+
       color: #d4a017;
+
     }
 
-    .hidden {
-      display: none;
-    }
+
+    /* ================= MESSAGE ================= */
 
     .message {
+
       display: none;
-      padding: 13px;
+
+      padding: 14px;
+
       margin-bottom: 20px;
-      border-radius: 8px;
+
+      border-radius: 9px;
+
       font-weight: bold;
+
+      line-height: 1.5;
+
     }
 
-    .success {
+
+    .message.success {
+
       display: block;
-      background: #e5f8e9;
+
+      background: #e6f7e9;
+
       color: #16752d;
-      border: 1px solid #9ad8a8;
+
+      border: 1px solid #a4d9ae;
+
     }
 
-    .error {
+
+    .message.error {
+
       display: block;
+
       background: #ffe7e7;
+
       color: #a00000;
-      border: 1px solid #e3aaaa;
+
+      border: 1px solid #e1aaaa;
+
     }
 
-    .new-post-button {
-      background: #d4a017;
-      color: white;
-      border: none;
-      padding: 13px 22px;
-      border-radius: 8px;
+
+    /* ================= FORM ================= */
+
+    .form-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 18px;
+
+    }
+
+
+    .full {
+
+      grid-column: 1 / -1;
+
+    }
+
+
+    .form-group {
+
+      display: flex;
+
+      flex-direction: column;
+
+    }
+
+
+    label {
+
       font-weight: bold;
+
+      margin-bottom: 7px;
+
+    }
+
+
+    input,
+    select,
+    textarea {
+
+      width: 100%;
+
+      padding: 13px;
+
+      border: 2px solid #e2e2e2;
+
+      border-radius: 8px;
+
+      font-size: 15px;
+
+      outline: none;
+
+      background: white;
+
+    }
+
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+
+      border-color: #d4a017;
+
+    }
+
+
+    textarea {
+
+      min-height: 120px;
+
+      resize: vertical;
+
+    }
+
+
+    /* ================= BUTTONS ================= */
+
+    .button {
+
+      border: none;
+
+      padding: 13px 20px;
+
+      border-radius: 8px;
+
+      font-weight: bold;
+
       cursor: pointer;
-      font-size: 16px;
+
+      font-size: 15px;
+
     }
 
-    .new-post-button:hover {
+
+    .primary {
+
+      background: #d4a017;
+
+      color: white;
+
+    }
+
+
+    .primary:hover {
+
       background: #b8860b;
+
     }
 
-    @media (max-width: 600px) {
-      .navbar {
-        flex-direction: column;
+
+    .danger {
+
+      background: #b42323;
+
+      color: white;
+
+    }
+
+
+    .danger:hover {
+
+      background: #8e1717;
+
+    }
+
+
+    .secondary {
+
+      background: #eee;
+
+      color: #333;
+
+    }
+
+
+    .button:disabled {
+
+      opacity: .6;
+
+      cursor: not-allowed;
+
+    }
+
+
+    /* ================= PHOTO PREVIEW ================= */
+
+    .photo-preview {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+
+      margin-top: 12px;
+
+    }
+
+
+    .photo-preview img {
+
+      width: 120px;
+
+      height: 90px;
+
+      object-fit: cover;
+
+      border-radius: 8px;
+
+      border: 2px solid #ddd;
+
+    }
+
+
+    /* ================= PROPERTY ================= */
+
+    .property-list {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 20px;
+
+    }
+
+
+    .property-card {
+
+      background: white;
+
+      border-radius: 13px;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 3px 12px rgba(0,0,0,0.12);
+
+      border: 1px solid #eee;
+
+    }
+
+
+    .property-card img {
+
+      width: 100%;
+
+      height: 190px;
+
+      object-fit: cover;
+
+      display: block;
+
+    }
+
+
+    .property-content {
+
+      padding: 17px;
+
+    }
+
+
+    .property-content h3 {
+
+      margin: 0 0 8px;
+
+      color: #d4a017;
+
+    }
+
+
+    .property-price {
+
+      font-weight: bold;
+
+      font-size: 18px;
+
+      margin-bottom: 8px;
+
+    }
+
+
+    .location {
+
+      color: #666;
+
+      line-height: 1.5;
+
+      margin-bottom: 12px;
+
+    }
+
+
+    /* ================= REQUESTS ================= */
+
+    .request-list {
+
+      display: grid;
+
+      gap: 18px;
+
+    }
+
+
+    .request-card {
+
+      background: #fff;
+
+      border: 1px solid #ddd;
+
+      border-left: 5px solid #d4a017;
+
+      padding: 20px;
+
+      border-radius: 10px;
+
+    }
+
+
+    .request-card h3 {
+
+      margin-top: 0;
+
+      color: #d4a017;
+
+    }
+
+
+    .request-info {
+
+      line-height: 1.7;
+
+      color: #555;
+
+    }
+
+
+    .status {
+
+      display: inline-block;
+
+      padding: 6px 10px;
+
+      border-radius: 20px;
+
+      font-size: 12px;
+
+      font-weight: bold;
+
+      background: #fff1bd;
+
+      color: #765900;
+
+    }
+
+
+    /* ================= LOADING ================= */
+
+    .loading {
+
+      text-align: center;
+
+      padding: 30px;
+
+      color: #777;
+
+    }
+
+
+    .empty {
+
+      text-align: center;
+
+      padding: 35px;
+
+      color: #777;
+
+      background: #fafafa;
+
+      border-radius: 10px;
+
+    }
+
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 900px) {
+
+      .property-list {
+
+        grid-template-columns: 1fr 1fr;
+
       }
+
+    }
+
+
+    @media (max-width: 650px) {
+
+      .navbar {
+
+        flex-direction: column;
+
+        text-align: center;
+
+      }
+
+
+      .form-grid {
+
+        grid-template-columns: 1fr;
+
+      }
+
+
+      .full {
+
+        grid-column: auto;
+
+      }
+
+
+      .property-list {
+
+        grid-template-columns: 1fr;
+
+      }
+
 
       .tabs {
+
         flex-direction: column;
+
       }
+
+
+      .tab {
+
+        width: 100%;
+
+      }
+
     }
+
   </style>
 
 </head>
 
+
 <body>
+
+
+  <!-- ================= NAVBAR ================= -->
 
   <nav class="navbar">
 
     <div class="logo">
+
       🏠 Rwanda Property Visata — Admin
+
     </div>
 
+
     <button
-      class="logout"
+      class="logout-button"
       id="logoutButton">
+
       Logout
+
     </button>
 
   </nav>
 
 
+
   <main class="container">
+
+
+    <!-- ================= WELCOME ================= -->
 
     <div class="welcome">
 
@@ -183,101 +744,504 @@
       </h1>
 
       <p>
-        Welcome to Rwanda Property Visata Admin Panel.
+        Manage properties and customer requests.
       </p>
 
     </div>
 
 
+    <!-- ================= GLOBAL MESSAGE ================= -->
+
     <div
-      id="message"
+      id="globalMessage"
       class="message">
     </div>
 
 
+    <!-- ================= TABS ================= -->
+
     <div class="tabs">
 
       <button
-        class="tab-button active"
-        id="postsTab">
+        class="tab active"
+        data-section="postsSection">
 
-        Posts
+        📋 Posts
 
       </button>
 
 
       <button
-        class="tab-button"
-        id="newPostTab">
+        class="tab"
+        data-section="newPostSection">
 
-        New Post
+        ➕ New Post
+
+      </button>
+
+
+      <button
+        class="tab"
+        data-section="requestsSection">
+
+        📩 Requests / Messages
 
       </button>
 
     </div>
 
 
-    <!-- POSTS -->
+
+    <!-- =====================================================
+         POSTS
+    ====================================================== -->
 
     <section
       id="postsSection"
-      class="card">
+      class="section active">
 
-      <h2>
-        Posts
-      </h2>
 
-      <p>
-        Aha ni ho tuzajya tubona properties zose washyize kuri website.
-      </p>
+      <div class="card">
 
-      <p id="postsStatus">
-        Loading posts...
-      </p>
+        <h2>
+          📋 Properties
+        </h2>
 
-      <div id="postsList"></div>
+        <p>
+          Aha ni ho ubona properties zose ziri kuri website.
+        </p>
+
+
+        <button
+          class="button primary"
+          id="refreshPosts">
+
+          🔄 Refresh Posts
+
+        </button>
+
+      </div>
+
+
+      <div
+        id="postsLoading"
+        class="loading">
+
+        Loading properties...
+
+      </div>
+
+
+      <div
+        id="propertyList"
+        class="property-list">
+
+      </div>
+
 
     </section>
 
 
-    <!-- NEW POST -->
+
+    <!-- =====================================================
+         NEW POST
+    ====================================================== -->
 
     <section
       id="newPostSection"
-      class="card hidden">
+      class="section">
 
-      <h2>
-        New Post
-      </h2>
 
-      <p>
-        Aha ni ho tuzashyiramo property nshya.
-      </p>
+      <div class="card">
 
-      <button
-        class="new-post-button"
-        id="startNewPost">
+        <h2>
+          ➕ New Property
+        </h2>
 
-        + Add New Property
 
-      </button>
+        <form
+          id="propertyForm">
+
+
+          <div class="form-grid">
+
+
+            <!-- TITLE -->
+
+            <div class="form-group full">
+
+              <label>
+                Property Title
+              </label>
+
+              <input
+                type="text"
+                id="title"
+                placeholder="Urugero: Inzu nziza y'umuryango"
+                required>
+
+            </div>
+
+
+            <!-- TYPE -->
+
+            <div class="form-group">
+
+              <label>
+                Property Type
+              </label>
+
+              <select
+                id="propertyType"
+                required>
+
+                <option value="">
+                  Choose type
+                </option>
+
+                <option value="house">
+                  House
+                </option>
+
+                <option value="apartment">
+                  Apartment
+                </option>
+
+                <option value="plot">
+                  Plot
+                </option>
+
+                <option value="commercial">
+                  Commercial
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- PURPOSE -->
+
+            <div class="form-group">
+
+              <label>
+                Purpose
+              </label>
+
+              <select
+                id="purpose"
+                required>
+
+                <option value="">
+                  Choose purpose
+                </option>
+
+                <option value="sale">
+                  For Sale
+                </option>
+
+                <option value="rent">
+                  For Rent
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- PRICE -->
+
+            <div class="form-group">
+
+              <label>
+                Price
+              </label>
+
+              <input
+                type="number"
+                id="price"
+                placeholder="350000000"
+                min="0"
+                required>
+
+            </div>
+
+
+            <!-- COUNTRY -->
+
+            <div class="form-group">
+
+              <label>
+                Country
+              </label>
+
+              <input
+                type="text"
+                id="country"
+                value="Rwanda"
+                required>
+
+            </div>
+
+
+            <!-- PROVINCE -->
+
+            <div class="form-group">
+
+              <label>
+                Province
+              </label>
+
+              <input
+                type="text"
+                id="province"
+                placeholder="Kigali"
+                required>
+
+            </div>
+
+
+            <!-- DISTRICT -->
+
+            <div class="form-group">
+
+              <label>
+                District
+              </label>
+
+              <input
+                type="text"
+                id="district"
+                placeholder="Gasabo"
+                required>
+
+            </div>
+
+
+            <!-- SECTOR -->
+
+            <div class="form-group">
+
+              <label>
+                Sector
+              </label>
+
+              <input
+                type="text"
+                id="sector"
+                placeholder="Kimironko"
+                required>
+
+            </div>
+
+
+            <!-- BEDROOMS -->
+
+            <div class="form-group">
+
+              <label>
+                Bedrooms
+              </label>
+
+              <input
+                type="number"
+                id="bedrooms"
+                min="0"
+                value="0">
+
+            </div>
+
+
+            <!-- BATHROOMS -->
+
+            <div class="form-group">
+
+              <label>
+                Bathrooms
+              </label>
+
+              <input
+                type="number"
+                id="bathrooms"
+                min="0"
+                value="0">
+
+            </div>
+
+
+            <!-- PARKING -->
+
+            <div class="form-group">
+
+              <label>
+                Parking
+              </label>
+
+              <input
+                type="number"
+                id="parking"
+                min="0"
+                value="0">
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group full">
+
+              <label>
+                Description
+              </label>
+
+              <textarea
+                id="description"
+                placeholder="Andika ibisobanuro bya property..."></textarea>
+
+            </div>
+
+
+            <!-- MAIN PHOTO -->
+
+            <div class="form-group full">
+
+              <label>
+                🖼️ Main Photo
+              </label>
+
+              <input
+                type="file"
+                id="mainPhoto"
+                accept="image/*"
+                required>
+
+              <div
+                id="mainPreview"
+                class="photo-preview">
+              </div>
+
+            </div>
+
+
+            <!-- OTHER PHOTOS -->
+
+            <div class="form-group full">
+
+              <label>
+                🖼️ Other Photos
+              </label>
+
+              <input
+                type="file"
+                id="otherPhotos"
+                accept="image/*"
+                multiple>
+
+              <div
+                id="otherPreview"
+                class="photo-preview">
+              </div>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <div class="form-group full">
+
+              <button
+                type="submit"
+                class="button primary"
+                id="postButton">
+
+                🚀 Post Property
+
+              </button>
+
+            </div>
+
+
+          </div>
+
+        </form>
+
+      </div>
+
 
     </section>
+
+
+
+    <!-- =====================================================
+         REQUESTS
+    ====================================================== -->
+
+    <section
+      id="requestsSection"
+      class="section">
+
+
+      <div class="card">
+
+        <h2>
+          📩 Customer Requests
+        </h2>
+
+        <p>
+          Aha ni ho uzajya ubona requests customer bakoze kuri
+          <strong>Request Property</strong>.
+        </p>
+
+
+        <button
+          class="button primary"
+          id="refreshRequests">
+
+          🔄 Refresh Requests
+
+        </button>
+
+      </div>
+
+
+      <div
+        id="requestsLoading"
+        class="loading">
+
+        Loading requests...
+
+      </div>
+
+
+      <div
+        id="requestList"
+        class="request-list">
+
+      </div>
+
+
+    </section>
+
 
   </main>
 
 
+
   <script>
 
-    /* ==============================
+
+    /* =====================================================
        SUPABASE
-    ============================== */
+    ====================================================== */
+
 
     const SUPABASE_URL =
       "https://hsmnybmcddtsyooltozw.supabase.co";
 
+
     const SUPABASE_KEY =
       "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
 
     const supabaseClient =
       window.supabase.createClient(
@@ -286,103 +1250,139 @@
       );
 
 
-    /* ==============================
+
+    /* =====================================================
+       ADMIN EMAIL
+    ====================================================== */
+
+
+    const ADMIN_EMAIL =
+      "rwandahousemarket@gmail.com";
+
+
+
+    /* =====================================================
        ELEMENTS
-    ============================== */
-
-    const postsTab =
-      document.getElementById("postsTab");
-
-    const newPostTab =
-      document.getElementById("newPostTab");
-
-    const postsSection =
-      document.getElementById("postsSection");
-
-    const newPostSection =
-      document.getElementById("newPostSection");
-
-    const logoutButton =
-      document.getElementById("logoutButton");
-
-    const message =
-      document.getElementById("message");
-
-    const postsStatus =
-      document.getElementById("postsStatus");
+    ====================================================== */
 
 
-    /* ==============================
+    const globalMessage =
+      document.getElementById(
+        "globalMessage"
+      );
+
+
+    const propertyList =
+      document.getElementById(
+        "propertyList"
+      );
+
+
+    const postsLoading =
+      document.getElementById(
+        "postsLoading"
+      );
+
+
+    const requestList =
+      document.getElementById(
+        "requestList"
+      );
+
+
+    const requestsLoading =
+      document.getElementById(
+        "requestsLoading"
+      );
+
+
+
+    /* =====================================================
        MESSAGE
-    ============================== */
+    ====================================================== */
 
-    function showMessage(text, type) {
 
-      message.textContent = text;
+    function showMessage(
+      text,
+      type
+    ) {
 
-      message.className =
+      globalMessage.textContent =
+        text;
+
+      globalMessage.className =
         "message " + type;
 
     }
 
 
-    /* ==============================
+
+    /* =====================================================
        TABS
-    ============================== */
+    ====================================================== */
 
-    postsTab.addEventListener(
-      "click",
-      function() {
 
-        postsSection.classList.remove(
-          "hidden"
+    document
+      .querySelectorAll(".tab")
+      .forEach(function(tab) {
+
+
+        tab.addEventListener(
+          "click",
+          function() {
+
+
+            document
+              .querySelectorAll(".tab")
+              .forEach(function(item) {
+
+                item.classList.remove(
+                  "active"
+                );
+
+              });
+
+
+            document
+              .querySelectorAll(".section")
+              .forEach(function(section) {
+
+                section.classList.remove(
+                  "active"
+                );
+
+              });
+
+
+            tab.classList.add(
+              "active"
+            );
+
+
+            document
+              .getElementById(
+                tab.dataset.section
+              )
+              .classList.add(
+                "active"
+              );
+
+
+          }
         );
 
-        newPostSection.classList.add(
-          "hidden"
-        );
 
-        postsTab.classList.add(
-          "active"
-        );
-
-        newPostTab.classList.remove(
-          "active"
-        );
-
-      }
-    );
+      });
 
 
-    newPostTab.addEventListener(
-      "click",
-      function() {
 
-        postsSection.classList.add(
-          "hidden"
-        );
+    /* =====================================================
+       CHECK ADMIN
+    ====================================================== */
 
-        newPostSection.classList.remove(
-          "hidden"
-        );
-
-        postsTab.classList.remove(
-          "active"
-        );
-
-        newPostTab.classList.add(
-          "active"
-        );
-
-      }
-    );
-
-
-    /* ==============================
-       CHECK ADMIN SESSION
-    ============================== */
 
     async function checkAdmin() {
+
 
       const {
         data,
@@ -414,15 +1414,17 @@
 
       if (
         email !==
-        "rwandahousemarket@gmail.com"
+        ADMIN_EMAIL
       ) {
 
         await supabaseClient
           .auth
           .signOut();
 
+
         window.location.href =
           "./login.html";
+
 
         return false;
 
@@ -434,61 +1436,1001 @@
     }
 
 
-    /* ==============================
-       LOAD POSTS
-    ============================== */
 
-    async function loadPosts() {
-
-      postsStatus.textContent =
-        "Posts will appear here after we connect the property table.";
-
-    }
-
-
-    /* ==============================
+    /* =====================================================
        LOGOUT
-    ============================== */
+    ====================================================== */
 
-    logoutButton.addEventListener(
-      "click",
-      async function() {
-
-        await supabaseClient
-          .auth
-          .signOut();
-
-        window.location.href =
-          "./login.html";
-
-      }
-    );
-
-
-    /* ==============================
-       NEW POST BUTTON
-    ============================== */
 
     document
-      .getElementById("startNewPost")
+      .getElementById(
+        "logoutButton"
+      )
       .addEventListener(
         "click",
-        function() {
+        async function() {
 
-          showMessage(
-            "New Post form tuzayishyiramo mu ntambwe ikurikira.",
-            "success"
-          );
+
+          await supabaseClient
+            .auth
+            .signOut();
+
+
+          window.location.href =
+            "./login.html";
+
 
         }
       );
 
 
-    /* ==============================
-       START
-    ============================== */
+
+    /* =====================================================
+       PHOTO PREVIEW
+    ====================================================== */
+
+
+    document
+      .getElementById(
+        "mainPhoto"
+      )
+      .addEventListener(
+        "change",
+        function() {
+
+
+          const preview =
+            document.getElementById(
+              "mainPreview"
+            );
+
+
+          preview.innerHTML = "";
+
+
+          const file =
+            this.files[0];
+
+
+          if (!file) {
+            return;
+          }
+
+
+          const img =
+            document.createElement(
+              "img"
+            );
+
+
+          img.src =
+            URL.createObjectURL(
+              file
+            );
+
+
+          preview.appendChild(
+            img
+          );
+
+
+        }
+      );
+
+
+
+    document
+      .getElementById(
+        "otherPhotos"
+      )
+      .addEventListener(
+        "change",
+        function() {
+
+
+          const preview =
+            document.getElementById(
+              "otherPreview"
+            );
+
+
+          preview.innerHTML = "";
+
+
+          Array.from(
+            this.files
+          ).forEach(
+            function(file) {
+
+
+              const img =
+                document.createElement(
+                  "img"
+                );
+
+
+              img.src =
+                URL.createObjectURL(
+                  file
+                );
+
+
+              preview.appendChild(
+                img
+              );
+
+
+            }
+          );
+
+
+        }
+      );
+
+
+
+    /* =====================================================
+       UPLOAD PHOTO
+    ====================================================== */
+
+
+    async function uploadPhoto(
+      file
+    ) {
+
+
+      const extension =
+        file.name
+          .split(".")
+          .pop();
+
+
+      const filename =
+        Date.now() +
+        "-" +
+        Math.random()
+          .toString(36)
+          .substring(2) +
+        "." +
+        extension;
+
+
+      const path =
+        "properties/" +
+        filename;
+
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .storage
+          .from("property-images")
+          .upload(
+            path,
+            file
+          );
+
+
+      if (error) {
+
+        throw error;
+
+      }
+
+
+      const {
+        data
+      } =
+        supabaseClient
+          .storage
+          .from("property-images")
+          .getPublicUrl(
+            path
+          );
+
+
+      return data.publicUrl;
+
+    }
+
+
+
+    /* =====================================================
+       CREATE PROPERTY
+    ====================================================== */
+
+
+    document
+      .getElementById(
+        "propertyForm"
+      )
+      .addEventListener(
+        "submit",
+        async function(event) {
+
+
+          event.preventDefault();
+
+
+          const button =
+            document.getElementById(
+              "postButton"
+            );
+
+
+          const mainFile =
+            document.getElementById(
+              "mainPhoto"
+            ).files[0];
+
+
+          if (!mainFile) {
+
+            showMessage(
+              "❌ Shyiramo Main Photo.",
+              "error"
+            );
+
+            return;
+
+          }
+
+
+          button.disabled =
+            true;
+
+
+          button.textContent =
+            "Uploading...";
+
+
+          try {
+
+
+            /* MAIN PHOTO */
+
+            const mainPhotoUrl =
+              await uploadPhoto(
+                mainFile
+              );
+
+
+            /* OTHER PHOTOS */
+
+            const otherFiles =
+              Array.from(
+                document.getElementById(
+                  "otherPhotos"
+                ).files
+              );
+
+
+            const otherPhotoUrls =
+              [];
+
+
+            for (
+              const file
+              of otherFiles
+            ) {
+
+              const url =
+                await uploadPhoto(
+                  file
+                );
+
+
+              otherPhotoUrls.push(
+                url
+              );
+
+            }
+
+
+            /* PROPERTY DATA */
+
+            const property = {
+
+              title:
+                document
+                  .getElementById(
+                    "title"
+                  )
+                  .value
+                  .trim(),
+
+              property_type:
+                document
+                  .getElementById(
+                    "propertyType"
+                  )
+                  .value,
+
+              purpose:
+                document
+                  .getElementById(
+                    "purpose"
+                  )
+                  .value,
+
+              price:
+                Number(
+                  document
+                    .getElementById(
+                      "price"
+                    )
+                    .value
+                ),
+
+              country:
+                document
+                  .getElementById(
+                    "country"
+                  )
+                  .value
+                  .trim(),
+
+              province:
+                document
+                  .getElementById(
+                    "province"
+                  )
+                  .value
+                  .trim(),
+
+              district:
+                document
+                  .getElementById(
+                    "district"
+                  )
+                  .value
+                  .trim(),
+
+              sector:
+                document
+                  .getElementById(
+                    "sector"
+                  )
+                  .value
+                  .trim(),
+
+              bedrooms:
+                Number(
+                  document
+                    .getElementById(
+                      "bedrooms"
+                    )
+                    .value || 0
+                ),
+
+              bathrooms:
+                Number(
+                  document
+                    .getElementById(
+                      "bathrooms"
+                    )
+                    .value || 0
+                ),
+
+              parking:
+                Number(
+                  document
+                    .getElementById(
+                      "parking"
+                    )
+                    .value || 0
+                ),
+
+              description:
+                document
+                  .getElementById(
+                    "description"
+                  )
+                  .value
+                  .trim(),
+
+              main_photo:
+                mainPhotoUrl,
+
+              other_photos:
+                otherPhotoUrls
+
+            };
+
+
+            button.textContent =
+              "Posting...";
+
+
+            const {
+              error
+            } =
+              await supabaseClient
+                .from("properties")
+                .insert(
+                  property
+                );
+
+
+            if (error) {
+
+              throw error;
+
+            }
+
+
+            showMessage(
+              "✅ Property yashyizwe kuri website neza.",
+              "success"
+            );
+
+
+            document
+              .getElementById(
+                "propertyForm"
+              )
+              .reset();
+
+
+            document
+              .getElementById(
+                "mainPreview"
+              )
+              .innerHTML = "";
+
+
+            document
+              .getElementById(
+                "otherPreview"
+              )
+              .innerHTML = "";
+
+
+            await loadProperties();
+
+
+            document
+              .querySelector(
+                '[data-section="postsSection"]'
+              )
+              .click();
+
+
+          }
+
+
+          catch(error) {
+
+
+            console.error(
+              error
+            );
+
+
+            showMessage(
+              "❌ " +
+              error.message,
+              "error"
+            );
+
+          }
+
+
+          button.disabled =
+            false;
+
+
+          button.textContent =
+            "🚀 Post Property";
+
+
+        }
+      );
+
+
+
+    /* =====================================================
+       LOAD PROPERTIES
+    ====================================================== */
+
+
+    async function loadProperties() {
+
+
+      postsLoading.style.display =
+        "block";
+
+
+      propertyList.innerHTML =
+        "";
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("properties")
+          .select("*")
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
+
+
+      postsLoading.style.display =
+        "none";
+
+
+      if (error) {
+
+
+        propertyList.innerHTML =
+
+          `<div class="empty">
+            ❌ ${error.message}
+          </div>`;
+
+
+        return;
+
+      }
+
+
+      if (
+        !data ||
+        data.length === 0
+      ) {
+
+
+        propertyList.innerHTML =
+
+          `<div class="empty">
+            Nta property urashyiramo.
+          </div>`;
+
+
+        return;
+
+      }
+
+
+      data.forEach(
+        function(property) {
+
+
+          const card =
+            document.createElement(
+              "div"
+            );
+
+
+          card.className =
+            "property-card";
+
+
+          const image =
+            property.main_photo ||
+            (
+              Array.isArray(
+                property.other_photos
+              )
+                ? property.other_photos[0]
+                : ""
+            );
+
+
+          card.innerHTML = `
+
+            ${
+              image
+                ? `<img src="${image}" alt="Property">`
+                : ""
+            }
+
+            <div class="property-content">
+
+              <h3>
+                ${escapeHtml(
+                  property.title || "Property"
+                )}
+              </h3>
+
+              <div class="property-price">
+
+                ${Number(
+                  property.price || 0
+                ).toLocaleString()}
+                RWF
+
+              </div>
+
+              <div class="location">
+
+                ${escapeHtml(
+                  property.country || ""
+                )},
+
+                ${escapeHtml(
+                  property.province || ""
+                )},
+
+                ${escapeHtml(
+                  property.district || ""
+                )},
+
+                ${escapeHtml(
+                  property.sector || ""
+                )}
+
+              </div>
+
+              <button
+                class="button danger"
+                onclick="deleteProperty('${property.id}')">
+
+                🗑️ Delete
+
+              </button>
+
+            </div>
+
+          `;
+
+
+          propertyList.appendChild(
+            card
+          );
+
+
+        }
+      );
+
+
+    }
+
+
+
+    /* =====================================================
+       DELETE PROPERTY
+    ====================================================== */
+
+
+    async function deleteProperty(
+      id
+    ) {
+
+
+      const confirmed =
+        confirm(
+          "Urashaka koko gusiba iyi property?"
+        );
+
+
+      if (!confirmed) {
+        return;
+      }
+
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .from("properties")
+          .delete()
+          .eq(
+            "id",
+            id
+          );
+
+
+      if (error) {
+
+
+        showMessage(
+          "❌ " +
+          error.message,
+          "error"
+        );
+
+
+        return;
+
+      }
+
+
+      showMessage(
+        "✅ Property yasibwe.",
+        "success"
+      );
+
+
+      await loadProperties();
+
+    }
+
+
+
+    /* =====================================================
+       LOAD CUSTOMER REQUESTS
+    ====================================================== */
+
+
+    async function loadRequests() {
+
+
+      requestsLoading.style.display =
+        "block";
+
+
+      requestList.innerHTML =
+        "";
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("property_requests")
+          .select("*")
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
+
+
+      requestsLoading.style.display =
+        "none";
+
+
+      if (error) {
+
+
+        requestList.innerHTML =
+
+          `<div class="empty">
+            ❌ ${error.message}
+          </div>`;
+
+
+        return;
+
+      }
+
+
+      if (
+        !data ||
+        data.length === 0
+      ) {
+
+
+        requestList.innerHTML =
+
+          `<div class="empty">
+            Nta customer request iraboneka.
+          </div>`;
+
+
+        return;
+
+      }
+
+
+      data.forEach(
+        function(request) {
+
+
+          const card =
+            document.createElement(
+              "div"
+            );
+
+
+          card.className =
+            "request-card";
+
+
+          card.innerHTML = `
+
+            <h3>
+              📩 Property Request
+            </h3>
+
+            <div class="request-info">
+
+              <strong>
+                Name:
+              </strong>
+
+              ${escapeHtml(
+                request.name || "-"
+              )}
+
+              <br>
+
+              <strong>
+                Email:
+              </strong>
+
+              ${escapeHtml(
+                request.email || "-"
+              )}
+
+              <br>
+
+              <strong>
+                Phone:
+              </strong>
+
+              ${escapeHtml(
+                request.phone || "-"
+              )}
+
+              <br>
+
+              <strong>
+                Property:
+              </strong>
+
+              ${escapeHtml(
+                request.property_type || "-"
+              )}
+
+              <br>
+
+              <strong>
+                Country:
+              </strong>
+
+              ${escapeHtml(
+                request.country || "-"
+              )}
+
+              <br>
+
+              <strong>
+                Province:
+              </strong>
+
+              ${escapeHtml(
+                request.province || "-"
+              )}
+
+              <br>
+
+              <strong>
+                District:
+              </strong>
+
+              ${escapeHtml(
+                request.district || "-"
+              )}
+
+              <br>
+
+              <strong>
+                Budget:
+              </strong>
+
+              ${Number(
+                request.budget || 0
+              ).toLocaleString()}
+              RWF
+
+              <br>
+
+              <strong>
+                Message:
+              </strong>
+
+              ${escapeHtml(
+                request.message || "-"
+              )}
+
+              <br><br>
+
+              <span class="status">
+
+                ${escapeHtml(
+                  request.status || "pending"
+                )}
+
+              </span>
+
+            </div>
+
+          `;
+
+
+          requestList.appendChild(
+            card
+          );
+
+
+        }
+      );
+
+
+    }
+
+
+
+    /* =====================================================
+       REFRESH BUTTONS
+    ====================================================== */
+
+
+    document
+      .getElementById(
+        "refreshPosts"
+      )
+      .addEventListener(
+        "click",
+        loadProperties
+      );
+
+
+    document
+      .getElementById(
+        "refreshRequests"
+      )
+      .addEventListener(
+        "click",
+        loadRequests
+      );
+
+
+
+    /* =====================================================
+       ESCAPE HTML
+    ====================================================== */
+
+
+    function escapeHtml(
+      value
+    ) {
+
+      return String(
+        value ?? ""
+      )
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+
+    /* =====================================================
+       START ADMIN
+    ====================================================== */
+
 
     async function startAdmin() {
+
 
       const allowed =
         await checkAdmin();
@@ -499,14 +2441,20 @@
       }
 
 
-      await loadPosts();
+      await loadProperties();
+
+
+      await loadRequests();
+
 
     }
 
 
     startAdmin();
 
+
   </script>
+
 
 </body>
 
