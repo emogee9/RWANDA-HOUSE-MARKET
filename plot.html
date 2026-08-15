@@ -248,7 +248,7 @@ async function loadPlots(){
     error
   } =
   await supabaseClient
-    .from("properties")
+    .from("property_posts")
     .select("*")
     .eq("property_type","plot")
     .order(
