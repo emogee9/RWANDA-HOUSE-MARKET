@@ -1,205 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title id="browserTitle">Houses for Rent - Rwanda House Market</title>
+<meta charset="UTF-8">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<title>House Detail - Rwanda House Market</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #222;
-    }
+<style>
 
-    header {
-      background: #f2c400;
-      color: #222;
-      padding: 25px 15px;
-      text-align: center;
-    }
+*{
+  box-sizing:border-box;
+}
 
-    header h1 {
-      margin: 0;
-      font-size: 30px;
-    }
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f5f5;
+  color:#222;
+}
 
-    .back {
-      display: inline-block;
-      margin-top: 10px;
-      color: #222;
-      text-decoration: none;
-      font-weight: bold;
-      background: white;
-      padding: 9px 15px;
-      border-radius: 8px;
-    }
+header{
+  background:#f2c400;
+  padding:22px 15px;
+  text-align:center;
+}
 
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 30px 20px 50px;
-    }
+header h1{
+  margin:0;
+}
 
-    .page-title {
-      background: white;
-      padding: 25px;
-      text-align: center;
-      border-radius: 15px;
-      margin-bottom: 25px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-    }
+.back{
+  display:inline-block;
+  margin-top:12px;
+  background:white;
+  color:#222;
+  text-decoration:none;
+  padding:10px 16px;
+  border-radius:8px;
+  font-weight:bold;
+}
 
-    .page-title h2 {
-      margin-top: 0;
-    }
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:30px 20px 60px;
+}
 
-    .houses {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
+.card{
+  background:white;
+  border-radius:15px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+}
 
-    .house {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.12);
-    }
+.main-photo{
+  width:100%;
+  height:500px;
+  object-fit:cover;
+  border-radius:12px;
+  display:block;
+}
 
-    .house img {
-      width: 100%;
-      height: 230px;
-      object-fit: cover;
-      display: block;
-    }
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:12px;
+}
 
-    .house-content {
-      padding: 20px;
-    }
+.gallery img{
+  width:100%;
+  height:110px;
+  object-fit:cover;
+  border-radius:8px;
+  cursor:pointer;
+}
 
-    .house h3 {
-      margin-top: 0;
-      font-size: 21px;
-    }
+.gallery img:hover{
+  opacity:.8;
+}
 
-    .price {
-      color: #c39200;
-      font-size: 21px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
+.title{
+  font-size:30px;
+  margin-top:0;
+}
 
-    .location {
-      color: #555;
-      line-height: 1.6;
-      margin-bottom: 15px;
-    }
+.price{
+  color:#b27b00;
+  font-size:26px;
+  font-weight:bold;
+  margin:15px 0;
+}
 
-    .details {
-      display: inline-block;
-      background: #f2c400;
-      color: #222;
-      text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      margin-top: 5px;
-    }
+.type{
+  display:inline-block;
+  background:#fff4bf;
+  border:1px solid #f2c400;
+  color:#8a6500;
+  padding:8px 14px;
+  border-radius:20px;
+  font-weight:bold;
+}
 
-    .details:hover {
-      background: #d4a900;
-    }
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+  margin-top:20px;
+}
 
-    .loading,
-    .empty,
-    .error {
-      background: white;
-      padding: 35px;
-      border-radius: 12px;
-      text-align: center;
-      grid-column: 1 / -1;
-    }
+.info{
+  background:#fafafa;
+  padding:15px;
+  border-radius:8px;
+}
 
-    .error {
-      color: #b00000;
-    }
+.description{
+  line-height:1.7;
+  color:#555;
+}
 
-    @media (max-width: 600px) {
+.contact{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:20px;
+}
 
-      .container {
-        padding: 20px 15px 40px;
-      }
+.button{
+  display:inline-block;
+  padding:13px 20px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
 
-      .house img {
-        height: 210px;
-      }
+.call{
+  background:#f2c400;
+  color:#222;
+}
 
-    }
-  </style>
+.whatsapp{
+  background:#128c7e;
+  color:white;
+}
+
+.loading{
+  background:white;
+  padding:40px;
+  text-align:center;
+  border-radius:12px;
+}
+
+.error{
+  background:#ffe8e8;
+  color:#a00000;
+  padding:30px;
+  border-radius:12px;
+  text-align:center;
+}
+
+@media(max-width:700px){
+
+  .main-photo{
+    height:300px;
+  }
+
+  .gallery{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .info-grid{
+    grid-template-columns:1fr;
+  }
+
+  .title{
+    font-size:25px;
+  }
+
+}
+
+</style>
+
 </head>
-
 
 <body>
 
-  <header>
+<header>
 
-    <h1 id="headerTitle">
-      🏡 RWANDA HOUSE MARKET
-    </h1>
+  <h1>🏡 RWANDA HOUSE MARKET</h1>
 
-    <a
-      href="./home.html"
-      class="back"
-      id="backButton">
-      ← Back to Home
-    </a>
+  <a
+    href="houses-sale.html"
+    class="back">
 
-  </header>
+    ← Back to Houses for Sale
 
+  </a>
 
-  <div class="container">
-
-    <div class="page-title">
-
-      <h2 id="pageTitle">
-        🏠 Houses for Rent
-      </h2>
-
-      <p id="pageDescription">
-        Find houses available for rent in Rwanda.
-      </p>
-
-    </div>
+</header>
 
 
-    <div
-      id="houses"
-      class="houses">
+<div class="container">
 
-      <div class="loading">
-        Loading houses...
-      </div>
+  <div id="content">
 
+    <div class="loading">
+      Loading property...
     </div>
 
   </div>
 
+</div>
+
 
 <script>
 
-/* =========================================
+/* =========================
    SUPABASE
-========================================= */
+========================= */
 
 const SUPABASE_URL =
   "https://hsmnybmcddtsyooltozw.supabase.co";
@@ -214,232 +239,17 @@ const supabaseClient =
   );
 
 
-/* =========================================
+/* =========================
    ELEMENT
-========================================= */
+========================= */
 
-const housesElement =
-  document.getElementById("houses");
+const content =
+  document.getElementById("content");
 
 
-/* =========================================
-   LANGUAGE
-========================================= */
-
-const language =
-  localStorage.getItem("selectedLanguage") ||
-  "English";
-
-
-/* =========================================
-   TRANSLATIONS
-   LANGUAGES 5
-========================================= */
-
-const translations = {
-
-  Kinyarwanda: {
-
-    browserTitle:
-      "Amazu akodeshwa - Rwanda House Market",
-
-    header:
-      "🏡 RWANDA HOUSE MARKET",
-
-    back:
-      "← Subira kuri Home",
-
-    title:
-      "🏠 Amazu akodeshwa",
-
-    description:
-      "Shaka amazu akodeshwa ari mu Rwanda.",
-
-    details:
-      "Reba Details",
-
-    loading:
-      "Birimo gutegurwa...",
-
-    empty:
-      "Nta nzu ikodeshwa iraboneka.",
-
-    error:
-      "Habaye ikibazo mu kubona amazu."
-
-  },
-
-
-  English: {
-
-    browserTitle:
-      "Houses for Rent - Rwanda House Market",
-
-    header:
-      "🏡 RWANDA HOUSE MARKET",
-
-    back:
-      "← Back to Home",
-
-    title:
-      "🏠 Houses for Rent",
-
-    description:
-      "Find houses available for rent in Rwanda.",
-
-    details:
-      "View Details",
-
-    loading:
-      "Loading houses...",
-
-    empty:
-      "No houses for rent found.",
-
-    error:
-      "There was a problem loading houses."
-
-  },
-
-
-  Français: {
-
-    browserTitle:
-      "Maisons à louer - Rwanda House Market",
-
-    header:
-      "🏡 RWANDA HOUSE MARKET",
-
-    back:
-      "← Retour à l'accueil",
-
-    title:
-      "🏠 Maisons à louer",
-
-    description:
-      "Trouvez des maisons disponibles à la location au Rwanda.",
-
-    details:
-      "Voir les détails",
-
-    loading:
-      "Chargement des maisons...",
-
-    empty:
-      "Aucune maison à louer trouvée.",
-
-    error:
-      "Un problème est survenu lors du chargement."
-
-  },
-
-
-  Kiswahili: {
-
-    browserTitle:
-      "Nyumba za Kupangisha - Rwanda House Market",
-
-    header:
-      "🏡 RWANDA HOUSE MARKET",
-
-    back:
-      "← Rudi Mwanzo",
-
-    title:
-      "🏠 Nyumba za Kupangisha",
-
-    description:
-      "Pata nyumba zinazopatikana kwa kukodisha nchini Rwanda.",
-
-    details:
-      "Tazama Maelezo",
-
-    loading:
-      "Inapakia nyumba...",
-
-    empty:
-      "Hakuna nyumba za kupangisha zilizopatikana.",
-
-    error:
-      "Kuna tatizo katika kupakia nyumba."
-
-  },
-
-
-  "中文": {
-
-    browserTitle:
-      "出租房屋 - Rwanda House Market",
-
-    header:
-      "🏡 RWANDA HOUSE MARKET",
-
-    back:
-      "← 返回首页",
-
-    title:
-      "🏠 出租房屋",
-
-    description:
-      "寻找卢旺达可出租的房屋。",
-
-    details:
-      "查看详情",
-
-    loading:
-      "正在加载房屋...",
-
-    empty:
-      "没有找到出租房屋。",
-
-    error:
-      "加载房屋时出现问题。"
-
-  }
-
-};
-
-
-/* =========================================
-   SELECT LANGUAGE
-========================================= */
-
-const t =
-  translations[language] ||
-  translations.English;
-
-
-/* =========================================
-   APPLY LANGUAGE
-========================================= */
-
-document.title =
-  t.browserTitle;
-
-document.getElementById(
-  "headerTitle"
-).textContent =
-  t.header;
-
-document.getElementById(
-  "backButton"
-).textContent =
-  t.back;
-
-document.getElementById(
-  "pageTitle"
-).textContent =
-  t.title;
-
-document.getElementById(
-  "pageDescription"
-).textContent =
-  t.description;
-
-
-/* =========================================
+/* =========================
    ESCAPE HTML
-========================================= */
+========================= */
 
 function escapeHtml(value){
 
@@ -453,17 +263,35 @@ function escapeHtml(value){
 }
 
 
-/* =========================================
-   LOAD RENT HOUSES
-========================================= */
+/* =========================
+   GET PROPERTY ID
+========================= */
 
-async function loadRentHouses(){
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
 
-  housesElement.innerHTML = `
-    <div class="loading">
-      ${escapeHtml(t.loading)}
-    </div>
-  `;
+const propertyId =
+  params.get("id");
+
+
+/* =========================
+   LOAD PROPERTY
+========================= */
+
+async function loadProperty(){
+
+  if(!propertyId){
+
+    content.innerHTML = `
+      <div class="error">
+        ❌ Property ID ntibonetse.
+      </div>
+    `;
+
+    return;
+  }
 
 
   const {
@@ -473,26 +301,18 @@ async function loadRentHouses(){
   await supabaseClient
     .from("properties")
     .select("*")
-    .eq("property_type","rent")
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
-    );
+    .eq("id",propertyId)
+    .eq("property_type","sale")
+    .maybeSingle();
 
-
-  /* ERROR */
 
   if(error){
 
     console.error(error);
 
-    housesElement.innerHTML = `
+    content.innerHTML = `
       <div class="error">
-        ❌ ${escapeHtml(t.error)}
-        <br><br>
-        ${escapeHtml(error.message)}
+        ❌ ${escapeHtml(error.message)}
       </div>
     `;
 
@@ -500,13 +320,11 @@ async function loadRentHouses(){
   }
 
 
-  /* EMPTY */
+  if(!data){
 
-  if(!data || data.length === 0){
-
-    housesElement.innerHTML = `
-      <div class="empty">
-        ${escapeHtml(t.empty)}
+    content.innerHTML = `
+      <div class="error">
+        ❌ Iyi nzu ntiyabonetse.
       </div>
     `;
 
@@ -514,149 +332,257 @@ async function loadRentHouses(){
   }
 
 
-  /* CLEAR */
+  renderProperty(data);
 
-  housesElement.innerHTML = "";
-
-
-  /* CREATE CARDS */
-
-  data.forEach(property => {
-
-    const card =
-      document.createElement("div");
-
-    card.className =
-      "house";
+}
 
 
-    /* MAIN PHOTO */
+/* =========================
+   RENDER PROPERTY
+========================= */
 
-    let mainPhoto =
-      property.main_photo;
+function renderProperty(property){
 
-
-    if(!mainPhoto){
-
-      if(
-        Array.isArray(
-          property.other_photos
-        ) &&
-        property.other_photos.length > 0
-      ){
-
-        mainPhoto =
-          property.other_photos[0];
-
-      }
-
-    }
+  document.title =
+    (property.title || "House Detail") +
+    " - Rwanda House Market";
 
 
-    if(!mainPhoto){
-
-      mainPhoto =
-        "https://via.placeholder.com/800x500?text=No+Photo";
-
-    }
+  const mainPhoto =
+    property.main_photo ||
+    "https://via.placeholder.com/1000x600?text=No+Photo";
 
 
-    /* PRICE */
-
-    const formattedPrice =
-      Number(
-        property.price || 0
-      ).toLocaleString();
+  let photos = [];
 
 
-    /* LOCATION */
+  if(property.main_photo){
 
-    const country =
-      property.country || "";
+    photos.push(
+      property.main_photo
+    );
 
-    const province =
-      property.province || "";
-
-    const district =
-      property.district || "";
+  }
 
 
-    /*
-      CARD
+  if(
+    Array.isArray(
+      property.other_photos
+    )
+  ){
 
-      Kuri home list ntabwo dushyiramo
-      description, bedrooms, bathrooms,
-      parking, etc.
+    photos =
+      photos.concat(
+        property.other_photos
+      );
 
-      Ibyo bizajya kuri DETAIL PAGE.
-    */
+  }
 
-    card.innerHTML = `
+
+  const uniquePhotos =
+    [...new Set(photos)]
+      .filter(Boolean);
+
+
+  let galleryHTML = "";
+
+
+  uniquePhotos.forEach(photo => {
+
+    galleryHTML += `
 
       <img
+        src="${escapeHtml(photo)}"
+        onclick="changeMainPhoto(this.src)"
+        alt="Property Photo">
+
+    `;
+
+  });
+
+
+  content.innerHTML = `
+
+    <div class="card">
+
+      <img
+        id="mainPhoto"
+        class="main-photo"
         src="${escapeHtml(mainPhoto)}"
-        alt="${escapeHtml(property.title || "House")}">
+        alt="House">
 
-      <div class="house-content">
+      <div class="gallery">
 
-        <h3>
+        ${galleryHTML}
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <span class="type">
+        🏠 House for Sale
+      </span>
+
+      <h2 class="title">
+        ${escapeHtml(
+          property.title ||
+          "House for Sale"
+        )}
+      </h2>
+
+      <div class="price">
+
+        ${Number(
+          property.price || 0
+        ).toLocaleString()} RWF
+
+      </div>
+
+
+      <div class="info-grid">
+
+        <div class="info">
+
+          🌍 <strong>Country</strong><br>
+
           ${escapeHtml(
-            property.title ||
-            "House for Rent"
+            property.country || ""
           )}
-        </h3>
-
-
-        <div class="price">
-
-          ${formattedPrice} RWF
 
         </div>
 
 
-        <div class="location">
+        <div class="info">
 
-          🌍
-          ${escapeHtml(country)}
+          📍 <strong>Province</strong><br>
 
-          <br>
-
-          📍
-          ${escapeHtml(province)}
-
-          <br>
-
-          📍
-          ${escapeHtml(district)}
+          ${escapeHtml(
+            property.province || ""
+          )}
 
         </div>
+
+
+        <div class="info">
+
+          📍 <strong>District</strong><br>
+
+          ${escapeHtml(
+            property.district || ""
+          )}
+
+        </div>
+
+
+        <div class="info">
+
+          📍 <strong>Sector</strong><br>
+
+          ${escapeHtml(
+            property.sector || ""
+          )}
+
+        </div>
+
+
+        <div class="info">
+
+          🛏️ <strong>Bedrooms</strong><br>
+
+          ${property.bedrooms ?? 0}
+
+        </div>
+
+
+        <div class="info">
+
+          🚿 <strong>Bathrooms</strong><br>
+
+          ${property.bathrooms ?? 0}
+
+        </div>
+
+
+        <div class="info">
+
+          🚗 <strong>Parking</strong><br>
+
+          ${property.parking ?? 0}
+
+        </div>
+
+      </div>
+
+
+      <h3>
+        Description
+      </h3>
+
+      <p class="description">
+
+        ${escapeHtml(
+          property.description ||
+          "No description available."
+        )}
+
+      </p>
+
+
+      <h3>
+        📞 Contact Rwanda House Market
+      </h3>
+
+
+      <div class="contact">
+
+        <a
+          href="tel:+250799645553"
+          class="button call">
+
+          📞 Call
+
+        </a>
 
 
         <a
-          class="details"
-          href="./property-details.html?id=${encodeURIComponent(property.id)}">
+          href="https://wa.me/250799645553"
+          target="_blank"
+          class="button whatsapp">
 
-          ${escapeHtml(t.details)}
+          💬 WhatsApp
 
         </a>
 
       </div>
 
-    `;
+    </div>
 
-
-    housesElement.appendChild(card);
-
-  });
+  `;
 
 }
 
 
-/* =========================================
-   START
-========================================= */
+/* =========================
+   CHANGE MAIN PHOTO
+========================= */
 
-loadRentHouses();
+function changeMainPhoto(src){
+
+  document
+    .getElementById("mainPhoto")
+    .src = src;
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadProperty();
 
 </script>
 
