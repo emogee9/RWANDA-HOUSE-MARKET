@@ -1,180 +1,606 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Rwanda Property Visata</title>
 
   <!-- Google AdSense -->
-  <meta name="google-adsense-account" content="pub-7520250190173475">
+  <meta
+    name="google-adsense-account"
+    content="pub-7520250190173475"
+  >
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+
     body {
+
       margin: 0;
+
       min-height: 100vh;
+
       font-family: Arial, sans-serif;
 
-      background: #f4c542;
+      background: #ffffff;
 
       display: flex;
+
       justify-content: center;
+
       align-items: center;
 
       padding: 25px;
+
     }
+
 
     .container {
+
       width: 100%;
-      max-width: 650px;
+
+      max-width: 700px;
+
       text-align: center;
+
     }
+
 
     .welcome {
-      color: white;
-      font-size: 38px;
-      font-weight: bold;
-      margin-bottom: 12px;
 
-      text-shadow: 0 3px 8px rgba(0,0,0,0.25);
+      color: #d49b00;
+
+      font-size: 38px;
+
+      font-weight: bold;
+
+      line-height: 1.35;
+
+      margin-bottom: 18px;
+
     }
+
 
     .subtitle {
-      color: white;
+
+      color: #d49b00;
+
       font-size: 21px;
+
+      font-weight: bold;
+
       margin-bottom: 30px;
 
-      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
+
 
     .languages {
+
       display: flex;
+
       flex-direction: column;
+
       gap: 15px;
+
       width: 100%;
+
     }
 
+
     .language-button {
+
       width: 100%;
+
       min-height: 75px;
 
-      border: 3px solid white;
+      border: 3px solid #d49b00;
+
       border-radius: 14px;
 
-      background: white;
+      background: #ffffff;
+
       color: #d49b00;
 
       font-size: 23px;
+
       font-weight: bold;
 
       cursor: pointer;
 
-      box-shadow: 0 5px 12px rgba(0,0,0,0.20);
+      box-shadow:
+        0 5px 12px rgba(212,155,0,0.18);
 
       transition: 0.2s ease;
+
     }
+
 
     .language-button:hover {
-      background: #fff8d6;
-      border-color: #ffffff;
+
+      background: #fffaf0;
+
+      border-color: #d49b00;
+
       transform: translateY(-2px);
 
-      box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+      box-shadow:
+        0 8px 16px rgba(212,155,0,0.25);
+
     }
 
+
     .language-button:active {
+
       transform: scale(0.98);
+
     }
+
 
     .kinyarwanda,
     .english,
     .french,
     .kiswahili,
     .chinese {
-      background: white;
+
+      background: #ffffff;
+
       color: #d49b00;
+
     }
+
+
+    /* =========================
+       TRACKING MESSAGE
+    ========================= */
+
+    .tracking-message {
+
+      margin-top: 18px;
+
+      color: #d49b00;
+
+      font-size: 13px;
+
+      min-height: 18px;
+
+    }
+
 
     @media (max-width: 600px) {
 
       .welcome {
+
         font-size: 28px;
+
       }
+
 
       .subtitle {
+
         font-size: 18px;
+
       }
 
+
       .language-button {
+
         min-height: 68px;
+
         font-size: 20px;
+
       }
 
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
   <div class="container">
 
+
     <div class="welcome">
-      WELCOME TO RWANDA PROPERTY VISATA 🇷🇼 this is official website where you can get
-      all houses for good price in proper area we have houses for sell,house for sale,
-      plots for sale and other not only that if you are a commisionner you can post to our
-      website for low post fee 
+
+      WELCOME TO RWANDA PROPERTY VISATA 🇷🇼
+
+      <br>
+
+      This is the official website where you can get
+      houses at good prices in proper areas.
+
+      We have houses for rent, houses for sale,
+      plots for sale and more.
+
+      If you are a commissioner, you can also post
+      your property on our website for a low posting fee.
+
     </div>
 
+
     <div class="subtitle">
+
       Choose your language
+
     </div>
+
 
     <div class="languages">
 
+
       <button
         class="language-button kinyarwanda"
-        onclick="goToHome('Kinyarwanda')">
+        onclick="goToHome('Kinyarwanda')"
+      >
+
         🇷🇼 Kinyarwanda
+
       </button>
+
 
       <button
         class="language-button english"
-        onclick="goToHome('English')">
+        onclick="goToHome('English')"
+      >
+
         🇬🇧 English
+
       </button>
+
 
       <button
         class="language-button french"
-        onclick="goToHome('Français')">
+        onclick="goToHome('Français')"
+      >
+
         🇫🇷 Français
+
       </button>
+
 
       <button
         class="language-button kiswahili"
-        onclick="goToHome('Kiswahili')">
+        onclick="goToHome('Kiswahili')"
+      >
+
         🌍 Kiswahili
+
       </button>
+
 
       <button
         class="language-button chinese"
-        onclick="goToHome('中文')">
+        onclick="goToHome('中文')"
+      >
+
         🇨🇳 中文
+
       </button>
+
 
     </div>
 
+
+    <div
+      id="trackingMessage"
+      class="tracking-message"
+    ></div>
+
+
   </div>
 
+
+
   <script>
-    function goToHome(language) {
-      localStorage.setItem("selectedLanguage", language);
-      window.location.href = "home.html";
+
+    /* =====================================================
+       SUPABASE
+    ===================================================== */
+
+    const SUPABASE_URL =
+      "https://hsmnybmcddtsyooltozw.supabase.co";
+
+
+    const SUPABASE_KEY =
+      "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+
+    /* =====================================================
+       VISITOR ID
+       ID imwe ikomeza gukoreshwa kuri browser imwe
+    ===================================================== */
+
+    function getVisitorId() {
+
+      let visitorId =
+        localStorage.getItem(
+          "rwanda_property_visitor_id"
+        );
+
+
+      if (!visitorId) {
+
+        visitorId =
+          "visitor-" +
+          crypto.randomUUID();
+
+
+        localStorage.setItem(
+          "rwanda_property_visitor_id",
+          visitorId
+        );
+
+      }
+
+
+      return visitorId;
+
     }
+
+
+
+    /* =====================================================
+       SESSION ID
+       Session nshya iyo browser session nshya itangiye
+    ===================================================== */
+
+    function getSessionId() {
+
+      let sessionId =
+        sessionStorage.getItem(
+          "rwanda_property_session_id"
+        );
+
+
+      if (!sessionId) {
+
+        sessionId =
+          "session-" +
+          crypto.randomUUID();
+
+
+        sessionStorage.setItem(
+          "rwanda_property_session_id",
+          sessionId
+        );
+
+      }
+
+
+      return sessionId;
+
+    }
+
+
+
+    /* =====================================================
+       DEVICE DETECTION
+    ===================================================== */
+
+    function detectDevice() {
+
+      const width =
+        window.innerWidth;
+
+
+      const ua =
+        navigator.userAgent.toLowerCase();
+
+
+      if (
+        /ipad|tablet|playbook|silk/.test(ua) ||
+        (width >= 600 && width <= 1100)
+      ) {
+
+        return "Tablet";
+
+      }
+
+
+      if (
+        /mobile|android|iphone|ipod|windows phone/.test(ua) ||
+        width < 600
+      ) {
+
+        return "Mobile";
+
+      }
+
+
+      return "Desktop";
+
+    }
+
+
+
+    /* =====================================================
+       PAGE VIEW
+    ===================================================== */
+
+    async function recordPageView() {
+
+      const trackingMessage =
+        document.getElementById(
+          "trackingMessage"
+        );
+
+
+      try {
+
+        const visitorId =
+          getVisitorId();
+
+
+        const sessionId =
+          getSessionId();
+
+
+        const page =
+          "language";
+
+
+        const path =
+          window.location.pathname;
+
+
+        const referrer =
+          document.referrer || "";
+
+
+        const userAgent =
+          navigator.userAgent;
+
+
+        const deviceType =
+          detectDevice();
+
+
+        /*
+          Country na city ntabwo browser
+          ibibona neza buri gihe.
+
+          Turabireka null,
+          cyangwa Supabase ikakira null.
+        */
+
+
+        const {
+          error
+        } =
+        await supabaseClient
+          .from("page_views")
+          .insert({
+
+            page:
+              page,
+
+            path:
+              path,
+
+            visitor_id:
+              visitorId,
+
+            session_id:
+              sessionId,
+
+            referrer:
+              referrer,
+
+            user_agent:
+              userAgent,
+
+            device_type:
+              deviceType,
+
+            country:
+              null,
+
+            city:
+              null
+
+          });
+
+
+        if (error) {
+
+          console.error(
+            "Page view error:",
+            error
+          );
+
+          trackingMessage.textContent =
+            "";
+
+          return;
+
+        }
+
+
+        console.log(
+          "✅ Page view recorded"
+        );
+
+        trackingMessage.textContent =
+          "";
+
+      }
+      catch (error) {
+
+        console.error(
+          "Tracking error:",
+          error
+        );
+
+        trackingMessage.textContent =
+          "";
+
+      }
+
+    }
+
+
+
+    /* =====================================================
+       LANGUAGE
+    ===================================================== */
+
+    function goToHome(language) {
+
+      localStorage.setItem(
+        "selectedLanguage",
+        language
+      );
+
+
+      window.location.href =
+        "home.html";
+
+    }
+
+
+
+    /* =====================================================
+       START TRACKING
+    ===================================================== */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function() {
+
+        recordPageView();
+
+      }
+    );
+
   </script>
 
+
 </body>
+
 </html>
