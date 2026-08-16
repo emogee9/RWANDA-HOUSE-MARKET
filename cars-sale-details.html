@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +21,10 @@
   href="logo.png"
 >
 
-<!-- ================= GOOGLE ADSENSE ================= -->
+
+<!-- =====================================================
+     GOOGLE ADSENSE
+===================================================== -->
 
 <script
   async
@@ -28,7 +32,10 @@
   crossorigin="anonymous">
 </script>
 
-<!-- ================= SUPABASE ================= -->
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
 
 <script
   src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
@@ -890,6 +897,225 @@ const supabaseClient =
 
 
 /* =====================================================
+   VISITOR TRACKING
+   TABLE: public.page_views
+===================================================== */
+
+/*
+   Creates a permanent visitor ID for this browser.
+*/
+
+function getVisitorId(){
+
+  let visitorId =
+    localStorage.getItem(
+      "rpv_visitor_id"
+    );
+
+
+  if(!visitorId){
+
+    visitorId =
+      "visitor_" +
+      crypto.randomUUID();
+
+
+    localStorage.setItem(
+      "rpv_visitor_id",
+      visitorId
+    );
+
+  }
+
+
+  return visitorId;
+
+}
+
+
+/*
+   Creates a session ID.
+
+   It is kept in sessionStorage, meaning
+   a new browser tab/session can receive
+   a different session ID.
+*/
+
+function getSessionId(){
+
+  let sessionId =
+    sessionStorage.getItem(
+      "rpv_session_id"
+    );
+
+
+  if(!sessionId){
+
+    sessionId =
+      "session_" +
+      crypto.randomUUID();
+
+
+    sessionStorage.setItem(
+      "rpv_session_id",
+      sessionId
+    );
+
+  }
+
+
+  return sessionId;
+
+}
+
+
+/*
+   Detect device type.
+*/
+
+function getDeviceType(){
+
+  const width =
+    window.innerWidth;
+
+
+  if(width <= 600){
+
+    return "Mobile";
+
+  }
+
+
+  if(width <= 1024){
+
+    return "Tablet";
+
+  }
+
+
+  return "Desktop";
+
+}
+
+
+/*
+   Send page view to Supabase.
+*/
+
+async function trackVisitor(){
+
+  try{
+
+    const visitorId =
+      getVisitorId();
+
+
+    const sessionId =
+      getSessionId();
+
+
+    const path =
+      window.location.pathname;
+
+
+    const referrer =
+      document.referrer ||
+      null;
+
+
+    const userAgent =
+      navigator.userAgent ||
+      null;
+
+
+    const deviceType =
+      getDeviceType();
+
+
+    /*
+       country and city are intentionally
+       null here.
+
+       They can later be filled using
+       a geolocation service if desired.
+    */
+
+    const {
+      data,
+      error
+    } =
+
+    await supabaseClient
+
+      .from("page_views")
+
+      .insert({
+
+        page:
+          "Cars for Sale",
+
+        path:
+          path,
+
+        visitor_id:
+          visitorId,
+
+        session_id:
+          sessionId,
+
+        referrer:
+          referrer,
+
+        user_agent:
+          userAgent,
+
+        device_type:
+          deviceType,
+
+        country:
+          null,
+
+        city:
+          null
+
+      });
+
+
+    if(error){
+
+      console.error(
+        "Visitor tracking error:",
+        error
+      );
+
+      return;
+
+    }
+
+
+    console.log(
+      "Visitor tracked successfully."
+    );
+
+  }
+  catch(error){
+
+    /*
+       Tracking should NEVER stop
+       the cars page from working.
+    */
+
+    console.error(
+      "Visitor tracking exception:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
    ELEMENTS
 ===================================================== */
 
@@ -1289,6 +1515,7 @@ function formatPrice(price){
 
   }
 
+
   const number =
     Number(
       String(price)
@@ -1348,29 +1575,99 @@ async function loadCars(){
   `;
 
 
-  const {
-    data,
-    error
-  } =
+  try{
 
-  await supabaseClient
+    const {
+      data,
+      error
+    } =
 
-    .from("cars_posts")
+    await supabaseClient
 
-    .select("*")
+      .from("cars_posts")
 
-    .order(
-      "id",
-      {
-        ascending:false
-      }
-    );
+      .select("*")
+
+      .order(
+        "id",
+        {
+          ascending:false
+        }
+      );
 
 
-  if(error){
+    if(error){
+
+      console.error(
+        "Cars Supabase error:",
+        error
+      );
+
+
+      carsContainer.innerHTML = `
+
+        <div class="error">
+
+          ❌ ${escapeHtml(
+            t.error
+          )}
+
+          <br><br>
+
+          ${escapeHtml(
+            error.message
+          )}
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    if(
+      !data ||
+      data.length === 0
+    ){
+
+      carsContainer.innerHTML = `
+
+        <div class="no-cars">
+
+          <h2>
+
+            🚗 ${escapeHtml(
+              t.noCars
+            )}
+
+          </h2>
+
+          <p>
+
+            ${escapeHtml(
+              t.noCarsDescription
+            )}
+
+          </p>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    renderCars(data);
+
+  }
+  catch(error){
 
     console.error(
-      "Cars Supabase error:",
+      "Unexpected cars error:",
       error
     );
 
@@ -1386,53 +1683,14 @@ async function loadCars(){
         <br><br>
 
         ${escapeHtml(
-          error.message
+          error.message || ""
         )}
 
       </div>
 
     `;
 
-    return;
-
   }
-
-
-  if(
-    !data ||
-    data.length === 0
-  ){
-
-    carsContainer.innerHTML = `
-
-      <div class="no-cars">
-
-        <h2>
-
-          🚗 ${escapeHtml(
-            t.noCars
-          )}
-
-        </h2>
-
-        <p>
-
-          ${escapeHtml(
-            t.noCarsDescription
-          )}
-
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  renderCars(data);
 
 }
 
@@ -1499,7 +1757,10 @@ function renderCars(cars){
 
           loading="lazy"
 
-          onerror="this.src='https://via.placeholder.com/900x600?text=No+Car+Photo'"
+          onerror="
+            this.onerror=null;
+            this.src='https://via.placeholder.com/900x600?text=No+Car+Photo';
+          "
 
         >
 
@@ -1648,8 +1909,6 @@ function applyLanguage(language){
     translations[currentLanguage];
 
 
-  /* HTML LANGUAGE */
-
   document.documentElement.lang =
     currentLanguage === "中文"
       ? "zh"
@@ -1662,8 +1921,6 @@ function applyLanguage(language){
             : "en";
 
 
-  /* TITLE */
-
   document.title =
     t.title;
 
@@ -1673,8 +1930,6 @@ function applyLanguage(language){
   ).textContent =
     t.brand;
 
-
-  /* NAVBAR */
 
   document.getElementById(
     "homeLink"
@@ -1706,8 +1961,6 @@ function applyLanguage(language){
     t.cars;
 
 
-  /* PAGE */
-
   document.getElementById(
     "pageTitle"
   ).textContent =
@@ -1732,8 +1985,6 @@ function applyLanguage(language){
     t.footer;
 
 
-  /* ACTIVE LANGUAGE */
-
   document
     .querySelectorAll(
       ".language-button"
@@ -1751,8 +2002,6 @@ function applyLanguage(language){
 
     });
 
-
-  /* RELOAD CAR TEXT */
 
   loadCars();
 
@@ -1783,7 +2032,14 @@ new Date().getFullYear();
 
 
 /* =====================================================
-   START
+   START VISITOR TRACKING
+===================================================== */
+
+trackVisitor();
+
+
+/* =====================================================
+   START PAGE
 ===================================================== */
 
 applyLanguage(
@@ -1796,3 +2052,4 @@ applyLanguage(
 </body>
 
 </html>
+```
