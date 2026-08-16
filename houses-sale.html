@@ -5,21 +5,11 @@
 
 <meta charset="UTF-8">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Houses for Sale - Rwanda Property Visata</title>
 
-
-<!-- ================= FAVICON ================= -->
-
-<link
-  rel="icon"
-  type="image/png"
-  href="logo.png"
->
+<link rel="icon" type="image/png" href="logo.png">
 
 
 <!-- ================= GOOGLE ADSENSE ================= -->
@@ -33,9 +23,7 @@
 
 <!-- ================= SUPABASE ================= -->
 
-<script
-  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
 <style>
@@ -43,7 +31,6 @@
 *{
   box-sizing:border-box;
 }
-
 
 body{
   margin:0;
@@ -53,409 +40,213 @@ body{
 }
 
 
-/* =====================================================
-   HEADER
-===================================================== */
+/* ================= HEADER ================= */
 
 header{
-
   background:#f2c400;
-
   padding:25px 15px;
-
   text-align:center;
-
-  box-shadow:
-    0 3px 10px rgba(0,0,0,.15);
-
+  box-shadow:0 3px 10px rgba(0,0,0,.15);
 }
-
 
 header h1{
-
   margin:0;
-
   font-size:30px;
-
 }
-
 
 .back{
-
   display:inline-block;
-
   margin-top:12px;
-
   background:white;
-
   color:#222;
-
   text-decoration:none;
-
   padding:10px 16px;
-
   border-radius:8px;
-
   font-weight:bold;
-
   transition:.2s;
-
 }
-
 
 .back:hover{
-
   background:#fff8d6;
-
-  transform:translateY(-1px);
-
 }
 
 
-/* =====================================================
-   CONTAINER
-===================================================== */
+/* ================= CONTAINER ================= */
 
 .container{
-
   max-width:1150px;
-
   margin:auto;
-
   padding:30px 20px 60px;
-
 }
 
 
-/* =====================================================
-   PAGE TITLE
-===================================================== */
+/* ================= PAGE TITLE ================= */
 
 .page-title{
-
   background:white;
-
   padding:25px;
-
   border-radius:15px;
-
   text-align:center;
-
   margin-bottom:25px;
-
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.1);
-
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
 }
-
 
 .page-title h2{
-
   margin:0 0 10px;
-
 }
-
 
 .page-title p{
-
   margin:0;
-
   color:#666;
-
   line-height:1.6;
-
 }
 
 
-/* =====================================================
-   GOOGLE ADSENSE
-===================================================== */
+/* ================= ADSENSE ================= */
 
 .ad-container{
-
   width:100%;
-
   background:white;
-
   padding:15px;
-
   margin:25px 0;
-
   border-radius:15px;
-
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.08);
-
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
   text-align:center;
-
   overflow:hidden;
-
 }
-
 
 .ad-label{
-
   font-size:12px;
-
   color:#777;
-
   margin-bottom:8px;
-
 }
 
 
-.adsbygoogle{
-
-  width:100%;
-
-  min-height:100px;
-
-}
-
-
-/* =====================================================
-   PROPERTIES
-===================================================== */
+/* ================= PROPERTIES ================= */
 
 .properties{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:22px;
-
 }
-
 
 .property{
-
   background:white;
-
   border-radius:15px;
-
   overflow:hidden;
-
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.12);
-
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease;
-
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+  transition:.2s;
 }
-
 
 .property:hover{
-
-  transform:
-    translateY(-3px);
-
-  box-shadow:
-    0 7px 20px rgba(0,0,0,.17);
-
+  transform:translateY(-3px);
+  box-shadow:0 7px 20px rgba(0,0,0,.17);
 }
-
 
 .property img{
-
   width:100%;
-
   height:220px;
-
   object-fit:cover;
-
   display:block;
-
 }
-
 
 .property-body{
-
   padding:18px;
-
 }
-
 
 .property-title{
-
   font-size:20px;
-
   font-weight:bold;
-
   margin-bottom:10px;
-
   line-height:1.4;
-
 }
-
 
 .price{
-
   color:#b27b00;
-
   font-size:21px;
-
   font-weight:bold;
-
   margin-bottom:10px;
-
 }
-
 
 .location{
-
   color:#555;
-
   line-height:1.6;
-
   margin-bottom:15px;
-
-  min-height:26px;
-
 }
-
 
 .details{
-
   display:block;
-
   text-align:center;
-
   background:#f2c400;
-
   color:#222;
-
   text-decoration:none;
-
   padding:12px;
-
   border-radius:8px;
-
   font-weight:bold;
-
-  transition:.2s;
-
 }
-
 
 .details:hover{
-
   background:#d4a900;
-
 }
 
 
-/* =====================================================
-   EMPTY / LOADING / ERROR
-===================================================== */
+/* ================= EMPTY / ERROR ================= */
 
 .empty{
-
   background:white;
-
   padding:40px;
-
   border-radius:12px;
-
   text-align:center;
-
   color:#777;
-
   grid-column:1/-1;
-
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.08);
-
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
   line-height:1.7;
-
 }
-
-
-.loading{
-
-  text-align:center;
-
-  padding:40px;
-
-}
-
 
 .error{
-
   background:#ffe8e8;
-
   color:#a00000;
-
 }
 
 
-/* =====================================================
-   MOBILE
-===================================================== */
+/* ================= MOBILE ================= */
 
 @media(max-width:900px){
 
   .properties{
-
-    grid-template-columns:
-      repeat(2,1fr);
-
+    grid-template-columns:repeat(2,1fr);
   }
 
 }
 
-
 @media(max-width:600px){
 
   header h1{
-
     font-size:24px;
-
   }
-
 
   .container{
-
-    padding:
-      20px 14px 50px;
-
+    padding:20px 14px 50px;
   }
-
 
   .page-title{
-
     padding:20px 15px;
-
   }
-
 
   .properties{
-
     grid-template-columns:1fr;
-
   }
-
 
   .property img{
-
     height:230px;
-
   }
-
 
   .property-title{
-
     font-size:19px;
-
   }
 
-
   .price{
-
     font-size:20px;
-
   }
 
 }
@@ -468,74 +259,49 @@ header h1{
 <body>
 
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+<!-- ================= HEADER ================= -->
 
 <header>
 
   <h1 id="headerTitle">
-
     🏡 RWANDA PROPERTY VISATA
-
   </h1>
-
 
   <a
     href="home.html"
     class="back"
-    id="backButton"
-  >
-
+    id="backButton">
     ← Back to Home
-
   </a>
 
 </header>
 
 
-
 <div class="container">
 
 
-<!-- =====================================================
-     PAGE TITLE
-===================================================== -->
+<!-- ================= PAGE TITLE ================= -->
 
 <div class="page-title">
 
   <h2 id="pageTitle">
-
     🏠 Houses for Sale
-
   </h2>
 
-
   <p id="pageDescription">
-
     Find houses available for sale in Rwanda.
-
   </p>
 
 </div>
 
 
-
-<!-- =====================================================
-     GOOGLE ADSENSE
-===================================================== -->
+<!-- ================= ADSENSE ================= -->
 
 <div class="ad-container">
 
-  <div
-    class="ad-label"
-    id="adLabel"
-  >
-
+  <div class="ad-label" id="adLabel">
     Advertisement
-
   </div>
-
 
   <ins
     class="adsbygoogle"
@@ -549,277 +315,193 @@ header h1{
 </div>
 
 
-
-<!-- =====================================================
-     PROPERTIES
-===================================================== -->
+<!-- ================= PROPERTIES ================= -->
 
 <div
   id="properties"
-  class="properties"
->
+  class="properties">
 
   <div
-    class="empty loading"
-    id="loadingMessage"
-  >
-
+    class="empty"
+    id="loadingMessage">
     Loading houses...
-
   </div>
 
 </div>
 
-
 </div>
 
 
-
 <script>
-
 
 /* =====================================================
    LANGUAGE
 ===================================================== */
 
 const language =
-  localStorage.getItem(
-    "selectedLanguage"
-  ) ||
+  localStorage.getItem("selectedLanguage") ||
   "English";
 
 
-
 /* =====================================================
-   TRANSLATIONS - 5 LANGUAGES
+   TRANSLATIONS
 ===================================================== */
 
 const translations = {
 
+Kinyarwanda: {
 
-  /* ===================================================
-     KINYARWANDA
-  =================================================== */
+  header:"🏡 RWANDA PROPERTY VISATA",
 
-  Kinyarwanda: {
+  back:"← Subira kuri Home",
 
-    header:
-      "🏡 RWANDA PROPERTY VISATA",
+  title:"🏠 Amazu Agurishwa",
 
-    back:
-      "← Subira kuri Home",
+  description:"Shakisha amazu ari kugurishwa mu Rwanda.",
 
-    title:
-      "🏠 Amazu Agurishwa",
+  advertisement:"Kwamamaza",
 
-    description:
-      "Shakisha amazu ari kugurishwa mu Rwanda.",
+  loading:"Tegereza, amazu arimo kuboneka...",
 
-    advertisement:
-      "Kwamamaza",
+  noProperties:"Nta nzu zigurishwa ziraboneka.",
 
-    loading:
-      "Tegereza, amazu arimo kuboneka...",
+  error:"Habaye ikibazo mu kubona amazu.",
 
-    noProperties:
-      "Nta nzu zigurishwa ziraboneka.",
+  view:"Reba Ibisobanuro",
 
-    error:
-      "Habaye ikibazo mu kubona amazu.",
+  house:"Inzu Igurishwa",
 
-    view:
-      "Reba Ibisobanuro",
+  rwanda:"Rwanda",
 
-    house:
-      "Inzu Igurishwa",
+  location:"Aho iherereye",
 
-    rwanda:
-      "Rwanda",
+  currency:"RWF"
 
-    location:
-      "Aho iherereye"
+},
 
-  },
 
+English: {
 
-  /* ===================================================
-     ENGLISH
-  =================================================== */
+  header:"🏡 RWANDA PROPERTY VISATA",
 
-  English: {
+  back:"← Back to Home",
 
-    header:
-      "🏡 RWANDA PROPERTY VISATA",
+  title:"🏠 Houses for Sale",
 
-    back:
-      "← Back to Home",
+  description:"Find houses available for sale in Rwanda.",
 
-    title:
-      "🏠 Houses for Sale",
+  advertisement:"Advertisement",
 
-    description:
-      "Find houses available for sale in Rwanda.",
+  loading:"Loading houses...",
 
-    advertisement:
-      "Advertisement",
+  noProperties:"No houses for sale available yet.",
 
-    loading:
-      "Loading houses...",
+  error:"There was a problem loading the houses.",
 
-    noProperties:
-      "No houses for sale available yet.",
+  view:"View Detail",
 
-    error:
-      "There was a problem loading the houses.",
+  house:"House for Sale",
 
-    view:
-      "View Detail",
+  rwanda:"Rwanda",
 
-    house:
-      "House for Sale",
+  location:"Location",
 
-    rwanda:
-      "Rwanda",
+  currency:"RWF"
 
-    location:
-      "Location"
+},
 
-  },
 
+Français: {
 
-  /* ===================================================
-     FRANÇAIS
-  =================================================== */
+  header:"🏡 RWANDA PROPERTY VISATA",
 
-  Français: {
+  back:"← Retour à l'accueil",
 
-    header:
-      "🏡 RWANDA PROPERTY VISATA",
+  title:"🏠 Maisons à vendre",
 
-    back:
-      "← Retour à l'accueil",
+  description:"Trouvez des maisons disponibles à la vente au Rwanda.",
 
-    title:
-      "🏠 Maisons à vendre",
+  advertisement:"Publicité",
 
-    description:
-      "Trouvez des maisons disponibles à la vente au Rwanda.",
+  loading:"Chargement des maisons...",
 
-    advertisement:
-      "Publicité",
+  noProperties:"Aucune maison à vendre n'est disponible pour le moment.",
 
-    loading:
-      "Chargement des maisons...",
+  error:"Un problème est survenu lors du chargement des maisons.",
 
-    noProperties:
-      "Aucune maison à vendre n'est disponible pour le moment.",
+  view:"Voir les détails",
 
-    error:
-      "Un problème est survenu lors du chargement des maisons.",
+  house:"Maison à vendre",
 
-    view:
-      "Voir les détails",
+  rwanda:"Rwanda",
 
-    house:
-      "Maison à vendre",
+  location:"Emplacement",
 
-    rwanda:
-      "Rwanda",
+  currency:"RWF"
 
-    location:
-      "Emplacement"
+},
 
-  },
 
+Kiswahili: {
 
-  /* ===================================================
-     KISWAHILI
-  =================================================== */
+  header:"🏡 RWANDA PROPERTY VISATA",
 
-  Kiswahili: {
+  back:"← Rudi Mwanzo",
 
-    header:
-      "🏡 RWANDA PROPERTY VISATA",
+  title:"🏠 Nyumba za Kuuza",
 
-    back:
-      "← Rudi Mwanzo",
+  description:"Pata nyumba zinazopatikana kwa ajili ya kuuza nchini Rwanda.",
 
-    title:
-      "🏠 Nyumba za Kuuza",
+  advertisement:"Tangazo",
 
-    description:
-      "Pata nyumba zinazopatikana kwa ajili ya kuuza nchini Rwanda.",
+  loading:"Inapakia nyumba...",
 
-    advertisement:
-      "Tangazo",
+  noProperties:"Hakuna nyumba za kuuza zinazopatikana kwa sasa.",
 
-    loading:
-      "Inapakia nyumba...",
+  error:"Kuna tatizo wakati wa kupakia nyumba.",
 
-    noProperties:
-      "Hakuna nyumba za kuuza zinazopatikana kwa sasa.",
+  view:"Angalia Maelezo",
 
-    error:
-      "Kuna tatizo wakati wa kupakia nyumba.",
+  house:"Nyumba ya Kuuza",
 
-    view:
-      "Angalia Maelezo",
+  rwanda:"Rwanda",
 
-    house:
-      "Nyumba ya Kuuza",
+  location:"Mahali",
 
-    rwanda:
-      "Rwanda",
+  currency:"RWF"
 
-    location:
-      "Mahali"
+},
 
-  },
 
+"中文": {
 
-  /* ===================================================
-     CHINESE
-  =================================================== */
+  header:"🏡 RWANDA PROPERTY VISATA",
 
-  "中文": {
+  back:"← 返回首页",
 
-    header:
-      "🏡 RWANDA PROPERTY VISATA",
+  title:"🏠 出售房屋",
 
-    back:
-      "← 返回首页",
+  description:"寻找卢旺达境内可出售的房屋。",
 
-    title:
-      "🏠 出售房屋",
+  advertisement:"广告",
 
-    description:
-      "寻找卢旺达境内可出售的房屋。",
+  loading:"正在加载房屋...",
 
-    advertisement:
-      "广告",
+  noProperties:"目前没有可出售的房屋。",
 
-    loading:
-      "正在加载房屋...",
+  error:"加载房屋时出现问题。",
 
-    noProperties:
-      "目前没有可出售的房屋。",
+  view:"查看详情",
 
-    error:
-      "加载房屋时出现问题。",
+  house:"出售房屋",
 
-    view:
-      "查看详情",
+  rwanda:"卢旺达",
 
-    house:
-      "出售房屋",
+  location:"位置",
 
-    rwanda:
-      "卢旺达",
+  currency:"RWF"
 
-    location:
-      "位置"
-
-  }
+}
 
 };
 
@@ -829,81 +511,75 @@ const t =
   translations.English;
 
 
-
 /* =====================================================
    APPLY LANGUAGE
 ===================================================== */
 
 document.documentElement.lang =
-
   language === "中文"
     ? "zh"
-
     : language === "Français"
       ? "fr"
-
       : language === "Kiswahili"
         ? "sw"
-
         : language === "Kinyarwanda"
           ? "rw"
-
           : "en";
 
 
-
-document.getElementById(
-  "headerTitle"
-).textContent =
+document.getElementById("headerTitle").textContent =
   t.header;
 
-
-document.getElementById(
-  "backButton"
-).textContent =
+document.getElementById("backButton").textContent =
   t.back;
 
-
-document.getElementById(
-  "pageTitle"
-).textContent =
+document.getElementById("pageTitle").textContent =
   t.title;
 
-
-document.getElementById(
-  "pageDescription"
-).textContent =
+document.getElementById("pageDescription").textContent =
   t.description;
 
-
-document.getElementById(
-  "adLabel"
-).textContent =
+document.getElementById("adLabel").textContent =
   t.advertisement;
 
-
-document.getElementById(
-  "loadingMessage"
-).textContent =
+document.getElementById("loadingMessage").textContent =
   t.loading;
-
 
 document.title =
   t.title.replace("🏠 ","") +
   " - Rwanda Property Visata";
 
 
-
 /* =====================================================
    SUPABASE
 ===================================================== */
+
+/*
+  IMPORTANT:
+
+  SUPABASE_URL ntabwo ari /rest/v1/
+
+  URL nyayo ni:
+  https://hsmnybmcddtsyooltozw.supabase.co
+*/
 
 const SUPABASE_URL =
   "https://hsmnybmcddtsyooltozw.supabase.co";
 
 
+/*
+  Iyi ni Publishable Key.
+
+  Niba iyi key yawe itagikora,
+  uyisimbuze na Publishable key iri muri:
+
+  Supabase
+  → Project Settings
+  → API
+*/
+
 const SUPABASE_KEY =
-  "sb_publishable_oHhsRZQcMwIcRe48WE9mw_FdzMO29u";
+  "sb_publishable_oHhsRZQcMwIcRe48WE9mw_FdzMO29";
 
 
 const supabaseClient =
@@ -913,16 +589,12 @@ const supabaseClient =
   );
 
 
-
 /* =====================================================
    ELEMENT
 ===================================================== */
 
 const propertiesElement =
-  document.getElementById(
-    "properties"
-  );
-
+  document.getElementById("properties");
 
 
 /* =====================================================
@@ -931,37 +603,14 @@ const propertiesElement =
 
 function escapeHtml(value){
 
-  return String(
-    value ?? ""
-  )
-
-  .replace(
-    /&/g,
-    "&amp;"
-  )
-
-  .replace(
-    /</g,
-    "&lt;"
-  )
-
-  .replace(
-    />/g,
-    "&gt;"
-  )
-
-  .replace(
-    /"/g,
-    "&quot;"
-  )
-
-  .replace(
-    /'/g,
-    "&#039;"
-  );
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
-
 
 
 /* =====================================================
@@ -971,15 +620,17 @@ function escapeHtml(value){
 function getPropertyImage(property){
 
   let image =
-    property.main_photo ||
-    "";
+    property.main_photo || "";
 
+
+  /*
+    Handle other_photos if it is
+    already an array.
+  */
 
   if(
     !image &&
-    Array.isArray(
-      property.other_photos
-    ) &&
+    Array.isArray(property.other_photos) &&
     property.other_photos.length > 0
   ){
 
@@ -989,13 +640,48 @@ function getPropertyImage(property){
   }
 
 
+  /*
+    Handle other_photos if Supabase
+    returns it as JSON string.
+  */
+
+  if(
+    !image &&
+    typeof property.other_photos === "string"
+  ){
+
+    try{
+
+      const parsed =
+        JSON.parse(property.other_photos);
+
+      if(
+        Array.isArray(parsed) &&
+        parsed.length > 0
+      ){
+
+        image =
+          parsed[0];
+
+      }
+
+    }
+    catch(error){
+
+      console.log(
+        "Could not parse other_photos."
+      );
+
+    }
+
+  }
+
+
   if(!image){
 
     image =
       "https://via.placeholder.com/800x500?text=" +
-      encodeURIComponent(
-        t.house
-      );
+      encodeURIComponent(t.house);
 
   }
 
@@ -1003,7 +689,6 @@ function getPropertyImage(property){
   return image;
 
 }
-
 
 
 /* =====================================================
@@ -1022,9 +707,7 @@ function getLocation(property){
 
     property.sector
 
-  ]
-
-  .filter(
+  ].filter(
     value =>
       value !== null &&
       value !== undefined &&
@@ -1033,73 +716,212 @@ function getLocation(property){
 
 
   return parts.length > 0
-
     ? parts.join(", ")
-
     : t.rwanda;
 
 }
 
 
-
 /* =====================================================
-   LOAD SALE PROPERTIES
+   LOAD HOUSES
 ===================================================== */
 
 async function loadSaleProperties(){
 
-
   propertiesElement.innerHTML = `
 
-    <div class="empty loading">
+    <div class="empty">
 
-      ${escapeHtml(
-        t.loading
-      )}
+      ${escapeHtml(t.loading)}
 
     </div>
 
   `;
 
 
-  const {
-    data,
-    error
-  } =
+  try{
 
-  await supabaseClient
+    /*
+      IMPORTANT:
 
-    .from("property_posts")
+      Ntabwo dushyizemo .eq("status","published")
+      kuko bishobora gutuma houses zitagaragara
+      niba table yawe idakoresha iyo column/value.
+    */
 
-    .select("*")
+    const {
+      data,
+      error
+    } = await supabaseClient
 
-    .eq(
-      "property_type",
-      "sale"
-    )
+      .from("property_posts")
 
-    .eq(
-      "status",
-      "published"
-    )
+      .select("*")
 
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
-    );
+      .eq(
+        "property_type",
+        "sale"
+      )
 
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
 
 
-  /* ===================================================
-     ERROR
-  =================================================== */
+    /* ================= ERROR ================= */
 
-  if(error){
+    if(error){
+
+      console.error(
+        "Supabase error:",
+        error
+      );
+
+      propertiesElement.innerHTML = `
+
+        <div class="empty error">
+
+          ❌ ${escapeHtml(
+            error.message ||
+            t.error
+          )}
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    /* ================= EMPTY ================= */
+
+    if(
+      !data ||
+      data.length === 0
+    ){
+
+      propertiesElement.innerHTML = `
+
+        <div class="empty">
+
+          🏠
+
+          <br><br>
+
+          ${escapeHtml(
+            t.noProperties
+          )}
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    /* ================= CLEAR ================= */
+
+    propertiesElement.innerHTML = "";
+
+
+    /* ================= CARDS ================= */
+
+    data.forEach(property => {
+
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "property";
+
+
+      const image =
+        getPropertyImage(property);
+
+
+      const propertyTitle =
+        property.title ||
+        t.house;
+
+
+      const price =
+        Number(
+          property.price || 0
+        ).toLocaleString("en-US");
+
+
+      const location =
+        getLocation(property);
+
+
+      const detailUrl =
+        "house-sale-detail.html?id=" +
+        encodeURIComponent(property.id);
+
+
+      card.innerHTML = `
+
+        <img
+          src="${escapeHtml(image)}"
+          alt="${escapeHtml(propertyTitle)}"
+          loading="lazy"
+          onerror="this.src='https://via.placeholder.com/800x500?text=No+Photo'"
+        >
+
+
+        <div class="property-body">
+
+          <div class="property-title">
+
+            ${escapeHtml(propertyTitle)}
+
+          </div>
+
+
+          <div class="price">
+
+            ${price} ${t.currency}
+
+          </div>
+
+
+          <div class="location">
+
+            📍 ${escapeHtml(location)}
+
+          </div>
+
+
+          <a
+            class="details"
+            href="${escapeHtml(detailUrl)}">
+
+            ${escapeHtml(t.view)}
+
+          </a>
+
+        </div>
+
+      `;
+
+
+      propertiesElement.appendChild(card);
+
+    });
+
+  }
+
+  catch(error){
 
     console.error(
-      "Supabase error:",
+      "Unexpected error:",
       error
     );
 
@@ -1108,9 +930,7 @@ async function loadSaleProperties(){
 
       <div class="empty error">
 
-        ❌
-
-        ${escapeHtml(
+        ❌ ${escapeHtml(
           error.message ||
           t.error
         )}
@@ -1119,206 +939,9 @@ async function loadSaleProperties(){
 
     `;
 
-    return;
-
   }
-
-
-
-  /* ===================================================
-     EMPTY
-  =================================================== */
-
-  if(
-    !data ||
-    data.length === 0
-  ){
-
-    propertiesElement.innerHTML = `
-
-      <div class="empty">
-
-        🏠
-
-        <br><br>
-
-        ${escapeHtml(
-          t.noProperties
-        )}
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-
-  /* ===================================================
-     CLEAR
-  =================================================== */
-
-  propertiesElement.innerHTML = "";
-
-
-
-  /* ===================================================
-     CREATE CARDS
-  =================================================== */
-
-  data.forEach(
-    property => {
-
-
-      const card =
-        document.createElement(
-          "div"
-        );
-
-
-      card.className =
-        "property";
-
-
-
-      /* ================= IMAGE ================= */
-
-      const image =
-        getPropertyImage(
-          property
-        );
-
-
-
-      /* ================= TITLE ================= */
-
-      const propertyTitle =
-
-        property.title ||
-
-        t.house;
-
-
-
-      /* ================= PRICE ================= */
-
-      const price =
-        Number(
-          property.price || 0
-        ).toLocaleString(
-          "en-US"
-        );
-
-
-
-      /* ================= LOCATION ================= */
-
-      const location =
-        getLocation(
-          property
-        );
-
-
-
-      /* ================= DETAIL URL ================= */
-
-      const detailUrl =
-
-        "house-sale-detail.html?id=" +
-
-        encodeURIComponent(
-          property.id
-        );
-
-
-
-      /* ================= CARD ================= */
-
-      card.innerHTML = `
-
-        <img
-
-          src="${escapeHtml(
-            image
-          )}"
-
-          alt="${escapeHtml(
-            propertyTitle
-          )}"
-
-          loading="lazy"
-
-        >
-
-
-        <div class="property-body">
-
-
-          <div class="property-title">
-
-            ${escapeHtml(
-              propertyTitle
-            )}
-
-          </div>
-
-
-
-          <div class="price">
-
-            ${price}
-
-            RWF
-
-          </div>
-
-
-
-          <div class="location">
-
-            📍
-
-            ${escapeHtml(
-              location
-            )}
-
-          </div>
-
-
-
-          <a
-
-            class="details"
-
-            href="${escapeHtml(
-              detailUrl
-            )}"
-
-          >
-
-            ${escapeHtml(
-              t.view
-            )}
-
-          </a>
-
-
-        </div>
-
-      `;
-
-
-      propertiesElement.appendChild(
-        card
-      );
-
-    }
-  );
 
 }
-
 
 
 /* =====================================================
@@ -1328,9 +951,8 @@ async function loadSaleProperties(){
 loadSaleProperties();
 
 
-
 /* =====================================================
-   START GOOGLE ADSENSE
+   START ADSENSE
 ===================================================== */
 
 window.addEventListener(
@@ -1346,11 +968,10 @@ window.addEventListener(
       ).push({});
 
     }
-
     catch(error){
 
       console.log(
-        "AdSense error:",
+        "AdSense:",
         error
       );
 
@@ -1360,7 +981,6 @@ window.addEventListener(
 );
 
 </script>
-
 
 </body>
 </html>
