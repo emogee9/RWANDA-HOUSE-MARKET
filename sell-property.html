@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -119,6 +118,26 @@ textarea{
   color:#666;
 }
 
+.special-offer{
+  margin-top:15px;
+  background:#fff;
+  border:2px dashed #d4a017;
+  border-radius:10px;
+  padding:15px;
+  text-align:center;
+  font-weight:bold;
+  line-height:1.6;
+}
+
+.special-phone{
+  display:inline-block;
+  margin-top:10px;
+  color:#128c7e;
+  font-size:19px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
 .photos{
   display:flex;
   flex-wrap:wrap;
@@ -219,6 +238,17 @@ textarea{
   margin-top:20px;
 }
 
+footer{
+  text-align:center;
+  padding:25px 15px 35px;
+  color:#777;
+  font-size:14px;
+}
+
+footer strong{
+  color:#a87800;
+}
+
 @media(max-width:650px){
 
   .grid{
@@ -246,7 +276,7 @@ textarea{
 
 <header>
 
-<h1 id="headerTitle">
+<h1>
 🏠 RWANDA HOUSE MARKET
 </h1>
 
@@ -262,7 +292,6 @@ id="backButton">
 
 <div class="container">
 
-
 <!-- =====================================================
      FORM
 ===================================================== -->
@@ -276,7 +305,7 @@ id="formCard">
 </h2>
 
 <p id="pageDescription">
-Fill in your property information below.
+Enter all information about the property you want to sell or rent.
 </p>
 
 
@@ -363,7 +392,6 @@ placeholder="Example: Beautiful House in Kigali">
 
 <div class="grid">
 
-
 <div>
 
 <label id="countryLabel">
@@ -391,7 +419,6 @@ id="province"
 required
 placeholder="Kigali">
 
-
 </div>
 
 
@@ -406,7 +433,6 @@ type="text"
 id="district"
 required
 placeholder="Gasabo">
-
 
 </div>
 
@@ -429,7 +455,6 @@ placeholder="Remera">
 
 
 <div class="grid">
-
 
 <div>
 
@@ -494,6 +519,10 @@ placeholder="Example: 50000000">
 </div>
 
 
+<!-- =====================================================
+     POSTING FEE
+===================================================== -->
+
 <div class="fee-box">
 
 <strong id="feeTitle">
@@ -510,6 +539,26 @@ id="feeAmount">
 class="rate"
 id="feeRate">
 Enter the price to calculate the posting fee.
+</div>
+
+
+<div
+class="special-offer"
+id="specialOffer">
+
+USHOBORA KWISHYURA 50,000 RWF TUKAPOSTINGA IMARI YAWE KUMBUGA ZOSE
+
+<br>
+
+<a
+href="tel:+250799645553"
+class="special-phone"
+id="specialPhone">
+
+📞 +250799645553
+
+</a>
+
 </div>
 
 </div>
@@ -602,8 +651,7 @@ Theophilla
 </div>
 
 
-<div
-class="fee-box">
+<div class="fee-box">
 
 <strong id="paymentFeeLabel">
 Posting Fee
@@ -668,8 +716,18 @@ Your post will be posted within 15 minutes after verification.
 
 </div>
 
-
 </div>
+
+
+<footer>
+
+<span id="designedText">
+Designed by
+</span>
+
+<strong>Irene</strong>
+
+</footer>
 
 
 <script>
@@ -711,6 +769,9 @@ document.getElementById("sellerForm");
 
 const priceInput =
 document.getElementById("price");
+
+const listingType =
+document.getElementById("listingType");
 
 const feeAmount =
 document.getElementById("feeAmount");
@@ -758,15 +819,20 @@ let fee = 0;
 
 let rate = 0;
 
+
+/*
+   FOR SALE ONLY
+
+   Under 50,000,000:
+   0.01%
+
+   50,000,000 and above:
+   0.02%
+*/
+
+if(listingType.value === "sale"){
+
 if(price > 0 && price < 50000000){
-
-rate = 0.00005;
-
-fee = price * rate;
-
-}
-
-else if(price >= 50000000){
 
 rate = 0.0001;
 
@@ -774,7 +840,34 @@ fee = price * rate;
 
 }
 
+else if(price >= 50000000){
+
+rate = 0.0002;
+
+fee = price * rate;
+
+}
+
+}
+
+
+/*
+   FOR RENT
+
+   No percentage fee calculation here.
+*/
+
+else if(listingType.value === "rent"){
+
+fee = 0;
+
+rate = 0;
+
+}
+
+
 currentPostingFee = fee;
+
 
 feeAmount.textContent =
 fee.toLocaleString(
@@ -785,10 +878,24 @@ maximumFractionDigits:2
 ) + " RWF";
 
 
-if(price === 0){
+if(listingType.value === ""){
 
 feeRate.textContent =
-"Enter the price to calculate the posting fee.";
+"Choose For Sale or For Rent.";
+
+}
+
+else if(listingType.value === "rent"){
+
+feeRate.textContent =
+"Rental properties do not use the sale posting percentage.";
+
+}
+
+else if(price === 0){
+
+feeRate.textContent =
+"Enter the property price to calculate the posting fee.";
 
 }
 
@@ -796,7 +903,7 @@ else{
 
 feeRate.textContent =
 "Posting fee: " +
-(rate * 100) +
+(rate * 100).toFixed(2) +
 "%";
 
 }
@@ -806,6 +913,11 @@ feeRate.textContent =
 
 priceInput.addEventListener(
 "input",
+calculateFee
+);
+
+listingType.addEventListener(
+"change",
 calculateFee
 );
 
@@ -870,12 +982,12 @@ bucket
 const extension =
 file.name.includes(".")
 ?
-file.name
-.substring(
+file.name.substring(
 file.name.lastIndexOf(".")
 )
 :
 "";
+
 
 const fileName =
 Date.now() +
@@ -884,6 +996,7 @@ Math.random()
 .toString(36)
 .substring(2) +
 extension;
+
 
 const filePath =
 Date.now() +
@@ -919,7 +1032,9 @@ data
 supabaseClient
 .storage
 .from(bucket)
-.getPublicUrl(filePath);
+.getPublicUrl(
+filePath
+);
 
 
 return data.publicUrl;
@@ -953,7 +1068,6 @@ postButton.textContent =
 
 try{
 
-
 const fullName =
 document
 .getElementById("fullName")
@@ -974,7 +1088,7 @@ document
 .value;
 
 
-const listingType =
+const listing =
 document
 .getElementById("listingType")
 .value;
@@ -1078,7 +1192,7 @@ throw new Error(
 }
 
 
-if(!listingType){
+if(!listing){
 
 throw new Error(
 "Hitamo For Sale cyangwa For Rent."
@@ -1090,7 +1204,7 @@ throw new Error(
 if(currentPrice <= 0){
 
 throw new Error(
-"Shyiramo igiciro."
+"Shyiramo igiciro cy'umutungo."
 );
 
 }
@@ -1119,8 +1233,7 @@ const otherPhotoUrls = [];
 
 
 for(
-const file
-of otherFiles
+const file of otherFiles
 ){
 
 const url =
@@ -1160,7 +1273,7 @@ property_type:
 propertyType,
 
 listing_type:
-listingType,
+listing,
 
 title:
 title,
@@ -1251,8 +1364,11 @@ paymentCard.style.display =
 
 
 window.scrollTo({
+
 top:0,
+
 behavior:"smooth"
+
 });
 
 
@@ -1301,7 +1417,6 @@ button.textContent =
 
 
 try{
-
 
 if(!currentPostId){
 
@@ -1388,7 +1503,6 @@ document
 button.textContent =
 "Submitted";
 
-
 }
 catch(error){
 
@@ -1424,6 +1538,7 @@ localStorage.getItem(
 
 
 const translations = {
+
 
 Kinyarwanda: {
 
@@ -1506,9 +1621,16 @@ submit:
 "Ohereza Screenshot",
 
 back:
-"← Subira kuri Home"
+"← Subira kuri Home",
+
+offer:
+"USHOBORA KWISHYURA 50,000 RWF TUKAPOSTINGA IMARI YAWE KUMBUGA ZOSE",
+
+designed:
+"Designed by"
 
 },
+
 
 English: {
 
@@ -1591,9 +1713,16 @@ submit:
 "Submit Payment Screenshot",
 
 back:
-"← Back to Home"
+"← Back to Home",
+
+offer:
+"YOU CAN PAY 50,000 RWF AND WE WILL POST YOUR PROPERTY ACROSS ALL OUR PLATFORMS",
+
+designed:
+"Designed by"
 
 },
+
 
 Français: {
 
@@ -1676,9 +1805,16 @@ submit:
 "Envoyer la capture",
 
 back:
-"← Retour à l'accueil"
+"← Retour à l'accueil",
+
+offer:
+"VOUS POUVEZ PAYER 50 000 RWF ET NOUS PUBLIERONS VOTRE PROPRIÉTÉ SUR TOUTES NOS PLATEFORMES",
+
+designed:
+"Conçu par"
 
 },
+
 
 Kiswahili: {
 
@@ -1761,9 +1897,16 @@ submit:
 "Tuma Screenshot",
 
 back:
-"← Rudi Mwanzo"
+"← Rudi Mwanzo",
+
+offer:
+"UNAWEZA KULIPA 50,000 RWF NA TUTACHAPISHA MALI YAKO KWENYE MAJUKWAA YETU YOTE",
+
+designed:
+"Imetengenezwa na"
 
 },
+
 
 "中文": {
 
@@ -1846,7 +1989,13 @@ submit:
 "提交付款截图",
 
 back:
-"← 返回首页"
+"← 返回首页",
+
+offer:
+"您可以支付 50,000 RWF，我们将把您的房产发布到我们的所有平台",
+
+designed:
+"设计者"
 
 }
 
@@ -1866,120 +2015,155 @@ document.title =
 t.title.replace("🏠 ","") +
 " - Rwanda House Market";
 
+
 document.getElementById(
 "pageTitle"
 ).textContent =
 t.title;
+
 
 document.getElementById(
 "pageDescription"
 ).textContent =
 t.description;
 
+
 document.getElementById(
 "backButton"
 ).textContent =
 t.back;
+
 
 document.getElementById(
 "nameLabel"
 ).textContent =
 t.name;
 
+
 document.getElementById(
 "phoneLabel"
 ).textContent =
 t.phone;
+
 
 document.getElementById(
 "propertyLabel"
 ).textContent =
 t.property;
 
+
 document.getElementById(
 "listingLabel"
 ).textContent =
 t.listing;
+
 
 document.getElementById(
 "countryLabel"
 ).textContent =
 t.country;
 
+
 document.getElementById(
 "provinceLabel"
 ).textContent =
 t.province;
+
 
 document.getElementById(
 "districtLabel"
 ).textContent =
 t.district;
 
+
 document.getElementById(
 "sectorLabel"
 ).textContent =
 t.sector;
+
 
 document.getElementById(
 "bedroomsLabel"
 ).textContent =
 t.bedrooms;
 
+
 document.getElementById(
 "bathroomsLabel"
 ).textContent =
 t.bathrooms;
+
 
 document.getElementById(
 "parkingLabel"
 ).textContent =
 t.parking;
 
+
 document.getElementById(
 "priceLabel"
 ).textContent =
 t.price;
+
 
 document.getElementById(
 "feeTitle"
 ).textContent =
 t.fee;
 
+
 document.getElementById(
 "mainPhotoLabel"
 ).textContent =
 t.mainPhoto;
+
 
 document.getElementById(
 "otherPhotosLabel"
 ).textContent =
 t.otherPhotos;
 
+
 document.getElementById(
 "descriptionLabel"
 ).textContent =
 t.descriptionLabel;
+
 
 document.getElementById(
 "paymentTitle"
 ).textContent =
 t.payment;
 
+
 document.getElementById(
 "screenshotLabel"
 ).textContent =
 t.screenshot;
+
 
 document.getElementById(
 "postButton"
 ).textContent =
 t.continue;
 
+
 document.getElementById(
 "submitPaymentButton"
 ).textContent =
 t.submit;
+
+
+document.getElementById(
+"specialOffer"
+).firstChild.textContent =
+t.offer;
+
+
+document.getElementById(
+"designedText"
+).textContent =
+t.designed + " ";
 
 
 /* =====================================================
@@ -2020,4 +2204,3 @@ calculateFee();
 
 </body>
 </html>
-```
