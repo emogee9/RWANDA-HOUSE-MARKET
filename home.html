@@ -14,82 +14,135 @@
   Rwanda Property Visata
 </title>
 
+
+<!-- FAVICON -->
+
 <link
   rel="icon"
   type="image/png"
   href="logo.png"
 >
 
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
 <!-- GOOGLE ADSENSE -->
+
 <script
   async
   src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7520250190173475"
   crossorigin="anonymous">
 </script>
 
+
 <style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
 
 *{
   box-sizing:border-box;
 }
 
+
 body{
+
   margin:0;
+
   font-family:Arial,sans-serif;
+
   background:#f7f5ef;
+
   color:#33251d;
+
 }
 
-/* ================= NAVBAR ================= */
+
+/* =========================================================
+   NAVBAR
+========================================================= */
 
 .navbar{
+
   background:#d4a017;
+
   color:white;
+
   padding:15px 20px;
 
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
 
   gap:15px;
 
   position:sticky;
+
   top:0;
+
   z-index:1000;
 
-  box-shadow:0 3px 12px rgba(0,0,0,.20);
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.20);
+
 }
 
+
 .brand{
+
   display:flex;
+
   align-items:center;
+
   gap:10px;
 
   font-size:22px;
+
   font-weight:bold;
+
 }
 
+
 .brand img{
+
   width:45px;
+
   height:45px;
 
   object-fit:contain;
 
   background:white;
+
   border-radius:8px;
+
   padding:3px;
+
 }
 
+
 .nav-links{
+
   display:flex;
+
   gap:8px;
 
   flex-wrap:wrap;
+
   justify-content:center;
+
 }
 
+
 .nav-links a{
+
   background:white;
+
   color:#8a6500;
 
   text-decoration:none;
@@ -99,37 +152,55 @@ body{
   border-radius:7px;
 
   font-weight:bold;
+
   font-size:14px;
 
   transition:.2s;
+
 }
+
 
 .nav-links a:hover{
+
   background:#fff3bd;
+
   transform:translateY(-1px);
+
 }
 
-/* ================= LANGUAGE ================= */
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
 
 .language-box{
+
   display:flex;
+
   justify-content:center;
+
   align-items:center;
 
   gap:7px;
+
   flex-wrap:wrap;
 
   padding:12px;
 
   background:white;
 
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.08);
+
 }
 
+
 .language-button{
+
   border:1px solid #d4a017;
 
   background:white;
+
   color:#8a6500;
 
   padding:7px 11px;
@@ -139,19 +210,31 @@ body{
   cursor:pointer;
 
   font-weight:bold;
+
   font-size:13px;
+
 }
+
 
 .language-button:hover{
+
   background:#fff8d6;
+
 }
+
 
 .language-button.active{
+
   background:#d4a017;
+
   color:white;
+
 }
 
-/* ================= HERO ================= */
+
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero{
 
@@ -171,6 +254,7 @@ body{
   display:flex;
 
   justify-content:center;
+
   align-items:center;
 
   text-align:center;
@@ -178,30 +262,42 @@ body{
   padding:50px 20px;
 
   color:white;
+
 }
+
 
 .hero-content{
+
   max-width:850px;
+
 }
 
+
 .hero h1{
+
   margin:0 0 15px;
 
   font-size:46px;
 
   text-shadow:
     0 3px 8px rgba(0,0,0,.4);
+
 }
 
+
 .hero p{
+
   font-size:20px;
 
   line-height:1.7;
 
   margin:0 0 25px;
+
 }
 
+
 .hero-buttons{
+
   display:flex;
 
   justify-content:center;
@@ -209,9 +305,12 @@ body{
   gap:12px;
 
   flex-wrap:wrap;
+
 }
 
+
 .hero-button{
+
   display:inline-block;
 
   background:#d4a017;
@@ -228,22 +327,36 @@ body{
 
   box-shadow:
     0 4px 10px rgba(0,0,0,.2);
+
 }
+
 
 .hero-button:hover{
+
   background:#a87800;
+
 }
+
 
 .hero-button.white{
+
   background:white;
+
   color:#8a6500;
+
 }
+
 
 .hero-button.white:hover{
+
   background:#fff3bd;
+
 }
 
-/* ================= ADS ================= */
+
+/* =========================================================
+   ADS
+========================================================= */
 
 .ad-container{
 
@@ -256,17 +369,24 @@ body{
   padding:10px 20px;
 
   text-align:center;
+
 }
 
+
 .ad-label{
+
   color:#777;
 
   font-size:12px;
 
   margin-bottom:7px;
+
 }
 
-/* ================= CONTAINER ================= */
+
+/* =========================================================
+   CONTAINER
+========================================================= */
 
 .container{
 
@@ -275,23 +395,31 @@ body{
   margin:auto;
 
   padding:35px 20px 60px;
+
 }
 
-/* ================= SECTION ================= */
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
 
 .section-title{
 
   text-align:center;
 
   margin-bottom:25px;
+
 }
+
 
 .section-title h2{
 
   margin:0 0 8px;
 
   font-size:30px;
+
 }
+
 
 .section-title p{
 
@@ -300,19 +428,25 @@ body{
   color:#666;
 
   font-size:16px;
+
 }
 
-/* ================= CARDS ================= */
+
+/* =========================================================
+   SERVICE CARDS
+========================================================= */
 
 .cards{
 
   display:grid;
 
   grid-template-columns:
-    repeat(2,1fr);
+    repeat(3,1fr);
 
   gap:20px;
+
 }
+
 
 .card{
 
@@ -330,7 +464,9 @@ body{
   transition:
     transform .2s,
     box-shadow .2s;
+
 }
+
 
 .card:hover{
 
@@ -338,21 +474,27 @@ body{
 
   box-shadow:
     0 8px 20px rgba(0,0,0,.15);
+
 }
+
 
 .card-icon{
 
   font-size:50px;
 
   margin-bottom:15px;
+
 }
+
 
 .card h3{
 
   margin:0 0 10px;
 
   font-size:22px;
+
 }
+
 
 .card p{
 
@@ -361,7 +503,9 @@ body{
   line-height:1.6;
 
   min-height:50px;
+
 }
+
 
 .card-button{
 
@@ -380,21 +524,210 @@ body{
   border-radius:8px;
 
   font-weight:bold;
+
 }
+
 
 .card-button:hover{
 
   background:#a87800;
+
 }
 
-/* ================= CAR ICON ================= */
 
-.car-card-icon{
-  font-size:50px;
+/* =========================================================
+   PROPERTY GRID
+========================================================= */
+
+.home-properties{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:20px;
+
+}
+
+
+/* =========================================================
+   PROPERTY CARD
+========================================================= */
+
+.property-card{
+
+  background:white;
+
+  border-radius:14px;
+
+  overflow:hidden;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.12);
+
+  transition:
+    transform .2s,
+    box-shadow .2s;
+
+}
+
+
+.property-card:hover{
+
+  transform:translateY(-4px);
+
+  box-shadow:
+    0 8px 22px rgba(0,0,0,.16);
+
+}
+
+
+.property-image{
+
+  width:100%;
+
+  height:230px;
+
+  object-fit:cover;
+
+  display:block;
+
+}
+
+
+.property-content{
+
+  padding:18px;
+
+}
+
+
+.property-content h3{
+
+  margin:
+    0 0 10px;
+
+  font-size:20px;
+
+  color:#33251d;
+
+}
+
+
+.property-price{
+
+  color:#b27b00;
+
+  font-size:20px;
+
+  font-weight:bold;
+
+  margin-bottom:10px;
+
+}
+
+
+.property-location{
+
+  color:#666;
+
+  line-height:1.5;
+
+  margin-bottom:8px;
+
+}
+
+
+.property-type{
+
+  color:#777;
+
   margin-bottom:15px;
+
 }
 
-/* ================= SELL BOX ================= */
+
+.property-info{
+
+  display:flex;
+
+  gap:8px;
+
+  flex-wrap:wrap;
+
+  margin-bottom:15px;
+
+}
+
+
+.info-item{
+
+  background:#f7f5ef;
+
+  padding:6px 9px;
+
+  border-radius:6px;
+
+  color:#555;
+
+  font-size:13px;
+
+}
+
+
+.view-button{
+
+  display:block;
+
+  text-align:center;
+
+  background:#d4a017;
+
+  color:white;
+
+  text-decoration:none;
+
+  padding:11px;
+
+  border-radius:8px;
+
+  font-weight:bold;
+
+}
+
+
+.view-button:hover{
+
+  background:#a87800;
+
+}
+
+
+/* =========================================================
+   EMPTY / LOADING
+========================================================= */
+
+.empty{
+
+  text-align:center;
+
+  padding:35px;
+
+  color:#777;
+
+  background:white;
+
+  border-radius:12px;
+
+  grid-column:1/-1;
+
+}
+
+
+/* =========================================================
+   SELL BOX
+========================================================= */
 
 .sell-box{
 
@@ -409,14 +742,18 @@ body{
   padding:30px;
 
   text-align:center;
+
 }
+
 
 .sell-box h2{
 
   margin:0 0 10px;
 
   font-size:28px;
+
 }
+
 
 .sell-box p{
 
@@ -425,9 +762,13 @@ body{
   line-height:1.6;
 
   margin-bottom:20px;
+
 }
 
-/* ================= FOOTER ================= */
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer{
 
@@ -440,21 +781,29 @@ footer{
   padding:30px 20px;
 
   margin-top:20px;
+
 }
+
 
 footer p{
 
   margin:7px 0;
+
 }
+
 
 footer a{
 
   color:#f2c400;
 
   text-decoration:none;
+
 }
 
-/* ================= MOBILE ================= */
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:900px){
 
@@ -465,31 +814,48 @@ footer a{
 
   }
 
+
+  .home-properties{
+
+    grid-template-columns:
+      repeat(2,1fr);
+
+  }
+
+
   .hero h1{
 
     font-size:38px;
+
   }
 
 }
+
 
 @media(max-width:650px){
 
   .navbar{
 
     flex-direction:column;
+
   }
+
 
   .brand{
 
     justify-content:center;
 
     text-align:center;
+
   }
+
 
   .nav-links{
 
     width:100%;
+
   }
+
 
   .nav-links a{
 
@@ -500,44 +866,67 @@ footer a{
     font-size:12px;
 
     padding:8px 5px;
+
   }
+
 
   .language-box{
 
     padding:10px 5px;
+
   }
+
 
   .language-button{
 
     font-size:11px;
 
     padding:6px 8px;
+
   }
+
 
   .hero{
 
     min-height:380px;
+
   }
+
 
   .hero h1{
 
     font-size:30px;
+
   }
+
 
   .hero p{
 
     font-size:16px;
+
   }
+
 
   .cards{
 
     grid-template-columns:1fr;
+
   }
+
+
+  .home-properties{
+
+    grid-template-columns:1fr;
+
+  }
+
 
   .container{
 
     padding-left:15px;
+
     padding-right:15px;
+
   }
 
 }
@@ -545,6 +934,7 @@ footer a{
 </style>
 
 </head>
+
 
 <body>
 
@@ -554,6 +944,7 @@ footer a{
 ===================================================== -->
 
 <nav class="navbar">
+
 
   <div class="brand">
 
@@ -571,37 +962,51 @@ footer a{
 
   <div class="nav-links">
 
+
     <a
       href="home.html"
       id="homeLink">
+
       Home
+
     </a>
+
 
     <a
       href="houses-rent.html"
       id="rentLink">
+
       House for Rent
+
     </a>
+
 
     <a
       href="houses-sale.html"
       id="saleLink">
+
       House for Sale
+
     </a>
+
 
     <a
       href="plot.html"
       id="plotLink">
+
       Plot for Sale
+
     </a>
 
-    <!-- NEW CARS LINK -->
 
     <a
-      href="cars-for-sale.html"
+      href="cars-sale.html"
       id="carsLink">
+
       Cars for Sale
+
     </a>
+
 
   </div>
 
@@ -614,40 +1019,56 @@ footer a{
 
 <div class="language-box">
 
+
   <button
     class="language-button"
     data-language="Kinyarwanda"
     onclick="changeLanguage('Kinyarwanda')">
+
     🇷🇼 Kinyarwanda
+
   </button>
+
 
   <button
     class="language-button"
     data-language="English"
     onclick="changeLanguage('English')">
+
     🇬🇧 English
+
   </button>
+
 
   <button
     class="language-button"
     data-language="Français"
     onclick="changeLanguage('Français')">
+
     🇫🇷 Français
+
   </button>
+
 
   <button
     class="language-button"
     data-language="Kiswahili"
     onclick="changeLanguage('Kiswahili')">
+
     🌍 Kiswahili
+
   </button>
+
 
   <button
     class="language-button"
     data-language="中文"
     onclick="changeLanguage('中文')">
+
     🇨🇳 中文
+
   </button>
+
 
 </div>
 
@@ -658,33 +1079,57 @@ footer a{
 
 <section class="hero">
 
+
   <div class="hero-content">
 
+
     <h1 id="heroTitle">
+
       🏠 Find Your Property in Rwanda
+
     </h1>
 
+
     <p id="heroDescription">
-      Find houses for rent, houses for sale,
-      plots for sale and cars for sale across Rwanda.
+
+      Find houses for rent, houses for sale
+      and plots for sale across Rwanda.
+
     </p>
 
 
     <div class="hero-buttons">
 
+
       <a
         href="houses-rent.html"
         class="hero-button"
         id="heroRentButton">
+
         🏠 Houses for Rent
+
       </a>
+
 
       <a
         href="houses-sale.html"
         class="hero-button white"
         id="heroSaleButton">
+
         🏡 Houses for Sale
+
       </a>
+
+
+      <a
+        href="cars-sale.html"
+        class="hero-button"
+        id="heroCarsButton">
+
+        🚗 Cars for Sale
+
+      </a>
+
 
     </div>
 
@@ -699,11 +1144,15 @@ footer a{
 
 <div class="ad-container">
 
+
   <div
     class="ad-label"
     id="adLabel">
+
     Advertisement
+
   </div>
+
 
   <ins
     class="adsbygoogle"
@@ -713,6 +1162,7 @@ footer a{
     data-ad-format="auto"
     data-full-width-responsive="true">
   </ins>
+
 
   <script>
 
@@ -733,14 +1183,23 @@ footer a{
 <main class="container">
 
 
+  <!-- ===================================================
+       SERVICES
+  =================================================== -->
+
   <div class="section-title">
 
     <h2 id="servicesTitle">
+
       What are you looking for?
+
     </h2>
 
+
     <p id="servicesDescription">
+
       Choose the type of property you are interested in.
+
     </p>
 
   </div>
@@ -757,26 +1216,35 @@ footer a{
         🏠
       </div>
 
+
       <h3 id="rentTitle">
+
         Houses for Rent
+
       </h3>
 
+
       <p id="rentDescription">
+
         Find houses available for rent
         in different parts of Rwanda.
+
       </p>
+
 
       <a
         href="houses-rent.html"
         class="card-button"
         id="rentButton">
+
         View Houses
+
       </a>
 
     </div>
 
 
-    <!-- HOUSE SALE -->
+    <!-- SALE -->
 
     <div class="card">
 
@@ -784,20 +1252,29 @@ footer a{
         🏡
       </div>
 
+
       <h3 id="saleTitle">
+
         Houses for Sale
+
       </h3>
 
+
       <p id="saleDescription">
+
         Discover houses available
         for purchase in Rwanda.
+
       </p>
+
 
       <a
         href="houses-sale.html"
         class="card-button"
         id="saleButton">
+
         View Houses
+
       </a>
 
     </div>
@@ -811,53 +1288,107 @@ footer a{
         📍
       </div>
 
+
       <h3 id="plotTitle">
+
         Plots for Sale
+
       </h3>
 
+
       <p id="plotDescription">
+
         Find plots of land available
         for sale across Rwanda.
+
       </p>
+
 
       <a
         href="plot.html"
         class="card-button"
         id="plotButton">
+
         View Plots
+
       </a>
 
     </div>
 
 
-    <!-- =================================================
-         CARS FOR SALE
-    ================================================== -->
+    <!-- CARS -->
 
     <div class="card">
 
-      <div class="car-card-icon">
+      <div class="card-icon">
         🚗
       </div>
 
+
       <h3 id="carsTitle">
+
         Cars for Sale
+
       </h3>
 
+
       <p id="carsDescription">
-        Discover cars available
-        for sale across Rwanda.
+
+        Find cars available for sale
+        across Rwanda.
+
       </p>
 
+
       <a
-        href="cars-for-sale.html"
+        href="cars-sale.html"
         class="card-button"
         id="carsButton">
+
         View Cars
+
       </a>
 
     </div>
 
+
+  </div>
+
+
+  <!-- ===================================================
+       LATEST PROPERTIES
+  =================================================== -->
+
+  <div
+    class="section-title"
+    style="margin-top:50px;">
+
+    <h2 id="latestTitle">
+
+      Latest Properties
+
+    </h2>
+
+
+    <p id="latestDescription">
+
+      Properties recently posted on
+      Rwanda Property Visata.
+
+    </p>
+
+  </div>
+
+
+  <div
+    id="homeProperties"
+    class="home-properties">
+
+    <div class="empty">
+
+      Loading properties...
+
+    </div>
 
   </div>
 
@@ -868,22 +1399,32 @@ footer a{
 
   <div class="sell-box">
 
+
     <h2 id="sellTitle">
+
       📢 Sell or Rent Out Your Property
+
     </h2>
 
+
     <p id="sellDescription">
+
       Do you have a house or plot you want
       to sell or rent? Publish it on
       Rwanda Property Visata.
+
     </p>
+
 
     <a
       href="sell-property.html"
       class="card-button"
       id="sellButton">
+
       Publish Your Property
+
     </a>
+
 
   </div>
 
@@ -897,6 +1438,7 @@ footer a{
 
 <footer>
 
+
   <p>
 
     🏠
@@ -907,23 +1449,26 @@ footer a{
 
   </p>
 
+
   <p id="footerDescription">
 
     Houses for rent,
-    houses for sale,
-    plots for sale and
-    cars for sale in Rwanda.
+    houses for sale and
+    plots for sale in Rwanda.
 
   </p>
+
 
   <p>
 
     ©
+
     <span id="year"></span>
 
     Rwanda Property Visata
 
   </p>
+
 
 </footer>
 
@@ -935,9 +1480,338 @@ footer a{
 <script>
 
 
-/* =====================================================
-   LANGUAGE TRANSLATIONS
-===================================================== */
+/* =========================================================
+   SUPABASE
+========================================================= */
+
+const SUPABASE_URL =
+  "https://hsmnybmcddtsyooltozw.supabase.co";
+
+
+const SUPABASE_KEY =
+  "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const homeProperties =
+  document.getElementById(
+    "homeProperties"
+  );
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   LOAD PROPERTIES FROM SUPABASE
+========================================================= */
+
+async function loadHomeProperties(){
+
+
+  homeProperties.innerHTML = `
+
+    <div class="empty">
+
+      Loading properties...
+
+    </div>
+
+  `;
+
+
+  const {
+
+    data,
+
+    error
+
+  } = await supabaseClient
+
+    .from("property_posts")
+
+    .select("*")
+
+    .eq(
+      "status",
+      "published"
+    )
+
+    .order(
+      "created_at",
+      {
+        ascending:false
+      }
+    );
+
+
+  if(error){
+
+    console.error(
+      "Supabase error:",
+      error
+    );
+
+
+    homeProperties.innerHTML = `
+
+      <div class="empty">
+
+        ❌ Failed to load properties.
+
+        <br><br>
+
+        ${escapeHtml(
+          error.message
+        )}
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  if(
+    !data ||
+    data.length === 0
+  ){
+
+    homeProperties.innerHTML = `
+
+      <div class="empty">
+
+        No properties available yet.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  homeProperties.innerHTML = "";
+
+
+  data.forEach(property => {
+
+
+    let mainPhoto =
+      property.main_photo;
+
+
+    if(
+      !mainPhoto &&
+      Array.isArray(
+        property.other_photos
+      )
+    ){
+
+      mainPhoto =
+        property.other_photos[0];
+
+    }
+
+
+    if(!mainPhoto){
+
+      mainPhoto =
+        "https://via.placeholder.com/800x500?text=No+Photo";
+
+    }
+
+
+    const card =
+      document.createElement(
+        "div"
+      );
+
+
+    card.className =
+      "property-card";
+
+
+    card.innerHTML = `
+
+
+      <img
+
+        src="${escapeHtml(mainPhoto)}"
+
+        alt="${escapeHtml(
+          property.title ||
+          "Property"
+        )}"
+
+        class="property-image"
+
+        onerror="this.src='https://via.placeholder.com/800x500?text=No+Photo'"
+
+      >
+
+
+      <div class="property-content">
+
+
+        <h3>
+
+          ${escapeHtml(
+            property.title ||
+            "Property"
+          )}
+
+        </h3>
+
+
+        <div class="property-price">
+
+          ${Number(
+            property.price || 0
+          ).toLocaleString()}
+
+          RWF
+
+        </div>
+
+
+        <div class="property-location">
+
+          📍
+
+          ${escapeHtml(
+            property.country || ""
+          )}
+
+          ${property.province ? ", " : ""}
+
+          ${escapeHtml(
+            property.province || ""
+          )}
+
+          ${property.district ? ", " : ""}
+
+          ${escapeHtml(
+            property.district || ""
+          )}
+
+          ${property.sector ? ", " : ""}
+
+          ${escapeHtml(
+            property.sector || ""
+          )}
+
+        </div>
+
+
+        <div class="property-type">
+
+          🏷️
+
+          ${escapeHtml(
+            property.property_type || ""
+          )}
+
+        </div>
+
+
+        <div class="property-info">
+
+
+          <span class="info-item">
+
+            🛏️
+
+            ${Number(
+              property.bedrooms || 0
+            )}
+
+          </span>
+
+
+          <span class="info-item">
+
+            🚿
+
+            ${Number(
+              property.bathrooms || 0
+            )}
+
+          </span>
+
+
+          <span class="info-item">
+
+            🚗
+
+            ${Number(
+              property.parking || 0
+            )}
+
+          </span>
+
+
+        </div>
+
+
+        <a
+
+          href="property-details.html?id=${encodeURIComponent(
+            property.id
+          )}"
+
+          class="view-button"
+
+        >
+
+          View Detail
+
+        </a>
+
+
+      </div>
+
+    `;
+
+
+    homeProperties.appendChild(
+      card
+    );
+
+  });
+
+}
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
 
 const translations = {
 
@@ -976,6 +1850,9 @@ const translations = {
 
     heroSale:
       "🏡 Inzu zigurishwa",
+
+    heroCars:
+      "🚗 Imodoka zigurishwa",
 
     advertisement:
       "Kwamamaza",
@@ -1017,10 +1894,16 @@ const translations = {
       "Imodoka zigurishwa",
 
     carsDescription:
-      "Reba imodoka ziboneka kugurishwa hirya no hino mu Rwanda.",
+      "Shaka imodoka ziboneka kugurishwa mu Rwanda.",
 
     carsButton:
       "Reba imodoka",
+
+    latestTitle:
+      "Umutungo mushya",
+
+    latestDescription:
+      "Reba imitungo iheruka gushyirwa kuri Rwanda Property Visata.",
 
     sellTitle:
       "📢 Gurisha cyangwa ukodeshe umutungo wawe",
@@ -1064,13 +1947,16 @@ const translations = {
       "🏠 Find Your Property in Rwanda",
 
     heroDescription:
-      "Find houses for rent, houses for sale, plots for sale and cars for sale across Rwanda.",
+      "Find houses for rent, houses for sale, plots and cars for sale across Rwanda.",
 
     heroRent:
       "🏠 Houses for Rent",
 
     heroSale:
       "🏡 Houses for Sale",
+
+    heroCars:
+      "🚗 Cars for Sale",
 
     advertisement:
       "Advertisement",
@@ -1112,10 +1998,16 @@ const translations = {
       "Cars for Sale",
 
     carsDescription:
-      "Discover cars available for sale across Rwanda.",
+      "Find cars available for sale across Rwanda.",
 
     carsButton:
       "View Cars",
+
+    latestTitle:
+      "Latest Properties",
+
+    latestDescription:
+      "Properties recently posted on Rwanda Property Visata.",
 
     sellTitle:
       "📢 Sell or Rent Out Your Property",
@@ -1127,7 +2019,7 @@ const translations = {
       "Publish Your Property",
 
     footerDescription:
-      "Houses for rent, houses for sale, plots for sale and cars for sale in Rwanda."
+      "Houses for rent, houses for sale, plots and cars for sale in Rwanda."
 
   },
 
@@ -1166,6 +2058,9 @@ const translations = {
 
     heroSale:
       "🏡 Maisons à vendre",
+
+    heroCars:
+      "🚗 Voitures à vendre",
 
     advertisement:
       "Publicité",
@@ -1207,10 +2102,16 @@ const translations = {
       "Voitures à vendre",
 
     carsDescription:
-      "Découvrez les voitures disponibles à la vente partout au Rwanda.",
+      "Trouvez des voitures disponibles à la vente au Rwanda.",
 
     carsButton:
       "Voir les voitures",
+
+    latestTitle:
+      "Propriétés récentes",
+
+    latestDescription:
+      "Propriétés récemment publiées sur Rwanda Property Visata.",
 
     sellTitle:
       "📢 Vendez ou louez votre propriété",
@@ -1262,6 +2163,9 @@ const translations = {
     heroSale:
       "🏡 Nyumba za Kuuza",
 
+    heroCars:
+      "🚗 Magari ya Kuuza",
+
     advertisement:
       "Tangazo",
 
@@ -1302,10 +2206,16 @@ const translations = {
       "Magari ya Kuuza",
 
     carsDescription:
-      "Gundua magari yanayopatikana kwa kuuza kote Rwanda.",
+      "Tafuta magari yanayopatikana kwa kuuza Rwanda.",
 
     carsButton:
       "Angalia Magari",
+
+    latestTitle:
+      "Mali Mpya",
+
+    latestDescription:
+      "Mali zilizowekwa hivi karibuni kwenye Rwanda Property Visata.",
 
     sellTitle:
       "📢 Uza au Pangisha Mali Yako",
@@ -1349,13 +2259,16 @@ const translations = {
       "🏠 在卢旺达寻找您的房产",
 
     heroDescription:
-      "寻找卢旺达各地的出租房屋、出售房屋、出售土地和出售汽车。",
+      "寻找卢旺达各地的出租房屋、出售房屋、土地和汽车。",
 
     heroRent:
       "🏠 出租房屋",
 
     heroSale:
       "🏡 出售房屋",
+
+    heroCars:
+      "🚗 出售汽车",
 
     advertisement:
       "广告",
@@ -1397,10 +2310,16 @@ const translations = {
       "出售汽车",
 
     carsDescription:
-      "查看卢旺达各地可出售的汽车。",
+      "寻找卢旺达可出售的汽车。",
 
     carsButton:
       "查看汽车",
+
+    latestTitle:
+      "最新房产",
+
+    latestDescription:
+      "最近发布在 Rwanda Property Visata 上的房产。",
 
     sellTitle:
       "📢 出售或出租您的房产",
@@ -1412,16 +2331,16 @@ const translations = {
       "发布您的房产",
 
     footerDescription:
-      "卢旺达的出租房屋、出售房屋、出售土地和出售汽车。"
+      "卢旺达的出租房屋、出售房屋、土地和汽车。"
 
   }
 
 };
 
 
-/* =====================================================
-   GET SAVED LANGUAGE
-===================================================== */
+/* =========================================================
+   CURRENT LANGUAGE
+========================================================= */
 
 let currentLanguage =
   localStorage.getItem(
@@ -1429,11 +2348,12 @@ let currentLanguage =
   ) || "English";
 
 
-/* =====================================================
+/* =========================================================
    APPLY LANGUAGE
-===================================================== */
+========================================================= */
 
 function applyLanguage(language){
+
 
   const t =
     translations[language] ||
@@ -1453,14 +2373,19 @@ function applyLanguage(language){
 
 
   document.documentElement.lang =
+
     currentLanguage === "中文"
       ? "zh"
+
       : currentLanguage === "Français"
         ? "fr"
+
         : currentLanguage === "Kiswahili"
           ? "sw"
+
           : currentLanguage === "Kinyarwanda"
             ? "rw"
+
             : "en";
 
 
@@ -1468,15 +2393,11 @@ function applyLanguage(language){
     t.title;
 
 
-  /* BRAND */
-
   document.getElementById(
     "brandName"
   ).textContent =
     t.brand;
 
-
-  /* NAVBAR */
 
   document.getElementById(
     "homeLink"
@@ -1508,8 +2429,6 @@ function applyLanguage(language){
     t.cars;
 
 
-  /* HERO */
-
   document.getElementById(
     "heroTitle"
   ).textContent =
@@ -1534,15 +2453,17 @@ function applyLanguage(language){
     t.heroSale;
 
 
-  /* ADVERTISEMENT */
+  document.getElementById(
+    "heroCarsButton"
+  ).textContent =
+    t.heroCars;
+
 
   document.getElementById(
     "adLabel"
   ).textContent =
     t.advertisement;
 
-
-  /* SERVICES */
 
   document.getElementById(
     "servicesTitle"
@@ -1555,8 +2476,6 @@ function applyLanguage(language){
   ).textContent =
     t.servicesDescription;
 
-
-  /* RENT */
 
   document.getElementById(
     "rentTitle"
@@ -1576,8 +2495,6 @@ function applyLanguage(language){
     t.rentButton;
 
 
-  /* HOUSE SALE */
-
   document.getElementById(
     "saleTitle"
   ).textContent =
@@ -1595,8 +2512,6 @@ function applyLanguage(language){
   ).textContent =
     t.saleButton;
 
-
-  /* PLOT */
 
   document.getElementById(
     "plotTitle"
@@ -1616,8 +2531,6 @@ function applyLanguage(language){
     t.plotButton;
 
 
-  /* CARS */
-
   document.getElementById(
     "carsTitle"
   ).textContent =
@@ -1636,7 +2549,17 @@ function applyLanguage(language){
     t.carsButton;
 
 
-  /* SELL */
+  document.getElementById(
+    "latestTitle"
+  ).textContent =
+    t.latestTitle;
+
+
+  document.getElementById(
+    "latestDescription"
+  ).textContent =
+    t.latestDescription;
+
 
   document.getElementById(
     "sellTitle"
@@ -1656,15 +2579,11 @@ function applyLanguage(language){
     t.sellButton;
 
 
-  /* FOOTER */
-
   document.getElementById(
     "footerDescription"
   ).textContent =
     t.footerDescription;
 
-
-  /* ACTIVE LANGUAGE */
 
   document
     .querySelectorAll(
@@ -1673,9 +2592,12 @@ function applyLanguage(language){
     .forEach(button => {
 
       button.classList.toggle(
+
         "active",
+
         button.dataset.language ===
         currentLanguage
+
       );
 
     });
@@ -1683,25 +2605,22 @@ function applyLanguage(language){
 }
 
 
-/* =====================================================
+/* =========================================================
    CHANGE LANGUAGE
-===================================================== */
+========================================================= */
 
 function changeLanguage(language){
 
-  localStorage.setItem(
-    "selectedLanguage",
+  applyLanguage(
     language
   );
-
-  applyLanguage(language);
 
 }
 
 
-/* =====================================================
+/* =========================================================
    YEAR
-===================================================== */
+========================================================= */
 
 document.getElementById(
   "year"
@@ -1709,15 +2628,20 @@ document.getElementById(
 new Date().getFullYear();
 
 
-/* =====================================================
+/* =========================================================
    START
-===================================================== */
+========================================================= */
 
 applyLanguage(
   currentLanguage
 );
 
+
+loadHomeProperties();
+
+
 </script>
+
 
 </body>
 
