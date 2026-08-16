@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -477,8 +478,6 @@ header h1{
     <div class="social-links">
 
 
-      <!-- INSTAGRAM -->
-
       <a
         class="social-link instagram"
         href="https://www.instagram.com/explore/search/keyword/?q=rwandapropertyvisata"
@@ -493,8 +492,6 @@ header h1{
       </a>
 
 
-
-      <!-- YOUTUBE -->
 
       <a
         class="social-link youtube"
@@ -589,7 +586,6 @@ header h1{
 
 <script>
 
-
 /* =====================================================
    LANGUAGE
 ===================================================== */
@@ -599,17 +595,11 @@ const language =
   "English";
 
 
-
 /* =====================================================
-   TRANSLATIONS - 5 LANGUAGES
+   TRANSLATIONS
 ===================================================== */
 
 const translations = {
-
-
-  /* ===================================================
-     KINYARWANDA
-  =================================================== */
 
   Kinyarwanda: {
 
@@ -661,10 +651,6 @@ const translations = {
   },
 
 
-  /* ===================================================
-     ENGLISH
-  =================================================== */
-
   English: {
 
     header:
@@ -714,10 +700,6 @@ const translations = {
 
   },
 
-
-  /* ===================================================
-     FRENCH
-  =================================================== */
 
   Français: {
 
@@ -769,10 +751,6 @@ const translations = {
   },
 
 
-  /* ===================================================
-     KISWAHILI
-  =================================================== */
-
   Kiswahili: {
 
     header:
@@ -822,10 +800,6 @@ const translations = {
 
   },
 
-
-  /* ===================================================
-     CHINESE
-  =================================================== */
 
   "中文": {
 
@@ -879,16 +853,10 @@ const translations = {
 };
 
 
-
 const t =
   translations[language] ||
   translations.English;
 
-
-
-/* =====================================================
-   HTML LANGUAGE
-===================================================== */
 
 document.documentElement.lang =
 
@@ -907,75 +875,43 @@ document.documentElement.lang =
           : "en";
 
 
-
 /* =====================================================
    APPLY LANGUAGE
 ===================================================== */
 
-document.getElementById(
-  "headerTitle"
-).textContent =
+document.getElementById("headerTitle").textContent =
   t.header;
 
-
-document.getElementById(
-  "backButton"
-).textContent =
+document.getElementById("backButton").textContent =
   t.back;
 
-
-document.getElementById(
-  "pageTitle"
-).textContent =
+document.getElementById("pageTitle").textContent =
   t.title;
 
-
-document.getElementById(
-  "pageDescription"
-).textContent =
+document.getElementById("pageDescription").textContent =
   t.description;
 
-
-document.getElementById(
-  "adLabel"
-).textContent =
+document.getElementById("adLabel").textContent =
   t.advertisement;
 
-
-document.getElementById(
-  "loadingMessage"
-).textContent =
+document.getElementById("loadingMessage").textContent =
   t.loading;
 
-
-document.getElementById(
-  "socialTitle"
-).textContent =
+document.getElementById("socialTitle").textContent =
   t.social;
 
-
-document.getElementById(
-  "instagramLink"
-).textContent =
+document.getElementById("instagramLink").textContent =
   t.instagram;
 
-
-document.getElementById(
-  "youtubeLink"
-).textContent =
+document.getElementById("youtubeLink").textContent =
   t.youtube;
 
-
-document.querySelector(
-  ".designed"
-).textContent =
+document.querySelector(".designed").textContent =
   t.designed;
-
 
 document.title =
   t.title.replace("🚗 ","") +
   " - Rwanda Property Visata";
-
 
 
 /* =====================================================
@@ -997,6 +933,267 @@ const supabaseClient =
   );
 
 
+/* =====================================================
+   VISITOR TRACKING
+   Rwanda Property Visata
+===================================================== */
+
+
+/*
+   Generate a unique ID.
+*/
+
+function generateVisitorId(){
+
+  if(
+    window.crypto &&
+    crypto.randomUUID
+  ){
+
+    return crypto.randomUUID();
+
+  }
+
+
+  return (
+    Date.now().toString(36) +
+    "-" +
+    Math.random().toString(36).substring(2)
+  );
+
+}
+
+
+/*
+   Get or create permanent visitor ID.
+
+   localStorage means the same browser
+   keeps the same visitor_id.
+*/
+
+function getVisitorId(){
+
+  let visitorId =
+    localStorage.getItem(
+      "rpv_visitor_id"
+    );
+
+
+  if(!visitorId){
+
+    visitorId =
+      generateVisitorId();
+
+
+    localStorage.setItem(
+      "rpv_visitor_id",
+      visitorId
+    );
+
+  }
+
+
+  return visitorId;
+
+}
+
+
+/*
+   Get or create session ID.
+
+   sessionStorage means a new browser tab/session
+   can receive a new session ID.
+*/
+
+function getSessionId(){
+
+  let sessionId =
+    sessionStorage.getItem(
+      "rpv_session_id"
+    );
+
+
+  if(!sessionId){
+
+    sessionId =
+      generateVisitorId();
+
+
+    sessionStorage.setItem(
+      "rpv_session_id",
+      sessionId
+    );
+
+  }
+
+
+  return sessionId;
+
+}
+
+
+/*
+   Detect device.
+*/
+
+function getDeviceType(){
+
+  const width =
+    window.innerWidth;
+
+
+  if(width <= 600){
+
+    return "Mobile";
+
+  }
+
+
+  if(width <= 1024){
+
+    return "Tablet";
+
+  }
+
+
+  return "Desktop";
+
+}
+
+
+/*
+   Record page view in Supabase.
+*/
+
+async function trackPageView(){
+
+  try{
+
+    const visitorId =
+      getVisitorId();
+
+
+    const sessionId =
+      getSessionId();
+
+
+    const pagePath =
+      window.location.pathname ||
+      "/";
+
+
+    const pageName =
+      "Cars for Sale";
+
+
+    const deviceType =
+      getDeviceType();
+
+
+    const referrer =
+      document.referrer ||
+      null;
+
+
+    const userAgent =
+      navigator.userAgent ||
+      null;
+
+
+    const {
+      data,
+      error
+    } =
+
+    await supabaseClient
+
+      .from("page_views")
+
+      .insert({
+
+        page:
+          pageName,
+
+        path:
+          pagePath,
+
+        visitor_id:
+          visitorId,
+
+        session_id:
+          sessionId,
+
+        referrer:
+          referrer,
+
+        user_agent:
+          userAgent,
+
+        device_type:
+          deviceType,
+
+        /*
+           Country and city are intentionally
+           left null here because browser JS
+           cannot reliably determine them.
+        */
+
+        country:
+          null,
+
+        city:
+          null
+
+      });
+
+
+    if(error){
+
+      console.error(
+        "Visitor tracking error:",
+        error
+      );
+
+      return;
+
+    }
+
+
+    console.log(
+      "Visitor tracked successfully:",
+      {
+        visitor_id: visitorId,
+        session_id: sessionId,
+        page: pageName,
+        path: pagePath,
+        device_type: deviceType
+      }
+    );
+
+  }
+  catch(error){
+
+    /*
+       Tracking failure must NEVER stop
+       the Cars page from working.
+    */
+
+    console.error(
+      "Visitor tracking failed:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   START VISITOR TRACKING
+===================================================== */
+
+trackPageView();
+
 
 /* =====================================================
    ELEMENT
@@ -1004,7 +1201,6 @@ const supabaseClient =
 
 const carsElement =
   document.getElementById("cars");
-
 
 
 /* =====================================================
@@ -1028,7 +1224,6 @@ function escapeHtml(value){
 }
 
 
-
 /* =====================================================
    GET CAR IMAGE
 ===================================================== */
@@ -1042,11 +1237,6 @@ function getCarImage(car){
     "";
 
 
-  /*
-     If main photo is empty,
-     use first other photo.
-  */
-
   if(
     !image &&
     Array.isArray(car.other_photos) &&
@@ -1058,10 +1248,6 @@ function getCarImage(car){
 
   }
 
-
-  /*
-     If other_photos is JSON text.
-  */
 
   if(
     !image &&
@@ -1099,10 +1285,6 @@ function getCarImage(car){
   }
 
 
-  /*
-     Placeholder
-  */
-
   if(!image){
 
     image =
@@ -1117,7 +1299,6 @@ function getCarImage(car){
   return image;
 
 }
-
 
 
 /* =====================================================
@@ -1161,13 +1342,11 @@ function getLocation(car){
 }
 
 
-
 /* =====================================================
    LOAD CARS
 ===================================================== */
 
 async function loadCars(){
-
 
   carsElement.innerHTML = `
 
@@ -1183,28 +1362,6 @@ async function loadCars(){
 
 
   try{
-
-
-    /*
-       IMPORTANT:
-
-       This code expects a Supabase table
-       called "car_posts".
-
-       The table should contain:
-       id
-       title
-       price
-       main_photo
-       other_photos
-       country
-       province
-       district
-       sector
-       status
-       created_at
-    */
-
 
     const {
       data,
@@ -1229,11 +1386,6 @@ async function loadCars(){
         }
       );
 
-
-
-    /* =================================================
-       ERROR
-    ================================================= */
 
     if(error){
 
@@ -1263,11 +1415,6 @@ async function loadCars(){
     }
 
 
-
-    /* =================================================
-       EMPTY
-    ================================================= */
-
     if(
       !data ||
       data.length === 0
@@ -1292,22 +1439,11 @@ async function loadCars(){
     }
 
 
-
-    /* =================================================
-       CLEAR
-    ================================================= */
-
     carsElement.innerHTML = "";
 
 
-
-    /* =================================================
-       CREATE CAR CARDS
-    ================================================= */
-
     data.forEach(
       car => {
-
 
         const card =
           document.createElement(
@@ -1319,15 +1455,9 @@ async function loadCars(){
           "car";
 
 
-
-        /* IMAGE */
-
         const image =
           getCarImage(car);
 
-
-
-        /* TITLE */
 
         const carTitle =
 
@@ -1339,9 +1469,6 @@ async function loadCars(){
 
           t.car;
 
-
-
-        /* PRICE */
 
         let formattedPrice =
           "0";
@@ -1375,15 +1502,9 @@ async function loadCars(){
         }
 
 
-
-        /* LOCATION */
-
         const location =
           getLocation(car);
 
-
-
-        /* DETAIL URL */
 
         const detailUrl =
           "car-sale-detail.html?id=" +
@@ -1391,11 +1512,6 @@ async function loadCars(){
             car.id
           );
 
-
-
-        /* =================================================
-           CARD HTML
-        ================================================= */
 
         card.innerHTML = `
 
@@ -1475,11 +1591,9 @@ async function loadCars(){
         `;
 
 
-
         carsElement.appendChild(
           card
         );
-
 
       }
     );
@@ -1487,7 +1601,6 @@ async function loadCars(){
 
   }
   catch(error){
-
 
     console.error(
       "Unexpected error:",
@@ -1521,13 +1634,11 @@ async function loadCars(){
 }
 
 
-
 /* =====================================================
-   START
+   START CARS
 ===================================================== */
 
 loadCars();
-
 
 
 /* =====================================================
@@ -1564,3 +1675,4 @@ window.addEventListener(
 
 </body>
 </html>
+```
