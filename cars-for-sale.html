@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Cars for Sale - Rwanda Property Visata</title>
+
+<link
+  rel="icon"
+  type="image/png"
+  href="logo.png"
+>
+
+
+<!-- =====================================================
+     GOOGLE ADSENSE
+===================================================== -->
+
+<script
+  async
+  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7520250190173475"
+  crossorigin="anonymous">
+</script>
+
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
+<script
+  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</script>
+
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f5f5;
+  color:#222;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+  background:#f2c400;
+  padding:25px 15px;
+  text-align:center;
+  box-shadow:0 3px 10px rgba(0,0,0,.15);
+}
+
+
+header h1{
+  margin:0;
+  font-size:30px;
+}
+
+
+.back{
+  display:inline-block;
+  margin-top:12px;
+  background:white;
+  color:#222;
+  text-decoration:none;
+  padding:10px 16px;
+  border-radius:8px;
+  font-weight:bold;
+  transition:.2s;
+}
+
+
+.back:hover{
+  background:#fff8d6;
+  transform:translateY(-1px);
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+  max-width:1150px;
+  margin:auto;
+  padding:30px 20px 60px;
+}
+
+
+/* =====================================================
+   PAGE TITLE
+===================================================== */
+
+.page-title{
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  margin-bottom:25px;
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
+}
+
+
+.page-title h2{
+  margin:0 0 10px;
+}
+
+
+.page-title p{
+  margin:0;
+  color:#666;
+  line-height:1.6;
+}
+
+
+/* =====================================================
+   SOCIAL LINKS
+===================================================== */
+
+.social-box{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  margin-bottom:25px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+  text-align:center;
+}
+
+
+.social-title{
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:15px;
+}
+
+
+.social-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+
+.social-link{
+  display:inline-block;
+  padding:12px 18px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+  color:white;
+  transition:.2s;
+}
+
+
+.social-link:hover{
+  transform:translateY(-2px);
+  opacity:.9;
+}
+
+
+.instagram{
+  background:#e1306c;
+}
+
+
+.youtube{
+  background:#ff0000;
+}
+
+
+/* =====================================================
+   ADSENSE
+===================================================== */
+
+.ad-container{
+  width:100%;
+  background:white;
+  padding:15px;
+  margin:25px 0;
+  border-radius:15px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+  text-align:center;
+  overflow:hidden;
+}
+
+
+.ad-label{
+  font-size:12px;
+  color:#777;
+  margin-bottom:8px;
+}
+
+
+/* =====================================================
+   CARS
+===================================================== */
+
+.cars{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+
+.car{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+  transition:.2s;
+}
+
+
+.car:hover{
+  transform:translateY(-3px);
+  box-shadow:0 7px 20px rgba(0,0,0,.17);
+}
+
+
+.car img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  display:block;
+  background:#eee;
+}
+
+
+.car-body{
+  padding:18px;
+}
+
+
+.car-title{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:10px;
+  line-height:1.4;
+}
+
+
+.price{
+  color:#b27b00;
+  font-size:21px;
+  font-weight:bold;
+  margin-bottom:10px;
+}
+
+
+.location{
+  color:#555;
+  line-height:1.6;
+  margin-bottom:15px;
+}
+
+
+.details{
+  display:block;
+  text-align:center;
+  background:#f2c400;
+  color:#222;
+  text-decoration:none;
+  padding:12px;
+  border-radius:8px;
+  font-weight:bold;
+  transition:.2s;
+}
+
+
+.details:hover{
+  background:#d4a900;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.empty{
+  background:white;
+  padding:40px;
+  border-radius:12px;
+  text-align:center;
+  color:#777;
+  grid-column:1/-1;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+  line-height:1.7;
+}
+
+
+.error{
+  background:#ffe8e8;
+  color:#a00000;
+}
+
+
+.loading{
+  text-align:center;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+  background:#222;
+  color:white;
+  text-align:center;
+  padding:25px 15px;
+  margin-top:30px;
+}
+
+
+.footer a{
+  color:white;
+  text-decoration:none;
+}
+
+
+.footer a:hover{
+  text-decoration:underline;
+}
+
+
+.designed{
+  margin-top:10px;
+  font-size:14px;
+  color:#ccc;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:900px){
+
+  .cars{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+
+@media(max-width:600px){
+
+  header h1{
+    font-size:24px;
+  }
+
+
+  .container{
+    padding:20px 14px 50px;
+  }
+
+
+  .page-title{
+    padding:20px 15px;
+  }
+
+
+  .cars{
+    grid-template-columns:1fr;
+  }
+
+
+  .car img{
+    height:230px;
+  }
+
+
+  .car-title{
+    font-size:19px;
+  }
+
+
+  .price{
+    font-size:20px;
+  }
+
+
+  .social-links{
+    flex-direction:column;
+  }
+
+
+  .social-link{
+    width:100%;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+  <h1 id="headerTitle">
+    🚗 RWANDA PROPERTY VISATA
+  </h1>
+
+
+  <a
+    href="home.html"
+    class="back"
+    id="backButton"
+  >
+    ← Back to Home
+  </a>
+
+</header>
+
+
+
+<div class="container">
+
+
+  <!-- ===================================================
+       PAGE TITLE
+  =================================================== -->
+
+  <div class="page-title">
+
+    <h2 id="pageTitle">
+      🚗 Cars for Sale
+    </h2>
+
+
+    <p id="pageDescription">
+      Find cars available for sale in Rwanda.
+    </p>
+
+  </div>
+
+
+
+  <!-- ===================================================
+       SOCIAL MEDIA
+  =================================================== -->
+
+  <div class="social-box">
+
+    <div
+      class="social-title"
+      id="socialTitle"
+    >
+      Follow Rwanda Property Visata
+    </div>
+
+
+    <div class="social-links">
+
+
+      <!-- INSTAGRAM -->
+
+      <a
+        class="social-link instagram"
+        href="https://www.instagram.com/explore/search/keyword/?q=rwandapropertyvisata"
+        target="_blank"
+        rel="noopener noreferrer"
+        id="instagramLink"
+      >
+
+        📷 Instagram:
+        Rwanda Property Visata
+
+      </a>
+
+
+
+      <!-- YOUTUBE -->
+
+      <a
+        class="social-link youtube"
+        href="https://youtube.com/@iranziirene-j5f?si=PtRA9dAwTog111BJ"
+        target="_blank"
+        rel="noopener noreferrer"
+        id="youtubeLink"
+      >
+
+        ▶️ YouTube:
+        Rwanda Property Visata
+
+      </a>
+
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ===================================================
+       ADSENSE
+  =================================================== -->
+
+  <div class="ad-container">
+
+    <div
+      class="ad-label"
+      id="adLabel"
+    >
+      Advertisement
+    </div>
+
+
+    <ins
+      class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-7520250190173475"
+      data-ad-slot="7793944660"
+      data-ad-format="auto"
+      data-full-width-responsive="true">
+    </ins>
+
+  </div>
+
+
+
+  <!-- ===================================================
+       CARS
+  =================================================== -->
+
+  <div
+    id="cars"
+    class="cars"
+  >
+
+    <div
+      class="empty loading"
+      id="loadingMessage"
+    >
+
+      Loading cars...
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+  <div>
+    🚗 Rwanda Property Visata
+  </div>
+
+
+  <div class="designed">
+    Designed by Irene
+  </div>
+
+</footer>
+
+
+
+<script>
+
+
+/* =====================================================
+   LANGUAGE
+===================================================== */
+
+const language =
+  localStorage.getItem("selectedLanguage") ||
+  "English";
+
+
+
+/* =====================================================
+   TRANSLATIONS - 5 LANGUAGES
+===================================================== */
+
+const translations = {
+
+
+  /* ===================================================
+     KINYARWANDA
+  =================================================== */
+
+  Kinyarwanda: {
+
+    header:
+      "🚗 RWANDA PROPERTY VISATA",
+
+    back:
+      "← Subira kuri Home",
+
+    title:
+      "🚗 Imodoka Zigurishwa",
+
+    description:
+      "Shakisha imodoka ziri kugurishwa mu Rwanda.",
+
+    advertisement:
+      "Kwamamaza",
+
+    loading:
+      "Tegereza, imodoka zirimo kuboneka...",
+
+    noCars:
+      "Nta modoka zigurishwa ziraboneka.",
+
+    error:
+      "Habaye ikibazo mu kubona imodoka.",
+
+    view:
+      "Reba Ibisobanuro",
+
+    car:
+      "Imodoka Igurishwa",
+
+    rwanda:
+      "Rwanda",
+
+    social:
+      "Kurikira Rwanda Property Visata",
+
+    instagram:
+      "📷 Instagram: Rwanda Property Visata",
+
+    youtube:
+      "▶️ YouTube: Rwanda Property Visata",
+
+    designed:
+      "Byakozwe na Irene"
+
+  },
+
+
+  /* ===================================================
+     ENGLISH
+  =================================================== */
+
+  English: {
+
+    header:
+      "🚗 RWANDA PROPERTY VISATA",
+
+    back:
+      "← Back to Home",
+
+    title:
+      "🚗 Cars for Sale",
+
+    description:
+      "Find cars available for sale in Rwanda.",
+
+    advertisement:
+      "Advertisement",
+
+    loading:
+      "Loading cars...",
+
+    noCars:
+      "No cars for sale available yet.",
+
+    error:
+      "There was a problem loading the cars.",
+
+    view:
+      "View Detail",
+
+    car:
+      "Car for Sale",
+
+    rwanda:
+      "Rwanda",
+
+    social:
+      "Follow Rwanda Property Visata",
+
+    instagram:
+      "📷 Instagram: Rwanda Property Visata",
+
+    youtube:
+      "▶️ YouTube: Rwanda Property Visata",
+
+    designed:
+      "Designed by Irene"
+
+  },
+
+
+  /* ===================================================
+     FRENCH
+  =================================================== */
+
+  Français: {
+
+    header:
+      "🚗 RWANDA PROPERTY VISATA",
+
+    back:
+      "← Retour à l'accueil",
+
+    title:
+      "🚗 Voitures à vendre",
+
+    description:
+      "Trouvez des voitures disponibles à la vente au Rwanda.",
+
+    advertisement:
+      "Publicité",
+
+    loading:
+      "Chargement des voitures...",
+
+    noCars:
+      "Aucune voiture à vendre n'est disponible pour le moment.",
+
+    error:
+      "Un problème est survenu lors du chargement des voitures.",
+
+    view:
+      "Voir les détails",
+
+    car:
+      "Voiture à vendre",
+
+    rwanda:
+      "Rwanda",
+
+    social:
+      "Suivez Rwanda Property Visata",
+
+    instagram:
+      "📷 Instagram : Rwanda Property Visata",
+
+    youtube:
+      "▶️ YouTube : Rwanda Property Visata",
+
+    designed:
+      "Conçu par Irene"
+
+  },
+
+
+  /* ===================================================
+     KISWAHILI
+  =================================================== */
+
+  Kiswahili: {
+
+    header:
+      "🚗 RWANDA PROPERTY VISATA",
+
+    back:
+      "← Rudi Mwanzo",
+
+    title:
+      "🚗 Magari ya Kuuza",
+
+    description:
+      "Pata magari yanayopatikana kwa ajili ya kuuza nchini Rwanda.",
+
+    advertisement:
+      "Tangazo",
+
+    loading:
+      "Inapakia magari...",
+
+    noCars:
+      "Hakuna magari ya kuuza yanayopatikana kwa sasa.",
+
+    error:
+      "Kuna tatizo wakati wa kupakia magari.",
+
+    view:
+      "Angalia Maelezo",
+
+    car:
+      "Gari la Kuuza",
+
+    rwanda:
+      "Rwanda",
+
+    social:
+      "Fuata Rwanda Property Visata",
+
+    instagram:
+      "📷 Instagram: Rwanda Property Visata",
+
+    youtube:
+      "▶️ YouTube: Rwanda Property Visata",
+
+    designed:
+      "Imeundwa na Irene"
+
+  },
+
+
+  /* ===================================================
+     CHINESE
+  =================================================== */
+
+  "中文": {
+
+    header:
+      "🚗 RWANDA PROPERTY VISATA",
+
+    back:
+      "← 返回首页",
+
+    title:
+      "🚗 出售汽车",
+
+    description:
+      "寻找卢旺达境内可出售的汽车。",
+
+    advertisement:
+      "广告",
+
+    loading:
+      "正在加载汽车...",
+
+    noCars:
+      "目前没有可出售的汽车。",
+
+    error:
+      "加载汽车时出现问题。",
+
+    view:
+      "查看详情",
+
+    car:
+      "出售汽车",
+
+    rwanda:
+      "卢旺达",
+
+    social:
+      "关注 Rwanda Property Visata",
+
+    instagram:
+      "📷 Instagram：Rwanda Property Visata",
+
+    youtube:
+      "▶️ YouTube：Rwanda Property Visata",
+
+    designed:
+      "由 Irene 设计"
+
+  }
+
+};
+
+
+
+const t =
+  translations[language] ||
+  translations.English;
+
+
+
+/* =====================================================
+   HTML LANGUAGE
+===================================================== */
+
+document.documentElement.lang =
+
+  language === "中文"
+    ? "zh"
+
+    : language === "Français"
+      ? "fr"
+
+      : language === "Kiswahili"
+        ? "sw"
+
+        : language === "Kinyarwanda"
+          ? "rw"
+
+          : "en";
+
+
+
+/* =====================================================
+   APPLY LANGUAGE
+===================================================== */
+
+document.getElementById(
+  "headerTitle"
+).textContent =
+  t.header;
+
+
+document.getElementById(
+  "backButton"
+).textContent =
+  t.back;
+
+
+document.getElementById(
+  "pageTitle"
+).textContent =
+  t.title;
+
+
+document.getElementById(
+  "pageDescription"
+).textContent =
+  t.description;
+
+
+document.getElementById(
+  "adLabel"
+).textContent =
+  t.advertisement;
+
+
+document.getElementById(
+  "loadingMessage"
+).textContent =
+  t.loading;
+
+
+document.getElementById(
+  "socialTitle"
+).textContent =
+  t.social;
+
+
+document.getElementById(
+  "instagramLink"
+).textContent =
+  t.instagram;
+
+
+document.getElementById(
+  "youtubeLink"
+).textContent =
+  t.youtube;
+
+
+document.querySelector(
+  ".designed"
+).textContent =
+  t.designed;
+
+
+document.title =
+  t.title.replace("🚗 ","") +
+  " - Rwanda Property Visata";
+
+
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+  "https://hsmnybmcddtsyooltozw.supabase.co";
+
+
+const SUPABASE_KEY =
+  "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+
+/* =====================================================
+   ELEMENT
+===================================================== */
+
+const carsElement =
+  document.getElementById("cars");
+
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+
+    .replace(/&/g,"&amp;")
+
+    .replace(/</g,"&lt;")
+
+    .replace(/>/g,"&gt;")
+
+    .replace(/"/g,"&quot;")
+
+    .replace(/'/g,"&#039;");
+
+}
+
+
+
+/* =====================================================
+   GET CAR IMAGE
+===================================================== */
+
+function getCarImage(car){
+
+  let image =
+    car.main_photo ||
+    car.mainPhoto ||
+    car.image ||
+    "";
+
+
+  /*
+     If main photo is empty,
+     use first other photo.
+  */
+
+  if(
+    !image &&
+    Array.isArray(car.other_photos) &&
+    car.other_photos.length > 0
+  ){
+
+    image =
+      car.other_photos[0];
+
+  }
+
+
+  /*
+     If other_photos is JSON text.
+  */
+
+  if(
+    !image &&
+    typeof car.other_photos === "string"
+  ){
+
+    try{
+
+      const parsed =
+        JSON.parse(
+          car.other_photos
+        );
+
+
+      if(
+        Array.isArray(parsed) &&
+        parsed.length > 0
+      ){
+
+        image =
+          parsed[0];
+
+      }
+
+    }
+    catch(error){
+
+      console.log(
+        "Photo parsing error:",
+        error
+      );
+
+    }
+
+  }
+
+
+  /*
+     Placeholder
+  */
+
+  if(!image){
+
+    image =
+      "https://via.placeholder.com/800x500?text=" +
+      encodeURIComponent(
+        t.car
+      );
+
+  }
+
+
+  return image;
+
+}
+
+
+
+/* =====================================================
+   GET LOCATION
+===================================================== */
+
+function getLocation(car){
+
+  const parts = [
+
+    car.country,
+
+    car.province,
+
+    car.district,
+
+    car.sector
+
+  ].filter(
+
+    value =>
+
+      value !== null &&
+
+      value !== undefined &&
+
+      String(value).trim() !== ""
+
+  );
+
+
+  if(parts.length > 0){
+
+    return parts.join(", ");
+
+  }
+
+
+  return t.rwanda;
+
+}
+
+
+
+/* =====================================================
+   LOAD CARS
+===================================================== */
+
+async function loadCars(){
+
+
+  carsElement.innerHTML = `
+
+    <div class="empty loading">
+
+      ${escapeHtml(
+        t.loading
+      )}
+
+    </div>
+
+  `;
+
+
+  try{
+
+
+    /*
+       IMPORTANT:
+
+       This code expects a Supabase table
+       called "car_posts".
+
+       The table should contain:
+       id
+       title
+       price
+       main_photo
+       other_photos
+       country
+       province
+       district
+       sector
+       status
+       created_at
+    */
+
+
+    const {
+      data,
+      error
+    } =
+
+    await supabaseClient
+
+      .from("car_posts")
+
+      .select("*")
+
+      .eq(
+        "status",
+        "published"
+      )
+
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+
+    /* =================================================
+       ERROR
+    ================================================= */
+
+    if(error){
+
+      console.error(
+        "SUPABASE ERROR:",
+        error
+      );
+
+
+      carsElement.innerHTML = `
+
+        <div class="empty error">
+
+          ❌<br><br>
+
+          ${escapeHtml(
+            error.message ||
+            t.error
+          )}
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+
+    /* =================================================
+       EMPTY
+    ================================================= */
+
+    if(
+      !data ||
+      data.length === 0
+    ){
+
+      carsElement.innerHTML = `
+
+        <div class="empty">
+
+          🚗<br><br>
+
+          ${escapeHtml(
+            t.noCars
+          )}
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+
+    /* =================================================
+       CLEAR
+    ================================================= */
+
+    carsElement.innerHTML = "";
+
+
+
+    /* =================================================
+       CREATE CAR CARDS
+    ================================================= */
+
+    data.forEach(
+      car => {
+
+
+        const card =
+          document.createElement(
+            "div"
+          );
+
+
+        card.className =
+          "car";
+
+
+
+        /* IMAGE */
+
+        const image =
+          getCarImage(car);
+
+
+
+        /* TITLE */
+
+        const carTitle =
+
+          car.title ||
+
+          car.name ||
+
+          car.car_name ||
+
+          t.car;
+
+
+
+        /* PRICE */
+
+        let formattedPrice =
+          "0";
+
+
+        if(
+          car.price !== null &&
+          car.price !== undefined &&
+          car.price !== ""
+        ){
+
+          const number =
+            Number(
+              car.price
+            );
+
+
+          if(
+            !Number.isNaN(
+              number
+            )
+          ){
+
+            formattedPrice =
+              number.toLocaleString(
+                "en-US"
+              );
+
+          }
+
+        }
+
+
+
+        /* LOCATION */
+
+        const location =
+          getLocation(car);
+
+
+
+        /* DETAIL URL */
+
+        const detailUrl =
+          "car-sale-detail.html?id=" +
+          encodeURIComponent(
+            car.id
+          );
+
+
+
+        /* =================================================
+           CARD HTML
+        ================================================= */
+
+        card.innerHTML = `
+
+          <img
+
+            src="${escapeHtml(
+              image
+            )}"
+
+            alt="${escapeHtml(
+              carTitle
+            )}"
+
+            loading="lazy"
+
+            onerror="
+              this.onerror=null;
+              this.src='https://via.placeholder.com/800x500?text=No+Photo';
+            "
+
+          >
+
+
+          <div class="car-body">
+
+
+            <div class="car-title">
+
+              ${escapeHtml(
+                carTitle
+              )}
+
+            </div>
+
+
+            <div class="price">
+
+              ${escapeHtml(
+                formattedPrice
+              )}
+
+              RWF
+
+            </div>
+
+
+            <div class="location">
+
+              📍
+
+              ${escapeHtml(
+                location
+              )}
+
+            </div>
+
+
+            <a
+
+              class="details"
+
+              href="${escapeHtml(
+                detailUrl
+              )}"
+
+            >
+
+              ${escapeHtml(
+                t.view
+              )}
+
+            </a>
+
+
+          </div>
+
+        `;
+
+
+
+        carsElement.appendChild(
+          card
+        );
+
+
+      }
+    );
+
+
+  }
+  catch(error){
+
+
+    console.error(
+      "Unexpected error:",
+      error
+    );
+
+
+    carsElement.innerHTML = `
+
+      <div class="empty error">
+
+        ❌<br><br>
+
+        ${escapeHtml(
+          t.error
+        )}
+
+        <br><br>
+
+        ${escapeHtml(
+          error.message ||
+          ""
+        )}
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadCars();
+
+
+
+/* =====================================================
+   START GOOGLE ADSENSE
+===================================================== */
+
+window.addEventListener(
+  "load",
+  function(){
+
+    try{
+
+      (
+        window.adsbygoogle =
+        window.adsbygoogle ||
+        []
+      ).push({});
+
+    }
+    catch(error){
+
+      console.log(
+        "AdSense error:",
+        error
+      );
+
+    }
+
+  }
+);
+
+</script>
+
+
+</body>
+</html>
