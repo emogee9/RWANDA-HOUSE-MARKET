@@ -10,7 +10,7 @@
   content="width=device-width, initial-scale=1.0"
 >
 
-<title>Car Details - Rwanda Property Visata</title>
+<title>Car Detail - Rwanda Property Visata</title>
 
 <link
   rel="icon"
@@ -18,20 +18,16 @@
   href="logo.png"
 >
 
-<!-- ================= GOOGLE ADSENSE ================= -->
-
-<script
-  async
-  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7520250190173475"
-  crossorigin="anonymous">
-</script>
-
 <!-- ================= SUPABASE ================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
 <style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
 
 *{
   box-sizing:border-box;
@@ -44,7 +40,10 @@ body{
   color:#222;
 }
 
-/* ================= HEADER ================= */
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 header{
   background:#f2c400;
@@ -91,7 +90,10 @@ header h1{
   background:#f7f7f7;
 }
 
-/* ================= CONTAINER ================= */
+
+/* =====================================================
+   CONTAINER
+===================================================== */
 
 .container{
   max-width:1100px;
@@ -99,7 +101,10 @@ header h1{
   padding:30px 20px 60px;
 }
 
-/* ================= CARD ================= */
+
+/* =====================================================
+   CARD
+===================================================== */
 
 .card{
   background:white;
@@ -109,9 +114,12 @@ header h1{
   box-shadow:0 3px 12px rgba(0,0,0,.12);
 }
 
-/* ================= PHOTO AREA ================= */
 
-.photo-wrapper{
+/* =====================================================
+   MAIN PHOTO AREA
+===================================================== */
+
+.photo-area{
   position:relative;
   width:100%;
 }
@@ -125,56 +133,77 @@ header h1{
   background:#eee;
 }
 
-/* ================= ARROWS ================= */
+
+/* =====================================================
+   PHOTO ARROWS
+===================================================== */
 
 .photo-arrow{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
+
   width:52px;
-  height:70px;
+  height:52px;
+
   border:0;
-  border-radius:10px;
+  border-radius:50%;
+
   background:rgba(0,0,0,.55);
   color:white;
-  font-size:42px;
+
+  font-size:32px;
   font-weight:bold;
+
   cursor:pointer;
-  z-index:5;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   transition:.2s;
+
+  z-index:5;
 }
 
 .photo-arrow:hover{
   background:rgba(0,0,0,.8);
+  transform:translateY(-50%) scale(1.05);
 }
 
-.photo-left{
+.arrow-left{
   left:15px;
 }
 
-.photo-right{
+.arrow-right{
   right:15px;
 }
 
-/* ================= PHOTO NUMBER ================= */
+
+/* =====================================================
+   PHOTO COUNTER
+===================================================== */
 
 .photo-counter{
   position:absolute;
   bottom:15px;
   left:50%;
   transform:translateX(-50%);
+
   background:rgba(0,0,0,.65);
   color:white;
-  padding:8px 14px;
+
+  padding:7px 14px;
+
   border-radius:20px;
+
   font-size:14px;
-  font-weight:bold;
 }
 
-/* ================= GALLERY ================= */
+
+/* =====================================================
+   GALLERY
+===================================================== */
 
 .gallery{
   display:grid;
@@ -189,23 +218,28 @@ header h1{
   object-fit:cover;
   border-radius:8px;
   cursor:pointer;
-  border:3px solid transparent;
   transition:.2s;
+  border:3px solid transparent;
 }
 
 .gallery img:hover{
   opacity:.85;
+  transform:scale(1.02);
 }
 
 .gallery img.active{
   border-color:#f2c400;
 }
 
-/* ================= PROPERTY ================= */
+
+/* =====================================================
+   CAR INFORMATION
+===================================================== */
 
 .title{
   font-size:30px;
-  margin:15px 0 10px;
+  margin-top:10px;
+  margin-bottom:10px;
 }
 
 .price{
@@ -217,15 +251,24 @@ header h1{
 
 .type{
   display:inline-block;
+
   background:#fff4bf;
+
   border:1px solid #f2c400;
+
   color:#8a6500;
+
   padding:8px 14px;
+
   border-radius:20px;
+
   font-weight:bold;
 }
 
-/* ================= INFO ================= */
+
+/* =====================================================
+   INFORMATION
+===================================================== */
 
 .info-grid{
   display:grid;
@@ -236,24 +279,19 @@ header h1{
 
 .info{
   background:#fafafa;
-  padding:15px;
+  padding:16px;
   border-radius:8px;
   line-height:1.6;
 }
 
 .info strong{
-  color:#555;
+  color:#333;
 }
 
-/* ================= DESCRIPTION ================= */
 
-.description{
-  line-height:1.7;
-  color:#555;
-  white-space:pre-line;
-}
-
-/* ================= CONTACT ================= */
+/* =====================================================
+   CONTACT
+===================================================== */
 
 .contact{
   display:flex;
@@ -288,63 +326,10 @@ header h1{
   background:#0e7569;
 }
 
-/* ================= SOCIAL ================= */
 
-.social-title{
-  margin-top:30px;
-}
-
-.social-links{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:15px;
-}
-
-.social-link{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:13px 20px;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:bold;
-  color:white;
-  min-width:150px;
-}
-
-.instagram{
-  background:#d62976;
-}
-
-.youtube{
-  background:#ff0000;
-}
-
-.social-link:hover{
-  opacity:.85;
-  transform:translateY(-1px);
-}
-
-/* ================= ADSENSE ================= */
-
-.ad-container{
-  width:100%;
-  background:white;
-  border-radius:15px;
-  padding:15px;
-  margin-bottom:20px;
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
-  text-align:center;
-}
-
-.ad-label{
-  font-size:12px;
-  color:#777;
-  margin-bottom:8px;
-}
-
-/* ================= LOADING ================= */
+/* =====================================================
+   LOADING
+===================================================== */
 
 .loading{
   background:white;
@@ -354,7 +339,10 @@ header h1{
   box-shadow:0 3px 12px rgba(0,0,0,.08);
 }
 
-/* ================= ERROR ================= */
+
+/* =====================================================
+   ERROR
+===================================================== */
 
 .error{
   background:#ffe8e8;
@@ -364,20 +352,10 @@ header h1{
   text-align:center;
 }
 
-/* ================= FOOTER ================= */
 
-.footer{
-  text-align:center;
-  padding:25px 15px;
-  color:#777;
-  font-size:14px;
-}
-
-.footer strong{
-  color:#222;
-}
-
-/* ================= MOBILE ================= */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:700px){
 
@@ -395,16 +373,16 @@ header h1{
   }
 
   .photo-arrow{
-    width:43px;
-    height:58px;
-    font-size:32px;
+    width:44px;
+    height:44px;
+    font-size:26px;
   }
 
-  .photo-left{
+  .arrow-left{
     left:8px;
   }
 
-  .photo-right{
+  .arrow-right{
     right:8px;
   }
 
@@ -413,7 +391,7 @@ header h1{
   }
 
   .gallery img{
-    height:85px;
+    height:80px;
   }
 
   .info-grid{
@@ -435,14 +413,6 @@ header h1{
   .button{
     width:100%;
     text-align:center;
-  }
-
-  .social-links{
-    flex-direction:column;
-  }
-
-  .social-link{
-    width:100%;
   }
 
 }
@@ -481,7 +451,7 @@ header h1{
 
 
   <a
-    href="cars-sale.html"
+    href="cars-for-sale.html"
     class="back"
     id="backButton"
   >
@@ -507,17 +477,6 @@ header h1{
     </div>
 
   </div>
-
-</div>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<div class="footer">
-
-  Designed by <strong>Irene</strong>
 
 </div>
 
@@ -584,47 +543,17 @@ const translations = {
     carSale:
       "🚗 Imodoka Igurishwa",
 
-    country:
-      "Igihugu",
+    price:
+      "Igiciro",
 
-    province:
-      "Intara",
+    location:
+      "Aho iherereye",
 
-    district:
-      "Akarere",
+    status:
+      "Status",
 
-    sector:
-      "Umurenge",
-
-    city:
-      "Umujyi",
-
-    year:
-      "Umwaka",
-
-    mileage:
-      "Kilometero",
-
-    fuel:
-      "Ubwoko bwa lisansi",
-
-    transmission:
-      "Gearbox",
-
-    color:
-      "Ibara",
-
-    condition:
-      "Imiterere",
-
-    seller:
-      "Ucuruza",
-
-    description:
-      "Ibisobanuro",
-
-    noDescription:
-      "Nta bisobanuro by'imodoka bihari.",
+    phone:
+      "Telefone",
 
     contact:
       "📞 Aho mwavugana",
@@ -635,20 +564,14 @@ const translations = {
     whatsapp:
       "💬 WhatsApp",
 
-    advertisement:
-      "Kwamamaza",
+    photos:
+      "Amafoto",
 
-    instagram:
-      "📸 Instagram",
+    previous:
+      "Ifoto ibanza",
 
-    youtube:
-      "▶️ YouTube",
-
-    photo:
-      "Ifoto",
-
-    of:
-      "kuri"
+    next:
+      "Ifoto ikurikira"
 
   },
 
@@ -673,47 +596,17 @@ const translations = {
     carSale:
       "🚗 Car for Sale",
 
-    country:
-      "Country",
+    price:
+      "Price",
 
-    province:
-      "Province",
+    location:
+      "Location",
 
-    district:
-      "District",
+    status:
+      "Status",
 
-    sector:
-      "Sector",
-
-    city:
-      "City",
-
-    year:
-      "Year",
-
-    mileage:
-      "Mileage",
-
-    fuel:
-      "Fuel Type",
-
-    transmission:
-      "Transmission",
-
-    color:
-      "Color",
-
-    condition:
-      "Condition",
-
-    seller:
-      "Seller",
-
-    description:
-      "Description",
-
-    noDescription:
-      "No car description available.",
+    phone:
+      "Phone",
 
     contact:
       "📞 Contact",
@@ -724,20 +617,14 @@ const translations = {
     whatsapp:
       "💬 WhatsApp",
 
-    advertisement:
-      "Advertisement",
+    photos:
+      "Photos",
 
-    instagram:
-      "📸 Instagram",
+    previous:
+      "Previous photo",
 
-    youtube:
-      "▶️ YouTube",
-
-    photo:
-      "Photo",
-
-    of:
-      "of"
+    next:
+      "Next photo"
 
   },
 
@@ -762,47 +649,17 @@ const translations = {
     carSale:
       "🚗 Voiture à vendre",
 
-    country:
-      "Pays",
+    price:
+      "Prix",
 
-    province:
-      "Province",
+    location:
+      "Emplacement",
 
-    district:
-      "District",
+    status:
+      "Statut",
 
-    sector:
-      "Secteur",
-
-    city:
-      "Ville",
-
-    year:
-      "Année",
-
-    mileage:
-      "Kilométrage",
-
-    fuel:
-      "Type de carburant",
-
-    transmission:
-      "Transmission",
-
-    color:
-      "Couleur",
-
-    condition:
-      "État",
-
-    seller:
-      "Vendeur",
-
-    description:
-      "Description",
-
-    noDescription:
-      "Aucune description disponible.",
+    phone:
+      "Téléphone",
 
     contact:
       "📞 Contact",
@@ -813,20 +670,14 @@ const translations = {
     whatsapp:
       "💬 WhatsApp",
 
-    advertisement:
-      "Publicité",
+    photos:
+      "Photos",
 
-    instagram:
-      "📸 Instagram",
+    previous:
+      "Photo précédente",
 
-    youtube:
-      "▶️ YouTube",
-
-    photo:
-      "Photo",
-
-    of:
-      "sur"
+    next:
+      "Photo suivante"
 
   },
 
@@ -851,47 +702,17 @@ const translations = {
     carSale:
       "🚗 Gari la Kuuza",
 
-    country:
-      "Nchi",
+    price:
+      "Bei",
 
-    province:
-      "Mkoa",
+    location:
+      "Mahali",
 
-    district:
-      "Wilaya",
-
-    sector:
-      "Sekta",
-
-    city:
-      "Jiji",
-
-    year:
-      "Mwaka",
-
-    mileage:
-      "Kilomita",
-
-    fuel:
-      "Aina ya Mafuta",
-
-    transmission:
-      "Gearbox",
-
-    color:
-      "Rangi",
-
-    condition:
+    status:
       "Hali",
 
-    seller:
-      "Muuzaji",
-
-    description:
-      "Maelezo",
-
-    noDescription:
-      "Hakuna maelezo ya gari.",
+    phone:
+      "Simu",
 
     contact:
       "📞 Mawasiliano",
@@ -902,20 +723,14 @@ const translations = {
     whatsapp:
       "💬 WhatsApp",
 
-    advertisement:
-      "Tangazo",
-
-    instagram:
-      "📸 Instagram",
-
-    youtube:
-      "▶️ YouTube",
-
-    photo:
+    photos:
       "Picha",
 
-    of:
-      "ya"
+    previous:
+      "Picha iliyotangulia",
+
+    next:
+      "Picha inayofuata"
 
   },
 
@@ -923,10 +738,10 @@ const translations = {
   "中文": {
 
     header:
-      "🚗 出售汽车",
+      "🚗 待售汽车",
 
     back:
-      "← 返回出售汽车",
+      "← 返回待售汽车",
 
     loading:
       "正在加载汽车...",
@@ -938,49 +753,19 @@ const translations = {
       "❌ 找不到这辆汽车。",
 
     carSale:
-      "🚗 出售汽车",
+      "🚗 待售汽车",
 
-    country:
-      "国家",
+    price:
+      "价格",
 
-    province:
-      "省",
+    location:
+      "位置",
 
-    district:
-      "地区",
+    status:
+      "状态",
 
-    sector:
-      "区域",
-
-    city:
-      "城市",
-
-    year:
-      "年份",
-
-    mileage:
-      "里程",
-
-    fuel:
-      "燃油类型",
-
-    transmission:
-      "变速箱",
-
-    color:
-      "颜色",
-
-    condition:
-      "车况",
-
-    seller:
-      "卖家",
-
-    description:
-      "描述",
-
-    noDescription:
-      "暂无汽车描述。",
+    phone:
+      "电话",
 
     contact:
       "📞 联系方式",
@@ -991,20 +776,14 @@ const translations = {
     whatsapp:
       "💬 WhatsApp",
 
-    advertisement:
-      "广告",
-
-    instagram:
-      "📸 Instagram",
-
-    youtube:
-      "▶️ YouTube",
-
-    photo:
+    photos:
       "照片",
 
-    of:
-      "/"
+    previous:
+      "上一张",
+
+    next:
+      "下一张"
 
   }
 
@@ -1086,7 +865,7 @@ function escapeHtml(value){
 
 
 /* =====================================================
-   GET ID FROM URL
+   GET CAR ID
 ===================================================== */
 
 const params =
@@ -1105,9 +884,7 @@ const carId =
 function normalizePhone(phone){
 
   if(!phone){
-
     return "";
-
   }
 
   let value =
@@ -1147,7 +924,7 @@ function normalizePhone(phone){
 
 
 /* =====================================================
-   GET PHOTOS
+   PARSE PHOTOS
 ===================================================== */
 
 function getPhotos(car){
@@ -1155,327 +932,112 @@ function getPhotos(car){
   let photos = [];
 
 
-  /* MAIN PHOTO */
+  /* ================= MAIN PHOTO ================= */
 
-  if(car.main_photo){
+  if(car.mainph){
 
     photos.push(
-      car.main_photo
+      car.mainph
     );
 
   }
 
 
-  /*
-     OTHER PHOTOS AS ARRAY
-  */
+  /* ================= OTHER PHOTOS ARRAY ================= */
 
   if(
     Array.isArray(
-      car.other_photos
+      car.otherph
     )
   ){
 
     photos =
       photos.concat(
-        car.other_photos
+        car.otherph
       );
 
   }
 
 
-  /*
-     OTHER PHOTOS AS JSON
-  */
+  /* ================= OTHER PHOTOS JSON ================= */
 
-  if(
-    typeof car.other_photos ===
-    "string"
+  else if(
+    typeof car.otherph ===
+    "string" &&
+    car.otherph.trim() !== ""
   ){
 
     try{
 
       const parsed =
         JSON.parse(
-          car.other_photos
+          car.otherph
         );
-
 
       if(
         Array.isArray(parsed)
       ){
 
         photos =
-          photos.concat(parsed);
+          photos.concat(
+            parsed
+          );
+
+      }
+
+      else if(
+        typeof parsed ===
+        "string"
+      ){
+
+        photos.push(
+          parsed
+        );
 
       }
 
     }
     catch(error){
 
-      console.log(
-        "Photo JSON parsing skipped."
-      );
-
-    }
-
-  }
-
-
-  /*
-     POSSIBLE "photos" COLUMN
-  */
-
-  if(
-    Array.isArray(car.photos)
-  ){
-
-    photos =
-      photos.concat(
-        car.photos
-      );
-
-  }
-
-
-  if(
-    typeof car.photos ===
-    "string"
-  ){
-
-    try{
-
-      const parsed =
-        JSON.parse(car.photos);
-
+      /*
+        If otherph contains
+        one URL only.
+      */
 
       if(
-        Array.isArray(parsed)
+        car.otherph.startsWith(
+          "http"
+        )
       ){
 
-        photos =
-          photos.concat(parsed);
-
-      }
-
-    }
-    catch(error){}
-
-  }
-
-
-  /*
-     REMOVE DUPLICATES
-  */
-
-  return [
-    ...new Set(
-      photos.filter(Boolean)
-    )
-  ];
-
-}
-
-
-/* =====================================================
-   GLOBAL PHOTO INDEX
-===================================================== */
-
-let currentPhotoIndex = 0;
-
-let currentPhotos = [];
-
-
-/* =====================================================
-   CHANGE MAIN PHOTO
-===================================================== */
-
-function showPhoto(index){
-
-  if(
-    !currentPhotos ||
-    currentPhotos.length === 0
-  ){
-
-    return;
-
-  }
-
-
-  if(index < 0){
-
-    index =
-      currentPhotos.length - 1;
-
-  }
-
-
-  if(
-    index >=
-    currentPhotos.length
-  ){
-
-    index = 0;
-
-  }
-
-
-  currentPhotoIndex =
-    index;
-
-
-  const mainPhoto =
-    document.getElementById(
-      "mainPhoto"
-    );
-
-
-  if(mainPhoto){
-
-    mainPhoto.src =
-      currentPhotos[
-        currentPhotoIndex
-      ];
-
-  }
-
-
-  const counter =
-    document.getElementById(
-      "photoCounter"
-    );
-
-
-  if(counter){
-
-    counter.textContent =
-      `${t.photo} ${
-        currentPhotoIndex + 1
-      } ${t.of} ${
-        currentPhotos.length
-      }`;
-
-  }
-
-
-  document
-    .querySelectorAll(
-      ".gallery img"
-    )
-    .forEach(
-      (img,index) => {
-
-        img.classList.toggle(
-          "active",
-          index ===
-          currentPhotoIndex
+        photos.push(
+          car.otherph
         );
 
       }
+
+    }
+
+  }
+
+
+  /* ================= CLEAN PHOTOS ================= */
+
+  photos =
+    [
+      ...new Set(
+        photos
+      )
+    ]
+    .filter(
+      photo =>
+        photo &&
+        typeof photo ===
+        "string"
     );
 
-}
 
-
-/* =====================================================
-   NEXT PHOTO
-===================================================== */
-
-function nextPhoto(){
-
-  showPhoto(
-    currentPhotoIndex + 1
-  );
-
-}
-
-
-/* =====================================================
-   PREVIOUS PHOTO
-===================================================== */
-
-function previousPhoto(){
-
-  showPhoto(
-    currentPhotoIndex - 1
-  );
-
-}
-
-
-/* =====================================================
-   CREATE ADSENSE
-===================================================== */
-
-function createAdvertisement(){
-
-  const adContainer =
-    document.createElement(
-      "div"
-    );
-
-  adContainer.className =
-    "ad-container";
-
-
-  const label =
-    document.createElement(
-      "div"
-    );
-
-  label.className =
-    "ad-label";
-
-  label.textContent =
-    t.advertisement;
-
-
-  const ad =
-    document.createElement(
-      "ins"
-    );
-
-  ad.className =
-    "adsbygoogle";
-
-  ad.style.display =
-    "block";
-
-
-  ad.setAttribute(
-    "data-ad-client",
-    "ca-pub-7520250190173475"
-  );
-
-
-  ad.setAttribute(
-    "data-ad-slot",
-    "7793944660"
-  );
-
-
-  ad.setAttribute(
-    "data-ad-format",
-    "auto"
-  );
-
-
-  ad.setAttribute(
-    "data-full-width-responsive",
-    "true"
-  );
-
-
-  adContainer.appendChild(
-    label
-  );
-
-  adContainer.appendChild(
-    ad
-  );
-
-
-  return adContainer;
+  return photos;
 
 }
 
@@ -1511,19 +1073,18 @@ async function loadCar(){
       data,
       error
     } =
+      await supabaseClient
 
-    await supabaseClient
+        .from("cars_posts")
 
-      .from("cars_posts")
+        .select("*")
 
-      .select("*")
+        .eq(
+          "id",
+          carId
+        )
 
-      .eq(
-        "id",
-        carId
-      )
-
-      .maybeSingle();
+        .maybeSingle();
 
 
     if(error){
@@ -1538,7 +1099,11 @@ async function loadCar(){
 
         <div class="error">
 
-          ❌ ${escapeHtml(
+          ❌
+
+          <br><br>
+
+          ${escapeHtml(
             error.message
           )}
 
@@ -1573,18 +1138,24 @@ async function loadCar(){
     renderCar(data);
 
   }
+
   catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
 
 
     content.innerHTML = `
 
       <div class="error">
 
-        ❌ ${escapeHtml(
-          error.message ||
-          t.notFound
+        ❌
+
+        <br><br>
+
+        ${escapeHtml(
+          error.message
         )}
 
       </div>
@@ -1602,76 +1173,45 @@ async function loadCar(){
 
 function renderCar(car){
 
-  /* ================= PHOTOS ================= */
-
-  currentPhotos =
+  const photos =
     getPhotos(car);
 
 
-  if(
-    currentPhotos.length === 0
-  ){
-
-    currentPhotos = [
-      "https://via.placeholder.com/1000x600?text=No+Photo"
-    ];
-
-  }
-
-
-  currentPhotoIndex = 0;
-
-
-  /* ================= TITLE ================= */
-
-  const carTitle =
+  const title =
     car.title ||
-    car.car_name ||
-    car.name ||
     t.carSale;
 
 
-  document.title =
-    carTitle +
-    " - Rwanda Property Visata";
+  const mainPhoto =
+    photos.length > 0
+      ? photos[0]
+      : "https://via.placeholder.com/1000x600?text=No+Photo";
 
 
   /* ================= PRICE ================= */
 
-  const priceNumber =
+  let price =
     Number(
       car.price || 0
     );
 
 
-  const formattedPrice =
-    Number.isNaN(priceNumber)
-      ? String(car.price || "0")
-      : priceNumber.toLocaleString(
-          "en-US"
-        );
+  let formattedPrice =
+    price > 0
+      ? price.toLocaleString("en-US")
+      : "0";
 
 
-  /* ================= SELLER ================= */
+  /* ================= PHONE ================= */
 
-  const sellerName =
-    car.seller_name ||
-    car.full_name ||
-    car.owner_name ||
-    "Rwanda Property Visata";
-
-
-  const sellerPhone =
-    car.phone ||
-    car.phone_number ||
-    car.seller_phone ||
-    car.owner_phone ||
+  const phone =
+    car.phon ||
     "";
 
 
   const normalizedPhone =
     normalizePhone(
-      sellerPhone
+      phone
     );
 
 
@@ -1680,14 +1220,14 @@ function renderCar(car){
   let contactHTML = "";
 
 
-  if(sellerPhone){
+  if(phone){
 
     contactHTML += `
 
       <a
 
         href="tel:${escapeHtml(
-          sellerPhone
+          phone
         )}"
 
         class="button call"
@@ -1734,70 +1274,7 @@ function renderCar(car){
   }
 
 
-  /* ================= GALLERY ================= */
-
-  let galleryHTML = "";
-
-
-  currentPhotos.forEach(
-    (photo,index) => {
-
-      galleryHTML += `
-
-        <img
-
-          src="${escapeHtml(
-            photo
-          )}"
-
-          alt="${escapeHtml(
-            carTitle
-          )}"
-
-          loading="lazy"
-
-          class="${
-            index === 0
-              ? "active"
-              : ""
-          }"
-
-          onclick="
-            showPhoto(${index})
-          "
-
-          onerror="
-            this.style.display='none';
-          "
-
-        >
-
-      `;
-
-    }
-  );
-
-
-  /* ================= LOCATION ================= */
-
-  const location =
-    [
-      car.country,
-      car.province,
-      car.district,
-      car.sector,
-      car.city
-    ]
-    .filter(
-      value =>
-        value !== null &&
-        value !== undefined &&
-        String(value).trim() !== ""
-    )
-    .join(", ");
-
-
-  /* ================= HTML ================= */
+  /* ================= PAGE ================= */
 
   content.innerHTML = `
 
@@ -1805,24 +1282,7 @@ function renderCar(car){
 
     <div class="card">
 
-      <div class="photo-wrapper">
-
-        <button
-
-          type="button"
-
-          class="photo-arrow photo-left"
-
-          onclick="previousPhoto()"
-
-          aria-label="Previous photo"
-
-        >
-
-          ‹
-
-        </button>
-
+      <div class="photo-area">
 
         <img
 
@@ -1831,17 +1291,12 @@ function renderCar(car){
           class="main-photo"
 
           src="${escapeHtml(
-            currentPhotos[0]
+            mainPhoto
           )}"
 
           alt="${escapeHtml(
-            carTitle
+            title
           )}"
-
-          onerror="
-            this.onerror=null;
-            this.src='https://via.placeholder.com/1000x600?text=No+Photo';
-          "
 
         >
 
@@ -1850,11 +1305,36 @@ function renderCar(car){
 
           type="button"
 
-          class="photo-arrow photo-right"
+          class="photo-arrow arrow-left"
+
+          id="previousButton"
+
+          aria-label="${escapeHtml(
+            t.previous
+          )}"
+
+          onclick="previousPhoto()"
+
+        >
+
+          ‹
+
+        </button>
+
+
+        <button
+
+          type="button"
+
+          class="photo-arrow arrow-right"
+
+          id="nextButton"
+
+          aria-label="${escapeHtml(
+            t.next
+          )}"
 
           onclick="nextPhoto()"
-
-          aria-label="Next photo"
 
         >
 
@@ -1871,9 +1351,7 @@ function renderCar(car){
 
         >
 
-          ${t.photo} 1 ${t.of} ${
-            currentPhotos.length
-          }
+          1 / ${photos.length || 1}
 
         </div>
 
@@ -1882,19 +1360,40 @@ function renderCar(car){
 
       <div class="gallery">
 
-        ${galleryHTML}
+        ${
+          photos.map(
+            (photo,index) => `
+
+              <img
+
+                src="${escapeHtml(
+                  photo
+                )}"
+
+                alt="Car Photo ${index + 1}"
+
+                class="${
+                  index === 0
+                    ? "active"
+                    : ""
+                }"
+
+                loading="lazy"
+
+                onclick="showPhoto(${index})"
+
+              >
+
+            `
+          ).join("")
+        }
 
       </div>
 
     </div>
 
 
-    <!-- ================= AD ================= -->
-
-    <div id="adArea"></div>
-
-
-    <!-- ================= INFORMATION ================= -->
+    <!-- ================= CAR INFORMATION ================= -->
 
     <div class="card">
 
@@ -1910,7 +1409,7 @@ function renderCar(car){
       <h2 class="title">
 
         ${escapeHtml(
-          carTitle
+          title
         )}
 
       </h2>
@@ -1930,366 +1429,92 @@ function renderCar(car){
       <div class="info-grid">
 
 
-        ${
-          car.country ||
-          location
-            ? `
-
         <div class="info">
 
-          🌍
+          📍
 
           <strong>
+
             ${escapeHtml(
-              t.country
+              t.location
             )}
+
           </strong>
 
           <br>
 
           ${escapeHtml(
-            car.country ||
+            car.locati ||
             ""
           )}
 
         </div>
 
-        `
-            : ""
-        }
-
-
-        ${
-          car.province
-            ? `
 
         <div class="info">
 
-          📍
+          📊
 
           <strong>
+
             ${escapeHtml(
-              t.province
+              t.status
             )}
+
           </strong>
 
           <br>
 
           ${escapeHtml(
-            car.province
+            car.stat ||
+            ""
           )}
 
         </div>
 
-        `
-            : ""
-        }
-
-
-        ${
-          car.district
-            ? `
 
         <div class="info">
 
-          📍
+          📞
 
           <strong>
+
             ${escapeHtml(
-              t.district
+              t.phone
             )}
+
           </strong>
 
           <br>
 
           ${escapeHtml(
-            car.district
+            phone ||
+            ""
           )}
 
         </div>
 
-        `
-            : ""
-        }
-
-
-        ${
-          car.sector
-            ? `
 
         <div class="info">
 
-          📍
+          🖼️
 
           <strong>
+
             ${escapeHtml(
-              t.sector
+              t.photos
             )}
+
           </strong>
 
           <br>
 
-          ${escapeHtml(
-            car.sector
-          )}
-
-        </div>
-
-        `
-            : ""
-        }
-
-
-        ${
-          car.city
-            ? `
-
-        <div class="info">
-
-          🏙️
-
-          <strong>
-            ${escapeHtml(
-              t.city
-            )}
-          </strong>
-
-          <br>
-
-          ${escapeHtml(
-            car.city
-          )}
-
-        </div>
-
-        `
-            : ""
-        }
-
-
-        ${
-          car.year
-            ? `
-
-        <div class="info">
-
-          📅
-
-          <strong>
-            ${escapeHtml(
-              t.year
-            )}
-          </strong>
-
-          <br>
-
-          ${escapeHtml(
-            car.year
-          )}
-
-        </div>
-
-        `
-            : ""
-        }
-
-
-        ${
-          car.mileage
-            ? `
-
-        <div class="info">
-
-          🛣️
-
-          <strong>
-            ${escapeHtml(
-              t.mileage
-            )}
-          </strong>
-
-          <br>
-
-          ${escapeHtml(
-            car.mileage
-          )}
-
-        </div>
-
-        `
-            : ""
-        }
-
-
-        ${
-          car.fuel
-            ? `
-
-        <div class="info">
-
-          ⛽
-
-          <strong>
-            ${escapeHtml(
-              t.fuel
-            )}
-          </strong>
-
-          <br>
-
-          ${escapeHtml(
-            car.fuel
-          )}
-
-        </div>
-
-        `
-            : ""
-        }
-
-
-        ${
-          car.transmission
-            ? `
-
-        <div class="info">
-
-          ⚙️
-
-          <strong>
-            ${escapeHtml(
-              t.transmission
-            )}
-          </strong>
-
-          <br>
-
-          ${escapeHtml(
-            car.transmission
-          )}
-
-        </div>
-
-        `
-            : ""
-        }
-
-
-        ${
-          car.color
-            ? `
-
-        <div class="info">
-
-          🎨
-
-          <strong>
-            ${escapeHtml(
-              t.color
-            )}
-          </strong>
-
-          <br>
-
-          ${escapeHtml(
-            car.color
-          )}
-
-        </div>
-
-        `
-            : ""
-        }
-
-
-        ${
-          car.condition
-            ? `
-
-        <div class="info">
-
-          🚘
-
-          <strong>
-            ${escapeHtml(
-              t.condition
-            )}
-          </strong>
-
-          <br>
-
-          ${escapeHtml(
-            car.condition
-          )}
-
-        </div>
-
-        `
-            : ""
-        }
-
-
-        <div class="info">
-
-          👤
-
-          <strong>
-            ${escapeHtml(
-              t.seller
-            )}
-          </strong>
-
-          <br>
-
-          ${escapeHtml(
-            sellerName
-          )}
+          ${photos.length}
 
         </div>
 
 
       </div>
-
-
-      ${
-        location
-          ? `
-
-      <div class="info" style="margin-top:15px;">
-
-        📍
-
-        <strong>
-          ${escapeHtml(
-            location
-          )}
-        </strong>
-
-      </div>
-
-      `
-          : ""
-      }
-
-
-      <h3>
-
-        ${escapeHtml(
-          t.description
-        )}
-
-      </h3>
-
-
-      <p class="description">
-
-        ${escapeHtml(
-          car.description ||
-          car.details ||
-          t.noDescription
-        )}
-
-      </p>
 
 
       <h3>
@@ -2308,133 +1533,263 @@ function renderCar(car){
       </div>
 
 
-      <!-- ================= SOCIAL LINKS ================= -->
-
-      <h3 class="social-title">
-
-        Rwanda Property Visata
-
-      </h3>
-
-
-      <div class="social-links">
-
-
-        <a
-
-          href="https://www.instagram.com/"
-
-          target="_blank"
-
-          rel="noopener noreferrer"
-
-          class="social-link instagram"
-
-        >
-
-          ${escapeHtml(
-            t.instagram
-          )}
-
-        </a>
-
-
-        <a
-
-          href="https://youtube.com/@iranziirene-j5f?si=PtRA9dAwTog111BJ2"
-
-          target="_blank"
-
-          rel="noopener noreferrer"
-
-          class="social-link youtube"
-
-        >
-
-          ${escapeHtml(
-            t.youtube
-          )}
-
-        </a>
-
-
-      </div>
-
-
     </div>
 
   `;
 
 
-  /* ================= ADSENSE ================= */
+  /* ================= UPDATE TITLE ================= */
 
-  const adArea =
-    document.getElementById(
-      "adArea"
-    );
-
-
-  if(adArea){
-
-    const advertisement =
-      createAdvertisement();
+  document.title =
+    title +
+    " - Rwanda Property Visata";
 
 
-    adArea.appendChild(
-      advertisement
-    );
+  /* ================= DISABLE ARROWS IF ONE PHOTO ================= */
 
-
-    try{
-
-      (
-        window.adsbygoogle =
-        window.adsbygoogle ||
-        []
-      ).push({});
-
-    }
-    catch(error){
-
-      console.log(
-        "AdSense error:",
-        error
-      );
-
-    }
-
-  }
-
-
-  /* ================= INITIAL PHOTO ================= */
-
-  showPhoto(0);
+  updatePhotoControls();
 
 }
 
 
 /* =====================================================
-   KEYBOARD PHOTO NAVIGATION
+   CURRENT PHOTO
 ===================================================== */
 
-document.addEventListener(
-  "keydown",
-  function(event){
+let currentPhotoIndex = 0;
 
-    if(event.key === "ArrowLeft"){
+let currentPhotos = [];
 
-      previousPhoto();
+
+/* =====================================================
+   SHOW PHOTO
+===================================================== */
+
+function showPhoto(index){
+
+  currentPhotos =
+    currentPhotos.length
+      ? currentPhotos
+      : [];
+
+
+  if(
+    index < 0 ||
+    index >= currentPhotos.length
+  ){
+
+    return;
+
+  }
+
+
+  currentPhotoIndex =
+    index;
+
+
+  const mainPhoto =
+    document.getElementById(
+      "mainPhoto"
+    );
+
+
+  if(mainPhoto){
+
+    mainPhoto.src =
+      currentPhotos[
+        currentPhotoIndex
+      ];
+
+  }
+
+
+  /* ================= ACTIVE THUMBNAIL ================= */
+
+  document
+    .querySelectorAll(
+      ".gallery img"
+    )
+    .forEach(
+      (img,index) => {
+
+        img.classList.toggle(
+          "active",
+          index ===
+          currentPhotoIndex
+        );
+
+      }
+    );
+
+
+  /* ================= COUNTER ================= */
+
+  const counter =
+    document.getElementById(
+      "photoCounter"
+    );
+
+
+  if(counter){
+
+    counter.textContent =
+      `${currentPhotoIndex + 1} / ${currentPhotos.length}`;
+
+  }
+
+}
+
+
+/* =====================================================
+   PREVIOUS PHOTO
+===================================================== */
+
+function previousPhoto(){
+
+  if(
+    currentPhotos.length <= 1
+  ){
+
+    return;
+
+  }
+
+
+  currentPhotoIndex--;
+
+  if(
+    currentPhotoIndex < 0
+  ){
+
+    currentPhotoIndex =
+      currentPhotos.length - 1;
+
+  }
+
+
+  showPhoto(
+    currentPhotoIndex
+  );
+
+}
+
+
+/* =====================================================
+   NEXT PHOTO
+===================================================== */
+
+function nextPhoto(){
+
+  if(
+    currentPhotos.length <= 1
+  ){
+
+    return;
+
+  }
+
+
+  currentPhotoIndex++;
+
+  if(
+    currentPhotoIndex >=
+    currentPhotos.length
+  ){
+
+    currentPhotoIndex = 0;
+
+  }
+
+
+  showPhoto(
+    currentPhotoIndex
+  );
+
+}
+
+
+/* =====================================================
+   PHOTO CONTROLS
+===================================================== */
+
+function updatePhotoControls(){
+
+  const left =
+    document.getElementById(
+      "previousButton"
+    );
+
+  const right =
+    document.getElementById(
+      "nextButton"
+    );
+
+
+  if(
+    currentPhotos.length <= 1
+  ){
+
+    if(left){
+
+      left.style.display =
+        "none";
 
     }
 
-    if(event.key === "ArrowRight"){
+    if(right){
 
-      nextPhoto();
+      right.style.display =
+        "none";
 
     }
 
   }
-);
+  else{
+
+    if(left){
+
+      left.style.display =
+        "flex";
+
+    }
+
+    if(right){
+
+      right.style.display =
+        "flex";
+
+    }
+
+  }
+
+}
+
+
+/* =====================================================
+   PREPARE PHOTOS AFTER LOAD
+===================================================== */
+
+const originalRenderCar =
+  renderCar;
+
+
+/*
+   Override renderCar so that
+   arrow navigation gets the
+   complete photo array.
+*/
+
+renderCar =
+  function(car){
+
+    currentPhotos =
+      getPhotos(car);
+
+    currentPhotoIndex = 0;
+
+    originalRenderCar(car);
+
+  };
 
 
 /* =====================================================
