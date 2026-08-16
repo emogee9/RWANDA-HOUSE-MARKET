@@ -6,23 +6,11 @@
 
 <meta charset="UTF-8">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Cars for Sale - Rwanda Property Visata</title>
 
-<link
-  rel="icon"
-  type="image/png"
-  href="logo.png"
->
-
-
-<!-- =====================================================
-     GOOGLE ADSENSE
-===================================================== -->
+<link rel="icon" type="image/png" href="logo.png">
 
 <script
   async
@@ -30,22 +18,13 @@
   crossorigin="anonymous">
 </script>
 
-
-<!-- =====================================================
-     SUPABASE
-===================================================== -->
-
-<script
-  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-</script>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
 *{
   box-sizing:border-box;
 }
-
 
 body{
   margin:0;
@@ -54,11 +33,6 @@ body{
   color:#222;
 }
 
-
-/* =====================================================
-   HEADER
-===================================================== */
-
 header{
   background:#f2c400;
   padding:25px 15px;
@@ -66,12 +40,10 @@ header{
   box-shadow:0 3px 10px rgba(0,0,0,.15);
 }
 
-
 header h1{
   margin:0;
   font-size:30px;
 }
-
 
 .back{
   display:inline-block;
@@ -85,27 +57,16 @@ header h1{
   transition:.2s;
 }
 
-
 .back:hover{
   background:#fff8d6;
   transform:translateY(-1px);
 }
-
-
-/* =====================================================
-   CONTAINER
-===================================================== */
 
 .container{
   max-width:1150px;
   margin:auto;
   padding:30px 20px 60px;
 }
-
-
-/* =====================================================
-   PAGE TITLE
-===================================================== */
 
 .page-title{
   background:white;
@@ -116,22 +77,15 @@ header h1{
   box-shadow:0 3px 12px rgba(0,0,0,.1);
 }
 
-
 .page-title h2{
   margin:0 0 10px;
 }
-
 
 .page-title p{
   margin:0;
   color:#666;
   line-height:1.6;
 }
-
-
-/* =====================================================
-   SOCIAL LINKS
-===================================================== */
 
 .social-box{
   background:white;
@@ -142,13 +96,11 @@ header h1{
   text-align:center;
 }
 
-
 .social-title{
   font-size:18px;
   font-weight:bold;
   margin-bottom:15px;
 }
-
 
 .social-links{
   display:flex;
@@ -156,7 +108,6 @@ header h1{
   flex-wrap:wrap;
   gap:10px;
 }
-
 
 .social-link{
   display:inline-block;
@@ -168,26 +119,18 @@ header h1{
   transition:.2s;
 }
 
-
 .social-link:hover{
   transform:translateY(-2px);
   opacity:.9;
 }
 
-
 .instagram{
   background:#e1306c;
 }
 
-
 .youtube{
   background:#ff0000;
 }
-
-
-/* =====================================================
-   ADSENSE
-===================================================== */
 
 .ad-container{
   width:100%;
@@ -200,24 +143,17 @@ header h1{
   overflow:hidden;
 }
 
-
 .ad-label{
   font-size:12px;
   color:#777;
   margin-bottom:8px;
 }
 
-
-/* =====================================================
-   CARS
-===================================================== */
-
 .cars{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:22px;
 }
-
 
 .car{
   background:white;
@@ -227,12 +163,10 @@ header h1{
   transition:.2s;
 }
 
-
 .car:hover{
   transform:translateY(-3px);
   box-shadow:0 7px 20px rgba(0,0,0,.17);
 }
-
 
 .car img{
   width:100%;
@@ -242,11 +176,9 @@ header h1{
   background:#eee;
 }
 
-
 .car-body{
   padding:18px;
 }
-
 
 .car-title{
   font-size:20px;
@@ -255,7 +187,6 @@ header h1{
   line-height:1.4;
 }
 
-
 .price{
   color:#b27b00;
   font-size:21px;
@@ -263,13 +194,11 @@ header h1{
   margin-bottom:10px;
 }
 
-
 .location{
   color:#555;
   line-height:1.6;
   margin-bottom:15px;
 }
-
 
 .details{
   display:block;
@@ -283,15 +212,9 @@ header h1{
   transition:.2s;
 }
 
-
 .details:hover{
   background:#d4a900;
 }
-
-
-/* =====================================================
-   STATUS
-===================================================== */
 
 .empty{
   background:white;
@@ -304,21 +227,14 @@ header h1{
   line-height:1.7;
 }
 
-
 .error{
   background:#ffe8e8;
   color:#a00000;
 }
 
-
 .loading{
   text-align:center;
 }
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
 
 .footer{
   background:#222;
@@ -328,28 +244,11 @@ header h1{
   margin-top:30px;
 }
 
-
-.footer a{
-  color:white;
-  text-decoration:none;
-}
-
-
-.footer a:hover{
-  text-decoration:underline;
-}
-
-
 .designed{
   margin-top:10px;
   font-size:14px;
   color:#ccc;
 }
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
 
 @media(max-width:900px){
 
@@ -359,48 +258,39 @@ header h1{
 
 }
 
-
 @media(max-width:600px){
 
   header h1{
     font-size:24px;
   }
 
-
   .container{
     padding:20px 14px 50px;
   }
-
 
   .page-title{
     padding:20px 15px;
   }
 
-
   .cars{
     grid-template-columns:1fr;
   }
-
 
   .car img{
     height:230px;
   }
 
-
   .car-title{
     font-size:19px;
   }
-
 
   .price{
     font-size:20px;
   }
 
-
   .social-links{
     flex-direction:column;
   }
-
 
   .social-link{
     width:100%;
@@ -412,20 +302,13 @@ header h1{
 
 </head>
 
-
 <body>
-
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
 
 <header>
 
   <h1 id="headerTitle">
     🚗 RWANDA PROPERTY VISATA
   </h1>
-
 
   <a
     href="home.html"
@@ -437,14 +320,7 @@ header h1{
 
 </header>
 
-
-
 <div class="container">
-
-
-  <!-- ===================================================
-       PAGE TITLE
-  =================================================== -->
 
   <div class="page-title">
 
@@ -452,18 +328,11 @@ header h1{
       🚗 Cars for Sale
     </h2>
 
-
     <p id="pageDescription">
       Find cars available for sale in Rwanda.
     </p>
 
   </div>
-
-
-
-  <!-- ===================================================
-       SOCIAL MEDIA
-  =================================================== -->
 
   <div class="social-box">
 
@@ -474,9 +343,7 @@ header h1{
       Follow Rwanda Property Visata
     </div>
 
-
     <div class="social-links">
-
 
       <a
         class="social-link instagram"
@@ -485,13 +352,8 @@ header h1{
         rel="noopener noreferrer"
         id="instagramLink"
       >
-
-        📷 Instagram:
-        Rwanda Property Visata
-
+        📷 Instagram: Rwanda Property Visata
       </a>
-
-
 
       <a
         class="social-link youtube"
@@ -500,22 +362,12 @@ header h1{
         rel="noopener noreferrer"
         id="youtubeLink"
       >
-
-        ▶️ YouTube:
-        Rwanda Property Visata
-
+        ▶️ YouTube: Rwanda Property Visata
       </a>
-
 
     </div>
 
   </div>
-
-
-
-  <!-- ===================================================
-       ADSENSE
-  =================================================== -->
 
   <div class="ad-container">
 
@@ -525,7 +377,6 @@ header h1{
     >
       Advertisement
     </div>
-
 
     <ins
       class="adsbygoogle"
@@ -538,12 +389,6 @@ header h1{
 
   </div>
 
-
-
-  <!-- ===================================================
-       CARS
-  =================================================== -->
-
   <div
     id="cars"
     class="cars"
@@ -553,21 +398,12 @@ header h1{
       class="empty loading"
       id="loadingMessage"
     >
-
       Loading cars...
-
     </div>
 
   </div>
 
-
 </div>
-
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer class="footer">
 
@@ -575,304 +411,164 @@ header h1{
     🚗 Rwanda Property Visata
   </div>
 
-
-  <div class="designed">
+  <div
+    class="designed"
+    id="designedBy"
+  >
     Designed by Irene
   </div>
 
 </footer>
 
-
-
 <script>
 
 /* =====================================================
-   LANGUAGE
-===================================================== */
-
-const language =
-  localStorage.getItem("selectedLanguage") ||
-  "English";
-
-
-/* =====================================================
-   TRANSLATIONS
+   5 LANGUAGES
 ===================================================== */
 
 const translations = {
 
   Kinyarwanda: {
 
-    header:
-      "🚗 RWANDA PROPERTY VISATA",
-
-    back:
-      "← Subira kuri Home",
-
-    title:
-      "🚗 Imodoka Zigurishwa",
-
-    description:
-      "Shakisha imodoka ziri kugurishwa mu Rwanda.",
-
-    advertisement:
-      "Kwamamaza",
-
-    loading:
-      "Tegereza, imodoka zirimo kuboneka...",
-
-    noCars:
-      "Nta modoka zigurishwa ziraboneka.",
-
-    error:
-      "Habaye ikibazo mu kubona imodoka.",
-
-    view:
-      "Reba Ibisobanuro",
-
-    car:
-      "Imodoka Igurishwa",
-
-    rwanda:
-      "Rwanda",
-
-    social:
-      "Kurikira Rwanda Property Visata",
-
-    instagram:
-      "📷 Instagram: Rwanda Property Visata",
-
-    youtube:
-      "▶️ YouTube: Rwanda Property Visata",
-
-    designed:
-      "Byakozwe na Irene"
+    header:"🚗 RWANDA PROPERTY VISATA",
+    back:"← Subira kuri Home",
+    title:"🚗 Imodoka Zigurishwa",
+    description:"Shakisha imodoka ziri kugurishwa mu Rwanda.",
+    advertisement:"Kwamamaza",
+    loading:"Tegereza, imodoka zirimo kuboneka...",
+    noCars:"Nta modoka zigurishwa ziraboneka.",
+    error:"Habaye ikibazo mu kubona imodoka.",
+    view:"Reba Ibisobanuro",
+    car:"Imodoka Igurishwa",
+    rwanda:"Rwanda",
+    social:"Kurikira Rwanda Property Visata",
+    instagram:"📷 Instagram: Rwanda Property Visata",
+    youtube:"▶️ YouTube: Rwanda Property Visata",
+    designed:"Byakozwe na Irene"
 
   },
-
 
   English: {
 
-    header:
-      "🚗 RWANDA PROPERTY VISATA",
-
-    back:
-      "← Back to Home",
-
-    title:
-      "🚗 Cars for Sale",
-
-    description:
-      "Find cars available for sale in Rwanda.",
-
-    advertisement:
-      "Advertisement",
-
-    loading:
-      "Loading cars...",
-
-    noCars:
-      "No cars for sale available yet.",
-
-    error:
-      "There was a problem loading the cars.",
-
-    view:
-      "View Detail",
-
-    car:
-      "Car for Sale",
-
-    rwanda:
-      "Rwanda",
-
-    social:
-      "Follow Rwanda Property Visata",
-
-    instagram:
-      "📷 Instagram: Rwanda Property Visata",
-
-    youtube:
-      "▶️ YouTube: Rwanda Property Visata",
-
-    designed:
-      "Designed by Irene"
+    header:"🚗 RWANDA PROPERTY VISATA",
+    back:"← Back to Home",
+    title:"🚗 Cars for Sale",
+    description:"Find cars available for sale in Rwanda.",
+    advertisement:"Advertisement",
+    loading:"Loading cars...",
+    noCars:"No cars for sale available yet.",
+    error:"There was a problem loading the cars.",
+    view:"View Details",
+    car:"Car for Sale",
+    rwanda:"Rwanda",
+    social:"Follow Rwanda Property Visata",
+    instagram:"📷 Instagram: Rwanda Property Visata",
+    youtube:"▶️ YouTube: Rwanda Property Visata",
+    designed:"Designed by Irene"
 
   },
-
 
   Français: {
 
-    header:
-      "🚗 RWANDA PROPERTY VISATA",
-
-    back:
-      "← Retour à l'accueil",
-
-    title:
-      "🚗 Voitures à vendre",
-
-    description:
-      "Trouvez des voitures disponibles à la vente au Rwanda.",
-
-    advertisement:
-      "Publicité",
-
-    loading:
-      "Chargement des voitures...",
-
-    noCars:
-      "Aucune voiture à vendre n'est disponible pour le moment.",
-
-    error:
-      "Un problème est survenu lors du chargement des voitures.",
-
-    view:
-      "Voir les détails",
-
-    car:
-      "Voiture à vendre",
-
-    rwanda:
-      "Rwanda",
-
-    social:
-      "Suivez Rwanda Property Visata",
-
-    instagram:
-      "📷 Instagram : Rwanda Property Visata",
-
-    youtube:
-      "▶️ YouTube : Rwanda Property Visata",
-
-    designed:
-      "Conçu par Irene"
+    header:"🚗 RWANDA PROPERTY VISATA",
+    back:"← Retour à l'accueil",
+    title:"🚗 Voitures à vendre",
+    description:"Trouvez des voitures disponibles à la vente au Rwanda.",
+    advertisement:"Publicité",
+    loading:"Chargement des voitures...",
+    noCars:"Aucune voiture à vendre n'est disponible pour le moment.",
+    error:"Un problème est survenu lors du chargement des voitures.",
+    view:"Voir les détails",
+    car:"Voiture à vendre",
+    rwanda:"Rwanda",
+    social:"Suivez Rwanda Property Visata",
+    instagram:"📷 Instagram : Rwanda Property Visata",
+    youtube:"▶️ YouTube : Rwanda Property Visata",
+    designed:"Conçu par Irene"
 
   },
-
 
   Kiswahili: {
 
-    header:
-      "🚗 RWANDA PROPERTY VISATA",
-
-    back:
-      "← Rudi Mwanzo",
-
-    title:
-      "🚗 Magari ya Kuuza",
-
-    description:
-      "Pata magari yanayopatikana kwa ajili ya kuuza nchini Rwanda.",
-
-    advertisement:
-      "Tangazo",
-
-    loading:
-      "Inapakia magari...",
-
-    noCars:
-      "Hakuna magari ya kuuza yanayopatikana kwa sasa.",
-
-    error:
-      "Kuna tatizo wakati wa kupakia magari.",
-
-    view:
-      "Angalia Maelezo",
-
-    car:
-      "Gari la Kuuza",
-
-    rwanda:
-      "Rwanda",
-
-    social:
-      "Fuata Rwanda Property Visata",
-
-    instagram:
-      "📷 Instagram: Rwanda Property Visata",
-
-    youtube:
-      "▶️ YouTube: Rwanda Property Visata",
-
-    designed:
-      "Imeundwa na Irene"
+    header:"🚗 RWANDA PROPERTY VISATA",
+    back:"← Rudi Mwanzo",
+    title:"🚗 Magari ya Kuuza",
+    description:"Pata magari yanayopatikana kwa ajili ya kuuza nchini Rwanda.",
+    advertisement:"Tangazo",
+    loading:"Inapakia magari...",
+    noCars:"Hakuna magari ya kuuza yanayopatikana kwa sasa.",
+    error:"Kuna tatizo wakati wa kupakia magari.",
+    view:"Angalia Maelezo",
+    car:"Gari la Kuuza",
+    rwanda:"Rwanda",
+    social:"Fuata Rwanda Property Visata",
+    instagram:"📷 Instagram: Rwanda Property Visata",
+    youtube:"▶️ YouTube: Rwanda Property Visata",
+    designed:"Imeundwa na Irene"
 
   },
 
-
   "中文": {
 
-    header:
-      "🚗 RWANDA PROPERTY VISATA",
-
-    back:
-      "← 返回首页",
-
-    title:
-      "🚗 出售汽车",
-
-    description:
-      "寻找卢旺达境内可出售的汽车。",
-
-    advertisement:
-      "广告",
-
-    loading:
-      "正在加载汽车...",
-
-    noCars:
-      "目前没有可出售的汽车。",
-
-    error:
-      "加载汽车时出现问题。",
-
-    view:
-      "查看详情",
-
-    car:
-      "出售汽车",
-
-    rwanda:
-      "卢旺达",
-
-    social:
-      "关注 Rwanda Property Visata",
-
-    instagram:
-      "📷 Instagram：Rwanda Property Visata",
-
-    youtube:
-      "▶️ YouTube：Rwanda Property Visata",
-
-    designed:
-      "由 Irene 设计"
+    header:"🚗 RWANDA PROPERTY VISATA",
+    back:"← 返回首页",
+    title:"🚗 出售汽车",
+    description:"寻找卢旺达境内可出售的汽车。",
+    advertisement:"广告",
+    loading:"正在加载汽车...",
+    noCars:"目前没有可出售的汽车。",
+    error:"加载汽车时出现问题。",
+    view:"查看详情",
+    car:"出售汽车",
+    rwanda:"卢旺达",
+    social:"关注 Rwanda Property Visata",
+    instagram:"📷 Instagram：Rwanda Property Visata",
+    youtube:"▶️ YouTube：Rwanda Property Visata",
+    designed:"由 Irene 设计"
 
   }
 
 };
 
 
+/* =====================================================
+   GET SAVED LANGUAGE
+===================================================== */
+
+const savedLanguage =
+  localStorage.getItem("selectedLanguage") || "English";
+
+
+const language =
+  Object.prototype.hasOwnProperty.call(
+    translations,
+    savedLanguage
+  )
+  ? savedLanguage
+  : "English";
+
+
 const t =
-  translations[language] ||
-  translations.English;
+  translations[language];
+
+
+/* =====================================================
+   HTML LANGUAGE
+===================================================== */
+
+const htmlLanguages = {
+
+  Kinyarwanda:"rw",
+  English:"en",
+  Français:"fr",
+  Kiswahili:"sw",
+  "中文":"zh"
+
+};
 
 
 document.documentElement.lang =
-
-  language === "中文"
-    ? "zh"
-
-    : language === "Français"
-      ? "fr"
-
-      : language === "Kiswahili"
-        ? "sw"
-
-        : language === "Kinyarwanda"
-          ? "rw"
-
-          : "en";
+  htmlLanguages[language];
 
 
 /* =====================================================
@@ -906,7 +602,7 @@ document.getElementById("instagramLink").textContent =
 document.getElementById("youtubeLink").textContent =
   t.youtube;
 
-document.querySelector(".designed").textContent =
+document.getElementById("designedBy").textContent =
   t.designed;
 
 document.title =
@@ -921,10 +617,8 @@ document.title =
 const SUPABASE_URL =
   "https://hsmnybmcddtsyooltozw.supabase.co";
 
-
 const SUPABASE_KEY =
   "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
-
 
 const supabaseClient =
   window.supabase.createClient(
@@ -935,55 +629,39 @@ const supabaseClient =
 
 /* =====================================================
    VISITOR TRACKING
-   Rwanda Property Visata
 ===================================================== */
-
-
-/*
-   Generate a unique ID.
-*/
 
 function generateVisitorId(){
 
   if(
     window.crypto &&
-    crypto.randomUUID
+    typeof window.crypto.randomUUID === "function"
   ){
 
-    return crypto.randomUUID();
+    return window.crypto.randomUUID();
 
   }
-
 
   return (
     Date.now().toString(36) +
     "-" +
-    Math.random().toString(36).substring(2)
+    Math.random()
+      .toString(36)
+      .substring(2)
   );
 
 }
 
 
-/*
-   Get or create permanent visitor ID.
-
-   localStorage means the same browser
-   keeps the same visitor_id.
-*/
-
 function getVisitorId(){
 
   let visitorId =
-    localStorage.getItem(
-      "rpv_visitor_id"
-    );
-
+    localStorage.getItem("rpv_visitor_id");
 
   if(!visitorId){
 
     visitorId =
       generateVisitorId();
-
 
     localStorage.setItem(
       "rpv_visitor_id",
@@ -992,32 +670,20 @@ function getVisitorId(){
 
   }
 
-
   return visitorId;
 
 }
 
 
-/*
-   Get or create session ID.
-
-   sessionStorage means a new browser tab/session
-   can receive a new session ID.
-*/
-
 function getSessionId(){
 
   let sessionId =
-    sessionStorage.getItem(
-      "rpv_session_id"
-    );
-
+    sessionStorage.getItem("rpv_session_id");
 
   if(!sessionId){
 
     sessionId =
       generateVisitorId();
-
 
     sessionStorage.setItem(
       "rpv_session_id",
@@ -1026,44 +692,26 @@ function getSessionId(){
 
   }
 
-
   return sessionId;
 
 }
 
-
-/*
-   Detect device.
-*/
 
 function getDeviceType(){
 
   const width =
     window.innerWidth;
 
-
-  if(width <= 600){
-
+  if(width <= 600)
     return "Mobile";
 
-  }
-
-
-  if(width <= 1024){
-
+  if(width <= 1024)
     return "Tablet";
-
-  }
-
 
   return "Desktop";
 
 }
 
-
-/*
-   Record page view in Supabase.
-*/
 
 async function trackPageView(){
 
@@ -1072,113 +720,56 @@ async function trackPageView(){
     const visitorId =
       getVisitorId();
 
-
     const sessionId =
       getSessionId();
 
-
     const pagePath =
-      window.location.pathname ||
-      "/";
-
+      window.location.pathname || "/";
 
     const pageName =
       "Cars for Sale";
 
-
     const deviceType =
       getDeviceType();
 
-
     const referrer =
-      document.referrer ||
-      null;
-
+      document.referrer || null;
 
     const userAgent =
-      navigator.userAgent ||
-      null;
+      navigator.userAgent || null;
 
 
-    const {
-      data,
-      error
-    } =
+    const { error } =
+      await supabaseClient
+        .from("page_views")
+        .insert({
 
-    await supabaseClient
+          page:pageName,
+          path:pagePath,
+          visitor_id:visitorId,
+          session_id:sessionId,
+          referrer:referrer,
+          user_agent:userAgent,
+          device_type:deviceType,
+          country:null,
+          city:null
 
-      .from("page_views")
-
-      .insert({
-
-        page:
-          pageName,
-
-        path:
-          pagePath,
-
-        visitor_id:
-          visitorId,
-
-        session_id:
-          sessionId,
-
-        referrer:
-          referrer,
-
-        user_agent:
-          userAgent,
-
-        device_type:
-          deviceType,
-
-        /*
-           Country and city are intentionally
-           left null here because browser JS
-           cannot reliably determine them.
-        */
-
-        country:
-          null,
-
-        city:
-          null
-
-      });
+        });
 
 
     if(error){
 
-      console.error(
+      console.warn(
         "Visitor tracking error:",
         error
       );
 
-      return;
-
     }
-
-
-    console.log(
-      "Visitor tracked successfully:",
-      {
-        visitor_id: visitorId,
-        session_id: sessionId,
-        page: pageName,
-        path: pagePath,
-        device_type: deviceType
-      }
-    );
 
   }
   catch(error){
 
-    /*
-       Tracking failure must NEVER stop
-       the Cars page from working.
-    */
-
-    console.error(
+    console.warn(
       "Visitor tracking failed:",
       error
     );
@@ -1186,13 +777,6 @@ async function trackPageView(){
   }
 
 }
-
-
-/* =====================================================
-   START VISITOR TRACKING
-===================================================== */
-
-trackPageView();
 
 
 /* =====================================================
@@ -1210,15 +794,10 @@ const carsElement =
 function escapeHtml(value){
 
   return String(value ?? "")
-
     .replace(/&/g,"&amp;")
-
     .replace(/</g,"&lt;")
-
     .replace(/>/g,"&gt;")
-
     .replace(/"/g,"&quot;")
-
     .replace(/'/g,"&#039;");
 
 }
@@ -1239,12 +818,15 @@ function getCarImage(car){
 
   if(
     !image &&
-    Array.isArray(car.other_photos) &&
-    car.other_photos.length > 0
+    Array.isArray(car.other_photos)
   ){
 
     image =
-      car.other_photos[0];
+      car.other_photos.find(
+        photo =>
+          typeof photo === "string" &&
+          photo.trim() !== ""
+      ) || "";
 
   }
 
@@ -1257,25 +839,23 @@ function getCarImage(car){
     try{
 
       const parsed =
-        JSON.parse(
-          car.other_photos
-        );
+        JSON.parse(car.other_photos);
 
-
-      if(
-        Array.isArray(parsed) &&
-        parsed.length > 0
-      ){
+      if(Array.isArray(parsed)){
 
         image =
-          parsed[0];
+          parsed.find(
+            photo =>
+              typeof photo === "string" &&
+              photo.trim() !== ""
+          ) || "";
 
       }
 
     }
     catch(error){
 
-      console.log(
+      console.warn(
         "Photo parsing error:",
         error
       );
@@ -1289,9 +869,7 @@ function getCarImage(car){
 
     image =
       "https://via.placeholder.com/800x500?text=" +
-      encodeURIComponent(
-        t.car
-      );
+      encodeURIComponent(t.car);
 
   }
 
@@ -1302,7 +880,7 @@ function getCarImage(car){
 
 
 /* =====================================================
-   GET LOCATION
+   LOCATION
 ===================================================== */
 
 function getLocation(car){
@@ -1310,34 +888,56 @@ function getLocation(car){
   const parts = [
 
     car.country,
-
     car.province,
-
     car.district,
-
     car.sector
 
   ].filter(
 
     value =>
-
       value !== null &&
-
       value !== undefined &&
-
       String(value).trim() !== ""
 
   );
 
 
-  if(parts.length > 0){
+  return parts.length
+    ? parts.join(", ")
+    : t.rwanda;
 
-    return parts.join(", ");
+}
+
+
+/* =====================================================
+   PRICE
+===================================================== */
+
+function formatPrice(price){
+
+  if(
+    price === null ||
+    price === undefined ||
+    price === ""
+  ){
+
+    return "0";
 
   }
 
 
-  return t.rwanda;
+  const number =
+    Number(price);
+
+
+  if(Number.isNaN(number)){
+
+    return "0";
+
+  }
+
+
+  return number.toLocaleString("en-US");
 
 }
 
@@ -1352,9 +952,7 @@ async function loadCars(){
 
     <div class="empty loading">
 
-      ${escapeHtml(
-        t.loading
-      )}
+      ${escapeHtml(t.loading)}
 
     </div>
 
@@ -1367,24 +965,23 @@ async function loadCars(){
       data,
       error
     } =
+      await supabaseClient
 
-    await supabaseClient
+        .from("cars_posts")
 
-      .from("cars_posts")
+        .select("*")
 
-      .select("*")
+        .eq(
+          "status",
+          "published"
+        )
 
-      .eq(
-        "status",
-        "published"
-      )
-
-      .order(
-        "created_at",
-        {
-          ascending:false
-        }
-      );
+        .order(
+          "created_at",
+          {
+            ascending:false
+          }
+        );
 
 
     if(error){
@@ -1401,10 +998,15 @@ async function loadCars(){
 
           ❌<br><br>
 
-          ${escapeHtml(
-            error.message ||
-            t.error
-          )}
+          ${escapeHtml(t.error)}
+
+          <br><br>
+
+          <small>
+            ${escapeHtml(
+              error.message || ""
+            )}
+          </small>
 
         </div>
 
@@ -1426,9 +1028,7 @@ async function loadCars(){
 
           🚗<br><br>
 
-          ${escapeHtml(
-            t.noCars
-          )}
+          ${escapeHtml(t.noCars)}
 
         </div>
 
@@ -1442,162 +1042,132 @@ async function loadCars(){
     carsElement.innerHTML = "";
 
 
-    data.forEach(
-      car => {
+    data.forEach(car => {
 
-        const card =
-          document.createElement(
-            "div"
-          );
+      if(
+        car.id === null ||
+        car.id === undefined ||
+        String(car.id).trim() === ""
+      ){
 
-
-        card.className =
-          "car";
-
-
-        const image =
-          getCarImage(car);
-
-
-        const carTitle =
-
-          car.title ||
-
-          car.name ||
-
-          car.car_name ||
-
-          t.car;
-
-
-        let formattedPrice =
-          "0";
-
-
-        if(
-          car.price !== null &&
-          car.price !== undefined &&
-          car.price !== ""
-        ){
-
-          const number =
-            Number(
-              car.price
-            );
-
-
-          if(
-            !Number.isNaN(
-              number
-            )
-          ){
-
-            formattedPrice =
-              number.toLocaleString(
-                "en-US"
-              );
-
-          }
-
-        }
-
-
-        const location =
-          getLocation(car);
-
-
-        const detailUrl =
-          "car-sale-detail.html?id=" +
-          encodeURIComponent(
-            car.id
-          );
-
-
-        card.innerHTML = `
-
-          <img
-
-            src="${escapeHtml(
-              image
-            )}"
-
-            alt="${escapeHtml(
-              carTitle
-            )}"
-
-            loading="lazy"
-
-            onerror="
-              this.onerror=null;
-              this.src='https://via.placeholder.com/800x500?text=No+Photo';
-            "
-
-          >
-
-
-          <div class="car-body">
-
-
-            <div class="car-title">
-
-              ${escapeHtml(
-                carTitle
-              )}
-
-            </div>
-
-
-            <div class="price">
-
-              ${escapeHtml(
-                formattedPrice
-              )}
-
-              RWF
-
-            </div>
-
-
-            <div class="location">
-
-              📍
-
-              ${escapeHtml(
-                location
-              )}
-
-            </div>
-
-
-            <a
-
-              class="details"
-
-              href="${escapeHtml(
-                detailUrl
-              )}"
-
-            >
-
-              ${escapeHtml(
-                t.view
-              )}
-
-            </a>
-
-
-          </div>
-
-        `;
-
-
-        carsElement.appendChild(
-          card
+        console.warn(
+          "Car skipped because it has no ID:",
+          car
         );
 
-      }
-    );
+        return;
 
+      }
+
+
+      const card =
+        document.createElement("div");
+
+
+      card.className =
+        "car";
+
+
+      const image =
+        getCarImage(car);
+
+
+      const carTitle =
+        car.title ||
+        car.name ||
+        car.car_name ||
+        t.car;
+
+
+      const formattedPrice =
+        formatPrice(car.price);
+
+
+      const location =
+        getLocation(car);
+
+
+      const detailUrl =
+        "car-sale-detail.html?id=" +
+        encodeURIComponent(
+          String(car.id)
+        );
+
+
+      card.innerHTML = `
+
+        <img
+          src="${escapeHtml(image)}"
+          alt="${escapeHtml(carTitle)}"
+          loading="lazy"
+        >
+
+        <div class="car-body">
+
+          <div class="car-title">
+            ${escapeHtml(carTitle)}
+          </div>
+
+          <div class="price">
+            ${escapeHtml(formattedPrice)} RWF
+          </div>
+
+          <div class="location">
+            📍 ${escapeHtml(location)}
+          </div>
+
+          <a
+            class="details"
+            href="${escapeHtml(detailUrl)}"
+          >
+            ${escapeHtml(t.view)}
+          </a>
+
+        </div>
+
+      `;
+
+
+      const imageElement =
+        card.querySelector("img");
+
+
+      imageElement.addEventListener(
+        "error",
+        function(){
+
+          this.onerror = null;
+
+          this.src =
+            "https://via.placeholder.com/800x500?text=" +
+            encodeURIComponent(t.car);
+
+        }
+      );
+
+
+      carsElement.appendChild(card);
+
+    });
+
+
+    if(
+      carsElement.children.length === 0
+    ){
+
+      carsElement.innerHTML = `
+
+        <div class="empty error">
+
+          ❌<br><br>
+
+          ${escapeHtml(t.error)}
+
+        </div>
+
+      `;
+
+    }
 
   }
   catch(error){
@@ -1614,16 +1184,15 @@ async function loadCars(){
 
         ❌<br><br>
 
-        ${escapeHtml(
-          t.error
-        )}
+        ${escapeHtml(t.error)}
 
         <br><br>
 
-        ${escapeHtml(
-          error.message ||
-          ""
-        )}
+        <small>
+          ${escapeHtml(
+            error.message || ""
+          )}
+        </small>
 
       </div>
 
@@ -1635,14 +1204,16 @@ async function loadCars(){
 
 
 /* =====================================================
-   START CARS
+   START
 ===================================================== */
 
 loadCars();
 
+trackPageView();
+
 
 /* =====================================================
-   START GOOGLE ADSENSE
+   ADSENSE
 ===================================================== */
 
 window.addEventListener(
@@ -1660,7 +1231,7 @@ window.addEventListener(
     }
     catch(error){
 
-      console.log(
+      console.warn(
         "AdSense error:",
         error
       );
@@ -1671,7 +1242,6 @@ window.addEventListener(
 );
 
 </script>
-
 
 </body>
 </html>
