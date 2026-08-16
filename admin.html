@@ -27,7 +27,6 @@ body{
   color:#33251d;
 }
 
-
 /* ================= NAVBAR ================= */
 
 .navbar{
@@ -71,7 +70,6 @@ body{
   cursor:pointer;
 }
 
-
 /* ================= CONTAINER ================= */
 
 .container{
@@ -97,14 +95,13 @@ h1,h2,h3{
   margin-top:0;
 }
 
-
 /* ================= TABS ================= */
 
 .tabs{
   display:grid;
 
   grid-template-columns:
-    repeat(5,1fr);
+    repeat(6,1fr);
 
   gap:10px;
 
@@ -137,7 +134,6 @@ h1,h2,h3{
   background:#8f6700;
 }
 
-
 /* ================= SECTIONS ================= */
 
 .section{
@@ -147,7 +143,6 @@ h1,h2,h3{
 .section.active{
   display:block;
 }
-
 
 /* ================= FORM ================= */
 
@@ -197,7 +192,6 @@ textarea{
   gap:15px;
 }
 
-
 /* ================= BUTTONS ================= */
 
 .button{
@@ -244,7 +238,6 @@ textarea{
   color:white;
 }
 
-
 /* ================= MESSAGE ================= */
 
 .message{
@@ -277,7 +270,6 @@ textarea{
 
   color:#a00000;
 }
-
 
 /* ================= PROPERTY CARDS ================= */
 
@@ -358,7 +350,6 @@ textarea{
   flex:1;
 }
 
-
 /* ================= PHOTOS ================= */
 
 .photos-preview{
@@ -383,7 +374,6 @@ textarea{
   border-radius:8px;
 }
 
-
 /* ================= EMPTY ================= */
 
 .empty{
@@ -400,7 +390,6 @@ textarea{
 
   grid-column:1/-1;
 }
-
 
 /* ================= STATUS ================= */
 
@@ -437,7 +426,6 @@ textarea{
 
   color:#a00000;
 }
-
 
 /* ================= REQUESTS ================= */
 
@@ -508,7 +496,6 @@ textarea{
   margin-left:5px;
 }
 
-
 /* ================= CAR ================= */
 
 .car-badge{
@@ -530,19 +517,131 @@ textarea{
   margin-bottom:8px;
 }
 
+/* ================= ANALYTICS ================= */
+
+.analytics-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:15px;
+
+  margin-bottom:20px;
+}
+
+.analytics-card{
+
+  background:white;
+
+  padding:22px;
+
+  border-radius:14px;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.1);
+}
+
+.analytics-icon{
+
+  font-size:28px;
+
+  margin-bottom:10px;
+}
+
+.analytics-number{
+
+  font-size:30px;
+
+  font-weight:bold;
+
+  color:#a87800;
+
+  margin-bottom:5px;
+}
+
+.analytics-label{
+
+  color:#666;
+
+  font-weight:bold;
+}
+
+.analytics-table{
+
+  width:100%;
+
+  border-collapse:collapse;
+}
+
+.analytics-table th,
+.analytics-table td{
+
+  padding:13px;
+
+  border-bottom:1px solid #eee;
+
+  text-align:left;
+}
+
+.analytics-table th{
+
+  background:#f8f5eb;
+
+  color:#6d5100;
+}
+
+.page-name{
+
+  font-weight:bold;
+}
+
+.refresh-button{
+
+  background:#d4a017;
+
+  color:white;
+
+  border:0;
+
+  padding:10px 15px;
+
+  border-radius:8px;
+
+  cursor:pointer;
+
+  font-weight:bold;
+}
+
+.refresh-button:hover{
+
+  background:#a87800;
+}
 
 /* ================= MOBILE ================= */
 
-@media(max-width:1000px){
+@media(max-width:1100px){
 
-  .properties{
+  .analytics-grid{
+
     grid-template-columns:
       repeat(2,1fr);
+
+  }
+
+  .properties{
+
+    grid-template-columns:
+      repeat(2,1fr);
+
   }
 
   .tabs{
+
     grid-template-columns:
       repeat(3,1fr);
+
   }
 
 }
@@ -550,17 +649,30 @@ textarea{
 @media(max-width:650px){
 
   .navbar{
+
     flex-direction:column;
+
   }
 
   .grid,
   .properties,
-  .tabs{
+  .tabs,
+  .analytics-grid{
+
     grid-template-columns:1fr;
+
   }
 
   .property-actions{
+
     flex-direction:column;
+
+  }
+
+  .analytics-table{
+
+    font-size:13px;
+
   }
 
 }
@@ -568,7 +680,6 @@ textarea{
 </style>
 
 </head>
-
 
 <body>
 
@@ -612,7 +723,7 @@ textarea{
   </h1>
 
   <p>
-    Manage houses, cars, requests and property approvals.
+    Manage houses, cars, requests, approvals and website visitors.
   </p>
 
 </div>
@@ -671,6 +782,14 @@ textarea{
     onclick="showSection('approvalSection',this)"
   >
     ✅ Approvals
+  </button>
+
+
+  <button
+    class="tab"
+    onclick="showSection('analyticsSection',this)"
+  >
+    📊 Analytics
   </button>
 
 
@@ -987,7 +1106,7 @@ textarea{
       ></div>
 
 
-  </form>
+    </form>
 
   </div>
 
@@ -1003,8 +1122,6 @@ textarea{
   class="section"
 >
 
-
-  <!-- CAR FORM -->
 
   <div class="card">
 
@@ -1120,8 +1237,6 @@ textarea{
   </div>
 
 
-  <!-- CAR LIST -->
-
   <div class="card">
 
     <h2>
@@ -1221,11 +1336,175 @@ textarea{
 </section>
 
 
+<!-- =====================================================
+     ANALYTICS
+===================================================== -->
+
+<section
+  id="analyticsSection"
+  class="section"
+>
+
+  <div class="card">
+
+    <div style="
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    ">
+
+      <div>
+
+        <h2>
+          📊 Website Analytics
+        </h2>
+
+        <p>
+          Reba uko abantu basuye website yawe.
+        </p>
+
+      </div>
+
+      <button
+        class="refresh-button"
+        onclick="loadAnalytics()"
+      >
+        🔄 Refresh
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="analytics-grid">
+
+
+    <div class="analytics-card">
+
+      <div class="analytics-icon">
+        👁️
+      </div>
+
+      <div
+        id="totalViews"
+        class="analytics-number"
+      >
+        0
+      </div>
+
+      <div class="analytics-label">
+        Total Page Views
+      </div>
+
+    </div>
+
+
+    <div class="analytics-card">
+
+      <div class="analytics-icon">
+        📅
+      </div>
+
+      <div
+        id="todayViews"
+        class="analytics-number"
+      >
+        0
+      </div>
+
+      <div class="analytics-label">
+        Views Today
+      </div>
+
+    </div>
+
+
+    <div class="analytics-card">
+
+      <div class="analytics-icon">
+        📆
+      </div>
+
+      <div
+        id="weekViews"
+        class="analytics-number"
+      >
+        0
+      </div>
+
+      <div class="analytics-label">
+        Views This Week
+      </div>
+
+    </div>
+
+
+    <div class="analytics-card">
+
+      <div class="analytics-icon">
+        📄
+      </div>
+
+      <div
+        id="uniquePages"
+        class="analytics-number"
+      >
+        0
+      </div>
+
+      <div class="analytics-label">
+        Different Pages
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>
+      📄 Most Viewed Pages
+    </h2>
+
+    <div id="pageViewsTable">
+
+      <div class="empty">
+        Loading analytics...
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>
+      🕐 Recent Page Views
+    </h2>
+
+    <div id="recentViewsTable">
+
+      <div class="empty">
+        Loading recent views...
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
 </div>
 
 
 <script>
-
 
 /* =========================================================
    SUPABASE
@@ -1288,9 +1567,6 @@ const requestBadge =
     "requestBadge"
   );
 
-
-/* CAR ELEMENTS */
-
 const carForm =
   document.getElementById(
     "carForm"
@@ -1314,6 +1590,41 @@ const carPhotoPreview =
 const carsList =
   document.getElementById(
     "carsList"
+  );
+
+
+/* =========================================================
+   ANALYTICS ELEMENTS
+========================================================= */
+
+const totalViews =
+  document.getElementById(
+    "totalViews"
+  );
+
+const todayViews =
+  document.getElementById(
+    "todayViews"
+  );
+
+const weekViews =
+  document.getElementById(
+    "weekViews"
+  );
+
+const uniquePages =
+  document.getElementById(
+    "uniquePages"
+  );
+
+const pageViewsTable =
+  document.getElementById(
+    "pageViewsTable"
+  );
+
+const recentViewsTable =
+  document.getElementById(
+    "recentViewsTable"
   );
 
 
@@ -1417,6 +1728,13 @@ function showSection(
   if(id === "approvalSection"){
 
     loadApprovals();
+
+  }
+
+
+  if(id === "analyticsSection"){
+
+    loadAnalytics();
 
   }
 
@@ -1678,138 +1996,94 @@ propertyForm.addEventListener(
 
       const title =
         document
-          .getElementById(
-            "title"
-          )
+          .getElementById("title")
           .value
           .trim();
 
-
       const propertyType =
         document
-          .getElementById(
-            "propertyType"
-          )
+          .getElementById("propertyType")
           .value;
-
 
       const price =
         Number(
           document
-            .getElementById(
-              "price"
-            )
+            .getElementById("price")
             .value
         );
 
-
       const country =
         document
-          .getElementById(
-            "country"
-          )
+          .getElementById("country")
           .value
           .trim();
-
 
       const province =
         document
-          .getElementById(
-            "province"
-          )
+          .getElementById("province")
           .value
           .trim();
-
 
       const district =
         document
-          .getElementById(
-            "district"
-          )
+          .getElementById("district")
           .value
           .trim();
-
 
       const sector =
         document
-          .getElementById(
-            "sector"
-          )
+          .getElementById("sector")
           .value
           .trim();
-
 
       const bedrooms =
         Number(
           document
-            .getElementById(
-              "bedrooms"
-            )
+            .getElementById("bedrooms")
             .value || 0
         );
-
 
       const bathrooms =
         Number(
           document
-            .getElementById(
-              "bathrooms"
-            )
+            .getElementById("bathrooms")
             .value || 0
         );
-
 
       const parking =
         Number(
           document
-            .getElementById(
-              "parking"
-            )
+            .getElementById("parking")
             .value || 0
         );
 
-
       const sellerName =
         document
-          .getElementById(
-            "sellerName"
-          )
+          .getElementById("sellerName")
           .value
           .trim();
-
 
       const phone =
         document
-          .getElementById(
-            "phone"
-          )
+          .getElementById("phone")
           .value
           .trim();
-
 
       const description =
         document
-          .getElementById(
-            "description"
-          )
+          .getElementById("description")
           .value
           .trim();
 
-
       const mainPhotoFile =
         document
-          .getElementById(
-            "mainPhoto"
-          )
+          .getElementById("mainPhoto")
           .files[0];
-
 
       const otherPhotoFiles =
         Array.from(
           document
-            .getElementById(
-              "otherPhotos"
-            )
+            .getElementById("otherPhotos")
             .files
         );
 
@@ -1854,9 +2128,7 @@ propertyForm.addEventListener(
         error
       } =
       await supabaseClient
-        .from(
-          "property_posts"
-        )
+        .from("property_posts")
         .insert({
 
           seller_name:
@@ -1927,9 +2199,7 @@ propertyForm.addEventListener(
 
 
       document
-        .getElementById(
-          "country"
-        )
+        .getElementById("country")
         .value =
         "Rwanda";
 
@@ -1943,9 +2213,7 @@ propertyForm.addEventListener(
     }
     catch(error){
 
-      console.error(
-        error
-      );
+      console.error(error);
 
       showMessage(
         "❌ " +
@@ -1994,55 +2262,38 @@ carForm.addEventListener(
 
       const title =
         document
-          .getElementById(
-            "carTitle"
-          )
+          .getElementById("carTitle")
           .value
           .trim();
-
 
       const price =
         Number(
           document
-            .getElementById(
-              "carPrice"
-            )
+            .getElementById("carPrice")
             .value
         );
 
-
       const location =
         document
-          .getElementById(
-            "carLocation"
-          )
+          .getElementById("carLocation")
           .value
           .trim();
-
 
       const phone =
         document
-          .getElementById(
-            "carPhone"
-          )
+          .getElementById("carPhone")
           .value
           .trim();
 
-
       const mainFile =
         document
-          .getElementById(
-            "carMainPhoto"
-          )
+          .getElementById("carMainPhoto")
           .files[0];
-
 
       const otherFiles =
         Array.from(
           document
-            .getElementById(
-              "carOtherPhotos"
-            )
+            .getElementById("carOtherPhotos")
             .files
         );
 
@@ -2056,19 +2307,11 @@ carForm.addEventListener(
       }
 
 
-      /* =========================
-         MAIN CAR PHOTO
-      ========================= */
-
       const mainPhoto =
         await uploadImage(
           mainFile
         );
 
-
-      /* =========================
-         OTHER CAR PHOTOS
-      ========================= */
 
       const otherPhotos =
         [];
@@ -2091,17 +2334,11 @@ carForm.addEventListener(
       }
 
 
-      /* =========================
-         INSERT CARS_POSTS
-      ========================= */
-
       const {
         error
       } =
       await supabaseClient
-        .from(
-          "cars_posts"
-        )
+        .from("cars_posts")
         .insert({
 
           title:
@@ -2143,20 +2380,15 @@ carForm.addEventListener(
 
       carForm.reset();
 
-
       carPhotoPreview.innerHTML =
         "";
-
 
       await loadCars();
 
     }
     catch(error){
 
-      console.error(
-        error
-      );
-
+      console.error(error);
 
       showCarMessage(
         "❌ " +
@@ -2194,9 +2426,7 @@ async function loadProperties(){
     error
   } =
   await supabaseClient
-    .from(
-      "property_posts"
-    )
+    .from("property_posts")
     .select("*")
     .order(
       "created_at",
@@ -2273,73 +2503,39 @@ async function loadProperties(){
       card.innerHTML = `
 
         <img
-          src="${escapeHtml(
-            mainPhoto
-          )}"
+          src="${escapeHtml(mainPhoto)}"
           alt="Property"
         >
 
         <div class="property-body">
 
           <div class="property-title">
-
             ${escapeHtml(
               property.title ||
               "Property"
             )}
-
           </div>
-
 
           <div class="price">
-
             ${Number(
-              property.price ||
-              0
+              property.price || 0
             ).toLocaleString()}
-
             RWF
-
           </div>
-
 
           <div class="location">
 
             📍
-
-            ${escapeHtml(
-              property.country ||
-              ""
-            )}
-
-            ,
-
-            ${escapeHtml(
-              property.province ||
-              ""
-            )}
-
-            ,
-
-            ${escapeHtml(
-              property.district ||
-              ""
-            )}
-
-            ,
-
-            ${escapeHtml(
-              property.sector ||
-              ""
-            )}
+            ${escapeHtml(property.country || "")},
+            ${escapeHtml(property.province || "")},
+            ${escapeHtml(property.district || "")},
+            ${escapeHtml(property.sector || "")}
 
             <br><br>
 
             🏷️ Type:
-
             ${escapeHtml(
-              property.property_type ||
-              ""
+              property.property_type || ""
             )}
 
             <br>
@@ -2347,40 +2543,30 @@ async function loadProperties(){
             📌 Status:
 
             <span
-              class="status status-${escapeHtml(
-                status
-              )}"
+              class="status status-${escapeHtml(status)}"
             >
-
-              ${escapeHtml(
-                status
-              )}
-
+              ${escapeHtml(status)}
             </span>
 
             <br><br>
 
             🛏️ Bedrooms:
-
             ${property.bedrooms ?? 0}
 
             <br>
 
             🚿 Bathrooms:
-
             ${property.bathrooms ?? 0}
 
             <br>
 
             🚗 Parking:
-
             ${property.parking ?? 0}
 
           </div>
 
 
           <div class="property-actions">
-
 
             <button
               class="button secondary"
@@ -2397,12 +2583,9 @@ async function loadProperties(){
               🗑️ Delete
             </button>
 
-
           </div>
 
-
         </div>
-
       `;
 
 
@@ -2433,9 +2616,7 @@ async function loadCars(){
     error
   } =
   await supabaseClient
-    .from(
-      "cars_posts"
-    )
+    .from("cars_posts")
     .select("*");
 
 
@@ -2443,11 +2624,7 @@ async function loadCars(){
 
     carsList.innerHTML =
       `<div class="empty">
-
-        ❌ ${escapeHtml(
-          error.message
-        )}
-
+        ❌ ${escapeHtml(error.message)}
       </div>`;
 
     return;
@@ -2462,9 +2639,7 @@ async function loadCars(){
 
     carsList.innerHTML =
       `<div class="empty">
-
         🚗 Nta modoka irashyirwaho.
-
       </div>`;
 
     return;
@@ -2494,9 +2669,7 @@ async function loadCars(){
 
       if(
         !mainPhoto &&
-        Array.isArray(
-          car.otherph
-        )
+        Array.isArray(car.otherph)
       ){
 
         mainPhoto =
@@ -2507,22 +2680,15 @@ async function loadCars(){
 
       if(
         !mainPhoto &&
-        typeof car.otherph ===
-        "string"
+        typeof car.otherph === "string"
       ){
 
         try{
 
           const parsed =
-            JSON.parse(
-              car.otherph
-            );
+            JSON.parse(car.otherph);
 
-          if(
-            Array.isArray(
-              parsed
-            )
-          ){
+          if(Array.isArray(parsed)){
 
             mainPhoto =
               parsed[0];
@@ -2548,75 +2714,47 @@ async function loadCars(){
       card.innerHTML = `
 
         <img
-          src="${escapeHtml(
-            mainPhoto
-          )}"
+          src="${escapeHtml(mainPhoto)}"
           alt="Car"
         >
 
-
         <div class="property-body">
-
 
           <div class="car-badge">
             🚗 CAR FOR SALE
           </div>
 
-
           <div class="property-title">
-
             ${escapeHtml(
-              car.title ||
-              "Car"
+              car.title || "Car"
             )}
-
           </div>
-
 
           <div class="price">
-
             ${Number(
-              car.price ||
-              0
+              car.price || 0
             ).toLocaleString()}
-
             RWF
-
           </div>
-
 
           <div class="location">
 
             📍
-
-            ${escapeHtml(
-              car.locati ||
-              ""
-            )}
+            ${escapeHtml(car.locati || "")}
 
             <br><br>
 
             📞
-
-            ${escapeHtml(
-              car.phon ||
-              ""
-            )}
+            ${escapeHtml(car.phon || "")}
 
             <br><br>
 
             📌 Status:
 
             <span
-              class="status status-${escapeHtml(
-                status
-              )}"
+              class="status status-${escapeHtml(status)}"
             >
-
-              ${escapeHtml(
-                status
-              )}
-
+              ${escapeHtml(status)}
             </span>
 
           </div>
@@ -2624,14 +2762,11 @@ async function loadCars(){
 
           <div class="property-actions">
 
-
             <button
               class="button secondary"
               onclick="viewCar('${car.id}')"
             >
-
               View
-
             </button>
 
 
@@ -2639,14 +2774,10 @@ async function loadCars(){
               class="button delete"
               onclick="deleteCar('${car.id}')"
             >
-
               🗑️ Delete
-
             </button>
 
-
           </div>
-
 
         </div>
 
@@ -2674,14 +2805,9 @@ async function viewCar(id){
     error
   } =
   await supabaseClient
-    .from(
-      "cars_posts"
-    )
+    .from("cars_posts")
     .select("*")
-    .eq(
-      "id",
-      id
-    )
+    .eq("id",id)
     .maybeSingle();
 
 
@@ -2713,40 +2839,24 @@ async function viewCar(id){
     "CAR DETAILS\n\n" +
 
     "Title: " +
-    (
-      data.title ||
-      ""
-    ) +
+    (data.title || "") +
 
     "\n\nPrice: " +
 
     Number(
-      data.price ||
-      0
+      data.price || 0
     ).toLocaleString() +
 
     " RWF" +
 
     "\n\nLocation: " +
-
-    (
-      data.locati ||
-      ""
-    ) +
+    (data.locati || "") +
 
     "\n\nPhone: " +
-
-    (
-      data.phon ||
-      ""
-    ) +
+    (data.phon || "") +
 
     "\n\nStatus: " +
-
-    (
-      data.stat ||
-      ""
-    )
+    (data.stat || "")
 
   );
 
@@ -2774,14 +2884,9 @@ async function deleteCar(id){
     error
   } =
   await supabaseClient
-    .from(
-      "cars_posts"
-    )
+    .from("cars_posts")
     .delete()
-    .eq(
-      "id",
-      id
-    );
+    .eq("id",id);
 
 
   if(error){
@@ -2817,14 +2922,9 @@ async function viewProperty(id){
     error
   } =
   await supabaseClient
-    .from(
-      "property_posts"
-    )
+    .from("property_posts")
     .select("*")
-    .eq(
-      "id",
-      id
-    )
+    .eq("id",id)
     .maybeSingle();
 
 
@@ -2856,72 +2956,38 @@ async function viewProperty(id){
     "PROPERTY DETAILS\n\n" +
 
     "Title: " +
-    (
-      data.title ||
-      ""
-    ) +
+    (data.title || "") +
 
     "\n\nSeller: " +
-    (
-      data.seller_name ||
-      ""
-    ) +
+    (data.seller_name || "") +
 
     "\nPhone: " +
-    (
-      data.phone ||
-      ""
-    ) +
+    (data.phone || "") +
 
     "\n\nType: " +
-    (
-      data.property_type ||
-      ""
-    ) +
+    (data.property_type || "") +
 
     "\n\nPrice: " +
 
     Number(
-      data.price ||
-      0
+      data.price || 0
     ).toLocaleString() +
 
     " RWF" +
 
     "\n\nLocation: " +
 
-    (
-      data.country ||
-      ""
-    ) +
-
+    (data.country || "") +
     " / " +
-
-    (
-      data.province ||
-      ""
-    ) +
-
+    (data.province || "") +
     " / " +
-
-    (
-      data.district ||
-      ""
-    ) +
-
+    (data.district || "") +
     " / " +
-
-    (
-      data.sector ||
-      ""
-    ) +
+    (data.sector || "") +
 
     "\n\nDescription:\n" +
 
-    (
-      data.description ||
-      ""
-    )
+    (data.description || "")
 
   );
 
@@ -2949,14 +3015,9 @@ async function deleteProperty(id){
     error
   } =
   await supabaseClient
-    .from(
-      "property_posts"
-    )
+    .from("property_posts")
     .delete()
-    .eq(
-      "id",
-      id
-    );
+    .eq("id",id);
 
 
   if(error){
@@ -2998,9 +3059,7 @@ async function loadRequests(){
     error
   } =
   await supabaseClient
-    .from(
-      "property_requests"
-    )
+    .from("property_requests")
     .select("*")
     .order(
       "created_at",
@@ -3014,11 +3073,7 @@ async function loadRequests(){
 
     requestsList.innerHTML =
       `<div class="empty">
-
-        ❌ ${escapeHtml(
-          error.message
-        )}
-
+        ❌ ${escapeHtml(error.message)}
       </div>`;
 
     requestBadge.textContent =
@@ -3036,9 +3091,7 @@ async function loadRequests(){
 
     requestsList.innerHTML =
       `<div class="empty">
-
         Nta request iraboneka.
-
       </div>`;
 
     requestBadge.textContent =
@@ -3050,7 +3103,15 @@ async function loadRequests(){
 
 
   requestBadge.textContent =
-    data.length;
+    data.filter(
+      request =>
+        String(
+          request.status ||
+          "pending"
+        ).toLowerCase()
+        ===
+        "pending"
+    ).length;
 
 
   requestsList.innerHTML =
@@ -3087,44 +3148,43 @@ async function loadRequests(){
 
         <div class="request-info">
 
-
           ${
             request.email
             ?
             "📧 Email: " +
-            escapeHtml(
-              request.email
-            ) +
+            escapeHtml(request.email) +
             "<br>"
             :
             ""
           }
-
 
           ${
             request.phone
             ?
             "📞 Phone: " +
-            escapeHtml(
-              request.phone
-            ) +
+            escapeHtml(request.phone) +
             "<br>"
             :
             ""
           }
 
-
           ${
             request.message
             ?
             "<br>📝 Message:<br>" +
-            escapeHtml(
-              request.message
-            )
+            escapeHtml(request.message)
             :
             ""
           }
 
+          ${
+            request.status
+            ?
+            "<br><br>📌 Status: " +
+            escapeHtml(request.status)
+            :
+            ""
+          }
 
           ${
             request.created_at
@@ -3138,7 +3198,6 @@ async function loadRequests(){
             :
             ""
           }
-
 
         </div>
 
@@ -3172,9 +3231,7 @@ async function loadApprovals(){
     error
   } =
   await supabaseClient
-    .from(
-      "property_requests"
-    )
+    .from("property_requests")
     .select("*")
     .order(
       "created_at",
@@ -3188,11 +3245,7 @@ async function loadApprovals(){
 
     approvalsList.innerHTML =
       `<div class="empty">
-
-        ❌ ${escapeHtml(
-          error.message
-        )}
-
+        ❌ ${escapeHtml(error.message)}
       </div>`;
 
     return;
@@ -3209,28 +3262,21 @@ async function loadApprovals(){
             String(
               request.status ||
               "pending"
-            )
-            .toLowerCase();
+            ).toLowerCase();
 
-          return (
-            status ===
-            "pending"
-          );
+          return status === "pending";
 
         }
       );
 
 
   if(
-    pending.length ===
-    0
+    pending.length === 0
   ){
 
     approvalsList.innerHTML =
       `<div class="empty">
-
         ✅ Nta request itegereje kwemezwa.
-
       </div>`;
 
     return;
@@ -3272,7 +3318,6 @@ async function loadApprovals(){
 
         <div class="request-info">
 
-
           ${
             request.name ||
             request.full_name
@@ -3290,47 +3335,38 @@ async function loadApprovals(){
             ""
           }
 
-
           ${
             request.phone
             ?
 
             "📞 Phone: " +
-            escapeHtml(
-              request.phone
-            ) +
+            escapeHtml(request.phone) +
             "<br>"
 
             :
 
             ""
           }
-
 
           ${
             request.email
             ?
 
             "📧 Email: " +
-            escapeHtml(
-              request.email
-            ) +
+            escapeHtml(request.email) +
             "<br>"
 
             :
 
             ""
           }
-
 
           ${
             request.property_type
             ?
 
             "🏷️ Type: " +
-            escapeHtml(
-              request.property_type
-            ) +
+            escapeHtml(request.property_type) +
             "<br>"
 
             :
@@ -3338,15 +3374,13 @@ async function loadApprovals(){
             ""
           }
 
-
           ${
             request.price
             ?
 
             "💰 Price: " +
-            Number(
-              request.price
-            ).toLocaleString() +
+            Number(request.price)
+              .toLocaleString() +
             " RWF<br>"
 
             :
@@ -3354,35 +3388,28 @@ async function loadApprovals(){
             ""
           }
 
-
           ${
             request.message
             ?
 
             "<br>📝 Message:<br>" +
-            escapeHtml(
-              request.message
-            )
+            escapeHtml(request.message)
 
             :
 
             ""
           }
 
-
         </div>
 
 
         <div class="request-actions">
 
-
           <button
             class="button approve"
             onclick="approveRequest('${request.id}')"
           >
-
             ✅ Approve
-
           </button>
 
 
@@ -3390,11 +3417,8 @@ async function loadApprovals(){
             class="button reject"
             onclick="rejectRequest('${request.id}')"
           >
-
             ❌ Reject
-
           </button>
-
 
         </div>
 
@@ -3432,17 +3456,11 @@ async function approveRequest(id){
     error
   } =
   await supabaseClient
-    .from(
-      "property_requests"
-    )
+    .from("property_requests")
     .update({
-      status:
-        "approved"
+      status:"approved"
     })
-    .eq(
-      "id",
-      id
-    );
+    .eq("id",id);
 
 
   if(error){
@@ -3490,17 +3508,11 @@ async function rejectRequest(id){
     error
   } =
   await supabaseClient
-    .from(
-      "property_requests"
-    )
+    .from("property_requests")
     .update({
-      status:
-        "rejected"
+      status:"rejected"
     })
-    .eq(
-      "id",
-      id
-    );
+    .eq("id",id);
 
 
   if(error){
@@ -3523,6 +3535,437 @@ async function rejectRequest(id){
   await loadApprovals();
 
   await loadRequests();
+
+}
+
+
+/* =========================================================
+   ANALYTICS
+========================================================= */
+
+async function loadAnalytics(){
+
+  totalViews.textContent =
+    "0";
+
+  todayViews.textContent =
+    "0";
+
+  weekViews.textContent =
+    "0";
+
+  uniquePages.textContent =
+    "0";
+
+
+  pageViewsTable.innerHTML =
+    `<div class="empty">
+      Loading analytics...
+    </div>`;
+
+
+  recentViewsTable.innerHTML =
+    `<div class="empty">
+      Loading recent views...
+    </div>`;
+
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+    await supabaseClient
+      .from("page_views")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+    if(error){
+
+      throw error;
+
+    }
+
+
+    const views =
+      data || [];
+
+
+    /* =========================
+       TOTAL
+    ========================= */
+
+    totalViews.textContent =
+      views.length.toLocaleString();
+
+
+    /* =========================
+       DATES
+    ========================= */
+
+    const now =
+      new Date();
+
+
+    const startOfToday =
+      new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate()
+      );
+
+
+    const startOfWeek =
+      new Date(
+        startOfToday
+      );
+
+
+    const day =
+      startOfWeek.getDay();
+
+
+    const diff =
+      day === 0
+      ? 6
+      : day - 1;
+
+
+    startOfWeek.setDate(
+      startOfWeek.getDate() -
+      diff
+    );
+
+
+    /* =========================
+       TODAY
+    ========================= */
+
+    const todayCount =
+      views.filter(
+        view => {
+
+          if(!view.created_at){
+            return false;
+          }
+
+          const date =
+            new Date(
+              view.created_at
+            );
+
+          return date >=
+            startOfToday;
+
+        }
+      ).length;
+
+
+    todayViews.textContent =
+      todayCount.toLocaleString();
+
+
+    /* =========================
+       THIS WEEK
+    ========================= */
+
+    const weekCount =
+      views.filter(
+        view => {
+
+          if(!view.created_at){
+            return false;
+          }
+
+          const date =
+            new Date(
+              view.created_at
+            );
+
+          return date >=
+            startOfWeek;
+
+        }
+      ).length;
+
+
+    weekViews.textContent =
+      weekCount.toLocaleString();
+
+
+    /* =========================
+       PAGE COUNTS
+    ========================= */
+
+    const pageCounts =
+      {};
+
+
+    views.forEach(
+      view => {
+
+        const page =
+          view.page ||
+          view.page_name ||
+          view.path ||
+          "Unknown";
+
+
+        pageCounts[page] =
+          (
+            pageCounts[page] ||
+            0
+          ) + 1;
+
+      }
+    );
+
+
+    const sortedPages =
+      Object.entries(
+        pageCounts
+      )
+      .sort(
+        (a,b) =>
+          b[1] - a[1]
+      );
+
+
+    uniquePages.textContent =
+      sortedPages.length
+        .toLocaleString();
+
+
+    /* =========================
+       MOST VIEWED TABLE
+    ========================= */
+
+    if(
+      sortedPages.length ===
+      0
+    ){
+
+      pageViewsTable.innerHTML =
+        `<div class="empty">
+          Nta page view iraboneka.
+        </div>`;
+
+    }
+    else{
+
+      let html = `
+
+        <div style="overflow-x:auto">
+
+          <table class="analytics-table">
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  #
+                </th>
+
+                <th>
+                  Page
+                </th>
+
+                <th>
+                  Views
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+      `;
+
+
+      sortedPages.forEach(
+        ([page,count],index) => {
+
+          html += `
+
+            <tr>
+
+              <td>
+                ${index + 1}
+              </td>
+
+              <td class="page-name">
+                ${escapeHtml(page)}
+              </td>
+
+              <td>
+                ${count.toLocaleString()}
+              </td>
+
+            </tr>
+
+          `;
+
+        }
+      );
+
+
+      html += `
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      `;
+
+
+      pageViewsTable.innerHTML =
+        html;
+
+    }
+
+
+    /* =========================
+       RECENT VIEWS
+    ========================= */
+
+    const recent =
+      views.slice(0,50);
+
+
+    if(
+      recent.length === 0
+    ){
+
+      recentViewsTable.innerHTML =
+        `<div class="empty">
+          Nta recent view iraboneka.
+        </div>`;
+
+    }
+    else{
+
+      let html = `
+
+        <div style="overflow-x:auto">
+
+          <table class="analytics-table">
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Page
+                </th>
+
+                <th>
+                  Date & Time
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+      `;
+
+
+      recent.forEach(
+        view => {
+
+          const page =
+            view.page ||
+            view.page_name ||
+            view.path ||
+            "Unknown";
+
+
+          const date =
+            view.created_at
+            ?
+            new Date(
+              view.created_at
+            ).toLocaleString()
+            :
+            "-";
+
+
+          html += `
+
+            <tr>
+
+              <td class="page-name">
+                ${escapeHtml(page)}
+              </td>
+
+              <td>
+                ${escapeHtml(date)}
+              </td>
+
+            </tr>
+
+          `;
+
+        }
+      );
+
+
+      html += `
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      `;
+
+
+      recentViewsTable.innerHTML =
+        html;
+
+    }
+
+  }
+  catch(error){
+
+    console.error(
+      "Analytics error:",
+      error
+    );
+
+
+    pageViewsTable.innerHTML =
+      `<div class="empty">
+
+        ❌ Analytics error:
+        ${escapeHtml(
+          error.message
+        )}
+
+      </div>`;
+
+
+    recentViewsTable.innerHTML =
+      `<div class="empty">
+
+        ❌ Ntabwo page views zabashije kuboneka.
+
+      </div>`;
+
+  }
 
 }
 
@@ -3576,16 +4019,16 @@ async function logout(){
   await loadProperties();
 
 
+  /* =========================
+     REQUEST BADGE
+  ========================= */
+
   const {
     data
   } =
   await supabaseClient
-    .from(
-      "property_requests"
-    )
-    .select(
-      "id,status"
-    );
+    .from("property_requests")
+    .select("id,status");
 
 
   if(data){
@@ -3614,7 +4057,6 @@ async function logout(){
 })();
 
 </script>
-
 
 </body>
 
