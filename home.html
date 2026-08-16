@@ -297,100 +297,6 @@ body{
   background:#a87800;
 }
 
-/* ================= PROPERTY GRID ================= */
-
-.home-properties{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.property-card{
-  background:white;
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:0 3px 12px rgba(0,0,0,.12);
-  transition:.2s;
-}
-
-.property-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 8px 22px rgba(0,0,0,.16);
-}
-
-.property-image{
-  width:100%;
-  height:230px;
-  object-fit:cover;
-  display:block;
-}
-
-.property-content{
-  padding:18px;
-}
-
-.property-content h3{
-  margin:0 0 10px;
-  font-size:20px;
-}
-
-.property-price{
-  color:#b27b00;
-  font-size:20px;
-  font-weight:bold;
-  margin-bottom:10px;
-}
-
-.property-location{
-  color:#666;
-  line-height:1.5;
-  margin-bottom:8px;
-}
-
-.property-type{
-  color:#777;
-  margin-bottom:15px;
-}
-
-.property-info{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:15px;
-}
-
-.info-item{
-  background:#f7f5ef;
-  padding:6px 9px;
-  border-radius:6px;
-  color:#555;
-  font-size:13px;
-}
-
-.view-button{
-  display:block;
-  text-align:center;
-  background:#d4a017;
-  color:white;
-  text-decoration:none;
-  padding:11px;
-  border-radius:8px;
-  font-weight:bold;
-}
-
-.view-button:hover{
-  background:#a87800;
-}
-
-.empty{
-  text-align:center;
-  padding:35px;
-  color:#777;
-  background:white;
-  border-radius:12px;
-  grid-column:1/-1;
-}
-
 /* ================= SELL ================= */
 
 .sell-box{
@@ -440,10 +346,6 @@ footer a{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .home-properties{
-    grid-template-columns:repeat(2,1fr);
-  }
-
 }
 
 @media(max-width:650px){
@@ -490,10 +392,6 @@ footer a{
   }
 
   .cards{
-    grid-template-columns:1fr;
-  }
-
-  .home-properties{
     grid-template-columns:1fr;
   }
 
@@ -559,8 +457,6 @@ footer a{
       id="carsLink">
       Cars for Sale
     </a>
-
-    <!-- ADMIN LOGIN IS NOW INSIDE THE NAVBAR -->
 
     <a
       href="admin-login.html"
@@ -821,37 +717,6 @@ footer a{
 
 
   <!-- ===================================================
-       LATEST PROPERTIES
-  =================================================== -->
-
-  <div
-    class="section-title"
-    style="margin-top:50px;">
-
-    <h2 id="latestTitle">
-      Latest Properties
-    </h2>
-
-    <p id="latestDescription">
-      Properties recently posted on
-      Rwanda Property Visata.
-    </p>
-
-  </div>
-
-
-  <div
-    id="homeProperties"
-    class="home-properties">
-
-    <div class="empty">
-      Loading properties...
-    </div>
-
-  </div>
-
-
-  <!-- ===================================================
        SELL PROPERTY
   =================================================== -->
 
@@ -930,187 +795,6 @@ const supabaseClient =
 
 
 /* =========================================================
-   ELEMENTS
-========================================================= */
-
-const homeProperties =
-  document.getElementById("homeProperties");
-
-
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHtml(value){
-
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-/* =========================================================
-   LOAD PROPERTIES
-========================================================= */
-
-async function loadHomeProperties(){
-
-  homeProperties.innerHTML = `
-    <div class="empty">
-      Loading properties...
-    </div>
-  `;
-
-  const {
-    data,
-    error
-  } = await supabaseClient
-    .from("property_posts")
-    .select("*")
-    .eq("status","published")
-    .order("created_at",{ascending:false})
-    .limit(12);
-
-  if(error){
-
-    console.error("Supabase error:",error);
-
-    homeProperties.innerHTML = `
-      <div class="empty">
-        ❌ Failed to load properties.
-      </div>
-    `;
-
-    return;
-  }
-
-  if(!data || data.length === 0){
-
-    homeProperties.innerHTML = `
-      <div class="empty">
-        No properties available yet.
-      </div>
-    `;
-
-    return;
-  }
-
-  homeProperties.innerHTML = "";
-
-  data.forEach(property => {
-
-    let mainPhoto =
-      property.main_photo;
-
-    if(
-      !mainPhoto &&
-      Array.isArray(property.other_photos)
-    ){
-      mainPhoto =
-        property.other_photos[0];
-    }
-
-    if(!mainPhoto){
-      mainPhoto =
-        "https://via.placeholder.com/800x500?text=No+Photo";
-    }
-
-    const card =
-      document.createElement("div");
-
-    card.className =
-      "property-card";
-
-    card.innerHTML = `
-
-      <img
-        src="${escapeHtml(mainPhoto)}"
-        alt="${escapeHtml(property.title || "Property")}"
-        class="property-image"
-        onerror="this.src='https://via.placeholder.com/800x500?text=No+Photo'"
-      >
-
-      <div class="property-content">
-
-        <h3>
-          ${escapeHtml(
-            property.title || "Property"
-          )}
-        </h3>
-
-        <div class="property-price">
-          ${Number(
-            property.price || 0
-          ).toLocaleString()} RWF
-        </div>
-
-        <div class="property-location">
-
-          📍
-
-          ${escapeHtml(property.country || "")}
-
-          ${property.province ? ", " : ""}
-
-          ${escapeHtml(property.province || "")}
-
-          ${property.district ? ", " : ""}
-
-          ${escapeHtml(property.district || "")}
-
-          ${property.sector ? ", " : ""}
-
-          ${escapeHtml(property.sector || "")}
-
-        </div>
-
-        <div class="property-type">
-
-          🏷️
-
-          ${escapeHtml(
-            property.property_type || ""
-          )}
-
-        </div>
-
-        <div class="property-info">
-
-          <span class="info-item">
-            🛏️ ${Number(property.bedrooms || 0)}
-          </span>
-
-          <span class="info-item">
-            🚿 ${Number(property.bathrooms || 0)}
-          </span>
-
-          <span class="info-item">
-            🚗 ${Number(property.parking || 0)}
-          </span>
-
-        </div>
-
-        <a
-          href="property-details.html?id=${encodeURIComponent(property.id)}"
-          class="view-button">
-          View Detail
-        </a>
-
-      </div>
-    `;
-
-    homeProperties.appendChild(card);
-
-  });
-
-}
-
-
-/* =========================================================
    TRANSLATIONS
 ========================================================= */
 
@@ -1171,11 +855,6 @@ const translations = {
       "Shaka imodoka ziboneka kugurishwa mu Rwanda.",
 
     carsButton:"Reba imodoka",
-
-    latestTitle:"Umutungo mushya",
-
-    latestDescription:
-      "Reba imitungo iheruka gushyirwa kuri Rwanda Property Visata.",
 
     sellTitle:"📢 Gurisha cyangwa ukodeshe umutungo wawe",
 
@@ -1246,11 +925,6 @@ const translations = {
 
     carsButton:"View Cars",
 
-    latestTitle:"Latest Properties",
-
-    latestDescription:
-      "Properties recently posted on Rwanda Property Visata.",
-
     sellTitle:"📢 Sell or Rent Out Your Property",
 
     sellDescription:
@@ -1319,11 +993,6 @@ const translations = {
       "Trouvez des voitures disponibles à la vente au Rwanda.",
 
     carsButton:"Voir les voitures",
-
-    latestTitle:"Propriétés récentes",
-
-    latestDescription:
-      "Propriétés récemment publiées sur Rwanda Property Visata.",
 
     sellTitle:"📢 Vendez ou louez votre propriété",
 
@@ -1394,11 +1063,6 @@ const translations = {
 
     carsButton:"Angalia Magari",
 
-    latestTitle:"Mali Mpya",
-
-    latestDescription:
-      "Mali zilizowekwa hivi karibuni kwenye Rwanda Property Visata.",
-
     sellTitle:"📢 Uza au Pangisha Mali Yako",
 
     sellDescription:
@@ -1467,11 +1131,6 @@ const translations = {
       "寻找卢旺达可出售的汽车。",
 
     carsButton:"查看汽车",
-
-    latestTitle:"最新房产",
-
-    latestDescription:
-      "最近发布在 Rwanda Property Visata 上的房产。",
 
     sellTitle:"📢 出售或出租您的房产",
 
@@ -1610,12 +1269,6 @@ function applyLanguage(language){
 
   document.getElementById("carsButton").textContent =
     t.carsButton;
-
-  document.getElementById("latestTitle").textContent =
-    t.latestTitle;
-
-  document.getElementById("latestDescription").textContent =
-    t.latestDescription;
 
   document.getElementById("sellTitle").textContent =
     t.sellTitle;
@@ -1833,8 +1486,6 @@ async function trackPageView(){
 
 applyLanguage(currentLanguage);
 
-loadHomeProperties();
-
 trackPageView();
 
 </script>
@@ -1842,4 +1493,3 @@ trackPageView();
 </body>
 
 </html>
-```
