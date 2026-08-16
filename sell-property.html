@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -33,6 +34,48 @@ header{
 header h1{
   margin:0;
   font-size:28px;
+}
+
+/* =====================================================
+   LANGUAGE SWITCHER
+===================================================== */
+
+.language-switcher{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  margin-top:15px;
+}
+
+.language-arrow{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:50%;
+  background:white;
+  color:#a87800;
+  font-size:25px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 2px 7px rgba(0,0,0,.15);
+  transition:.2s;
+}
+
+.language-arrow:hover{
+  background:#fff8d6;
+  transform:scale(1.08);
+}
+
+.language-name{
+  min-width:130px;
+  background:#fff;
+  color:#a87800;
+  padding:11px 16px;
+  border-radius:8px;
+  font-weight:bold;
+  text-align:center;
+  box-shadow:0 2px 7px rgba(0,0,0,.12);
 }
 
 .back{
@@ -267,6 +310,16 @@ footer strong{
     font-size:18px;
   }
 
+  .language-arrow{
+    width:38px;
+    height:38px;
+  }
+
+  .language-name{
+    min-width:115px;
+    font-size:14px;
+  }
+
 }
 
 </style>
@@ -279,6 +332,36 @@ footer strong{
 <h1>
 🏠 RWANDA HOUSE MARKET
 </h1>
+
+
+<!-- =====================================================
+     LANGUAGE SWITCHER
+===================================================== -->
+
+<div class="language-switcher">
+
+<button
+type="button"
+class="language-arrow"
+id="prevLanguage">
+&lt;
+</button>
+
+<div
+class="language-name"
+id="languageName">
+English
+</div>
+
+<button
+type="button"
+class="language-arrow"
+id="nextLanguage">
+&gt;
+</button>
+
+</div>
+
 
 <a
 href="./home.html"
@@ -546,7 +629,9 @@ Enter the price to calculate the posting fee.
 class="special-offer"
 id="specialOffer">
 
+<span id="offerText">
 USHOBORA KWISHYURA 50,000 RWF TUKAPOSTINGA IMARI YAWE KUMBUGA ZOSE
+</span>
 
 <br>
 
@@ -744,14 +829,9 @@ const SUPABASE_KEY =
 
 const supabaseClient =
 window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+  SUPABASE_URL,
+  SUPABASE_KEY
 );
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
 
 
 /* =====================================================
@@ -857,15 +937,11 @@ async function trackPageView(){
 function getDeviceType(){
 
   if(window.innerWidth <= 600){
-
     return "mobile";
-
   }
 
   if(window.innerWidth <= 1024){
-
     return "tablet";
-
   }
 
   return "desktop";
@@ -874,6 +950,7 @@ function getDeviceType(){
 
 
 trackPageView();
+
 
 /* =====================================================
    VARIABLES
@@ -936,103 +1013,90 @@ document.getElementById("photoPreview");
 
 function calculateFee(){
 
-const price =
-Number(priceInput.value || 0);
+  const price =
+    Number(priceInput.value || 0);
 
-currentPrice = price;
+  currentPrice = price;
 
-let fee = 0;
+  let fee = 0;
 
-let rate = 0;
-
-
-/*
-   FOR SALE ONLY
-
-   Under 50,000,000:
-   0.01%
-
-   50,000,000 and above:
-   0.02%
-*/
-
-if(listingType.value === "sale"){
-
-if(price > 0 && price < 50000000){
-
-rate = 0.0001;
-
-fee = price * rate;
-
-}
-
-else if(price >= 50000000){
-
-rate = 0.0002;
-
-fee = price * rate;
-
-}
-
-}
+  let rate = 0;
 
 
-/*
-   FOR RENT
+  if(listingType.value === "sale"){
 
-   No percentage fee calculation here.
-*/
+    if(
+      price > 0 &&
+      price < 50000000
+    ){
 
-else if(listingType.value === "rent"){
+      rate = 0.0001;
 
-fee = 0;
+      fee = price * rate;
 
-rate = 0;
+    }
 
-}
+    else if(price >= 50000000){
 
+      rate = 0.0002;
 
-currentPostingFee = fee;
+      fee = price * rate;
 
+    }
 
-feeAmount.textContent =
-fee.toLocaleString(
-"en-US",
-{
-maximumFractionDigits:2
-}
-) + " RWF";
+  }
 
 
-if(listingType.value === ""){
+  else if(listingType.value === "rent"){
 
-feeRate.textContent =
-"Choose For Sale or For Rent.";
+    fee = 0;
 
-}
+    rate = 0;
 
-else if(listingType.value === "rent"){
+  }
 
-feeRate.textContent =
-"Rental properties do not use the sale posting percentage.";
 
-}
+  currentPostingFee = fee;
 
-else if(price === 0){
 
-feeRate.textContent =
-"Enter the property price to calculate the posting fee.";
+  feeAmount.textContent =
+    fee.toLocaleString(
+      "en-US",
+      {
+        maximumFractionDigits:2
+      }
+    ) + " RWF";
 
-}
 
-else{
+  if(listingType.value === ""){
 
-feeRate.textContent =
-"Posting fee: " +
-(rate * 100).toFixed(2) +
-"%";
+    feeRate.textContent =
+      "Choose For Sale or For Rent.";
 
-}
+  }
+
+  else if(listingType.value === "rent"){
+
+    feeRate.textContent =
+      "Rental properties do not use the sale posting percentage.";
+
+  }
+
+  else if(price === 0){
+
+    feeRate.textContent =
+      "Enter the property price to calculate the posting fee.";
+
+  }
+
+  else{
+
+    feeRate.textContent =
+      "Posting fee: " +
+      (rate * 100).toFixed(2) +
+      "%";
+
+  }
 
 }
 
@@ -1058,20 +1122,20 @@ document
 "change",
 function(){
 
-photoPreview.innerHTML = "";
+  photoPreview.innerHTML = "";
 
-Array.from(this.files)
-.forEach(file => {
+  Array.from(this.files)
+  .forEach(file => {
 
-const img =
-document.createElement("img");
+    const img =
+      document.createElement("img");
 
-img.src =
-URL.createObjectURL(file);
+    img.src =
+      URL.createObjectURL(file);
 
-photoPreview.appendChild(img);
+    photoPreview.appendChild(img);
 
-});
+  });
 
 }
 );
@@ -1082,16 +1146,16 @@ photoPreview.appendChild(img);
 ===================================================== */
 
 function showMessage(
-element,
-text,
-type
+  element,
+  text,
+  type
 ){
 
-element.textContent =
-text;
+  element.textContent =
+    text;
 
-element.className =
-"message " + type;
+  element.className =
+    "message " + type;
 
 }
 
@@ -1101,69 +1165,67 @@ element.className =
 ===================================================== */
 
 async function uploadImage(
-file,
-bucket
+  file,
+  bucket
 ){
 
-const extension =
-file.name.includes(".")
-?
-file.name.substring(
-file.name.lastIndexOf(".")
-)
-:
-"";
+  const extension =
+    file.name.includes(".")
+    ?
+    file.name.substring(
+      file.name.lastIndexOf(".")
+    )
+    :
+    "";
 
 
-const fileName =
-Date.now() +
-"-" +
-Math.random()
-.toString(36)
-.substring(2) +
-extension;
+  const fileName =
+    Date.now() +
+    "-" +
+    Math.random()
+    .toString(36)
+    .substring(2) +
+    extension;
 
 
-const filePath =
-Date.now() +
-"/" +
-fileName;
+  const filePath =
+    Date.now() +
+    "/" +
+    fileName;
 
 
-const {
-error
-} =
-await supabaseClient
-.storage
-.from(bucket)
-.upload(
-filePath,
-file,
-{
-upsert:false
-}
-);
+  const {
+    error
+  } =
+  await supabaseClient
+    .storage
+    .from(bucket)
+    .upload(
+      filePath,
+      file,
+      {
+        upsert:false
+      }
+    );
 
 
-if(error){
-
-throw error;
-
-}
+  if(error){
+    throw error;
+  }
 
 
-const {
-data
-} =
-supabaseClient
-.storage
-.from(bucket)
-.getPublicUrl(
-filePath
-);
+  const {
+    data
+  } =
+  supabaseClient
+    .storage
+    .from(bucket)
+    .getPublicUrl(
+      filePath
+    );
 
 
-return data.publicUrl;
+  return data.publicUrl;
 
 }
 
@@ -1176,346 +1238,346 @@ form.addEventListener(
 "submit",
 async function(event){
 
-event.preventDefault();
+  event.preventDefault();
 
 
-const postButton =
-document.getElementById(
-"postButton"
-);
+  const postButton =
+    document.getElementById(
+      "postButton"
+    );
 
 
-postButton.disabled =
-true;
+  postButton.disabled =
+    true;
 
-postButton.textContent =
-"Preparing payment...";
+  postButton.textContent =
+    "Preparing payment...";
 
 
-try{
+  try{
 
-const fullName =
-document
-.getElementById("fullName")
-.value
-.trim();
+    const fullName =
+      document
+      .getElementById("fullName")
+      .value
+      .trim();
 
 
-const phone =
-document
-.getElementById("phone")
-.value
-.trim();
+    const phone =
+      document
+      .getElementById("phone")
+      .value
+      .trim();
 
 
-const propertyType =
-document
-.getElementById("propertyType")
-.value;
+    const propertyType =
+      document
+      .getElementById("propertyType")
+      .value;
 
 
-const listing =
-document
-.getElementById("listingType")
-.value;
+    const listing =
+      document
+      .getElementById("listingType")
+      .value;
 
 
-const title =
-document
-.getElementById("title")
-.value
-.trim();
+    const title =
+      document
+      .getElementById("title")
+      .value
+      .trim();
 
 
-const country =
-document
-.getElementById("country")
-.value
-.trim();
+    const country =
+      document
+      .getElementById("country")
+      .value
+      .trim();
 
 
-const province =
-document
-.getElementById("province")
-.value
-.trim();
+    const province =
+      document
+      .getElementById("province")
+      .value
+      .trim();
 
 
-const district =
-document
-.getElementById("district")
-.value
-.trim();
+    const district =
+      document
+      .getElementById("district")
+      .value
+      .trim();
 
 
-const sector =
-document
-.getElementById("sector")
-.value
-.trim();
+    const sector =
+      document
+      .getElementById("sector")
+      .value
+      .trim();
 
 
-const bedrooms =
-Number(
-document
-.getElementById("bedrooms")
-.value || 0
-);
+    const bedrooms =
+      Number(
+        document
+        .getElementById("bedrooms")
+        .value || 0
+      );
 
 
-const bathrooms =
-Number(
-document
-.getElementById("bathrooms")
-.value || 0
-);
+    const bathrooms =
+      Number(
+        document
+        .getElementById("bathrooms")
+        .value || 0
+      );
 
 
-const parking =
-Number(
-document
-.getElementById("parking")
-.value || 0
-);
+    const parking =
+      Number(
+        document
+        .getElementById("parking")
+        .value || 0
+      );
 
 
-const description =
-document
-.getElementById("description")
-.value
-.trim();
+    const description =
+      document
+      .getElementById("description")
+      .value
+      .trim();
 
 
-const mainPhotoFile =
-document
-.getElementById("mainPhoto")
-.files[0];
+    const mainPhotoFile =
+      document
+      .getElementById("mainPhoto")
+      .files[0];
 
 
-const otherFiles =
-Array.from(
-document
-.getElementById("otherPhotos")
-.files
-);
+    const otherFiles =
+      Array.from(
+        document
+        .getElementById("otherPhotos")
+        .files
+      );
 
 
-if(!mainPhotoFile){
+    if(!mainPhotoFile){
 
-throw new Error(
-"Main Photo irakenewe."
-);
+      throw new Error(
+        "Main Photo irakenewe."
+      );
 
-}
+    }
 
 
-if(!propertyType){
+    if(!propertyType){
 
-throw new Error(
-"Hitamo House cyangwa Plot."
-);
+      throw new Error(
+        "Hitamo House cyangwa Plot."
+      );
 
-}
+    }
 
 
-if(!listing){
+    if(!listing){
 
-throw new Error(
-"Hitamo For Sale cyangwa For Rent."
-);
+      throw new Error(
+        "Hitamo For Sale cyangwa For Rent."
+      );
 
-}
+    }
 
 
-if(currentPrice <= 0){
+    if(currentPrice <= 0){
 
-throw new Error(
-"Shyiramo igiciro cy'umutungo."
-);
+      throw new Error(
+        "Shyiramo igiciro cy'umutungo."
+      );
 
-}
+    }
 
 
-/* =====================================================
-   MAIN PHOTO
-===================================================== */
+    /* =================================================
+       MAIN PHOTO
+    ================================================= */
 
-postButton.textContent =
-"Uploading photos...";
+    postButton.textContent =
+      "Uploading photos...";
 
 
-const mainPhotoUrl =
-await uploadImage(
-mainPhotoFile,
-"seller-property-images"
-);
+    const mainPhotoUrl =
+      await uploadImage(
+        mainPhotoFile,
+        "seller-property-images"
+      );
 
 
-/* =====================================================
-   OTHER PHOTOS
-===================================================== */
+    /* =================================================
+       OTHER PHOTOS
+    ================================================= */
 
-const otherPhotoUrls = [];
+    const otherPhotoUrls = [];
 
 
-for(
-const file of otherFiles
-){
+    for(
+      const file of otherFiles
+    ){
 
-const url =
-await uploadImage(
-file,
-"seller-property-images"
-);
+      const url =
+        await uploadImage(
+          file,
+          "seller-property-images"
+        );
 
-otherPhotoUrls.push(url);
+      otherPhotoUrls.push(url);
 
-}
+    }
 
 
-/* =====================================================
-   INSERT SELLER POST
-===================================================== */
+    /* =================================================
+       INSERT SELLER POST
+    ================================================= */
 
-postButton.textContent =
-"Creating post...";
+    postButton.textContent =
+      "Creating post...";
 
 
-const {
-data,
-error
-} =
-await supabaseClient
-.from("seller_posts")
-.insert({
+    const {
+      data,
+      error
+    } =
+    await supabaseClient
+      .from("seller_posts")
+      .insert({
 
-full_name:
-fullName,
+        full_name:
+          fullName,
 
-phone:
-phone,
+        phone:
+          phone,
 
-property_type:
-propertyType,
+        property_type:
+          propertyType,
 
-listing_type:
-listing,
+        listing_type:
+          listing,
 
-title:
-title,
+        title:
+          title,
 
-country:
-country,
+        country:
+          country,
 
-province:
-province,
+        province:
+          province,
 
-district:
-district,
+        district:
+          district,
 
-sector:
-sector,
+        sector:
+          sector,
 
-bedrooms:
-bedrooms,
+        bedrooms:
+          bedrooms,
 
-bathrooms:
-bathrooms,
+        bathrooms:
+          bathrooms,
 
-parking:
-parking,
+        parking:
+          parking,
 
-price:
-currentPrice,
+        price:
+          currentPrice,
 
-posting_fee:
-currentPostingFee,
+        posting_fee:
+          currentPostingFee,
 
-main_photo:
-mainPhotoUrl,
+        main_photo:
+          mainPhotoUrl,
 
-other_photos:
-otherPhotoUrls,
+        other_photos:
+          otherPhotoUrls,
 
-description:
-description,
+        description:
+          description,
 
-payment_status:
-"pending",
+        payment_status:
+          "pending",
 
-post_status:
-"pending"
+        post_status:
+          "pending"
 
-})
-.select()
-.single();
+      })
+      .select()
+      .single();
 
 
-if(error){
+    if(error){
+      throw error;
+    }
 
-throw error;
 
-}
+    currentPostId =
+      data.id;
 
 
-currentPostId =
-data.id;
+    /* =================================================
+       PAYMENT PAGE
+    ================================================= */
 
+    paymentCode.textContent =
+      "*182*8*1*2204606*" +
+      Math.round(currentPostingFee) +
+      "#";
 
-/* =====================================================
-   PAYMENT PAGE
-===================================================== */
 
-paymentCode.textContent =
-"*182*8*1*2204606*" +
-Math.round(currentPostingFee) +
-"#";
+    paymentFee.textContent =
+      currentPostingFee.toLocaleString(
+        "en-US",
+        {
+          maximumFractionDigits:2
+        }
+      ) +
+      " RWF";
 
 
-paymentFee.textContent =
-currentPostingFee.toLocaleString(
-"en-US",
-{
-maximumFractionDigits:2
-}
-) +
-" RWF";
+    formCard.style.display =
+      "none";
 
+    paymentCard.style.display =
+      "block";
 
-formCard.style.display =
-"none";
 
-paymentCard.style.display =
-"block";
+    window.scrollTo({
 
+      top:0,
 
-window.scrollTo({
+      behavior:"smooth"
 
-top:0,
+    });
 
-behavior:"smooth"
 
-});
+  }
+  catch(error){
 
+    console.error(error);
 
-}
-catch(error){
 
-console.error(error);
+    showMessage(
+      formMessage,
+      "❌ " + error.message,
+      "error"
+    );
 
-showMessage(
-formMessage,
-"❌ " + error.message,
-"error"
-);
 
-postButton.disabled =
-false;
+    postButton.disabled =
+      false;
 
-postButton.textContent =
-"Continue to Payment";
+    postButton.textContent =
+      t.continue;
 
-}
+  }
 
 }
 );
@@ -1531,122 +1593,123 @@ document
 "click",
 async function(){
 
-const button =
-this;
+  const button =
+    this;
 
 
-button.disabled =
-true;
+  button.disabled =
+    true;
 
-button.textContent =
-"Uploading...";
-
-
-try{
-
-if(!currentPostId){
-
-throw new Error(
-"Post ID ntiyabonetse."
-);
-
-}
+  button.textContent =
+    "Uploading...";
 
 
-const file =
-paymentScreenshot.files[0];
+  try{
+
+    if(!currentPostId){
+
+      throw new Error(
+        "Post ID ntiyabonetse."
+      );
+
+    }
 
 
-if(!file){
-
-throw new Error(
-"Shyiraho screenshot y'uko wishyuye."
-);
-
-}
+    const file =
+      paymentScreenshot.files[0];
 
 
-/* =====================================================
-   UPLOAD SCREENSHOT
-===================================================== */
+    if(!file){
 
-const screenshotUrl =
-await uploadImage(
-file,
-"payment-screenshots"
-);
+      throw new Error(
+        "Shyiraho screenshot y'uko wishyuye."
+      );
+
+    }
 
 
-/* =====================================================
-   UPDATE SELLER POST
-===================================================== */
+    /* ===============================================
+       UPLOAD SCREENSHOT
+    =============================================== */
 
-const {
-error
-} =
-await supabaseClient
-.from("seller_posts")
-.update({
-
-payment_screenshot:
-screenshotUrl,
-
-payment_status:
-"submitted",
-
-post_status:
-"pending"
-
-})
-.eq(
-"id",
-currentPostId
-);
+    const screenshotUrl =
+      await uploadImage(
+        file,
+        "payment-screenshots"
+      );
 
 
-if(error){
+    /* ===============================================
+       UPDATE SELLER POST
+    =============================================== */
 
-throw error;
+    const {
+      error
+    } =
+    await supabaseClient
+      .from("seller_posts")
+      .update({
 
-}
+        payment_screenshot:
+          screenshotUrl,
+
+        payment_status:
+          "submitted",
+
+        post_status:
+          "pending"
+
+      })
+      .eq(
+        "id",
+        currentPostId
+      );
 
 
-showMessage(
-paymentMessage,
-"✅ Payment screenshot submitted successfully.",
-"success"
-);
+    if(error){
+      throw error;
+    }
 
 
-document
-.getElementById(
-"verifyMessage"
-)
-.style.display =
-"block";
+    showMessage(
+      paymentMessage,
+      "✅ Payment screenshot submitted successfully.",
+      "success"
+    );
 
 
-button.textContent =
-"Submitted";
+    document
+      .getElementById(
+        "verifyMessage"
+      )
+      .style.display =
+        "block";
 
-}
-catch(error){
 
-console.error(error);
+    button.textContent =
+      t.submit + " ✓";
 
-showMessage(
-paymentMessage,
-"❌ " + error.message,
-"error"
-);
 
-button.disabled =
-false;
+  }
+  catch(error){
 
-button.textContent =
-"Submit Payment Screenshot";
+    console.error(error);
 
-}
+
+    showMessage(
+      paymentMessage,
+      "❌ " + error.message,
+      "error"
+    );
+
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      t.submit;
+
+  }
 
 }
 );
@@ -1656,668 +1719,1011 @@ button.textContent =
    5 LANGUAGES
 ===================================================== */
 
-const language =
-localStorage.getItem(
-"selectedLanguage"
-) ||
-"English";
-
-
 const translations = {
 
+  Kinyarwanda: {
 
-Kinyarwanda: {
+    languageName:
+      "Kinyarwanda",
 
-title:
-"🏠 Gurisha Umutungo Wawe",
+    title:
+      "🏠 Gurisha Umutungo Wawe",
 
-description:
-"Uzuza amakuru yose y'umutungo ushaka kugurisha cyangwa gukodesha.",
+    description:
+      "Uzuza amakuru yose y'umutungo ushaka kugurisha cyangwa gukodesha.",
 
-name:
-"Amazina yuzuye",
+    name:
+      "Amazina yuzuye",
 
-phone:
-"Nimero ya telefone",
+    phone:
+      "Nimero ya telefone",
 
-property:
-"Umutungo",
+    property:
+      "Umutungo",
 
-listing:
-"Ubwoko bwo kuwushyira ku isoko",
+    listing:
+      "Ubwoko bwo kuwushyira ku isoko",
 
-house:
-"Inzu",
+    chooseProperty:
+      "Hitamo umutungo",
 
-plot:
-"Ikibanza",
+    choose:
+      "Hitamo",
 
-sale:
-"Ku igurisha",
+    house:
+      "Inzu",
 
-rent:
-"Ku ikodesha",
+    plot:
+      "Ikibanza",
 
-country:
-"Igihugu",
+    sale:
+      "Ku igurisha",
 
-province:
-"Intara",
+    rent:
+      "Ku ikodesha",
 
-district:
-"Akarere",
+    titleLabel:
+      "Umutwe w'umutungo",
 
-sector:
-"Umurenge",
+    titlePlaceholder:
+      "Urugero: Inzu nziza i Kigali",
 
-bedrooms:
-"Ibyumba",
+    country:
+      "Igihugu",
 
-bathrooms:
-"Ubwiherero / Toilettes",
+    province:
+      "Intara",
 
-parking:
-"Parking",
+    district:
+      "Akarere",
 
-price:
-"Igiciro",
+    sector:
+      "Umurenge",
 
-fee:
-"Ikiguzi cyo gushyira post",
+    bedrooms:
+      "Ibyumba",
 
-mainPhoto:
-"Ifoto nyamukuru",
+    bathrooms:
+      "Ubwiherero / Toilettes",
 
-otherPhotos:
-"Andi mafoto",
+    parking:
+      "Parking",
 
-descriptionLabel:
-"Ibisobanuro by'umutungo",
+    price:
+      "Igiciro",
 
-payment:
-"💳 Kwishyura ikiguzi cya post",
+    fee:
+      "Ikiguzi cyo gushyira post",
 
-screenshot:
-"Shyiraho screenshot y'uko wishyuye",
+    feeEnter:
+      "Shyiramo igiciro kugira ngo tubare ikiguzi cyo gushyira post.",
 
-continue:
-"Komeza ujye kuri Payment",
+    mainPhoto:
+      "Ifoto nyamukuru",
 
-submit:
-"Ohereza Screenshot",
+    otherPhotos:
+      "Andi mafoto",
 
-back:
-"← Subira kuri Home",
+    descriptionLabel:
+      "Ibisobanuro by'umutungo",
 
-offer:
-"USHOBORA KWISHYURA 50,000 RWF TUKAPOSTINGA IMARI YAWE KUMBUGA ZOSE",
+    descriptionPlaceholder:
+      "Andika amakuru yose y'ingenzi yerekeye umutungo...",
 
-designed:
-"Designed by"
+    payment:
+      "💳 Kwishyura ikiguzi cya post",
 
-},
+    paymentInstruction:
+      "Kwishyura ikiguzi ukoresheje code iri hasi.",
 
+    screenshot:
+      "Shyiraho screenshot y'uko wishyuye",
 
-English: {
+    continue:
+      "Komeza ujye kuri Payment",
 
-title:
-"🏠 Sell Your Property",
+    submit:
+      "Ohereza Screenshot",
 
-description:
-"Enter all information about the property you want to sell or rent.",
+    back:
+      "← Subira kuri Home",
 
-name:
-"Full Name",
+    offer:
+      "USHOBORA KWISHYURA 50,000 RWF TUKAPOSTINGA IMARI YAWE KUMBUGA ZOSE",
 
-phone:
-"Phone Number",
+    designed:
+      "Byakozwe na",
 
-property:
-"Property",
+    paymentFee:
+      "Ikiguzi cyo gushyira post",
 
-listing:
-"Listing Type",
+    verify:
+      "⏳ Screenshot yawe iri kugenzurwa.\n\nPost yawe izashyirwa ku rubuga mu minota 15 nyuma yo kwemezwa."
 
-house:
-"House",
+  },
 
-plot:
-"Plot",
 
-sale:
-"For Sale",
+  English: {
 
-rent:
-"For Rent",
+    languageName:
+      "English",
 
-country:
-"Country",
+    title:
+      "🏠 Sell Your Property",
 
-province:
-"Province",
+    description:
+      "Enter all information about the property you want to sell or rent.",
 
-district:
-"District",
+    name:
+      "Full Name",
 
-sector:
-"Sector",
+    phone:
+      "Phone Number",
 
-bedrooms:
-"Bedrooms",
+    property:
+      "Property",
 
-bathrooms:
-"Toilets / Bathrooms",
+    listing:
+      "Listing Type",
 
-parking:
-"Parking",
+    chooseProperty:
+      "Choose property",
 
-price:
-"Price",
+    choose:
+      "Choose",
 
-fee:
-"Posting Fee",
+    house:
+      "House",
 
-mainPhoto:
-"Main Photo",
+    plot:
+      "Plot",
 
-otherPhotos:
-"Other Photos",
+    sale:
+      "For Sale",
 
-descriptionLabel:
-"Property Details / Description",
+    rent:
+      "For Rent",
 
-payment:
-"💳 Property Posting Payment",
+    titleLabel:
+      "Property Title",
 
-screenshot:
-"Upload Payment Screenshot",
+    titlePlaceholder:
+      "Example: Beautiful House in Kigali",
 
-continue:
-"Continue to Payment",
+    country:
+      "Country",
 
-submit:
-"Submit Payment Screenshot",
+    province:
+      "Province",
 
-back:
-"← Back to Home",
+    district:
+      "District",
 
-offer:
-"YOU CAN PAY 50,000 RWF AND WE WILL POST YOUR PROPERTY ACROSS ALL OUR PLATFORMS",
+    sector:
+      "Sector",
 
-designed:
-"Designed by"
+    bedrooms:
+      "Bedrooms",
 
-},
+    bathrooms:
+      "Toilets / Bathrooms",
 
+    parking:
+      "Parking",
 
-Français: {
+    price:
+      "Price",
 
-title:
-"🏠 Vendre votre propriété",
+    fee:
+      "Posting Fee",
 
-description:
-"Entrez toutes les informations concernant votre propriété.",
+    feeEnter:
+      "Enter the price to calculate the posting fee.",
 
-name:
-"Nom complet",
+    mainPhoto:
+      "Main Photo",
 
-phone:
-"Numéro de téléphone",
+    otherPhotos:
+      "Other Photos",
 
-property:
-"Propriété",
+    descriptionLabel:
+      "Property Details / Description",
 
-listing:
-"Type d'annonce",
+    descriptionPlaceholder:
+      "Write all important information about the property...",
 
-house:
-"Maison",
+    payment:
+      "💳 Property Posting Payment",
 
-plot:
-"Terrain",
+    paymentInstruction:
+      "Please pay the posting fee using the code below.",
 
-sale:
-"À vendre",
+    screenshot:
+      "Upload Payment Screenshot",
 
-rent:
-"À louer",
+    continue:
+      "Continue to Payment",
 
-country:
-"Pays",
+    submit:
+      "Submit Payment Screenshot",
 
-province:
-"Province",
+    back:
+      "← Back to Home",
 
-district:
-"District",
+    offer:
+      "YOU CAN PAY 50,000 RWF AND WE WILL POST YOUR PROPERTY ACROSS ALL OUR PLATFORMS",
 
-sector:
-"Secteur",
+    designed:
+      "Designed by",
 
-bedrooms:
-"Chambres",
+    paymentFee:
+      "Posting Fee",
 
-bathrooms:
-"Toilettes / Salles de bain",
+    verify:
+      "⏳ Your screenshot is being verified.\n\nYour post will be posted within 15 minutes after verification."
 
-parking:
-"Parking",
+  },
 
-price:
-"Prix",
 
-fee:
-"Frais de publication",
+  Français: {
 
-mainPhoto:
-"Photo principale",
+    languageName:
+      "Français",
 
-otherPhotos:
-"Autres photos",
+    title:
+      "🏠 Vendre votre propriété",
 
-descriptionLabel:
-"Description de la propriété",
+    description:
+      "Entrez toutes les informations concernant votre propriété.",
 
-payment:
-"💳 Paiement de publication",
+    name:
+      "Nom complet",
 
-screenshot:
-"Télécharger la capture du paiement",
+    phone:
+      "Numéro de téléphone",
 
-continue:
-"Continuer vers le paiement",
+    property:
+      "Propriété",
 
-submit:
-"Envoyer la capture",
+    listing:
+      "Type d'annonce",
 
-back:
-"← Retour à l'accueil",
+    chooseProperty:
+      "Choisir une propriété",
 
-offer:
-"VOUS POUVEZ PAYER 50 000 RWF ET NOUS PUBLIERONS VOTRE PROPRIÉTÉ SUR TOUTES NOS PLATEFORMES",
+    choose:
+      "Choisir",
 
-designed:
-"Conçu par"
+    house:
+      "Maison",
 
-},
+    plot:
+      "Terrain",
 
+    sale:
+      "À vendre",
 
-Kiswahili: {
+    rent:
+      "À louer",
 
-title:
-"🏠 Uza Mali Yako",
+    titleLabel:
+      "Titre de la propriété",
 
-description:
-"Jaza taarifa zote kuhusu mali unayotaka kuuza au kukodisha.",
+    titlePlaceholder:
+      "Exemple : Belle maison à Kigali",
 
-name:
-"Jina Kamili",
+    country:
+      "Pays",
 
-phone:
-"Nambari ya Simu",
+    province:
+      "Province",
 
-property:
-"Mali",
+    district:
+      "District",
 
-listing:
-"Aina ya Tangazo",
+    sector:
+      "Secteur",
 
-house:
-"Nyumba",
+    bedrooms:
+      "Chambres",
 
-plot:
-"Kiwanja",
+    bathrooms:
+      "Toilettes / Salles de bain",
 
-sale:
-"Kwa Kuuza",
+    parking:
+      "Parking",
 
-rent:
-"Kwa Kukodisha",
+    price:
+      "Prix",
 
-country:
-"Nchi",
+    fee:
+      "Frais de publication",
 
-province:
-"Mkoa",
+    feeEnter:
+      "Entrez le prix pour calculer les frais de publication.",
 
-district:
-"Wilaya",
+    mainPhoto:
+      "Photo principale",
 
-sector:
-"Sekta",
+    otherPhotos:
+      "Autres photos",
 
-bedrooms:
-"Vyumba vya Kulala",
+    descriptionLabel:
+      "Description de la propriété",
 
-bathrooms:
-"Vyoo / Bafu",
+    descriptionPlaceholder:
+      "Écrivez toutes les informations importantes concernant la propriété...",
 
-parking:
-"Maegesho",
+    payment:
+      "💳 Paiement de publication",
 
-price:
-"Bei",
+    paymentInstruction:
+      "Veuillez payer les frais de publication avec le code ci-dessous.",
 
-fee:
-"Malipo ya Kuchapisha",
+    screenshot:
+      "Télécharger la capture du paiement",
 
-mainPhoto:
-"Picha Kuu",
+    continue:
+      "Continuer vers le paiement",
 
-otherPhotos:
-"Picha Nyingine",
+    submit:
+      "Envoyer la capture",
 
-descriptionLabel:
-"Maelezo ya Mali",
+    back:
+      "← Retour à l'accueil",
 
-payment:
-"💳 Malipo ya Kuchapisha Mali",
+    offer:
+      "VOUS POUVEZ PAYER 50 000 RWF ET NOUS PUBLIERONS VOTRE PROPRIÉTÉ SUR TOUTES NOS PLATEFORMES",
 
-screenshot:
-"Pakua Screenshot ya Malipo",
+    designed:
+      "Conçu par",
 
-continue:
-"Endelea kwa Malipo",
+    paymentFee:
+      "Frais de publication",
 
-submit:
-"Tuma Screenshot",
+    verify:
+      "⏳ Votre capture est en cours de vérification.\n\nVotre annonce sera publiée dans les 15 minutes après vérification."
 
-back:
-"← Rudi Mwanzo",
+  },
 
-offer:
-"UNAWEZA KULIPA 50,000 RWF NA TUTACHAPISHA MALI YAKO KWENYE MAJUKWAA YETU YOTE",
 
-designed:
-"Imetengenezwa na"
+  Kiswahili: {
 
-},
+    languageName:
+      "Kiswahili",
 
+    title:
+      "🏠 Uza Mali Yako",
 
-"中文": {
+    description:
+      "Jaza taarifa zote kuhusu mali unayotaka kuuza au kukodisha.",
 
-title:
-"🏠 出售您的房产",
+    name:
+      "Jina Kamili",
 
-description:
-"填写您要出售或出租的房产信息。",
+    phone:
+      "Nambari ya Simu",
 
-name:
-"姓名",
+    property:
+      "Mali",
 
-phone:
-"电话号码",
+    listing:
+      "Aina ya Tangazo",
 
-property:
-"房产",
+    chooseProperty:
+      "Chagua mali",
 
-listing:
-"发布类型",
+    choose:
+      "Chagua",
 
-house:
-"房屋",
+    house:
+      "Nyumba",
 
-plot:
-"土地",
+    plot:
+      "Kiwanja",
 
-sale:
-"出售",
+    sale:
+      "Kwa Kuuza",
 
-rent:
-"出租",
+    rent:
+      "Kwa Kukodisha",
 
-country:
-"国家",
+    titleLabel:
+      "Kichwa cha Mali",
 
-province:
-"省",
+    titlePlaceholder:
+      "Mfano: Nyumba Nzuri Kigali",
 
-district:
-"地区",
+    country:
+      "Nchi",
 
-sector:
-"区域",
+    province:
+      "Mkoa",
 
-bedrooms:
-"卧室",
+    district:
+      "Wilaya",
 
-bathrooms:
-"卫生间",
+    sector:
+      "Sekta",
 
-parking:
-"停车位",
+    bedrooms:
+      "Vyumba vya Kulala",
 
-price:
-"价格",
+    bathrooms:
+      "Vyoo / Bafu",
 
-fee:
-"发布费用",
+    parking:
+      "Maegesho",
 
-mainPhoto:
-"主要照片",
+    price:
+      "Bei",
 
-otherPhotos:
-"其他照片",
+    fee:
+      "Malipo ya Kuchapisha",
 
-descriptionLabel:
-"房产详细信息",
+    feeEnter:
+      "Weka bei ili kukokotoa malipo ya kuchapisha.",
 
-payment:
-"💳 房产发布付款",
+    mainPhoto:
+      "Picha Kuu",
 
-screenshot:
-"上传付款截图",
+    otherPhotos:
+      "Picha Nyingine",
 
-continue:
-"继续付款",
+    descriptionLabel:
+      "Maelezo ya Mali",
 
-submit:
-"提交付款截图",
+    descriptionPlaceholder:
+      "Andika taarifa zote muhimu kuhusu mali...",
 
-back:
-"← 返回首页",
+    payment:
+      "💳 Malipo ya Kuchapisha Mali",
 
-offer:
-"您可以支付 50,000 RWF，我们将把您的房产发布到我们的所有平台",
+    paymentInstruction:
+      "Tafadhali lipa malipo ya kuchapisha kwa kutumia code hapa chini.",
 
-designed:
-"设计者"
+    screenshot:
+      "Pakia Screenshot ya Malipo",
 
-}
+    continue:
+      "Endelea kwa Malipo",
+
+    submit:
+      "Tuma Screenshot",
+
+    back:
+      "← Rudi Mwanzo",
+
+    offer:
+      "UNAWEZA KULIPA 50,000 RWF NA TUTACHAPISHA MALI YAKO KWENYE MAJUKWAA YETU YOTE",
+
+    designed:
+      "Imetengenezwa na",
+
+    paymentFee:
+      "Malipo ya Kuchapisha",
+
+    verify:
+      "⏳ Screenshot yako inathibitishwa.\n\nPost yako itachapishwa ndani ya dakika 15 baada ya kuthibitishwa."
+
+  },
+
+
+  "中文": {
+
+    languageName:
+      "中文",
+
+    title:
+      "🏠 出售您的房产",
+
+    description:
+      "填写您要出售或出租的房产信息。",
+
+    name:
+      "姓名",
+
+    phone:
+      "电话号码",
+
+    property:
+      "房产",
+
+    listing:
+      "发布类型",
+
+    chooseProperty:
+      "选择房产",
+
+    choose:
+      "选择",
+
+    house:
+      "房屋",
+
+    plot:
+      "土地",
+
+    sale:
+      "出售",
+
+    rent:
+      "出租",
+
+    titleLabel:
+      "房产标题",
+
+    titlePlaceholder:
+      "例如：基加利漂亮的房子",
+
+    country:
+      "国家",
+
+    province:
+      "省",
+
+    district:
+      "地区",
+
+    sector:
+      "区域",
+
+    bedrooms:
+      "卧室",
+
+    bathrooms:
+      "卫生间",
+
+    parking:
+      "停车位",
+
+    price:
+      "价格",
+
+    fee:
+      "发布费用",
+
+    feeEnter:
+      "输入价格以计算发布费用。",
+
+    mainPhoto:
+      "主要照片",
+
+    otherPhotos:
+      "其他照片",
+
+    descriptionLabel:
+      "房产详细信息",
+
+    descriptionPlaceholder:
+      "写下房产的所有重要信息...",
+
+    payment:
+      "💳 房产发布付款",
+
+    paymentInstruction:
+      "请使用下面的代码支付发布费用。",
+
+    screenshot:
+      "上传付款截图",
+
+    continue:
+      "继续付款",
+
+    submit:
+      "提交付款截图",
+
+    back:
+      "← 返回首页",
+
+    offer:
+      "您可以支付 50,000 RWF，我们将把您的房产发布到我们的所有平台",
+
+    designed:
+      "设计者",
+
+    paymentFee:
+      "发布费用",
+
+    verify:
+      "⏳ 您的付款截图正在审核。\n\n审核通过后，您的房产将在15分钟内发布。"
+
+  }
 
 };
 
 
-const t =
-translations[language] ||
-translations.English;
+/* =====================================================
+   LANGUAGE ORDER
+===================================================== */
+
+const languageOrder = [
+  "Kinyarwanda",
+  "English",
+  "Français",
+  "Kiswahili",
+  "中文"
+];
+
+
+/* =====================================================
+   CURRENT LANGUAGE
+===================================================== */
+
+let language =
+  localStorage.getItem(
+    "selectedLanguage"
+  );
+
+
+if(
+  !language ||
+  !translations[language]
+){
+
+  language =
+    "English";
+
+}
+
+
+let languageIndex =
+  languageOrder.indexOf(
+    language
+  );
+
+
+if(languageIndex < 0){
+
+  languageIndex = 1;
+
+}
+
+
+/* =====================================================
+   LANGUAGE ELEMENTS
+===================================================== */
+
+const languageName =
+document.getElementById(
+  "languageName"
+);
+
+const prevLanguage =
+document.getElementById(
+  "prevLanguage"
+);
+
+const nextLanguage =
+document.getElementById(
+  "nextLanguage"
+);
 
 
 /* =====================================================
    APPLY LANGUAGE
 ===================================================== */
 
-document.title =
-t.title.replace("🏠 ","") +
-" - Rwanda House Market";
+function applyLanguage(){
+
+  language =
+    languageOrder[
+      languageIndex
+    ];
 
 
-document.getElementById(
-"pageTitle"
-).textContent =
-t.title;
+  const t =
+    translations[language];
 
 
-document.getElementById(
-"pageDescription"
-).textContent =
-t.description;
+  localStorage.setItem(
+    "selectedLanguage",
+    language
+  );
 
 
-document.getElementById(
-"backButton"
-).textContent =
-t.back;
+  document.documentElement.lang =
+    language === "中文"
+      ? "zh"
+      : language === "Français"
+        ? "fr"
+        : language === "Kiswahili"
+          ? "sw"
+          : language === "Kinyarwanda"
+            ? "rw"
+            : "en";
 
 
-document.getElementById(
-"nameLabel"
-).textContent =
-t.name;
+  languageName.textContent =
+    t.languageName;
 
 
-document.getElementById(
-"phoneLabel"
-).textContent =
-t.phone;
+  document.title =
+    t.title.replace(
+      "🏠 ",
+      ""
+    ) +
+    " - Rwanda House Market";
 
 
-document.getElementById(
-"propertyLabel"
-).textContent =
-t.property;
+  document.getElementById(
+    "pageTitle"
+  ).textContent =
+    t.title;
 
 
-document.getElementById(
-"listingLabel"
-).textContent =
-t.listing;
+  document.getElementById(
+    "pageDescription"
+  ).textContent =
+    t.description;
 
 
-document.getElementById(
-"countryLabel"
-).textContent =
-t.country;
+  document.getElementById(
+    "backButton"
+  ).textContent =
+    t.back;
 
 
-document.getElementById(
-"provinceLabel"
-).textContent =
-t.province;
+  document.getElementById(
+    "nameLabel"
+  ).textContent =
+    t.name;
 
 
-document.getElementById(
-"districtLabel"
-).textContent =
-t.district;
+  document.getElementById(
+    "phoneLabel"
+  ).textContent =
+    t.phone;
 
 
-document.getElementById(
-"sectorLabel"
-).textContent =
-t.sector;
+  document.getElementById(
+    "propertyLabel"
+  ).textContent =
+    t.property;
 
 
-document.getElementById(
-"bedroomsLabel"
-).textContent =
-t.bedrooms;
+  document.getElementById(
+    "listingLabel"
+  ).textContent =
+    t.listing;
 
 
-document.getElementById(
-"bathroomsLabel"
-).textContent =
-t.bathrooms;
+  document.getElementById(
+    "countryLabel"
+  ).textContent =
+    t.country;
 
 
-document.getElementById(
-"parkingLabel"
-).textContent =
-t.parking;
+  document.getElementById(
+    "provinceLabel"
+  ).textContent =
+    t.province;
 
 
-document.getElementById(
-"priceLabel"
-).textContent =
-t.price;
+  document.getElementById(
+    "districtLabel"
+  ).textContent =
+    t.district;
 
 
-document.getElementById(
-"feeTitle"
-).textContent =
-t.fee;
+  document.getElementById(
+    "sectorLabel"
+  ).textContent =
+    t.sector;
 
 
-document.getElementById(
-"mainPhotoLabel"
-).textContent =
-t.mainPhoto;
+  document.getElementById(
+    "bedroomsLabel"
+  ).textContent =
+    t.bedrooms;
 
 
-document.getElementById(
-"otherPhotosLabel"
-).textContent =
-t.otherPhotos;
+  document.getElementById(
+    "bathroomsLabel"
+  ).textContent =
+    t.bathrooms;
 
 
-document.getElementById(
-"descriptionLabel"
-).textContent =
-t.descriptionLabel;
+  document.getElementById(
+    "parkingLabel"
+  ).textContent =
+    t.parking;
 
 
-document.getElementById(
-"paymentTitle"
-).textContent =
-t.payment;
+  document.getElementById(
+    "priceLabel"
+  ).textContent =
+    t.price;
 
 
-document.getElementById(
-"screenshotLabel"
-).textContent =
-t.screenshot;
+  document.getElementById(
+    "feeTitle"
+  ).textContent =
+    t.fee;
 
 
-document.getElementById(
-"postButton"
-).textContent =
-t.continue;
+  document.getElementById(
+    "mainPhotoLabel"
+  ).textContent =
+    t.mainPhoto;
 
 
-document.getElementById(
-"submitPaymentButton"
-).textContent =
-t.submit;
+  document.getElementById(
+    "otherPhotosLabel"
+  ).textContent =
+    t.otherPhotos;
 
 
-document.getElementById(
-"specialOffer"
-).firstChild.textContent =
-t.offer;
+  document.getElementById(
+    "descriptionLabel"
+  ).textContent =
+    t.descriptionLabel;
 
 
-document.getElementById(
-"designedText"
-).textContent =
-t.designed + " ";
+  document.getElementById(
+    "paymentTitle"
+  ).textContent =
+    t.payment;
+
+
+  document.getElementById(
+    "paymentInstruction"
+  ).textContent =
+    t.paymentInstruction;
+
+
+  document.getElementById(
+    "screenshotLabel"
+  ).textContent =
+    t.screenshot;
+
+
+  document.getElementById(
+    "postButton"
+  ).textContent =
+    t.continue;
+
+
+  document.getElementById(
+    "submitPaymentButton"
+  ).textContent =
+    t.submit;
+
+
+  document.getElementById(
+    "offerText"
+  ).textContent =
+    t.offer;
+
+
+  document.getElementById(
+    "designedText"
+  ).textContent =
+    t.designed + " ";
+
+
+  document.getElementById(
+    "paymentFeeLabel"
+  ).textContent =
+    t.paymentFee;
+
+
+  document.getElementById(
+    "fullName"
+  ).placeholder =
+    language === "Kinyarwanda"
+      ? "Amazina yawe yose"
+      : language === "Français"
+        ? "Votre nom complet"
+        : language === "Kiswahili"
+          ? "Jina lako kamili"
+          : language === "中文"
+            ? "您的姓名"
+            : "Your full name";
+
+
+  document.getElementById(
+    "title"
+  ).placeholder =
+    t.titlePlaceholder;
+
+
+  document.getElementById(
+    "description"
+  ).placeholder =
+    t.descriptionPlaceholder;
+
+
+  const propertySelect =
+    document.getElementById(
+      "propertyType"
+    );
+
+
+  propertySelect.options[0].text =
+    t.chooseProperty;
+
+  propertySelect.options[1].text =
+    t.house;
+
+  propertySelect.options[2].text =
+    t.plot;
+
+
+  const listingSelect =
+    document.getElementById(
+      "listingType"
+    );
+
+
+  listingSelect.options[0].text =
+    t.choose;
+
+  listingSelect.options[1].text =
+    t.sale;
+
+  listingSelect.options[2].text =
+    t.rent;
+
+
+  calculateFee();
+
+}
 
 
 /* =====================================================
-   TRANSLATE SELECT OPTIONS
+   PREVIOUS LANGUAGE
 ===================================================== */
 
-const propertySelect =
-document.getElementById(
-"propertyType"
+prevLanguage.addEventListener(
+"click",
+function(){
+
+  languageIndex--;
+
+  if(languageIndex < 0){
+
+    languageIndex =
+      languageOrder.length - 1;
+
+  }
+
+  applyLanguage();
+
+}
 );
 
-propertySelect.options[1].text =
-t.house;
 
-propertySelect.options[2].text =
-t.plot;
+/* =====================================================
+   NEXT LANGUAGE
+===================================================== */
 
+nextLanguage.addEventListener(
+"click",
+function(){
 
-const listingSelect =
-document.getElementById(
-"listingType"
+  languageIndex++;
+
+  if(
+    languageIndex >=
+    languageOrder.length
+  ){
+
+    languageIndex = 0;
+
+  }
+
+  applyLanguage();
+
+}
 );
 
-listingSelect.options[1].text =
-t.sale;
 
-listingSelect.options[2].text =
-t.rent;
+/* =====================================================
+   INITIAL LANGUAGE
+===================================================== */
+
+applyLanguage();
 
 
 /* =====================================================
