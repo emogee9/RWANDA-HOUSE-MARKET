@@ -6,18 +6,13 @@
 
 <meta charset="UTF-8">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>House Details - Rwanda Property Visata</title>
+<title>Houses for Sale - Rwanda Property Visata</title>
 
-<link
-  rel="icon"
-  type="image/png"
-  href="logo.png"
->
+<link rel="icon" type="image/png" href="logo.png">
+
+<!-- ================= GOOGLE ADSENSE ================= -->
 
 <script
   async
@@ -25,7 +20,10 @@
   crossorigin="anonymous">
 </script>
 
+<!-- ================= SUPABASE ================= -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <style>
 
@@ -40,11 +38,12 @@ body{
   color:#222;
 }
 
+
 /* ================= HEADER ================= */
 
 header{
   background:#f2c400;
-  padding:22px 15px;
+  padding:25px 15px;
   text-align:center;
   box-shadow:0 3px 10px rgba(0,0,0,.15);
 }
@@ -63,27 +62,53 @@ header h1{
   padding:10px 16px;
   border-radius:8px;
   font-weight:bold;
+  transition:.2s;
 }
 
 .back:hover{
   background:#fff8d6;
+  transform:translateY(-1px);
 }
+
 
 /* ================= CONTAINER ================= */
 
 .container{
-  max-width:1100px;
+  max-width:1150px;
   margin:auto;
   padding:30px 20px 60px;
 }
 
-/* ================= AD ================= */
+
+/* ================= PAGE TITLE ================= */
+
+.page-title{
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  margin-bottom:25px;
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
+}
+
+.page-title h2{
+  margin:0 0 10px;
+}
+
+.page-title p{
+  margin:0;
+  color:#666;
+  line-height:1.6;
+}
+
+
+/* ================= ADSENSE ================= */
 
 .ad-container{
   width:100%;
   background:white;
   padding:15px;
-  margin:0 0 25px;
+  margin:25px 0;
   border-radius:15px;
   box-shadow:0 3px 12px rgba(0,0,0,.08);
   text-align:center;
@@ -96,153 +121,156 @@ header h1{
   margin-bottom:8px;
 }
 
-/* ================= DETAIL ================= */
 
-.detail-card{
-  background:white;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 4px 18px rgba(0,0,0,.12);
+/* ================= PROPERTIES ================= */
+
+.properties{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
 }
 
-.main-image{
+.property{
+  background:white;
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+  transition:.2s;
+}
+
+.property:hover{
+  transform:translateY(-3px);
+  box-shadow:0 7px 20px rgba(0,0,0,.17);
+}
+
+
+/* ================= IMAGE SLIDER ================= */
+
+.image-slider{
+  position:relative;
   width:100%;
-  max-height:560px;
-  object-fit:cover;
-  display:block;
+  height:220px;
+  overflow:hidden;
   background:#eee;
 }
 
-.detail-body{
-  padding:25px;
+.image-slider img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
-.title{
-  font-size:30px;
+
+/* ================= SLIDER BUTTONS ================= */
+
+.slider-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:44px;
+  height:44px;
+  border:none;
+  border-radius:50%;
+  background:rgba(0,0,0,.55);
+  color:white;
+  font-size:34px;
+  line-height:38px;
+  text-align:center;
+  cursor:pointer;
+  z-index:5;
+  transition:.2s;
+  padding:0;
+  user-select:none;
+}
+
+.slider-btn:hover{
+  background:rgba(0,0,0,.85);
+  transform:translateY(-50%) scale(1.05);
+}
+
+.slider-prev{
+  left:10px;
+}
+
+.slider-next{
+  right:10px;
+}
+
+
+/* ================= IMAGE COUNTER ================= */
+
+.slider-counter{
+  position:absolute;
+  left:50%;
+  bottom:10px;
+  transform:translateX(-50%);
+  background:rgba(0,0,0,.60);
+  color:white;
+  padding:5px 11px;
+  border-radius:20px;
+  font-size:12px;
+  z-index:4;
+}
+
+
+/* ================= PROPERTY BODY ================= */
+
+.property-body{
+  padding:18px;
+}
+
+.property-title{
+  font-size:20px;
   font-weight:bold;
-  line-height:1.35;
-  margin-bottom:12px;
+  margin-bottom:10px;
+  line-height:1.4;
 }
 
 .price{
   color:#b27b00;
-  font-size:27px;
+  font-size:21px;
   font-weight:bold;
-  margin-bottom:15px;
+  margin-bottom:10px;
 }
 
 .location{
   color:#555;
-  font-size:17px;
-  line-height:1.7;
-  margin-bottom:22px;
+  line-height:1.6;
+  margin-bottom:15px;
 }
 
-/* ================= INFO ================= */
 
-.info-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin:20px 0;
-}
+/* ================= DETAILS BUTTON ================= */
 
-.info-box{
-  background:#f8f8f8;
-  border-radius:10px;
-  padding:15px 10px;
+.details{
+  display:block;
   text-align:center;
-}
-
-.info-box .icon{
-  font-size:25px;
-  margin-bottom:7px;
-}
-
-.info-box .label{
-  font-size:13px;
-  color:#777;
-  margin-bottom:4px;
-}
-
-.info-box .value{
-  font-size:18px;
-  font-weight:bold;
-}
-
-/* ================= DESCRIPTION ================= */
-
-.section{
-  margin-top:28px;
-}
-
-.section h2{
-  margin:0 0 12px;
-  font-size:22px;
-}
-
-.description{
-  background:#f8f8f8;
-  border-radius:10px;
-  padding:18px;
-  line-height:1.8;
-  white-space:pre-wrap;
-}
-
-/* ================= PHOTOS ================= */
-
-.photos{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-}
-
-.photos img{
-  width:100%;
-  height:210px;
-  object-fit:cover;
-  border-radius:10px;
-  background:#eee;
-  cursor:pointer;
-}
-
-/* ================= CONTACT ================= */
-
-.contact-box{
-  margin-top:28px;
-  background:#fff8d6;
-  border-radius:12px;
-  padding:20px;
-}
-
-.contact-box h2{
-  margin-top:0;
-}
-
-.contact-button{
-  display:inline-block;
   background:#f2c400;
   color:#222;
   text-decoration:none;
-  padding:12px 18px;
+  padding:12px;
   border-radius:8px;
   font-weight:bold;
-  margin-top:8px;
+  transition:.2s;
 }
 
-.contact-button:hover{
+.details:hover{
   background:#d4a900;
 }
 
+
 /* ================= STATUS ================= */
 
-.status{
+.empty{
   background:white;
-  padding:45px 20px;
-  border-radius:15px;
+  padding:40px;
+  border-radius:12px;
   text-align:center;
   color:#777;
+  grid-column:1/-1;
   box-shadow:0 3px 12px rgba(0,0,0,.08);
+  line-height:1.7;
 }
 
 .error{
@@ -251,8 +279,9 @@ header h1{
 }
 
 .loading{
-  color:#8a6500;
+  text-align:center;
 }
+
 
 /* ================= FOOTER ================= */
 
@@ -263,40 +292,54 @@ footer{
   font-size:14px;
 }
 
+
+/* ================= TABLET ================= */
+
+@media(max-width:900px){
+
+  .properties{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+
 /* ================= MOBILE ================= */
 
-@media(max-width:700px){
+@media(max-width:600px){
 
   header h1{
     font-size:24px;
   }
 
   .container{
-    padding:20px 14px 45px;
+    padding:20px 14px 50px;
   }
 
-  .detail-body{
-    padding:18px;
+  .page-title{
+    padding:20px 15px;
   }
 
-  .title{
-    font-size:23px;
+  .properties{
+    grid-template-columns:1fr;
+  }
+
+  .image-slider{
+    height:230px;
+  }
+
+  .property-title{
+    font-size:19px;
   }
 
   .price{
-    font-size:23px;
+    font-size:20px;
   }
 
-  .info-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .photos{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .photos img{
-    height:150px;
+  .slider-btn{
+    width:42px;
+    height:42px;
+    font-size:32px;
   }
 
 }
@@ -309,6 +352,8 @@ footer{
 <body>
 
 
+<!-- ================= HEADER ================= -->
+
 <header>
 
   <h1 id="headerTitle">
@@ -316,20 +361,35 @@ footer{
   </h1>
 
   <a
-    href="houses-sale.html"
+    href="home.html"
     class="back"
     id="backButton"
   >
-    ← Back to Houses for Sale
+    ← Back to Home
   </a>
 
 </header>
 
 
-<main class="container">
+<div class="container">
 
 
-  <!-- ================= AD ================= -->
+  <!-- ================= PAGE TITLE ================= -->
+
+  <div class="page-title">
+
+    <h2 id="pageTitle">
+      🏠 Houses for Sale
+    </h2>
+
+    <p id="pageDescription">
+      Find houses available for sale in Rwanda.
+    </p>
+
+  </div>
+
+
+  <!-- ================= ADSENSE ================= -->
 
   <div class="ad-container">
 
@@ -352,22 +412,26 @@ footer{
   </div>
 
 
-  <!-- ================= DETAIL ================= -->
+  <!-- ================= PROPERTIES ================= -->
 
-  <div id="detailContainer">
+  <div
+    id="properties"
+    class="properties"
+  >
 
     <div
-      class="status loading"
+      class="empty loading"
       id="loadingMessage"
     >
-      Loading house details...
+      Loading houses...
     </div>
 
   </div>
 
+</div>
 
-</main>
 
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
@@ -378,247 +442,257 @@ footer{
 </footer>
 
 
+
 <script>
 
+
 /* =====================================================
-   TRANSLATIONS - 5 LANGUAGES ONLY
+   LANGUAGE - 5 LANGUAGES
 ===================================================== */
 
 const translations = {
 
+
+  /* ================= KINYARWANDA ================= */
+
   Kinyarwanda: {
 
-    header:"🏡 RWANDA PROPERTY VISATA",
+    header:
+      "🏡 RWANDA PROPERTY VISATA",
 
-    back:"← Subira ku Mazu Agurishwa",
+    back:
+      "← Subira kuri Home",
 
-    advertisement:"Kwamamaza",
+    title:
+      "🏠 Amazu Agurishwa",
 
-    loading:"Tegereza, ibisobanuro by'inzu birimo kuboneka...",
+    description:
+      "Shakisha amazu ari kugurishwa mu Rwanda.",
 
-    error:"Habaye ikibazo mu kubona ibisobanuro by'inzu.",
+    advertisement:
+      "Kwamamaza",
 
-    notFound:"Iyi nzu ntibonetse.",
+    loading:
+      "Tegereza, amazu arimo kuboneka...",
 
-    invalidId:"ID y'inzu ntiboneka muri URL.",
+    noProperties:
+      "Nta nzu zigurishwa ziraboneka.",
 
-    house:"Inzu Igurishwa",
+    error:
+      "Habaye ikibazo mu kubona amazu.",
 
-    location:"Aho iherereye",
+    view:
+      "Reba Ibisobanuro",
 
-    description:"Ibisobanuro",
+    house:
+      "Inzu Igurishwa",
 
-    details:"Ibisobanuro by'ingenzi",
+    rwanda:
+      "Rwanda",
 
-    bedrooms:"Amabyumba",
+    noPhoto:
+      "Nta Foto",
 
-    bathrooms:"Ubwiherero",
-
-    parking:"Parking",
-
-    contact:"Twandikire",
-
-    phone:"Telefone",
-
-    viewPhotos:"Amafoto",
-
-    rwanda:"Rwanda",
-
-    noPhoto:"Nta Foto",
-
-    designedBy:"Byakozwe na Irene"
+    designedBy:
+      "Byakozwe na Irene"
 
   },
 
+
+  /* ================= ENGLISH ================= */
 
   English: {
 
-    header:"🏡 RWANDA PROPERTY VISATA",
+    header:
+      "🏡 RWANDA PROPERTY VISATA",
 
-    back:"← Back to Houses for Sale",
+    back:
+      "← Back to Home",
 
-    advertisement:"Advertisement",
+    title:
+      "🏠 Houses for Sale",
 
-    loading:"Loading house details...",
+    description:
+      "Find houses available for sale in Rwanda.",
 
-    error:"There was a problem loading the house details.",
+    advertisement:
+      "Advertisement",
 
-    notFound:"This house was not found.",
+    loading:
+      "Loading houses...",
 
-    invalidId:"The house ID is missing from the URL.",
+    noProperties:
+      "No houses for sale available yet.",
 
-    house:"House for Sale",
+    error:
+      "There was a problem loading the houses.",
 
-    location:"Location",
+    view:
+      "View Details",
 
-    description:"Description",
+    house:
+      "House for Sale",
 
-    details:"Property Details",
+    rwanda:
+      "Rwanda",
 
-    bedrooms:"Bedrooms",
+    noPhoto:
+      "No Photo",
 
-    bathrooms:"Bathrooms",
-
-    parking:"Parking",
-
-    contact:"Contact",
-
-    phone:"Phone",
-
-    viewPhotos:"Photos",
-
-    rwanda:"Rwanda",
-
-    noPhoto:"No Photo",
-
-    designedBy:"Designed by Irene"
+    designedBy:
+      "Designed by Irene"
 
   },
 
+
+  /* ================= FRENCH ================= */
 
   Français: {
 
-    header:"🏡 RWANDA PROPERTY VISATA",
+    header:
+      "🏡 RWANDA PROPERTY VISATA",
 
-    back:"← Retour aux maisons à vendre",
+    back:
+      "← Retour à l'accueil",
 
-    advertisement:"Publicité",
+    title:
+      "🏠 Maisons à vendre",
 
-    loading:"Chargement des détails de la maison...",
+    description:
+      "Trouvez des maisons disponibles à la vente au Rwanda.",
 
-    error:"Un problème est survenu lors du chargement des détails.",
+    advertisement:
+      "Publicité",
 
-    notFound:"Cette maison est introuvable.",
+    loading:
+      "Chargement des maisons...",
 
-    invalidId:"L'identifiant de la maison est absent de l'URL.",
+    noProperties:
+      "Aucune maison à vendre n'est disponible pour le moment.",
 
-    house:"Maison à vendre",
+    error:
+      "Un problème est survenu lors du chargement des maisons.",
 
-    location:"Emplacement",
+    view:
+      "Voir les détails",
 
-    description:"Description",
+    house:
+      "Maison à vendre",
 
-    details:"Détails de la propriété",
+    rwanda:
+      "Rwanda",
 
-    bedrooms:"Chambres",
+    noPhoto:
+      "Aucune photo",
 
-    bathrooms:"Salles de bain",
-
-    parking:"Parking",
-
-    contact:"Contact",
-
-    phone:"Téléphone",
-
-    viewPhotos:"Photos",
-
-    rwanda:"Rwanda",
-
-    noPhoto:"Aucune photo",
-
-    designedBy:"Conçu par Irene"
+    designedBy:
+      "Conçu par Irene"
 
   },
 
+
+  /* ================= KISWAHILI ================= */
 
   Kiswahili: {
 
-    header:"🏡 RWANDA PROPERTY VISATA",
+    header:
+      "🏡 RWANDA PROPERTY VISATA",
 
-    back:"← Rudi kwenye Nyumba za Kuuza",
+    back:
+      "← Rudi Mwanzo",
 
-    advertisement:"Tangazo",
+    title:
+      "🏠 Nyumba za Kuuza",
 
-    loading:"Inapakia maelezo ya nyumba...",
+    description:
+      "Pata nyumba zinazopatikana kwa ajili ya kuuza nchini Rwanda.",
 
-    error:"Kuna tatizo wakati wa kupakia maelezo ya nyumba.",
+    advertisement:
+      "Tangazo",
 
-    notFound:"Nyumba hii haikupatikana.",
+    loading:
+      "Inapakia nyumba...",
 
-    invalidId:"Kitambulisho cha nyumba hakipo kwenye URL.",
+    noProperties:
+      "Hakuna nyumba za kuuza zinazopatikana kwa sasa.",
 
-    house:"Nyumba ya Kuuza",
+    error:
+      "Kuna tatizo wakati wa kupakia nyumba.",
 
-    location:"Mahali",
+    view:
+      "Angalia Maelezo",
 
-    description:"Maelezo",
+    house:
+      "Nyumba ya Kuuza",
 
-    details:"Maelezo ya Mali",
+    rwanda:
+      "Rwanda",
 
-    bedrooms:"Vyumba vya kulala",
+    noPhoto:
+      "Hakuna Picha",
 
-    bathrooms:"Bafu",
-
-    parking:"Maegesho",
-
-    contact:"Wasiliana",
-
-    phone:"Simu",
-
-    viewPhotos:"Picha",
-
-    rwanda:"Rwanda",
-
-    noPhoto:"Hakuna Picha",
-
-    designedBy:"Imeundwa na Irene"
+    designedBy:
+      "Imeundwa na Irene"
 
   },
 
 
+  /* ================= CHINESE ================= */
+
   "中文": {
 
-    header:"🏡 RWANDA PROPERTY VISATA",
+    header:
+      "🏡 RWANDA PROPERTY VISATA",
 
-    back:"← 返回出售房屋",
+    back:
+      "← 返回首页",
 
-    advertisement:"广告",
+    title:
+      "🏠 出售房屋",
 
-    loading:"正在加载房屋详情...",
+    description:
+      "寻找卢旺达境内可出售的房屋。",
 
-    error:"加载房屋详情时出现问题。",
+    advertisement:
+      "广告",
 
-    notFound:"没有找到这套房屋。",
+    loading:
+      "正在加载房屋...",
 
-    invalidId:"网址中缺少房屋ID。",
+    noProperties:
+      "目前没有可出售的房屋。",
 
-    house:"出售房屋",
+    error:
+      "加载房屋时出现问题。",
 
-    location:"位置",
+    view:
+      "查看详情",
 
-    description:"描述",
+    house:
+      "出售房屋",
 
-    details:"房产详情",
+    rwanda:
+      "卢旺达",
 
-    bedrooms:"卧室",
+    noPhoto:
+      "暂无照片",
 
-    bathrooms:"浴室",
-
-    parking:"停车位",
-
-    contact:"联系",
-
-    phone:"电话",
-
-    viewPhotos:"照片",
-
-    rwanda:"卢旺达",
-
-    noPhoto:"暂无照片",
-
-    designedBy:"由 Irene 设计"
+    designedBy:
+      "由 Irene 设计"
 
   }
 
 };
 
 
+
 /* =====================================================
-   LANGUAGE
+   GET SAVED LANGUAGE
 ===================================================== */
 
 const savedLanguage =
-  localStorage.getItem("selectedLanguage") || "English";
+  localStorage.getItem("selectedLanguage") ||
+  "English";
 
 
 const language =
@@ -626,31 +700,43 @@ const language =
     translations,
     savedLanguage
   )
-  ? savedLanguage
-  : "English";
+    ? savedLanguage
+    : "English";
 
 
 const t =
   translations[language];
 
 
+
+/* =====================================================
+   HTML LANGUAGE
+===================================================== */
+
 const htmlLanguages = {
 
-  Kinyarwanda:"rw",
+  Kinyarwanda:
+    "rw",
 
-  English:"en",
+  English:
+    "en",
 
-  Français:"fr",
+  Français:
+    "fr",
 
-  Kiswahili:"sw",
+  Kiswahili:
+    "sw",
 
-  "中文":"zh"
+  "中文":
+    "zh"
 
 };
 
 
 document.documentElement.lang =
-  htmlLanguages[language];
+  htmlLanguages[language] ||
+  "en";
+
 
 
 /* =====================================================
@@ -670,6 +756,18 @@ document.getElementById(
 
 
 document.getElementById(
+  "pageTitle"
+).textContent =
+  t.title;
+
+
+document.getElementById(
+  "pageDescription"
+).textContent =
+  t.description;
+
+
+document.getElementById(
   "adLabel"
 ).textContent =
   t.advertisement;
@@ -685,6 +783,15 @@ document.getElementById(
   "designedBy"
 ).textContent =
   t.designedBy;
+
+
+document.title =
+  t.title.replace(
+    "🏠 ",
+    ""
+  ) +
+  " - Rwanda Property Visata";
+
 
 
 /* =====================================================
@@ -706,14 +813,16 @@ const supabaseClient =
   );
 
 
+
 /* =====================================================
-   DETAIL CONTAINER
+   ELEMENT
 ===================================================== */
 
-const detailContainer =
+const propertiesElement =
   document.getElementById(
-    "detailContainer"
+    "properties"
   );
+
 
 
 /* =====================================================
@@ -722,70 +831,102 @@ const detailContainer =
 
 function escapeHtml(value){
 
-  return String(value ?? "")
+  return String(
+    value ?? ""
+  )
 
-    .replace(/&/g,"&amp;")
+    .replace(
+      /&/g,
+      "&amp;"
+    )
 
-    .replace(/</g,"&lt;")
+    .replace(
+      /</g,
+      "&lt;"
+    )
 
-    .replace(/>/g,"&gt;")
+    .replace(
+      />/g,
+      "&gt;"
+    )
 
-    .replace(/"/g,"&quot;")
+    .replace(
+      /"/g,
+      "&quot;"
+    )
 
-    .replace(/'/g,"&#039;");
-
-}
-
-
-/* =====================================================
-   GET PROPERTY ID
-===================================================== */
-
-function getPropertyId(){
-
-  const params =
-    new URLSearchParams(
-      window.location.search
+    .replace(
+      /'/g,
+      "&#039;"
     );
 
-  return params.get("id");
-
 }
 
 
+
 /* =====================================================
-   IMAGE
+   GET ALL PROPERTY IMAGES
 ===================================================== */
 
-function getMainImage(property){
+function getPropertyImages(property){
 
-  let image =
-    property.main_photo || "";
+  const images = [];
 
 
-  if(!image){
+  /* ================= MAIN PHOTO ================= */
 
-    if(
-      Array.isArray(
-        property.other_photos
-      )
-    ){
+  if(
+    property.main_photo &&
+    typeof property.main_photo ===
+      "string" &&
+    property.main_photo.trim() !== ""
+  ){
 
-      image =
-        property.other_photos.find(
-          photo =>
-            typeof photo === "string" &&
-            photo.trim() !== ""
-        ) || "";
-
-    }
+    images.push(
+      property.main_photo.trim()
+    );
 
   }
 
 
+  /* ================= OTHER PHOTOS ARRAY ================= */
+
   if(
-    !image &&
-    typeof property.other_photos === "string"
+    Array.isArray(
+      property.other_photos
+    )
+  ){
+
+    property.other_photos.forEach(
+      photo => {
+
+        if(
+          typeof photo ===
+            "string" &&
+          photo.trim() !== "" &&
+          !images.includes(
+            photo.trim()
+          )
+        ){
+
+          images.push(
+            photo.trim()
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /* ================= OTHER PHOTOS JSON ================= */
+
+  if(
+    typeof property.other_photos ===
+      "string" &&
+    property.other_photos.trim() !== ""
   ){
 
     try{
@@ -796,19 +937,34 @@ function getMainImage(property){
         );
 
 
-      if(Array.isArray(parsed)){
+      if(
+        Array.isArray(parsed)
+      ){
 
-        image =
-          parsed.find(
-            photo =>
-              typeof photo === "string" &&
-              photo.trim() !== ""
-          ) || "";
+        parsed.forEach(
+          photo => {
+
+            if(
+              typeof photo ===
+                "string" &&
+              photo.trim() !== "" &&
+              !images.includes(
+                photo.trim()
+              )
+            ){
+
+              images.push(
+                photo.trim()
+              );
+
+            }
+
+          }
+        );
 
       }
 
     }
-
     catch(error){
 
       console.warn(
@@ -821,110 +977,30 @@ function getMainImage(property){
   }
 
 
-  return image;
-
-}
-
-
-/* =====================================================
-   GET ALL PHOTOS
-===================================================== */
-
-function getAllPhotos(property){
-
-  const photos = [];
-
+  /* ================= NO PHOTO ================= */
 
   if(
-    property.main_photo &&
-    typeof property.main_photo === "string"
+    images.length === 0
   ){
 
-    photos.push(
-      property.main_photo
+    images.push(
+      "https://via.placeholder.com/800x500?text=" +
+      encodeURIComponent(
+        t.noPhoto
+      )
     );
 
   }
 
 
-  if(
-    Array.isArray(
-      property.other_photos
-    )
-  ){
-
-    property.other_photos.forEach(
-      photo => {
-
-        if(
-          typeof photo === "string" &&
-          photo.trim() !== ""
-        ){
-
-          photos.push(photo);
-
-        }
-
-      }
-    );
-
-  }
-
-
-  if(
-    typeof property.other_photos === "string"
-  ){
-
-    try{
-
-      const parsed =
-        JSON.parse(
-          property.other_photos
-        );
-
-
-      if(Array.isArray(parsed)){
-
-        parsed.forEach(
-          photo => {
-
-            if(
-              typeof photo === "string" &&
-              photo.trim() !== ""
-            ){
-
-              photos.push(photo);
-
-            }
-
-          }
-        );
-
-      }
-
-    }
-
-    catch(error){
-
-      console.warn(
-        "Photo parsing error:",
-        error
-      );
-
-    }
-
-  }
-
-
-  return [
-    ...new Set(photos)
-  ];
+  return images;
 
 }
 
 
+
 /* =====================================================
-   LOCATION
+   GET LOCATION
 ===================================================== */
 
 function getLocation(property){
@@ -942,22 +1018,35 @@ function getLocation(property){
   ].filter(
 
     value =>
+
       value !== null &&
+
       value !== undefined &&
+
       String(value).trim() !== ""
 
   );
 
 
-  return parts.length
-    ? parts.join(", ")
-    : t.rwanda;
+  if(
+    parts.length > 0
+  ){
+
+    return parts.join(
+      ", "
+    );
+
+  }
+
+
+  return t.rwanda;
 
 }
 
 
+
 /* =====================================================
-   PRICE
+   FORMAT PRICE
 ===================================================== */
 
 function formatPrice(price){
@@ -977,7 +1066,9 @@ function formatPrice(price){
     Number(price);
 
 
-  if(Number.isNaN(number)){
+  if(
+    Number.isNaN(number)
+  ){
 
     return "0";
 
@@ -991,75 +1082,33 @@ function formatPrice(price){
 }
 
 
+
 /* =====================================================
-   FIELD HELPER
+   CREATE DETAIL URL
 ===================================================== */
 
-function getField(property, names){
+function createDetailUrl(id){
 
-  for(
-    const name of names
-  ){
-
-    if(
-      property[name] !== null &&
-      property[name] !== undefined &&
-      String(property[name]).trim() !== ""
-    ){
-
-      return property[name];
-
-    }
-
-  }
-
-
-  return 0;
+  return (
+    "house-sale-detail.html?id=" +
+    encodeURIComponent(
+      String(id)
+    )
+  );
 
 }
 
 
+
 /* =====================================================
-   LOAD DETAIL
+   LOAD SALE PROPERTIES
 ===================================================== */
 
-async function loadPropertyDetail(){
+async function loadSaleProperties(){
 
-  const propertyId =
-    getPropertyId();
+  propertiesElement.innerHTML = `
 
-
-  /* ================= NO ID ================= */
-
-  if(
-    !propertyId ||
-    String(propertyId).trim() === ""
-  ){
-
-    detailContainer.innerHTML = `
-
-      <div class="status error">
-
-        ❌<br><br>
-
-        ${escapeHtml(
-          t.invalidId
-        )}
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-  /* ================= LOADING ================= */
-
-  detailContainer.innerHTML = `
-
-    <div class="status loading">
+    <div class="empty loading">
 
       ${escapeHtml(
         t.loading
@@ -1072,26 +1121,17 @@ async function loadPropertyDetail(){
 
   try{
 
-    /*
-      IMPORTANT:
-      Dukoresha ID nyayo iri muri URL.
-    */
-
     const {
-      data: property,
+      data,
       error
     } =
-
       await supabaseClient
 
-        .from("property_posts")
+        .from(
+          "property_posts"
+        )
 
         .select("*")
-
-        .eq(
-          "id",
-          propertyId
-        )
 
         .eq(
           "property_type",
@@ -1103,7 +1143,12 @@ async function loadPropertyDetail(){
           "published"
         )
 
-        .maybeSingle();
+        .order(
+          "created_at",
+          {
+            ascending:false
+          }
+        );
 
 
     /* ================= ERROR ================= */
@@ -1111,14 +1156,14 @@ async function loadPropertyDetail(){
     if(error){
 
       console.error(
-        "DETAIL SUPABASE ERROR:",
+        "SUPABASE ERROR:",
         error
       );
 
 
-      detailContainer.innerHTML = `
+      propertiesElement.innerHTML = `
 
-        <div class="status error">
+        <div class="empty error">
 
           ❌<br><br>
 
@@ -1131,7 +1176,8 @@ async function loadPropertyDetail(){
           <small>
 
             ${escapeHtml(
-              error.message || ""
+              error.message ||
+              ""
             )}
 
           </small>
@@ -1140,373 +1186,470 @@ async function loadPropertyDetail(){
 
       `;
 
+
       return;
 
     }
 
 
-    /* ================= NOT FOUND ================= */
 
-    if(!property){
+    /* ================= EMPTY ================= */
 
-      detailContainer.innerHTML = `
+    if(
+      !data ||
+      data.length === 0
+    ){
 
-        <div class="status error">
+      propertiesElement.innerHTML = `
+
+        <div class="empty">
 
           🏠<br><br>
 
           ${escapeHtml(
-            t.notFound
+            t.noProperties
           )}
 
         </div>
 
       `;
 
+
       return;
 
     }
 
 
-    /* ================= DATA ================= */
 
-    const title =
-      property.title ||
-      t.house;
+    /* ================= CLEAR ================= */
 
-
-    const price =
-      formatPrice(
-        property.price
-      );
-
-
-    const location =
-      getLocation(
-        property
-      );
-
-
-    const mainImage =
-      getMainImage(
-        property
-      ) ||
-
-      "https://via.placeholder.com/1100x600?text=" +
-      encodeURIComponent(
-        t.noPhoto
-      );
-
-
-    const allPhotos =
-      getAllPhotos(
-        property
-      );
-
-
-    const bedrooms =
-      getField(
-        property,
-        [
-          "bedrooms",
-          "bedroom"
-        ]
-      );
-
-
-    const bathrooms =
-      getField(
-        property,
-        [
-          "bathrooms",
-          "bathroom"
-        ]
-      );
-
-
-    const parking =
-      getField(
-        property,
-        [
-          "parking",
-          "parking_spaces"
-        ]
-      );
-
-
-    const description =
-      property.description ||
+    propertiesElement.innerHTML =
       "";
 
 
-    const phone =
-      property.phone ||
-      property.phone_number ||
-      property.contact_phone ||
-      "";
+
+    /* =================================================
+       CREATE EACH PROPERTY
+    ================================================= */
+
+    data.forEach(
+      property => {
 
 
-    /* ================= PAGE TITLE ================= */
+        /* ================= ID CHECK ================= */
 
-    document.title =
-      title +
-      " - Rwanda Property Visata";
+        if(
+          property.id === null ||
+          property.id === undefined ||
+          String(
+            property.id
+          ).trim() === ""
+        ){
 
+          console.warn(
+            "Property skipped because it has no ID:",
+            property
+          );
 
-    /* ================= PHOTOS HTML ================= */
+          return;
 
-    let photosHtml = "";
-
-
-    if(allPhotos.length > 0){
-
-      photosHtml = `
-
-        <div class="section">
-
-          <h2>
-            📷 ${escapeHtml(
-              t.viewPhotos
-            )}
-          </h2>
-
-          <div class="photos">
-
-            ${allPhotos.map(
-              photo => `
-
-                <img
-                  src="${escapeHtml(photo)}"
-                  alt="${escapeHtml(title)}"
-                  loading="lazy"
-                  onerror="
-                    this.style.display='none';
-                  "
-                >
-
-              `
-            ).join("")}
-
-          </div>
-
-        </div>
-
-      `;
-
-    }
+        }
 
 
-    /* ================= CONTACT HTML ================= */
 
-    let contactHtml = "";
+        /* ================= CARD ================= */
 
-
-    if(phone){
-
-      const cleanPhone =
-        String(phone)
-          .replace(/[^\d+]/g,"");
+        const card =
+          document.createElement(
+            "div"
+          );
 
 
-      contactHtml = `
-
-        <div class="contact-box">
-
-          <h2>
-            📞 ${escapeHtml(
-              t.contact
-            )}
-          </h2>
-
-          <p>
-            ${escapeHtml(
-              t.phone
-            )}:
-            <strong>
-              ${escapeHtml(phone)}
-            </strong>
-          </p>
-
-          <a
-            class="contact-button"
-            href="tel:${escapeHtml(cleanPhone)}"
-          >
-
-            📞
-            ${escapeHtml(
-              t.phone
-            )}
-
-          </a>
-
-        </div>
-
-      `;
-
-    }
+        card.className =
+          "property";
 
 
-    /* ================= DETAIL PAGE ================= */
 
-    detailContainer.innerHTML = `
+        /* ================= IMAGES ================= */
 
-      <article class="detail-card">
-
-        <img
-          class="main-image"
-          src="${escapeHtml(mainImage)}"
-          alt="${escapeHtml(title)}"
-          onerror="
-            this.onerror=null;
-            this.src='https://via.placeholder.com/1100x600?text=${encodeURIComponent(
-              t.noPhoto
-            )}';
-          "
-        >
+        const images =
+          getPropertyImages(
+            property
+          );
 
 
-        <div class="detail-body">
-
-          <div class="title">
-
-            ${escapeHtml(title)}
-
-          </div>
+        let currentImage =
+          0;
 
 
-          <div class="price">
 
-            ${escapeHtml(price)}
-            RWF
+        /* ================= TITLE ================= */
 
-          </div>
+        const propertyTitle =
+          property.title ||
+          t.house;
 
 
-          <div class="location">
 
-            📍
-            <strong>
-              ${escapeHtml(t.location)}:
-            </strong>
+        /* ================= PRICE ================= */
 
-            ${escapeHtml(location)}
+        const formattedPrice =
+          formatPrice(
+            property.price
+          );
+
+
+
+        /* ================= LOCATION ================= */
+
+        const location =
+          getLocation(
+            property
+          );
+
+
+
+        /* ================= DETAIL URL ================= */
+
+        const detailUrl =
+          createDetailUrl(
+            property.id
+          );
+
+
+
+        /* =================================================
+           CARD HTML
+        ================================================= */
+
+        card.innerHTML = `
+
+          <div class="image-slider">
+
+            <img
+
+              class="slider-image"
+
+              src="${escapeHtml(
+                images[0]
+              )}"
+
+              alt="${escapeHtml(
+                propertyTitle
+              )}"
+
+              loading="lazy"
+
+            >
+
+
+            ${
+              images.length > 1
+                ? `
+
+                  <button
+                    type="button"
+                    class="slider-btn slider-prev"
+                    aria-label="Previous image"
+                  >
+                    ‹
+                  </button>
+
+
+                  <button
+                    type="button"
+                    class="slider-btn slider-next"
+                    aria-label="Next image"
+                  >
+                    ›
+                  </button>
+
+
+                  <div class="slider-counter">
+
+                    1 / ${images.length}
+
+                  </div>
+
+                `
+                : ""
+            }
 
           </div>
 
 
-          <div class="info-grid">
+          <div class="property-body">
 
-            <div class="info-box">
 
-              <div class="icon">
-                🛏️
-              </div>
+            <div class="property-title">
 
-              <div class="label">
-                ${escapeHtml(t.bedrooms)}
-              </div>
-
-              <div class="value">
-                ${escapeHtml(bedrooms)}
-              </div>
+              ${escapeHtml(
+                propertyTitle
+              )}
 
             </div>
 
 
-            <div class="info-box">
+            <div class="price">
 
-              <div class="icon">
-                🚿
-              </div>
+              ${escapeHtml(
+                formattedPrice
+              )}
 
-              <div class="label">
-                ${escapeHtml(t.bathrooms)}
-              </div>
-
-              <div class="value">
-                ${escapeHtml(bathrooms)}
-              </div>
+              RWF
 
             </div>
 
 
-            <div class="info-box">
+            <div class="location">
 
-              <div class="icon">
-                🚗
-              </div>
+              📍
 
-              <div class="label">
-                ${escapeHtml(t.parking)}
-              </div>
-
-              <div class="value">
-                ${escapeHtml(parking)}
-              </div>
+              ${escapeHtml(
+                location
+              )}
 
             </div>
+
+
+            <a
+
+              class="details"
+
+              href="${escapeHtml(
+                detailUrl
+              )}"
+
+            >
+
+              ${escapeHtml(
+                t.view
+              )}
+
+            </a>
+
 
           </div>
 
+        `;
 
-          ${
-            description
-            ?
 
-            `
 
-              <div class="section">
+        /* =================================================
+           IMAGE ELEMENT
+        ================================================= */
 
-                <h2>
-                  📝 ${escapeHtml(
-                    t.description
-                  )}
-                </h2>
+        const imageElement =
+          card.querySelector(
+            ".slider-image"
+          );
 
-                <div class="description">
 
-                  ${escapeHtml(
-                    description
-                  )}
 
-                </div>
+        /* =================================================
+           IMAGE ERROR
+        ================================================= */
 
-              </div>
+        imageElement.addEventListener(
+          "error",
+          function(){
 
-            `
+            this.onerror =
+              null;
 
-            :
-
-            ""
+            this.src =
+              "https://via.placeholder.com/800x500?text=" +
+              encodeURIComponent(
+                t.noPhoto
+              );
 
           }
+        );
 
 
-          ${photosHtml}
+
+        /* =================================================
+           PREVIOUS BUTTON
+        ================================================= */
+
+        const previousButton =
+          card.querySelector(
+            ".slider-prev"
+          );
 
 
-          ${contactHtml}
+        if(
+          previousButton
+        ){
 
+          previousButton.addEventListener(
+            "click",
+            function(event){
+
+              event.preventDefault();
+
+              event.stopPropagation();
+
+
+              currentImage--;
+
+
+              if(
+                currentImage < 0
+              ){
+
+                currentImage =
+                  images.length - 1;
+
+              }
+
+
+              imageElement.src =
+                images[
+                  currentImage
+                ];
+
+
+              const counter =
+                card.querySelector(
+                  ".slider-counter"
+                );
+
+
+              if(counter){
+
+                counter.textContent =
+                  (
+                    currentImage + 1
+                  ) +
+                  " / " +
+                  images.length;
+
+              }
+
+            }
+          );
+
+        }
+
+
+
+        /* =================================================
+           NEXT BUTTON
+        ================================================= */
+
+        const nextButton =
+          card.querySelector(
+            ".slider-next"
+          );
+
+
+        if(
+          nextButton
+        ){
+
+          nextButton.addEventListener(
+            "click",
+            function(event){
+
+              event.preventDefault();
+
+              event.stopPropagation();
+
+
+              currentImage++;
+
+
+              if(
+                currentImage >=
+                images.length
+              ){
+
+                currentImage =
+                  0;
+
+              }
+
+
+              imageElement.src =
+                images[
+                  currentImage
+                ];
+
+
+              const counter =
+                card.querySelector(
+                  ".slider-counter"
+                );
+
+
+              if(counter){
+
+                counter.textContent =
+                  (
+                    currentImage + 1
+                  ) +
+                  " / " +
+                  images.length;
+
+              }
+
+            }
+          );
+
+        }
+
+
+
+        /* ================= ADD CARD ================= */
+
+        propertiesElement.appendChild(
+          card
+        );
+
+
+      }
+    );
+
+
+
+    /* =================================================
+       ALL RECORDS WITHOUT ID
+    ================================================= */
+
+    if(
+      propertiesElement.children.length ===
+      0
+    ){
+
+      propertiesElement.innerHTML = `
+
+        <div class="empty error">
+
+          ❌<br><br>
+
+          ${escapeHtml(
+            t.error
+          )}
 
         </div>
 
-      </article>
+      `;
 
-    `;
+    }
 
   }
-
   catch(error){
 
     console.error(
-      "DETAIL PAGE ERROR:",
+      "Unexpected error:",
       error
     );
 
 
-    detailContainer.innerHTML = `
+    propertiesElement.innerHTML = `
 
-      <div class="status error">
+      <div class="empty error">
 
         ❌<br><br>
 
@@ -1519,7 +1662,8 @@ async function loadPropertyDetail(){
         <small>
 
           ${escapeHtml(
-            error.message || ""
+            error.message ||
+            ""
           )}
 
         </small>
@@ -1531,6 +1675,7 @@ async function loadPropertyDetail(){
   }
 
 }
+
 
 
 /* =====================================================
@@ -1547,23 +1692,31 @@ async function trackPageView(){
       );
 
 
-    if(!visitorId){
+    if(
+      !visitorId
+    ){
 
-      visitorId =
+      if(
         window.crypto &&
         typeof window.crypto.randomUUID ===
-        "function"
+          "function"
+      ){
 
-        ? window.crypto.randomUUID()
+        visitorId =
+          window.crypto.randomUUID();
 
-        :
+      }
+      else{
 
-        "visitor_" +
-        Date.now() +
-        "_" +
-        Math.random()
-          .toString(36)
-          .substring(2);
+        visitorId =
+          "visitor_" +
+          Date.now() +
+          "_" +
+          Math.random()
+            .toString(36)
+            .substring(2);
+
+      }
 
 
       localStorage.setItem(
@@ -1574,29 +1727,38 @@ async function trackPageView(){
     }
 
 
+
     let sessionId =
       sessionStorage.getItem(
         "rpv_session_id"
       );
 
 
-    if(!sessionId){
+    if(
+      !sessionId
+    ){
 
-      sessionId =
+      if(
         window.crypto &&
         typeof window.crypto.randomUUID ===
-        "function"
+          "function"
+      ){
 
-        ? window.crypto.randomUUID()
+        sessionId =
+          window.crypto.randomUUID();
 
-        :
+      }
+      else{
 
-        "session_" +
-        Date.now() +
-        "_" +
-        Math.random()
-          .toString(36)
-          .substring(2);
+        sessionId =
+          "session_" +
+          Date.now() +
+          "_" +
+          Math.random()
+            .toString(36)
+            .substring(2);
+
+      }
 
 
       sessionStorage.setItem(
@@ -1607,43 +1769,62 @@ async function trackPageView(){
     }
 
 
-    await supabaseClient
 
-      .from("page_views")
+    const {
+      error
+    } =
+      await supabaseClient
 
-      .insert({
+        .from(
+          "page_views"
+        )
 
-        page:
-          document.title ||
-          location.pathname,
+        .insert({
 
-        path:
-          location.pathname,
+          page:
+            document.title ||
+            location.pathname,
 
-        visitor_id:
-          visitorId,
+          path:
+            location.pathname,
 
-        session_id:
-          sessionId,
+          visitor_id:
+            visitorId,
 
-        referrer:
-          document.referrer ||
-          null,
+          session_id:
+            sessionId,
 
-        user_agent:
-          navigator.userAgent,
+          referrer:
+            document.referrer ||
+            null,
 
-        device_type:
-          getDeviceType(),
+          user_agent:
+            navigator.userAgent,
 
-        country:null,
+          device_type:
+            getDeviceType(),
 
-        city:null
+          country:
+            null,
 
-      });
+          city:
+            null
+
+        });
+
+
+    if(
+      error
+    ){
+
+      console.warn(
+        "Visitor tracking error:",
+        error
+      );
+
+    }
 
   }
-
   catch(error){
 
     console.warn(
@@ -1656,16 +1837,25 @@ async function trackPageView(){
 }
 
 
+
+/* =====================================================
+   DEVICE TYPE
+===================================================== */
+
 function getDeviceType(){
 
-  if(window.innerWidth <= 600){
+  if(
+    window.innerWidth <= 600
+  ){
 
     return "mobile";
 
   }
 
 
-  if(window.innerWidth <= 1024){
+  if(
+    window.innerWidth <= 1024
+  ){
 
     return "tablet";
 
@@ -1677,17 +1867,19 @@ function getDeviceType(){
 }
 
 
+
 /* =====================================================
-   START
+   START PAGE
 ===================================================== */
 
-loadPropertyDetail();
+loadSaleProperties();
 
 trackPageView();
 
 
+
 /* =====================================================
-   ADSENSE
+   START ADSENSE
 ===================================================== */
 
 window.addEventListener(
@@ -1703,7 +1895,6 @@ window.addEventListener(
       ).push({});
 
     }
-
     catch(error){
 
       console.warn(
@@ -1717,6 +1908,7 @@ window.addEventListener(
 );
 
 </script>
+
 
 </body>
 
