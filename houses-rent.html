@@ -12,15 +12,11 @@
 
   <title>Houses for Rent - Rwanda House Market</title>
 
-
-  <!-- FAVICON -->
-
   <link
     rel="icon"
     type="image/png"
     href="logo.png"
   >
-
 
   <!-- ================= GOOGLE ADSENSE ================= -->
 
@@ -30,20 +26,17 @@
     crossorigin="anonymous">
   </script>
 
-
   <!-- SUPABASE -->
 
   <script
     src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
   </script>
 
-
   <style>
 
     *{
       box-sizing:border-box;
     }
-
 
     body{
       margin:0;
@@ -52,98 +45,96 @@
       color:#33251d;
     }
 
-
     /* ================= NAVBAR ================= */
 
     .navbar{
-
       background:#d4a017;
       color:white;
-
       padding:15px 20px;
-
       display:flex;
       justify-content:space-between;
       align-items:center;
-
       gap:15px;
-
       position:sticky;
       top:0;
-
       z-index:1000;
-
-      box-shadow:
-        0 3px 12px rgba(0,0,0,.20);
-
+      box-shadow:0 3px 12px rgba(0,0,0,.20);
     }
 
-
     .brand{
-
       display:flex;
       align-items:center;
       gap:10px;
-
       font-size:22px;
       font-weight:bold;
     }
 
-
     .brand img{
-
       width:45px;
       height:45px;
-
       object-fit:contain;
-
       background:white;
-
       border-radius:8px;
-
       padding:3px;
     }
 
-
     .nav-links{
-
       display:flex;
       gap:8px;
-
       flex-wrap:wrap;
-
       justify-content:center;
     }
 
-
     .nav-links a{
-
       background:white;
-
       color:#8a6500;
-
       text-decoration:none;
-
       padding:9px 14px;
-
       border-radius:7px;
-
       font-weight:bold;
-
       font-size:14px;
     }
 
-
     .nav-links a:hover{
-
       background:#fff3bd;
     }
 
+    /* ================= LANGUAGE ================= */
+
+    .language-box{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:7px;
+      flex-wrap:wrap;
+      padding:10px;
+      background:white;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+    }
+
+    .language-button{
+      border:1px solid #d4a017;
+      background:white;
+      color:#8a6500;
+      padding:7px 11px;
+      border-radius:7px;
+      cursor:pointer;
+      font-weight:bold;
+      font-size:13px;
+    }
+
+    .language-button:hover{
+      background:#fff8d6;
+    }
+
+    .language-button.active{
+      background:#d4a017;
+      color:white;
+    }
 
     /* ================= HEADER ================= */
 
     .page-header{
-
       background:
         linear-gradient(
           rgba(0,0,0,.45),
@@ -153,404 +144,255 @@
         center/cover no-repeat;
 
       min-height:300px;
-
       display:flex;
-
       align-items:center;
-
       justify-content:center;
-
       text-align:center;
-
       padding:40px 20px;
-
       color:white;
     }
 
-
     .page-header-content{
-
       max-width:800px;
     }
 
-
     .page-header h1{
-
       font-size:42px;
-
       margin:0 0 15px;
     }
 
-
     .page-header p{
-
       font-size:19px;
-
       line-height:1.6;
-
       margin:0;
     }
-
 
     /* ================= CONTAINER ================= */
 
     .container{
-
       max-width:1200px;
-
       margin:auto;
-
       padding:35px 20px 60px;
     }
 
-
     .top-box{
-
       background:white;
-
       border-radius:14px;
-
       padding:22px;
-
       margin-bottom:25px;
-
-      box-shadow:
-        0 3px 12px rgba(0,0,0,.10);
-
+      box-shadow:0 3px 12px rgba(0,0,0,.10);
       text-align:center;
     }
 
-
     .top-box h2{
-
       margin:0 0 8px;
-
       font-size:28px;
     }
 
-
     .top-box p{
-
       color:#666;
-
       margin:0;
     }
-
 
     /* ================= GOOGLE ADSENSE ================= */
 
     .ad-container{
-
       width:100%;
-
       background:white;
-
       border-radius:14px;
-
       padding:15px;
-
       margin:25px 0;
-
-      box-shadow:
-        0 3px 12px rgba(0,0,0,.10);
-
+      box-shadow:0 3px 12px rgba(0,0,0,.10);
       text-align:center;
-
       overflow:hidden;
     }
 
-
     .ad-label{
-
       font-size:12px;
-
       color:#777;
-
       margin-bottom:8px;
     }
 
-
     .adsbygoogle{
-
       width:100%;
-
       min-height:100px;
     }
-
 
     /* ================= PROPERTIES ================= */
 
     .properties{
-
       display:grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
+      grid-template-columns:repeat(3,1fr);
       gap:20px;
     }
 
-
     .property{
-
       background:white;
-
       border-radius:14px;
-
       overflow:hidden;
-
-      box-shadow:
-        0 3px 12px rgba(0,0,0,.12);
-
-      transition:
-        transform .2s,
-        box-shadow .2s;
+      box-shadow:0 3px 12px rgba(0,0,0,.12);
+      transition:transform .2s,box-shadow .2s;
     }
-
 
     .property:hover{
-
       transform:translateY(-3px);
-
-      box-shadow:
-        0 7px 20px rgba(0,0,0,.16);
+      box-shadow:0 7px 20px rgba(0,0,0,.16);
     }
 
-
     .property-image{
-
       width:100%;
-
       height:230px;
-
       object-fit:cover;
-
       display:block;
     }
 
-
     .property-body{
-
       padding:18px;
     }
 
-
     .property-title{
-
       font-size:20px;
-
       font-weight:bold;
-
       margin-bottom:10px;
-
       color:#33251d;
     }
 
-
     .price{
-
       color:#b27b00;
-
       font-size:20px;
-
       font-weight:bold;
-
       margin-bottom:12px;
     }
 
-
     .location{
-
       color:#666;
-
       line-height:1.6;
-
       margin-bottom:14px;
     }
 
-
     .info{
-
       display:grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
+      grid-template-columns:repeat(3,1fr);
       gap:6px;
-
       margin-bottom:15px;
     }
 
-
     .info div{
-
       background:#f7f5ef;
-
       border-radius:7px;
-
       padding:8px 5px;
-
       text-align:center;
-
       font-size:13px;
-
       color:#555;
     }
 
-
     .view-button{
-
       display:block;
-
       width:100%;
-
       text-align:center;
-
       background:#d4a017;
-
       color:white;
-
       text-decoration:none;
-
       padding:12px;
-
       border-radius:8px;
-
       font-weight:bold;
     }
 
-
     .view-button:hover{
-
       background:#a87800;
     }
-
 
     /* ================= EMPTY / ERROR ================= */
 
     .message{
-
       background:white;
-
       border-radius:14px;
-
       padding:35px 20px;
-
       text-align:center;
-
       color:#777;
-
       grid-column:1/-1;
-
-      box-shadow:
-        0 3px 12px rgba(0,0,0,.08);
+      box-shadow:0 3px 12px rgba(0,0,0,.08);
     }
 
-
     .error{
-
       color:#a00000;
-
       background:#ffeaea;
     }
 
-
     .loading{
-
       color:#8a6500;
     }
-
 
     /* ================= FOOTER ================= */
 
     footer{
-
       background:#222;
-
       color:white;
-
       text-align:center;
-
       padding:30px 20px;
-
       margin-top:30px;
     }
 
-
     footer p{
-
       margin:7px 0;
     }
-
 
     /* ================= MOBILE ================= */
 
     @media(max-width:900px){
 
       .properties{
-
-        grid-template-columns:
-          repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
       }
 
       .page-header h1{
-
         font-size:36px;
       }
 
     }
 
-
     @media(max-width:650px){
 
       .navbar{
-
         flex-direction:column;
       }
 
-
       .brand{
-
         justify-content:center;
-
         text-align:center;
       }
 
-
       .nav-links{
-
         width:100%;
       }
 
-
       .nav-links a{
-
         flex:1;
-
         text-align:center;
       }
 
+      .language-box{
+        padding:10px 5px;
+      }
+
+      .language-button{
+        font-size:11px;
+        padding:6px 8px;
+      }
 
       .properties{
-
         grid-template-columns:1fr;
       }
 
-
       .page-header{
-
         min-height:260px;
       }
 
-
       .page-header h1{
-
         font-size:30px;
       }
 
-
       .page-header p{
-
         font-size:16px;
       }
 
@@ -560,9 +402,7 @@
 
 </head>
 
-
 <body>
-
 
   <!-- ================= NAVBAR ================= -->
 
@@ -575,30 +415,35 @@
         alt="Rwanda House Market Logo"
       >
 
-      <span>
+      <span id="brandName">
         Rwanda House Market
       </span>
 
     </div>
 
-
     <div class="nav-links">
 
-      <a href="home.html">
+      <a
+        href="home.html"
+        id="homeLink">
         Home
       </a>
 
       <a
-  href="house-rent.html"
-  data-i18n="rent">
-  houses for rent 
-</a>
+        href="house-rent.html"
+        id="rentLink">
+        Houses for Rent
+      </a>
 
-      <a href="houses-sale.html">
+      <a
+        href="houses-sale.html"
+        id="saleLink">
         House for Sale
       </a>
 
-      <a href="plot.html">
+      <a
+        href="plot.html"
+        id="plotLink">
         Plot for Sale
       </a>
 
@@ -607,6 +452,47 @@
   </nav>
 
 
+  <!-- ================= LANGUAGE ================= -->
+
+  <div class="language-box">
+
+    <button
+      class="language-button"
+      data-language="Kinyarwanda"
+      onclick="changeLanguage('Kinyarwanda')">
+      🇷🇼 Kinyarwanda
+    </button>
+
+    <button
+      class="language-button"
+      data-language="English"
+      onclick="changeLanguage('English')">
+      🇬🇧 English
+    </button>
+
+    <button
+      class="language-button"
+      data-language="Français"
+      onclick="changeLanguage('Français')">
+      🇫🇷 Français
+    </button>
+
+    <button
+      class="language-button"
+      data-language="Kiswahili"
+      onclick="changeLanguage('Kiswahili')">
+      🌍 Kiswahili
+    </button>
+
+    <button
+      class="language-button"
+      data-language="中文"
+      onclick="changeLanguage('中文')">
+      🇨🇳 中文
+    </button>
+
+  </div>
+
 
   <!-- ================= HEADER ================= -->
 
@@ -614,11 +500,11 @@
 
     <div class="page-header-content">
 
-      <h1>
+      <h1 id="pageTitle">
         🏠 Houses for Rent
       </h1>
 
-      <p>
+      <p id="pageDescription">
         Find houses available for rent
         across Rwanda.
       </p>
@@ -628,19 +514,17 @@
   </section>
 
 
-
   <!-- ================= MAIN ================= -->
 
   <main class="container">
 
-
     <div class="top-box">
 
-      <h2>
+      <h2 id="availableTitle">
         Houses Available for Rent
       </h2>
 
-      <p>
+      <p id="availableDescription">
         These are properties currently
         published on Rwanda House Market.
       </p>
@@ -648,15 +532,15 @@
     </div>
 
 
-
     <!-- ================= GOOGLE ADSENSE ================= -->
 
     <div class="ad-container">
 
-      <div class="ad-label">
+      <div
+        class="ad-label"
+        id="advertisement">
         Advertisement
       </div>
-
 
       <ins
         class="adsbygoogle"
@@ -667,29 +551,22 @@
         data-full-width-responsive="true">
       </ins>
 
-
     </div>
-
 
 
     <!-- ================= PROPERTIES ================= -->
 
     <div
       id="properties"
-      class="properties"
-    >
+      class="properties">
 
-      <div class="message loading">
-
+      <div class="message loading" id="loadingMessage">
         Loading houses for rent...
-
       </div>
 
     </div>
 
-
   </main>
-
 
 
   <!-- ================= FOOTER ================= -->
@@ -703,7 +580,7 @@
       </strong>
     </p>
 
-    <p>
+    <p id="footerDescription">
       Houses for rent,
       houses for sale and
       plots for sale in Rwanda.
@@ -718,10 +595,405 @@
   </footer>
 
 
-
   <!-- ================= JAVASCRIPT ================= -->
 
   <script>
+
+    /* =========================================
+       TRANSLATIONS - 5 LANGUAGES
+    ========================================= */
+
+    const translations = {
+
+      Kinyarwanda: {
+
+        brand:"Rwanda House Market",
+
+        home:"Ahabanza",
+
+        rent:"Inzu zikodeshwa",
+
+        sale:"Inzu zigurishwa",
+
+        plot:"Ibibanza bigurishwa",
+
+        pageTitle:"🏠 Inzu zikodeshwa",
+
+        pageDescription:
+          "Shaka inzu ziboneka gukodeshwa hirya no hino mu Rwanda.",
+
+        availableTitle:
+          "Inzu ziboneka gukodeshwa",
+
+        availableDescription:
+          "Izi ni inzu zashyizwe kuri Rwanda House Market kandi ziboneka gukodeshwa.",
+
+        advertisement:
+          "Kwamamaza",
+
+        loading:
+          "Birimo gushakisha inzu zikodeshwa...",
+
+        noProperties:
+          "Nta nzu zikodeshwa zashyizweho kugeza ubu.",
+
+        bedrooms:
+          "Ibyumba",
+
+        bathrooms:
+          "Ubwiherero",
+
+        parking:
+          "Parking",
+
+        viewDetails:
+          "Reba amakuru arambuye",
+
+        footer:
+          "Inzu zikodeshwa, inzu zigurishwa n'ibibanza bigurishwa mu Rwanda."
+
+      },
+
+
+      English: {
+
+        brand:"Rwanda House Market",
+
+        home:"Home",
+
+        rent:"Houses for Rent",
+
+        sale:"House for Sale",
+
+        plot:"Plot for Sale",
+
+        pageTitle:"🏠 Houses for Rent",
+
+        pageDescription:
+          "Find houses available for rent across Rwanda.",
+
+        availableTitle:
+          "Houses Available for Rent",
+
+        availableDescription:
+          "These are properties currently published on Rwanda House Market.",
+
+        advertisement:
+          "Advertisement",
+
+        loading:
+          "Loading houses for rent...",
+
+        noProperties:
+          "No houses for rent have been published yet.",
+
+        bedrooms:
+          "Bedrooms",
+
+        bathrooms:
+          "Bathrooms",
+
+        parking:
+          "Parking",
+
+        viewDetails:
+          "View Details",
+
+        footer:
+          "Houses for rent, houses for sale and plots for sale in Rwanda."
+
+      },
+
+
+      Français: {
+
+        brand:"Rwanda House Market",
+
+        home:"Accueil",
+
+        rent:"Maisons à louer",
+
+        sale:"Maisons à vendre",
+
+        plot:"Terrains à vendre",
+
+        pageTitle:"🏠 Maisons à louer",
+
+        pageDescription:
+          "Trouvez des maisons disponibles à la location partout au Rwanda.",
+
+        availableTitle:
+          "Maisons disponibles à la location",
+
+        availableDescription:
+          "Voici les propriétés actuellement publiées sur Rwanda House Market.",
+
+        advertisement:
+          "Publicité",
+
+        loading:
+          "Chargement des maisons à louer...",
+
+        noProperties:
+          "Aucune maison à louer n'a encore été publiée.",
+
+        bedrooms:
+          "Chambres",
+
+        bathrooms:
+          "Salles de bain",
+
+        parking:
+          "Parking",
+
+        viewDetails:
+          "Voir les détails",
+
+        footer:
+          "Maisons à louer, maisons à vendre et terrains à vendre au Rwanda."
+
+      },
+
+
+      Kiswahili: {
+
+        brand:"Rwanda House Market",
+
+        home:"Nyumbani",
+
+        rent:"Nyumba za Kupangisha",
+
+        sale:"Nyumba za Kuuza",
+
+        plot:"Viwanja vya Kuuza",
+
+        pageTitle:"🏠 Nyumba za Kupangisha",
+
+        pageDescription:
+          "Tafuta nyumba zinazopatikana kwa kupangishwa kote Rwanda.",
+
+        availableTitle:
+          "Nyumba Zinazopatikana kwa Kupangishwa",
+
+        availableDescription:
+          "Hizi ni mali zilizochapishwa kwa sasa kwenye Rwanda House Market.",
+
+        advertisement:
+          "Tangazo",
+
+        loading:
+          "Inapakia nyumba za kupangisha...",
+
+        noProperties:
+          "Hakuna nyumba za kupangisha zilizochapishwa bado.",
+
+        bedrooms:
+          "Vyumba",
+
+        bathrooms:
+          "Bafu",
+
+        parking:
+          "Maegesho",
+
+        viewDetails:
+          "Angalia Maelezo",
+
+        footer:
+          "Nyumba za kupangisha, nyumba za kuuza na viwanja vya kuuza nchini Rwanda."
+
+      },
+
+
+      "中文": {
+
+        brand:"Rwanda House Market",
+
+        home:"首页",
+
+        rent:"出租房屋",
+
+        sale:"出售房屋",
+
+        plot:"出售土地",
+
+        pageTitle:"🏠 出租房屋",
+
+        pageDescription:
+          "寻找卢旺达各地可出租的房屋。",
+
+        availableTitle:
+          "可出租的房屋",
+
+        availableDescription:
+          "这些是目前发布在 Rwanda House Market 上的房产。",
+
+        advertisement:
+          "广告",
+
+        loading:
+          "正在加载出租房屋...",
+
+        noProperties:
+          "目前还没有发布出租房屋。",
+
+        bedrooms:
+          "卧室",
+
+        bathrooms:
+          "浴室",
+
+        parking:
+          "停车位",
+
+        viewDetails:
+          "查看详情",
+
+        footer:
+          "卢旺达的出租房屋、出售房屋和出售土地。"
+
+      }
+
+    };
+
+
+    /* =========================================
+       CURRENT LANGUAGE
+    ========================================= */
+
+    let currentLanguage =
+      localStorage.getItem("selectedLanguage") || "English";
+
+
+    /* =========================================
+       APPLY LANGUAGE
+    ========================================= */
+
+    function applyLanguage(language){
+
+      const t =
+        translations[language] ||
+        translations.English;
+
+      currentLanguage =
+        translations[language]
+          ? language
+          : "English";
+
+      localStorage.setItem(
+        "selectedLanguage",
+        currentLanguage
+      );
+
+
+      document.documentElement.lang =
+        currentLanguage === "中文"
+          ? "zh"
+          : currentLanguage === "Français"
+            ? "fr"
+            : currentLanguage === "Kiswahili"
+              ? "sw"
+              : currentLanguage === "Kinyarwanda"
+                ? "rw"
+                : "en";
+
+
+      document.title =
+        t.pageTitle.replace("🏠 ","") +
+        " - Rwanda House Market";
+
+
+      document.getElementById(
+        "brandName"
+      ).textContent =
+        t.brand;
+
+
+      document.getElementById(
+        "homeLink"
+      ).textContent =
+        t.home;
+
+
+      document.getElementById(
+        "rentLink"
+      ).textContent =
+        t.rent;
+
+
+      document.getElementById(
+        "saleLink"
+      ).textContent =
+        t.sale;
+
+
+      document.getElementById(
+        "plotLink"
+      ).textContent =
+        t.plot;
+
+
+      document.getElementById(
+        "pageTitle"
+      ).textContent =
+        t.pageTitle;
+
+
+      document.getElementById(
+        "pageDescription"
+      ).textContent =
+        t.pageDescription;
+
+
+      document.getElementById(
+        "availableTitle"
+      ).textContent =
+        t.availableTitle;
+
+
+      document.getElementById(
+        "availableDescription"
+      ).textContent =
+        t.availableDescription;
+
+
+      document.getElementById(
+        "advertisement"
+      ).textContent =
+        t.advertisement;
+
+
+      document.getElementById(
+        "footerDescription"
+      ).textContent =
+        t.footer;
+
+
+      document
+        .querySelectorAll(".language-button")
+        .forEach(button => {
+
+          button.classList.toggle(
+            "active",
+            button.dataset.language === currentLanguage
+          );
+
+        });
+
+    }
+
+
+    /* =========================================
+       CHANGE LANGUAGE
+    ========================================= */
+
+    function changeLanguage(language){
+
+      applyLanguage(language);
+
+      loadRentalProperties();
+
+    }
 
 
     /* =========================================
@@ -735,7 +1007,7 @@
         try{
 
           (
-            adsbygoogle =
+            window.adsbygoogle =
               window.adsbygoogle ||
               []
           ).push({});
@@ -752,7 +1024,6 @@
 
       }
     );
-
 
 
     /* =========================================
@@ -772,133 +1043,135 @@
         SUPABASE_URL,
         SUPABASE_KEY
       );
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
 
 
-/* =====================================================
-   VISITOR TRACKING
-===================================================== */
+    /* =====================================================
+       VISITOR TRACKING
+    ===================================================== */
 
-async function trackPageView(){
+    async function trackPageView(){
 
-  try{
+      try{
 
-    let visitorId =
-      localStorage.getItem("rpv_visitor_id");
+        let visitorId =
+          localStorage.getItem(
+            "rpv_visitor_id"
+          );
 
-    if(!visitorId){
 
-      visitorId =
-        crypto.randomUUID();
+        if(!visitorId){
 
-      localStorage.setItem(
-        "rpv_visitor_id",
-        visitorId
-      );
+          visitorId =
+            crypto.randomUUID();
+
+          localStorage.setItem(
+            "rpv_visitor_id",
+            visitorId
+          );
+
+        }
+
+
+        let sessionId =
+          sessionStorage.getItem(
+            "rpv_session_id"
+          );
+
+
+        if(!sessionId){
+
+          sessionId =
+            crypto.randomUUID();
+
+          sessionStorage.setItem(
+            "rpv_session_id",
+            sessionId
+          );
+
+        }
+
+
+        const {
+          error
+        } = await supabaseClient
+
+          .from("page_views")
+
+          .insert({
+
+            page:
+              document.title ||
+              location.pathname,
+
+            path:
+              location.pathname,
+
+            visitor_id:
+              visitorId,
+
+            session_id:
+              sessionId,
+
+            referrer:
+              document.referrer || null,
+
+            user_agent:
+              navigator.userAgent,
+
+            device_type:
+              getDeviceType(),
+
+            country:
+              null,
+
+            city:
+              null
+
+          });
+
+
+        if(error){
+
+          console.error(
+            "Visitor tracking error:",
+            error
+          );
+
+        }
+
+      }
+      catch(error){
+
+        console.error(
+          "Tracking failed:",
+          error
+        );
+
+      }
 
     }
 
 
-    let sessionId =
-      sessionStorage.getItem("rpv_session_id");
+    function getDeviceType(){
 
-    if(!sessionId){
+      if(window.innerWidth <= 600){
 
-      sessionId =
-        crypto.randomUUID();
+        return "mobile";
 
-      sessionStorage.setItem(
-        "rpv_session_id",
-        sessionId
-      );
+      }
 
-    }
+      if(window.innerWidth <= 1024){
 
+        return "tablet";
 
-    const {
-      error
-    } = await supabaseClient
+      }
 
-      .from("page_views")
-
-      .insert({
-
-        page:
-          document.title || location.pathname,
-
-        path:
-          location.pathname,
-
-        visitor_id:
-          visitorId,
-
-        session_id:
-          sessionId,
-
-        referrer:
-          document.referrer || null,
-
-        user_agent:
-          navigator.userAgent,
-
-        device_type:
-          getDeviceType(),
-
-        country:
-          null,
-
-        city:
-          null
-
-      });
-
-
-    if(error){
-
-      console.error(
-        "Visitor tracking error:",
-        error
-      );
+      return "desktop";
 
     }
 
-  }
-  catch(error){
 
-    console.error(
-      "Tracking failed:",
-      error
-    );
-
-  }
-
-}
-
-
-function getDeviceType(){
-
-  if(window.innerWidth <= 600){
-
-    return "mobile";
-
-  }
-
-  if(window.innerWidth <= 1024){
-
-    return "tablet";
-
-  }
-
-  return "desktop";
-
-}
-
-
-trackPageView();
+    trackPageView();
 
 
     /* =========================================
@@ -909,7 +1182,6 @@ trackPageView();
       document.getElementById(
         "properties"
       );
-
 
 
     /* =========================================
@@ -948,19 +1220,22 @@ trackPageView();
     }
 
 
-
     /* =========================================
        LOAD RENTAL PROPERTIES
     ========================================= */
 
     async function loadRentalProperties(){
 
+      const t =
+        translations[currentLanguage] ||
+        translations.English;
+
 
       propertiesElement.innerHTML = `
 
         <div class="message loading">
 
-          Loading houses for rent...
+          ${escapeHtml(t.loading)}
 
         </div>
 
@@ -996,7 +1271,6 @@ trackPageView();
         );
 
 
-
       /* =====================================
          ERROR
       ===================================== */
@@ -1027,7 +1301,6 @@ trackPageView();
       }
 
 
-
       /* =====================================
          EMPTY
       ===================================== */
@@ -1045,8 +1318,7 @@ trackPageView();
 
             <br><br>
 
-            No houses for rent
-            have been published yet.
+            ${escapeHtml(t.noProperties)}
 
           </div>
 
@@ -1057,13 +1329,11 @@ trackPageView();
       }
 
 
-
       /* =====================================
          CLEAR
       ===================================== */
 
       propertiesElement.innerHTML = "";
-
 
 
       /* =====================================
@@ -1073,7 +1343,6 @@ trackPageView();
       data.forEach(
         property => {
 
-
           const card =
             document.createElement(
               "div"
@@ -1082,7 +1351,6 @@ trackPageView();
 
           card.className =
             "property";
-
 
 
           /* MAIN PHOTO */
@@ -1108,7 +1376,6 @@ trackPageView();
             "https://via.placeholder.com/800x500?text=No+Photo";
 
 
-
           /* LOCATION */
 
           const location = [
@@ -1128,7 +1395,6 @@ trackPageView();
           .join(", ");
 
 
-
           /* DETAIL PAGE */
 
           const detailUrl =
@@ -1138,7 +1404,6 @@ trackPageView();
             encodeURIComponent(
               property.id
             );
-
 
 
           /* CARD */
@@ -1155,10 +1420,12 @@ trackPageView();
 
               alt="${escapeHtml(
                 property.title ||
-                "House for Rent"
+                t.rent
               )}"
 
               loading="lazy"
+
+              onerror="this.src='https://via.placeholder.com/800x500?text=No+Photo'"
 
             >
 
@@ -1170,11 +1437,10 @@ trackPageView();
 
                 ${escapeHtml(
                   property.title ||
-                  "House for Rent"
+                  t.rent
                 )}
 
               </div>
-
 
 
               <div class="price">
@@ -1186,7 +1452,6 @@ trackPageView();
                 RWF
 
               </div>
-
 
 
               <div class="location">
@@ -1201,7 +1466,6 @@ trackPageView();
               </div>
 
 
-
               <div class="info">
 
 
@@ -1213,7 +1477,9 @@ trackPageView();
 
                   ${property.bedrooms ?? 0}
 
-                  Bedrooms
+                  ${escapeHtml(
+                    t.bedrooms
+                  )}
 
                 </div>
 
@@ -1226,7 +1492,9 @@ trackPageView();
 
                   ${property.bathrooms ?? 0}
 
-                  Bathrooms
+                  ${escapeHtml(
+                    t.bathrooms
+                  )}
 
                 </div>
 
@@ -1239,13 +1507,14 @@ trackPageView();
 
                   ${property.parking ?? 0}
 
-                  Parking
+                  ${escapeHtml(
+                    t.parking
+                  )}
 
                 </div>
 
 
               </div>
-
 
 
               <a
@@ -1256,7 +1525,9 @@ trackPageView();
 
               >
 
-                View Details
+                ${escapeHtml(
+                  t.viewDetails
+                )}
 
               </a>
 
@@ -1264,7 +1535,6 @@ trackPageView();
             </div>
 
           `;
-
 
 
           propertiesElement.appendChild(
@@ -1277,7 +1547,6 @@ trackPageView();
     }
 
 
-
     /* =========================================
        YEAR
     ========================================= */
@@ -1288,16 +1557,15 @@ trackPageView();
       new Date().getFullYear();
 
 
-
     /* =========================================
        START
     ========================================= */
 
+    applyLanguage(currentLanguage);
+
     loadRentalProperties();
 
-
   </script>
-
 
 </body>
 </html>
