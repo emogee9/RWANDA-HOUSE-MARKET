@@ -1497,7 +1497,96 @@ const supabaseClient =
     SUPABASE_URL,
     SUPABASE_KEY
   );
+<script>
 
+/* =========================================================
+   PAGE VIEW ANALYTICS
+========================================================= */
+
+function getVisitorId(){
+
+  let visitorId =
+    localStorage.getItem("rpv_visitor_id");
+
+  if(!visitorId){
+
+    visitorId =
+      "visitor_" +
+      Date.now() +
+      "_" +
+      Math.random()
+        .toString(36)
+        .substring(2, 12);
+
+    localStorage.setItem(
+      "rpv_visitor_id",
+      visitorId
+    );
+
+  }
+
+  return visitorId;
+
+}
+
+
+/* =========================================================
+   RECORD PAGE VIEW
+========================================================= */
+
+async function recordPageView(){
+
+  try{
+
+    const visitorId =
+      getVisitorId();
+
+    const pageUrl =
+      window.location.pathname;
+
+
+    const { error } =
+      await supabaseClient
+        .from("page_views")
+        .insert({
+
+          visitor_id:
+            visitorId,
+
+          page_url:
+            pageUrl
+
+        });
+
+
+    if(error){
+
+      console.error(
+        "Page view error:",
+        error
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Analytics error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   START ANALYTICS
+========================================================= */
+
+recordPageView();
+
+</script>
 
 /* =========================================================
    ELEMENTS
