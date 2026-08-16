@@ -1,25 +1,15 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rwanda House Market - Admin</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -28,30 +18,21 @@ body{
   color:#33251d;
 }
 
-/* ================= NAVBAR ================= */
-
 .navbar{
   background:#d4a017;
   color:white;
   padding:15px 20px;
-
   display:flex;
   justify-content:space-between;
   align-items:center;
-
   gap:15px;
-
   position:sticky;
   top:0;
   z-index:1000;
-
   box-shadow:0 3px 10px rgba(0,0,0,.2);
 }
 
-.logo{
-  font-size:21px;
-  font-weight:bold;
-}
+.logo{font-size:21px;font-weight:bold}
 
 .nav-buttons{
   display:flex;
@@ -62,20 +43,11 @@ body{
   border:0;
   background:white;
   color:#a87800;
-
   padding:9px 14px;
-
   border-radius:7px;
-
   font-weight:bold;
   cursor:pointer;
 }
-
-.nav-buttons button:hover{
-  background:#fff8df;
-}
-
-/* ================= CONTAINER ================= */
 
 .container{
   max-width:1250px;
@@ -83,102 +55,56 @@ body{
   padding:25px 18px 60px;
 }
 
-.page-title,
-.card{
+.page-title,.card{
   background:white;
-
   padding:22px;
-
   border-radius:14px;
-
   box-shadow:0 3px 12px rgba(0,0,0,.1);
-
   margin-bottom:20px;
 }
 
-h1,h2,h3{
-  margin-top:0;
-}
-
-/* ================= TABS ================= */
+h1,h2,h3{margin-top:0}
 
 .tabs{
   display:grid;
-
-  grid-template-columns:
-    repeat(6,1fr);
-
+  grid-template-columns:repeat(6,1fr);
   gap:10px;
-
   margin-bottom:20px;
 }
 
 .tab{
   background:#d4a017;
-
   color:white;
-
   border:0;
-
   padding:14px 10px;
-
   border-radius:8px;
-
   font-weight:bold;
-
   cursor:pointer;
-
   font-size:14px;
 }
 
-.tab:hover{
-  background:#a87800;
-}
+.tab:hover{background:#a87800}
+.tab.active{background:#8f6700}
 
-.tab.active{
-  background:#8f6700;
-}
-
-/* ================= SECTIONS ================= */
-
-.section{
-  display:none;
-}
-
-.section.active{
-  display:block;
-}
-
-/* ================= FORM ================= */
+.section{display:none}
+.section.active{display:block}
 
 label{
   display:block;
-
   font-weight:bold;
-
   margin:14px 0 6px;
 }
 
-input,
-select,
-textarea{
-
+input,select,textarea{
   width:100%;
-
   padding:12px;
-
   border:2px solid #eee;
-
   border-radius:8px;
-
   font-size:15px;
-
   outline:none;
 }
 
-input:focus,
-select:focus,
-textarea:focus{
+input:focus,select:focus,textarea:focus{
   border-color:#d4a017;
 }
 
@@ -188,1408 +114,633 @@ textarea{
 }
 
 .grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
+  grid-template-columns:repeat(2,1fr);
   gap:15px;
 }
 
-/* ================= BUTTONS ================= */
-
 .button{
-
   border:0;
-
   padding:12px 18px;
-
   border-radius:8px;
-
   font-weight:bold;
-
   cursor:pointer;
-
   margin-top:15px;
 }
 
-.primary{
-  background:#d4a017;
-  color:white;
-}
-
-.primary:hover{
-  background:#a87800;
-}
-
-.delete{
-  background:#c62828;
-  color:white;
-}
-
-.secondary{
-  background:#eee;
-  color:#333;
-}
-
-.approve{
-  background:#2e7d32;
-  color:white;
-}
-
-.reject{
-  background:#c62828;
-  color:white;
-}
-
-.button:disabled{
-  opacity:.6;
-  cursor:not-allowed;
-}
-
-/* ================= MESSAGE ================= */
+.primary{background:#d4a017;color:white}
+.primary:hover{background:#a87800}
+.delete{background:#c62828;color:white}
+.secondary{background:#eee;color:#333}
+.approve{background:#2e7d32;color:white}
+.reject{background:#c62828;color:white}
 
 .message{
-
   display:none;
-
   padding:12px;
-
   border-radius:8px;
-
   margin-top:15px;
-
   font-weight:bold;
 }
 
 .message.success{
-
   display:block;
-
   background:#e9f8e9;
-
   color:#227522;
 }
 
 .message.error{
-
   display:block;
-
   background:#ffe8e8;
-
   color:#a00000;
 }
 
-/* ================= PROPERTY CARDS ================= */
-
 .properties{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
 
 .property{
-
   background:white;
-
   border-radius:14px;
-
   overflow:hidden;
-
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.12);
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
 }
 
 .property img{
-
   width:100%;
-
   height:210px;
-
   object-fit:cover;
-
   display:block;
 }
 
-.property-body{
-
-  padding:16px;
-}
+.property-body{padding:16px}
 
 .property-title{
-
   font-size:19px;
-
   font-weight:bold;
-
   margin-bottom:8px;
 }
 
 .price{
-
   color:#b27b00;
-
   font-size:19px;
-
   font-weight:bold;
-
   margin-bottom:10px;
 }
 
 .location{
-
   color:#666;
-
   line-height:1.6;
 }
 
 .property-actions{
-
   display:flex;
-
   gap:8px;
 }
 
-.property-actions button{
-
-  flex:1;
-}
-
-/* ================= PHOTOS ================= */
+.property-actions button{flex:1}
 
 .photos-preview{
-
   display:flex;
-
   flex-wrap:wrap;
-
   gap:10px;
-
   margin-top:10px;
 }
 
 .photos-preview img{
-
   width:100px;
-
   height:80px;
-
   object-fit:cover;
-
   border-radius:8px;
 }
 
-/* ================= EMPTY ================= */
-
 .empty{
-
   text-align:center;
-
   padding:35px;
-
   color:#777;
-
   background:white;
-
   border-radius:12px;
-
   grid-column:1/-1;
 }
 
-/* ================= STATUS ================= */
-
 .status{
-
   display:inline-block;
-
   padding:5px 9px;
-
   border-radius:6px;
-
   font-size:13px;
-
   font-weight:bold;
 }
 
-.status-published{
-
-  background:#e5f7e5;
-
-  color:#267126;
-}
-
-.status-pending{
-
-  background:#fff3c4;
-
-  color:#8b6800;
-}
-
-.status-approved{
-
-  background:#e5f7e5;
-
-  color:#267126;
-}
-
-.status-rejected{
-
-  background:#ffe2e2;
-
-  color:#a00000;
-}
-
-/* ================= REQUESTS ================= */
+.status-published{background:#e5f7e5;color:#267126}
+.status-pending{background:#fff3c4;color:#8b6800}
+.status-rejected{background:#ffe2e2;color:#a00000}
 
 .request{
-
   background:white;
-
   border-radius:14px;
-
   padding:20px;
-
   margin-bottom:15px;
-
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.1);
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
 }
 
 .request-title{
-
   font-size:20px;
-
   font-weight:bold;
-
   margin-bottom:10px;
 }
 
 .request-info{
-
   color:#555;
-
   line-height:1.7;
 }
 
 .request-actions{
-
   display:flex;
-
   gap:10px;
-
   flex-wrap:wrap;
-
   margin-top:15px;
 }
 
-.request-actions button{
-
-  margin-top:0;
-}
+.request-actions button{margin-top:0}
 
 .badge{
-
   display:inline-block;
-
   min-width:25px;
-
   text-align:center;
-
   padding:4px 8px;
-
   background:#c62828;
-
   color:white;
-
   border-radius:20px;
-
   font-size:12px;
-
   margin-left:5px;
 }
 
-/* ================= CAR ================= */
-
 .car-badge{
-
   display:inline-block;
-
   background:#fff3c4;
-
   color:#8b6800;
-
   padding:5px 9px;
-
   border-radius:6px;
-
   font-size:12px;
-
   font-weight:bold;
-
   margin-bottom:8px;
 }
 
-/* ================= STATISTICS ================= */
+/* ================= VISITOR STATISTICS ================= */
 
 .stats-grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
+  grid-template-columns:repeat(4,1fr);
   gap:15px;
-
   margin-bottom:20px;
 }
 
 .stat-card{
-
   background:white;
-
   border-radius:14px;
-
-  padding:20px;
-
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.1);
+  padding:22px;
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
 }
 
 .stat-icon{
-
-  font-size:28px;
-
+  font-size:30px;
   margin-bottom:10px;
 }
 
 .stat-label{
-
   color:#777;
-
+  font-weight:bold;
   font-size:14px;
-
-  margin-bottom:8px;
 }
 
 .stat-number{
-
   font-size:30px;
-
   font-weight:bold;
-
   color:#a87800;
+  margin-top:7px;
 }
 
-.stats-section-grid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap:20px;
+.stats-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
 }
 
-.stats-list{
-
-  margin:0;
-
-  padding:0;
-
-  list-style:none;
-}
-
-.stats-list li{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  gap:15px;
-
-  padding:12px 0;
-
+.stats-table th,
+.stats-table td{
+  padding:13px;
   border-bottom:1px solid #eee;
+  text-align:left;
 }
 
-.stats-list li:last-child{
-  border-bottom:0;
+.stats-table th{
+  background:#fff8df;
+  color:#8f6700;
 }
 
-.stat-page-name{
-
-  font-weight:bold;
-
-  word-break:break-word;
-}
-
-.stat-count{
-
-  background:#fff3c4;
-
-  color:#8b6800;
-
-  padding:4px 9px;
-
+.progress{
+  height:8px;
+  background:#eee;
   border-radius:20px;
-
-  font-weight:bold;
-
-  white-space:nowrap;
+  overflow:hidden;
 }
 
-.recent-view{
-
-  padding:13px 0;
-
-  border-bottom:1px solid #eee;
-}
-
-.recent-view:last-child{
-  border-bottom:0;
-}
-
-.recent-page{
-
-  font-weight:bold;
-}
-
-.recent-info{
-
-  color:#777;
-
-  font-size:13px;
-
-  margin-top:5px;
-
-  line-height:1.5;
-}
-
-.refresh-button{
-
-  float:right;
-
-  margin-top:-5px;
-
-  border:0;
-
+.progress span{
+  display:block;
+  height:100%;
   background:#d4a017;
-
-  color:white;
-
-  padding:9px 13px;
-
-  border-radius:7px;
-
-  font-weight:bold;
-
-  cursor:pointer;
+  border-radius:20px;
 }
-
-.refresh-button:hover{
-  background:#a87800;
-}
-
-/* ================= MOBILE ================= */
 
 @media(max-width:1100px){
-
-  .properties{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .tabs{
-    grid-template-columns:
-      repeat(3,1fr);
-  }
-
-  .stats-grid{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .properties{grid-template-columns:repeat(2,1fr)}
+  .tabs{grid-template-columns:repeat(3,1fr)}
 }
 
 @media(max-width:650px){
-
-  .navbar{
-    flex-direction:column;
-  }
-
-  .grid,
-  .properties,
-  .tabs,
-  .stats-grid,
-  .stats-section-grid{
-    grid-template-columns:1fr;
-  }
-
-  .property-actions{
-    flex-direction:column;
-  }
-
-  .refresh-button{
-    float:none;
-    margin:10px 0 0;
-  }
-
+  .navbar{flex-direction:column}
+  .grid,.properties,.tabs,.stats-grid{grid-template-columns:1fr}
+  .property-actions{flex-direction:column}
 }
-
 </style>
-
 </head>
 
 <body>
 
-<!-- =====================================================
-     NAVBAR
-===================================================== -->
-
 <nav class="navbar">
-
-  <div class="logo">
-    🏠 Rwanda House Market — ADMIN
-  </div>
+  <div class="logo">🏠 Rwanda House Market — ADMIN</div>
 
   <div class="nav-buttons">
-
-    <button onclick="goHome()">
-      Home
-    </button>
-
-    <button onclick="logout()">
-      Logout
-    </button>
-
+    <button onclick="goHome()">Home</button>
+    <button onclick="logout()">Logout</button>
   </div>
-
 </nav>
 
 <div class="container">
 
-<!-- =====================================================
-     PAGE TITLE
-===================================================== -->
-
 <div class="page-title">
-
-  <h1>
-    Admin Dashboard
-  </h1>
-
-  <p>
-    Manage houses, cars, requests, approvals and website statistics.
-  </p>
-
+  <h1>Admin Dashboard</h1>
+  <p>Manage houses, cars, requests, approvals and visitors.</p>
 </div>
-
-<!-- =====================================================
-     TABS
-===================================================== -->
 
 <div class="tabs">
 
-  <button
-    class="tab active"
-    onclick="showSection('postsSection',this)"
-  >
+  <button class="tab active"
+    onclick="showSection('postsSection',this)">
     📋 Posts
   </button>
 
-  <button
-    class="tab"
-    onclick="showSection('addPostSection',this)"
-  >
+  <button class="tab"
+    onclick="showSection('addPostSection',this)">
     ➕ Add House
   </button>
 
-  <button
-    class="tab"
-    onclick="showSection('carsSection',this)"
-  >
+  <button class="tab"
+    onclick="showSection('carsSection',this)">
     🚗 Cars
   </button>
 
-  <button
-    class="tab"
-    onclick="showSection('requestedSection',this)"
-  >
+  <button class="tab"
+    onclick="showSection('requestedSection',this)">
     💬 Requested
-
-    <span
-      id="requestBadge"
-      class="badge"
-    >
-      0
-    </span>
-
+    <span id="requestBadge" class="badge">0</span>
   </button>
 
-  <button
-    class="tab"
-    onclick="showSection('approvalSection',this)"
-  >
+  <button class="tab"
+    onclick="showSection('approvalSection',this)">
     ✅ Approvals
   </button>
 
-  <button
-    class="tab"
-    onclick="showSection('statisticsSection',this)"
-  >
-    📊 Statistics
+  <button class="tab"
+    onclick="showSection('visitorsSection',this)">
+    📊 Visitors
   </button>
 
 </div>
 
-<!-- =====================================================
-     HOUSE POSTS
-===================================================== -->
+<!-- ================= POSTS ================= -->
 
-<section
-  id="postsSection"
-  class="section active"
->
+<section id="postsSection" class="section active">
 
   <div class="card">
-
-    <h2>
-      📋 House Posts
-    </h2>
-
-    <p>
-      Aha ni ho ubona houses zose ziri muri
-      <strong>property_posts</strong>.
-    </p>
-
+    <h2>📋 House Posts</h2>
+    <p>Hano ni ho ubona houses zose ziri muri <strong>property_posts</strong>.</p>
   </div>
 
-  <div
-    id="properties"
-    class="properties"
-  >
-
-    <div class="empty">
-      Loading posts...
-    </div>
-
+  <div id="properties" class="properties">
+    <div class="empty">Loading posts...</div>
   </div>
 
 </section>
 
-<!-- =====================================================
-     ADD HOUSE
-===================================================== -->
+<!-- ================= ADD HOUSE ================= -->
 
-<section
-  id="addPostSection"
-  class="section"
->
+<section id="addPostSection" class="section">
 
-  <div class="card">
+<div class="card">
 
-    <h2>
-      ➕ Add House
-    </h2>
+<h2>➕ Add House</h2>
 
-    <form id="propertyForm">
+<form id="propertyForm">
 
-      <label>
-        Property Title
-      </label>
+<label>Property Title</label>
+<input id="title" type="text" placeholder="Beautiful House in Kigali" required>
 
-      <input
-        type="text"
-        id="title"
-        placeholder="Beautiful House in Kigali"
-        required
-      >
+<label>Property Type</label>
+<select id="propertyType" required>
+<option value="">Choose property type</option>
+<option value="rent">🏠 House for Rent</option>
+<option value="sale">🏡 House for Sale</option>
+<option value="plot">📍 Plot for Sale</option>
+</select>
 
-      <label>
-        Property Type
-      </label>
+<label>Price</label>
+<input id="price" type="number" min="0" placeholder="50000000" required>
 
-      <select
-        id="propertyType"
-        required
-      >
+<div class="grid">
 
-        <option value="">
-          Choose property type
-        </option>
+<div>
+<label>Country</label>
+<input id="country" value="Rwanda" required>
+</div>
 
-        <option value="rent">
-          🏠 House for Rent
-        </option>
+<div>
+<label>Province</label>
+<input id="province" placeholder="Kigali" required>
+</div>
 
-        <option value="sale">
-          🏡 House for Sale
-        </option>
+<div>
+<label>District</label>
+<input id="district" placeholder="Gasabo" required>
+</div>
 
-        <option value="plot">
-          📍 Plot for Sale
-        </option>
+<div>
+<label>Sector</label>
+<input id="sector" placeholder="Remera" required>
+</div>
 
-      </select>
+</div>
 
-      <label>
-        Price
-      </label>
+<div class="grid">
 
-      <input
-        type="number"
-        id="price"
-        min="0"
-        placeholder="50000000"
-        required
-      >
+<div>
+<label>Bedrooms</label>
+<input id="bedrooms" type="number" min="0" value="0">
+</div>
 
-      <div class="grid">
+<div>
+<label>Bathrooms</label>
+<input id="bathrooms" type="number" min="0" value="0">
+</div>
 
-        <div>
+<div>
+<label>Parking</label>
+<input id="parking" type="number" min="0" value="0">
+</div>
 
-          <label>
-            Country
-          </label>
+</div>
 
-          <input
-            type="text"
-            id="country"
-            value="Rwanda"
-            required
-          >
+<label>Seller Name</label>
+<input id="sellerName" placeholder="Seller name">
 
-        </div>
+<label>Phone</label>
+<input id="phone" placeholder="078...">
 
-        <div>
+<label>Main Photo</label>
+<input id="mainPhoto" type="file" accept="image/*" required>
 
-          <label>
-            Province
-          </label>
+<label>Other Photos</label>
+<input id="otherPhotos" type="file" accept="image/*" multiple>
 
-          <input
-            type="text"
-            id="province"
-            placeholder="Kigali"
-            required
-          >
+<label>Description</label>
+<textarea id="description" placeholder="Write property description..."></textarea>
 
-        </div>
+<div id="photoPreview" class="photos-preview"></div>
 
-        <div>
+<button id="postButton" type="submit" class="button primary">
+Post House
+</button>
 
-          <label>
-            District
-          </label>
+<div id="postMessage" class="message"></div>
 
-          <input
-            type="text"
-            id="district"
-            placeholder="Gasabo"
-            required
-          >
+</form>
+</div>
+</section>
 
-        </div>
+<!-- ================= CARS ================= -->
 
-        <div>
+<section id="carsSection" class="section">
 
-          <label>
-            Sector
-          </label>
+<div class="card">
 
-          <input
-            type="text"
-            id="sector"
-            placeholder="Remera"
-            required
-          >
+<h2>🚗 Post Car for Sale</h2>
 
-        </div>
+<form id="carForm">
 
-      </div>
+<label>Car Name / Title</label>
+<input id="carTitle" placeholder="Toyota RAV4 2020" required>
 
-      <div class="grid">
+<label>Price</label>
+<input id="carPrice" type="number" min="0" required>
 
-        <div>
+<label>Location</label>
+<input id="carLocation" placeholder="Kigali, Gasabo, Remera" required>
 
-          <label>
-            Bedrooms
-          </label>
+<label>Phone</label>
+<input id="carPhone" placeholder="078..." required>
 
-          <input
-            type="number"
-            id="bedrooms"
-            min="0"
-            value="0"
-          >
+<label>Main Car Photo</label>
+<input id="carMainPhoto" type="file" accept="image/*" required>
 
-        </div>
+<label>Other Car Photos</label>
+<input id="carOtherPhotos" type="file" accept="image/*" multiple>
 
-        <div>
+<div id="carPhotoPreview" class="photos-preview"></div>
 
-          <label>
-            Bathrooms
-          </label>
+<button id="carPostButton" type="submit" class="button primary">
+🚗 Post Car
+</button>
 
-          <input
-            type="number"
-            id="bathrooms"
-            min="0"
-            value="0"
-          >
+<div id="carMessage" class="message"></div>
 
-        </div>
+</form>
+</div>
 
-        <div>
+<div class="card">
+<h2>🚗 Cars for Sale</h2>
+</div>
 
-          <label>
-            Parking
-          </label>
-
-          <input
-            type="number"
-            id="parking"
-            min="0"
-            value="0"
-          >
-
-        </div>
-
-      </div>
-
-      <label>
-        Seller Name
-      </label>
-
-      <input
-        type="text"
-        id="sellerName"
-        placeholder="Seller name"
-      >
-
-      <label>
-        Phone
-      </label>
-
-      <input
-        type="text"
-        id="phone"
-        placeholder="078..."
-      >
-
-      <label>
-        Main Photo
-      </label>
-
-      <input
-        type="file"
-        id="mainPhoto"
-        accept="image/*"
-        required
-      >
-
-      <label>
-        Other Photos
-      </label>
-
-      <input
-        type="file"
-        id="otherPhotos"
-        accept="image/*"
-        multiple
-      >
-
-      <label>
-        Description
-      </label>
-
-      <textarea
-        id="description"
-        placeholder="Write property description..."
-      ></textarea>
-
-      <div
-        id="photoPreview"
-        class="photos-preview"
-      ></div>
-
-      <button
-        type="submit"
-        id="postButton"
-        class="button primary"
-      >
-        Post House
-      </button>
-
-      <div
-        id="postMessage"
-        class="message"
-      ></div>
-
-    </form>
-
-  </div>
+<div id="carsList" class="properties">
+<div class="empty">Loading cars...</div>
+</div>
 
 </section>
 
-<!-- =====================================================
-     CARS
-===================================================== -->
+<!-- ================= REQUESTED ================= -->
 
-<section
-  id="carsSection"
-  class="section"
->
+<section id="requestedSection" class="section">
 
-  <div class="card">
+<div class="card">
+<h2>💬 Requested</h2>
+<p>Aha ni ho ubona messages abantu banditse.</p>
+</div>
 
-    <h2>
-      🚗 Post Car for Sale
-    </h2>
-
-    <p>
-      Aha ni ho ushyira imodoka nshya muri
-      <strong>cars_posts</strong>.
-    </p>
-
-    <form id="carForm">
-
-      <label>
-        Car Name / Title
-      </label>
-
-      <input
-        type="text"
-        id="carTitle"
-        placeholder="Example: Toyota RAV4 2020"
-        required
-      >
-
-      <label>
-        Price
-      </label>
-
-      <input
-        type="number"
-        id="carPrice"
-        min="0"
-        placeholder="25000000"
-        required
-      >
-
-      <label>
-        Location
-      </label>
-
-      <input
-        type="text"
-        id="carLocation"
-        placeholder="Kigali, Gasabo, Remera"
-        required
-      >
-
-      <label>
-        Phone
-      </label>
-
-      <input
-        type="text"
-        id="carPhone"
-        placeholder="078..."
-        required
-      >
-
-      <label>
-        Main Car Photo
-      </label>
-
-      <input
-        type="file"
-        id="carMainPhoto"
-        accept="image/*"
-        required
-      >
-
-      <label>
-        Other Car Photos
-      </label>
-
-      <input
-        type="file"
-        id="carOtherPhotos"
-        accept="image/*"
-        multiple
-      >
-
-      <div
-        id="carPhotoPreview"
-        class="photos-preview"
-      ></div>
-
-      <button
-        type="submit"
-        id="carPostButton"
-        class="button primary"
-      >
-        🚗 Post Car
-      </button>
-
-      <div
-        id="carMessage"
-        class="message"
-      ></div>
-
-    </form>
-
-  </div>
-
-  <div class="card">
-
-    <h2>
-      🚗 Cars for Sale
-    </h2>
-
-    <p>
-      Imodoka zose washyize muri
-      <strong>cars_posts</strong>.
-    </p>
-
-  </div>
-
-  <div
-    id="carsList"
-    class="properties"
-  >
-
-    <div class="empty">
-      Loading cars...
-    </div>
-
-  </div>
+<div id="requestsList">
+<div class="empty">Loading requests...</div>
+</div>
 
 </section>
 
-<!-- =====================================================
-     REQUESTED
-===================================================== -->
+<!-- ================= APPROVALS ================= -->
 
-<section
-  id="requestedSection"
-  class="section"
->
+<section id="approvalSection" class="section">
 
-  <div class="card">
+<div class="card">
+<h2>✅ Approvals</h2>
+<p>Aha ni ho wemeza cyangwa uhakana property submissions.</p>
+</div>
 
-    <h2>
-      💬 Requested
-    </h2>
-
-    <p>
-      Aha ni ho ubona messages abantu banditse.
-    </p>
-
-  </div>
-
-  <div id="requestsList">
-
-    <div class="empty">
-      Loading requests...
-    </div>
-
-  </div>
+<div id="approvalsList">
+<div class="empty">Loading approvals...</div>
+</div>
 
 </section>
 
-<!-- =====================================================
-     APPROVALS
-===================================================== -->
+<!-- ================= VISITORS ================= -->
 
-<section
-  id="approvalSection"
-  class="section"
->
+<section id="visitorsSection" class="section">
 
-  <div class="card">
+<div class="card">
 
-    <h2>
-      ✅ Approvals
-    </h2>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
 
-    <p>
-      Aha ni ho wemeza cyangwa uhakana property submissions.
-    </p>
+<div>
+<h2>📊 Visitor Statistics</h2>
+<p>Statistics zikomoka muri <strong>page_views</strong>.</p>
+</div>
 
-  </div>
+<button class="button primary"
+        style="margin-top:0"
+        onclick="loadVisitorStats()">
+🔄 Refresh
+</button>
 
-  <div id="approvalsList">
+</div>
 
-    <div class="empty">
-      Loading approvals...
-    </div>
+</div>
 
-  </div>
+<div class="stats-grid">
 
-</section>
+<div class="stat-card">
+<div class="stat-icon">👁️</div>
+<div class="stat-label">TOTAL PAGE VIEWS</div>
+<div id="totalViews" class="stat-number">0</div>
+</div>
 
-<!-- =====================================================
-     STATISTICS
-===================================================== -->
+<div class="stat-card">
+<div class="stat-icon">👤</div>
+<div class="stat-label">UNIQUE VISITORS</div>
+<div id="uniqueVisitors" class="stat-number">0</div>
+</div>
 
-<section
-  id="statisticsSection"
-  class="section"
->
+<div class="stat-card">
+<div class="stat-icon">📅</div>
+<div class="stat-label">TODAY</div>
+<div id="todayViews" class="stat-number">0</div>
+</div>
 
-  <div class="card">
+<div class="stat-card">
+<div class="stat-icon">🟢</div>
+<div class="stat-label">LAST 7 DAYS</div>
+<div id="weekViews" class="stat-number">0</div>
+</div>
 
-    <h2>
-      📊 Website Statistics
-    </h2>
+</div>
 
-    <button
-      class="refresh-button"
-      onclick="loadStatistics()"
-    >
-      🔄 Refresh
-    </button>
+<div class="card">
 
-    <p>
-      Aha ni ho urebera abantu basura website n'amapaji bareba.
-    </p>
+<h2>📄 Most Viewed Pages</h2>
 
-  </div>
+<div style="overflow-x:auto">
 
-  <div
-    id="statisticsMessage"
-    class="message"
-  ></div>
+<table class="stats-table">
 
-  <div class="stats-grid">
+<thead>
+<tr>
+<th>Page</th>
+<th>Views</th>
+<th>Percentage</th>
+</tr>
+</thead>
 
-    <div class="stat-card">
+<tbody id="pagesStats">
+<tr>
+<td colspan="3">Loading...</td>
+</tr>
+</tbody>
 
-      <div class="stat-icon">
-        👁️
-      </div>
+</table>
 
-      <div class="stat-label">
-        Total Page Views
-      </div>
+</div>
 
-      <div
-        id="totalViews"
-        class="stat-number"
-      >
-        0
-      </div>
+</div>
 
-    </div>
+<div class="card">
 
-    <div class="stat-card">
+<h2>🌍 Visitors by Country</h2>
 
-      <div class="stat-icon">
-        👤
-      </div>
+<div style="overflow-x:auto">
 
-      <div class="stat-label">
-        Unique Visitors
-      </div>
+<table class="stats-table">
 
-      <div
-        id="uniqueVisitors"
-        class="stat-number"
-      >
-        0
-      </div>
+<thead>
+<tr>
+<th>Country</th>
+<th>Views</th>
+</tr>
+</thead>
 
-    </div>
+<tbody id="countryStats">
+<tr>
+<td colspan="2">Loading...</td>
+</tr>
+</tbody>
 
-    <div class="stat-card">
+</table>
 
-      <div class="stat-icon">
-        📅
-      </div>
+</div>
 
-      <div class="stat-label">
-        Views Today
-      </div>
+</div>
 
-      <div
-        id="todayViews"
-        class="stat-number"
-      >
-        0
-      </div>
+<div class="card">
 
-    </div>
+<h2>📱 Device Types</h2>
 
-    <div class="stat-card">
+<div style="overflow-x:auto">
 
-      <div class="stat-icon">
-        📆
-      </div>
+<table class="stats-table">
 
-      <div class="stat-label">
-        Last 7 Days
-      </div>
+<thead>
+<tr>
+<th>Device</th>
+<th>Views</th>
+</tr>
+</thead>
 
-      <div
-        id="weekViews"
-        class="stat-number"
-      >
-        0
-      </div>
+<tbody id="deviceStats">
+<tr>
+<td colspan="2">Loading...</td>
+</tr>
+</tbody>
 
-    </div>
+</table>
 
-  </div>
+</div>
 
-  <div class="stats-grid">
-
-    <div class="stat-card">
-
-      <div class="stat-icon">
-        🖥️
-      </div>
-
-      <div class="stat-label">
-        Desktop
-      </div>
-
-      <div
-        id="desktopViews"
-        class="stat-number"
-      >
-        0
-      </div>
-
-    </div>
-
-    <div class="stat-card">
-
-      <div class="stat-icon">
-        📱
-      </div>
-
-      <div class="stat-label">
-        Mobile
-      </div>
-
-      <div
-        id="mobileViews"
-        class="stat-number"
-      >
-        0
-      </div>
-
-    </div>
-
-    <div class="stat-card">
-
-      <div class="stat-icon">
-        📲
-      </div>
-
-      <div class="stat-label">
-        Tablet
-      </div>
-
-      <div
-        id="tabletViews"
-        class="stat-number"
-      >
-        0
-      </div>
-
-    </div>
-
-    <div class="stat-card">
-
-      <div class="stat-icon">
-        🌐
-      </div>
-
-      <div class="stat-label">
-        Other Devices
-      </div>
-
-      <div
-        id="otherViews"
-        class="stat-number"
-      >
-        0
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="stats-section-grid">
-
-    <div class="card">
-
-      <h2>
-        📄 Most Viewed Pages
-      </h2>
-
-      <ul
-        id="topPages"
-        class="stats-list"
-      >
-
-        <li>
-          <span>
-            Loading...
-          </span>
-        </li>
-
-      </ul>
-
-    </div>
-
-    <div class="card">
-
-      <h2>
-        🌍 Countries
-      </h2>
-
-      <ul
-        id="topCountries"
-        class="stats-list"
-      >
-
-        <li>
-          <span>
-            Loading...
-          </span>
-        </li>
-
-      </ul>
-
-    </div>
-
-  </div>
-
-  <div class="card">
-
-    <h2>
-      🕐 Recent Page Views
-    </h2>
-
-    <div id="recentViews">
-
-      <div class="empty">
-        Loading...
-      </div>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
@@ -1598,2219 +749,1232 @@ textarea{
 <script>
 
 /* =========================================================
-   SUPABASE
+SUPABASE
 ========================================================= */
 
 const SUPABASE_URL =
-  "https://hsmnybmcddtsyooltozw.supabase.co";
+"https://hsmnybmcddtsyooltozw.supabase.co";
 
 const SUPABASE_KEY =
-  "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
+"sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
 
 const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
 
 /* =========================================================
-   ELEMENTS
+ELEMENTS
 ========================================================= */
 
 const propertiesElement =
-  document.getElementById("properties");
+document.getElementById("properties");
 
 const propertyForm =
-  document.getElementById("propertyForm");
+document.getElementById("propertyForm");
 
 const postButton =
-  document.getElementById("postButton");
+document.getElementById("postButton");
 
 const postMessage =
-  document.getElementById("postMessage");
+document.getElementById("postMessage");
 
 const photoPreview =
-  document.getElementById("photoPreview");
+document.getElementById("photoPreview");
 
 const requestsList =
-  document.getElementById("requestsList");
+document.getElementById("requestsList");
 
 const approvalsList =
-  document.getElementById("approvalsList");
+document.getElementById("approvalsList");
 
 const requestBadge =
-  document.getElementById("requestBadge");
+document.getElementById("requestBadge");
 
 const carForm =
-  document.getElementById("carForm");
+document.getElementById("carForm");
 
 const carPostButton =
-  document.getElementById("carPostButton");
+document.getElementById("carPostButton");
 
 const carMessage =
-  document.getElementById("carMessage");
+document.getElementById("carMessage");
 
 const carPhotoPreview =
-  document.getElementById("carPhotoPreview");
+document.getElementById("carPhotoPreview");
 
 const carsList =
-  document.getElementById("carsList");
+document.getElementById("carsList");
 
 /* =========================================================
-   ADMIN LOGIN
+ADMIN LOGIN
 ========================================================= */
 
 async function checkAdmin(){
 
-  const {
-    data:{
-      session
-    }
-  } =
-  await supabaseClient.auth.getSession();
+const {data:{session}} =
+await supabaseClient.auth.getSession();
 
-  if(!session){
+if(!session){
+window.location.href="login.html";
+return false;
+}
 
-    window.location.href =
-      "login.html";
-
-    return false;
-
-  }
-
-  return true;
-
+return true;
 }
 
 /* =========================================================
-   SECTION SWITCH
+SECTION SWITCH
 ========================================================= */
 
 function showSection(id,button){
 
-  document
-    .querySelectorAll(".section")
-    .forEach(section => {
+document.querySelectorAll(".section")
+.forEach(section=>{
+section.classList.remove("active");
+});
 
-      section.classList.remove("active");
+document.getElementById(id)
+.classList.add("active");
 
-    });
+document.querySelectorAll(".tab")
+.forEach(tab=>{
+tab.classList.remove("active");
+});
 
-  document
-    .getElementById(id)
-    .classList.add("active");
+button.classList.add("active");
 
-  document
-    .querySelectorAll(".tab")
-    .forEach(tab => {
-
-      tab.classList.remove("active");
-
-    });
-
-  button.classList.add("active");
-
-  if(id === "postsSection"){
-    loadProperties();
-  }
-
-  if(id === "carsSection"){
-    loadCars();
-  }
-
-  if(id === "requestedSection"){
-    loadRequests();
-  }
-
-  if(id === "approvalSection"){
-    loadApprovals();
-  }
-
-  if(id === "statisticsSection"){
-    loadStatistics();
-  }
+if(id==="postsSection") loadProperties();
+if(id==="carsSection") loadCars();
+if(id==="requestedSection") loadRequests();
+if(id==="approvalSection") loadApprovals();
+if(id==="visitorsSection") loadVisitorStats();
 
 }
 
 /* =========================================================
-   MESSAGE
+MESSAGES
 ========================================================= */
 
 function showMessage(text,type){
-
-  postMessage.textContent =
-    text;
-
-  postMessage.className =
-    "message " + type;
-
+postMessage.textContent=text;
+postMessage.className="message "+type;
 }
-
-/* =========================================================
-   CAR MESSAGE
-========================================================= */
 
 function showCarMessage(text,type){
-
-  carMessage.textContent =
-    text;
-
-  carMessage.className =
-    "message " + type;
-
+carMessage.textContent=text;
+carMessage.className="message "+type;
 }
 
 /* =========================================================
-   ESCAPE HTML
+ESCAPE
 ========================================================= */
 
 function escapeHtml(value){
 
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
 /* =========================================================
-   HOUSE PHOTO PREVIEW
+IMAGE PREVIEW
 ========================================================= */
 
-document
-  .getElementById("otherPhotos")
-  .addEventListener(
-    "change",
-    function(){
+document.getElementById("otherPhotos")
+.addEventListener("change",function(){
 
-      photoPreview.innerHTML = "";
+photoPreview.innerHTML="";
 
-      Array
-        .from(this.files)
-        .forEach(file => {
+Array.from(this.files).forEach(file=>{
 
-          const img =
-            document.createElement("img");
+const img=document.createElement("img");
+img.src=URL.createObjectURL(file);
 
-          img.src =
-            URL.createObjectURL(file);
+photoPreview.appendChild(img);
 
-          photoPreview.appendChild(img);
+});
 
-        });
+});
 
-    }
-  );
+document.getElementById("carOtherPhotos")
+.addEventListener("change",function(){
 
-/* =========================================================
-   CAR PHOTO PREVIEW
-========================================================= */
+carPhotoPreview.innerHTML="";
 
-document
-  .getElementById("carOtherPhotos")
-  .addEventListener(
-    "change",
-    function(){
+Array.from(this.files).forEach(file=>{
 
-      carPhotoPreview.innerHTML = "";
+const img=document.createElement("img");
+img.src=URL.createObjectURL(file);
 
-      Array
-        .from(this.files)
-        .forEach(file => {
+carPhotoPreview.appendChild(img);
 
-          const img =
-            document.createElement("img");
+});
 
-          img.src =
-            URL.createObjectURL(file);
-
-          carPhotoPreview.appendChild(img);
-
-        });
-
-    }
-  );
+});
 
 /* =========================================================
-   UPLOAD IMAGE
+UPLOAD IMAGE
 ========================================================= */
 
 async function uploadImage(file){
 
-  if(!file){
+if(!file)
+throw new Error("Image file irabura.");
 
-    throw new Error(
-      "Image file irabura."
-    );
+const safeName=file.name
+.replace(/[^a-zA-Z0-9._-]/g,"-");
 
-  }
+const fileName=
+Date.now()+"-"+
+Math.random().toString(36).substring(2)+
+"-"+safeName;
 
-  const safeName =
-    file.name.replace(
-      /[^a-zA-Z0-9._-]/g,
-      "-"
-    );
+const filePath="properties/"+fileName;
 
-  const fileName =
-    Date.now() +
-    "-" +
-    Math.random()
-      .toString(36)
-      .substring(2) +
-    "-" +
-    safeName;
+const {error}=
+await supabaseClient.storage
+.from("property-images")
+.upload(filePath,file,{upsert:false});
 
-  const filePath =
-    "properties/" +
-    fileName;
+if(error) throw error;
 
-  const {
-    error
-  } =
-  await supabaseClient
-    .storage
-    .from("property-images")
-    .upload(
-      filePath,
-      file,
-      {
-        upsert:false
-      }
-    );
+const {data}=
+supabaseClient.storage
+.from("property-images")
+.getPublicUrl(filePath);
 
-  if(error){
-
-    throw error;
-
-  }
-
-  const {
-    data
-  } =
-  supabaseClient
-    .storage
-    .from("property-images")
-    .getPublicUrl(
-      filePath
-    );
-
-  return data.publicUrl;
-
+return data.publicUrl;
 }
 
 /* =========================================================
-   ADD HOUSE
+ADD HOUSE
 ========================================================= */
 
-propertyForm.addEventListener(
-  "submit",
-  async function(event){
+propertyForm.addEventListener("submit",async function(event){
 
-    event.preventDefault();
+event.preventDefault();
 
-    postButton.disabled = true;
+postButton.disabled=true;
+postButton.textContent="Posting...";
 
-    postButton.textContent =
-      "Posting...";
+showMessage("Posting property...","success");
 
-    showMessage(
-      "Posting property...",
-      "success"
-    );
+try{
 
-    try{
+const title=document.getElementById("title").value.trim();
+const propertyType=document.getElementById("propertyType").value;
+const price=Number(document.getElementById("price").value);
 
-      const title =
-        document
-          .getElementById("title")
-          .value
-          .trim();
+const country=document.getElementById("country").value.trim();
+const province=document.getElementById("province").value.trim();
+const district=document.getElementById("district").value.trim();
+const sector=document.getElementById("sector").value.trim();
 
-      const propertyType =
-        document
-          .getElementById("propertyType")
-          .value;
+const bedrooms=Number(document.getElementById("bedrooms").value||0);
+const bathrooms=Number(document.getElementById("bathrooms").value||0);
+const parking=Number(document.getElementById("parking").value||0);
 
-      const price =
-        Number(
-          document
-            .getElementById("price")
-            .value
-        );
+const sellerName=document.getElementById("sellerName").value.trim();
+const phone=document.getElementById("phone").value.trim();
+const description=document.getElementById("description").value.trim();
 
-      const country =
-        document
-          .getElementById("country")
-          .value
-          .trim();
+const mainPhotoFile=document.getElementById("mainPhoto").files[0];
 
-      const province =
-        document
-          .getElementById("province")
-          .value
-          .trim();
+const otherPhotoFiles=
+Array.from(document.getElementById("otherPhotos").files);
 
-      const district =
-        document
-          .getElementById("district")
-          .value
-          .trim();
+if(!mainPhotoFile)
+throw new Error("Main Photo irakenewe.");
 
-      const sector =
-        document
-          .getElementById("sector")
-          .value
-          .trim();
+const mainPhotoUrl=
+await uploadImage(mainPhotoFile);
 
-      const bedrooms =
-        Number(
-          document
-            .getElementById("bedrooms")
-            .value || 0
-        );
+const otherPhotoUrls=[];
 
-      const bathrooms =
-        Number(
-          document
-            .getElementById("bathrooms")
-            .value || 0
-        );
+for(const file of otherPhotoFiles){
+otherPhotoUrls.push(await uploadImage(file));
+}
 
-      const parking =
-        Number(
-          document
-            .getElementById("parking")
-            .value || 0
-        );
+const {error}=
+await supabaseClient
+.from("property_posts")
+.insert({
+seller_name:sellerName,
+phone:phone,
+property_type:propertyType,
+title:title,
+country:country,
+province:province,
+district:district,
+sector:sector,
+bedrooms:bedrooms,
+bathrooms:bathrooms,
+parking:parking,
+price:price,
+main_photo:mainPhotoUrl,
+other_photos:otherPhotoUrls,
+description:description,
+status:"published"
+});
 
-      const sellerName =
-        document
-          .getElementById("sellerName")
-          .value
-          .trim();
+if(error) throw error;
 
-      const phone =
-        document
-          .getElementById("phone")
-          .value
-          .trim();
+showMessage("✅ House posted successfully!","success");
 
-      const description =
-        document
-          .getElementById("description")
-          .value
-          .trim();
+propertyForm.reset();
 
-      const mainPhotoFile =
-        document
-          .getElementById("mainPhoto")
-          .files[0];
+document.getElementById("country").value="Rwanda";
+photoPreview.innerHTML="";
 
-      const otherPhotoFiles =
-        Array.from(
-          document
-            .getElementById("otherPhotos")
-            .files
-        );
+await loadProperties();
 
-      if(!mainPhotoFile){
+}catch(error){
 
-        throw new Error(
-          "Main Photo irakenewe."
-        );
+console.error(error);
+showMessage("❌ "+error.message,"error");
 
-      }
+}
 
-      const mainPhotoUrl =
-        await uploadImage(
-          mainPhotoFile
-        );
+postButton.disabled=false;
+postButton.textContent="Post House";
 
-      const otherPhotoUrls = [];
-
-      for(
-        const file
-        of otherPhotoFiles
-      ){
-
-        const url =
-          await uploadImage(file);
-
-        otherPhotoUrls.push(url);
-
-      }
-
-      const {
-        error
-      } =
-      await supabaseClient
-        .from("property_posts")
-        .insert({
-
-          seller_name:
-            sellerName,
-
-          phone:
-            phone,
-
-          property_type:
-            propertyType,
-
-          title:
-            title,
-
-          country:
-            country,
-
-          province:
-            province,
-
-          district:
-            district,
-
-          sector:
-            sector,
-
-          bedrooms:
-            bedrooms,
-
-          bathrooms:
-            bathrooms,
-
-          parking:
-            parking,
-
-          price:
-            price,
-
-          main_photo:
-            mainPhotoUrl,
-
-          other_photos:
-            otherPhotoUrls,
-
-          description:
-            description,
-
-          status:
-            "published"
-
-        });
-
-      if(error){
-
-        throw error;
-
-      }
-
-      showMessage(
-        "✅ House posted successfully!",
-        "success"
-      );
-
-      propertyForm.reset();
-
-      document
-        .getElementById("country")
-        .value =
-        "Rwanda";
-
-      photoPreview.innerHTML = "";
-
-      await loadProperties();
-
-    }
-    catch(error){
-
-      console.error(error);
-
-      showMessage(
-        "❌ " + error.message,
-        "error"
-      );
-
-    }
-
-    postButton.disabled = false;
-
-    postButton.textContent =
-      "Post House";
-
-  }
-);
+});
 
 /* =========================================================
-   ADD CAR
+ADD CAR
 ========================================================= */
 
-carForm.addEventListener(
-  "submit",
-  async function(event){
+carForm.addEventListener("submit",async function(event){
 
-    event.preventDefault();
+event.preventDefault();
 
-    carPostButton.disabled = true;
+carPostButton.disabled=true;
+carPostButton.textContent="Posting Car...";
 
-    carPostButton.textContent =
-      "Posting Car...";
+showCarMessage("🚗 Posting car...","success");
 
-    showCarMessage(
-      "🚗 Posting car...",
-      "success"
-    );
+try{
 
-    try{
+const title=document.getElementById("carTitle").value.trim();
+const price=Number(document.getElementById("carPrice").value);
+const location=document.getElementById("carLocation").value.trim();
+const phone=document.getElementById("carPhone").value.trim();
 
-      const title =
-        document
-          .getElementById("carTitle")
-          .value
-          .trim();
+const mainFile=document.getElementById("carMainPhoto").files[0];
 
-      const price =
-        Number(
-          document
-            .getElementById("carPrice")
-            .value
-        );
+const otherFiles=
+Array.from(document.getElementById("carOtherPhotos").files);
 
-      const location =
-        document
-          .getElementById("carLocation")
-          .value
-          .trim();
+if(!mainFile)
+throw new Error("Main Car Photo irakenewe.");
 
-      const phone =
-        document
-          .getElementById("carPhone")
-          .value
-          .trim();
+const mainPhoto=await uploadImage(mainFile);
 
-      const mainFile =
-        document
-          .getElementById("carMainPhoto")
-          .files[0];
+const otherPhotos=[];
 
-      const otherFiles =
-        Array.from(
-          document
-            .getElementById("carOtherPhotos")
-            .files
-        );
+for(const file of otherFiles){
+otherPhotos.push(await uploadImage(file));
+}
 
-      if(!mainFile){
+const {error}=
+await supabaseClient
+.from("cars_posts")
+.insert({
+title:title,
+price:price,
+mainph:mainPhoto,
+otherph:otherPhotos,
+locati:location,
+stat:"published",
+phon:phone
+});
 
-        throw new Error(
-          "Main Car Photo irakenewe."
-        );
+if(error) throw error;
 
-      }
+showCarMessage("✅ Imodoka yashyizweho neza!","success");
 
-      const mainPhoto =
-        await uploadImage(mainFile);
+carForm.reset();
+carPhotoPreview.innerHTML="";
 
-      const otherPhotos = [];
+await loadCars();
 
-      for(
-        const file
-        of otherFiles
-      ){
+}catch(error){
 
-        const url =
-          await uploadImage(file);
+console.error(error);
+showCarMessage("❌ "+error.message,"error");
 
-        otherPhotos.push(url);
+}
 
-      }
+carPostButton.disabled=false;
+carPostButton.textContent="🚗 Post Car";
 
-      const {
-        error
-      } =
-      await supabaseClient
-        .from("cars_posts")
-        .insert({
-
-          title:
-            title,
-
-          price:
-            price,
-
-          mainph:
-            mainPhoto,
-
-          otherph:
-            otherPhotos,
-
-          locati:
-            location,
-
-          stat:
-            "published",
-
-          phon:
-            phone
-
-        });
-
-      if(error){
-
-        throw error;
-
-      }
-
-      showCarMessage(
-        "✅ Imodoka yashyizweho neza!",
-        "success"
-      );
-
-      carForm.reset();
-
-      carPhotoPreview.innerHTML = "";
-
-      await loadCars();
-
-    }
-    catch(error){
-
-      console.error(error);
-
-      showCarMessage(
-        "❌ " + error.message,
-        "error"
-      );
-
-    }
-
-    carPostButton.disabled = false;
-
-    carPostButton.textContent =
-      "🚗 Post Car";
-
-  }
-);
+});
 
 /* =========================================================
-   LOAD HOUSE POSTS
+LOAD HOUSES
 ========================================================= */
 
 async function loadProperties(){
 
-  propertiesElement.innerHTML =
-    `<div class="empty">
-      Loading posts...
-    </div>`;
+propertiesElement.innerHTML=
+`<div class="empty">Loading posts...</div>`;
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("property_posts")
-    .select("*")
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
-    );
+const {data,error}=
+await supabaseClient
+.from("property_posts")
+.select("*")
+.order("created_at",{ascending:false});
 
-  if(error){
+if(error){
 
-    propertiesElement.innerHTML =
-      `<div class="empty">
-        ❌ ${escapeHtml(error.message)}
-      </div>`;
+propertiesElement.innerHTML=
+`<div class="empty">❌ ${escapeHtml(error.message)}</div>`;
 
-    return;
+return;
+}
 
-  }
+if(!data || data.length===0){
 
-  if(!data || data.length === 0){
+propertiesElement.innerHTML=
+`<div class="empty">Nta house post iraboneka.</div>`;
 
-    propertiesElement.innerHTML =
-      `<div class="empty">
-        Nta house post iraboneka.
-      </div>`;
+return;
+}
 
-    return;
+propertiesElement.innerHTML="";
 
-  }
+data.forEach(property=>{
 
-  propertiesElement.innerHTML = "";
+const card=document.createElement("div");
+card.className="property";
 
-  data.forEach(property => {
+const mainPhoto=
+property.main_photo ||
+(Array.isArray(property.other_photos)
+?property.other_photos[0]:"") ||
+"https://via.placeholder.com/600x400?text=No+Photo";
 
-    const card =
-      document.createElement("div");
+const status=property.status||"pending";
 
-    card.className =
-      "property";
+card.innerHTML=`
 
-    const mainPhoto =
-      property.main_photo ||
-      (
-        Array.isArray(
-          property.other_photos
-        )
-        ?
-        property.other_photos[0]
-        :
-        ""
-      ) ||
-      "https://via.placeholder.com/600x400?text=No+Photo";
+<img src="${escapeHtml(mainPhoto)}" alt="Property">
 
-    const status =
-      property.status ||
-      "pending";
+<div class="property-body">
 
-    card.innerHTML = `
+<div class="property-title">
+${escapeHtml(property.title||"Property")}
+</div>
 
-      <img
-        src="${escapeHtml(mainPhoto)}"
-        alt="Property"
-      >
+<div class="price">
+${Number(property.price||0).toLocaleString()} RWF
+</div>
 
-      <div class="property-body">
+<div class="location">
 
-        <div class="property-title">
-          ${escapeHtml(
-            property.title ||
-            "Property"
-          )}
-        </div>
+📍 ${escapeHtml(property.country||"")},
+${escapeHtml(property.province||"")},
+${escapeHtml(property.district||"")},
+${escapeHtml(property.sector||"")}
 
-        <div class="price">
-          ${Number(
-            property.price || 0
-          ).toLocaleString()}
-          RWF
-        </div>
+<br><br>
 
-        <div class="location">
+🏷️ Type: ${escapeHtml(property.property_type||"")}
 
-          📍
-          ${escapeHtml(
-            property.country || ""
-          )}
-          ,
-          ${escapeHtml(
-            property.province || ""
-          )}
-          ,
-          ${escapeHtml(
-            property.district || ""
-          )}
-          ,
-          ${escapeHtml(
-            property.sector || ""
-          )}
+<br>
 
-          <br><br>
+📌 Status:
+<span class="status status-${escapeHtml(status)}">
+${escapeHtml(status)}
+</span>
 
-          🏷️ Type:
-          ${escapeHtml(
-            property.property_type || ""
-          )}
+<br><br>
 
-          <br>
+🛏️ Bedrooms: ${property.bedrooms??0}
+<br>
+🚿 Bathrooms: ${property.bathrooms??0}
+<br>
+🚗 Parking: ${property.parking??0}
 
-          📌 Status:
+</div>
 
-          <span
-            class="status status-${escapeHtml(status)}"
-          >
-            ${escapeHtml(status)}
-          </span>
+<div class="property-actions">
 
-          <br><br>
+<button class="button secondary"
+onclick="viewProperty('${property.id}')">
+View
+</button>
 
-          🛏️ Bedrooms:
-          ${property.bedrooms ?? 0}
+<button class="button delete"
+onclick="deleteProperty('${property.id}')">
+🗑️ Delete
+</button>
 
-          <br>
+</div>
 
-          🚿 Bathrooms:
-          ${property.bathrooms ?? 0}
+</div>
+`;
 
-          <br>
+propertiesElement.appendChild(card);
 
-          🚗 Parking:
-          ${property.parking ?? 0}
-
-        </div>
-
-        <div class="property-actions">
-
-          <button
-            class="button secondary"
-            onclick="viewProperty('${property.id}')"
-          >
-            View
-          </button>
-
-          <button
-            class="button delete"
-            onclick="deleteProperty('${property.id}')"
-          >
-            🗑️ Delete
-          </button>
-
-        </div>
-
-      </div>
-    `;
-
-    propertiesElement.appendChild(card);
-
-  });
+});
 
 }
 
 /* =========================================================
-   LOAD CARS
+LOAD CARS
 ========================================================= */
 
 async function loadCars(){
 
-  carsList.innerHTML =
-    `<div class="empty">
-      Loading cars...
-    </div>`;
+carsList.innerHTML=
+`<div class="empty">Loading cars...</div>`;
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("cars_posts")
-    .select("*");
+const {data,error}=
+await supabaseClient
+.from("cars_posts")
+.select("*");
 
-  if(error){
+if(error){
 
-    carsList.innerHTML =
-      `<div class="empty">
-        ❌ ${escapeHtml(error.message)}
-      </div>`;
+carsList.innerHTML=
+`<div class="empty">❌ ${escapeHtml(error.message)}</div>`;
 
-    return;
+return;
+}
 
-  }
+if(!data || data.length===0){
 
-  if(!data || data.length === 0){
+carsList.innerHTML=
+`<div class="empty">🚗 Nta modoka irashyirwaho.</div>`;
 
-    carsList.innerHTML =
-      `<div class="empty">
-        🚗 Nta modoka irashyirwaho.
-      </div>`;
+return;
+}
 
-    return;
+carsList.innerHTML="";
 
-  }
+data.forEach(car=>{
 
-  carsList.innerHTML = "";
+const card=document.createElement("div");
+card.className="property";
 
-  data.forEach(car => {
+let mainPhoto=car.mainph;
 
-    const card =
-      document.createElement("div");
+if(!mainPhoto && Array.isArray(car.otherph))
+mainPhoto=car.otherph[0];
 
-    card.className =
-      "property";
+mainPhoto=
+mainPhoto ||
+"https://via.placeholder.com/600x400?text=Car";
 
-    let mainPhoto =
-      car.mainph;
+const status=car.stat||"pending";
 
-    if(
-      !mainPhoto &&
-      Array.isArray(car.otherph)
-    ){
+card.innerHTML=`
 
-      mainPhoto =
-        car.otherph[0];
+<img src="${escapeHtml(mainPhoto)}" alt="Car">
 
-    }
+<div class="property-body">
 
-    if(
-      !mainPhoto &&
-      typeof car.otherph === "string"
-    ){
+<div class="car-badge">🚗 CAR FOR SALE</div>
 
-      try{
+<div class="property-title">
+${escapeHtml(car.title||"Car")}
+</div>
 
-        const parsed =
-          JSON.parse(car.otherph);
+<div class="price">
+${Number(car.price||0).toLocaleString()} RWF
+</div>
 
-        if(Array.isArray(parsed)){
+<div class="location">
 
-          mainPhoto =
-            parsed[0];
+📍 ${escapeHtml(car.locati||"")}
 
-        }
+<br><br>
 
-      }
-      catch(e){}
+📞 ${escapeHtml(car.phon||"")}
 
-    }
+<br><br>
 
-    mainPhoto =
-      mainPhoto ||
-      "https://via.placeholder.com/600x400?text=Car";
+📌 Status:
+<span class="status status-${escapeHtml(status)}">
+${escapeHtml(status)}
+</span>
 
-    const status =
-      car.stat ||
-      "pending";
+</div>
 
-    card.innerHTML = `
+<div class="property-actions">
 
-      <img
-        src="${escapeHtml(mainPhoto)}"
-        alt="Car"
-      >
+<button class="button secondary"
+onclick="viewCar('${car.id}')">
+View
+</button>
 
-      <div class="property-body">
+<button class="button delete"
+onclick="deleteCar('${car.id}')">
+🗑️ Delete
+</button>
 
-        <div class="car-badge">
-          🚗 CAR FOR SALE
-        </div>
+</div>
 
-        <div class="property-title">
-          ${escapeHtml(
-            car.title || "Car"
-          )}
-        </div>
+</div>
+`;
 
-        <div class="price">
-          ${Number(
-            car.price || 0
-          ).toLocaleString()}
-          RWF
-        </div>
+carsList.appendChild(card);
 
-        <div class="location">
-
-          📍
-          ${escapeHtml(
-            car.locati || ""
-          )}
-
-          <br><br>
-
-          📞
-          ${escapeHtml(
-            car.phon || ""
-          )}
-
-          <br><br>
-
-          📌 Status:
-
-          <span
-            class="status status-${escapeHtml(status)}"
-          >
-            ${escapeHtml(status)}
-          </span>
-
-        </div>
-
-        <div class="property-actions">
-
-          <button
-            class="button secondary"
-            onclick="viewCar('${car.id}')"
-          >
-            View
-          </button>
-
-          <button
-            class="button delete"
-            onclick="deleteCar('${car.id}')"
-          >
-            🗑️ Delete
-          </button>
-
-        </div>
-
-      </div>
-    `;
-
-    carsList.appendChild(card);
-
-  });
+});
 
 }
 
 /* =========================================================
-   VIEW CAR
+VIEW CAR
 ========================================================= */
 
 async function viewCar(id){
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("cars_posts")
-    .select("*")
-    .eq("id",id)
-    .maybeSingle();
+const {data,error}=
+await supabaseClient
+.from("cars_posts")
+.select("*")
+.eq("id",id)
+.maybeSingle();
 
-  if(error){
+if(error){
+alert("❌ "+error.message);
+return;
+}
 
-    alert("❌ " + error.message);
+if(!data){
+alert("Car ntiyabonetse.");
+return;
+}
 
-    return;
-
-  }
-
-  if(!data){
-
-    alert("Car ntiyabonetse.");
-
-    return;
-
-  }
-
-  alert(
-
-    "CAR DETAILS\n\n" +
-
-    "Title: " +
-    (data.title || "") +
-
-    "\n\nPrice: " +
-
-    Number(
-      data.price || 0
-    ).toLocaleString() +
-
-    " RWF" +
-
-    "\n\nLocation: " +
-    (data.locati || "") +
-
-    "\n\nPhone: " +
-    (data.phon || "") +
-
-    "\n\nStatus: " +
-    (data.stat || "")
-
-  );
+alert(
+"CAR DETAILS\n\n"+
+"Title: "+(data.title||"")+
+"\n\nPrice: "+
+Number(data.price||0).toLocaleString()+" RWF"+
+"\n\nLocation: "+(data.locati||"")+
+"\n\nPhone: "+(data.phon||"")+
+"\n\nStatus: "+(data.stat||"")
+);
 
 }
 
 /* =========================================================
-   DELETE CAR
+DELETE CAR
 ========================================================= */
 
 async function deleteCar(id){
 
-  if(
-    !confirm(
-      "Urashaka koko gusiba iyi modoka?"
-    )
-  ){
+if(!confirm("Urashaka koko gusiba iyi modoka?"))
+return;
 
-    return;
+const {error}=
+await supabaseClient
+.from("cars_posts")
+.delete()
+.eq("id",id);
 
-  }
+if(error){
+alert("❌ "+error.message);
+return;
+}
 
-  const {
-    error
-  } =
-  await supabaseClient
-    .from("cars_posts")
-    .delete()
-    .eq("id",id);
+alert("✅ Imodoka yasibwe neza.");
 
-  if(error){
-
-    alert(
-      "❌ " + error.message
-    );
-
-    return;
-
-  }
-
-  alert(
-    "✅ Imodoka yasibwe neza."
-  );
-
-  await loadCars();
+await loadCars();
 
 }
 
 /* =========================================================
-   VIEW PROPERTY
+VIEW PROPERTY
 ========================================================= */
 
 async function viewProperty(id){
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("property_posts")
-    .select("*")
-    .eq("id",id)
-    .maybeSingle();
+const {data,error}=
+await supabaseClient
+.from("property_posts")
+.select("*")
+.eq("id",id)
+.maybeSingle();
 
-  if(error){
+if(error){
+alert("❌ "+error.message);
+return;
+}
 
-    alert(
-      "❌ " + error.message
-    );
+if(!data){
+alert("Property ntiyabonetse.");
+return;
+}
 
-    return;
-
-  }
-
-  if(!data){
-
-    alert(
-      "Property ntiyabonetse."
-    );
-
-    return;
-
-  }
-
-  alert(
-
-    "PROPERTY DETAILS\n\n" +
-
-    "Title: " +
-    (data.title || "") +
-
-    "\n\nSeller: " +
-    (data.seller_name || "") +
-
-    "\nPhone: " +
-    (data.phone || "") +
-
-    "\n\nType: " +
-    (data.property_type || "") +
-
-    "\n\nPrice: " +
-
-    Number(
-      data.price || 0
-    ).toLocaleString() +
-
-    " RWF" +
-
-    "\n\nLocation: " +
-
-    (data.country || "") +
-    " / " +
-    (data.province || "") +
-    " / " +
-    (data.district || "") +
-    " / " +
-    (data.sector || "") +
-
-    "\n\nDescription:\n" +
-
-    (data.description || "")
-
-  );
+alert(
+"PROPERTY DETAILS\n\n"+
+"Title: "+(data.title||"")+
+"\n\nSeller: "+(data.seller_name||"")+
+"\nPhone: "+(data.phone||"")+
+"\n\nType: "+(data.property_type||"")+
+"\n\nPrice: "+
+Number(data.price||0).toLocaleString()+" RWF"+
+"\n\nLocation: "+
+(data.country||"")+" / "+
+(data.province||"")+" / "+
+(data.district||"")+" / "+
+(data.sector||"")+
+"\n\nDescription:\n"+
+(data.description||"")
+);
 
 }
 
 /* =========================================================
-   DELETE PROPERTY
+DELETE PROPERTY
 ========================================================= */
 
 async function deleteProperty(id){
 
-  if(
-    !confirm(
-      "Urashaka koko gusiba iyi post?"
-    )
-  ){
+if(!confirm("Urashaka koko gusiba iyi post?"))
+return;
 
-    return;
+const {error}=
+await supabaseClient
+.from("property_posts")
+.delete()
+.eq("id",id);
 
-  }
+if(error){
+alert("❌ "+error.message);
+return;
+}
 
-  const {
-    error
-  } =
-  await supabaseClient
-    .from("property_posts")
-    .delete()
-    .eq("id",id);
+alert("✅ Post yasibwe neza.");
 
-  if(error){
-
-    alert(
-      "❌ " + error.message
-    );
-
-    return;
-
-  }
-
-  alert(
-    "✅ Post yasibwe neza."
-  );
-
-  await loadProperties();
+await loadProperties();
 
 }
 
 /* =========================================================
-   LOAD REQUESTS
+REQUESTS
 ========================================================= */
 
 async function loadRequests(){
 
-  requestsList.innerHTML =
-    `<div class="empty">
-      Loading requests...
-    </div>`;
+requestsList.innerHTML=
+`<div class="empty">Loading requests...</div>`;
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("property_requests")
-    .select("*")
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
-    );
+const {data,error}=
+await supabaseClient
+.from("property_requests")
+.select("*")
+.order("created_at",{ascending:false});
 
-  if(error){
+if(error){
 
-    requestsList.innerHTML =
-      `<div class="empty">
-        ❌ ${escapeHtml(error.message)}
-      </div>`;
+requestsList.innerHTML=
+`<div class="empty">❌ ${escapeHtml(error.message)}</div>`;
 
-    requestBadge.textContent =
-      "0";
+requestBadge.textContent="0";
+return;
+}
 
-    return;
+if(!data || data.length===0){
 
-  }
+requestsList.innerHTML=
+`<div class="empty">Nta request iraboneka.</div>`;
 
-  if(!data || data.length === 0){
+requestBadge.textContent="0";
+return;
+}
 
-    requestsList.innerHTML =
-      `<div class="empty">
-        Nta request iraboneka.
-      </div>`;
+const pending=data.filter(
+r=>String(r.status||"pending").toLowerCase()==="pending"
+);
 
-    requestBadge.textContent =
-      "0";
+requestBadge.textContent=pending.length;
 
-    return;
+requestsList.innerHTML="";
 
-  }
+data.forEach(request=>{
 
-  const pending =
-    data.filter(request => {
+const box=document.createElement("div");
+box.className="request";
 
-      return String(
-        request.status ||
-        "pending"
-      ).toLowerCase() === "pending";
+box.innerHTML=`
 
-    });
+<div class="request-title">
+💬 ${escapeHtml(
+request.name||
+request.full_name||
+request.subject||
+"Property Request"
+)}
+</div>
 
-  requestBadge.textContent =
-    pending.length;
+<div class="request-info">
 
-  requestsList.innerHTML = "";
+${request.email
+?"📧 Email: "+escapeHtml(request.email)+"<br>":""}
 
-  data.forEach(request => {
+${request.phone
+?"📞 Phone: "+escapeHtml(request.phone)+"<br>":""}
 
-    const box =
-      document.createElement("div");
+${request.message
+?"<br>📝 Message:<br>"+escapeHtml(request.message):""}
 
-    box.className =
-      "request";
+${request.created_at
+?"<br><br>📅 "+
+escapeHtml(new Date(request.created_at).toLocaleString()):""}
 
-    box.innerHTML = `
+</div>
+`;
 
-      <div class="request-title">
+requestsList.appendChild(box);
 
-        💬
-
-        ${escapeHtml(
-          request.name ||
-          request.full_name ||
-          request.subject ||
-          "Property Request"
-        )}
-
-      </div>
-
-      <div class="request-info">
-
-        ${
-          request.email
-          ?
-          "📧 Email: " +
-          escapeHtml(request.email) +
-          "<br>"
-          :
-          ""
-        }
-
-        ${
-          request.phone
-          ?
-          "📞 Phone: " +
-          escapeHtml(request.phone) +
-          "<br>"
-          :
-          ""
-        }
-
-        ${
-          request.message
-          ?
-          "<br>📝 Message:<br>" +
-          escapeHtml(request.message)
-          :
-          ""
-        }
-
-        ${
-          request.status
-          ?
-          "<br><br>📌 Status: " +
-          escapeHtml(request.status)
-          :
-          ""
-        }
-
-        ${
-          request.created_at
-          ?
-          "<br><br>📅 " +
-          escapeHtml(
-            new Date(
-              request.created_at
-            ).toLocaleString()
-          )
-          :
-          ""
-        }
-
-      </div>
-    `;
-
-    requestsList.appendChild(box);
-
-  });
+});
 
 }
 
 /* =========================================================
-   LOAD APPROVALS
+APPROVALS
 ========================================================= */
 
 async function loadApprovals(){
 
-  approvalsList.innerHTML =
-    `<div class="empty">
-      Loading approvals...
-    </div>`;
+approvalsList.innerHTML=
+`<div class="empty">Loading approvals...</div>`;
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("property_requests")
-    .select("*")
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
-    );
+const {data,error}=
+await supabaseClient
+.from("property_requests")
+.select("*")
+.order("created_at",{ascending:false});
 
-  if(error){
+if(error){
 
-    approvalsList.innerHTML =
-      `<div class="empty">
-        ❌ ${escapeHtml(error.message)}
-      </div>`;
+approvalsList.innerHTML=
+`<div class="empty">❌ ${escapeHtml(error.message)}</div>`;
 
-    return;
+return;
+}
 
-  }
+const pending=(data||[]).filter(request=>
+String(request.status||"pending").toLowerCase()==="pending"
+);
 
-  const pending =
-    (data || []).filter(request => {
+if(pending.length===0){
 
-      const status =
-        String(
-          request.status ||
-          "pending"
-        ).toLowerCase();
+approvalsList.innerHTML=
+`<div class="empty">
+✅ Nta request itegereje kwemezwa.
+</div>`;
 
-      return status === "pending";
+return;
+}
 
-    });
+approvalsList.innerHTML="";
 
-  if(pending.length === 0){
+pending.forEach(request=>{
 
-    approvalsList.innerHTML =
-      `<div class="empty">
-        ✅ Nta request itegereje kwemezwa.
-      </div>`;
+const box=document.createElement("div");
+box.className="request";
 
-    return;
+box.innerHTML=`
 
-  }
+<div class="request-title">
+🏠 ${escapeHtml(
+request.property_title||
+request.title||
+request.name||
+"Property Submission"
+)}
+</div>
 
-  approvalsList.innerHTML = "";
+<div class="request-info">
 
-  pending.forEach(request => {
+${request.name||request.full_name
+?"👤 Owner: "+
+escapeHtml(request.name||request.full_name)+"<br>":""}
 
-    const box =
-      document.createElement("div");
+${request.phone
+?"📞 Phone: "+escapeHtml(request.phone)+"<br>":""}
 
-    box.className =
-      "request";
+${request.email
+?"📧 Email: "+escapeHtml(request.email)+"<br>":""}
 
-    box.innerHTML = `
+${request.property_type
+?"🏷️ Type: "+escapeHtml(request.property_type)+"<br>":""}
 
-      <div class="request-title">
+${request.price
+?"💰 Price: "+
+Number(request.price).toLocaleString()+" RWF<br>":""}
 
-        🏠
+${request.message
+?"<br>📝 Message:<br>"+
+escapeHtml(request.message):""}
 
-        ${escapeHtml(
-          request.property_title ||
-          request.title ||
-          request.name ||
-          "Property Submission"
-        )}
+</div>
 
-      </div>
+<div class="request-actions">
 
-      <div class="request-info">
+<button class="button approve"
+onclick="approveRequest('${request.id}')">
+✅ Approve
+</button>
 
-        ${
-          request.name ||
-          request.full_name
-          ?
-          "👤 Owner: " +
-          escapeHtml(
-            request.name ||
-            request.full_name
-          ) +
-          "<br>"
-          :
-          ""
-        }
+<button class="button reject"
+onclick="rejectRequest('${request.id}')">
+❌ Reject
+</button>
 
-        ${
-          request.phone
-          ?
-          "📞 Phone: " +
-          escapeHtml(request.phone) +
-          "<br>"
-          :
-          ""
-        }
+</div>
+`;
 
-        ${
-          request.email
-          ?
-          "📧 Email: " +
-          escapeHtml(request.email) +
-          "<br>"
-          :
-          ""
-        }
+approvalsList.appendChild(box);
 
-        ${
-          request.property_type
-          ?
-          "🏷️ Type: " +
-          escapeHtml(request.property_type) +
-          "<br>"
-          :
-          ""
-        }
-
-        ${
-          request.price
-          ?
-          "💰 Price: " +
-          Number(request.price).toLocaleString() +
-          " RWF<br>"
-          :
-          ""
-        }
-
-        ${
-          request.message
-          ?
-          "<br>📝 Message:<br>" +
-          escapeHtml(request.message)
-          :
-          ""
-        }
-
-      </div>
-
-      <div class="request-actions">
-
-        <button
-          class="button approve"
-          onclick="approveRequest('${request.id}')"
-        >
-          ✅ Approve
-        </button>
-
-        <button
-          class="button reject"
-          onclick="rejectRequest('${request.id}')"
-        >
-          ❌ Reject
-        </button>
-
-      </div>
-    `;
-
-    approvalsList.appendChild(box);
-
-  });
+});
 
 }
 
 /* =========================================================
-   APPROVE
+APPROVE / REJECT
 ========================================================= */
 
 async function approveRequest(id){
 
-  if(
-    !confirm(
-      "Urashaka kwemeza iyi request?"
-    )
-  ){
+if(!confirm("Urashaka kwemeza iyi request?"))
+return;
 
-    return;
+const {error}=
+await supabaseClient
+.from("property_requests")
+.update({status:"approved"})
+.eq("id",id);
 
-  }
-
-  const {
-    error
-  } =
-  await supabaseClient
-    .from("property_requests")
-    .update({
-      status:"approved"
-    })
-    .eq("id",id);
-
-  if(error){
-
-    alert(
-      "❌ " + error.message
-    );
-
-    return;
-
-  }
-
-  alert(
-    "✅ Request yemejwe."
-  );
-
-  await loadApprovals();
-
-  await loadRequests();
-
+if(error){
+alert("❌ "+error.message);
+return;
 }
 
-/* =========================================================
-   REJECT
-========================================================= */
+alert("✅ Request yemejwe.");
+
+await loadApprovals();
+await loadRequests();
+
+}
 
 async function rejectRequest(id){
 
-  if(
-    !confirm(
-      "Urashaka guhakana iyi request?"
-    )
-  ){
+if(!confirm("Urashaka guhakana iyi request?"))
+return;
 
-    return;
+const {error}=
+await supabaseClient
+.from("property_requests")
+.update({status:"rejected"})
+.eq("id",id);
 
-  }
+if(error){
+alert("❌ "+error.message);
+return;
+}
 
-  const {
-    error
-  } =
-  await supabaseClient
-    .from("property_requests")
-    .update({
-      status:"rejected"
-    })
-    .eq("id",id);
+alert("❌ Request yahakanywe.");
 
-  if(error){
-
-    alert(
-      "❌ " + error.message
-    );
-
-    return;
-
-  }
-
-  alert(
-    "❌ Request yahakanywe."
-  );
-
-  await loadApprovals();
-
-  await loadRequests();
+await loadApprovals();
+await loadRequests();
 
 }
 
 /* =========================================================
-   PAGE VIEWS — STATISTICS
+VISITOR STATISTICS
 ========================================================= */
 
-function formatNumber(number){
+async function loadVisitorStats(){
 
-  return Number(
-    number || 0
-  ).toLocaleString();
+document.getElementById("totalViews").textContent="...";
+document.getElementById("uniqueVisitors").textContent="...";
+document.getElementById("todayViews").textContent="...";
+document.getElementById("weekViews").textContent="...";
+
+document.getElementById("pagesStats").innerHTML=
+`<tr><td colspan="3">Loading...</td></tr>`;
+
+document.getElementById("countryStats").innerHTML=
+`<tr><td colspan="2">Loading...</td></tr>`;
+
+document.getElementById("deviceStats").innerHTML=
+`<tr><td colspan="2">Loading...</td></tr>`;
+
+try{
+
+const {data,error}=
+await supabaseClient
+.from("page_views")
+.select(
+"page,path,visitor_id,country,device_type,created_at"
+);
+
+if(error) throw error;
+
+const views=data||[];
+
+const now=new Date();
+
+const startToday=new Date(now);
+startToday.setHours(0,0,0,0);
+
+const startWeek=new Date(now);
+startWeek.setDate(startWeek.getDate()-7);
+
+const todayViews=views.filter(v=>
+new Date(v.created_at)>=startToday
+).length;
+
+const weekViews=views.filter(v=>
+new Date(v.created_at)>=startWeek
+).length;
+
+const uniqueSet=new Set();
+
+views.forEach(v=>{
+if(v.visitor_id)
+uniqueSet.add(v.visitor_id);
+});
+
+document.getElementById("totalViews").textContent=
+views.length.toLocaleString();
+
+document.getElementById("uniqueVisitors").textContent=
+uniqueSet.size.toLocaleString();
+
+document.getElementById("todayViews").textContent=
+todayViews.toLocaleString();
+
+document.getElementById("weekViews").textContent=
+weekViews.toLocaleString();
+
+/* ================= PAGE COUNTS ================= */
+
+const pageMap={};
+
+views.forEach(v=>{
+
+const page=v.page||v.path||"Unknown";
+
+pageMap[page]=(pageMap[page]||0)+1;
+
+});
+
+const pages=Object.entries(pageMap)
+.sort((a,b)=>b[1]-a[1]);
+
+const maxPage=
+pages.length?pages[0][1]:1;
+
+if(!pages.length){
+
+document.getElementById("pagesStats").innerHTML=
+`<tr><td colspan="3">Nta page view iraboneka.</td></tr>`;
+
+}else{
+
+document.getElementById("pagesStats").innerHTML=
+pages.slice(0,20).map(([page,count])=>{
+
+const percentage=
+views.length?
+((count/views.length)*100).toFixed(1):
+0;
+
+return `
+<tr>
+
+<td>${escapeHtml(page)}</td>
+
+<td><strong>${count.toLocaleString()}</strong></td>
+
+<td style="min-width:160px">
+
+${percentage}%
+
+<div class="progress">
+<span style="width:${(count/maxPage)*100}%"></span>
+</div>
+
+</td>
+
+</tr>
+`;
+
+}).join("");
+
+}
+
+/* ================= COUNTRIES ================= */
+
+const countryMap={};
+
+views.forEach(v=>{
+
+const country=
+v.country||"Unknown";
+
+countryMap[country]=
+(countryMap[country]||0)+1;
+
+});
+
+const countries=
+Object.entries(countryMap)
+.sort((a,b)=>b[1]-a[1]);
+
+if(!countries.length){
+
+document.getElementById("countryStats").innerHTML=
+`<tr><td colspan="2">Nta country data iraboneka.</td></tr>`;
+
+}else{
+
+document.getElementById("countryStats").innerHTML=
+countries.slice(0,20).map(([country,count])=>`
+
+<tr>
+<td>🌍 ${escapeHtml(country)}</td>
+<td><strong>${count.toLocaleString()}</strong></td>
+</tr>
+
+`).join("");
+
+}
+
+/* ================= DEVICES ================= */
+
+const deviceMap={};
+
+views.forEach(v=>{
+
+const device=
+v.device_type||"Unknown";
+
+deviceMap[device]=
+(deviceMap[device]||0)+1;
+
+});
+
+const devices=
+Object.entries(deviceMap)
+.sort((a,b)=>b[1]-a[1]);
+
+if(!devices.length){
+
+document.getElementById("deviceStats").innerHTML=
+`<tr><td colspan="2">Nta device data iraboneka.</td></tr>`;
+
+}else{
+
+document.getElementById("deviceStats").innerHTML=
+devices.map(([device,count])=>`
+
+<tr>
+<td>📱 ${escapeHtml(device)}</td>
+<td><strong>${count.toLocaleString()}</strong></td>
+</tr>
+
+`).join("");
+
+}
+
+}catch(error){
+
+console.error(error);
+
+document.getElementById("totalViews").textContent="0";
+document.getElementById("uniqueVisitors").textContent="0";
+document.getElementById("todayViews").textContent="0";
+document.getElementById("weekViews").textContent="0";
+
+document.getElementById("pagesStats").innerHTML=
+`<tr>
+<td colspan="3">
+❌ ${escapeHtml(error.message)}
+</td>
+</tr>`;
+
+document.getElementById("countryStats").innerHTML=
+`<tr>
+<td colspan="2">
+❌ ${escapeHtml(error.message)}
+</td>
+</tr>`;
+
+document.getElementById("deviceStats").innerHTML=
+`<tr>
+<td colspan="2">
+❌ ${escapeHtml(error.message)}
+</td>
+</tr>`;
+
+}
 
 }
 
 /* =========================================================
-   LOAD STATISTICS
-========================================================= */
-
-async function loadStatistics(){
-
-  const message =
-    document.getElementById(
-      "statisticsMessage"
-    );
-
-  message.textContent =
-    "Loading statistics...";
-
-  message.className =
-    "message success";
-
-  try{
-
-    const {
-      data,
-      error
-    } =
-    await supabaseClient
-      .from("page_views")
-      .select(
-        "id,page,path,visitor_id,session_id,referrer,user_agent,device_type,country,city,created_at"
-      )
-      .order(
-        "created_at",
-        {
-          ascending:false
-        }
-      );
-
-    if(error){
-
-      throw error;
-
-    }
-
-    const views =
-      data || [];
-
-    /* =========================
-       TOTAL
-    ========================= */
-
-    document
-      .getElementById("totalViews")
-      .textContent =
-      formatNumber(
-        views.length
-      );
-
-    /* =========================
-       UNIQUE VISITORS
-    ========================= */
-
-    const visitorSet =
-      new Set();
-
-    views.forEach(view => {
-
-      if(view.visitor_id){
-
-        visitorSet.add(
-          view.visitor_id
-        );
-
-      }
-
-    });
-
-    document
-      .getElementById("uniqueVisitors")
-      .textContent =
-      formatNumber(
-        visitorSet.size
-      );
-
-    /* =========================
-       TODAY
-    ========================= */
-
-    const now =
-      new Date();
-
-    const startToday =
-      new Date(
-        now.getFullYear(),
-        now.getMonth(),
-        now.getDate()
-      );
-
-    const todayViews =
-      views.filter(view => {
-
-        if(!view.created_at){
-          return false;
-        }
-
-        return new Date(
-          view.created_at
-        ) >= startToday;
-
-      });
-
-    document
-      .getElementById("todayViews")
-      .textContent =
-      formatNumber(
-        todayViews.length
-      );
-
-    /* =========================
-       LAST 7 DAYS
-    ========================= */
-
-    const sevenDaysAgo =
-      new Date(
-        Date.now() -
-        7 * 24 * 60 * 60 * 1000
-      );
-
-    const weekViews =
-      views.filter(view => {
-
-        if(!view.created_at){
-          return false;
-        }
-
-        return new Date(
-          view.created_at
-        ) >= sevenDaysAgo;
-
-      });
-
-    document
-      .getElementById("weekViews")
-      .textContent =
-      formatNumber(
-        weekViews.length
-      );
-
-    /* =========================
-       DEVICE TYPES
-    ========================= */
-
-    let desktop = 0;
-    let mobile = 0;
-    let tablet = 0;
-    let other = 0;
-
-    views.forEach(view => {
-
-      const device =
-        String(
-          view.device_type || ""
-        ).toLowerCase();
-
-      if(device === "desktop"){
-        desktop++;
-      }
-      else if(device === "mobile"){
-        mobile++;
-      }
-      else if(device === "tablet"){
-        tablet++;
-      }
-      else{
-        other++;
-      }
-
-    });
-
-    document
-      .getElementById("desktopViews")
-      .textContent =
-      formatNumber(desktop);
-
-    document
-      .getElementById("mobileViews")
-      .textContent =
-      formatNumber(mobile);
-
-    document
-      .getElementById("tabletViews")
-      .textContent =
-      formatNumber(tablet);
-
-    document
-      .getElementById("otherViews")
-      .textContent =
-      formatNumber(other);
-
-    /* =========================
-       TOP PAGES
-    ========================= */
-
-    const pageCounts = {};
-
-    views.forEach(view => {
-
-      const page =
-        view.page ||
-        view.path ||
-        "Unknown";
-
-      pageCounts[page] =
-        (pageCounts[page] || 0) + 1;
-
-    });
-
-    const topPages =
-      Object.entries(pageCounts)
-        .sort(
-          (a,b) => b[1] - a[1]
-        )
-        .slice(0,10);
-
-    const topPagesElement =
-      document.getElementById(
-        "topPages"
-      );
-
-    if(topPages.length === 0){
-
-      topPagesElement.innerHTML =
-        `<li>
-          <span>Nta page view iraboneka.</span>
-        </li>`;
-
-    }
-    else{
-
-      topPagesElement.innerHTML =
-        topPages.map(item => {
-
-          return `
-
-            <li>
-
-              <span class="stat-page-name">
-                📄 ${escapeHtml(item[0])}
-              </span>
-
-              <span class="stat-count">
-                ${formatNumber(item[1])}
-              </span>
-
-            </li>
-
-          `;
-
-        }).join("");
-
-    }
-
-    /* =========================
-       COUNTRIES
-    ========================= */
-
-    const countryCounts = {};
-
-    views.forEach(view => {
-
-      const country =
-        view.country ||
-        "Unknown";
-
-      countryCounts[country] =
-        (countryCounts[country] || 0) + 1;
-
-    });
-
-    const topCountries =
-      Object.entries(countryCounts)
-        .sort(
-          (a,b) => b[1] - a[1]
-        )
-        .slice(0,10);
-
-    const topCountriesElement =
-      document.getElementById(
-        "topCountries"
-      );
-
-    if(topCountries.length === 0){
-
-      topCountriesElement.innerHTML =
-        `<li>
-          <span>Nta country iraboneka.</span>
-        </li>`;
-
-    }
-    else{
-
-      topCountriesElement.innerHTML =
-        topCountries.map(item => {
-
-          return `
-
-            <li>
-
-              <span class="stat-page-name">
-                🌍 ${escapeHtml(item[0])}
-              </span>
-
-              <span class="stat-count">
-                ${formatNumber(item[1])}
-              </span>
-
-            </li>
-
-          `;
-
-        }).join("");
-
-    }
-
-    /* =========================
-       RECENT VIEWS
-    ========================= */
-
-    const recentViewsElement =
-      document.getElementById(
-        "recentViews"
-      );
-
-    const recentViews =
-      views.slice(0,20);
-
-    if(recentViews.length === 0){
-
-      recentViewsElement.innerHTML =
-        `<div class="empty">
-          Nta page view iraboneka.
-        </div>`;
-
-    }
-    else{
-
-      recentViewsElement.innerHTML =
-        recentViews.map(view => {
-
-          const date =
-            view.created_at
-            ?
-            new Date(
-              view.created_at
-            ).toLocaleString()
-            :
-            "";
-
-          const device =
-            view.device_type ||
-            "Unknown";
-
-          const country =
-            view.country ||
-            "Unknown";
-
-          const city =
-            view.city ||
-            "";
-
-          return `
-
-            <div class="recent-view">
-
-              <div class="recent-page">
-
-                📄
-
-                ${escapeHtml(
-                  view.page ||
-                  view.path ||
-                  "Unknown Page"
-                )}
-
-              </div>
-
-              <div class="recent-info">
-
-                🕐 ${escapeHtml(date)}
-
-                &nbsp; • &nbsp;
-
-                📱 ${escapeHtml(device)}
-
-                &nbsp; • &nbsp;
-
-                🌍 ${escapeHtml(country)}
-
-                ${
-                  city
-                  ?
-                  " • " +
-                  escapeHtml(city)
-                  :
-                  ""
-                }
-
-              </div>
-
-            </div>
-
-          `;
-
-        }).join("");
-
-    }
-
-    message.textContent =
-      "✅ Statistics updated.";
-
-    message.className =
-      "message success";
-
-  }
-  catch(error){
-
-    console.error(
-      "Statistics error:",
-      error
-    );
-
-    message.textContent =
-      "❌ " + error.message;
-
-    message.className =
-      "message error";
-
-  }
-
-}
-
-/* =========================================================
-   HOME
+HOME
 ========================================================= */
 
 function goHome(){
-
-  window.location.href =
-    "home.html";
-
+window.location.href="home.html";
 }
 
 /* =========================================================
-   LOGOUT
+LOGOUT
 ========================================================= */
 
 async function logout(){
 
-  await supabaseClient
-    .auth
-    .signOut();
+await supabaseClient.auth.signOut();
 
-  window.location.href =
-    "login.html";
+window.location.href="login.html";
 
 }
 
 /* =========================================================
-   START
+START
 ========================================================= */
 
 (async function(){
 
-  const isAdmin =
-    await checkAdmin();
+const isAdmin=await checkAdmin();
 
-  if(!isAdmin){
+if(!isAdmin) return;
 
-    return;
+await loadProperties();
 
-  }
+const {data}=await supabaseClient
+.from("property_requests")
+.select("id,status");
 
-  await loadProperties();
+if(data){
 
-  const {
-    data
-  } =
-  await supabaseClient
-    .from("property_requests")
-    .select("id,status");
+const pending=data.filter(request=>
+String(request.status||"pending")
+.toLowerCase()==="pending"
+);
 
-  if(data){
+requestBadge.textContent=pending.length;
 
-    const pending =
-      data.filter(request => {
-
-        return String(
-          request.status ||
-          "pending"
-        )
-        .toLowerCase()
-        ===
-        "pending";
-
-      });
-
-    requestBadge.textContent =
-      pending.length;
-
-  }
+}
 
 })();
-
 </script>
 
 </body>
-
 </html>
 ```
