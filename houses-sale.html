@@ -214,6 +214,15 @@ header h1{
   text-align:center;
 }
 
+/* ================= FOOTER ================= */
+
+footer{
+  text-align:center;
+  padding:25px 15px;
+  color:#777;
+  font-size:14px;
+}
+
 /* ================= MOBILE ================= */
 
 @media(max-width:900px){
@@ -343,6 +352,17 @@ header h1{
 </div>
 
 
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <div id="designedBy">
+    Designed by Irene
+  </div>
+
+</footer>
+
+
 <script>
 
 /* =====================================================
@@ -359,6 +379,10 @@ const language =
 ===================================================== */
 
 const translations = {
+
+  /* ===================================================
+     KINYARWANDA
+  =================================================== */
 
   Kinyarwanda: {
 
@@ -393,10 +417,26 @@ const translations = {
       "Inzu Igurishwa",
 
     rwanda:
-      "Rwanda"
+      "Rwanda",
+
+    noPhoto:
+      "Nta Foto",
+
+    price:
+      "Igiciro",
+
+    location:
+      "Aho iherereye",
+
+    designedBy:
+      "Byakozwe na Irene"
 
   },
 
+
+  /* ===================================================
+     ENGLISH
+  =================================================== */
 
   English: {
 
@@ -425,16 +465,32 @@ const translations = {
       "There was a problem loading the houses.",
 
     view:
-      "View Detail",
+      "View Details",
 
     house:
       "House for Sale",
 
     rwanda:
-      "Rwanda"
+      "Rwanda",
+
+    noPhoto:
+      "No Photo",
+
+    price:
+      "Price",
+
+    location:
+      "Location",
+
+    designedBy:
+      "Designed by Irene"
 
   },
 
+
+  /* ===================================================
+     FRANÇAIS
+  =================================================== */
 
   Français: {
 
@@ -469,10 +525,26 @@ const translations = {
       "Maison à vendre",
 
     rwanda:
-      "Rwanda"
+      "Rwanda",
+
+    noPhoto:
+      "Aucune photo",
+
+    price:
+      "Prix",
+
+    location:
+      "Emplacement",
+
+    designedBy:
+      "Conçu par Irene"
 
   },
 
+
+  /* ===================================================
+     KISWAHILI
+  =================================================== */
 
   Kiswahili: {
 
@@ -507,10 +579,26 @@ const translations = {
       "Nyumba ya Kuuza",
 
     rwanda:
-      "Rwanda"
+      "Rwanda",
+
+    noPhoto:
+      "Hakuna Picha",
+
+    price:
+      "Bei",
+
+    location:
+      "Mahali",
+
+    designedBy:
+      "Imeundwa na Irene"
 
   },
 
+
+  /* ===================================================
+     CHINESE
+  =================================================== */
 
   "中文": {
 
@@ -545,12 +633,28 @@ const translations = {
       "出售房屋",
 
     rwanda:
-      "卢旺达"
+      "卢旺达",
+
+    noPhoto:
+      "暂无照片",
+
+    price:
+      "价格",
+
+    location:
+      "位置",
+
+    designedBy:
+      "由 Irene 设计"
 
   }
 
 };
 
+
+/* =====================================================
+   CURRENT LANGUAGE
+===================================================== */
 
 const t =
   translations[language] ||
@@ -558,38 +662,71 @@ const t =
 
 
 /* =====================================================
-   APPLY LANGUAGE
+   HTML LANGUAGE
 ===================================================== */
 
 document.documentElement.lang =
+
   language === "中文"
     ? "zh"
+
     : language === "Français"
       ? "fr"
+
       : language === "Kiswahili"
         ? "sw"
+
         : language === "Kinyarwanda"
           ? "rw"
+
           : "en";
 
 
-document.getElementById("headerTitle").textContent =
+/* =====================================================
+   APPLY LANGUAGE
+===================================================== */
+
+document.getElementById(
+  "headerTitle"
+).textContent =
   t.header;
 
-document.getElementById("backButton").textContent =
+
+document.getElementById(
+  "backButton"
+).textContent =
   t.back;
 
-document.getElementById("pageTitle").textContent =
+
+document.getElementById(
+  "pageTitle"
+).textContent =
   t.title;
 
-document.getElementById("pageDescription").textContent =
+
+document.getElementById(
+  "pageDescription"
+).textContent =
   t.description;
 
-document.getElementById("adLabel").textContent =
+
+document.getElementById(
+  "adLabel"
+).textContent =
   t.advertisement;
 
-document.getElementById("loadingMessage").textContent =
+
+document.getElementById(
+  "loadingMessage"
+).textContent =
   t.loading;
+
+
+document.getElementById(
+  "designedBy"
+).textContent =
+  t.designedBy;
+
 
 document.title =
   t.title.replace("🏠 ","") +
@@ -600,28 +737,13 @@ document.title =
    SUPABASE
 ===================================================== */
 
-/*
-   SUPABASE PROJECT URL
-*/
-
 const SUPABASE_URL =
   "https://hsmnybmcddtsyooltozw.supabase.co";
 
 
-/*
-   SUPABASE PUBLISHABLE API KEY
-
-   Iyi ni yo watanze:
-   sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u
-*/
-
 const SUPABASE_KEY =
   "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
 
-
-/*
-   CREATE SUPABASE CLIENT
-*/
 
 const supabaseClient =
   window.supabase.createClient(
@@ -635,7 +757,9 @@ const supabaseClient =
 ===================================================== */
 
 const propertiesElement =
-  document.getElementById("properties");
+  document.getElementById(
+    "properties"
+  );
 
 
 /* =====================================================
@@ -646,15 +770,31 @@ function escapeHtml(value){
 
   return String(value ?? "")
 
-    .replace(/&/g,"&amp;")
+    .replace(
+      /&/g,
+      "&amp;"
+    )
 
-    .replace(/</g,"&lt;")
+    .replace(
+      /</g,
+      "&lt;"
+    )
 
-    .replace(/>/g,"&gt;")
+    .replace(
+      />/g,
+      "&gt;"
+    )
 
-    .replace(/"/g,"&quot;")
+    .replace(
+      /"/g,
+      "&quot;"
+    )
 
-    .replace(/'/g,"&#039;");
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
 }
 
 
@@ -665,17 +805,17 @@ function escapeHtml(value){
 function getPropertyImage(property){
 
   let image =
-    property.main_photo || "";
+    property.main_photo ||
+    "";
 
 
-  /*
-     If main_photo is empty,
-     use first other photo.
-  */
+  /* MAIN PHOTO EMPTY */
 
   if(
     !image &&
-    Array.isArray(property.other_photos) &&
+    Array.isArray(
+      property.other_photos
+    ) &&
     property.other_photos.length > 0
   ){
 
@@ -685,30 +825,35 @@ function getPropertyImage(property){
   }
 
 
-  /*
-     If other_photos comes as JSON text.
-  */
+  /* OTHER PHOTOS JSON */
 
   if(
     !image &&
-    typeof property.other_photos === "string"
+    typeof property.other_photos ===
+    "string"
   ){
 
     try{
 
       const parsed =
-        JSON.parse(property.other_photos);
+        JSON.parse(
+          property.other_photos
+        );
+
 
       if(
         Array.isArray(parsed) &&
         parsed.length > 0
       ){
 
-        image = parsed[0];
+        image =
+          parsed[0];
 
       }
 
-    }catch(error){
+    }
+
+    catch(error){
 
       console.log(
         "Photo parsing error:",
@@ -720,20 +865,21 @@ function getPropertyImage(property){
   }
 
 
-  /*
-     Placeholder
-  */
+  /* PLACEHOLDER */
 
   if(!image){
 
     image =
       "https://via.placeholder.com/800x500?text=" +
-      encodeURIComponent(t.house);
+      encodeURIComponent(
+        t.noPhoto
+      );
 
   }
 
 
   return image;
+
 }
 
 
@@ -746,15 +892,23 @@ function getLocation(property){
   const parts = [
 
     property.country,
+
     property.province,
+
     property.district,
+
     property.sector
 
   ].filter(
+
     value =>
+
       value !== null &&
+
       value !== undefined &&
+
       String(value).trim() !== ""
+
   );
 
 
@@ -766,6 +920,44 @@ function getLocation(property){
 
 
   return t.rwanda;
+
+}
+
+
+/* =====================================================
+   FORMAT PRICE
+===================================================== */
+
+function formatPrice(price){
+
+  if(
+    price === null ||
+    price === undefined ||
+    price === ""
+  ){
+
+    return "0";
+
+  }
+
+
+  const number =
+    Number(price);
+
+
+  if(
+    Number.isNaN(number)
+  ){
+
+    return "0";
+
+  }
+
+
+  return number.toLocaleString(
+    "en-US"
+  );
+
 }
 
 
@@ -779,7 +971,9 @@ async function loadSaleProperties(){
 
     <div class="empty loading">
 
-      ${escapeHtml(t.loading)}
+      ${escapeHtml(
+        t.loading
+      )}
 
     </div>
 
@@ -791,31 +985,37 @@ async function loadSaleProperties(){
     const {
       data,
       error
-    } = await supabaseClient
+    } =
 
-      .from("property_posts")
+      await supabaseClient
 
-      .select("*")
+        .from(
+          "property_posts"
+        )
 
-      .eq(
-        "property_type",
-        "sale"
-      )
+        .select("*")
 
-      .eq(
-        "status",
-        "published"
-      )
+        .eq(
+          "property_type",
+          "sale"
+        )
 
-      .order(
-        "created_at",
-        {
-          ascending:false
-        }
-      );
+        .eq(
+          "status",
+          "published"
+        )
+
+        .order(
+          "created_at",
+          {
+            ascending:false
+          }
+        );
 
 
-    /* ================= ERROR ================= */
+    /* =================================================
+       ERROR
+    ================================================= */
 
     if(error){
 
@@ -832,7 +1032,6 @@ async function loadSaleProperties(){
           ❌<br><br>
 
           ${escapeHtml(
-            error.message ||
             t.error
           )}
 
@@ -840,12 +1039,15 @@ async function loadSaleProperties(){
 
       `;
 
+
       return;
 
     }
 
 
-    /* ================= EMPTY ================= */
+    /* =================================================
+       EMPTY
+    ================================================= */
 
     if(
       !data ||
@@ -866,150 +1068,170 @@ async function loadSaleProperties(){
 
       `;
 
+
       return;
 
     }
 
 
-    /* ================= CLEAR ================= */
+    /* =================================================
+       CLEAR
+    ================================================= */
 
-    propertiesElement.innerHTML = "";
-
-
-    /* ================= CREATE CARDS ================= */
-
-    data.forEach(property => {
-
-      const card =
-        document.createElement("div");
-
-      card.className =
-        "property";
+    propertiesElement.innerHTML =
+      "";
 
 
-      /* IMAGE */
+    /* =================================================
+       CREATE PROPERTY CARDS
+    ================================================= */
 
-      const image =
-        getPropertyImage(property);
+    data.forEach(
+      property => {
 
-
-      /* TITLE */
-
-      const propertyTitle =
-        property.title ||
-        t.house;
-
-
-      /* PRICE */
-
-      let formattedPrice =
-        "0";
+        const card =
+          document.createElement(
+            "div"
+          );
 
 
-      if(
-        property.price !== null &&
-        property.price !== undefined &&
-        property.price !== ""
-      ){
-
-        const number =
-          Number(property.price);
-
-        if(!Number.isNaN(number)){
-
-          formattedPrice =
-            number.toLocaleString("en-US");
-
-        }
-
-      }
+        card.className =
+          "property";
 
 
-      /* LOCATION */
+        /* ================= IMAGE ================= */
 
-      const location =
-        getLocation(property);
-
-
-      /* DETAIL URL */
-
-      const detailUrl =
-        "house-sale-detail.html?id=" +
-        encodeURIComponent(property.id);
+        const image =
+          getPropertyImage(
+            property
+          );
 
 
-      /* CARD */
+        /* ================= TITLE ================= */
 
-      card.innerHTML = `
-
-        <img
-
-          src="${escapeHtml(image)}"
-
-          alt="${escapeHtml(propertyTitle)}"
-
-          loading="lazy"
-
-          onerror="
-            this.onerror=null;
-            this.src='https://via.placeholder.com/800x500?text=No+Photo';
-          "
-
-        >
+        const propertyTitle =
+          property.title ||
+          t.house;
 
 
-        <div class="property-body">
+        /* ================= PRICE ================= */
+
+        const formattedPrice =
+          formatPrice(
+            property.price
+          );
 
 
-          <div class="property-title">
+        /* ================= LOCATION ================= */
 
-            ${escapeHtml(propertyTitle)}
-
-          </div>
-
-
-          <div class="price">
-
-            ${escapeHtml(formattedPrice)}
-
-            RWF
-
-          </div>
+        const location =
+          getLocation(
+            property
+          );
 
 
-          <div class="location">
+        /* ================= DETAIL URL ================= */
 
-            📍
+        const detailUrl =
+          "house-sale-detail.html?id=" +
+          encodeURIComponent(
+            property.id
+          );
 
-            ${escapeHtml(location)}
 
-          </div>
+        /* ================= CARD ================= */
 
+        card.innerHTML = `
 
-          <a
+          <img
 
-            class="details"
+            src="${escapeHtml(
+              image
+            )}"
 
-            href="${escapeHtml(detailUrl)}"
+            alt="${escapeHtml(
+              propertyTitle
+            )}"
+
+            loading="lazy"
+
+            onerror="
+              this.onerror=null;
+              this.src='https://via.placeholder.com/800x500?text=${encodeURIComponent(
+                t.noPhoto
+              )}';
+            "
 
           >
 
-            ${escapeHtml(t.view)}
 
-          </a>
-
-
-        </div>
-
-      `;
+          <div class="property-body">
 
 
-      propertiesElement.appendChild(card);
+            <div class="property-title">
 
-    });
+              ${escapeHtml(
+                propertyTitle
+              )}
+
+            </div>
 
 
-  }catch(error){
+            <div class="price">
+
+              ${escapeHtml(
+                formattedPrice
+              )}
+
+              RWF
+
+            </div>
+
+
+            <div class="location">
+
+              📍
+
+              ${escapeHtml(
+                location
+              )}
+
+            </div>
+
+
+            <a
+
+              class="details"
+
+              href="${escapeHtml(
+                detailUrl
+              )}"
+
+            >
+
+              ${escapeHtml(
+                t.view
+              )}
+
+            </a>
+
+
+          </div>
+
+        `;
+
+
+        propertiesElement.appendChild(
+          card
+        );
+
+      }
+    );
+
+
+  }
+
+  catch(error){
 
     console.error(
       "Unexpected error:",
@@ -1025,12 +1247,6 @@ async function loadSaleProperties(){
 
         ${escapeHtml(
           t.error
-        )}
-
-        <br><br>
-
-        ${escapeHtml(
-          error.message || ""
         )}
 
       </div>
@@ -1065,7 +1281,9 @@ window.addEventListener(
         []
       ).push({});
 
-    }catch(error){
+    }
+
+    catch(error){
 
       console.log(
         "AdSense error:",
@@ -1081,4 +1299,5 @@ window.addEventListener(
 
 
 </body>
+
 </html>
