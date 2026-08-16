@@ -747,7 +747,133 @@ window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY
 );
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
+
+/* =====================================================
+   VISITOR TRACKING
+===================================================== */
+
+async function trackPageView(){
+
+  try{
+
+    let visitorId =
+      localStorage.getItem("rpv_visitor_id");
+
+    if(!visitorId){
+
+      visitorId =
+        crypto.randomUUID();
+
+      localStorage.setItem(
+        "rpv_visitor_id",
+        visitorId
+      );
+
+    }
+
+
+    let sessionId =
+      sessionStorage.getItem("rpv_session_id");
+
+    if(!sessionId){
+
+      sessionId =
+        crypto.randomUUID();
+
+      sessionStorage.setItem(
+        "rpv_session_id",
+        sessionId
+      );
+
+    }
+
+
+    const {
+      error
+    } = await supabaseClient
+
+      .from("page_views")
+
+      .insert({
+
+        page:
+          document.title || location.pathname,
+
+        path:
+          location.pathname,
+
+        visitor_id:
+          visitorId,
+
+        session_id:
+          sessionId,
+
+        referrer:
+          document.referrer || null,
+
+        user_agent:
+          navigator.userAgent,
+
+        device_type:
+          getDeviceType(),
+
+        country:
+          null,
+
+        city:
+          null
+
+      });
+
+
+    if(error){
+
+      console.error(
+        "Visitor tracking error:",
+        error
+      );
+
+    }
+
+  }
+  catch(error){
+
+    console.error(
+      "Tracking failed:",
+      error
+    );
+
+  }
+
+}
+
+
+function getDeviceType(){
+
+  if(window.innerWidth <= 600){
+
+    return "mobile";
+
+  }
+
+  if(window.innerWidth <= 1024){
+
+    return "tablet";
+
+  }
+
+  return "desktop";
+
+}
+
+
+trackPageView();
 
 /* =====================================================
    VARIABLES
