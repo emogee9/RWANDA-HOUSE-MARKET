@@ -1500,6 +1500,122 @@ const supabaseClient =
 
 
 /* =========================================================
+   WEBSITE ANALYTICS
+   HOME PAGE VIEW TRACKING
+========================================================= */
+
+function getVisitorId(){
+
+  let visitorId =
+    localStorage.getItem(
+      "rpv_visitor_id"
+    );
+
+
+  if(!visitorId){
+
+    visitorId =
+      "visitor-" +
+      Date.now() +
+      "-" +
+      Math.random()
+        .toString(36)
+        .substring(2,12);
+
+
+    localStorage.setItem(
+      "rpv_visitor_id",
+      visitorId
+    );
+
+  }
+
+
+  return visitorId;
+
+}
+
+
+/* =========================================================
+   TRACK HOME PAGE VIEW
+========================================================= */
+
+async function trackPageView(){
+
+  try{
+
+    const visitorId =
+      getVisitorId();
+
+
+    const pageName =
+      "home";
+
+
+    const pagePath =
+      window.location.pathname ||
+      "/home.html";
+
+
+    const referrer =
+      document.referrer || null;
+
+
+    const language =
+      localStorage.getItem(
+        "selectedLanguage"
+      ) || "English";
+
+
+    const { error } =
+      await supabaseClient
+        .from("page_views")
+        .insert({
+
+          page_name:
+            pageName,
+
+          page_path:
+            pagePath,
+
+          visitor_id:
+            visitorId,
+
+          referrer:
+            referrer,
+
+          language:
+            language,
+
+          user_agent:
+            navigator.userAgent
+
+        });
+
+
+    if(error){
+
+      console.error(
+        "Analytics error:",
+        error
+      );
+
+    }
+
+  }
+  catch(error){
+
+    console.error(
+      "Analytics tracking failed:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
    ELEMENTS
 ========================================================= */
 
@@ -2638,6 +2754,13 @@ applyLanguage(
 
 
 loadHomeProperties();
+
+
+/* =========================================================
+   START ANALYTICS
+========================================================= */
+
+trackPageView();
 
 
 </script>
