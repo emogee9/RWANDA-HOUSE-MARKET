@@ -5,12 +5,18 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
 <title>Houses for Sale - Rwanda Property Visata</title>
 
-<link rel="icon" type="image/png" href="logo.png">
-
+<link
+  rel="icon"
+  type="image/png"
+  href="logo.png"
+>
 
 <!-- ================= GOOGLE ADSENSE ================= -->
 
@@ -19,7 +25,6 @@
   src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7520250190173475"
   crossorigin="anonymous">
 </script>
-
 
 <!-- ================= SUPABASE ================= -->
 
@@ -38,7 +43,6 @@ body{
   background:#f5f5f5;
   color:#222;
 }
-
 
 /* ================= HEADER ================= */
 
@@ -68,8 +72,8 @@ header h1{
 
 .back:hover{
   background:#fff8d6;
+  transform:translateY(-1px);
 }
-
 
 /* ================= CONTAINER ================= */
 
@@ -78,7 +82,6 @@ header h1{
   margin:auto;
   padding:30px 20px 60px;
 }
-
 
 /* ================= PAGE TITLE ================= */
 
@@ -101,7 +104,6 @@ header h1{
   line-height:1.6;
 }
 
-
 /* ================= ADSENSE ================= */
 
 .ad-container{
@@ -120,7 +122,6 @@ header h1{
   color:#777;
   margin-bottom:8px;
 }
-
 
 /* ================= PROPERTIES ================= */
 
@@ -148,6 +149,7 @@ header h1{
   height:220px;
   object-fit:cover;
   display:block;
+  background:#eee;
 }
 
 .property-body{
@@ -183,14 +185,14 @@ header h1{
   padding:12px;
   border-radius:8px;
   font-weight:bold;
+  transition:.2s;
 }
 
 .details:hover{
   background:#d4a900;
 }
 
-
-/* ================= EMPTY / ERROR ================= */
+/* ================= STATUS ================= */
 
 .empty{
   background:white;
@@ -208,6 +210,9 @@ header h1{
   color:#a00000;
 }
 
+.loading{
+  text-align:center;
+}
 
 /* ================= MOBILE ================= */
 
@@ -270,7 +275,8 @@ header h1{
   <a
     href="home.html"
     class="back"
-    id="backButton">
+    id="backButton"
+  >
     ← Back to Home
   </a>
 
@@ -280,54 +286,59 @@ header h1{
 <div class="container">
 
 
-<!-- ================= PAGE TITLE ================= -->
+  <!-- ================= PAGE TITLE ================= -->
 
-<div class="page-title">
+  <div class="page-title">
 
-  <h2 id="pageTitle">
-    🏠 Houses for Sale
-  </h2>
+    <h2 id="pageTitle">
+      🏠 Houses for Sale
+    </h2>
 
-  <p id="pageDescription">
-    Find houses available for sale in Rwanda.
-  </p>
+    <p id="pageDescription">
+      Find houses available for sale in Rwanda.
+    </p>
 
-</div>
-
-
-<!-- ================= ADSENSE ================= -->
-
-<div class="ad-container">
-
-  <div class="ad-label" id="adLabel">
-    Advertisement
   </div>
 
-  <ins
-    class="adsbygoogle"
-    style="display:block"
-    data-ad-client="ca-pub-7520250190173475"
-    data-ad-slot="7793944660"
-    data-ad-format="auto"
-    data-full-width-responsive="true">
-  </ins>
 
-</div>
+  <!-- ================= ADSENSE ================= -->
+
+  <div class="ad-container">
+
+    <div
+      class="ad-label"
+      id="adLabel"
+    >
+      Advertisement
+    </div>
+
+    <ins
+      class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-7520250190173475"
+      data-ad-slot="7793944660"
+      data-ad-format="auto"
+      data-full-width-responsive="true">
+    </ins>
+
+  </div>
 
 
-<!-- ================= PROPERTIES ================= -->
-
-<div
-  id="properties"
-  class="properties">
+  <!-- ================= PROPERTIES ================= -->
 
   <div
-    class="empty"
-    id="loadingMessage">
-    Loading houses...
-  </div>
+    id="properties"
+    class="properties"
+  >
 
-</div>
+    <div
+      class="empty loading"
+      id="loadingMessage"
+    >
+      Loading houses...
+    </div>
+
+  </div>
 
 </div>
 
@@ -344,164 +355,199 @@ const language =
 
 
 /* =====================================================
-   TRANSLATIONS
+   TRANSLATIONS - 5 LANGUAGES
 ===================================================== */
 
 const translations = {
 
-Kinyarwanda: {
+  Kinyarwanda: {
 
-  header:"🏡 RWANDA PROPERTY VISATA",
+    header:
+      "🏡 RWANDA PROPERTY VISATA",
 
-  back:"← Subira kuri Home",
+    back:
+      "← Subira kuri Home",
 
-  title:"🏠 Amazu Agurishwa",
+    title:
+      "🏠 Amazu Agurishwa",
 
-  description:"Shakisha amazu ari kugurishwa mu Rwanda.",
+    description:
+      "Shakisha amazu ari kugurishwa mu Rwanda.",
 
-  advertisement:"Kwamamaza",
+    advertisement:
+      "Kwamamaza",
 
-  loading:"Tegereza, amazu arimo kuboneka...",
+    loading:
+      "Tegereza, amazu arimo kuboneka...",
 
-  noProperties:"Nta nzu zigurishwa ziraboneka.",
+    noProperties:
+      "Nta nzu zigurishwa ziraboneka.",
 
-  error:"Habaye ikibazo mu kubona amazu.",
+    error:
+      "Habaye ikibazo mu kubona amazu.",
 
-  view:"Reba Ibisobanuro",
+    view:
+      "Reba Ibisobanuro",
 
-  house:"Inzu Igurishwa",
+    house:
+      "Inzu Igurishwa",
 
-  rwanda:"Rwanda",
+    rwanda:
+      "Rwanda"
 
-  location:"Aho iherereye",
+  },
 
-  currency:"RWF"
 
-},
+  English: {
 
+    header:
+      "🏡 RWANDA PROPERTY VISATA",
 
-English: {
+    back:
+      "← Back to Home",
 
-  header:"🏡 RWANDA PROPERTY VISATA",
+    title:
+      "🏠 Houses for Sale",
 
-  back:"← Back to Home",
+    description:
+      "Find houses available for sale in Rwanda.",
 
-  title:"🏠 Houses for Sale",
+    advertisement:
+      "Advertisement",
 
-  description:"Find houses available for sale in Rwanda.",
+    loading:
+      "Loading houses...",
 
-  advertisement:"Advertisement",
+    noProperties:
+      "No houses for sale available yet.",
 
-  loading:"Loading houses...",
+    error:
+      "There was a problem loading the houses.",
 
-  noProperties:"No houses for sale available yet.",
+    view:
+      "View Detail",
 
-  error:"There was a problem loading the houses.",
+    house:
+      "House for Sale",
 
-  view:"View Detail",
+    rwanda:
+      "Rwanda"
 
-  house:"House for Sale",
+  },
 
-  rwanda:"Rwanda",
 
-  location:"Location",
+  Français: {
 
-  currency:"RWF"
+    header:
+      "🏡 RWANDA PROPERTY VISATA",
 
-},
+    back:
+      "← Retour à l'accueil",
 
+    title:
+      "🏠 Maisons à vendre",
 
-Français: {
+    description:
+      "Trouvez des maisons disponibles à la vente au Rwanda.",
 
-  header:"🏡 RWANDA PROPERTY VISATA",
+    advertisement:
+      "Publicité",
 
-  back:"← Retour à l'accueil",
+    loading:
+      "Chargement des maisons...",
 
-  title:"🏠 Maisons à vendre",
+    noProperties:
+      "Aucune maison à vendre n'est disponible pour le moment.",
 
-  description:"Trouvez des maisons disponibles à la vente au Rwanda.",
+    error:
+      "Un problème est survenu lors du chargement des maisons.",
 
-  advertisement:"Publicité",
+    view:
+      "Voir les détails",
 
-  loading:"Chargement des maisons...",
+    house:
+      "Maison à vendre",
 
-  noProperties:"Aucune maison à vendre n'est disponible pour le moment.",
+    rwanda:
+      "Rwanda"
 
-  error:"Un problème est survenu lors du chargement des maisons.",
+  },
 
-  view:"Voir les détails",
 
-  house:"Maison à vendre",
+  Kiswahili: {
 
-  rwanda:"Rwanda",
+    header:
+      "🏡 RWANDA PROPERTY VISATA",
 
-  location:"Emplacement",
+    back:
+      "← Rudi Mwanzo",
 
-  currency:"RWF"
+    title:
+      "🏠 Nyumba za Kuuza",
 
-},
+    description:
+      "Pata nyumba zinazopatikana kwa ajili ya kuuza nchini Rwanda.",
 
+    advertisement:
+      "Tangazo",
 
-Kiswahili: {
+    loading:
+      "Inapakia nyumba...",
 
-  header:"🏡 RWANDA PROPERTY VISATA",
+    noProperties:
+      "Hakuna nyumba za kuuza zinazopatikana kwa sasa.",
 
-  back:"← Rudi Mwanzo",
+    error:
+      "Kuna tatizo wakati wa kupakia nyumba.",
 
-  title:"🏠 Nyumba za Kuuza",
+    view:
+      "Angalia Maelezo",
 
-  description:"Pata nyumba zinazopatikana kwa ajili ya kuuza nchini Rwanda.",
+    house:
+      "Nyumba ya Kuuza",
 
-  advertisement:"Tangazo",
+    rwanda:
+      "Rwanda"
 
-  loading:"Inapakia nyumba...",
+  },
 
-  noProperties:"Hakuna nyumba za kuuza zinazopatikana kwa sasa.",
 
-  error:"Kuna tatizo wakati wa kupakia nyumba.",
+  "中文": {
 
-  view:"Angalia Maelezo",
+    header:
+      "🏡 RWANDA PROPERTY VISATA",
 
-  house:"Nyumba ya Kuuza",
+    back:
+      "← 返回首页",
 
-  rwanda:"Rwanda",
+    title:
+      "🏠 出售房屋",
 
-  location:"Mahali",
+    description:
+      "寻找卢旺达境内可出售的房屋。",
 
-  currency:"RWF"
+    advertisement:
+      "广告",
 
-},
+    loading:
+      "正在加载房屋...",
 
+    noProperties:
+      "目前没有可出售的房屋。",
 
-"中文": {
+    error:
+      "加载房屋时出现问题。",
 
-  header:"🏡 RWANDA PROPERTY VISATA",
+    view:
+      "查看详情",
 
-  back:"← 返回首页",
+    house:
+      "出售房屋",
 
-  title:"🏠 出售房屋",
+    rwanda:
+      "卢旺达"
 
-  description:"寻找卢旺达境内可出售的房屋。",
-
-  advertisement:"广告",
-
-  loading:"正在加载房屋...",
-
-  noProperties:"目前没有可出售的房屋。",
-
-  error:"加载房屋时出现问题。",
-
-  view:"查看详情",
-
-  house:"出售房屋",
-
-  rwanda:"卢旺达",
-
-  location:"位置",
-
-  currency:"RWF"
-
-}
+  }
 
 };
 
@@ -555,12 +601,7 @@ document.title =
 ===================================================== */
 
 /*
-  IMPORTANT:
-
-  SUPABASE_URL ntabwo ari /rest/v1/
-
-  URL nyayo ni:
-  https://hsmnybmcddtsyooltozw.supabase.co
+   SUPABASE PROJECT URL
 */
 
 const SUPABASE_URL =
@@ -568,19 +609,19 @@ const SUPABASE_URL =
 
 
 /*
-  Iyi ni Publishable Key.
+   SUPABASE PUBLISHABLE API KEY
 
-  Niba iyi key yawe itagikora,
-  uyisimbuze na Publishable key iri muri:
-
-  Supabase
-  → Project Settings
-  → API
+   Iyi ni yo watanze:
+   sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u
 */
 
 const SUPABASE_KEY =
-  "sb_publishable_oHhsRZQcMwIcRe48WE9mw_FdzMO29";
+  "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
 
+
+/*
+   CREATE SUPABASE CLIENT
+*/
 
 const supabaseClient =
   window.supabase.createClient(
@@ -604,12 +645,16 @@ const propertiesElement =
 function escapeHtml(value){
 
   return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
 
+    .replace(/&/g,"&amp;")
+
+    .replace(/</g,"&lt;")
+
+    .replace(/>/g,"&gt;")
+
+    .replace(/"/g,"&quot;")
+
+    .replace(/'/g,"&#039;");
 }
 
 
@@ -624,8 +669,8 @@ function getPropertyImage(property){
 
 
   /*
-    Handle other_photos if it is
-    already an array.
+     If main_photo is empty,
+     use first other photo.
   */
 
   if(
@@ -641,8 +686,7 @@ function getPropertyImage(property){
 
 
   /*
-    Handle other_photos if Supabase
-    returns it as JSON string.
+     If other_photos comes as JSON text.
   */
 
   if(
@@ -660,22 +704,25 @@ function getPropertyImage(property){
         parsed.length > 0
       ){
 
-        image =
-          parsed[0];
+        image = parsed[0];
 
       }
 
-    }
-    catch(error){
+    }catch(error){
 
       console.log(
-        "Could not parse other_photos."
+        "Photo parsing error:",
+        error
       );
 
     }
 
   }
 
+
+  /*
+     Placeholder
+  */
 
   if(!image){
 
@@ -687,7 +734,6 @@ function getPropertyImage(property){
 
 
   return image;
-
 }
 
 
@@ -700,11 +746,8 @@ function getLocation(property){
   const parts = [
 
     property.country,
-
     property.province,
-
     property.district,
-
     property.sector
 
   ].filter(
@@ -715,22 +758,26 @@ function getLocation(property){
   );
 
 
-  return parts.length > 0
-    ? parts.join(", ")
-    : t.rwanda;
+  if(parts.length > 0){
 
+    return parts.join(", ");
+
+  }
+
+
+  return t.rwanda;
 }
 
 
 /* =====================================================
-   LOAD HOUSES
+   LOAD SALE PROPERTIES
 ===================================================== */
 
 async function loadSaleProperties(){
 
   propertiesElement.innerHTML = `
 
-    <div class="empty">
+    <div class="empty loading">
 
       ${escapeHtml(t.loading)}
 
@@ -740,14 +787,6 @@ async function loadSaleProperties(){
 
 
   try{
-
-    /*
-      IMPORTANT:
-
-      Ntabwo dushyizemo .eq("status","published")
-      kuko bishobora gutuma houses zitagaragara
-      niba table yawe idakoresha iyo column/value.
-    */
 
     const {
       data,
@@ -763,6 +802,11 @@ async function loadSaleProperties(){
         "sale"
       )
 
+      .eq(
+        "status",
+        "published"
+      )
+
       .order(
         "created_at",
         {
@@ -776,15 +820,18 @@ async function loadSaleProperties(){
     if(error){
 
       console.error(
-        "Supabase error:",
+        "SUPABASE ERROR:",
         error
       );
+
 
       propertiesElement.innerHTML = `
 
         <div class="empty error">
 
-          ❌ ${escapeHtml(
+          ❌<br><br>
+
+          ${escapeHtml(
             error.message ||
             t.error
           )}
@@ -809,9 +856,7 @@ async function loadSaleProperties(){
 
         <div class="empty">
 
-          🏠
-
-          <br><br>
+          🏠<br><br>
 
           ${escapeHtml(
             t.noProperties
@@ -831,7 +876,7 @@ async function loadSaleProperties(){
     propertiesElement.innerHTML = "";
 
 
-    /* ================= CARDS ================= */
+    /* ================= CREATE CARDS ================= */
 
     data.forEach(property => {
 
@@ -842,41 +887,79 @@ async function loadSaleProperties(){
         "property";
 
 
+      /* IMAGE */
+
       const image =
         getPropertyImage(property);
 
+
+      /* TITLE */
 
       const propertyTitle =
         property.title ||
         t.house;
 
 
-      const price =
-        Number(
-          property.price || 0
-        ).toLocaleString("en-US");
+      /* PRICE */
 
+      let formattedPrice =
+        "0";
+
+
+      if(
+        property.price !== null &&
+        property.price !== undefined &&
+        property.price !== ""
+      ){
+
+        const number =
+          Number(property.price);
+
+        if(!Number.isNaN(number)){
+
+          formattedPrice =
+            number.toLocaleString("en-US");
+
+        }
+
+      }
+
+
+      /* LOCATION */
 
       const location =
         getLocation(property);
 
+
+      /* DETAIL URL */
 
       const detailUrl =
         "house-sale-detail.html?id=" +
         encodeURIComponent(property.id);
 
 
+      /* CARD */
+
       card.innerHTML = `
 
         <img
+
           src="${escapeHtml(image)}"
+
           alt="${escapeHtml(propertyTitle)}"
+
           loading="lazy"
-          onerror="this.src='https://via.placeholder.com/800x500?text=No+Photo'"
+
+          onerror="
+            this.onerror=null;
+            this.src='https://via.placeholder.com/800x500?text=No+Photo';
+          "
+
         >
 
 
         <div class="property-body">
+
 
           <div class="property-title">
 
@@ -887,25 +970,34 @@ async function loadSaleProperties(){
 
           <div class="price">
 
-            ${price} ${t.currency}
+            ${escapeHtml(formattedPrice)}
+
+            RWF
 
           </div>
 
 
           <div class="location">
 
-            📍 ${escapeHtml(location)}
+            📍
+
+            ${escapeHtml(location)}
 
           </div>
 
 
           <a
+
             class="details"
-            href="${escapeHtml(detailUrl)}">
+
+            href="${escapeHtml(detailUrl)}"
+
+          >
 
             ${escapeHtml(t.view)}
 
           </a>
+
 
         </div>
 
@@ -916,9 +1008,8 @@ async function loadSaleProperties(){
 
     });
 
-  }
 
-  catch(error){
+  }catch(error){
 
     console.error(
       "Unexpected error:",
@@ -930,9 +1021,16 @@ async function loadSaleProperties(){
 
       <div class="empty error">
 
-        ❌ ${escapeHtml(
-          error.message ||
+        ❌<br><br>
+
+        ${escapeHtml(
           t.error
+        )}
+
+        <br><br>
+
+        ${escapeHtml(
+          error.message || ""
         )}
 
       </div>
@@ -952,7 +1050,7 @@ loadSaleProperties();
 
 
 /* =====================================================
-   START ADSENSE
+   START GOOGLE ADSENSE
 ===================================================== */
 
 window.addEventListener(
@@ -967,11 +1065,10 @@ window.addEventListener(
         []
       ).push({});
 
-    }
-    catch(error){
+    }catch(error){
 
       console.log(
-        "AdSense:",
+        "AdSense error:",
         error
       );
 
@@ -981,6 +1078,7 @@ window.addEventListener(
 );
 
 </script>
+
 
 </body>
 </html>
