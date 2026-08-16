@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,6 +71,10 @@ body{
   cursor:pointer;
 }
 
+.nav-buttons button:hover{
+  background:#fff8df;
+}
+
 /* ================= CONTAINER ================= */
 
 .container{
@@ -115,7 +120,7 @@ h1,h2,h3{
 
   border:0;
 
-  padding:14px 12px;
+  padding:14px 10px;
 
   border-radius:8px;
 
@@ -123,7 +128,7 @@ h1,h2,h3{
 
   cursor:pointer;
 
-  font-size:15px;
+  font-size:14px;
 }
 
 .tab:hover{
@@ -236,6 +241,11 @@ textarea{
 .reject{
   background:#c62828;
   color:white;
+}
+
+.button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
 }
 
 /* ================= MESSAGE ================= */
@@ -420,6 +430,13 @@ textarea{
   color:#8b6800;
 }
 
+.status-approved{
+
+  background:#e5f7e5;
+
+  color:#267126;
+}
+
 .status-rejected{
 
   background:#ffe2e2;
@@ -517,9 +534,9 @@ textarea{
   margin-bottom:8px;
 }
 
-/* ================= ANALYTICS ================= */
+/* ================= STATISTICS ================= */
 
-.analytics-grid{
+.stats-grid{
 
   display:grid;
 
@@ -531,91 +548,150 @@ textarea{
   margin-bottom:20px;
 }
 
-.analytics-card{
+.stat-card{
 
   background:white;
 
-  padding:22px;
-
   border-radius:14px;
+
+  padding:20px;
 
   box-shadow:
     0 3px 12px rgba(0,0,0,.1);
 }
 
-.analytics-icon{
+.stat-icon{
 
   font-size:28px;
 
   margin-bottom:10px;
 }
 
-.analytics-number{
+.stat-label{
+
+  color:#777;
+
+  font-size:14px;
+
+  margin-bottom:8px;
+}
+
+.stat-number{
 
   font-size:30px;
 
   font-weight:bold;
 
   color:#a87800;
-
-  margin-bottom:5px;
 }
 
-.analytics-label{
+.stats-section-grid{
 
-  color:#666;
+  display:grid;
 
-  font-weight:bold;
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:20px;
 }
 
-.analytics-table{
+.stats-list{
 
-  width:100%;
+  margin:0;
 
-  border-collapse:collapse;
+  padding:0;
+
+  list-style:none;
 }
 
-.analytics-table th,
-.analytics-table td{
+.stats-list li{
 
-  padding:13px;
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  padding:12px 0;
 
   border-bottom:1px solid #eee;
-
-  text-align:left;
 }
 
-.analytics-table th{
-
-  background:#f8f5eb;
-
-  color:#6d5100;
+.stats-list li:last-child{
+  border-bottom:0;
 }
 
-.page-name{
+.stat-page-name{
 
   font-weight:bold;
+
+  word-break:break-word;
+}
+
+.stat-count{
+
+  background:#fff3c4;
+
+  color:#8b6800;
+
+  padding:4px 9px;
+
+  border-radius:20px;
+
+  font-weight:bold;
+
+  white-space:nowrap;
+}
+
+.recent-view{
+
+  padding:13px 0;
+
+  border-bottom:1px solid #eee;
+}
+
+.recent-view:last-child{
+  border-bottom:0;
+}
+
+.recent-page{
+
+  font-weight:bold;
+}
+
+.recent-info{
+
+  color:#777;
+
+  font-size:13px;
+
+  margin-top:5px;
+
+  line-height:1.5;
 }
 
 .refresh-button{
+
+  float:right;
+
+  margin-top:-5px;
+
+  border:0;
 
   background:#d4a017;
 
   color:white;
 
-  border:0;
+  padding:9px 13px;
 
-  padding:10px 15px;
-
-  border-radius:8px;
-
-  cursor:pointer;
+  border-radius:7px;
 
   font-weight:bold;
+
+  cursor:pointer;
 }
 
 .refresh-button:hover{
-
   background:#a87800;
 }
 
@@ -623,25 +699,19 @@ textarea{
 
 @media(max-width:1100px){
 
-  .analytics-grid{
-
-    grid-template-columns:
-      repeat(2,1fr);
-
-  }
-
   .properties{
-
     grid-template-columns:
       repeat(2,1fr);
-
   }
 
   .tabs{
-
     grid-template-columns:
       repeat(3,1fr);
+  }
 
+  .stats-grid{
+    grid-template-columns:
+      repeat(2,1fr);
   }
 
 }
@@ -649,30 +719,24 @@ textarea{
 @media(max-width:650px){
 
   .navbar{
-
     flex-direction:column;
-
   }
 
   .grid,
   .properties,
   .tabs,
-  .analytics-grid{
-
+  .stats-grid,
+  .stats-section-grid{
     grid-template-columns:1fr;
-
   }
 
   .property-actions{
-
     flex-direction:column;
-
   }
 
-  .analytics-table{
-
-    font-size:13px;
-
+  .refresh-button{
+    float:none;
+    margin:10px 0 0;
   }
 
 }
@@ -682,7 +746,6 @@ textarea{
 </head>
 
 <body>
-
 
 <!-- =====================================================
      NAVBAR
@@ -708,9 +771,7 @@ textarea{
 
 </nav>
 
-
 <div class="container">
-
 
 <!-- =====================================================
      PAGE TITLE
@@ -723,18 +784,16 @@ textarea{
   </h1>
 
   <p>
-    Manage houses, cars, requests, approvals and website visitors.
+    Manage houses, cars, requests, approvals and website statistics.
   </p>
 
 </div>
-
 
 <!-- =====================================================
      TABS
 ===================================================== -->
 
 <div class="tabs">
-
 
   <button
     class="tab active"
@@ -743,14 +802,12 @@ textarea{
     📋 Posts
   </button>
 
-
   <button
     class="tab"
     onclick="showSection('addPostSection',this)"
   >
     ➕ Add House
   </button>
-
 
   <button
     class="tab"
@@ -759,12 +816,10 @@ textarea{
     🚗 Cars
   </button>
 
-
   <button
     class="tab"
     onclick="showSection('requestedSection',this)"
   >
-
     💬 Requested
 
     <span
@@ -776,7 +831,6 @@ textarea{
 
   </button>
 
-
   <button
     class="tab"
     onclick="showSection('approvalSection',this)"
@@ -784,17 +838,14 @@ textarea{
     ✅ Approvals
   </button>
 
-
   <button
     class="tab"
-    onclick="showSection('analyticsSection',this)"
+    onclick="showSection('statisticsSection',this)"
   >
-    📊 Analytics
+    📊 Statistics
   </button>
 
-
 </div>
-
 
 <!-- =====================================================
      HOUSE POSTS
@@ -818,7 +869,6 @@ textarea{
 
   </div>
 
-
   <div
     id="properties"
     class="properties"
@@ -831,7 +881,6 @@ textarea{
   </div>
 
 </section>
-
 
 <!-- =====================================================
      ADD HOUSE
@@ -848,9 +897,7 @@ textarea{
       ➕ Add House
     </h2>
 
-
     <form id="propertyForm">
-
 
       <label>
         Property Title
@@ -862,7 +909,6 @@ textarea{
         placeholder="Beautiful House in Kigali"
         required
       >
-
 
       <label>
         Property Type
@@ -891,7 +937,6 @@ textarea{
 
       </select>
 
-
       <label>
         Price
       </label>
@@ -904,9 +949,7 @@ textarea{
         required
       >
 
-
       <div class="grid">
-
 
         <div>
 
@@ -923,7 +966,6 @@ textarea{
 
         </div>
 
-
         <div>
 
           <label>
@@ -938,7 +980,6 @@ textarea{
           >
 
         </div>
-
 
         <div>
 
@@ -955,7 +996,6 @@ textarea{
 
         </div>
 
-
         <div>
 
           <label>
@@ -971,12 +1011,9 @@ textarea{
 
         </div>
 
-
       </div>
 
-
       <div class="grid">
-
 
         <div>
 
@@ -993,7 +1030,6 @@ textarea{
 
         </div>
 
-
         <div>
 
           <label>
@@ -1008,7 +1044,6 @@ textarea{
           >
 
         </div>
-
 
         <div>
 
@@ -1025,9 +1060,7 @@ textarea{
 
         </div>
 
-
       </div>
-
 
       <label>
         Seller Name
@@ -1039,7 +1072,6 @@ textarea{
         placeholder="Seller name"
       >
 
-
       <label>
         Phone
       </label>
@@ -1049,7 +1081,6 @@ textarea{
         id="phone"
         placeholder="078..."
       >
-
 
       <label>
         Main Photo
@@ -1062,7 +1093,6 @@ textarea{
         required
       >
 
-
       <label>
         Other Photos
       </label>
@@ -1074,7 +1104,6 @@ textarea{
         multiple
       >
 
-
       <label>
         Description
       </label>
@@ -1084,12 +1113,10 @@ textarea{
         placeholder="Write property description..."
       ></textarea>
 
-
       <div
         id="photoPreview"
         class="photos-preview"
       ></div>
-
 
       <button
         type="submit"
@@ -1099,19 +1126,16 @@ textarea{
         Post House
       </button>
 
-
       <div
         id="postMessage"
         class="message"
       ></div>
-
 
     </form>
 
   </div>
 
 </section>
-
 
 <!-- =====================================================
      CARS
@@ -1121,7 +1145,6 @@ textarea{
   id="carsSection"
   class="section"
 >
-
 
   <div class="card">
 
@@ -1134,9 +1157,7 @@ textarea{
       <strong>cars_posts</strong>.
     </p>
 
-
     <form id="carForm">
-
 
       <label>
         Car Name / Title
@@ -1148,7 +1169,6 @@ textarea{
         placeholder="Example: Toyota RAV4 2020"
         required
       >
-
 
       <label>
         Price
@@ -1162,7 +1182,6 @@ textarea{
         required
       >
 
-
       <label>
         Location
       </label>
@@ -1173,7 +1192,6 @@ textarea{
         placeholder="Kigali, Gasabo, Remera"
         required
       >
-
 
       <label>
         Phone
@@ -1186,7 +1204,6 @@ textarea{
         required
       >
 
-
       <label>
         Main Car Photo
       </label>
@@ -1197,7 +1214,6 @@ textarea{
         accept="image/*"
         required
       >
-
 
       <label>
         Other Car Photos
@@ -1210,12 +1226,10 @@ textarea{
         multiple
       >
 
-
       <div
         id="carPhotoPreview"
         class="photos-preview"
       ></div>
-
 
       <button
         type="submit"
@@ -1225,17 +1239,14 @@ textarea{
         🚗 Post Car
       </button>
 
-
       <div
         id="carMessage"
         class="message"
       ></div>
 
-
     </form>
 
   </div>
-
 
   <div class="card">
 
@@ -1250,7 +1261,6 @@ textarea{
 
   </div>
 
-
   <div
     id="carsList"
     class="properties"
@@ -1262,9 +1272,7 @@ textarea{
 
   </div>
 
-
 </section>
-
 
 <!-- =====================================================
      REQUESTED
@@ -1274,7 +1282,6 @@ textarea{
   id="requestedSection"
   class="section"
 >
-
 
   <div class="card">
 
@@ -1288,7 +1295,6 @@ textarea{
 
   </div>
 
-
   <div id="requestsList">
 
     <div class="empty">
@@ -1297,9 +1303,7 @@ textarea{
 
   </div>
 
-
 </section>
-
 
 <!-- =====================================================
      APPROVALS
@@ -1309,7 +1313,6 @@ textarea{
   id="approvalSection"
   class="section"
 >
-
 
   <div class="card">
 
@@ -1323,7 +1326,6 @@ textarea{
 
   </div>
 
-
   <div id="approvalsList">
 
     <div class="empty">
@@ -1332,155 +1334,246 @@ textarea{
 
   </div>
 
-
 </section>
 
-
 <!-- =====================================================
-     ANALYTICS
+     STATISTICS
 ===================================================== -->
 
 <section
-  id="analyticsSection"
+  id="statisticsSection"
   class="section"
 >
 
   <div class="card">
 
-    <div style="
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-    ">
+    <h2>
+      📊 Website Statistics
+    </h2>
 
-      <div>
+    <button
+      class="refresh-button"
+      onclick="loadStatistics()"
+    >
+      🔄 Refresh
+    </button>
 
-        <h2>
-          📊 Website Analytics
-        </h2>
-
-        <p>
-          Reba uko abantu basuye website yawe.
-        </p>
-
-      </div>
-
-      <button
-        class="refresh-button"
-        onclick="loadAnalytics()"
-      >
-        🔄 Refresh
-      </button>
-
-    </div>
+    <p>
+      Aha ni ho urebera abantu basura website n'amapaji bareba.
+    </p>
 
   </div>
 
+  <div
+    id="statisticsMessage"
+    class="message"
+  ></div>
 
-  <div class="analytics-grid">
+  <div class="stats-grid">
 
+    <div class="stat-card">
 
-    <div class="analytics-card">
-
-      <div class="analytics-icon">
+      <div class="stat-icon">
         👁️
+      </div>
+
+      <div class="stat-label">
+        Total Page Views
       </div>
 
       <div
         id="totalViews"
-        class="analytics-number"
+        class="stat-number"
       >
         0
       </div>
 
-      <div class="analytics-label">
-        Total Page Views
+    </div>
+
+    <div class="stat-card">
+
+      <div class="stat-icon">
+        👤
+      </div>
+
+      <div class="stat-label">
+        Unique Visitors
+      </div>
+
+      <div
+        id="uniqueVisitors"
+        class="stat-number"
+      >
+        0
       </div>
 
     </div>
 
+    <div class="stat-card">
 
-    <div class="analytics-card">
-
-      <div class="analytics-icon">
+      <div class="stat-icon">
         📅
+      </div>
+
+      <div class="stat-label">
+        Views Today
       </div>
 
       <div
         id="todayViews"
-        class="analytics-number"
+        class="stat-number"
       >
         0
       </div>
 
-      <div class="analytics-label">
-        Views Today
-      </div>
-
     </div>
 
+    <div class="stat-card">
 
-    <div class="analytics-card">
-
-      <div class="analytics-icon">
+      <div class="stat-icon">
         📆
+      </div>
+
+      <div class="stat-label">
+        Last 7 Days
       </div>
 
       <div
         id="weekViews"
-        class="analytics-number"
+        class="stat-number"
       >
         0
       </div>
 
-      <div class="analytics-label">
-        Views This Week
-      </div>
-
     </div>
 
+  </div>
 
-    <div class="analytics-card">
+  <div class="stats-grid">
 
-      <div class="analytics-icon">
-        📄
+    <div class="stat-card">
+
+      <div class="stat-icon">
+        🖥️
+      </div>
+
+      <div class="stat-label">
+        Desktop
       </div>
 
       <div
-        id="uniquePages"
-        class="analytics-number"
+        id="desktopViews"
+        class="stat-number"
       >
         0
       </div>
 
-      <div class="analytics-label">
-        Different Pages
+    </div>
+
+    <div class="stat-card">
+
+      <div class="stat-icon">
+        📱
+      </div>
+
+      <div class="stat-label">
+        Mobile
+      </div>
+
+      <div
+        id="mobileViews"
+        class="stat-number"
+      >
+        0
       </div>
 
     </div>
 
+    <div class="stat-card">
 
-  </div>
+      <div class="stat-icon">
+        📲
+      </div>
 
+      <div class="stat-label">
+        Tablet
+      </div>
 
-  <div class="card">
+      <div
+        id="tabletViews"
+        class="stat-number"
+      >
+        0
+      </div>
 
-    <h2>
-      📄 Most Viewed Pages
-    </h2>
+    </div>
 
-    <div id="pageViewsTable">
+    <div class="stat-card">
 
-      <div class="empty">
-        Loading analytics...
+      <div class="stat-icon">
+        🌐
+      </div>
+
+      <div class="stat-label">
+        Other Devices
+      </div>
+
+      <div
+        id="otherViews"
+        class="stat-number"
+      >
+        0
       </div>
 
     </div>
 
   </div>
 
+  <div class="stats-section-grid">
+
+    <div class="card">
+
+      <h2>
+        📄 Most Viewed Pages
+      </h2>
+
+      <ul
+        id="topPages"
+        class="stats-list"
+      >
+
+        <li>
+          <span>
+            Loading...
+          </span>
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div class="card">
+
+      <h2>
+        🌍 Countries
+      </h2>
+
+      <ul
+        id="topCountries"
+        class="stats-list"
+      >
+
+        <li>
+          <span>
+            Loading...
+          </span>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
 
   <div class="card">
 
@@ -1488,10 +1581,10 @@ textarea{
       🕐 Recent Page Views
     </h2>
 
-    <div id="recentViewsTable">
+    <div id="recentViews">
 
       <div class="empty">
-        Loading recent views...
+        Loading...
       </div>
 
     </div>
@@ -1500,9 +1593,7 @@ textarea{
 
 </section>
 
-
 </div>
-
 
 <script>
 
@@ -1522,111 +1613,48 @@ const supabaseClient =
     SUPABASE_KEY
   );
 
-
 /* =========================================================
    ELEMENTS
 ========================================================= */
 
 const propertiesElement =
-  document.getElementById(
-    "properties"
-  );
+  document.getElementById("properties");
 
 const propertyForm =
-  document.getElementById(
-    "propertyForm"
-  );
+  document.getElementById("propertyForm");
 
 const postButton =
-  document.getElementById(
-    "postButton"
-  );
+  document.getElementById("postButton");
 
 const postMessage =
-  document.getElementById(
-    "postMessage"
-  );
+  document.getElementById("postMessage");
 
 const photoPreview =
-  document.getElementById(
-    "photoPreview"
-  );
+  document.getElementById("photoPreview");
 
 const requestsList =
-  document.getElementById(
-    "requestsList"
-  );
+  document.getElementById("requestsList");
 
 const approvalsList =
-  document.getElementById(
-    "approvalsList"
-  );
+  document.getElementById("approvalsList");
 
 const requestBadge =
-  document.getElementById(
-    "requestBadge"
-  );
+  document.getElementById("requestBadge");
 
 const carForm =
-  document.getElementById(
-    "carForm"
-  );
+  document.getElementById("carForm");
 
 const carPostButton =
-  document.getElementById(
-    "carPostButton"
-  );
+  document.getElementById("carPostButton");
 
 const carMessage =
-  document.getElementById(
-    "carMessage"
-  );
+  document.getElementById("carMessage");
 
 const carPhotoPreview =
-  document.getElementById(
-    "carPhotoPreview"
-  );
+  document.getElementById("carPhotoPreview");
 
 const carsList =
-  document.getElementById(
-    "carsList"
-  );
-
-
-/* =========================================================
-   ANALYTICS ELEMENTS
-========================================================= */
-
-const totalViews =
-  document.getElementById(
-    "totalViews"
-  );
-
-const todayViews =
-  document.getElementById(
-    "todayViews"
-  );
-
-const weekViews =
-  document.getElementById(
-    "weekViews"
-  );
-
-const uniquePages =
-  document.getElementById(
-    "uniquePages"
-  );
-
-const pageViewsTable =
-  document.getElementById(
-    "pageViewsTable"
-  );
-
-const recentViewsTable =
-  document.getElementById(
-    "recentViewsTable"
-  );
-
+  document.getElementById("carsList");
 
 /* =========================================================
    ADMIN LOGIN
@@ -1641,7 +1669,6 @@ async function checkAdmin(){
   } =
   await supabaseClient.auth.getSession();
 
-
   if(!session){
 
     window.location.href =
@@ -1651,104 +1678,65 @@ async function checkAdmin(){
 
   }
 
-
   return true;
 
 }
-
 
 /* =========================================================
    SECTION SWITCH
 ========================================================= */
 
-function showSection(
-  id,
-  button
-){
+function showSection(id,button){
 
   document
-    .querySelectorAll(
-      ".section"
-    )
+    .querySelectorAll(".section")
     .forEach(section => {
 
-      section.classList.remove(
-        "active"
-      );
+      section.classList.remove("active");
 
     });
-
 
   document
     .getElementById(id)
-    .classList.add(
-      "active"
-    );
-
+    .classList.add("active");
 
   document
-    .querySelectorAll(
-      ".tab"
-    )
+    .querySelectorAll(".tab")
     .forEach(tab => {
 
-      tab.classList.remove(
-        "active"
-      );
+      tab.classList.remove("active");
 
     });
 
-
-  button.classList.add(
-    "active"
-  );
-
+  button.classList.add("active");
 
   if(id === "postsSection"){
-
     loadProperties();
-
   }
-
 
   if(id === "carsSection"){
-
     loadCars();
-
   }
-
 
   if(id === "requestedSection"){
-
     loadRequests();
-
   }
-
 
   if(id === "approvalSection"){
-
     loadApprovals();
-
   }
 
-
-  if(id === "analyticsSection"){
-
-    loadAnalytics();
-
+  if(id === "statisticsSection"){
+    loadStatistics();
   }
 
 }
-
 
 /* =========================================================
    MESSAGE
 ========================================================= */
 
-function showMessage(
-  text,
-  type
-){
+function showMessage(text,type){
 
   postMessage.textContent =
     text;
@@ -1758,15 +1746,11 @@ function showMessage(
 
 }
 
-
 /* =========================================================
    CAR MESSAGE
 ========================================================= */
 
-function showCarMessage(
-  text,
-  type
-){
+function showCarMessage(text,type){
 
   carMessage.textContent =
     text;
@@ -1776,117 +1760,78 @@ function showCarMessage(
 
 }
 
-
 /* =========================================================
    ESCAPE HTML
 ========================================================= */
 
 function escapeHtml(value){
 
-  return String(
-    value ?? ""
-  )
-  .replace(
-    /&/g,
-    "&amp;"
-  )
-  .replace(
-    /</g,
-    "&lt;"
-  )
-  .replace(
-    />/g,
-    "&gt;"
-  )
-  .replace(
-    /"/g,
-    "&quot;"
-  )
-  .replace(
-    /'/g,
-    "&#039;"
-  );
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
-
 
 /* =========================================================
    HOUSE PHOTO PREVIEW
 ========================================================= */
 
 document
-  .getElementById(
-    "otherPhotos"
-  )
+  .getElementById("otherPhotos")
   .addEventListener(
     "change",
     function(){
 
-      photoPreview.innerHTML =
-        "";
+      photoPreview.innerHTML = "";
 
       Array
         .from(this.files)
         .forEach(file => {
 
           const img =
-            document.createElement(
-              "img"
-            );
+            document.createElement("img");
 
           img.src =
-            URL.createObjectURL(
-              file
-            );
+            URL.createObjectURL(file);
 
-          photoPreview.appendChild(
-            img
-          );
+          photoPreview.appendChild(img);
 
         });
 
     }
   );
-
 
 /* =========================================================
    CAR PHOTO PREVIEW
 ========================================================= */
 
 document
-  .getElementById(
-    "carOtherPhotos"
-  )
+  .getElementById("carOtherPhotos")
   .addEventListener(
     "change",
     function(){
 
-      carPhotoPreview.innerHTML =
-        "";
+      carPhotoPreview.innerHTML = "";
 
       Array
         .from(this.files)
         .forEach(file => {
 
           const img =
-            document.createElement(
-              "img"
-            );
+            document.createElement("img");
 
           img.src =
-            URL.createObjectURL(
-              file
-            );
+            URL.createObjectURL(file);
 
-          carPhotoPreview.appendChild(
-            img
-          );
+          carPhotoPreview.appendChild(img);
 
         });
 
     }
   );
-
 
 /* =========================================================
    UPLOAD IMAGE
@@ -1902,14 +1847,11 @@ async function uploadImage(file){
 
   }
 
-
   const safeName =
-    file.name
-      .replace(
-        /[^a-zA-Z0-9._-]/g,
-        "-"
-      );
-
+    file.name.replace(
+      /[^a-zA-Z0-9._-]/g,
+      "-"
+    );
 
   const fileName =
     Date.now() +
@@ -1920,20 +1862,16 @@ async function uploadImage(file){
     "-" +
     safeName;
 
-
   const filePath =
     "properties/" +
     fileName;
-
 
   const {
     error
   } =
   await supabaseClient
     .storage
-    .from(
-      "property-images"
-    )
+    .from("property-images")
     .upload(
       filePath,
       file,
@@ -1942,31 +1880,25 @@ async function uploadImage(file){
       }
     );
 
-
   if(error){
 
     throw error;
 
   }
 
-
   const {
     data
   } =
   supabaseClient
     .storage
-    .from(
-      "property-images"
-    )
+    .from("property-images")
     .getPublicUrl(
       filePath
     );
 
-
   return data.publicUrl;
 
 }
-
 
 /* =========================================================
    ADD HOUSE
@@ -1978,19 +1910,15 @@ propertyForm.addEventListener(
 
     event.preventDefault();
 
-
-    postButton.disabled =
-      true;
+    postButton.disabled = true;
 
     postButton.textContent =
       "Posting...";
-
 
     showMessage(
       "Posting property...",
       "success"
     );
-
 
     try{
 
@@ -2087,7 +2015,6 @@ propertyForm.addEventListener(
             .files
         );
 
-
       if(!mainPhotoFile){
 
         throw new Error(
@@ -2096,16 +2023,12 @@ propertyForm.addEventListener(
 
       }
 
-
       const mainPhotoUrl =
         await uploadImage(
           mainPhotoFile
         );
 
-
-      const otherPhotoUrls =
-        [];
-
+      const otherPhotoUrls = [];
 
       for(
         const file
@@ -2113,16 +2036,11 @@ propertyForm.addEventListener(
       ){
 
         const url =
-          await uploadImage(
-            file
-          );
+          await uploadImage(file);
 
-        otherPhotoUrls.push(
-          url
-        );
+        otherPhotoUrls.push(url);
 
       }
-
 
       const {
         error
@@ -2181,32 +2099,25 @@ propertyForm.addEventListener(
 
         });
 
-
       if(error){
 
         throw error;
 
       }
 
-
       showMessage(
         "✅ House posted successfully!",
         "success"
       );
 
-
       propertyForm.reset();
-
 
       document
         .getElementById("country")
         .value =
         "Rwanda";
 
-
-      photoPreview.innerHTML =
-        "";
-
+      photoPreview.innerHTML = "";
 
       await loadProperties();
 
@@ -2216,23 +2127,19 @@ propertyForm.addEventListener(
       console.error(error);
 
       showMessage(
-        "❌ " +
-        error.message,
+        "❌ " + error.message,
         "error"
       );
 
     }
 
-
-    postButton.disabled =
-      false;
+    postButton.disabled = false;
 
     postButton.textContent =
       "Post House";
 
   }
 );
-
 
 /* =========================================================
    ADD CAR
@@ -2244,19 +2151,15 @@ carForm.addEventListener(
 
     event.preventDefault();
 
-
-    carPostButton.disabled =
-      true;
+    carPostButton.disabled = true;
 
     carPostButton.textContent =
       "Posting Car...";
-
 
     showCarMessage(
       "🚗 Posting car...",
       "success"
     );
-
 
     try{
 
@@ -2297,7 +2200,6 @@ carForm.addEventListener(
             .files
         );
 
-
       if(!mainFile){
 
         throw new Error(
@@ -2306,16 +2208,10 @@ carForm.addEventListener(
 
       }
 
-
       const mainPhoto =
-        await uploadImage(
-          mainFile
-        );
+        await uploadImage(mainFile);
 
-
-      const otherPhotos =
-        [];
-
+      const otherPhotos = [];
 
       for(
         const file
@@ -2323,16 +2219,11 @@ carForm.addEventListener(
       ){
 
         const url =
-          await uploadImage(
-            file
-          );
+          await uploadImage(file);
 
-        otherPhotos.push(
-          url
-        );
+        otherPhotos.push(url);
 
       }
-
 
       const {
         error
@@ -2364,24 +2255,20 @@ carForm.addEventListener(
 
         });
 
-
       if(error){
 
         throw error;
 
       }
 
-
       showCarMessage(
         "✅ Imodoka yashyizweho neza!",
         "success"
       );
 
-
       carForm.reset();
 
-      carPhotoPreview.innerHTML =
-        "";
+      carPhotoPreview.innerHTML = "";
 
       await loadCars();
 
@@ -2391,23 +2278,19 @@ carForm.addEventListener(
       console.error(error);
 
       showCarMessage(
-        "❌ " +
-        error.message,
+        "❌ " + error.message,
         "error"
       );
 
     }
 
-
-    carPostButton.disabled =
-      false;
+    carPostButton.disabled = false;
 
     carPostButton.textContent =
       "🚗 Post Car";
 
   }
 );
-
 
 /* =========================================================
    LOAD HOUSE POSTS
@@ -2419,7 +2302,6 @@ async function loadProperties(){
     `<div class="empty">
       Loading posts...
     </div>`;
-
 
   const {
     data,
@@ -2435,25 +2317,18 @@ async function loadProperties(){
       }
     );
 
-
   if(error){
 
     propertiesElement.innerHTML =
       `<div class="empty">
-        ❌ ${escapeHtml(
-          error.message
-        )}
+        ❌ ${escapeHtml(error.message)}
       </div>`;
 
     return;
 
   }
 
-
-  if(
-    !data ||
-    data.length === 0
-  ){
+  if(!data || data.length === 0){
 
     propertiesElement.innerHTML =
       `<div class="empty">
@@ -2464,140 +2339,135 @@ async function loadProperties(){
 
   }
 
+  propertiesElement.innerHTML = "";
 
-  propertiesElement.innerHTML =
-    "";
+  data.forEach(property => {
 
+    const card =
+      document.createElement("div");
 
-  data.forEach(
-    property => {
+    card.className =
+      "property";
 
-      const card =
-        document.createElement(
-          "div"
-        );
+    const mainPhoto =
+      property.main_photo ||
+      (
+        Array.isArray(
+          property.other_photos
+        )
+        ?
+        property.other_photos[0]
+        :
+        ""
+      ) ||
+      "https://via.placeholder.com/600x400?text=No+Photo";
 
-      card.className =
-        "property";
+    const status =
+      property.status ||
+      "pending";
 
+    card.innerHTML = `
 
-      const mainPhoto =
-        property.main_photo ||
-        (
-          Array.isArray(
-            property.other_photos
-          )
-          ?
-          property.other_photos[0]
-          :
-          ""
-        ) ||
-        "https://via.placeholder.com/600x400?text=No+Photo";
+      <img
+        src="${escapeHtml(mainPhoto)}"
+        alt="Property"
+      >
 
+      <div class="property-body">
 
-      const status =
-        property.status ||
-        "pending";
+        <div class="property-title">
+          ${escapeHtml(
+            property.title ||
+            "Property"
+          )}
+        </div>
 
+        <div class="price">
+          ${Number(
+            property.price || 0
+          ).toLocaleString()}
+          RWF
+        </div>
 
-      card.innerHTML = `
+        <div class="location">
 
-        <img
-          src="${escapeHtml(mainPhoto)}"
-          alt="Property"
-        >
+          📍
+          ${escapeHtml(
+            property.country || ""
+          )}
+          ,
+          ${escapeHtml(
+            property.province || ""
+          )}
+          ,
+          ${escapeHtml(
+            property.district || ""
+          )}
+          ,
+          ${escapeHtml(
+            property.sector || ""
+          )}
 
-        <div class="property-body">
+          <br><br>
 
-          <div class="property-title">
-            ${escapeHtml(
-              property.title ||
-              "Property"
-            )}
-          </div>
+          🏷️ Type:
+          ${escapeHtml(
+            property.property_type || ""
+          )}
 
-          <div class="price">
-            ${Number(
-              property.price || 0
-            ).toLocaleString()}
-            RWF
-          </div>
+          <br>
 
-          <div class="location">
+          📌 Status:
 
-            📍
-            ${escapeHtml(property.country || "")},
-            ${escapeHtml(property.province || "")},
-            ${escapeHtml(property.district || "")},
-            ${escapeHtml(property.sector || "")}
+          <span
+            class="status status-${escapeHtml(status)}"
+          >
+            ${escapeHtml(status)}
+          </span>
 
-            <br><br>
+          <br><br>
 
-            🏷️ Type:
-            ${escapeHtml(
-              property.property_type || ""
-            )}
+          🛏️ Bedrooms:
+          ${property.bedrooms ?? 0}
 
-            <br>
+          <br>
 
-            📌 Status:
+          🚿 Bathrooms:
+          ${property.bathrooms ?? 0}
 
-            <span
-              class="status status-${escapeHtml(status)}"
-            >
-              ${escapeHtml(status)}
-            </span>
+          <br>
 
-            <br><br>
-
-            🛏️ Bedrooms:
-            ${property.bedrooms ?? 0}
-
-            <br>
-
-            🚿 Bathrooms:
-            ${property.bathrooms ?? 0}
-
-            <br>
-
-            🚗 Parking:
-            ${property.parking ?? 0}
-
-          </div>
-
-
-          <div class="property-actions">
-
-            <button
-              class="button secondary"
-              onclick="viewProperty('${property.id}')"
-            >
-              View
-            </button>
-
-
-            <button
-              class="button delete"
-              onclick="deleteProperty('${property.id}')"
-            >
-              🗑️ Delete
-            </button>
-
-          </div>
+          🚗 Parking:
+          ${property.parking ?? 0}
 
         </div>
-      `;
 
+        <div class="property-actions">
 
-      propertiesElement.appendChild(
-        card
-      );
+          <button
+            class="button secondary"
+            onclick="viewProperty('${property.id}')"
+          >
+            View
+          </button>
 
-    }
-  );
+          <button
+            class="button delete"
+            onclick="deleteProperty('${property.id}')"
+          >
+            🗑️ Delete
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+    propertiesElement.appendChild(card);
+
+  });
 
 }
-
 
 /* =========================================================
    LOAD CARS
@@ -2610,7 +2480,6 @@ async function loadCars(){
       Loading cars...
     </div>`;
 
-
   const {
     data,
     error
@@ -2618,7 +2487,6 @@ async function loadCars(){
   await supabaseClient
     .from("cars_posts")
     .select("*");
-
 
   if(error){
 
@@ -2631,11 +2499,7 @@ async function loadCars(){
 
   }
 
-
-  if(
-    !data ||
-    data.length === 0
-  ){
+  if(!data || data.length === 0){
 
     carsList.innerHTML =
       `<div class="empty">
@@ -2646,153 +2510,137 @@ async function loadCars(){
 
   }
 
+  carsList.innerHTML = "";
 
-  carsList.innerHTML =
-    "";
+  data.forEach(car => {
 
+    const card =
+      document.createElement("div");
 
-  data.forEach(
-    car => {
+    card.className =
+      "property";
 
-      const card =
-        document.createElement(
-          "div"
-        );
+    let mainPhoto =
+      car.mainph;
 
-      card.className =
-        "property";
-
-
-      let mainPhoto =
-        car.mainph;
-
-
-      if(
-        !mainPhoto &&
-        Array.isArray(car.otherph)
-      ){
-
-        mainPhoto =
-          car.otherph[0];
-
-      }
-
-
-      if(
-        !mainPhoto &&
-        typeof car.otherph === "string"
-      ){
-
-        try{
-
-          const parsed =
-            JSON.parse(car.otherph);
-
-          if(Array.isArray(parsed)){
-
-            mainPhoto =
-              parsed[0];
-
-          }
-
-        }
-        catch(e){}
-
-      }
-
+    if(
+      !mainPhoto &&
+      Array.isArray(car.otherph)
+    ){
 
       mainPhoto =
-        mainPhoto ||
-        "https://via.placeholder.com/600x400?text=Car";
+        car.otherph[0];
 
+    }
 
-      const status =
-        car.stat ||
-        "pending";
+    if(
+      !mainPhoto &&
+      typeof car.otherph === "string"
+    ){
 
+      try{
 
-      card.innerHTML = `
+        const parsed =
+          JSON.parse(car.otherph);
 
-        <img
-          src="${escapeHtml(mainPhoto)}"
-          alt="Car"
-        >
+        if(Array.isArray(parsed)){
 
-        <div class="property-body">
+          mainPhoto =
+            parsed[0];
 
-          <div class="car-badge">
-            🚗 CAR FOR SALE
-          </div>
+        }
 
-          <div class="property-title">
-            ${escapeHtml(
-              car.title || "Car"
-            )}
-          </div>
+      }
+      catch(e){}
 
-          <div class="price">
-            ${Number(
-              car.price || 0
-            ).toLocaleString()}
-            RWF
-          </div>
+    }
 
-          <div class="location">
+    mainPhoto =
+      mainPhoto ||
+      "https://via.placeholder.com/600x400?text=Car";
 
-            📍
-            ${escapeHtml(car.locati || "")}
+    const status =
+      car.stat ||
+      "pending";
 
-            <br><br>
+    card.innerHTML = `
 
-            📞
-            ${escapeHtml(car.phon || "")}
+      <img
+        src="${escapeHtml(mainPhoto)}"
+        alt="Car"
+      >
 
-            <br><br>
+      <div class="property-body">
 
-            📌 Status:
+        <div class="car-badge">
+          🚗 CAR FOR SALE
+        </div>
 
-            <span
-              class="status status-${escapeHtml(status)}"
-            >
-              ${escapeHtml(status)}
-            </span>
+        <div class="property-title">
+          ${escapeHtml(
+            car.title || "Car"
+          )}
+        </div>
 
-          </div>
+        <div class="price">
+          ${Number(
+            car.price || 0
+          ).toLocaleString()}
+          RWF
+        </div>
 
+        <div class="location">
 
-          <div class="property-actions">
+          📍
+          ${escapeHtml(
+            car.locati || ""
+          )}
 
-            <button
-              class="button secondary"
-              onclick="viewCar('${car.id}')"
-            >
-              View
-            </button>
+          <br><br>
 
+          📞
+          ${escapeHtml(
+            car.phon || ""
+          )}
 
-            <button
-              class="button delete"
-              onclick="deleteCar('${car.id}')"
-            >
-              🗑️ Delete
-            </button>
+          <br><br>
 
-          </div>
+          📌 Status:
+
+          <span
+            class="status status-${escapeHtml(status)}"
+          >
+            ${escapeHtml(status)}
+          </span>
 
         </div>
 
-      `;
+        <div class="property-actions">
 
+          <button
+            class="button secondary"
+            onclick="viewCar('${car.id}')"
+          >
+            View
+          </button>
 
-      carsList.appendChild(
-        card
-      );
+          <button
+            class="button delete"
+            onclick="deleteCar('${car.id}')"
+          >
+            🗑️ Delete
+          </button>
 
-    }
-  );
+        </div>
+
+      </div>
+    `;
+
+    carsList.appendChild(card);
+
+  });
 
 }
-
 
 /* =========================================================
    VIEW CAR
@@ -2810,29 +2658,21 @@ async function viewCar(id){
     .eq("id",id)
     .maybeSingle();
 
-
   if(error){
 
-    alert(
-      "❌ " +
-      error.message
-    );
+    alert("❌ " + error.message);
 
     return;
 
   }
-
 
   if(!data){
 
-    alert(
-      "Car ntiyabonetse."
-    );
+    alert("Car ntiyabonetse.");
 
     return;
 
   }
-
 
   alert(
 
@@ -2862,7 +2702,6 @@ async function viewCar(id){
 
 }
 
-
 /* =========================================================
    DELETE CAR
 ========================================================= */
@@ -2879,7 +2718,6 @@ async function deleteCar(id){
 
   }
 
-
   const {
     error
   } =
@@ -2888,28 +2726,23 @@ async function deleteCar(id){
     .delete()
     .eq("id",id);
 
-
   if(error){
 
     alert(
-      "❌ " +
-      error.message
+      "❌ " + error.message
     );
 
     return;
 
   }
 
-
   alert(
     "✅ Imodoka yasibwe neza."
   );
 
-
   await loadCars();
 
 }
-
 
 /* =========================================================
    VIEW PROPERTY
@@ -2927,18 +2760,15 @@ async function viewProperty(id){
     .eq("id",id)
     .maybeSingle();
 
-
   if(error){
 
     alert(
-      "❌ " +
-      error.message
+      "❌ " + error.message
     );
 
     return;
 
   }
-
 
   if(!data){
 
@@ -2949,7 +2779,6 @@ async function viewProperty(id){
     return;
 
   }
-
 
   alert(
 
@@ -2993,7 +2822,6 @@ async function viewProperty(id){
 
 }
 
-
 /* =========================================================
    DELETE PROPERTY
 ========================================================= */
@@ -3010,7 +2838,6 @@ async function deleteProperty(id){
 
   }
 
-
   const {
     error
   } =
@@ -3019,28 +2846,23 @@ async function deleteProperty(id){
     .delete()
     .eq("id",id);
 
-
   if(error){
 
     alert(
-      "❌ " +
-      error.message
+      "❌ " + error.message
     );
 
     return;
 
   }
 
-
   alert(
     "✅ Post yasibwe neza."
   );
 
-
   await loadProperties();
 
 }
-
 
 /* =========================================================
    LOAD REQUESTS
@@ -3052,7 +2874,6 @@ async function loadRequests(){
     `<div class="empty">
       Loading requests...
     </div>`;
-
 
   const {
     data,
@@ -3068,7 +2889,6 @@ async function loadRequests(){
       }
     );
 
-
   if(error){
 
     requestsList.innerHTML =
@@ -3083,11 +2903,7 @@ async function loadRequests(){
 
   }
 
-
-  if(
-    !data ||
-    data.length === 0
-  ){
+  if(!data || data.length === 0){
 
     requestsList.innerHTML =
       `<div class="empty">
@@ -3101,118 +2917,105 @@ async function loadRequests(){
 
   }
 
+  const pending =
+    data.filter(request => {
+
+      return String(
+        request.status ||
+        "pending"
+      ).toLowerCase() === "pending";
+
+    });
 
   requestBadge.textContent =
-    data.filter(
-      request =>
-        String(
-          request.status ||
-          "pending"
-        ).toLowerCase()
-        ===
-        "pending"
-    ).length;
+    pending.length;
 
+  requestsList.innerHTML = "";
 
-  requestsList.innerHTML =
-    "";
+  data.forEach(request => {
 
+    const box =
+      document.createElement("div");
 
-  data.forEach(
-    request => {
+    box.className =
+      "request";
 
-      const box =
-        document.createElement(
-          "div"
-        );
+    box.innerHTML = `
 
-      box.className =
-        "request";
+      <div class="request-title">
 
+        💬
 
-      box.innerHTML = `
+        ${escapeHtml(
+          request.name ||
+          request.full_name ||
+          request.subject ||
+          "Property Request"
+        )}
 
-        <div class="request-title">
+      </div>
 
-          💬
+      <div class="request-info">
 
-          ${escapeHtml(
-            request.name ||
-            request.full_name ||
-            request.subject ||
-            "Property Request"
-          )}
+        ${
+          request.email
+          ?
+          "📧 Email: " +
+          escapeHtml(request.email) +
+          "<br>"
+          :
+          ""
+        }
 
-        </div>
+        ${
+          request.phone
+          ?
+          "📞 Phone: " +
+          escapeHtml(request.phone) +
+          "<br>"
+          :
+          ""
+        }
 
+        ${
+          request.message
+          ?
+          "<br>📝 Message:<br>" +
+          escapeHtml(request.message)
+          :
+          ""
+        }
 
-        <div class="request-info">
+        ${
+          request.status
+          ?
+          "<br><br>📌 Status: " +
+          escapeHtml(request.status)
+          :
+          ""
+        }
 
-          ${
-            request.email
-            ?
-            "📧 Email: " +
-            escapeHtml(request.email) +
-            "<br>"
-            :
-            ""
-          }
+        ${
+          request.created_at
+          ?
+          "<br><br>📅 " +
+          escapeHtml(
+            new Date(
+              request.created_at
+            ).toLocaleString()
+          )
+          :
+          ""
+        }
 
-          ${
-            request.phone
-            ?
-            "📞 Phone: " +
-            escapeHtml(request.phone) +
-            "<br>"
-            :
-            ""
-          }
+      </div>
+    `;
 
-          ${
-            request.message
-            ?
-            "<br>📝 Message:<br>" +
-            escapeHtml(request.message)
-            :
-            ""
-          }
+    requestsList.appendChild(box);
 
-          ${
-            request.status
-            ?
-            "<br><br>📌 Status: " +
-            escapeHtml(request.status)
-            :
-            ""
-          }
-
-          ${
-            request.created_at
-            ?
-            "<br><br>📅 " +
-            escapeHtml(
-              new Date(
-                request.created_at
-              ).toLocaleString()
-            )
-            :
-            ""
-          }
-
-        </div>
-
-      `;
-
-
-      requestsList.appendChild(
-        box
-      );
-
-    }
-  );
+  });
 
 }
-
 
 /* =========================================================
    LOAD APPROVALS
@@ -3224,7 +3027,6 @@ async function loadApprovals(){
     `<div class="empty">
       Loading approvals...
     </div>`;
-
 
   const {
     data,
@@ -3240,7 +3042,6 @@ async function loadApprovals(){
       }
     );
 
-
   if(error){
 
     approvalsList.innerHTML =
@@ -3252,27 +3053,20 @@ async function loadApprovals(){
 
   }
 
-
   const pending =
-    (data || [])
-      .filter(
-        request => {
+    (data || []).filter(request => {
 
-          const status =
-            String(
-              request.status ||
-              "pending"
-            ).toLowerCase();
+      const status =
+        String(
+          request.status ||
+          "pending"
+        ).toLowerCase();
 
-          return status === "pending";
+      return status === "pending";
 
-        }
-      );
+    });
 
-
-  if(
-    pending.length === 0
-  ){
+  if(pending.length === 0){
 
     approvalsList.innerHTML =
       `<div class="empty">
@@ -3283,157 +3077,122 @@ async function loadApprovals(){
 
   }
 
+  approvalsList.innerHTML = "";
 
-  approvalsList.innerHTML =
-    "";
+  pending.forEach(request => {
 
+    const box =
+      document.createElement("div");
 
-  pending.forEach(
-    request => {
+    box.className =
+      "request";
 
-      const box =
-        document.createElement(
-          "div"
-        );
+    box.innerHTML = `
 
-      box.className =
-        "request";
+      <div class="request-title">
 
+        🏠
 
-      box.innerHTML = `
+        ${escapeHtml(
+          request.property_title ||
+          request.title ||
+          request.name ||
+          "Property Submission"
+        )}
 
-        <div class="request-title">
+      </div>
 
-          🏠
+      <div class="request-info">
 
-          ${escapeHtml(
-            request.property_title ||
-            request.title ||
-            request.name ||
-            "Property Submission"
-          )}
-
-        </div>
-
-
-        <div class="request-info">
-
-          ${
+        ${
+          request.name ||
+          request.full_name
+          ?
+          "👤 Owner: " +
+          escapeHtml(
             request.name ||
             request.full_name
-            ?
+          ) +
+          "<br>"
+          :
+          ""
+        }
 
-            "👤 Owner: " +
-            escapeHtml(
-              request.name ||
-              request.full_name
-            ) +
-            "<br>"
+        ${
+          request.phone
+          ?
+          "📞 Phone: " +
+          escapeHtml(request.phone) +
+          "<br>"
+          :
+          ""
+        }
 
-            :
+        ${
+          request.email
+          ?
+          "📧 Email: " +
+          escapeHtml(request.email) +
+          "<br>"
+          :
+          ""
+        }
 
-            ""
-          }
+        ${
+          request.property_type
+          ?
+          "🏷️ Type: " +
+          escapeHtml(request.property_type) +
+          "<br>"
+          :
+          ""
+        }
 
-          ${
-            request.phone
-            ?
+        ${
+          request.price
+          ?
+          "💰 Price: " +
+          Number(request.price).toLocaleString() +
+          " RWF<br>"
+          :
+          ""
+        }
 
-            "📞 Phone: " +
-            escapeHtml(request.phone) +
-            "<br>"
+        ${
+          request.message
+          ?
+          "<br>📝 Message:<br>" +
+          escapeHtml(request.message)
+          :
+          ""
+        }
 
-            :
+      </div>
 
-            ""
-          }
+      <div class="request-actions">
 
-          ${
-            request.email
-            ?
+        <button
+          class="button approve"
+          onclick="approveRequest('${request.id}')"
+        >
+          ✅ Approve
+        </button>
 
-            "📧 Email: " +
-            escapeHtml(request.email) +
-            "<br>"
+        <button
+          class="button reject"
+          onclick="rejectRequest('${request.id}')"
+        >
+          ❌ Reject
+        </button>
 
-            :
+      </div>
+    `;
 
-            ""
-          }
+    approvalsList.appendChild(box);
 
-          ${
-            request.property_type
-            ?
-
-            "🏷️ Type: " +
-            escapeHtml(request.property_type) +
-            "<br>"
-
-            :
-
-            ""
-          }
-
-          ${
-            request.price
-            ?
-
-            "💰 Price: " +
-            Number(request.price)
-              .toLocaleString() +
-            " RWF<br>"
-
-            :
-
-            ""
-          }
-
-          ${
-            request.message
-            ?
-
-            "<br>📝 Message:<br>" +
-            escapeHtml(request.message)
-
-            :
-
-            ""
-          }
-
-        </div>
-
-
-        <div class="request-actions">
-
-          <button
-            class="button approve"
-            onclick="approveRequest('${request.id}')"
-          >
-            ✅ Approve
-          </button>
-
-
-          <button
-            class="button reject"
-            onclick="rejectRequest('${request.id}')"
-          >
-            ❌ Reject
-          </button>
-
-        </div>
-
-      `;
-
-
-      approvalsList.appendChild(
-        box
-      );
-
-    }
-  );
+  });
 
 }
-
 
 /* =========================================================
    APPROVE
@@ -3451,7 +3210,6 @@ async function approveRequest(id){
 
   }
 
-
   const {
     error
   } =
@@ -3462,30 +3220,25 @@ async function approveRequest(id){
     })
     .eq("id",id);
 
-
   if(error){
 
     alert(
-      "❌ " +
-      error.message
+      "❌ " + error.message
     );
 
     return;
 
   }
 
-
   alert(
     "✅ Request yemejwe."
   );
-
 
   await loadApprovals();
 
   await loadRequests();
 
 }
-
 
 /* =========================================================
    REJECT
@@ -3503,7 +3256,6 @@ async function rejectRequest(id){
 
   }
 
-
   const {
     error
   } =
@@ -3514,23 +3266,19 @@ async function rejectRequest(id){
     })
     .eq("id",id);
 
-
   if(error){
 
     alert(
-      "❌ " +
-      error.message
+      "❌ " + error.message
     );
 
     return;
 
   }
 
-
   alert(
     "❌ Request yahakanywe."
   );
-
 
   await loadApprovals();
 
@@ -3538,37 +3286,34 @@ async function rejectRequest(id){
 
 }
 
-
 /* =========================================================
-   ANALYTICS
+   PAGE VIEWS — STATISTICS
 ========================================================= */
 
-async function loadAnalytics(){
+function formatNumber(number){
 
-  totalViews.textContent =
-    "0";
+  return Number(
+    number || 0
+  ).toLocaleString();
 
-  todayViews.textContent =
-    "0";
+}
 
-  weekViews.textContent =
-    "0";
+/* =========================================================
+   LOAD STATISTICS
+========================================================= */
 
-  uniquePages.textContent =
-    "0";
+async function loadStatistics(){
 
+  const message =
+    document.getElementById(
+      "statisticsMessage"
+    );
 
-  pageViewsTable.innerHTML =
-    `<div class="empty">
-      Loading analytics...
-    </div>`;
+  message.textContent =
+    "Loading statistics...";
 
-
-  recentViewsTable.innerHTML =
-    `<div class="empty">
-      Loading recent views...
-    </div>`;
-
+  message.className =
+    "message success";
 
   try{
 
@@ -3578,7 +3323,9 @@ async function loadAnalytics(){
     } =
     await supabaseClient
       .from("page_views")
-      .select("*")
+      .select(
+        "id,page,path,visitor_id,session_id,referrer,user_agent,device_type,country,city,created_at"
+      )
       .order(
         "created_at",
         {
@@ -3586,173 +3333,307 @@ async function loadAnalytics(){
         }
       );
 
-
     if(error){
 
       throw error;
 
     }
 
-
     const views =
       data || [];
-
 
     /* =========================
        TOTAL
     ========================= */
 
-    totalViews.textContent =
-      views.length.toLocaleString();
-
+    document
+      .getElementById("totalViews")
+      .textContent =
+      formatNumber(
+        views.length
+      );
 
     /* =========================
-       DATES
+       UNIQUE VISITORS
+    ========================= */
+
+    const visitorSet =
+      new Set();
+
+    views.forEach(view => {
+
+      if(view.visitor_id){
+
+        visitorSet.add(
+          view.visitor_id
+        );
+
+      }
+
+    });
+
+    document
+      .getElementById("uniqueVisitors")
+      .textContent =
+      formatNumber(
+        visitorSet.size
+      );
+
+    /* =========================
+       TODAY
     ========================= */
 
     const now =
       new Date();
 
-
-    const startOfToday =
+    const startToday =
       new Date(
         now.getFullYear(),
         now.getMonth(),
         now.getDate()
       );
 
+    const todayViews =
+      views.filter(view => {
 
-    const startOfWeek =
+        if(!view.created_at){
+          return false;
+        }
+
+        return new Date(
+          view.created_at
+        ) >= startToday;
+
+      });
+
+    document
+      .getElementById("todayViews")
+      .textContent =
+      formatNumber(
+        todayViews.length
+      );
+
+    /* =========================
+       LAST 7 DAYS
+    ========================= */
+
+    const sevenDaysAgo =
       new Date(
-        startOfToday
+        Date.now() -
+        7 * 24 * 60 * 60 * 1000
       );
 
+    const weekViews =
+      views.filter(view => {
 
-    const day =
-      startOfWeek.getDay();
-
-
-    const diff =
-      day === 0
-      ? 6
-      : day - 1;
-
-
-    startOfWeek.setDate(
-      startOfWeek.getDate() -
-      diff
-    );
-
-
-    /* =========================
-       TODAY
-    ========================= */
-
-    const todayCount =
-      views.filter(
-        view => {
-
-          if(!view.created_at){
-            return false;
-          }
-
-          const date =
-            new Date(
-              view.created_at
-            );
-
-          return date >=
-            startOfToday;
-
+        if(!view.created_at){
+          return false;
         }
-      ).length;
 
+        return new Date(
+          view.created_at
+        ) >= sevenDaysAgo;
 
-    todayViews.textContent =
-      todayCount.toLocaleString();
+      });
 
-
-    /* =========================
-       THIS WEEK
-    ========================= */
-
-    const weekCount =
-      views.filter(
-        view => {
-
-          if(!view.created_at){
-            return false;
-          }
-
-          const date =
-            new Date(
-              view.created_at
-            );
-
-          return date >=
-            startOfWeek;
-
-        }
-      ).length;
-
-
-    weekViews.textContent =
-      weekCount.toLocaleString();
-
+    document
+      .getElementById("weekViews")
+      .textContent =
+      formatNumber(
+        weekViews.length
+      );
 
     /* =========================
-       PAGE COUNTS
+       DEVICE TYPES
     ========================= */
 
-    const pageCounts =
-      {};
+    let desktop = 0;
+    let mobile = 0;
+    let tablet = 0;
+    let other = 0;
 
+    views.forEach(view => {
 
-    views.forEach(
-      view => {
+      const device =
+        String(
+          view.device_type || ""
+        ).toLowerCase();
 
-        const page =
-          view.page ||
-          view.page_name ||
-          view.path ||
-          "Unknown";
-
-
-        pageCounts[page] =
-          (
-            pageCounts[page] ||
-            0
-          ) + 1;
-
+      if(device === "desktop"){
+        desktop++;
       }
-    );
+      else if(device === "mobile"){
+        mobile++;
+      }
+      else if(device === "tablet"){
+        tablet++;
+      }
+      else{
+        other++;
+      }
 
+    });
 
-    const sortedPages =
-      Object.entries(
-        pageCounts
-      )
-      .sort(
-        (a,b) =>
-          b[1] - a[1]
-      );
+    document
+      .getElementById("desktopViews")
+      .textContent =
+      formatNumber(desktop);
 
+    document
+      .getElementById("mobileViews")
+      .textContent =
+      formatNumber(mobile);
 
-    uniquePages.textContent =
-      sortedPages.length
-        .toLocaleString();
+    document
+      .getElementById("tabletViews")
+      .textContent =
+      formatNumber(tablet);
 
+    document
+      .getElementById("otherViews")
+      .textContent =
+      formatNumber(other);
 
     /* =========================
-       MOST VIEWED TABLE
+       TOP PAGES
     ========================= */
 
-    if(
-      sortedPages.length ===
-      0
-    ){
+    const pageCounts = {};
 
-      pageViewsTable.innerHTML =
+    views.forEach(view => {
+
+      const page =
+        view.page ||
+        view.path ||
+        "Unknown";
+
+      pageCounts[page] =
+        (pageCounts[page] || 0) + 1;
+
+    });
+
+    const topPages =
+      Object.entries(pageCounts)
+        .sort(
+          (a,b) => b[1] - a[1]
+        )
+        .slice(0,10);
+
+    const topPagesElement =
+      document.getElementById(
+        "topPages"
+      );
+
+    if(topPages.length === 0){
+
+      topPagesElement.innerHTML =
+        `<li>
+          <span>Nta page view iraboneka.</span>
+        </li>`;
+
+    }
+    else{
+
+      topPagesElement.innerHTML =
+        topPages.map(item => {
+
+          return `
+
+            <li>
+
+              <span class="stat-page-name">
+                📄 ${escapeHtml(item[0])}
+              </span>
+
+              <span class="stat-count">
+                ${formatNumber(item[1])}
+              </span>
+
+            </li>
+
+          `;
+
+        }).join("");
+
+    }
+
+    /* =========================
+       COUNTRIES
+    ========================= */
+
+    const countryCounts = {};
+
+    views.forEach(view => {
+
+      const country =
+        view.country ||
+        "Unknown";
+
+      countryCounts[country] =
+        (countryCounts[country] || 0) + 1;
+
+    });
+
+    const topCountries =
+      Object.entries(countryCounts)
+        .sort(
+          (a,b) => b[1] - a[1]
+        )
+        .slice(0,10);
+
+    const topCountriesElement =
+      document.getElementById(
+        "topCountries"
+      );
+
+    if(topCountries.length === 0){
+
+      topCountriesElement.innerHTML =
+        `<li>
+          <span>Nta country iraboneka.</span>
+        </li>`;
+
+    }
+    else{
+
+      topCountriesElement.innerHTML =
+        topCountries.map(item => {
+
+          return `
+
+            <li>
+
+              <span class="stat-page-name">
+                🌍 ${escapeHtml(item[0])}
+              </span>
+
+              <span class="stat-count">
+                ${formatNumber(item[1])}
+              </span>
+
+            </li>
+
+          `;
+
+        }).join("");
+
+    }
+
+    /* =========================
+       RECENT VIEWS
+    ========================= */
+
+    const recentViewsElement =
+      document.getElementById(
+        "recentViews"
+      );
+
+    const recentViews =
+      views.slice(0,20);
+
+    if(recentViews.length === 0){
+
+      recentViewsElement.innerHTML =
         `<div class="empty">
           Nta page view iraboneka.
         </div>`;
@@ -3760,137 +3641,8 @@ async function loadAnalytics(){
     }
     else{
 
-      let html = `
-
-        <div style="overflow-x:auto">
-
-          <table class="analytics-table">
-
-            <thead>
-
-              <tr>
-
-                <th>
-                  #
-                </th>
-
-                <th>
-                  Page
-                </th>
-
-                <th>
-                  Views
-                </th>
-
-              </tr>
-
-            </thead>
-
-            <tbody>
-
-      `;
-
-
-      sortedPages.forEach(
-        ([page,count],index) => {
-
-          html += `
-
-            <tr>
-
-              <td>
-                ${index + 1}
-              </td>
-
-              <td class="page-name">
-                ${escapeHtml(page)}
-              </td>
-
-              <td>
-                ${count.toLocaleString()}
-              </td>
-
-            </tr>
-
-          `;
-
-        }
-      );
-
-
-      html += `
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-      `;
-
-
-      pageViewsTable.innerHTML =
-        html;
-
-    }
-
-
-    /* =========================
-       RECENT VIEWS
-    ========================= */
-
-    const recent =
-      views.slice(0,50);
-
-
-    if(
-      recent.length === 0
-    ){
-
-      recentViewsTable.innerHTML =
-        `<div class="empty">
-          Nta recent view iraboneka.
-        </div>`;
-
-    }
-    else{
-
-      let html = `
-
-        <div style="overflow-x:auto">
-
-          <table class="analytics-table">
-
-            <thead>
-
-              <tr>
-
-                <th>
-                  Page
-                </th>
-
-                <th>
-                  Date & Time
-                </th>
-
-              </tr>
-
-            </thead>
-
-            <tbody>
-
-      `;
-
-
-      recent.forEach(
-        view => {
-
-          const page =
-            view.page ||
-            view.page_name ||
-            view.path ||
-            "Unknown";
-
+      recentViewsElement.innerHTML =
+        recentViews.map(view => {
 
           const date =
             view.created_at
@@ -3899,76 +3651,90 @@ async function loadAnalytics(){
               view.created_at
             ).toLocaleString()
             :
-            "-";
+            "";
 
+          const device =
+            view.device_type ||
+            "Unknown";
 
-          html += `
+          const country =
+            view.country ||
+            "Unknown";
 
-            <tr>
+          const city =
+            view.city ||
+            "";
 
-              <td class="page-name">
-                ${escapeHtml(page)}
-              </td>
+          return `
 
-              <td>
-                ${escapeHtml(date)}
-              </td>
+            <div class="recent-view">
 
-            </tr>
+              <div class="recent-page">
+
+                📄
+
+                ${escapeHtml(
+                  view.page ||
+                  view.path ||
+                  "Unknown Page"
+                )}
+
+              </div>
+
+              <div class="recent-info">
+
+                🕐 ${escapeHtml(date)}
+
+                &nbsp; • &nbsp;
+
+                📱 ${escapeHtml(device)}
+
+                &nbsp; • &nbsp;
+
+                🌍 ${escapeHtml(country)}
+
+                ${
+                  city
+                  ?
+                  " • " +
+                  escapeHtml(city)
+                  :
+                  ""
+                }
+
+              </div>
+
+            </div>
 
           `;
 
-        }
-      );
-
-
-      html += `
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-      `;
-
-
-      recentViewsTable.innerHTML =
-        html;
+        }).join("");
 
     }
+
+    message.textContent =
+      "✅ Statistics updated.";
+
+    message.className =
+      "message success";
 
   }
   catch(error){
 
     console.error(
-      "Analytics error:",
+      "Statistics error:",
       error
     );
 
+    message.textContent =
+      "❌ " + error.message;
 
-    pageViewsTable.innerHTML =
-      `<div class="empty">
-
-        ❌ Analytics error:
-        ${escapeHtml(
-          error.message
-        )}
-
-      </div>`;
-
-
-    recentViewsTable.innerHTML =
-      `<div class="empty">
-
-        ❌ Ntabwo page views zabashije kuboneka.
-
-      </div>`;
+    message.className =
+      "message error";
 
   }
 
 }
-
 
 /* =========================================================
    HOME
@@ -3981,7 +3747,6 @@ function goHome(){
 
 }
 
-
 /* =========================================================
    LOGOUT
 ========================================================= */
@@ -3992,12 +3757,10 @@ async function logout(){
     .auth
     .signOut();
 
-
   window.location.href =
     "login.html";
 
 }
-
 
 /* =========================================================
    START
@@ -4008,20 +3771,13 @@ async function logout(){
   const isAdmin =
     await checkAdmin();
 
-
   if(!isAdmin){
 
     return;
 
   }
 
-
   await loadProperties();
-
-
-  /* =========================
-     REQUEST BADGE
-  ========================= */
 
   const {
     data
@@ -4030,24 +3786,20 @@ async function logout(){
     .from("property_requests")
     .select("id,status");
 
-
   if(data){
 
     const pending =
-      data.filter(
-        request => {
+      data.filter(request => {
 
-          return String(
-            request.status ||
-            "pending"
-          )
-          .toLowerCase()
-          ===
-          "pending";
+        return String(
+          request.status ||
+          "pending"
+        )
+        .toLowerCase()
+        ===
+        "pending";
 
-        }
-      );
-
+      });
 
     requestBadge.textContent =
       pending.length;
@@ -4061,3 +3813,4 @@ async function logout(){
 </body>
 
 </html>
+```
