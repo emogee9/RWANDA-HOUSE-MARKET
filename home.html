@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1.0"
@@ -10,7 +14,6 @@
   Rwanda Property Visata
 </title>
 
-<!-- FAVICON -->
 <link
   rel="icon"
   type="image/png"
@@ -37,13 +40,11 @@ body{
   color:#33251d;
 }
 
-
 /* ================= NAVBAR ================= */
 
 .navbar{
   background:#d4a017;
   color:white;
-
   padding:15px 20px;
 
   display:flex;
@@ -54,13 +55,10 @@ body{
 
   position:sticky;
   top:0;
-
   z-index:1000;
 
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.20);
+  box-shadow:0 3px 12px rgba(0,0,0,.20);
 }
-
 
 .brand{
   display:flex;
@@ -71,7 +69,6 @@ body{
   font-weight:bold;
 }
 
-
 .brand img{
   width:45px;
   height:45px;
@@ -79,26 +76,20 @@ body{
   object-fit:contain;
 
   background:white;
-
   border-radius:8px;
-
   padding:3px;
 }
-
 
 .nav-links{
   display:flex;
   gap:8px;
 
   flex-wrap:wrap;
-
   justify-content:center;
 }
 
-
 .nav-links a{
   background:white;
-
   color:#8a6500;
 
   text-decoration:none;
@@ -108,18 +99,15 @@ body{
   border-radius:7px;
 
   font-weight:bold;
-
   font-size:14px;
 
   transition:.2s;
 }
 
-
 .nav-links a:hover{
   background:#fff3bd;
   transform:translateY(-1px);
 }
-
 
 /* ================= LANGUAGE ================= */
 
@@ -127,6 +115,7 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
+
   gap:7px;
   flex-wrap:wrap;
 
@@ -134,16 +123,13 @@ body{
 
   background:white;
 
-  box-shadow:
-    0 2px 8px rgba(0,0,0,.08);
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
-
 
 .language-button{
   border:1px solid #d4a017;
 
   background:white;
-
   color:#8a6500;
 
   padding:7px 11px;
@@ -153,21 +139,17 @@ body{
   cursor:pointer;
 
   font-weight:bold;
-
   font-size:13px;
 }
-
 
 .language-button:hover{
   background:#fff8d6;
 }
 
-
 .language-button.active{
   background:#d4a017;
   color:white;
 }
-
 
 /* ================= HERO ================= */
 
@@ -198,11 +180,9 @@ body{
   color:white;
 }
 
-
 .hero-content{
   max-width:850px;
 }
-
 
 .hero h1{
   margin:0 0 15px;
@@ -213,7 +193,6 @@ body{
     0 3px 8px rgba(0,0,0,.4);
 }
 
-
 .hero p{
   font-size:20px;
 
@@ -221,7 +200,6 @@ body{
 
   margin:0 0 25px;
 }
-
 
 .hero-buttons{
   display:flex;
@@ -232,7 +210,6 @@ body{
 
   flex-wrap:wrap;
 }
-
 
 .hero-button{
   display:inline-block;
@@ -253,22 +230,18 @@ body{
     0 4px 10px rgba(0,0,0,.2);
 }
 
-
 .hero-button:hover{
   background:#a87800;
 }
-
 
 .hero-button.white{
   background:white;
   color:#8a6500;
 }
 
-
 .hero-button.white:hover{
   background:#fff3bd;
 }
-
 
 /* ================= ADS ================= */
 
@@ -285,7 +258,6 @@ body{
   text-align:center;
 }
 
-
 .ad-label{
   color:#777;
 
@@ -293,7 +265,6 @@ body{
 
   margin-bottom:7px;
 }
-
 
 /* ================= CONTAINER ================= */
 
@@ -306,7 +277,6 @@ body{
   padding:35px 20px 60px;
 }
 
-
 /* ================= SECTION ================= */
 
 .section-title{
@@ -316,14 +286,12 @@ body{
   margin-bottom:25px;
 }
 
-
 .section-title h2{
 
   margin:0 0 8px;
 
   font-size:30px;
 }
-
 
 .section-title p{
 
@@ -334,7 +302,6 @@ body{
   font-size:16px;
 }
 
-
 /* ================= CARDS ================= */
 
 .cards{
@@ -342,11 +309,10 @@ body{
   display:grid;
 
   grid-template-columns:
-    repeat(3,1fr);
+    repeat(2,1fr);
 
   gap:20px;
 }
-
 
 .card{
 
@@ -366,7 +332,6 @@ body{
     box-shadow .2s;
 }
 
-
 .card:hover{
 
   transform:translateY(-4px);
@@ -375,7 +340,6 @@ body{
     0 8px 20px rgba(0,0,0,.15);
 }
 
-
 .card-icon{
 
   font-size:50px;
@@ -383,14 +347,12 @@ body{
   margin-bottom:15px;
 }
 
-
 .card h3{
 
   margin:0 0 10px;
 
   font-size:22px;
 }
-
 
 .card p{
 
@@ -400,7 +362,6 @@ body{
 
   min-height:50px;
 }
-
 
 .card-button{
 
@@ -421,12 +382,17 @@ body{
   font-weight:bold;
 }
 
-
 .card-button:hover{
 
   background:#a87800;
 }
 
+/* ================= CAR ICON ================= */
+
+.car-card-icon{
+  font-size:50px;
+  margin-bottom:15px;
+}
 
 /* ================= SELL BOX ================= */
 
@@ -445,14 +411,12 @@ body{
   text-align:center;
 }
 
-
 .sell-box h2{
 
   margin:0 0 10px;
 
   font-size:28px;
 }
-
 
 .sell-box p{
 
@@ -462,7 +426,6 @@ body{
 
   margin-bottom:20px;
 }
-
 
 /* ================= FOOTER ================= */
 
@@ -479,22 +442,17 @@ footer{
   margin-top:20px;
 }
 
-
 footer p{
 
   margin:7px 0;
-
 }
-
 
 footer a{
 
   color:#f2c400;
 
   text-decoration:none;
-
 }
-
 
 /* ================= MOBILE ================= */
 
@@ -510,36 +468,28 @@ footer a{
   .hero h1{
 
     font-size:38px;
-
   }
 
 }
-
 
 @media(max-width:650px){
 
   .navbar{
 
     flex-direction:column;
-
   }
-
 
   .brand{
 
     justify-content:center;
 
     text-align:center;
-
   }
-
 
   .nav-links{
 
     width:100%;
-
   }
-
 
   .nav-links a{
 
@@ -550,60 +500,44 @@ footer a{
     font-size:12px;
 
     padding:8px 5px;
-
   }
-
 
   .language-box{
 
     padding:10px 5px;
-
   }
-
 
   .language-button{
 
     font-size:11px;
 
     padding:6px 8px;
-
   }
-
 
   .hero{
 
     min-height:380px;
-
   }
-
 
   .hero h1{
 
     font-size:30px;
-
   }
-
 
   .hero p{
 
     font-size:16px;
-
   }
-
 
   .cards{
 
     grid-template-columns:1fr;
-
   }
-
 
   .container{
 
     padding-left:15px;
-
     padding-right:15px;
-
   }
 
 }
@@ -611,7 +545,6 @@ footer a{
 </style>
 
 </head>
-
 
 <body>
 
@@ -660,6 +593,14 @@ footer a{
       href="plot.html"
       id="plotLink">
       Plot for Sale
+    </a>
+
+    <!-- NEW CARS LINK -->
+
+    <a
+      href="cars-for-sale.html"
+      id="carsLink">
+      Cars for Sale
     </a>
 
   </div>
@@ -724,8 +665,8 @@ footer a{
     </h1>
 
     <p id="heroDescription">
-      Find houses for rent, houses for sale
-      and plots for sale across Rwanda.
+      Find houses for rent, houses for sale,
+      plots for sale and cars for sale across Rwanda.
     </p>
 
 
@@ -835,7 +776,7 @@ footer a{
     </div>
 
 
-    <!-- SALE -->
+    <!-- HOUSE SALE -->
 
     <div class="card">
 
@@ -884,6 +825,35 @@ footer a{
         class="card-button"
         id="plotButton">
         View Plots
+      </a>
+
+    </div>
+
+
+    <!-- =================================================
+         CARS FOR SALE
+    ================================================== -->
+
+    <div class="card">
+
+      <div class="car-card-icon">
+        🚗
+      </div>
+
+      <h3 id="carsTitle">
+        Cars for Sale
+      </h3>
+
+      <p id="carsDescription">
+        Discover cars available
+        for sale across Rwanda.
+      </p>
+
+      <a
+        href="cars-for-sale.html"
+        class="card-button"
+        id="carsButton">
+        View Cars
       </a>
 
     </div>
@@ -940,8 +910,9 @@ footer a{
   <p id="footerDescription">
 
     Houses for rent,
-    houses for sale and
-    plots for sale in Rwanda.
+    houses for sale,
+    plots for sale and
+    cars for sale in Rwanda.
 
   </p>
 
@@ -965,7 +936,7 @@ footer a{
 
 
 /* =====================================================
-   LANGUAGE
+   LANGUAGE TRANSLATIONS
 ===================================================== */
 
 const translations = {
@@ -991,11 +962,14 @@ const translations = {
     plot:
       "Ibibanza bigurishwa",
 
+    cars:
+      "Imodoka zigurishwa",
+
     heroTitle:
       "🏠 Shaka umutungo mu Rwanda",
 
     heroDescription:
-      "Shaka inzu zikodeshwa, inzu zigurishwa n'ibibanza bigurishwa hirya no hino mu Rwanda.",
+      "Shaka inzu zikodeshwa, inzu zigurishwa, ibibanza n'imodoka bigurishwa hirya no hino mu Rwanda.",
 
     heroRent:
       "🏠 Inzu zikodeshwa",
@@ -1039,6 +1013,15 @@ const translations = {
     plotButton:
       "Reba ibibanza",
 
+    carsTitle:
+      "Imodoka zigurishwa",
+
+    carsDescription:
+      "Reba imodoka ziboneka kugurishwa hirya no hino mu Rwanda.",
+
+    carsButton:
+      "Reba imodoka",
+
     sellTitle:
       "📢 Gurisha cyangwa ukodeshe umutungo wawe",
 
@@ -1049,7 +1032,7 @@ const translations = {
       "Shyiraho umutungo wawe",
 
     footerDescription:
-      "Inzu zikodeshwa, inzu zigurishwa n'ibibanza bigurishwa mu Rwanda."
+      "Inzu zikodeshwa, inzu zigurishwa, ibibanza n'imodoka bigurishwa mu Rwanda."
 
   },
 
@@ -1074,11 +1057,14 @@ const translations = {
     plot:
       "Plot for Sale",
 
+    cars:
+      "Cars for Sale",
+
     heroTitle:
       "🏠 Find Your Property in Rwanda",
 
     heroDescription:
-      "Find houses for rent, houses for sale and plots for sale across Rwanda.",
+      "Find houses for rent, houses for sale, plots for sale and cars for sale across Rwanda.",
 
     heroRent:
       "🏠 Houses for Rent",
@@ -1122,6 +1108,15 @@ const translations = {
     plotButton:
       "View Plots",
 
+    carsTitle:
+      "Cars for Sale",
+
+    carsDescription:
+      "Discover cars available for sale across Rwanda.",
+
+    carsButton:
+      "View Cars",
+
     sellTitle:
       "📢 Sell or Rent Out Your Property",
 
@@ -1132,7 +1127,7 @@ const translations = {
       "Publish Your Property",
 
     footerDescription:
-      "Houses for rent, houses for sale and plots for sale in Rwanda."
+      "Houses for rent, houses for sale, plots for sale and cars for sale in Rwanda."
 
   },
 
@@ -1157,11 +1152,14 @@ const translations = {
     plot:
       "Terrains à vendre",
 
+    cars:
+      "Voitures à vendre",
+
     heroTitle:
       "🏠 Trouvez votre propriété au Rwanda",
 
     heroDescription:
-      "Trouvez des maisons à louer, des maisons à vendre et des terrains à vendre partout au Rwanda.",
+      "Trouvez des maisons à louer, des maisons à vendre, des terrains et des voitures à vendre partout au Rwanda.",
 
     heroRent:
       "🏠 Maisons à louer",
@@ -1205,6 +1203,15 @@ const translations = {
     plotButton:
       "Voir les terrains",
 
+    carsTitle:
+      "Voitures à vendre",
+
+    carsDescription:
+      "Découvrez les voitures disponibles à la vente partout au Rwanda.",
+
+    carsButton:
+      "Voir les voitures",
+
     sellTitle:
       "📢 Vendez ou louez votre propriété",
 
@@ -1215,7 +1222,7 @@ const translations = {
       "Publier votre propriété",
 
     footerDescription:
-      "Maisons à louer, maisons à vendre et terrains à vendre au Rwanda."
+      "Maisons à louer, maisons à vendre, terrains et voitures à vendre au Rwanda."
 
   },
 
@@ -1240,11 +1247,14 @@ const translations = {
     plot:
       "Viwanja vya Kuuza",
 
+    cars:
+      "Magari ya Kuuza",
+
     heroTitle:
       "🏠 Tafuta Mali Yako Rwanda",
 
     heroDescription:
-      "Tafuta nyumba za kupangisha, nyumba za kuuza na viwanja vya kuuza kote Rwanda.",
+      "Tafuta nyumba za kupangisha, nyumba za kuuza, viwanja na magari ya kuuza kote Rwanda.",
 
     heroRent:
       "🏠 Nyumba za Kupangisha",
@@ -1288,6 +1298,15 @@ const translations = {
     plotButton:
       "Angalia Viwanja",
 
+    carsTitle:
+      "Magari ya Kuuza",
+
+    carsDescription:
+      "Gundua magari yanayopatikana kwa kuuza kote Rwanda.",
+
+    carsButton:
+      "Angalia Magari",
+
     sellTitle:
       "📢 Uza au Pangisha Mali Yako",
 
@@ -1298,7 +1317,7 @@ const translations = {
       "Chapisha Mali Yako",
 
     footerDescription:
-      "Nyumba za kupangisha, nyumba za kuuza na viwanja vya kuuza nchini Rwanda."
+      "Nyumba za kupangisha, nyumba za kuuza, viwanja na magari ya kuuza nchini Rwanda."
 
   },
 
@@ -1323,11 +1342,14 @@ const translations = {
     plot:
       "出售土地",
 
+    cars:
+      "出售汽车",
+
     heroTitle:
       "🏠 在卢旺达寻找您的房产",
 
     heroDescription:
-      "寻找卢旺达各地的出租房屋、出售房屋和出售土地。",
+      "寻找卢旺达各地的出租房屋、出售房屋、出售土地和出售汽车。",
 
     heroRent:
       "🏠 出租房屋",
@@ -1371,6 +1393,15 @@ const translations = {
     plotButton:
       "查看土地",
 
+    carsTitle:
+      "出售汽车",
+
+    carsDescription:
+      "查看卢旺达各地可出售的汽车。",
+
+    carsButton:
+      "查看汽车",
+
     sellTitle:
       "📢 出售或出租您的房产",
 
@@ -1381,7 +1412,7 @@ const translations = {
       "发布您的房产",
 
     footerDescription:
-      "卢旺达的出租房屋、出售房屋和出售土地。"
+      "卢旺达的出租房屋、出售房屋、出售土地和出售汽车。"
 
   }
 
@@ -1415,15 +1446,11 @@ function applyLanguage(language){
       : "English";
 
 
-  /* Save language */
-
   localStorage.setItem(
     "selectedLanguage",
     currentLanguage
   );
 
-
-  /* HTML language */
 
   document.documentElement.lang =
     currentLanguage === "中文"
@@ -1437,13 +1464,11 @@ function applyLanguage(language){
             : "en";
 
 
-  /* Browser title */
-
   document.title =
     t.title;
 
 
-  /* Brand */
+  /* BRAND */
 
   document.getElementById(
     "brandName"
@@ -1451,22 +1476,25 @@ function applyLanguage(language){
     t.brand;
 
 
-  /* Navbar */
+  /* NAVBAR */
 
   document.getElementById(
     "homeLink"
   ).textContent =
     t.home;
 
+
   document.getElementById(
     "rentLink"
   ).textContent =
     t.rent;
 
+
   document.getElementById(
     "saleLink"
   ).textContent =
     t.sale;
+
 
   document.getElementById(
     "plotLink"
@@ -1474,22 +1502,31 @@ function applyLanguage(language){
     t.plot;
 
 
-  /* Hero */
+  document.getElementById(
+    "carsLink"
+  ).textContent =
+    t.cars;
+
+
+  /* HERO */
 
   document.getElementById(
     "heroTitle"
   ).textContent =
     t.heroTitle;
 
+
   document.getElementById(
     "heroDescription"
   ).textContent =
     t.heroDescription;
 
+
   document.getElementById(
     "heroRentButton"
   ).textContent =
     t.heroRent;
+
 
   document.getElementById(
     "heroSaleButton"
@@ -1497,7 +1534,7 @@ function applyLanguage(language){
     t.heroSale;
 
 
-  /* Advertisement */
+  /* ADVERTISEMENT */
 
   document.getElementById(
     "adLabel"
@@ -1505,12 +1542,13 @@ function applyLanguage(language){
     t.advertisement;
 
 
-  /* Services */
+  /* SERVICES */
 
   document.getElementById(
     "servicesTitle"
   ).textContent =
     t.servicesTitle;
+
 
   document.getElementById(
     "servicesDescription"
@@ -1518,17 +1556,19 @@ function applyLanguage(language){
     t.servicesDescription;
 
 
-  /* Rent */
+  /* RENT */
 
   document.getElementById(
     "rentTitle"
   ).textContent =
     t.rentTitle;
 
+
   document.getElementById(
     "rentDescription"
   ).textContent =
     t.rentDescription;
+
 
   document.getElementById(
     "rentButton"
@@ -1536,17 +1576,19 @@ function applyLanguage(language){
     t.rentButton;
 
 
-  /* Sale */
+  /* HOUSE SALE */
 
   document.getElementById(
     "saleTitle"
   ).textContent =
     t.saleTitle;
 
+
   document.getElementById(
     "saleDescription"
   ).textContent =
     t.saleDescription;
+
 
   document.getElementById(
     "saleButton"
@@ -1554,17 +1596,19 @@ function applyLanguage(language){
     t.saleButton;
 
 
-  /* Plot */
+  /* PLOT */
 
   document.getElementById(
     "plotTitle"
   ).textContent =
     t.plotTitle;
 
+
   document.getElementById(
     "plotDescription"
   ).textContent =
     t.plotDescription;
+
 
   document.getElementById(
     "plotButton"
@@ -1572,17 +1616,39 @@ function applyLanguage(language){
     t.plotButton;
 
 
-  /* Sell */
+  /* CARS */
+
+  document.getElementById(
+    "carsTitle"
+  ).textContent =
+    t.carsTitle;
+
+
+  document.getElementById(
+    "carsDescription"
+  ).textContent =
+    t.carsDescription;
+
+
+  document.getElementById(
+    "carsButton"
+  ).textContent =
+    t.carsButton;
+
+
+  /* SELL */
 
   document.getElementById(
     "sellTitle"
   ).textContent =
     t.sellTitle;
 
+
   document.getElementById(
     "sellDescription"
   ).textContent =
     t.sellDescription;
+
 
   document.getElementById(
     "sellButton"
@@ -1590,7 +1656,7 @@ function applyLanguage(language){
     t.sellButton;
 
 
-  /* Footer */
+  /* FOOTER */
 
   document.getElementById(
     "footerDescription"
@@ -1598,7 +1664,7 @@ function applyLanguage(language){
     t.footerDescription;
 
 
-  /* Active language */
+  /* ACTIVE LANGUAGE */
 
   document
     .querySelectorAll(
@@ -1652,7 +1718,6 @@ applyLanguage(
 );
 
 </script>
-
 
 </body>
 
