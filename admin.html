@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,23 +28,17 @@ body{
   color:#33251d;
 }
 
-/* ================= NAVBAR ================= */
-
 .navbar{
   background:#d4a017;
   color:white;
   padding:15px 20px;
-
   display:flex;
   justify-content:space-between;
   align-items:center;
-
   gap:15px;
-
   position:sticky;
   top:0;
   z-index:1000;
-
   box-shadow:0 3px 10px rgba(0,0,0,.2);
 }
 
@@ -61,11 +56,8 @@ body{
   border:0;
   background:white;
   color:#a87800;
-
   padding:9px 14px;
-
   border-radius:7px;
-
   font-weight:bold;
   cursor:pointer;
 }
@@ -73,8 +65,6 @@ body{
 .nav-buttons button:hover{
   background:#fff7d8;
 }
-
-/* ================= CONTAINER ================= */
 
 .container{
   max-width:1350px;
@@ -85,13 +75,9 @@ body{
 .page-title,
 .card{
   background:white;
-
   padding:22px;
-
   border-radius:14px;
-
   box-shadow:0 3px 12px rgba(0,0,0,.1);
-
   margin-bottom:20px;
 }
 
@@ -101,34 +87,21 @@ h3{
   margin-top:0;
 }
 
-/* ================= TABS ================= */
-
 .tabs{
   display:grid;
-
-  grid-template-columns:
-    repeat(6,1fr);
-
+  grid-template-columns:repeat(6,1fr);
   gap:10px;
-
   margin-bottom:20px;
 }
 
 .tab{
   background:#d4a017;
-
   color:white;
-
   border:0;
-
   padding:14px 10px;
-
   border-radius:8px;
-
   font-weight:bold;
-
   cursor:pointer;
-
   font-size:14px;
 }
 
@@ -140,8 +113,6 @@ h3{
   background:#8f6700;
 }
 
-/* ================= SECTIONS ================= */
-
 .section{
   display:none;
 }
@@ -150,30 +121,20 @@ h3{
   display:block;
 }
 
-/* ================= FORM ================= */
-
 label{
   display:block;
-
   font-weight:bold;
-
   margin:14px 0 6px;
 }
 
 input,
 select,
 textarea{
-
   width:100%;
-
   padding:12px;
-
   border:2px solid #eee;
-
   border-radius:8px;
-
   font-size:15px;
-
   outline:none;
 }
 
@@ -189,29 +150,17 @@ textarea{
 }
 
 .grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
+  grid-template-columns:repeat(2,1fr);
   gap:15px;
 }
 
-/* ================= BUTTONS ================= */
-
 .button{
-
   border:0;
-
   padding:12px 18px;
-
   border-radius:8px;
-
   font-weight:bold;
-
   cursor:pointer;
-
   margin-top:15px;
 }
 
@@ -249,308 +198,185 @@ textarea{
   color:white;
 }
 
-/* ================= MESSAGE ================= */
-
 .message{
-
   display:none;
-
   padding:12px;
-
   border-radius:8px;
-
   margin-top:15px;
-
   font-weight:bold;
 }
 
 .message.success{
-
   display:block;
-
   background:#e9f8e9;
-
   color:#227522;
 }
 
 .message.error{
-
   display:block;
-
   background:#ffe8e8;
-
   color:#a00000;
 }
 
-/* ================= PROPERTY CARDS ================= */
-
 .properties{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
 
 .property{
-
   background:white;
-
   border-radius:14px;
-
   overflow:hidden;
-
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.12);
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
 }
 
 .property img{
-
   width:100%;
-
   height:210px;
-
   object-fit:cover;
-
   display:block;
 }
 
 .property-body{
-
   padding:16px;
 }
 
 .property-title{
-
   font-size:19px;
-
   font-weight:bold;
-
   margin-bottom:8px;
 }
 
 .price{
-
   color:#b27b00;
-
   font-size:19px;
-
   font-weight:bold;
-
   margin-bottom:10px;
 }
 
 .location{
-
   color:#666;
-
   line-height:1.6;
 }
 
 .property-actions{
-
   display:flex;
-
   gap:8px;
 }
 
 .property-actions button{
-
   flex:1;
 }
 
-/* ================= PHOTOS ================= */
-
 .photos-preview{
-
   display:flex;
-
   flex-wrap:wrap;
-
   gap:10px;
-
   margin-top:10px;
 }
 
 .photos-preview img{
-
   width:100px;
-
   height:80px;
-
   object-fit:cover;
-
   border-radius:8px;
 }
 
-/* ================= EMPTY ================= */
-
 .empty{
-
   text-align:center;
-
   padding:35px;
-
   color:#777;
-
   background:white;
-
   border-radius:12px;
-
   grid-column:1/-1;
 }
 
-/* ================= STATUS ================= */
-
 .status{
-
   display:inline-block;
-
   padding:5px 9px;
-
   border-radius:6px;
-
   font-size:13px;
-
   font-weight:bold;
 }
 
-.status-published{
-
+.status-published,
+.status-approved{
   background:#e5f7e5;
-
   color:#267126;
 }
 
 .status-pending{
-
   background:#fff3c4;
-
   color:#8b6800;
 }
 
 .status-rejected{
-
   background:#ffe2e2;
-
   color:#a00000;
 }
 
-.status-approved{
-
-  background:#e5f7e5;
-
-  color:#267126;
-}
-
-/* ================= REQUESTS ================= */
-
 .request{
-
   background:white;
-
   border-radius:14px;
-
   padding:20px;
-
   margin-bottom:15px;
-
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.1);
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
 }
 
 .request-title{
-
   font-size:20px;
-
   font-weight:bold;
-
   margin-bottom:10px;
 }
 
 .request-info{
-
   color:#555;
-
   line-height:1.7;
 }
 
 .request-actions{
-
   display:flex;
-
   gap:10px;
-
   flex-wrap:wrap;
-
   margin-top:15px;
 }
 
 .request-actions button{
-
   margin-top:0;
 }
 
 .badge{
-
   display:inline-block;
-
   min-width:25px;
-
   text-align:center;
-
   padding:4px 8px;
-
   background:#c62828;
-
   color:white;
-
   border-radius:20px;
-
   font-size:12px;
-
   margin-left:5px;
 }
 
-/* ================= CAR ================= */
-
 .car-badge{
-
   display:inline-block;
-
   background:#fff3c4;
-
   color:#8b6800;
-
   padding:5px 9px;
-
   border-radius:6px;
-
   font-size:12px;
-
   font-weight:bold;
-
   margin-bottom:8px;
 }
 
-/* =====================================================
-   STUDIO / VISITOR STATISTICS
-===================================================== */
+/* ================= STUDIO ================= */
 
 .studio-header{
-
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
-
   gap:15px;
-
   flex-wrap:wrap;
-
   margin-bottom:20px;
 }
 
@@ -560,80 +386,50 @@ textarea{
 }
 
 .stats-grid{
-
   display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
+  grid-template-columns:repeat(4,1fr);
   gap:15px;
-
   margin-bottom:20px;
 }
 
 .stat-card{
-
   background:white;
-
   border-radius:14px;
-
   padding:20px;
-
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.1);
-
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
   border-left:5px solid #d4a017;
 }
 
 .stat-icon{
-
   font-size:28px;
-
   margin-bottom:10px;
 }
 
 .stat-label{
-
   color:#777;
-
   font-size:14px;
-
   font-weight:bold;
-
   margin-bottom:7px;
 }
 
 .stat-value{
-
   font-size:30px;
-
   font-weight:bold;
-
   color:#33251d;
 }
 
 .stats-layout{
-
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
+  grid-template-columns:1fr 1fr;
   gap:20px;
-
   margin-bottom:20px;
 }
 
 .analytics-card{
-
   background:white;
-
   border-radius:14px;
-
   padding:20px;
-
-  box-shadow:
-    0 3px 12px rgba(0,0,0,.1);
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
 }
 
 .analytics-card h3{
@@ -641,154 +437,109 @@ textarea{
 }
 
 .chart{
-
   display:flex;
-
   flex-direction:column;
-
   gap:12px;
 }
 
 .chart-row{
-
   display:grid;
-
-  grid-template-columns:
-    minmax(100px,180px)
-    1fr
-    60px;
-
+  grid-template-columns:minmax(100px,180px) 1fr 60px;
   gap:10px;
-
   align-items:center;
 }
 
 .chart-name{
-
   white-space:nowrap;
-
   overflow:hidden;
-
   text-overflow:ellipsis;
-
   font-size:14px;
 }
 
 .chart-bar-bg{
-
   background:#eee;
-
   height:13px;
-
   border-radius:20px;
-
   overflow:hidden;
 }
 
 .chart-bar{
-
   height:100%;
-
   background:#d4a017;
-
   border-radius:20px;
-
   min-width:2px;
 }
 
 .chart-number{
-
   text-align:right;
-
   font-weight:bold;
-
   font-size:13px;
 }
 
 .visitor-table{
-
   width:100%;
-
   border-collapse:collapse;
 }
 
 .visitor-table th,
 .visitor-table td{
-
   padding:12px 8px;
-
   border-bottom:1px solid #eee;
-
   text-align:left;
-
   font-size:14px;
 }
 
 .visitor-table th{
-
   color:#777;
-
   font-size:13px;
-
   text-transform:uppercase;
 }
 
 .device-pill{
-
   display:inline-block;
-
   padding:4px 8px;
-
   border-radius:6px;
-
   background:#f1f1f1;
-
   font-size:12px;
-
   font-weight:bold;
 }
 
 .analytics-note{
-
   background:#fff8df;
-
   border:1px solid #f0d777;
-
   color:#765900;
-
   padding:13px;
-
   border-radius:9px;
-
   margin-top:15px;
-
   line-height:1.5;
 }
 
 .loading-stat{
-
   color:#999;
-
   font-size:14px;
 }
 
-/* ================= MOBILE ================= */
+.studio-error{
+  background:#ffe8e8;
+  color:#a00000;
+  padding:14px;
+  border-radius:9px;
+  margin-bottom:15px;
+  display:none;
+}
 
 @media(max-width:1100px){
 
   .properties{
-    grid-template-columns:
-      repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr);
   }
 
   .tabs{
-    grid-template-columns:
-      repeat(3,1fr);
+    grid-template-columns:repeat(3,1fr);
   }
 
   .stats-grid{
-    grid-template-columns:
-      repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr);
   }
 
 }
@@ -819,8 +570,7 @@ textarea{
   }
 
   .chart-row{
-    grid-template-columns:
-      90px 1fr 45px;
+    grid-template-columns:90px 1fr 45px;
   }
 
   .visitor-table{
@@ -838,13 +588,7 @@ textarea{
 
 </head>
 
-
 <body>
-
-
-<!-- =====================================================
-     NAVBAR
-===================================================== -->
 
 <nav class="navbar">
 
@@ -869,11 +613,6 @@ textarea{
 
 <div class="container">
 
-
-<!-- =====================================================
-     PAGE TITLE
-===================================================== -->
-
 <div class="page-title">
 
   <h1>
@@ -887,12 +626,7 @@ textarea{
 </div>
 
 
-<!-- =====================================================
-     TABS
-===================================================== -->
-
 <div class="tabs">
-
 
   <button
     class="tab active"
@@ -901,14 +635,12 @@ textarea{
     📋 Posts
   </button>
 
-
   <button
     class="tab"
     onclick="showSection('addPostSection',this)"
   >
     ➕ Add Post
   </button>
-
 
   <button
     class="tab"
@@ -917,23 +649,16 @@ textarea{
     🚗 Cars
   </button>
 
-
   <button
     class="tab"
     onclick="showSection('requestedSection',this)"
   >
-
     💬 Requested
-
     <span
       id="requestBadge"
       class="badge"
-    >
-      0
-    </span>
-
+    >0</span>
   </button>
-
 
   <button
     class="tab"
@@ -942,7 +667,6 @@ textarea{
     ✅ Approvals
   </button>
 
-
   <button
     class="tab"
     onclick="showSection('studioSection',this)"
@@ -950,13 +674,10 @@ textarea{
     🎬 Studio
   </button>
 
-
 </div>
 
 
-<!-- =====================================================
-     HOUSE POSTS
-===================================================== -->
+<!-- ================= POSTS ================= -->
 
 <section
   id="postsSection"
@@ -976,7 +697,6 @@ textarea{
 
   </div>
 
-
   <div
     id="properties"
     class="properties"
@@ -991,9 +711,7 @@ textarea{
 </section>
 
 
-<!-- =====================================================
-     ADD HOUSE
-===================================================== -->
+<!-- ================= ADD HOUSE ================= -->
 
 <section
   id="addPostSection"
@@ -1006,9 +724,7 @@ textarea{
       ➕ Add House
     </h2>
 
-
     <form id="propertyForm">
-
 
       <label>
         Property Title
@@ -1020,7 +736,6 @@ textarea{
         placeholder="Beautiful House in Kigali"
         required
       >
-
 
       <label>
         Property Type
@@ -1049,7 +764,6 @@ textarea{
 
       </select>
 
-
       <label>
         Price
       </label>
@@ -1062,9 +776,7 @@ textarea{
         required
       >
 
-
       <div class="grid">
-
 
         <div>
 
@@ -1081,7 +793,6 @@ textarea{
 
         </div>
 
-
         <div>
 
           <label>
@@ -1096,7 +807,6 @@ textarea{
           >
 
         </div>
-
 
         <div>
 
@@ -1113,7 +823,6 @@ textarea{
 
         </div>
 
-
         <div>
 
           <label>
@@ -1129,12 +838,9 @@ textarea{
 
         </div>
 
-
       </div>
 
-
       <div class="grid">
-
 
         <div>
 
@@ -1151,7 +857,6 @@ textarea{
 
         </div>
 
-
         <div>
 
           <label>
@@ -1166,7 +871,6 @@ textarea{
           >
 
         </div>
-
 
         <div>
 
@@ -1183,9 +887,7 @@ textarea{
 
         </div>
 
-
       </div>
-
 
       <label>
         Seller Name
@@ -1197,7 +899,6 @@ textarea{
         placeholder="Seller name"
       >
 
-
       <label>
         Phone
       </label>
@@ -1207,7 +908,6 @@ textarea{
         id="phone"
         placeholder="078..."
       >
-
 
       <label>
         Main Photo
@@ -1220,7 +920,6 @@ textarea{
         required
       >
 
-
       <label>
         Other Photos
       </label>
@@ -1232,7 +931,6 @@ textarea{
         multiple
       >
 
-
       <label>
         Description
       </label>
@@ -1242,12 +940,10 @@ textarea{
         placeholder="Write property description..."
       ></textarea>
 
-
       <div
         id="photoPreview"
         class="photos-preview"
       ></div>
-
 
       <button
         type="submit"
@@ -1257,12 +953,10 @@ textarea{
         Post House
       </button>
 
-
       <div
         id="postMessage"
         class="message"
       ></div>
-
 
     </form>
 
@@ -1271,15 +965,12 @@ textarea{
 </section>
 
 
-<!-- =====================================================
-     CARS
-===================================================== -->
+<!-- ================= CARS ================= -->
 
 <section
   id="carsSection"
   class="section"
 >
-
 
   <div class="card">
 
@@ -1287,14 +978,7 @@ textarea{
       🚗 Post Car for Sale
     </h2>
 
-    <p>
-      Aha ni ho ushyira imodoka nshya muri
-      <strong>cars_posts</strong>.
-    </p>
-
-
     <form id="carForm">
-
 
       <label>
         Car Name / Title
@@ -1303,10 +987,9 @@ textarea{
       <input
         type="text"
         id="carTitle"
-        placeholder="Example: Toyota RAV4 2020"
+        placeholder="Toyota RAV4 2020"
         required
       >
-
 
       <label>
         Price
@@ -1320,7 +1003,6 @@ textarea{
         required
       >
 
-
       <label>
         Location
       </label>
@@ -1331,7 +1013,6 @@ textarea{
         placeholder="Kigali, Gasabo, Remera"
         required
       >
-
 
       <label>
         Phone
@@ -1344,7 +1025,6 @@ textarea{
         required
       >
 
-
       <label>
         Main Car Photo
       </label>
@@ -1355,7 +1035,6 @@ textarea{
         accept="image/*"
         required
       >
-
 
       <label>
         Other Car Photos
@@ -1368,12 +1047,10 @@ textarea{
         multiple
       >
 
-
       <div
         id="carPhotoPreview"
         class="photos-preview"
       ></div>
-
 
       <button
         type="submit"
@@ -1383,12 +1060,10 @@ textarea{
         🚗 Post Car
       </button>
 
-
       <div
         id="carMessage"
         class="message"
       ></div>
-
 
     </form>
 
@@ -1420,19 +1095,15 @@ textarea{
 
   </div>
 
-
 </section>
 
 
-<!-- =====================================================
-     REQUESTED
-===================================================== -->
+<!-- ================= REQUESTED ================= -->
 
 <section
   id="requestedSection"
   class="section"
 >
-
 
   <div class="card">
 
@@ -1446,7 +1117,6 @@ textarea{
 
   </div>
 
-
   <div id="requestsList">
 
     <div class="empty">
@@ -1455,19 +1125,15 @@ textarea{
 
   </div>
 
-
 </section>
 
 
-<!-- =====================================================
-     APPROVALS
-===================================================== -->
+<!-- ================= APPROVALS ================= -->
 
 <section
   id="approvalSection"
   class="section"
 >
-
 
   <div class="card">
 
@@ -1481,7 +1147,6 @@ textarea{
 
   </div>
 
-
   <div id="approvalsList">
 
     <div class="empty">
@@ -1490,19 +1155,15 @@ textarea{
 
   </div>
 
-
 </section>
 
 
-<!-- =====================================================
-     STUDIO / VISITOR ANALYTICS
-===================================================== -->
+<!-- ================= STUDIO ================= -->
 
 <section
   id="studioSection"
   class="section"
 >
-
 
   <div class="studio-header">
 
@@ -1518,7 +1179,6 @@ textarea{
 
     </div>
 
-
     <button
       class="button refresh"
       onclick="loadVisitorStats()"
@@ -1529,12 +1189,13 @@ textarea{
   </div>
 
 
-  <!-- ===============================
-       MAIN STATISTICS
-  ================================ -->
+  <div
+    id="studioError"
+    class="studio-error"
+  ></div>
+
 
   <div class="stats-grid">
-
 
     <div class="stat-card">
 
@@ -1615,16 +1276,10 @@ textarea{
 
     </div>
 
-
   </div>
 
 
-  <!-- ===============================
-       ANALYTICS
-  ================================ -->
-
   <div class="stats-layout">
-
 
     <div class="analytics-card">
 
@@ -1665,20 +1320,14 @@ textarea{
 
     </div>
 
-
   </div>
 
-
-  <!-- ===============================
-       RECENT VISITORS
-  ================================ -->
 
   <div class="analytics-card">
 
     <h3>
       🕒 Recent Page Views
     </h3>
-
 
     <div
       id="recentViews"
@@ -1691,21 +1340,18 @@ textarea{
 
     </div>
 
-
     <div class="analytics-note">
 
-      ℹ️ Iyi dashboard ikoresha table ya
-      <strong>page_views</strong>
-      iri muri Supabase. Ibyerekanwa hano ni
-      page views website yakusanyije.
+      ℹ️ Studio ikoresha table ya
+      <strong>page_views</strong>.
+      Buri page visitor afunguye ishobora
+      kubarwa hano.
 
     </div>
 
   </div>
 
-
 </section>
-
 
 </div>
 
@@ -1722,7 +1368,6 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
   "sb_publishable_oHhsRZQcMwIcReU48WE9mw_FdzMO29u";
 
-
 const supabaseClient =
   window.supabase.createClient(
     SUPABASE_URL,
@@ -1735,73 +1380,47 @@ const supabaseClient =
 ========================================================= */
 
 const propertiesElement =
-  document.getElementById(
-    "properties"
-  );
+  document.getElementById("properties");
 
 const propertyForm =
-  document.getElementById(
-    "propertyForm"
-  );
+  document.getElementById("propertyForm");
 
 const postButton =
-  document.getElementById(
-    "postButton"
-  );
+  document.getElementById("postButton");
 
 const postMessage =
-  document.getElementById(
-    "postMessage"
-  );
+  document.getElementById("postMessage");
 
 const photoPreview =
-  document.getElementById(
-    "photoPreview"
-  );
+  document.getElementById("photoPreview");
 
 const requestsList =
-  document.getElementById(
-    "requestsList"
-  );
+  document.getElementById("requestsList");
 
 const approvalsList =
-  document.getElementById(
-    "approvalsList"
-  );
+  document.getElementById("approvalsList");
 
 const requestBadge =
-  document.getElementById(
-    "requestBadge"
-  );
+  document.getElementById("requestBadge");
 
 const carForm =
-  document.getElementById(
-    "carForm"
-  );
+  document.getElementById("carForm");
 
 const carPostButton =
-  document.getElementById(
-    "carPostButton"
-  );
+  document.getElementById("carPostButton");
 
 const carMessage =
-  document.getElementById(
-    "carMessage"
-  );
+  document.getElementById("carMessage");
 
 const carPhotoPreview =
-  document.getElementById(
-    "carPhotoPreview"
-  );
+  document.getElementById("carPhotoPreview");
 
 const carsList =
-  document.getElementById(
-    "carsList"
-  );
+  document.getElementById("carsList");
 
 
 /* =========================================================
-   ADMIN LOGIN
+   AUTH
 ========================================================= */
 
 async function checkAdmin(){
@@ -1833,22 +1452,14 @@ async function checkAdmin(){
    SECTION SWITCH
 ========================================================= */
 
-function showSection(
-  id,
-  button
-){
+function showSection(id,button){
 
   document
-    .querySelectorAll(
-      ".section"
-    )
-    .forEach(section => {
-
-      section.classList.remove(
-        "active"
-      );
-
-    });
+    .querySelectorAll(".section")
+    .forEach(
+      section =>
+        section.classList.remove("active")
+    );
 
 
   const section =
@@ -1857,31 +1468,22 @@ function showSection(
 
   if(section){
 
-    section.classList.add(
-      "active"
-    );
+    section.classList.add("active");
 
   }
 
 
   document
-    .querySelectorAll(
-      ".tab"
-    )
-    .forEach(tab => {
-
-      tab.classList.remove(
-        "active"
-      );
-
-    });
+    .querySelectorAll(".tab")
+    .forEach(
+      tab =>
+        tab.classList.remove("active")
+    );
 
 
   if(button){
 
-    button.classList.add(
-      "active"
-    );
+    button.classList.add("active");
 
   }
 
@@ -1924,13 +1526,10 @@ function showSection(
 
 
 /* =========================================================
-   HOUSE MESSAGE
+   MESSAGE
 ========================================================= */
 
-function showMessage(
-  text,
-  type
-){
+function showMessage(text,type){
 
   postMessage.textContent =
     text;
@@ -1941,14 +1540,7 @@ function showMessage(
 }
 
 
-/* =========================================================
-   CAR MESSAGE
-========================================================= */
-
-function showCarMessage(
-  text,
-  type
-){
+function showCarMessage(text,type){
 
   carMessage.textContent =
     text;
@@ -1965,109 +1557,14 @@ function showCarMessage(
 
 function escapeHtml(value){
 
-  return String(
-    value ?? ""
-  )
-  .replace(
-    /&/g,
-    "&amp;"
-  )
-  .replace(
-    /</g,
-    "&lt;"
-  )
-  .replace(
-    />/g,
-    "&gt;"
-  )
-  .replace(
-    /"/g,
-    "&quot;"
-  )
-  .replace(
-    /'/g,
-    "&#039;"
-  );
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
-
-
-/* =========================================================
-   HOUSE PHOTO PREVIEW
-========================================================= */
-
-document
-  .getElementById(
-    "otherPhotos"
-  )
-  .addEventListener(
-    "change",
-    function(){
-
-      photoPreview.innerHTML =
-        "";
-
-      Array
-        .from(this.files)
-        .forEach(file => {
-
-          const img =
-            document.createElement(
-              "img"
-            );
-
-          img.src =
-            URL.createObjectURL(
-              file
-            );
-
-          photoPreview.appendChild(
-            img
-          );
-
-        });
-
-    }
-  );
-
-
-/* =========================================================
-   CAR PHOTO PREVIEW
-========================================================= */
-
-document
-  .getElementById(
-    "carOtherPhotos"
-  )
-  .addEventListener(
-    "change",
-    function(){
-
-      carPhotoPreview.innerHTML =
-        "";
-
-      Array
-        .from(this.files)
-        .forEach(file => {
-
-          const img =
-            document.createElement(
-              "img"
-            );
-
-          img.src =
-            URL.createObjectURL(
-              file
-            );
-
-          carPhotoPreview.appendChild(
-            img
-          );
-
-        });
-
-    }
-  );
 
 
 /* =========================================================
@@ -2086,11 +1583,10 @@ async function uploadImage(file){
 
 
   const safeName =
-    file.name
-      .replace(
-        /[^a-zA-Z0-9._-]/g,
-        "-"
-      );
+    file.name.replace(
+      /[^a-zA-Z0-9._-]/g,
+      "-"
+    );
 
 
   const fileName =
@@ -2113,9 +1609,7 @@ async function uploadImage(file){
   } =
   await supabaseClient
     .storage
-    .from(
-      "property-images"
-    )
+    .from("property-images")
     .upload(
       filePath,
       file,
@@ -2137,9 +1631,7 @@ async function uploadImage(file){
   } =
   supabaseClient
     .storage
-    .from(
-      "property-images"
-    )
+    .from("property-images")
     .getPublicUrl(
       filePath
     );
@@ -2148,6 +1640,72 @@ async function uploadImage(file){
   return data.publicUrl;
 
 }
+
+
+/* =========================================================
+   HOUSE PHOTO PREVIEW
+========================================================= */
+
+document
+  .getElementById("otherPhotos")
+  .addEventListener(
+    "change",
+    function(){
+
+      photoPreview.innerHTML =
+        "";
+
+      Array
+        .from(this.files)
+        .forEach(
+          file => {
+
+            const img =
+              document.createElement("img");
+
+            img.src =
+              URL.createObjectURL(file);
+
+            photoPreview.appendChild(img);
+
+          }
+        );
+
+    }
+  );
+
+
+/* =========================================================
+   CAR PHOTO PREVIEW
+========================================================= */
+
+document
+  .getElementById("carOtherPhotos")
+  .addEventListener(
+    "change",
+    function(){
+
+      carPhotoPreview.innerHTML =
+        "";
+
+      Array
+        .from(this.files)
+        .forEach(
+          file => {
+
+            const img =
+              document.createElement("img");
+
+            img.src =
+              URL.createObjectURL(file);
+
+            carPhotoPreview.appendChild(img);
+
+          }
+        );
+
+    }
+  );
 
 
 /* =========================================================
@@ -2168,148 +1726,75 @@ propertyForm.addEventListener(
       "Posting...";
 
 
-    showMessage(
-      "Posting property...",
-      "success"
-    );
-
-
     try{
 
       const title =
-        document
-          .getElementById(
-            "title"
-          )
-          .value
-          .trim();
-
+        document.getElementById("title")
+          .value.trim();
 
       const propertyType =
-        document
-          .getElementById(
-            "propertyType"
-          )
+        document.getElementById("propertyType")
           .value;
-
 
       const price =
         Number(
-          document
-            .getElementById(
-              "price"
-            )
+          document.getElementById("price")
             .value
         );
 
-
       const country =
-        document
-          .getElementById(
-            "country"
-          )
-          .value
-          .trim();
-
+        document.getElementById("country")
+          .value.trim();
 
       const province =
-        document
-          .getElementById(
-            "province"
-          )
-          .value
-          .trim();
-
+        document.getElementById("province")
+          .value.trim();
 
       const district =
-        document
-          .getElementById(
-            "district"
-          )
-          .value
-          .trim();
-
+        document.getElementById("district")
+          .value.trim();
 
       const sector =
-        document
-          .getElementById(
-            "sector"
-          )
-          .value
-          .trim();
-
+        document.getElementById("sector")
+          .value.trim();
 
       const bedrooms =
         Number(
-          document
-            .getElementById(
-              "bedrooms"
-            )
+          document.getElementById("bedrooms")
             .value || 0
         );
-
 
       const bathrooms =
         Number(
-          document
-            .getElementById(
-              "bathrooms"
-            )
+          document.getElementById("bathrooms")
             .value || 0
         );
-
 
       const parking =
         Number(
-          document
-            .getElementById(
-              "parking"
-            )
+          document.getElementById("parking")
             .value || 0
         );
 
-
       const sellerName =
-        document
-          .getElementById(
-            "sellerName"
-          )
-          .value
-          .trim();
-
+        document.getElementById("sellerName")
+          .value.trim();
 
       const phone =
-        document
-          .getElementById(
-            "phone"
-          )
-          .value
-          .trim();
-
+        document.getElementById("phone")
+          .value.trim();
 
       const description =
-        document
-          .getElementById(
-            "description"
-          )
-          .value
-          .trim();
-
+        document.getElementById("description")
+          .value.trim();
 
       const mainPhotoFile =
-        document
-          .getElementById(
-            "mainPhoto"
-          )
+        document.getElementById("mainPhoto")
           .files[0];
-
 
       const otherPhotoFiles =
         Array.from(
-          document
-            .getElementById(
-              "otherPhotos"
-            )
+          document.getElementById("otherPhotos")
             .files
         );
 
@@ -2323,28 +1808,27 @@ propertyForm.addEventListener(
       }
 
 
+      showMessage(
+        "Posting property...",
+        "success"
+      );
+
+
       const mainPhotoUrl =
         await uploadImage(
           mainPhotoFile
         );
 
 
-      const otherPhotoUrls =
-        [];
+      const otherPhotoUrls = [];
 
 
       for(
-        const file
-        of otherPhotoFiles
+        const file of otherPhotoFiles
       ){
 
-        const url =
-          await uploadImage(
-            file
-          );
-
         otherPhotoUrls.push(
-          url
+          await uploadImage(file)
         );
 
       }
@@ -2354,9 +1838,7 @@ propertyForm.addEventListener(
         error
       } =
       await supabaseClient
-        .from(
-          "property_posts"
-        )
+        .from("property_posts")
         .insert({
 
           seller_name:
@@ -2425,31 +1907,21 @@ propertyForm.addEventListener(
 
       propertyForm.reset();
 
-
-      document
-        .getElementById(
-          "country"
-        )
-        .value =
-        "Rwanda";
-
+      document.getElementById("country")
+        .value = "Rwanda";
 
       photoPreview.innerHTML =
         "";
-
 
       await loadProperties();
 
     }
     catch(error){
 
-      console.error(
-        error
-      );
+      console.error(error);
 
       showMessage(
-        "❌ " +
-        error.message,
+        "❌ " + error.message,
         "error"
       );
 
@@ -2484,65 +1956,33 @@ carForm.addEventListener(
       "Posting Car...";
 
 
-    showCarMessage(
-      "🚗 Posting car...",
-      "success"
-    );
-
-
     try{
 
       const title =
-        document
-          .getElementById(
-            "carTitle"
-          )
-          .value
-          .trim();
-
+        document.getElementById("carTitle")
+          .value.trim();
 
       const price =
         Number(
-          document
-            .getElementById(
-              "carPrice"
-            )
+          document.getElementById("carPrice")
             .value
         );
 
-
       const location =
-        document
-          .getElementById(
-            "carLocation"
-          )
-          .value
-          .trim();
-
+        document.getElementById("carLocation")
+          .value.trim();
 
       const phone =
-        document
-          .getElementById(
-            "carPhone"
-          )
-          .value
-          .trim();
-
+        document.getElementById("carPhone")
+          .value.trim();
 
       const mainFile =
-        document
-          .getElementById(
-            "carMainPhoto"
-          )
+        document.getElementById("carMainPhoto")
           .files[0];
-
 
       const otherFiles =
         Array.from(
-          document
-            .getElementById(
-              "carOtherPhotos"
-            )
+          document.getElementById("carOtherPhotos")
             .files
         );
 
@@ -2556,28 +1996,25 @@ carForm.addEventListener(
       }
 
 
+      showCarMessage(
+        "🚗 Posting car...",
+        "success"
+      );
+
+
       const mainPhoto =
-        await uploadImage(
-          mainFile
-        );
+        await uploadImage(mainFile);
 
 
-      const otherPhotos =
-        [];
+      const otherPhotos = [];
 
 
       for(
-        const file
-        of otherFiles
+        const file of otherFiles
       ){
 
-        const url =
-          await uploadImage(
-            file
-          );
-
         otherPhotos.push(
-          url
+          await uploadImage(file)
         );
 
       }
@@ -2587,9 +2024,7 @@ carForm.addEventListener(
         error
       } =
       await supabaseClient
-        .from(
-          "cars_posts"
-        )
+        .from("cars_posts")
         .insert({
 
           title:
@@ -2631,24 +2066,18 @@ carForm.addEventListener(
 
       carForm.reset();
 
-
       carPhotoPreview.innerHTML =
         "";
-
 
       await loadCars();
 
     }
     catch(error){
 
-      console.error(
-        error
-      );
-
+      console.error(error);
 
       showCarMessage(
-        "❌ " +
-        error.message,
+        "❌ " + error.message,
         "error"
       );
 
@@ -2682,9 +2111,7 @@ async function loadProperties(){
     error
   } =
   await supabaseClient
-    .from(
-      "property_posts"
-    )
+    .from("property_posts")
     .select("*")
     .order(
       "created_at",
@@ -2698,9 +2125,7 @@ async function loadProperties(){
 
     propertiesElement.innerHTML =
       `<div class="empty">
-        ❌ ${escapeHtml(
-          error.message
-        )}
+        ❌ ${escapeHtml(error.message)}
       </div>`;
 
     return;
@@ -2708,10 +2133,7 @@ async function loadProperties(){
   }
 
 
-  if(
-    !data ||
-    data.length === 0
-  ){
+  if(!data || data.length === 0){
 
     propertiesElement.innerHTML =
       `<div class="empty">
@@ -2731,9 +2153,7 @@ async function loadProperties(){
     property => {
 
       const card =
-        document.createElement(
-          "div"
-        );
+        document.createElement("div");
 
       card.className =
         "property";
@@ -2761,9 +2181,7 @@ async function loadProperties(){
       card.innerHTML = `
 
         <img
-          src="${escapeHtml(
-            mainPhoto
-          )}"
+          src="${escapeHtml(mainPhoto)}"
           alt="Property"
         >
 
@@ -2778,56 +2196,37 @@ async function loadProperties(){
 
           </div>
 
-
           <div class="price">
 
             ${Number(
-              property.price ||
-              0
+              property.price || 0
             ).toLocaleString()}
 
             RWF
 
           </div>
 
-
           <div class="location">
 
             📍
-
             ${escapeHtml(
-              property.country ||
-              ""
-            )}
-
-            ,
-
+              property.country || ""
+            )},
             ${escapeHtml(
-              property.province ||
-              ""
-            )}
-
-            ,
-
+              property.province || ""
+            )},
             ${escapeHtml(
-              property.district ||
-              ""
-            )}
-
-            ,
-
+              property.district || ""
+            )},
             ${escapeHtml(
-              property.sector ||
-              ""
+              property.sector || ""
             )}
 
             <br><br>
 
             🏷️ Type:
-
             ${escapeHtml(
-              property.property_type ||
-              ""
+              property.property_type || ""
             )}
 
             <br>
@@ -2835,40 +2234,30 @@ async function loadProperties(){
             📌 Status:
 
             <span
-              class="status status-${escapeHtml(
-                status
-              )}"
+              class="status status-${escapeHtml(status)}"
             >
-
-              ${escapeHtml(
-                status
-              )}
-
+              ${escapeHtml(status)}
             </span>
 
             <br><br>
 
             🛏️ Bedrooms:
-
             ${property.bedrooms ?? 0}
 
             <br>
 
             🚿 Bathrooms:
-
             ${property.bathrooms ?? 0}
 
             <br>
 
             🚗 Parking:
-
             ${property.parking ?? 0}
 
           </div>
 
 
           <div class="property-actions">
-
 
             <button
               class="button secondary"
@@ -2877,7 +2266,6 @@ async function loadProperties(){
               View
             </button>
 
-
             <button
               class="button delete"
               onclick="deleteProperty('${property.id}')"
@@ -2885,18 +2273,14 @@ async function loadProperties(){
               🗑️ Delete
             </button>
 
-
           </div>
-
 
         </div>
 
       `;
 
 
-      propertiesElement.appendChild(
-        card
-      );
+      propertiesElement.appendChild(card);
 
     }
   );
@@ -2921,21 +2305,21 @@ async function loadCars(){
     error
   } =
   await supabaseClient
-    .from(
-      "cars_posts"
-    )
-    .select("*");
+    .from("cars_posts")
+    .select("*")
+    .order(
+      "created_at",
+      {
+        ascending:false
+      }
+    );
 
 
   if(error){
 
     carsList.innerHTML =
       `<div class="empty">
-
-        ❌ ${escapeHtml(
-          error.message
-        )}
-
+        ❌ ${escapeHtml(error.message)}
       </div>`;
 
     return;
@@ -2943,16 +2327,11 @@ async function loadCars(){
   }
 
 
-  if(
-    !data ||
-    data.length === 0
-  ){
+  if(!data || data.length === 0){
 
     carsList.innerHTML =
       `<div class="empty">
-
         🚗 Nta modoka irashyirwaho.
-
       </div>`;
 
     return;
@@ -2968,9 +2347,7 @@ async function loadCars(){
     car => {
 
       const card =
-        document.createElement(
-          "div"
-        );
+        document.createElement("div");
 
       card.className =
         "property";
@@ -2982,9 +2359,7 @@ async function loadCars(){
 
       if(
         !mainPhoto &&
-        Array.isArray(
-          car.otherph
-        )
+        Array.isArray(car.otherph)
       ){
 
         mainPhoto =
@@ -2995,22 +2370,15 @@ async function loadCars(){
 
       if(
         !mainPhoto &&
-        typeof car.otherph ===
-        "string"
+        typeof car.otherph === "string"
       ){
 
         try{
 
           const parsed =
-            JSON.parse(
-              car.otherph
-            );
+            JSON.parse(car.otherph);
 
-          if(
-            Array.isArray(
-              parsed
-            )
-          ){
+          if(Array.isArray(parsed)){
 
             mainPhoto =
               parsed[0];
@@ -3036,59 +2404,46 @@ async function loadCars(){
       card.innerHTML = `
 
         <img
-          src="${escapeHtml(
-            mainPhoto
-          )}"
+          src="${escapeHtml(mainPhoto)}"
           alt="Car"
         >
 
-
         <div class="property-body">
-
 
           <div class="car-badge">
             🚗 CAR FOR SALE
           </div>
 
-
           <div class="property-title">
 
             ${escapeHtml(
-              car.title ||
-              "Car"
+              car.title || "Car"
             )}
 
           </div>
 
-
           <div class="price">
 
             ${Number(
-              car.price ||
-              0
+              car.price || 0
             ).toLocaleString()}
 
             RWF
 
           </div>
 
-
           <div class="location">
 
             📍
-
             ${escapeHtml(
-              car.locati ||
-              ""
+              car.locati || ""
             )}
 
             <br><br>
 
             📞
-
             ${escapeHtml(
-              car.phon ||
-              ""
+              car.phon || ""
             )}
 
             <br><br>
@@ -3096,57 +2451,166 @@ async function loadCars(){
             📌 Status:
 
             <span
-              class="status status-${escapeHtml(
-                status
-              )}"
+              class="status status-${escapeHtml(status)}"
             >
-
-              ${escapeHtml(
-                status
-              )}
-
+              ${escapeHtml(status)}
             </span>
 
           </div>
 
-
           <div class="property-actions">
-
 
             <button
               class="button secondary"
               onclick="viewCar('${car.id}')"
             >
-
               View
-
             </button>
-
 
             <button
               class="button delete"
               onclick="deleteCar('${car.id}')"
             >
-
               🗑️ Delete
-
             </button>
 
-
           </div>
-
 
         </div>
 
       `;
 
 
-      carsList.appendChild(
-        card
-      );
+      carsList.appendChild(card);
 
     }
   );
+
+}
+
+
+/* =========================================================
+   VIEW PROPERTY
+========================================================= */
+
+async function viewProperty(id){
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("property_posts")
+    .select("*")
+    .eq("id",id)
+    .maybeSingle();
+
+
+  if(error){
+
+    alert("❌ " + error.message);
+
+    return;
+
+  }
+
+
+  if(!data){
+
+    alert("Property ntiyabonetse.");
+
+    return;
+
+  }
+
+
+  alert(
+
+    "PROPERTY DETAILS\n\n" +
+
+    "Title: " +
+    (data.title || "") +
+
+    "\n\nSeller: " +
+    (data.seller_name || "") +
+
+    "\nPhone: " +
+    (data.phone || "") +
+
+    "\n\nType: " +
+    (data.property_type || "") +
+
+    "\n\nPrice: " +
+
+    Number(
+      data.price || 0
+    ).toLocaleString() +
+
+    " RWF" +
+
+    "\n\nLocation: " +
+
+    (data.country || "") +
+    " / " +
+    (data.province || "") +
+    " / " +
+    (data.district || "") +
+    " / " +
+    (data.sector || "") +
+
+    "\n\nDescription:\n" +
+
+    (data.description || "")
+
+  );
+
+}
+
+
+/* =========================================================
+   DELETE PROPERTY
+========================================================= */
+
+async function deleteProperty(id){
+
+  if(
+    !confirm(
+      "Urashaka koko gusiba iyi post?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+  await supabaseClient
+    .from("property_posts")
+    .delete()
+    .eq("id",id);
+
+
+  if(error){
+
+    alert(
+      "❌ " +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  alert(
+    "✅ Post yasibwe neza."
+  );
+
+
+  await loadProperties();
 
 }
 
@@ -3162,14 +2626,9 @@ async function viewCar(id){
     error
   } =
   await supabaseClient
-    .from(
-      "cars_posts"
-    )
+    .from("cars_posts")
     .select("*")
-    .eq(
-      "id",
-      id
-    )
+    .eq("id",id)
     .maybeSingle();
 
 
@@ -3201,40 +2660,24 @@ async function viewCar(id){
     "CAR DETAILS\n\n" +
 
     "Title: " +
-    (
-      data.title ||
-      ""
-    ) +
+    (data.title || "") +
 
     "\n\nPrice: " +
 
     Number(
-      data.price ||
-      0
+      data.price || 0
     ).toLocaleString() +
 
     " RWF" +
 
     "\n\nLocation: " +
-
-    (
-      data.locati ||
-      ""
-    ) +
+    (data.locati || "") +
 
     "\n\nPhone: " +
-
-    (
-      data.phon ||
-      ""
-    ) +
+    (data.phon || "") +
 
     "\n\nStatus: " +
-
-    (
-      data.stat ||
-      ""
-    )
+    (data.stat || "")
 
   );
 
@@ -3262,14 +2705,9 @@ async function deleteCar(id){
     error
   } =
   await supabaseClient
-    .from(
-      "cars_posts"
-    )
+    .from("cars_posts")
     .delete()
-    .eq(
-      "id",
-      id
-    );
+    .eq("id",id);
 
 
   if(error){
@@ -3295,181 +2733,6 @@ async function deleteCar(id){
 
 
 /* =========================================================
-   VIEW PROPERTY
-========================================================= */
-
-async function viewProperty(id){
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from(
-      "property_posts"
-    )
-    .select("*")
-    .eq(
-      "id",
-      id
-    )
-    .maybeSingle();
-
-
-  if(error){
-
-    alert(
-      "❌ " +
-      error.message
-    );
-
-    return;
-
-  }
-
-
-  if(!data){
-
-    alert(
-      "Property ntiyabonetse."
-    );
-
-    return;
-
-  }
-
-
-  alert(
-
-    "PROPERTY DETAILS\n\n" +
-
-    "Title: " +
-    (
-      data.title ||
-      ""
-    ) +
-
-    "\n\nSeller: " +
-    (
-      data.seller_name ||
-      ""
-    ) +
-
-    "\nPhone: " +
-    (
-      data.phone ||
-      ""
-    ) +
-
-    "\n\nType: " +
-    (
-      data.property_type ||
-      ""
-    ) +
-
-    "\n\nPrice: " +
-
-    Number(
-      data.price ||
-      0
-    ).toLocaleString() +
-
-    " RWF" +
-
-    "\n\nLocation: " +
-
-    (
-      data.country ||
-      ""
-    ) +
-
-    " / " +
-
-    (
-      data.province ||
-      ""
-    ) +
-
-    " / " +
-
-    (
-      data.district ||
-      ""
-    ) +
-
-    " / " +
-
-    (
-      data.sector ||
-      ""
-    ) +
-
-    "\n\nDescription:\n" +
-
-    (
-      data.description ||
-      ""
-    )
-
-  );
-
-}
-
-
-/* =========================================================
-   DELETE PROPERTY
-========================================================= */
-
-async function deleteProperty(id){
-
-  if(
-    !confirm(
-      "Urashaka koko gusiba iyi post?"
-    )
-  ){
-
-    return;
-
-  }
-
-
-  const {
-    error
-  } =
-  await supabaseClient
-    .from(
-      "property_posts"
-    )
-    .delete()
-    .eq(
-      "id",
-      id
-    );
-
-
-  if(error){
-
-    alert(
-      "❌ " +
-      error.message
-    );
-
-    return;
-
-  }
-
-
-  alert(
-    "✅ Post yasibwe neza."
-  );
-
-
-  await loadProperties();
-
-}
-
-
-/* =========================================================
    LOAD REQUESTS
 ========================================================= */
 
@@ -3486,9 +2749,7 @@ async function loadRequests(){
     error
   } =
   await supabaseClient
-    .from(
-      "property_requests"
-    )
+    .from("property_requests")
     .select("*")
     .order(
       "created_at",
@@ -3502,11 +2763,7 @@ async function loadRequests(){
 
     requestsList.innerHTML =
       `<div class="empty">
-
-        ❌ ${escapeHtml(
-          error.message
-        )}
-
+        ❌ ${escapeHtml(error.message)}
       </div>`;
 
     requestBadge.textContent =
@@ -3517,16 +2774,11 @@ async function loadRequests(){
   }
 
 
-  if(
-    !data ||
-    data.length === 0
-  ){
+  if(!data || data.length === 0){
 
     requestsList.innerHTML =
       `<div class="empty">
-
         Nta request iraboneka.
-
       </div>`;
 
     requestBadge.textContent =
@@ -3539,17 +2791,11 @@ async function loadRequests(){
 
   const pendingCount =
     data.filter(
-      request => {
-
-        return String(
-          request.status ||
-          "pending"
-        )
-        .toLowerCase()
-        ===
-        "pending";
-
-      }
+      request =>
+        String(
+          request.status || "pending"
+        ).toLowerCase() ===
+        "pending"
     ).length;
 
 
@@ -3565,9 +2811,7 @@ async function loadRequests(){
     request => {
 
       const box =
-        document.createElement(
-          "div"
-        );
+        document.createElement("div");
 
       box.className =
         "request";
@@ -3588,59 +2832,45 @@ async function loadRequests(){
 
         </div>
 
-
         <div class="request-info">
-
 
           ${
             request.email
             ?
             "📧 Email: " +
-            escapeHtml(
-              request.email
-            ) +
+            escapeHtml(request.email) +
             "<br>"
             :
             ""
           }
-
 
           ${
             request.phone
             ?
             "📞 Phone: " +
-            escapeHtml(
-              request.phone
-            ) +
+            escapeHtml(request.phone) +
             "<br>"
             :
             ""
           }
 
-
           ${
             request.status
             ?
             "<br>📌 Status: " +
-            escapeHtml(
-              request.status
-            )
+            escapeHtml(request.status)
             :
             ""
           }
-
 
           ${
             request.message
             ?
             "<br><br>📝 Message:<br>" +
-            escapeHtml(
-              request.message
-            )
+            escapeHtml(request.message)
             :
             ""
           }
-
 
           ${
             request.created_at
@@ -3655,15 +2885,12 @@ async function loadRequests(){
             ""
           }
 
-
         </div>
 
       `;
 
 
-      requestsList.appendChild(
-        box
-      );
+      requestsList.appendChild(box);
 
     }
   );
@@ -3688,9 +2915,7 @@ async function loadApprovals(){
     error
   } =
   await supabaseClient
-    .from(
-      "property_requests"
-    )
+    .from("property_requests")
     .select("*")
     .order(
       "created_at",
@@ -3704,11 +2929,7 @@ async function loadApprovals(){
 
     approvalsList.innerHTML =
       `<div class="empty">
-
-        ❌ ${escapeHtml(
-          error.message
-        )}
-
+        ❌ ${escapeHtml(error.message)}
       </div>`;
 
     return;
@@ -3717,36 +2938,20 @@ async function loadApprovals(){
 
 
   const pending =
-    (data || [])
-      .filter(
-        request => {
-
-          const status =
-            String(
-              request.status ||
-              "pending"
-            )
-            .toLowerCase();
-
-          return (
-            status ===
-            "pending"
-          );
-
-        }
-      );
+    (data || []).filter(
+      request =>
+        String(
+          request.status || "pending"
+        ).toLowerCase() ===
+        "pending"
+    );
 
 
-  if(
-    pending.length ===
-    0
-  ){
+  if(pending.length === 0){
 
     approvalsList.innerHTML =
       `<div class="empty">
-
         ✅ Nta request itegereje kwemezwa.
-
       </div>`;
 
     return;
@@ -3762,9 +2967,7 @@ async function loadApprovals(){
     request => {
 
       const box =
-        document.createElement(
-          "div"
-        );
+        document.createElement("div");
 
       box.className =
         "request";
@@ -3785,141 +2988,101 @@ async function loadApprovals(){
 
         </div>
 
-
         <div class="request-info">
-
 
           ${
             request.name ||
             request.full_name
             ?
-
             "👤 Owner: " +
             escapeHtml(
               request.name ||
               request.full_name
             ) +
             "<br>"
-
             :
-
             ""
           }
-
 
           ${
             request.phone
             ?
-
             "📞 Phone: " +
-            escapeHtml(
-              request.phone
-            ) +
+            escapeHtml(request.phone) +
             "<br>"
-
             :
-
             ""
           }
-
 
           ${
             request.email
             ?
-
             "📧 Email: " +
-            escapeHtml(
-              request.email
-            ) +
-              "<br>"
-
+            escapeHtml(request.email) +
+            "<br>"
             :
-
             ""
           }
-
 
           ${
             request.property_type
             ?
-
             "🏷️ Type: " +
             escapeHtml(
               request.property_type
             ) +
             "<br>"
-
             :
-
             ""
           }
-
 
           ${
             request.price
             ?
-
             "💰 Price: " +
             Number(
               request.price
             ).toLocaleString() +
             " RWF<br>"
-
             :
-
             ""
           }
-
 
           ${
             request.message
             ?
-
             "<br>📝 Message:<br>" +
             escapeHtml(
               request.message
             )
-
             :
-
             ""
           }
 
-
         </div>
 
-
         <div class="request-actions">
-
 
           <button
             class="button approve"
             onclick="approveRequest('${request.id}')"
           >
-
             ✅ Approve
-
           </button>
-
 
           <button
             class="button reject"
             onclick="rejectRequest('${request.id}')"
           >
-
             ❌ Reject
-
           </button>
-
 
         </div>
 
       `;
 
 
-      approvalsList.appendChild(
-        box
-      );
+      approvalsList.appendChild(box);
 
     }
   );
@@ -3948,17 +3111,11 @@ async function approveRequest(id){
     error
   } =
   await supabaseClient
-    .from(
-      "property_requests"
-    )
+    .from("property_requests")
     .update({
-      status:
-        "approved"
+      status:"approved"
     })
-    .eq(
-      "id",
-      id
-    );
+    .eq("id",id);
 
 
   if(error){
@@ -4006,17 +3163,11 @@ async function rejectRequest(id){
     error
   } =
   await supabaseClient
-    .from(
-      "property_requests"
-    )
+    .from("property_requests")
     .update({
-      status:
-        "rejected"
+      status:"rejected"
     })
-    .eq(
-      "id",
-      id
-    );
+    .eq("id",id);
 
 
   if(error){
@@ -4044,7 +3195,7 @@ async function rejectRequest(id){
 
 
 /* =========================================================
-   VISITOR STATISTICS
+   FORMAT NUMBER
 ========================================================= */
 
 function formatNumber(value){
@@ -4057,25 +3208,73 @@ function formatNumber(value){
 
 
 /* =========================================================
-   LOAD VISITOR STATS
+   DEVICE DETECTOR
+========================================================= */
+
+function detectDevice(userAgent){
+
+  const ua =
+    String(
+      userAgent || ""
+    ).toLowerCase();
+
+
+  if(
+    /tablet|ipad|playbook|silk/.test(ua)
+  ){
+
+    return "Tablet";
+
+  }
+
+
+  if(
+    /mobile|android|iphone|ipod|windows phone/.test(ua)
+  ){
+
+    return "Mobile";
+
+  }
+
+
+  return "Desktop";
+
+}
+
+
+/* =========================================================
+   LOAD STUDIO
 ========================================================= */
 
 async function loadVisitorStats(){
+
+  const errorBox =
+    document.getElementById(
+      "studioError"
+    );
+
+
+  errorBox.style.display =
+    "none";
+
 
   document.getElementById(
     "totalViews"
   ).textContent =
     "...";
 
+
   document.getElementById(
     "uniqueVisitors"
   ).textContent =
     "...";
 
+
   document.getElementById(
     "todayViews"
   ).textContent =
     "...";
+
 
   document.getElementById(
     "sevenDayViews"
@@ -4085,30 +3284,32 @@ async function loadVisitorStats(){
 
   try{
 
-    /* =========================
-       ALL VIEWS
-    ========================= */
-
     const {
       data,
       error
     } =
     await supabaseClient
-      .from(
-        "page_views"
-      )
-      .select(
-        "id,page,path,visitor_id,session_id,referrer,user_agent,device_type,country,city,created_at"
-      )
+      .from("page_views")
+      .select(`
+        id,
+        page,
+        path,
+        visitor_id,
+        session_id,
+        referrer,
+        user_agent,
+        device_type,
+        country,
+        city,
+        created_at
+      `)
       .order(
         "created_at",
         {
           ascending:false
         }
       )
-      .limit(
-        5000
-      );
+      .limit(10000);
 
 
     if(error){
@@ -4135,7 +3336,7 @@ async function loadVisitorStats(){
 
 
     /* =========================
-       UNIQUE VISITORS
+       UNIQUE
     ========================= */
 
     const visitorSet =
@@ -4145,9 +3346,7 @@ async function loadVisitorStats(){
     views.forEach(
       view => {
 
-        if(
-          view.visitor_id
-        ){
+        if(view.visitor_id){
 
           visitorSet.add(
             view.visitor_id
@@ -4187,19 +3386,19 @@ async function loadVisitorStats(){
       views.filter(
         view => {
 
-          if(
-            !view.created_at
-          ){
+          if(!view.created_at){
 
             return false;
 
           }
 
 
-          return new Date(
-            view.created_at
-          ) >=
-          startToday;
+          return (
+            new Date(
+              view.created_at
+            ) >=
+            startToday
+          );
 
         }
       );
@@ -4214,17 +3413,19 @@ async function loadVisitorStats(){
 
 
     /* =========================
-       LAST 7 DAYS
+       7 DAYS
     ========================= */
 
     const sevenDaysAgo =
       new Date(
-        now.getTime() -
-        7 *
-        24 *
-        60 *
-        60 *
-        1000
+        Date.now() -
+        (
+          7 *
+          24 *
+          60 *
+          60 *
+          1000
+        )
       );
 
 
@@ -4232,19 +3433,19 @@ async function loadVisitorStats(){
       views.filter(
         view => {
 
-          if(
-            !view.created_at
-          ){
+          if(!view.created_at){
 
             return false;
 
           }
 
 
-          return new Date(
-            view.created_at
-          ) >=
-          sevenDaysAgo;
+          return (
+            new Date(
+              view.created_at
+            ) >=
+            sevenDaysAgo
+          );
 
         }
       );
@@ -4258,27 +3459,15 @@ async function loadVisitorStats(){
       );
 
 
-    /* =========================
-       PAGE STATISTICS
-    ========================= */
-
     renderPageChart(
       views
     );
 
 
-    /* =========================
-       DEVICE STATISTICS
-    ========================= */
-
     renderDeviceChart(
       views
     );
 
-
-    /* =========================
-       RECENT VISITORS
-    ========================= */
 
     renderRecentViews(
       views
@@ -4288,7 +3477,7 @@ async function loadVisitorStats(){
   catch(error){
 
     console.error(
-      "Visitor statistics error:",
+      "Studio error:",
       error
     );
 
@@ -4296,31 +3485,41 @@ async function loadVisitorStats(){
     document.getElementById(
       "totalViews"
     ).textContent =
-      "Error";
+      "0";
+
 
     document.getElementById(
       "uniqueVisitors"
     ).textContent =
-      "Error";
+      "0";
+
 
     document.getElementById(
       "todayViews"
     ).textContent =
-      "Error";
+      "0";
+
 
     document.getElementById(
       "sevenDayViews"
     ).textContent =
-      "Error";
+      "0";
+
+
+    errorBox.textContent =
+      "❌ Studio error: " +
+      error.message;
+
+
+    errorBox.style.display =
+      "block";
 
 
     document.getElementById(
       "pageChart"
     ).innerHTML =
       `<div class="loading-stat">
-        ❌ ${escapeHtml(
-          error.message
-        )}
+        ❌ ${escapeHtml(error.message)}
       </div>`;
 
 
@@ -4328,9 +3527,7 @@ async function loadVisitorStats(){
       "deviceChart"
     ).innerHTML =
       `<div class="loading-stat">
-        ❌ ${escapeHtml(
-          error.message
-        )}
+        ❌ ${escapeHtml(error.message)}
       </div>`;
 
 
@@ -4338,9 +3535,7 @@ async function loadVisitorStats(){
       "recentViews"
     ).innerHTML =
       `<div class="loading-stat">
-        ❌ ${escapeHtml(
-          error.message
-        )}
+        ❌ ${escapeHtml(error.message)}
       </div>`;
 
   }
@@ -4352,9 +3547,7 @@ async function loadVisitorStats(){
    PAGE CHART
 ========================================================= */
 
-function renderPageChart(
-  views
-){
+function renderPageChart(views){
 
   const container =
     document.getElementById(
@@ -4369,8 +3562,8 @@ function renderPageChart(
     view => {
 
       const page =
-        view.page ||
         view.path ||
+        view.page ||
         "Unknown";
 
 
@@ -4398,10 +3591,7 @@ function renderPageChart(
     );
 
 
-  if(
-    entries.length ===
-    0
-  ){
+  if(entries.length === 0){
 
     container.innerHTML =
       `<div class="loading-stat">
@@ -4437,6 +3627,7 @@ function renderPageChart(
           "div"
         );
 
+
       row.className =
         "chart-row";
 
@@ -4450,7 +3641,6 @@ function renderPageChart(
           ${escapeHtml(name)}
         </div>
 
-
         <div class="chart-bar-bg">
 
           <div
@@ -4459,7 +3649,6 @@ function renderPageChart(
           ></div>
 
         </div>
-
 
         <div class="chart-number">
 
@@ -4484,9 +3673,7 @@ function renderPageChart(
    DEVICE CHART
 ========================================================= */
 
-function renderDeviceChart(
-  views
-){
+function renderDeviceChart(views){
 
   const container =
     document.getElementById(
@@ -4527,10 +3714,7 @@ function renderDeviceChart(
     );
 
 
-  if(
-    entries.length ===
-    0
-  ){
+  if(entries.length === 0){
 
     container.innerHTML =
       `<div class="loading-stat">
@@ -4566,6 +3750,7 @@ function renderDeviceChart(
           "div"
         );
 
+
       row.className =
         "chart-row";
 
@@ -4579,7 +3764,6 @@ function renderDeviceChart(
           ${escapeHtml(name)}
         </div>
 
-
         <div class="chart-bar-bg">
 
           <div
@@ -4588,7 +3772,6 @@ function renderDeviceChart(
           ></div>
 
         </div>
-
 
         <div class="chart-number">
 
@@ -4610,53 +3793,10 @@ function renderDeviceChart(
 
 
 /* =========================================================
-   DEVICE DETECTOR
-========================================================= */
-
-function detectDevice(
-  userAgent
-){
-
-  const ua =
-    String(
-      userAgent || ""
-    ).toLowerCase();
-
-
-  if(
-    /tablet|ipad|playbook|silk/.test(
-      ua
-    )
-  ){
-
-    return "Tablet";
-
-  }
-
-
-  if(
-    /mobile|android|iphone|ipod|windows phone/.test(
-      ua
-    )
-  ){
-
-    return "Mobile";
-
-  }
-
-
-  return "Desktop";
-
-}
-
-
-/* =========================================================
    RECENT VIEWS
 ========================================================= */
 
-function renderRecentViews(
-  views
-){
+function renderRecentViews(views){
 
   const container =
     document.getElementById(
@@ -4671,10 +3811,7 @@ function renderRecentViews(
     );
 
 
-  if(
-    recent.length ===
-    0
-  ){
+  if(recent.length === 0){
 
     container.innerHTML =
       `<div class="loading-stat">
@@ -4717,8 +3854,8 @@ function renderRecentViews(
     view => {
 
       const page =
-        view.page ||
         view.path ||
+        view.page ||
         "-";
 
 
@@ -4748,9 +3885,7 @@ function renderRecentViews(
           view.country
         ]
         .filter(Boolean)
-        .join(
-          ", "
-        ) ||
+        .join(", ") ||
         "Unknown";
 
 
@@ -4779,9 +3914,7 @@ function renderRecentViews(
           <td>
 
             <span class="device-pill">
-
               ${escapeHtml(device)}
-
             </span>
 
           </td>
@@ -4866,37 +3999,26 @@ async function logout(){
   await loadProperties();
 
 
-  /* =========================
-     REQUEST BADGE
-  ========================= */
+  /* REQUEST BADGE */
 
   const {
     data
   } =
   await supabaseClient
-    .from(
-      "property_requests"
-    )
-    .select(
-      "id,status"
-    );
+    .from("property_requests")
+    .select("id,status");
 
 
   if(data){
 
     const pending =
       data.filter(
-        request => {
-
-          return String(
+        request =>
+          String(
             request.status ||
             "pending"
-          )
-          .toLowerCase()
-          ===
-          "pending";
-
-        }
+          ).toLowerCase() ===
+          "pending"
       );
 
 
@@ -4906,9 +4028,7 @@ async function logout(){
   }
 
 
-  /* =========================
-     PRELOAD STUDIO
-  ========================= */
+  /* STUDIO */
 
   await loadVisitorStats();
 
@@ -4916,7 +4036,7 @@ async function logout(){
 
 </script>
 
-
 </body>
 
 </html>
+```
