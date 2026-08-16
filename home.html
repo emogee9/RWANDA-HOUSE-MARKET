@@ -1500,122 +1500,6 @@ const supabaseClient =
 
 
 /* =========================================================
-   WEBSITE ANALYTICS
-   HOME PAGE VIEW TRACKING
-========================================================= */
-
-function getVisitorId(){
-
-  let visitorId =
-    localStorage.getItem(
-      "rpv_visitor_id"
-    );
-
-
-  if(!visitorId){
-
-    visitorId =
-      "visitor-" +
-      Date.now() +
-      "-" +
-      Math.random()
-        .toString(36)
-        .substring(2,12);
-
-
-    localStorage.setItem(
-      "rpv_visitor_id",
-      visitorId
-    );
-
-  }
-
-
-  return visitorId;
-
-}
-
-
-/* =========================================================
-   TRACK HOME PAGE VIEW
-========================================================= */
-
-async function trackPageView(){
-
-  try{
-
-    const visitorId =
-      getVisitorId();
-
-
-    const pageName =
-      "home";
-
-
-    const pagePath =
-      window.location.pathname ||
-      "/home.html";
-
-
-    const referrer =
-      document.referrer || null;
-
-
-    const language =
-      localStorage.getItem(
-        "selectedLanguage"
-      ) || "English";
-
-
-    const { error } =
-      await supabaseClient
-        .from("page_views")
-        .insert({
-
-          page_name:
-            pageName,
-
-          page_path:
-            pagePath,
-
-          visitor_id:
-            visitorId,
-
-          referrer:
-            referrer,
-
-          language:
-            language,
-
-          user_agent:
-            navigator.userAgent
-
-        });
-
-
-    if(error){
-
-      console.error(
-        "Analytics error:",
-        error
-      );
-
-    }
-
-  }
-  catch(error){
-
-    console.error(
-      "Analytics tracking failed:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================================================
    ELEMENTS
 ========================================================= */
 
@@ -2745,6 +2629,142 @@ new Date().getFullYear();
 
 
 /* =========================================================
+   PAGE VIEW TRACKING
+========================================================= */
+
+function getVisitorId(){
+
+  let visitorId =
+    localStorage.getItem(
+      "rpv_visitor_id"
+    );
+
+
+  if(!visitorId){
+
+    visitorId =
+      "visitor_" +
+      crypto.randomUUID();
+
+
+    localStorage.setItem(
+      "rpv_visitor_id",
+      visitorId
+    );
+
+  }
+
+
+  return visitorId;
+
+}
+
+
+function getSessionId(){
+
+  let sessionId =
+    sessionStorage.getItem(
+      "rpv_session_id"
+    );
+
+
+  if(!sessionId){
+
+    sessionId =
+      "session_" +
+      crypto.randomUUID();
+
+
+    sessionStorage.setItem(
+      "rpv_session_id",
+      sessionId
+    );
+
+  }
+
+
+  return sessionId;
+
+}
+
+
+async function trackPageView(){
+
+  try{
+
+    const visitorId =
+      getVisitorId();
+
+
+    const sessionId =
+      getSessionId();
+
+
+    const {
+
+      error
+
+    } = await supabaseClient
+
+      .from("page_views")
+
+      .insert({
+
+        page:
+          "Home",
+
+        path:
+          window.location.pathname,
+
+        visitor_id:
+          visitorId,
+
+        session_id:
+          sessionId,
+
+        referrer:
+          document.referrer || null,
+
+        user_agent:
+          navigator.userAgent,
+
+        device_type:
+
+          window.innerWidth <= 650
+
+            ? "mobile"
+
+            : window.innerWidth <= 900
+
+              ? "tablet"
+
+              : "desktop"
+
+      });
+
+
+    if(error){
+
+      console.error(
+        "Page view tracking error:",
+        error
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(
+      "Tracking error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
    START
 ========================================================= */
 
@@ -2755,10 +2775,6 @@ applyLanguage(
 
 loadHomeProperties();
 
-
-/* =========================================================
-   START ANALYTICS
-========================================================= */
 
 trackPageView();
 
