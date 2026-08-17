@@ -1,4 +1,3 @@
-<script src="language.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +7,7 @@
 <title>Plots for Sale - Rwanda House Market</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="language.js"></script>
 
 <style>
 *{
@@ -102,7 +102,7 @@ header h1{
 
 .location{
   color:#555;
-  line-height:1.6;
+  line-height:1.7;
 }
 
 .detail-button{
@@ -115,6 +115,7 @@ header h1{
   padding:12px;
   border-radius:8px;
   font-weight:bold;
+  cursor:pointer;
 }
 
 .detail-button:hover{
@@ -129,6 +130,15 @@ header h1{
   color:#777;
 }
 
+.error{
+  background:#fff;
+  padding:30px;
+  text-align:center;
+  border-radius:12px;
+  color:#b00000;
+  border:1px solid #e00000;
+}
+
 @media(max-width:900px){
   .plots{
     grid-template-columns:repeat(2,1fr);
@@ -138,6 +148,10 @@ header h1{
 @media(max-width:600px){
   .plots{
     grid-template-columns:1fr;
+  }
+
+  header h1{
+    font-size:24px;
   }
 }
 </style>
@@ -152,14 +166,13 @@ header h1{
   </h1>
 
   <a
-    href="./home.html"
+    href="home.html"
     class="back"
     id="backButton">
     ← Back to Home
   </a>
 
 </header>
-
 
 <div class="container">
 
@@ -175,12 +188,11 @@ header h1{
 
   </div>
 
-
   <div
     id="plots"
     class="plots">
 
-    <div class="empty">
+    <div class="empty" id="loadingText">
       Loading plots...
     </div>
 
@@ -188,12 +200,11 @@ header h1{
 
 </div>
 
-
 <script>
 
-/* ===============================
+/* =========================================================
    SUPABASE
-================================ */
+========================================================= */
 
 const SUPABASE_URL =
   "https://hsmnybmcddtsyooltozw.supabase.co";
@@ -208,17 +219,17 @@ const supabaseClient =
   );
 
 
-/* ===============================
-   ELEMENT
-================================ */
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
 const plotsElement =
   document.getElementById("plots");
 
 
-/* ===============================
+/* =========================================================
    ESCAPE HTML
-================================ */
+========================================================= */
 
 function escapeHtml(value){
 
@@ -232,220 +243,160 @@ function escapeHtml(value){
 }
 
 
-/* ===============================
-   LOAD PLOTS
-================================ */
-
-async function loadPlots(){
-
-  plotsElement.innerHTML =
-    `<div class="empty">
-      Loading plots...
-    </div>`;
-
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("property_posts")
-    .select("*")
-    .eq("property_type","plot")
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
-    );
-
-
-  if(error){
-
-    console.error(error);
-
-    plotsElement.innerHTML =
-      `<div class="empty">
-        ❌ ${escapeHtml(error.message)}
-      </div>`;
-
-    return;
-  }
-
-
-  if(!data || data.length === 0){
-
-    plotsElement.innerHTML =
-      `<div class="empty">
-        No plots are available yet.
-      </div>`;
-
-    return;
-  }
-
-
-  plotsElement.innerHTML = "";
-
-
-  data.forEach(plot => {
-
-    const photo =
-      plot.main_photo ||
-      (
-        Array.isArray(plot.other_photos)
-        ? plot.other_photos[0]
-        : ""
-      ) ||
-      "https://via.placeholder.com/800x500?text=No+Photo";
-
-
-    const card =
-      document.createElement("div");
-
-    card.className = "plot";
-
-
-    card.innerHTML = `
-
-      <img
-        src="${escapeHtml(photo)}"
-        alt="Plot">
-
-      <div class="plot-body">
-
-        <div class="plot-title">
-          ${escapeHtml(
-            plot.title || "Plot for Sale"
-          )}
-        </div>
-
-        <div class="price">
-          ${Number(
-            plot.price || 0
-          ).toLocaleString()} RWF
-        </div>
-
-        <div class="location">
-
-          🌍 Country:
-          ${escapeHtml(plot.country || "")}
-
-          <br>
-
-          📍 District:
-          ${escapeHtml(plot.district || "")}
-
-        </div>
-
-        <a
-          class="detail-button"
-          href="./plot-detail.html?id=${encodeURIComponent(plot.id)}">
-
-          View Detail
-
-        </a>
-
-      </div>
-
-    `;
-
-
-    plotsElement.appendChild(card);
-
-  });
-
-}
-
-
-/* ===============================
+/* =========================================================
    LANGUAGE
-================================ */
+========================================================= */
 
 const language =
-  localStorage.getItem(
-    "selectedLanguage"
-  ) || "English";
+  localStorage.getItem("selectedLanguage")
+  || "English";
 
 
 const translations = {
 
   Kinyarwanda:{
 
-    title:
-      "🌍 Ibibanza bigurishwa",
+    title:"🌍 Ibibanza bigurishwa",
 
     description:
       "Shaka ibibanza biri kugurishwa mu Rwanda.",
 
-    back:
-      "← Subira kuri Home",
+    back:"← Subira kuri Home",
 
-    detail:
-      "Reba ibisobanuro"
+    detail:"Reba ibisobanuro",
+
+    loading:"Turimo gushaka ibibanza...",
+
+    noPlots:
+      "Nta kibanza kiraboneka.",
+
+    country:"Igihugu",
+
+    province:"Intara",
+
+    district:"Akarere",
+
+    sector:"Umurenge",
+
+    error:"Habaye ikibazo mu kuzana ibibanza."
 
   },
 
+
   English:{
 
-    title:
-      "🌍 Plots for Sale",
+    title:"🌍 Plots for Sale",
 
     description:
       "Find plots available for sale in Rwanda.",
 
-    back:
-      "← Back to Home",
+    back:"← Back to Home",
 
-    detail:
-      "View Detail"
+    detail:"View Detail",
+
+    loading:"Loading plots...",
+
+    noPlots:
+      "No plots are available yet.",
+
+    country:"Country",
+
+    province:"Province",
+
+    district:"District",
+
+    sector:"Sector",
+
+    error:"There was an error loading plots."
 
   },
 
+
   Français:{
 
-    title:
-      "🌍 Terrains à vendre",
+    title:"🌍 Terrains à vendre",
 
     description:
       "Trouvez des terrains disponibles à la vente au Rwanda.",
 
-    back:
-      "← Retour à l'accueil",
+    back:"← Retour à l'accueil",
 
-    detail:
-      "Voir les détails"
+    detail:"Voir les détails",
+
+    loading:"Chargement des terrains...",
+
+    noPlots:
+      "Aucun terrain disponible.",
+
+    country:"Pays",
+
+    province:"Province",
+
+    district:"District",
+
+    sector:"Secteur",
+
+    error:
+      "Une erreur s'est produite lors du chargement."
 
   },
 
+
   Kiswahili:{
 
-    title:
-      "🌍 Viwanja vya Kuuza",
+    title:"🌍 Viwanja vya Kuuza",
 
     description:
       "Pata viwanja vinavyopatikana kwa kuuza nchini Rwanda.",
 
-    back:
-      "← Rudi Mwanzo",
+    back:"← Rudi Mwanzo",
 
-    detail:
-      "Tazama Maelezo"
+    detail:"Tazama Maelezo",
+
+    loading:"Inapakia viwanja...",
+
+    noPlots:
+      "Hakuna viwanja vinavyopatikana.",
+
+    country:"Nchi",
+
+    province:"Mkoa",
+
+    district:"Wilaya",
+
+    sector:"Sekta",
+
+    error:
+      "Hitilafu imetokea wakati wa kupakia viwanja."
 
   },
 
+
   "中文":{
 
-    title:
-      "🌍 出售土地",
+    title:"🌍 出售土地",
 
     description:
       "寻找卢旺达可出售的土地。",
 
-    back:
-      "← 返回首页",
+    back:"← 返回首页",
 
-    detail:
-      "查看详情"
+    detail:"查看详情",
+
+    loading:"正在加载土地...",
+
+    noPlots:
+      "目前没有可出售的土地。",
+
+    country:"国家",
+
+    province:"省",
+
+    district:"地区",
+
+    sector:"区域",
+
+    error:"加载土地时发生错误。"
 
   }
 
@@ -453,28 +404,387 @@ const translations = {
 
 
 const t =
-  translations[language] ||
-  translations.English;
+  translations[language]
+  || translations.English;
 
 
-document.getElementById(
-  "pageTitle"
-).textContent = t.title;
+/* =========================================================
+   APPLY LANGUAGE
+========================================================= */
+
+document.getElementById("pageTitle")
+  .textContent = t.title;
+
+document.getElementById("pageDescription")
+  .textContent = t.description;
+
+document.getElementById("backButton")
+  .textContent = t.back;
+
+document.getElementById("loadingText")
+  .textContent = t.loading;
 
 
-document.getElementById(
-  "pageDescription"
-).textContent = t.description;
+/* =========================================================
+   OPEN ONLY THE CLICKED PLOT
+========================================================= */
+
+function openPlotDetail(plotId){
+
+  /*
+    ID iva muri database ni yo yonyine
+    ijya kuri plot-detail.html.
+  */
+
+  if(!plotId){
+
+    console.error(
+      "Plot ID is missing."
+    );
+
+    alert(
+      "This plot does not have a valid ID."
+    );
+
+    return;
+  }
 
 
-document.getElementById(
-  "backButton"
-).textContent = t.back;
+  const cleanId =
+    String(plotId).trim();
 
 
-/* ===============================
+  const url =
+    "plot-detail.html?id=" +
+    encodeURIComponent(cleanId);
+
+
+  console.log(
+    "Opening plot:",
+    cleanId
+  );
+
+
+  window.location.href = url;
+
+}
+
+
+/* =========================================================
+   LOAD PLOTS
+========================================================= */
+
+async function loadPlots(){
+
+  plotsElement.innerHTML = `
+    <div class="empty">
+      ${escapeHtml(t.loading)}
+    </div>
+  `;
+
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+    await supabaseClient
+
+      .from("property_posts")
+
+      .select(`
+        id,
+        title,
+        price,
+        property_type,
+        country,
+        province,
+        district,
+        sector,
+        main_photo,
+        other_photos,
+        created_at
+      `)
+
+      .eq(
+        "property_type",
+        "plot"
+      )
+
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+    /* =====================================================
+       SUPABASE ERROR
+    ===================================================== */
+
+    if(error){
+
+      console.error(
+        "Supabase error:",
+        error
+      );
+
+      plotsElement.innerHTML = `
+        <div class="error">
+
+          ❌ ${escapeHtml(t.error)}
+
+          <br><br>
+
+          ${escapeHtml(error.message)}
+
+        </div>
+      `;
+
+      return;
+    }
+
+
+    /* =====================================================
+       NO PLOTS
+    ===================================================== */
+
+    if(
+      !data ||
+      data.length === 0
+    ){
+
+      plotsElement.innerHTML = `
+        <div class="empty">
+
+          ${escapeHtml(t.noPlots)}
+
+        </div>
+      `;
+
+      return;
+    }
+
+
+    /* =====================================================
+       CLEAR
+    ===================================================== */
+
+    plotsElement.innerHTML = "";
+
+
+    /* =====================================================
+       CREATE EACH PLOT
+    ===================================================== */
+
+    data.forEach(plot => {
+
+      /*
+        IMPORTANT:
+
+        plot.id ni ID nyayo iva muri
+        property_posts.
+
+        Ntitukora ID nshya.
+      */
+
+      const plotId =
+        plot.id;
+
+
+      /* PHOTO */
+
+      let photo =
+        plot.main_photo
+        || "";
+
+
+      if(
+        !photo &&
+        Array.isArray(
+          plot.other_photos
+        ) &&
+        plot.other_photos.length
+      ){
+
+        photo =
+          plot.other_photos[0];
+
+      }
+
+
+      photo =
+        photo ||
+        "https://via.placeholder.com/800x500?text=Plot";
+
+
+      /* CARD */
+
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "plot";
+
+
+      /* CARD HTML */
+
+      card.innerHTML = `
+
+        <img
+          src="${escapeHtml(photo)}"
+          alt="${escapeHtml(
+            plot.title || "Plot"
+          )}"
+        >
+
+        <div class="plot-body">
+
+          <div class="plot-title">
+
+            ${escapeHtml(
+              plot.title ||
+              "Plot for Sale"
+            )}
+
+          </div>
+
+
+          <div class="price">
+
+            ${Number(
+              plot.price || 0
+            ).toLocaleString()}
+
+            RWF
+
+          </div>
+
+
+          <div class="location">
+
+            ${
+              plot.country
+              ? `
+                🌍
+                ${escapeHtml(t.country)}:
+                ${escapeHtml(plot.country)}
+                <br>
+              `
+              : ""
+            }
+
+
+            ${
+              plot.province
+              ? `
+                📍
+                ${escapeHtml(t.province)}:
+                ${escapeHtml(plot.province)}
+                <br>
+              `
+              : ""
+            }
+
+
+            ${
+              plot.district
+              ? `
+                📍
+                ${escapeHtml(t.district)}:
+                ${escapeHtml(plot.district)}
+                <br>
+              `
+              : ""
+            }
+
+
+            ${
+              plot.sector
+              ? `
+                📍
+                ${escapeHtml(t.sector)}:
+                ${escapeHtml(plot.sector)}
+              `
+              : ""
+            }
+
+          </div>
+
+
+          <button
+            type="button"
+            class="detail-button"
+            data-plot-id="${escapeHtml(plotId)}">
+
+            ${escapeHtml(t.detail)}
+
+          </button>
+
+        </div>
+
+      `;
+
+
+      /* ===================================================
+         VIEW DETAIL BUTTON
+      =================================================== */
+
+      const detailButton =
+        card.querySelector(
+          ".detail-button"
+        );
+
+
+      detailButton.addEventListener(
+        "click",
+        function(){
+
+          const id =
+            this.getAttribute(
+              "data-plot-id"
+            );
+
+
+          openPlotDetail(id);
+
+        }
+      );
+
+
+      plotsElement.appendChild(
+        card
+      );
+
+    });
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Unexpected error:",
+      error
+    );
+
+    plotsElement.innerHTML = `
+      <div class="error">
+
+        ❌ ${escapeHtml(t.error)}
+
+      </div>
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
    START
-================================ */
+========================================================= */
 
 loadPlots();
 
