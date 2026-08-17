@@ -1,217 +1,228 @@
-<script src="language.js"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot Details - Rwanda House Market</title>
+  <title>plot detail - Rwanda House Market</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<style>
-*{
-  box-sizing:border-box;
-}
+  <style>
+    *{
+      box-sizing:border-box;
+    }
 
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f5f5f5;
-  color:#222;
-}
+    body{
+      margin:0;
+      font-family:Arial,sans-serif;
+      background:#f5f5f5;
+      color:#222;
+    }
 
-header{
-  background:#f2c400;
-  padding:22px 15px;
-  text-align:center;
-  box-shadow:0 3px 12px rgba(0,0,0,.15);
-}
+    header{
+      background:#f2c400;
+      padding:22px 15px;
+      text-align:center;
+      box-shadow:0 3px 12px rgba(0,0,0,.15);
+    }
 
-header h1{
-  margin:0;
-  font-size:28px;
-}
+    header h1{
+      margin:0;
+      font-size:28px;
+    }
 
-.back{
-  display:inline-block;
-  margin-top:10px;
-  background:white;
-  color:#222;
-  text-decoration:none;
-  padding:10px 16px;
-  border-radius:8px;
-  font-weight:bold;
-}
+    .back{
+      display:inline-block;
+      margin-top:12px;
+      background:white;
+      color:#222;
+      text-decoration:none;
+      padding:10px 18px;
+      border-radius:8px;
+      font-weight:bold;
+    }
 
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:25px 20px 60px;
-}
+    .container{
+      max-width:1100px;
+      margin:auto;
+      padding:25px 20px 60px;
+    }
 
-.photo-slider{
-  position:relative;
-  background:white;
-  padding:12px;
-  border-radius:15px;
-  border:2px solid #f2c400;
-  box-shadow:0 3px 12px rgba(0,0,0,.12);
-}
+    .photo-slider{
+      position:relative;
+      background:white;
+      padding:12px;
+      border-radius:15px;
+      border:2px solid #f2c400;
+      box-shadow:0 3px 12px rgba(0,0,0,.12);
+    }
 
-.photo-slider img{
-  width:100%;
-  height:520px;
-  object-fit:cover;
-  border-radius:10px;
-  display:block;
-}
+    .photo-slider img{
+      width:100%;
+      height:520px;
+      object-fit:cover;
+      border-radius:10px;
+      display:block;
+    }
 
-.arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:50px;
-  height:50px;
-  border:0;
-  border-radius:50%;
-  background:#f2c400;
-  color:#222;
-  font-size:30px;
-  font-weight:bold;
-  cursor:pointer;
-  z-index:5;
-}
+    .arrow{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:50px;
+      height:50px;
+      border:0;
+      border-radius:50%;
+      background:#f2c400;
+      color:#222;
+      font-size:30px;
+      font-weight:bold;
+      cursor:pointer;
+      z-index:5;
+    }
 
-.left{
-  left:25px;
-}
+    .left{
+      left:25px;
+    }
 
-.right{
-  right:25px;
-}
+    .right{
+      right:25px;
+    }
 
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-top:15px;
-}
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:15px;
+    }
 
-.gallery img{
-  width:100%;
-  height:110px;
-  object-fit:cover;
-  border-radius:10px;
-  cursor:pointer;
-  border:2px solid transparent;
-}
+    .gallery img{
+      width:100%;
+      height:110px;
+      object-fit:cover;
+      border-radius:10px;
+      cursor:pointer;
+      border:2px solid transparent;
+    }
 
-.gallery img:hover{
-  border-color:#f2c400;
-}
+    .gallery img:hover{
+      border-color:#f2c400;
+    }
 
-.info{
-  background:white;
-  margin-top:25px;
-  padding:28px;
-  border-radius:15px;
-  border:2px solid #f2c400;
-  box-shadow:0 3px 12px rgba(0,0,0,.12);
-}
+    .info{
+      background:white;
+      margin-top:25px;
+      padding:28px;
+      border-radius:15px;
+      border:2px solid #f2c400;
+      box-shadow:0 3px 12px rgba(0,0,0,.12);
+    }
 
-.info h2{
-  font-size:30px;
-  margin-top:0;
-}
+    .info h2{
+      font-size:30px;
+      margin-top:0;
+    }
 
-.type{
-  display:inline-block;
-  background:#fff8d6;
-  color:#8a6500;
-  padding:8px 15px;
-  border-radius:20px;
-  border:1px solid #f2c400;
-  font-weight:bold;
-}
+    .type{
+      display:inline-block;
+      background:#fff8d6;
+      color:#8a6500;
+      padding:8px 15px;
+      border-radius:20px;
+      border:1px solid #f2c400;
+      font-weight:bold;
+    }
 
-.price{
-  font-size:26px;
-  color:#b27b00;
-  font-weight:bold;
-  margin:18px 0;
-}
+    .price{
+      font-size:26px;
+      color:#b27b00;
+      font-weight:bold;
+      margin:18px 0;
+    }
 
-.location{
-  font-size:17px;
-  line-height:1.8;
-}
+    .location{
+      font-size:17px;
+      line-height:1.9;
+    }
 
-.details{
-  margin-top:25px;
-  line-height:2;
-  font-size:17px;
-}
+    .details{
+      margin-top:25px;
+      line-height:2;
+      font-size:17px;
+    }
 
-.description{
-  color:#555;
-  line-height:1.7;
-}
+    .description{
+      color:#555;
+      line-height:1.7;
+      white-space:pre-wrap;
+    }
 
-.contact{
-  margin-top:25px;
-  padding-top:20px;
-  border-top:2px solid #f2c400;
-}
+    .contact{
+      margin-top:25px;
+      padding-top:20px;
+      border-top:2px solid #f2c400;
+    }
 
-.whatsapp,
-.call{
-  display:inline-block;
-  margin-top:10px;
-  padding:13px 20px;
-  border-radius:8px;
-  text-decoration:none;
-  color:white;
-  font-weight:bold;
-}
+    .whatsapp,
+    .call{
+      display:inline-block;
+      margin-top:10px;
+      padding:13px 20px;
+      border-radius:8px;
+      text-decoration:none;
+      color:white;
+      font-weight:bold;
+    }
 
-.whatsapp{
-  background:#128c7e;
-}
+    .whatsapp{
+      background:#128c7e;
+    }
 
-.call{
-  background:#f2c400;
-  color:#222;
-}
+    .call{
+      background:#f2c400;
+      color:#222;
+    }
 
-.loading,
-.error{
-  background:white;
-  padding:40px;
-  text-align:center;
-  border-radius:12px;
-}
+    .loading,
+    .error{
+      background:white;
+      padding:40px;
+      text-align:center;
+      border-radius:12px;
+      box-shadow:0 3px 12px rgba(0,0,0,.10);
+    }
 
-@media(max-width:700px){
+    .error{
+      border:2px solid #e00000;
+      color:#b00000;
+    }
 
-  .photo-slider img{
-    height:300px;
-  }
+    @media(max-width:700px){
 
-  .gallery{
-    grid-template-columns:repeat(2,1fr);
-  }
+      .photo-slider img{
+        height:300px;
+      }
 
-  .gallery img{
-    height:100px;
-  }
+      .gallery{
+        grid-template-columns:repeat(2,1fr);
+      }
 
-  .info h2{
-    font-size:25px;
-  }
+      .gallery img{
+        height:100px;
+      }
 
-}
-</style>
+      .info h2{
+        font-size:25px;
+      }
+
+      .arrow{
+        width:42px;
+        height:42px;
+        font-size:25px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -223,7 +234,7 @@ header h1{
   </h1>
 
   <a
-    href="./plot.html"
+    href="plot.html"
     class="back"
     id="backButton">
     ← Back to Plots
@@ -231,25 +242,23 @@ header h1{
 
 </header>
 
-
 <div class="container">
 
   <div id="content">
 
     <div class="loading">
-      Loading plot details...
+      Loading plot detail...
     </div>
 
   </div>
 
 </div>
 
-
 <script>
 
-/* ===============================
+/* =========================================================
    SUPABASE
-================================ */
+========================================================= */
 
 const SUPABASE_URL =
   "https://hsmnybmcddtsyooltozw.supabase.co";
@@ -264,245 +273,227 @@ const supabaseClient =
   );
 
 
-/* ===============================
+/* =========================================================
    LANGUAGE
-================================ */
+========================================================= */
 
 const language =
-  localStorage.getItem(
-    "selectedLanguage"
-  ) || "English";
+  localStorage.getItem("selectedLanguage") || "English";
 
 
 const translations = {
 
-  Kinyarwanda:{
+  Kinyarwanda: {
 
-    back:
-      "← Subira ku bibanza",
+    back: "← Subira ku bibanza",
 
-    type:
-      "Ikibanza kigura",
+    loading: "Turimo gushaka amakuru y'ikibanza...",
 
-    country:
-      "Igihugu",
+    notFound: "Ikibanza nticyabonetse.",
 
-    province:
-      "Intara",
+    noId: "ID y'ikibanza ntiyabonetse.",
 
-    district:
-      "Akarere",
+    type: "Ikibanza kigura",
 
-    sector:
-      "Umurenge",
+    country: "Igihugu",
 
-    details:
-      "Ibisobanuro by'ikibanza",
+    province: "Intara",
 
-    bedrooms:
-      "Ibyumba",
+    district: "Akarere",
 
-    bathrooms:
-      "Ubwiherero",
+    sector: "Umurenge",
 
-    parking:
-      "Parking",
+    details: "Ibisobanuro by'ikibanza",
 
-    description:
-      "Ibisobanuro",
+    bedrooms: "Ibyumba",
 
-    contact:
-      "📞 Aho mwadusanga",
+    bathrooms: "Ubwiherero",
 
-    whatsapp:
-      "💬 WhatsApp",
+    parking: "Parking",
 
-    call:
-      "📞 Hamagara"
+    description: "Ibisobanuro",
+
+    contact: "📞 Aho mwadusanga",
+
+    whatsapp: "💬 WhatsApp",
+
+    call: "📞 Hamagara",
+
+    noPhoto: "Nta foto ihari",
+
+    plot: "Ikibanza kigura"
 
   },
 
-  English:{
 
-    back:
-      "← Back to Plots",
+  English: {
 
-    type:
-      "Plot for Sale",
+    back: "← Back to Plots",
 
-    country:
-      "Country",
+    loading: "Loading plot detail...",
 
-    province:
-      "Province",
+    notFound: "Plot not found.",
 
-    district:
-      "District",
+    noId: "Plot ID was not found.",
 
-    sector:
-      "Sector",
+    type: "Plot for Sale",
 
-    details:
-      "Property Details",
+    country: "Country",
 
-    bedrooms:
-      "Bedrooms",
+    province: "Province",
 
-    bathrooms:
-      "Bathrooms",
+    district: "District",
 
-    parking:
-      "Parking",
+    sector: "Sector",
 
-    description:
-      "Description",
+    details: "Property Details",
 
-    contact:
-      "📞 Contact",
+    bedrooms: "Bedrooms",
 
-    whatsapp:
-      "💬 WhatsApp",
+    bathrooms: "Bathrooms",
 
-    call:
-      "📞 Call"
+    parking: "Parking",
+
+    description: "Description",
+
+    contact: "📞 Contact",
+
+    whatsapp: "💬 WhatsApp",
+
+    call: "📞 Call",
+
+    noPhoto: "No photo available",
+
+    plot: "Plot for Sale"
 
   },
 
-  Français:{
 
-    back:
-      "← Retour aux terrains",
+  Français: {
 
-    type:
-      "Terrain à vendre",
+    back: "← Retour aux terrains",
 
-    country:
-      "Pays",
+    loading: "Chargement des détails du terrain...",
 
-    province:
-      "Province",
+    notFound: "Terrain introuvable.",
 
-    district:
-      "District",
+    noId: "ID du terrain introuvable.",
 
-    sector:
-      "Secteur",
+    type: "Terrain à vendre",
 
-    details:
-      "Détails du terrain",
+    country: "Pays",
 
-    bedrooms:
-      "Chambres",
+    province: "Province",
 
-    bathrooms:
-      "Salles de bain",
+    district: "District",
 
-    parking:
-      "Parking",
+    sector: "Secteur",
 
-    description:
-      "Description",
+    details: "Détails du terrain",
 
-    contact:
-      "📞 Contact",
+    bedrooms: "Chambres",
 
-    whatsapp:
-      "💬 WhatsApp",
+    bathrooms: "Salles de bain",
 
-    call:
-      "📞 Appeler"
+    parking: "Parking",
+
+    description: "Description",
+
+    contact: "📞 Contact",
+
+    whatsapp: "💬 WhatsApp",
+
+    call: "📞 Appeler",
+
+    noPhoto: "Aucune photo disponible",
+
+    plot: "Terrain à vendre"
 
   },
 
-  Kiswahili:{
 
-    back:
-      "← Rudi kwenye Viwanja",
+  Kiswahili: {
 
-    type:
-      "Kiwanja cha Kuuza",
+    back: "← Rudi kwenye Viwanja",
 
-    country:
-      "Nchi",
+    loading: "Inapakia maelezo ya kiwanja...",
 
-    province:
-      "Mkoa",
+    notFound: "Kiwanja hakikupatikana.",
 
-    district:
-      "Wilaya",
+    noId: "ID ya kiwanja haikupatikana.",
 
-    sector:
-      "Sekta",
+    type: "Kiwanja cha Kuuza",
 
-    details:
-      "Maelezo ya Kiwanja",
+    country: "Nchi",
 
-    bedrooms:
-      "Vyumba vya kulala",
+    province: "Mkoa",
 
-    bathrooms:
-      "Vyumba vya bafu",
+    district: "Wilaya",
 
-    parking:
-      "Maegesho",
+    sector: "Sekta",
 
-    description:
-      "Maelezo",
+    details: "Maelezo ya Kiwanja",
 
-    contact:
-      "📞 Mawasiliano",
+    bedrooms: "Vyumba vya kulala",
 
-    whatsapp:
-      "💬 WhatsApp",
+    bathrooms: "Vyumba vya bafu",
 
-    call:
-      "📞 Piga Simu"
+    parking: "Maegesho",
+
+    description: "Maelezo",
+
+    contact: "📞 Mawasiliano",
+
+    whatsapp: "💬 WhatsApp",
+
+    call: "📞 Piga Simu",
+
+    noPhoto: "Hakuna picha",
+
+    plot: "Kiwanja cha Kuuza"
 
   },
 
-  "中文":{
 
-    back:
-      "← 返回土地",
+  "中文": {
 
-    type:
-      "出售土地",
+    back: "← 返回土地",
 
-    country:
-      "国家",
+    loading: "正在加载土地详情...",
 
-    province:
-      "省",
+    notFound: "未找到该土地。",
 
-    district:
-      "地区",
+    noId: "未找到土地 ID。",
 
-    sector:
-      "区域",
+    type: "出售土地",
 
-    details:
-      "土地详情",
+    country: "国家",
 
-    bedrooms:
-      "卧室",
+    province: "省",
 
-    bathrooms:
-      "浴室",
+    district: "地区",
 
-    parking:
-      "停车位",
+    sector: "区域",
 
-    description:
-      "描述",
+    details: "土地详情",
 
-    contact:
-      "📞 联系方式",
+    bedrooms: "卧室",
 
-    whatsapp:
-      "💬 WhatsApp",
+    bathrooms: "浴室",
 
-    call:
-      "📞 致电"
+    parking: "停车位",
+
+    description: "描述",
+
+    contact: "📞 联系方式",
+
+    whatsapp: "💬 WhatsApp",
+
+    call: "📞 致电",
+
+    noPhoto: "暂无照片",
+
+    plot: "出售土地"
 
   }
 
@@ -514,14 +505,17 @@ const t =
   translations.English;
 
 
-document.getElementById(
-  "backButton"
-).textContent = t.back;
+/* =========================================================
+   APPLY LANGUAGE
+========================================================= */
+
+document.getElementById("backButton").textContent =
+  t.back;
 
 
-/* ===============================
-   ESCAPE
-================================ */
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
 
 function escapeHtml(value){
 
@@ -535,22 +529,34 @@ function escapeHtml(value){
 }
 
 
-/* ===============================
-   GET PROPERTY ID
-================================ */
+/* =========================================================
+   GET ONLY THE CLICKED PROPERTY ID
+========================================================= */
 
 const params =
   new URLSearchParams(
     window.location.search
   );
 
+
+/*
+   Accept:
+
+   plot-detail.html?id=123
+
+   or
+
+   plot-detail.html?property_id=123
+*/
+
 const propertyId =
-  params.get("id");
+  params.get("id") ||
+  params.get("property_id");
 
 
-/* ===============================
+/* =========================================================
    PHOTOS
-================================ */
+========================================================= */
 
 let photos = [];
 
@@ -565,9 +571,13 @@ function showPhoto(index){
 
   currentPhoto = index;
 
-  document.getElementById(
-    "mainPhoto"
-  ).src = photos[currentPhoto];
+  const mainPhoto =
+    document.getElementById("mainPhoto");
+
+  if(mainPhoto){
+    mainPhoto.src =
+      photos[currentPhoto];
+  }
 
 }
 
@@ -580,9 +590,7 @@ function nextPhoto(){
 
   currentPhoto++;
 
-  if(
-    currentPhoto >= photos.length
-  ){
+  if(currentPhoto >= photos.length){
     currentPhoto = 0;
   }
 
@@ -609,9 +617,9 @@ function previousPhoto(){
 }
 
 
-/* ===============================
-   LOAD DETAIL
-================================ */
+/* =========================================================
+   LOAD ONLY CLICKED PLOT
+========================================================= */
 
 async function loadDetail(){
 
@@ -619,57 +627,143 @@ async function loadDetail(){
     document.getElementById("content");
 
 
+  /* -------------------------------------------------------
+     CHECK ID
+  ------------------------------------------------------- */
+
   if(!propertyId){
 
     content.innerHTML = `
+
       <div class="error">
-        ❌ Property ID ntiyabonetse.
+
+        ❌ ${escapeHtml(t.noId)}
+
+        <br><br>
+
+        <a href="plot.html">
+          ${escapeHtml(t.back)}
+        </a>
+
       </div>
+
     `;
 
     return;
   }
 
+
+  /* -------------------------------------------------------
+     SHOW LOADING
+  ------------------------------------------------------- */
+
+  content.innerHTML = `
+
+    <div class="loading">
+
+      ${escapeHtml(t.loading)}
+
+    </div>
+
+  `;
+
+
+  /* -------------------------------------------------------
+     GET EXACTLY ONE PROPERTY FROM SUPABASE
+  ------------------------------------------------------- */
 
   const {
     data,
     error
   } =
-  await supabaseClient
-    .from("property_posts")
-    .select("*")
-    .eq("id",propertyId)
-    .eq("property_type","plot")
-    .maybeSingle();
+    await supabaseClient
 
+      .from("property_posts")
+
+      .select("*")
+
+      .eq("id", propertyId)
+
+      .maybeSingle();
+
+
+  /* -------------------------------------------------------
+     DATABASE ERROR
+  ------------------------------------------------------- */
 
   if(error){
 
-    console.error(error);
+    console.error(
+      "Supabase detail error:",
+      error
+    );
 
     content.innerHTML = `
+
       <div class="error">
+
         ❌ ${escapeHtml(error.message)}
+
+        <br><br>
+
+        <a href="plot.html">
+          ${escapeHtml(t.back)}
+        </a>
+
       </div>
+
     `;
 
     return;
   }
 
+
+  /* -------------------------------------------------------
+     PROPERTY NOT FOUND
+  ------------------------------------------------------- */
 
   if(!data){
 
     content.innerHTML = `
+
       <div class="error">
-        ❌ Plot ntiyabonetse.
+
+        ❌ ${escapeHtml(t.notFound)}
+
+        <br><br>
+
+        <a href="plot.html">
+          ${escapeHtml(t.back)}
+        </a>
+
       </div>
+
     `;
 
     return;
   }
 
 
-  /* MAIN PHOTO */
+  /*
+     IMPORTANT:
+
+     We DO NOT load all properties.
+
+     We only use the row whose ID
+     equals the ID clicked by the user.
+  */
+
+
+  /* =======================================================
+     PHOTOS
+  ======================================================= */
+
+  photos = [];
+
+  currentPhoto = 0;
+
+
+  /* Main photo */
 
   if(data.main_photo){
 
@@ -680,13 +774,9 @@ async function loadDetail(){
   }
 
 
-  /* OTHER PHOTOS */
+  /* Other photos */
 
-  if(
-    Array.isArray(
-      data.other_photos
-    )
-  ){
+  if(Array.isArray(data.other_photos)){
 
     data.other_photos.forEach(
       photo => {
@@ -706,6 +796,8 @@ async function loadDetail(){
   }
 
 
+  /* If no photo */
+
   if(!photos.length){
 
     photos.push(
@@ -715,10 +807,18 @@ async function loadDetail(){
   }
 
 
+  /* =======================================================
+     PAGE TITLE
+  ======================================================= */
+
   document.title =
-    (data.title || "Plot") +
+    (data.title || t.plot) +
     " - Rwanda House Market";
 
+
+  /* =======================================================
+     GALLERY
+  ======================================================= */
 
   let galleryHTML = "";
 
@@ -739,7 +839,13 @@ async function loadDetail(){
   );
 
 
+  /* =======================================================
+     DETAIL HTML
+  ======================================================= */
+
   content.innerHTML = `
+
+    <!-- PHOTO SLIDER -->
 
     <div class="photo-slider">
 
@@ -749,10 +855,12 @@ async function loadDetail(){
         ‹
       </button>
 
+
       <img
         id="mainPhoto"
         src="${escapeHtml(photos[0])}"
-        alt="Plot">
+        alt="${escapeHtml(data.title || t.plot)}">
+
 
       <button
         class="arrow right"
@@ -763,6 +871,8 @@ async function loadDetail(){
     </div>
 
 
+    <!-- PHOTO GALLERY -->
+
     <div class="gallery">
 
       ${galleryHTML}
@@ -770,17 +880,23 @@ async function loadDetail(){
     </div>
 
 
+    <!-- PROPERTY INFORMATION -->
+
     <div class="info">
 
       <h2>
         ${escapeHtml(
-          data.title || "Plot for Sale"
+          data.title || t.plot
         )}
       </h2>
 
 
       <div class="type">
-        ${t.type}
+
+        ${escapeHtml(
+          data.property_type || t.type
+        )}
+
       </div>
 
 
@@ -793,72 +909,149 @@ async function loadDetail(){
       </div>
 
 
+      <!-- LOCATION -->
+
       <div class="location">
 
-        🌍 <strong>${t.country}:</strong>
-        ${escapeHtml(data.country || "")}
+        ${
+          data.country
+          ? `
+            🌍 <strong>
+              ${escapeHtml(t.country)}:
+            </strong>
+            ${escapeHtml(data.country)}
+            <br>
+          `
+          : ""
+        }
 
-        <br>
 
-        📍 <strong>${t.province}:</strong>
-        ${escapeHtml(data.province || "")}
+        ${
+          data.province
+          ? `
+            📍 <strong>
+              ${escapeHtml(t.province)}:
+            </strong>
+            ${escapeHtml(data.province)}
+            <br>
+          `
+          : ""
+        }
 
-        <br>
 
-        📍 <strong>${t.district}:</strong>
-        ${escapeHtml(data.district || "")}
+        ${
+          data.district
+          ? `
+            📍 <strong>
+              ${escapeHtml(t.district)}:
+            </strong>
+            ${escapeHtml(data.district)}
+            <br>
+          `
+          : ""
+        }
 
-        <br>
 
-        📍 <strong>${t.sector}:</strong>
-        ${escapeHtml(data.sector || "")}
+        ${
+          data.sector
+          ? `
+            📍 <strong>
+              ${escapeHtml(t.sector)}:
+            </strong>
+            ${escapeHtml(data.sector)}
+            <br>
+          `
+          : ""
+        }
+
+
+        ${
+          data.location
+          ? `
+            📍 <strong>
+              Location:
+            </strong>
+            ${escapeHtml(data.location)}
+          `
+          : ""
+        }
 
       </div>
 
 
+      <!-- DETAILS -->
+
       <h3>
-        ${t.details}
+        ${escapeHtml(t.details)}
       </h3>
 
 
       <div class="details">
 
-        🛏️ ${t.bedrooms}:
-        ${data.bedrooms ?? 0}
+        ${
+          data.bedrooms !== null &&
+          data.bedrooms !== undefined
+          ? `
+            🛏️
+            ${escapeHtml(t.bedrooms)}:
+            ${escapeHtml(data.bedrooms)}
+            <br>
+          `
+          : ""
+        }
 
-        <br>
 
-        🚿 ${t.bathrooms}:
-        ${data.bathrooms ?? 0}
+        ${
+          data.bathrooms !== null &&
+          data.bathrooms !== undefined
+          ? `
+            🚿
+            ${escapeHtml(t.bathrooms)}:
+            ${escapeHtml(data.bathrooms)}
+            <br>
+          `
+          : ""
+        }
 
-        <br>
 
-        🚗 ${t.parking}:
-        ${data.parking ?? 0}
+        ${
+          data.parking !== null &&
+          data.parking !== undefined
+          ? `
+            🚗
+            ${escapeHtml(t.parking)}:
+            ${escapeHtml(data.parking)}
+          `
+          : ""
+        }
 
       </div>
 
 
+      <!-- DESCRIPTION -->
+
       <h3>
-        ${t.description}
+        ${escapeHtml(t.description)}
       </h3>
 
 
       <p class="description">
 
         ${escapeHtml(
-          data.description ||
-          ""
+          data.description || ""
         )}
 
       </p>
 
 
+      <!-- CONTACT -->
+
       <div class="contact">
 
         <h3>
-          ${t.contact}
+          ${escapeHtml(t.contact)}
         </h3>
+
 
         <p>
           <strong>
@@ -872,7 +1065,7 @@ async function loadDetail(){
           target="_blank"
           class="whatsapp">
 
-          ${t.whatsapp}
+          ${escapeHtml(t.whatsapp)}
 
         </a>
 
@@ -881,7 +1074,7 @@ async function loadDetail(){
           href="tel:+250799645553"
           class="call">
 
-          ${t.call}
+          ${escapeHtml(t.call)}
 
         </a>
 
@@ -893,6 +1086,10 @@ async function loadDetail(){
 
 }
 
+
+/* =========================================================
+   START
+========================================================= */
 
 loadDetail();
 
