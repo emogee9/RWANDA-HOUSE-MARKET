@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,24 +6,14 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-<title>Houses for Sale - Rwanda Property Visata</title>
-
-<link rel="icon" type="image/png" href="logo.png">
-
-<!-- ================= GOOGLE ADSENSE ================= -->
-
-<script
-  async
-  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7520250190173475"
-  crossorigin="anonymous">
-</script>
-
-<!-- ================= SUPABASE ================= -->
+<title>House Details - Rwanda Property Visata</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
 <style>
 
@@ -33,312 +24,420 @@
 body{
   margin:0;
   font-family:Arial,sans-serif;
-  background:#f5f5f5;
-  color:#222;
+  background:#f7f5ef;
+  color:#33251d;
 }
-
 
 /* ================= HEADER ================= */
 
 header{
-  background:#f2c400;
-  padding:25px 15px;
-  text-align:center;
-  box-shadow:0 3px 10px rgba(0,0,0,.15);
+  background:#d4a017;
+  color:white;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 3px 10px rgba(0,0,0,.2);
 }
 
 header h1{
   margin:0;
-  font-size:30px;
+  font-size:21px;
 }
 
 .back{
-  display:inline-block;
-  margin-top:12px;
-  background:white;
-  color:#222;
   text-decoration:none;
-  padding:10px 16px;
+  background:white;
+  color:#a87800;
+  padding:10px 15px;
   border-radius:8px;
   font-weight:bold;
-  transition:.2s;
 }
 
 .back:hover{
-  background:#fff8d6;
-  transform:translateY(-1px);
+  background:#fff7d8;
 }
-
 
 /* ================= CONTAINER ================= */
 
 .container{
-  max-width:1150px;
+  max-width:1100px;
   margin:auto;
-  padding:30px 20px 60px;
+  padding:25px 16px 60px;
 }
 
+/* ================= LOADING ================= */
 
-/* ================= PAGE TITLE ================= */
-
-.page-title{
+.loading,
+.error,
+.empty{
   background:white;
-  padding:25px;
-  border-radius:15px;
+  border-radius:14px;
+  padding:35px 20px;
   text-align:center;
-  margin-bottom:25px;
   box-shadow:0 3px 12px rgba(0,0,0,.1);
 }
 
-.page-title h2{
-  margin:0 0 10px;
+.error{
+  color:#a00000;
 }
 
-.page-title p{
-  margin:0;
-  color:#666;
-  line-height:1.6;
-}
+/* ================= DETAIL CARD ================= */
 
-
-/* ================= ADSENSE ================= */
-
-.ad-container{
-  width:100%;
+.detail-card{
   background:white;
-  padding:15px;
-  margin:25px 0;
-  border-radius:15px;
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
-  text-align:center;
+  border-radius:16px;
   overflow:hidden;
+  box-shadow:0 4px 18px rgba(0,0,0,.12);
 }
 
-.ad-label{
-  font-size:12px;
-  color:#777;
-  margin-bottom:8px;
-}
+/* ================= GALLERY ================= */
 
-
-/* ================= PROPERTIES ================= */
-
-.properties{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
-}
-
-.property{
-  background:white;
-  border-radius:15px;
-  overflow:hidden;
-  box-shadow:0 3px 12px rgba(0,0,0,.12);
-  transition:.2s;
-}
-
-.property:hover{
-  transform:translateY(-3px);
-  box-shadow:0 7px 20px rgba(0,0,0,.17);
-}
-
-
-/* ================= IMAGE SLIDER ================= */
-
-.image-slider{
+.gallery{
+  background:#111;
   position:relative;
-  width:100%;
-  height:220px;
-  overflow:hidden;
-  background:#eee;
 }
 
-.image-slider img{
+.main-image-box{
+  width:100%;
+  height:520px;
+  position:relative;
+  overflow:hidden;
+  background:#222;
+}
+
+.main-image{
   width:100%;
   height:100%;
   object-fit:cover;
   display:block;
+  cursor:pointer;
 }
 
-
-/* ================= SLIDER BUTTONS ================= */
-
-.slider-btn{
+.gallery-button{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  width:44px;
-  height:44px;
-  border:none;
+  width:48px;
+  height:48px;
+  border:0;
   border-radius:50%;
-  background:rgba(0,0,0,.55);
+  background:rgba(0,0,0,.65);
   color:white;
-  font-size:34px;
-  line-height:38px;
-  text-align:center;
+  font-size:30px;
   cursor:pointer;
   z-index:5;
-  transition:.2s;
-  padding:0;
-  user-select:none;
 }
 
-.slider-btn:hover{
-  background:rgba(0,0,0,.85);
-  transform:translateY(-50%) scale(1.05);
+.gallery-button:hover{
+  background:#d4a017;
 }
 
-.slider-prev{
-  left:10px;
+.gallery-prev{
+  left:15px;
 }
 
-.slider-next{
-  right:10px;
+.gallery-next{
+  right:15px;
 }
 
-
-/* ================= IMAGE COUNTER ================= */
-
-.slider-counter{
+.photo-counter{
   position:absolute;
-  left:50%;
-  bottom:10px;
-  transform:translateX(-50%);
-  background:rgba(0,0,0,.60);
+  bottom:15px;
+  right:15px;
+  background:rgba(0,0,0,.7);
   color:white;
-  padding:5px 11px;
+  padding:7px 12px;
   border-radius:20px;
-  font-size:12px;
-  z-index:4;
+  font-size:13px;
+  font-weight:bold;
 }
 
+.thumbnails{
+  display:flex;
+  gap:10px;
+  padding:12px;
+  overflow-x:auto;
+  background:#181818;
+}
 
-/* ================= PROPERTY BODY ================= */
+.thumbnail{
+  width:95px;
+  height:70px;
+  object-fit:cover;
+  border-radius:8px;
+  cursor:pointer;
+  border:3px solid transparent;
+  flex-shrink:0;
+}
 
-.property-body{
-  padding:18px;
+.thumbnail.active{
+  border-color:#d4a017;
+}
+
+.thumbnail:hover{
+  border-color:#fff;
+}
+
+/* ================= CONTENT ================= */
+
+.detail-content{
+  padding:25px;
+}
+
+.badge{
+  display:inline-block;
+  background:#fff3c4;
+  color:#8b6800;
+  padding:7px 11px;
+  border-radius:7px;
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:10px;
 }
 
 .property-title{
-  font-size:20px;
+  font-size:30px;
   font-weight:bold;
-  margin-bottom:10px;
-  line-height:1.4;
+  margin:0 0 10px;
+  color:#33251d;
 }
 
 .price{
   color:#b27b00;
-  font-size:21px;
+  font-size:28px;
   font-weight:bold;
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 
 .location{
-  color:#555;
-  line-height:1.6;
-  margin-bottom:15px;
+  color:#666;
+  font-size:16px;
+  line-height:1.7;
+  margin-bottom:22px;
 }
 
+/* ================= INFO GRID ================= */
 
-/* ================= DETAILS BUTTON ================= */
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin:20px 0;
+}
 
-.details{
-  display:block;
+.info-box{
+  background:#f8f6ef;
+  border-radius:10px;
+  padding:15px;
   text-align:center;
-  background:#f2c400;
-  color:#222;
+}
+
+.info-icon{
+  font-size:25px;
+  margin-bottom:6px;
+}
+
+.info-label{
+  color:#777;
+  font-size:13px;
+  margin-bottom:4px;
+}
+
+.info-value{
+  font-size:18px;
+  font-weight:bold;
+}
+
+/* ================= DETAILS ================= */
+
+.details-section{
+  border-top:1px solid #eee;
+  padding-top:22px;
+  margin-top:22px;
+}
+
+.details-section h2{
+  margin-top:0;
+  font-size:22px;
+}
+
+.description{
+  color:#555;
+  line-height:1.8;
+  white-space:pre-wrap;
+}
+
+/* ================= SELLER ================= */
+
+.seller-card{
+  margin-top:22px;
+  background:#fff8df;
+  border:1px solid #f0d777;
+  border-radius:12px;
+  padding:18px;
+}
+
+.seller-card h3{
+  margin-top:0;
+}
+
+.seller-row{
+  margin:8px 0;
+  color:#555;
+}
+
+.phone-button{
+  display:inline-block;
+  margin-top:12px;
+  background:#2e7d32;
+  color:white;
   text-decoration:none;
-  padding:12px;
+  padding:12px 18px;
   border-radius:8px;
   font-weight:bold;
-  transition:.2s;
 }
 
-.details:hover{
-  background:#d4a900;
+.phone-button:hover{
+  background:#1b5e20;
 }
 
+/* ================= LOCATION ================= */
 
-/* ================= STATUS ================= */
-
-.empty{
-  background:white;
-  padding:40px;
+.location-box{
+  margin-top:20px;
+  padding:18px;
   border-radius:12px;
-  text-align:center;
-  color:#777;
-  grid-column:1/-1;
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
-  line-height:1.7;
+  background:#f7f5ef;
 }
 
-.error{
-  background:#ffe8e8;
-  color:#a00000;
+.location-box strong{
+  color:#33251d;
 }
 
-.loading{
-  text-align:center;
+/* ================= FULL IMAGE ================= */
+
+.image-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.94);
+  z-index:3000;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
 
+.image-modal.active{
+  display:flex;
+}
+
+.modal-image{
+  max-width:95vw;
+  max-height:90vh;
+  object-fit:contain;
+}
+
+.modal-close{
+  position:absolute;
+  top:20px;
+  right:25px;
+  border:0;
+  background:rgba(255,255,255,.15);
+  color:white;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  font-size:28px;
+  cursor:pointer;
+}
+
+.modal-prev,
+.modal-next{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  border:0;
+  background:rgba(255,255,255,.15);
+  color:white;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  font-size:32px;
+  cursor:pointer;
+}
+
+.modal-prev{
+  left:20px;
+}
+
+.modal-next{
+  right:20px;
+}
 
 /* ================= FOOTER ================= */
 
 footer{
   text-align:center;
-  padding:25px 15px;
+  padding:25px;
   color:#777;
-  font-size:14px;
 }
 
+/* ================= RESPONSIVE ================= */
 
-/* ================= TABLET ================= */
+@media(max-width:800px){
 
-@media(max-width:900px){
+  .main-image-box{
+    height:400px;
+  }
 
-  .properties{
+  .info-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
 }
 
-
-/* ================= MOBILE ================= */
-
 @media(max-width:600px){
 
-  header h1{
-    font-size:24px;
+  header{
+    flex-direction:column;
+    align-items:stretch;
+    text-align:center;
   }
 
-  .container{
-    padding:20px 14px 50px;
+  .back{
+    display:block;
   }
 
-  .page-title{
-    padding:20px 15px;
-  }
-
-  .properties{
-    grid-template-columns:1fr;
-  }
-
-  .image-slider{
-    height:230px;
+  .main-image-box{
+    height:280px;
   }
 
   .property-title{
-    font-size:19px;
+    font-size:23px;
   }
 
   .price{
-    font-size:20px;
+    font-size:23px;
   }
 
-  .slider-btn{
-    width:42px;
-    height:42px;
-    font-size:32px;
+  .detail-content{
+    padding:18px;
+  }
+
+  .info-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .gallery-button{
+    width:40px;
+    height:40px;
+    font-size:25px;
   }
 
 }
@@ -347,9 +446,7 @@ footer{
 
 </head>
 
-
 <body>
-
 
 <!-- ================= HEADER ================= -->
 
@@ -370,59 +467,273 @@ footer{
 </header>
 
 
+<!-- ================= MAIN ================= -->
+
 <div class="container">
 
-
-  <!-- ================= PAGE TITLE ================= -->
-
-  <div class="page-title">
-
-    <h2 id="pageTitle">
-      🏠 Houses for Sale
-    </h2>
-
-    <p id="pageDescription">
-      Find houses available for sale in Rwanda.
-    </p>
-
+  <div
+    id="loading"
+    class="loading"
+  >
+    Loading property...
   </div>
 
-
-  <!-- ================= ADSENSE ================= -->
-
-  <div class="ad-container">
-
-    <div
-      class="ad-label"
-      id="adLabel"
-    >
-      Advertisement
-    </div>
-
-    <ins
-      class="adsbygoogle"
-      style="display:block"
-      data-ad-client="ca-pub-7520250190173475"
-      data-ad-slot="7793944660"
-      data-ad-format="auto"
-      data-full-width-responsive="true">
-    </ins>
-
-  </div>
-
-
-  <!-- ================= PROPERTIES ================= -->
 
   <div
-    id="properties"
-    class="properties"
+    id="errorBox"
+    class="error"
+    style="display:none;"
+  ></div>
+
+
+  <div
+    id="detailCard"
+    class="detail-card"
+    style="display:none;"
   >
 
-    <div
-      class="empty loading"
-      id="loadingMessage"
-    >
-      Loading houses...
+    <!-- ================= GALLERY ================= -->
+
+    <div class="gallery">
+
+      <div class="main-image-box">
+
+        <img
+          id="mainImage"
+          class="main-image"
+          src=""
+          alt="Property"
+          onclick="openImageModal()"
+        >
+
+        <button
+          id="prevButton"
+          class="gallery-button gallery-prev"
+          onclick="previousImage()"
+        >
+          ‹
+        </button>
+
+        <button
+          id="nextButton"
+          class="gallery-button gallery-next"
+          onclick="nextImage()"
+        >
+          ›
+        </button>
+
+        <div
+          id="photoCounter"
+          class="photo-counter"
+        >
+          1 / 1
+        </div>
+
+      </div>
+
+
+      <div
+        id="thumbnails"
+        class="thumbnails"
+      ></div>
+
+    </div>
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <div class="detail-content">
+
+      <div
+        id="propertyBadge"
+        class="badge"
+      >
+        🏠 House for Sale
+      </div>
+
+
+      <h2
+        id="propertyTitle"
+        class="property-title"
+      >
+        Property
+      </h2>
+
+
+      <div
+        id="propertyPrice"
+        class="price"
+      >
+        0 RWF
+      </div>
+
+
+      <div
+        id="propertyLocation"
+        class="location"
+      >
+        📍 Rwanda
+      </div>
+
+
+      <!-- ================= BASIC INFO ================= -->
+
+      <div class="info-grid">
+
+        <div class="info-box">
+
+          <div class="info-icon">
+            🛏️
+          </div>
+
+          <div
+            id="bedroomLabel"
+            class="info-label"
+          >
+            Bedrooms
+          </div>
+
+          <div
+            id="bedrooms"
+            class="info-value"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+          <div class="info-icon">
+            🚿
+          </div>
+
+          <div
+            id="bathroomLabel"
+            class="info-label"
+          >
+            Bathrooms
+          </div>
+
+          <div
+            id="bathrooms"
+            class="info-value"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+          <div class="info-icon">
+            🚗
+          </div>
+
+          <div
+            id="parkingLabel"
+            class="info-label"
+          >
+            Parking
+          </div>
+
+          <div
+            id="parking"
+            class="info-value"
+          >
+            0
+          </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+          <div class="info-icon">
+            📍
+          </div>
+
+          <div
+            id="typeLabel"
+            class="info-label"
+          >
+            Type
+          </div>
+
+          <div
+            id="propertyType"
+            class="info-value"
+          >
+            Sale
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= DESCRIPTION ================= -->
+
+      <div class="details-section">
+
+        <h2 id="descriptionTitle">
+          📝 Description
+        </h2>
+
+        <div
+          id="description"
+          class="description"
+        ></div>
+
+      </div>
+
+
+      <!-- ================= LOCATION ================= -->
+
+      <div class="location-box">
+
+        <strong id="locationTitle">
+          📍 Location
+        </strong>
+
+        <div
+          id="fullLocation"
+          style="margin-top:8px;color:#666;"
+        ></div>
+
+      </div>
+
+
+      <!-- ================= SELLER ================= -->
+
+      <div class="seller-card">
+
+        <h3 id="sellerTitle">
+          👤 Seller Information
+        </h3>
+
+        <div
+          id="sellerName"
+          class="seller-row"
+        ></div>
+
+        <div
+          id="sellerPhone"
+          class="seller-row"
+        ></div>
+
+        <a
+          id="callButton"
+          class="phone-button"
+          href="#"
+        >
+          📞 Call Seller
+        </a>
+
+      </div>
+
     </div>
 
   </div>
@@ -430,7 +741,44 @@ footer{
 </div>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- ================= IMAGE MODAL ================= -->
+
+<div
+  id="imageModal"
+  class="image-modal"
+  onclick="closeImageModal(event)"
+>
+
+  <button
+    class="modal-close"
+    onclick="closeImageModal()"
+  >
+    ×
+  </button>
+
+  <button
+    class="modal-prev"
+    onclick="modalPrevious(event)"
+  >
+    ‹
+  </button>
+
+  <img
+    id="modalImage"
+    class="modal-image"
+    src=""
+    alt="Property"
+  >
+
+  <button
+    class="modal-next"
+    onclick="modalNext(event)"
+  >
+    ›
+  </button>
+
+</div>
+
 
 <footer>
 
@@ -441,18 +789,13 @@ footer{
 </footer>
 
 
-
 <script>
 
-
-/* =====================================================
-   LANGUAGE - 5 LANGUAGES
-===================================================== */
+/* =========================================================
+   5 LANGUAGES
+========================================================= */
 
 const translations = {
-
-
-  /* ================= KINYARWANDA ================= */
 
   Kinyarwanda: {
 
@@ -462,32 +805,50 @@ const translations = {
     back:
       "← Subira kuri Home",
 
-    title:
-      "🏠 Amazu Agurishwa",
-
-    description:
-      "Shakisha amazu ari kugurishwa mu Rwanda.",
-
-    advertisement:
-      "Kwamamaza",
-
     loading:
-      "Tegereza, amazu arimo kuboneka...",
-
-    noProperties:
-      "Nta nzu zigurishwa ziraboneka.",
+      "Tegereza, amakuru y'inzu arimo kuboneka...",
 
     error:
-      "Habaye ikibazo mu kubona amazu.",
+      "Habaye ikibazo mu kubona amakuru y'iyi nzu.",
 
-    view:
-      "Reba Ibisobanuro",
+    notFound:
+      "Iyi nzu ntiyabonetse.",
 
     house:
-      "Inzu Igurishwa",
+      "🏠 Inzu Igurishwa",
 
-    rwanda:
-      "Rwanda",
+    bedrooms:
+      "Ibyumba",
+
+    bathrooms:
+      "Ubwogero",
+
+    parking:
+      "Parking",
+
+    type:
+      "Ubwoko",
+
+    sale:
+      "Igurishwa",
+
+    description:
+      "📝 Ibisobanuro",
+
+    location:
+      "📍 Aho iherereye",
+
+    seller:
+      "👤 Amakuru y'ugurisha",
+
+    name:
+      "Izina",
+
+    phone:
+      "Telefone",
+
+    call:
+      "📞 Hamagara Ugurisha",
 
     noPhoto:
       "Nta Foto",
@@ -498,8 +859,6 @@ const translations = {
   },
 
 
-  /* ================= ENGLISH ================= */
-
   English: {
 
     header:
@@ -508,32 +867,50 @@ const translations = {
     back:
       "← Back to Home",
 
-    title:
-      "🏠 Houses for Sale",
-
-    description:
-      "Find houses available for sale in Rwanda.",
-
-    advertisement:
-      "Advertisement",
-
     loading:
-      "Loading houses...",
-
-    noProperties:
-      "No houses for sale available yet.",
+      "Loading property details...",
 
     error:
-      "There was a problem loading the houses.",
+      "There was a problem loading this property.",
 
-    view:
-      "View Details",
+    notFound:
+      "This property was not found.",
 
     house:
-      "House for Sale",
+      "🏠 House for Sale",
 
-    rwanda:
-      "Rwanda",
+    bedrooms:
+      "Bedrooms",
+
+    bathrooms:
+      "Bathrooms",
+
+    parking:
+      "Parking",
+
+    type:
+      "Type",
+
+    sale:
+      "Sale",
+
+    description:
+      "📝 Description",
+
+    location:
+      "📍 Location",
+
+    seller:
+      "👤 Seller Information",
+
+    name:
+      "Name",
+
+    phone:
+      "Phone",
+
+    call:
+      "📞 Call Seller",
 
     noPhoto:
       "No Photo",
@@ -544,8 +921,6 @@ const translations = {
   },
 
 
-  /* ================= FRENCH ================= */
-
   Français: {
 
     header:
@@ -554,32 +929,50 @@ const translations = {
     back:
       "← Retour à l'accueil",
 
-    title:
-      "🏠 Maisons à vendre",
-
-    description:
-      "Trouvez des maisons disponibles à la vente au Rwanda.",
-
-    advertisement:
-      "Publicité",
-
     loading:
-      "Chargement des maisons...",
-
-    noProperties:
-      "Aucune maison à vendre n'est disponible pour le moment.",
+      "Chargement des détails de la propriété...",
 
     error:
-      "Un problème est survenu lors du chargement des maisons.",
+      "Un problème est survenu lors du chargement de cette propriété.",
 
-    view:
-      "Voir les détails",
+    notFound:
+      "Cette propriété est introuvable.",
 
     house:
-      "Maison à vendre",
+      "🏠 Maison à vendre",
 
-    rwanda:
-      "Rwanda",
+    bedrooms:
+      "Chambres",
+
+    bathrooms:
+      "Salles de bain",
+
+    parking:
+      "Parking",
+
+    type:
+      "Type",
+
+    sale:
+      "Vente",
+
+    description:
+      "📝 Description",
+
+    location:
+      "📍 Emplacement",
+
+    seller:
+      "👤 Informations du vendeur",
+
+    name:
+      "Nom",
+
+    phone:
+      "Téléphone",
+
+    call:
+      "📞 Appeler le vendeur",
 
     noPhoto:
       "Aucune photo",
@@ -590,8 +983,6 @@ const translations = {
   },
 
 
-  /* ================= KISWAHILI ================= */
-
   Kiswahili: {
 
     header:
@@ -600,32 +991,50 @@ const translations = {
     back:
       "← Rudi Mwanzo",
 
-    title:
-      "🏠 Nyumba za Kuuza",
-
-    description:
-      "Pata nyumba zinazopatikana kwa ajili ya kuuza nchini Rwanda.",
-
-    advertisement:
-      "Tangazo",
-
     loading:
-      "Inapakia nyumba...",
-
-    noProperties:
-      "Hakuna nyumba za kuuza zinazopatikana kwa sasa.",
+      "Inapakia maelezo ya nyumba...",
 
     error:
-      "Kuna tatizo wakati wa kupakia nyumba.",
+      "Kuna tatizo wakati wa kupakia nyumba hii.",
 
-    view:
-      "Angalia Maelezo",
+    notFound:
+      "Nyumba hii haikupatikana.",
 
     house:
-      "Nyumba ya Kuuza",
+      "🏠 Nyumba ya Kuuza",
 
-    rwanda:
-      "Rwanda",
+    bedrooms:
+      "Vyumba vya kulala",
+
+    bathrooms:
+      "Vyumba vya kuoga",
+
+    parking:
+      "Maegesho",
+
+    type:
+      "Aina",
+
+    sale:
+      "Kuuza",
+
+    description:
+      "📝 Maelezo",
+
+    location:
+      "📍 Mahali",
+
+    seller:
+      "👤 Taarifa za Muuzaji",
+
+    name:
+      "Jina",
+
+    phone:
+      "Simu",
+
+    call:
+      "📞 Mpigie Muuzaji",
 
     noPhoto:
       "Hakuna Picha",
@@ -636,8 +1045,6 @@ const translations = {
   },
 
 
-  /* ================= CHINESE ================= */
-
   "中文": {
 
     header:
@@ -646,32 +1053,50 @@ const translations = {
     back:
       "← 返回首页",
 
-    title:
-      "🏠 出售房屋",
-
-    description:
-      "寻找卢旺达境内可出售的房屋。",
-
-    advertisement:
-      "广告",
-
     loading:
-      "正在加载房屋...",
-
-    noProperties:
-      "目前没有可出售的房屋。",
+      "正在加载房屋详情...",
 
     error:
-      "加载房屋时出现问题。",
+      "加载此房屋时出现问题。",
 
-    view:
-      "查看详情",
+    notFound:
+      "找不到此房屋。",
 
     house:
-      "出售房屋",
+      "🏠 出售房屋",
 
-    rwanda:
-      "卢旺达",
+    bedrooms:
+      "卧室",
+
+    bathrooms:
+      "浴室",
+
+    parking:
+      "停车位",
+
+    type:
+      "类型",
+
+    sale:
+      "出售",
+
+    description:
+      "📝 房屋描述",
+
+    location:
+      "📍 位置",
+
+    seller:
+      "👤 卖家信息",
+
+    name:
+      "姓名",
+
+    phone:
+      "电话",
+
+    call:
+      "📞 联系卖家",
 
     noPhoto:
       "暂无照片",
@@ -684,13 +1109,14 @@ const translations = {
 };
 
 
-
-/* =====================================================
-   GET SAVED LANGUAGE
-===================================================== */
+/* =========================================================
+   LANGUAGE
+========================================================= */
 
 const savedLanguage =
-  localStorage.getItem("selectedLanguage") ||
+  localStorage.getItem(
+    "selectedLanguage"
+  ) ||
   "English";
 
 
@@ -706,11 +1132,6 @@ const language =
 const t =
   translations[language];
 
-
-
-/* =====================================================
-   HTML LANGUAGE
-===================================================== */
 
 const htmlLanguages = {
 
@@ -737,10 +1158,9 @@ document.documentElement.lang =
   "en";
 
 
-
-/* =====================================================
+/* =========================================================
    APPLY LANGUAGE
-===================================================== */
+========================================================= */
 
 document.getElementById(
   "headerTitle"
@@ -755,27 +1175,51 @@ document.getElementById(
 
 
 document.getElementById(
-  "pageTitle"
+  "loading"
 ).textContent =
-  t.title;
+  t.loading;
 
 
 document.getElementById(
-  "pageDescription"
+  "bedroomLabel"
+).textContent =
+  t.bedrooms;
+
+
+document.getElementById(
+  "bathroomLabel"
+).textContent =
+  t.bathrooms;
+
+
+document.getElementById(
+  "parkingLabel"
+).textContent =
+  t.parking;
+
+
+document.getElementById(
+  "typeLabel"
+).textContent =
+  t.type;
+
+
+document.getElementById(
+  "descriptionTitle"
 ).textContent =
   t.description;
 
 
 document.getElementById(
-  "adLabel"
+  "locationTitle"
 ).textContent =
-  t.advertisement;
+  t.location;
 
 
 document.getElementById(
-  "loadingMessage"
+  "sellerTitle"
 ).textContent =
-  t.loading;
+  t.seller;
 
 
 document.getElementById(
@@ -784,18 +1228,9 @@ document.getElementById(
   t.designedBy;
 
 
-document.title =
-  t.title.replace(
-    "🏠 ",
-    ""
-  ) +
-  " - Rwanda Property Visata";
-
-
-
-/* =====================================================
+/* =========================================================
    SUPABASE
-===================================================== */
+========================================================= */
 
 const SUPABASE_URL =
   "https://hsmnybmcddtsyooltozw.supabase.co";
@@ -812,67 +1247,76 @@ const supabaseClient =
   );
 
 
+/* =========================================================
+   GLOBALS
+========================================================= */
 
-/* =====================================================
-   ELEMENT
-===================================================== */
+let property = null;
 
-const propertiesElement =
-  document.getElementById(
-    "properties"
-  );
+let images = [];
+
+let currentImage = 0;
 
 
-
-/* =====================================================
+/* =========================================================
    ESCAPE HTML
-===================================================== */
+========================================================= */
 
 function escapeHtml(value){
 
   return String(
     value ?? ""
   )
-
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-
-    .replace(
-      /</g,
-      "&lt;"
-    )
-
-    .replace(
-      />/g,
-      "&gt;"
-    )
-
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-
-    .replace(
-      /'/g,
-      "&#039;"
-    );
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+  .replace(
+    /</g,
+    "&lt;"
+  )
+  .replace(
+    />/g,
+    "&gt;"
+  )
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+  .replace(
+    /'/g,
+    "&#039;"
+  );
 
 }
 
 
+/* =========================================================
+   FORMAT PRICE
+========================================================= */
 
-/* =====================================================
-   GET ALL PROPERTY IMAGES
-===================================================== */
+function formatPrice(price){
+
+  const number =
+    Number(price || 0);
+
+  return number.toLocaleString(
+    "en-US"
+  );
+
+}
+
+
+/* =========================================================
+   GET ALL PHOTOS
+========================================================= */
 
 function getPropertyImages(property){
 
-  const images = [];
+  const result = [];
 
 
-  /* ================= MAIN PHOTO ================= */
+  /* MAIN PHOTO */
 
   if(
     property.main_photo &&
@@ -881,14 +1325,14 @@ function getPropertyImages(property){
     property.main_photo.trim() !== ""
   ){
 
-    images.push(
+    result.push(
       property.main_photo.trim()
     );
 
   }
 
 
-  /* ================= OTHER PHOTOS ARRAY ================= */
+  /* OTHER PHOTOS AS ARRAY */
 
   if(
     Array.isArray(
@@ -903,12 +1347,12 @@ function getPropertyImages(property){
           typeof photo ===
             "string" &&
           photo.trim() !== "" &&
-          !images.includes(
+          !result.includes(
             photo.trim()
           )
         ){
 
-          images.push(
+          result.push(
             photo.trim()
           );
 
@@ -920,9 +1364,9 @@ function getPropertyImages(property){
   }
 
 
-  /* ================= OTHER PHOTOS JSON ================= */
+  /* OTHER PHOTOS AS JSON STRING */
 
-  if(
+  else if(
     typeof property.other_photos ===
       "string" &&
     property.other_photos.trim() !== ""
@@ -947,12 +1391,12 @@ function getPropertyImages(property){
               typeof photo ===
                 "string" &&
               photo.trim() !== "" &&
-              !images.includes(
+              !result.includes(
                 photo.trim()
               )
             ){
 
-              images.push(
+              result.push(
                 photo.trim()
               );
 
@@ -976,14 +1420,14 @@ function getPropertyImages(property){
   }
 
 
-  /* ================= NO PHOTO ================= */
+  /* FALLBACK */
 
   if(
-    images.length === 0
+    result.length === 0
   ){
 
-    images.push(
-      "https://via.placeholder.com/800x500?text=" +
+    result.push(
+      "https://via.placeholder.com/1000x650?text=" +
       encodeURIComponent(
         t.noPhoto
       )
@@ -992,15 +1436,14 @@ function getPropertyImages(property){
   }
 
 
-  return images;
+  return result;
 
 }
 
 
-
-/* =====================================================
+/* =========================================================
    GET LOCATION
-===================================================== */
+========================================================= */
 
 function getLocation(property){
 
@@ -1015,107 +1458,361 @@ function getLocation(property){
     property.sector
 
   ].filter(
-
     value =>
-
       value !== null &&
-
       value !== undefined &&
-
       String(value).trim() !== ""
-
   );
 
 
+  return parts.length
+    ? parts.join(", ")
+    : "Rwanda";
+
+}
+
+
+/* =========================================================
+   SHOW IMAGE
+========================================================= */
+
+function showImage(index){
+
   if(
-    parts.length > 0
+    !images.length
   ){
 
-    return parts.join(
-      ", "
+    return;
+
+  }
+
+
+  currentImage =
+    (index + images.length) %
+    images.length;
+
+
+  document.getElementById(
+    "mainImage"
+  ).src =
+    images[currentImage];
+
+
+  document.getElementById(
+    "photoCounter"
+  ).textContent =
+    `${currentImage + 1} / ${images.length}`;
+
+
+  document
+    .querySelectorAll(".thumbnail")
+    .forEach(
+      (thumbnail,index) => {
+
+        thumbnail.classList.toggle(
+          "active",
+          index === currentImage
+        );
+
+      }
     );
 
-  }
-
-
-  return t.rwanda;
-
 }
 
 
+/* =========================================================
+   NEXT / PREVIOUS
+========================================================= */
 
-/* =====================================================
-   FORMAT PRICE
-===================================================== */
+function nextImage(){
 
-function formatPrice(price){
-
-  if(
-    price === null ||
-    price === undefined ||
-    price === ""
-  ){
-
-    return "0";
-
-  }
-
-
-  const number =
-    Number(price);
-
-
-  if(
-    Number.isNaN(number)
-  ){
-
-    return "0";
-
-  }
-
-
-  return number.toLocaleString(
-    "en-US"
+  showImage(
+    currentImage + 1
   );
 
 }
 
 
+function previousImage(){
 
-/* =====================================================
-   CREATE DETAIL URL
-===================================================== */
-
-function createDetailUrl(id){
-
-  return (
-    "house-sale-detail.html?id=" +
-    encodeURIComponent(
-      String(id)
-    )
+  showImage(
+    currentImage - 1
   );
 
 }
 
 
+/* =========================================================
+   RENDER THUMBNAILS
+========================================================= */
 
-/* =====================================================
-   LOAD SALE PROPERTIES
-===================================================== */
+function renderThumbnails(){
 
-async function loadSaleProperties(){
+  const container =
+    document.getElementById(
+      "thumbnails"
+    );
 
-  propertiesElement.innerHTML = `
 
-    <div class="empty loading">
+  container.innerHTML =
+    "";
 
-      ${escapeHtml(
-        t.loading
-      )}
 
-    </div>
+  images.forEach(
+    (image,index) => {
 
-  `;
+      const thumbnail =
+        document.createElement(
+          "img"
+        );
+
+
+      thumbnail.className =
+        "thumbnail";
+
+
+      thumbnail.src =
+        image;
+
+
+      thumbnail.alt =
+        "Property photo";
+
+
+      thumbnail.onclick =
+        () =>
+          showImage(index);
+
+
+      container.appendChild(
+        thumbnail
+      );
+
+    }
+  );
+
+
+  showImage(0);
+
+}
+
+
+/* =========================================================
+   RENDER PROPERTY
+========================================================= */
+
+function renderProperty(){
+
+  document.getElementById(
+    "propertyTitle"
+  ).textContent =
+    property.title ||
+    t.house;
+
+
+  document.getElementById(
+    "propertyPrice"
+  ).textContent =
+    formatPrice(
+      property.price
+    ) +
+    " RWF";
+
+
+  document.getElementById(
+    "propertyLocation"
+  ).textContent =
+    "📍 " +
+    getLocation(property);
+
+
+  document.getElementById(
+    "bedrooms"
+  ).textContent =
+    property.bedrooms ??
+    0;
+
+
+  document.getElementById(
+    "bathrooms"
+  ).textContent =
+    property.bathrooms ??
+    0;
+
+
+  document.getElementById(
+    "parking"
+  ).textContent =
+    property.parking ??
+    0;
+
+
+  document.getElementById(
+    "propertyType"
+  ).textContent =
+    property.property_type ===
+      "sale"
+      ? t.sale
+      : (
+          property.property_type ||
+          t.sale
+        );
+
+
+  document.getElementById(
+    "description"
+  ).textContent =
+    property.description ||
+    "-";
+
+
+  document.getElementById(
+    "fullLocation"
+  ).textContent =
+    getLocation(property);
+
+
+  const seller =
+    property.seller_name ||
+    "-";
+
+
+  const phone =
+    property.phone ||
+    "-";
+
+
+  document.getElementById(
+    "sellerName"
+  ).textContent =
+    t.name +
+    ": " +
+    seller;
+
+
+  document.getElementById(
+    "sellerPhone"
+  ).textContent =
+    t.phone +
+    ": " +
+    phone;
+
+
+  const callButton =
+    document.getElementById(
+      "callButton"
+    );
+
+
+  if(
+    property.phone &&
+    String(
+      property.phone
+    ).trim() !== ""
+  ){
+
+    callButton.href =
+      "tel:" +
+      String(
+        property.phone
+      ).replace(
+        /\s/g,
+        ""
+      );
+
+    callButton.textContent =
+      t.call;
+
+    callButton.style.display =
+      "inline-block";
+
+  }
+  else{
+
+    callButton.style.display =
+      "none";
+
+  }
+
+
+  document.getElementById(
+    "propertyBadge"
+  ).textContent =
+    t.house;
+
+
+  images =
+    getPropertyImages(
+      property
+    );
+
+
+  renderThumbnails();
+
+
+  document.title =
+    (
+      property.title ||
+      t.house.replace(
+        "🏠 ",
+        ""
+      )
+    ) +
+    " - Rwanda Property Visata";
+
+
+  document.getElementById(
+    "loading"
+  ).style.display =
+    "none";
+
+
+  document.getElementById(
+    "detailCard"
+  ).style.display =
+    "block";
+
+}
+
+
+/* =========================================================
+   GET PROPERTY ID
+========================================================= */
+
+function getPropertyId(){
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+
+  return params.get(
+    "id"
+  );
+
+}
+
+
+/* =========================================================
+   LOAD ONE PROPERTY ONLY
+========================================================= */
+
+async function loadProperty(){
+
+  const id =
+    getPropertyId();
+
+
+  if(!id){
+
+    showError(
+      t.notFound
+    );
+
+    return;
+
+  }
 
 
   try{
@@ -1124,711 +1821,75 @@ async function loadSaleProperties(){
       data,
       error
     } =
-      await supabaseClient
+    await supabaseClient
 
-        .from(
-          "property_posts"
-        )
+      .from(
+        "property_posts"
+      )
 
-        .select("*")
+      .select("*")
 
-        .eq(
-          "property_type",
-          "sale"
-        )
+      .eq(
+        "id",
+        id
+      )
 
-        .eq(
-          "status",
-          "published"
-        )
+      .eq(
+        "property_type",
+        "sale"
+      )
 
-        .order(
-          "created_at",
-          {
-            ascending:false
-          }
-        );
+      .eq(
+        "status",
+        "published"
+      )
 
+      .maybeSingle();
 
-    /* ================= ERROR ================= */
 
     if(error){
 
       console.error(
-        "SUPABASE ERROR:",
         error
       );
 
-
-      propertiesElement.innerHTML = `
-
-        <div class="empty error">
-
-          ❌<br><br>
-
-          ${escapeHtml(
-            t.error
-          )}
-
-          <br><br>
-
-          <small>
-
-            ${escapeHtml(
-              error.message ||
-              ""
-            )}
-
-          </small>
-
-        </div>
-
-      `;
-
+      showError(
+        t.error +
+        "\n\n" +
+        error.message
+      );
 
       return;
 
     }
 
 
+    if(!data){
 
-    /* ================= EMPTY ================= */
-
-    if(
-      !data ||
-      data.length === 0
-    ){
-
-      propertiesElement.innerHTML = `
-
-        <div class="empty">
-
-          🏠<br><br>
-
-          ${escapeHtml(
-            t.noProperties
-          )}
-
-        </div>
-
-      `;
-
+      showError(
+        t.notFound
+      );
 
       return;
 
     }
 
 
+    property =
+      data;
 
-    /* ================= CLEAR ================= */
 
-    propertiesElement.innerHTML =
-      "";
-
-
-
-    /* =================================================
-       CREATE EACH PROPERTY
-    ================================================= */
-
-    data.forEach(
-      property => {
-
-
-        /* ================= ID CHECK ================= */
-
-        if(
-          property.id === null ||
-          property.id === undefined ||
-          String(
-            property.id
-          ).trim() === ""
-        ){
-
-          console.warn(
-            "Property skipped because it has no ID:",
-            property
-          );
-
-          return;
-
-        }
-
-
-
-        /* ================= CARD ================= */
-
-        const card =
-          document.createElement(
-            "div"
-          );
-
-
-        card.className =
-          "property";
-
-
-
-        /* ================= IMAGES ================= */
-
-        const images =
-          getPropertyImages(
-            property
-          );
-
-
-        let currentImage =
-          0;
-
-
-
-        /* ================= TITLE ================= */
-
-        const propertyTitle =
-          property.title ||
-          t.house;
-
-
-
-        /* ================= PRICE ================= */
-
-        const formattedPrice =
-          formatPrice(
-            property.price
-          );
-
-
-
-        /* ================= LOCATION ================= */
-
-        const location =
-          getLocation(
-            property
-          );
-
-
-
-        /* ================= DETAIL URL ================= */
-
-        const detailUrl =
-          createDetailUrl(
-            property.id
-          );
-
-
-
-        /* =================================================
-           CARD HTML
-        ================================================= */
-
-        card.innerHTML = `
-
-          <div class="image-slider">
-
-            <img
-
-              class="slider-image"
-
-              src="${escapeHtml(
-                images[0]
-              )}"
-
-              alt="${escapeHtml(
-                propertyTitle
-              )}"
-
-              loading="lazy"
-
-            >
-
-
-            ${
-              images.length > 1
-                ? `
-
-                  <button
-                    type="button"
-                    class="slider-btn slider-prev"
-                    aria-label="Previous image"
-                  >
-                    ‹
-                  </button>
-
-
-                  <button
-                    type="button"
-                    class="slider-btn slider-next"
-                    aria-label="Next image"
-                  >
-                    ›
-                  </button>
-
-
-                  <div class="slider-counter">
-
-                    1 / ${images.length}
-
-                  </div>
-
-                `
-                : ""
-            }
-
-          </div>
-
-
-          <div class="property-body">
-
-
-            <div class="property-title">
-
-              ${escapeHtml(
-                propertyTitle
-              )}
-
-            </div>
-
-
-            <div class="price">
-
-              ${escapeHtml(
-                formattedPrice
-              )}
-
-              RWF
-
-            </div>
-
-
-            <div class="location">
-
-              📍
-
-              ${escapeHtml(
-                location
-              )}
-
-            </div>
-
-
-            <a
-
-              class="details"
-
-              href="${escapeHtml(
-                detailUrl
-              )}"
-
-            >
-
-              ${escapeHtml(
-                t.view
-              )}
-
-            </a>
-
-
-          </div>
-
-        `;
-
-
-
-        /* =================================================
-           IMAGE ELEMENT
-        ================================================= */
-
-        const imageElement =
-          card.querySelector(
-            ".slider-image"
-          );
-
-
-
-        /* =================================================
-           IMAGE ERROR
-        ================================================= */
-
-        imageElement.addEventListener(
-          "error",
-          function(){
-
-            this.onerror =
-              null;
-
-            this.src =
-              "https://via.placeholder.com/800x500?text=" +
-              encodeURIComponent(
-                t.noPhoto
-              );
-
-          }
-        );
-
-
-
-        /* =================================================
-           PREVIOUS BUTTON
-        ================================================= */
-
-        const previousButton =
-          card.querySelector(
-            ".slider-prev"
-          );
-
-
-        if(
-          previousButton
-        ){
-
-          previousButton.addEventListener(
-            "click",
-            function(event){
-
-              event.preventDefault();
-
-              event.stopPropagation();
-
-
-              currentImage--;
-
-
-              if(
-                currentImage < 0
-              ){
-
-                currentImage =
-                  images.length - 1;
-
-              }
-
-
-              imageElement.src =
-                images[
-                  currentImage
-                ];
-
-
-              const counter =
-                card.querySelector(
-                  ".slider-counter"
-                );
-
-
-              if(counter){
-
-                counter.textContent =
-                  (
-                    currentImage + 1
-                  ) +
-                  " / " +
-                  images.length;
-
-              }
-
-            }
-          );
-
-        }
-
-
-
-        /* =================================================
-           NEXT BUTTON
-        ================================================= */
-
-        const nextButton =
-          card.querySelector(
-            ".slider-next"
-          );
-
-
-        if(
-          nextButton
-        ){
-
-          nextButton.addEventListener(
-            "click",
-            function(event){
-
-              event.preventDefault();
-
-              event.stopPropagation();
-
-
-              currentImage++;
-
-
-              if(
-                currentImage >=
-                images.length
-              ){
-
-                currentImage =
-                  0;
-
-              }
-
-
-              imageElement.src =
-                images[
-                  currentImage
-                ];
-
-
-              const counter =
-                card.querySelector(
-                  ".slider-counter"
-                );
-
-
-              if(counter){
-
-                counter.textContent =
-                  (
-                    currentImage + 1
-                  ) +
-                  " / " +
-                  images.length;
-
-              }
-
-            }
-          );
-
-        }
-
-
-
-        /* ================= ADD CARD ================= */
-
-        propertiesElement.appendChild(
-          card
-        );
-
-
-      }
-    );
-
-
-
-    /* =================================================
-       ALL RECORDS WITHOUT ID
-    ================================================= */
-
-    if(
-      propertiesElement.children.length ===
-      0
-    ){
-
-      propertiesElement.innerHTML = `
-
-        <div class="empty error">
-
-          ❌<br><br>
-
-          ${escapeHtml(
-            t.error
-          )}
-
-        </div>
-
-      `;
-
-    }
+    renderProperty();
 
   }
   catch(error){
 
     console.error(
-      "Unexpected error:",
       error
     );
 
-
-    propertiesElement.innerHTML = `
-
-      <div class="empty error">
-
-        ❌<br><br>
-
-        ${escapeHtml(
-          t.error
-        )}
-
-        <br><br>
-
-        <small>
-
-          ${escapeHtml(
-            error.message ||
-            ""
-          )}
-
-        </small>
-
-      </div>
-
-    `;
-
-  }
-
-}
-
-
-
-/* =====================================================
-   VISITOR TRACKING
-===================================================== */
-
-async function trackPageView(){
-
-  try{
-
-    let visitorId =
-      localStorage.getItem(
-        "rpv_visitor_id"
-      );
-
-
-    if(
-      !visitorId
-    ){
-
-      if(
-        window.crypto &&
-        typeof window.crypto.randomUUID ===
-          "function"
-      ){
-
-        visitorId =
-          window.crypto.randomUUID();
-
-      }
-      else{
-
-        visitorId =
-          "visitor_" +
-          Date.now() +
-          "_" +
-          Math.random()
-            .toString(36)
-            .substring(2);
-
-      }
-
-
-      localStorage.setItem(
-        "rpv_visitor_id",
-        visitorId
-      );
-
-    }
-
-
-
-    let sessionId =
-      sessionStorage.getItem(
-        "rpv_session_id"
-      );
-
-
-    if(
-      !sessionId
-    ){
-
-      if(
-        window.crypto &&
-        typeof window.crypto.randomUUID ===
-          "function"
-      ){
-
-        sessionId =
-          window.crypto.randomUUID();
-
-      }
-      else{
-
-        sessionId =
-          "session_" +
-          Date.now() +
-          "_" +
-          Math.random()
-            .toString(36)
-            .substring(2);
-
-      }
-
-
-      sessionStorage.setItem(
-        "rpv_session_id",
-        sessionId
-      );
-
-    }
-
-
-
-    const {
-      error
-    } =
-      await supabaseClient
-
-        .from(
-          "page_views"
-        )
-
-        .insert({
-
-          page:
-            document.title ||
-            location.pathname,
-
-          path:
-            location.pathname,
-
-          visitor_id:
-            visitorId,
-
-          session_id:
-            sessionId,
-
-          referrer:
-            document.referrer ||
-            null,
-
-          user_agent:
-            navigator.userAgent,
-
-          device_type:
-            getDeviceType(),
-
-          country:
-            null,
-
-          city:
-            null
-
-        });
-
-
-    if(
-      error
-    ){
-
-      console.warn(
-        "Visitor tracking error:",
-        error
-      );
-
-    }
-
-  }
-  catch(error){
-
-    console.warn(
-      "Tracking failed:",
-      error
+    showError(
+      t.error
     );
 
   }
@@ -1836,69 +1897,193 @@ async function trackPageView(){
 }
 
 
+/* =========================================================
+   ERROR
+========================================================= */
 
-/* =====================================================
-   DEVICE TYPE
-===================================================== */
+function showError(message){
 
-function getDeviceType(){
-
-  if(
-    window.innerWidth <= 600
-  ){
-
-    return "mobile";
-
-  }
+  document.getElementById(
+    "loading"
+  ).style.display =
+    "none";
 
 
-  if(
-    window.innerWidth <= 1024
-  ){
-
-    return "tablet";
-
-  }
+  const box =
+    document.getElementById(
+      "errorBox"
+    );
 
 
-  return "desktop";
+  box.innerHTML =
+    escapeHtml(
+      message
+    ).replace(
+      /\n/g,
+      "<br>"
+    );
+
+
+  box.style.display =
+    "block";
 
 }
 
 
+/* =========================================================
+   IMAGE MODAL
+========================================================= */
 
-/* =====================================================
-   START PAGE
-===================================================== */
+function openImageModal(){
 
-loadSaleProperties();
+  if(!images.length){
 
-trackPageView();
+    return;
+
+  }
 
 
+  document.getElementById(
+    "modalImage"
+  ).src =
+    images[currentImage];
 
-/* =====================================================
-   START ADSENSE
-===================================================== */
 
-window.addEventListener(
-  "load",
-  function(){
+  document.getElementById(
+    "imageModal"
+  ).classList.add(
+    "active"
+  );
 
-    try{
+}
 
-      (
-        window.adsbygoogle =
-        window.adsbygoogle ||
-        []
-      ).push({});
+
+function closeImageModal(event){
+
+  if(
+    event &&
+    event.target &&
+    !event.target.classList.contains(
+      "image-modal"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "imageModal"
+  ).classList.remove(
+    "active"
+  );
+
+}
+
+
+function modalPrevious(event){
+
+  if(event){
+
+    event.stopPropagation();
+
+  }
+
+
+  previousImage();
+
+
+  document.getElementById(
+    "modalImage"
+  ).src =
+    images[currentImage];
+
+}
+
+
+function modalNext(event){
+
+  if(event){
+
+    event.stopPropagation();
+
+  }
+
+
+  nextImage();
+
+
+  document.getElementById(
+    "modalImage"
+  ).src =
+    images[currentImage];
+
+}
+
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "ArrowRight"){
+
+      nextImage();
+
+      if(
+        document
+          .getElementById(
+            "imageModal"
+          )
+          .classList.contains(
+            "active"
+          )
+      ){
+
+        document.getElementById(
+          "modalImage"
+        ).src =
+          images[currentImage];
+
+      }
 
     }
-    catch(error){
 
-      console.warn(
-        "AdSense error:",
-        error
+
+    if(event.key === "ArrowLeft"){
+
+      previousImage();
+
+      if(
+        document
+          .getElementById(
+            "imageModal"
+          )
+          .classList.contains(
+            "active"
+          )
+      ){
+
+        document.getElementById(
+          "modalImage"
+        ).src =
+          images[currentImage];
+
+      }
+
+    }
+
+
+    if(event.key === "Escape"){
+
+      document.getElementById(
+        "imageModal"
+      ).classList.remove(
+        "active"
       );
 
     }
@@ -1906,8 +2091,14 @@ window.addEventListener(
   }
 );
 
-</script>
 
+/* =========================================================
+   START
+========================================================= */
+
+loadProperty();
+
+</script>
 
 </body>
 
